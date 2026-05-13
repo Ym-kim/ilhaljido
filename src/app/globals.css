@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Brand Colors ── */
+  --color-brand:      #1a5f3f;
+  --color-brand-dark: #145030;
+  --color-brand-mid:  #22a05a;
+  --color-brand-pale: #e6f4ec;
+
+  /* ── Neutrals ── */
+  --color-dark:   #0D1B12;
+  --color-text:   #2D3A30;
+  --color-muted:  #6B7E72;
+  --color-border: #DDE8E1;
+  --color-cream:  #FDFAF5;
+
+  /* ── Font ── */
+  --font-sans: var(--font-noto), 'Noto Sans KR', system-ui, sans-serif;
+
+  /* ── Radius ── */
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--color-text);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Remove default list styles in nav */
+nav ul { list-style: none; }
+
+/* Details/summary arrow hide */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-muted); }
+
+/* Line-clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
