@@ -3,89 +3,104 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
-
-const navLinks = [
-  { href: '/#how', label: '이용방법' },
-  { href: '/programs', label: '프로그램' },
-  { href: '/apply', label: '신청하기' },
-  { href: '/#faq', label: 'FAQ' },
-]
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const pathname = usePathname()
   const isHome = pathname === '/'
 
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', handler, { passive: true })
-    return () => window.removeEventListener('scroll', handler)
+    const fn = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', fn, { passive: true })
+    return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const navBg = isHome
-    ? scrolled
-      ? 'bg-white/97 border-border shadow-sm'
-      : 'bg-dark/75 border-white/10 backdrop-blur-lg'
-    : 'bg-white border-border shadow-sm'
+  useEffect(() => { setOpen(false) }, [pathname])
 
-  const textColor = (isHome && !scrolled) ? 'text-white/80' : 'text-muted'
-  const logoColor = (isHome && !scrolled) ? 'text-white' : 'text-brand'
+  const light = isHome && !scrolled
 
   return (
     <>
-      <nav className={cn('fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 lg:px-[6%] h-16 border-b transition-all duration-300', navBg)}>
-        <Link href="/" className="flex items-center gap-2.5 no-underline">
-          <span className="w-8 h-8 rounded-[9px] bg-gradient-to-br from-brand-mid to-brand flex items-center justify-center text-white text-sm font-black">일</span>
-          <span className={cn('text-lg font-black tracking-tight transition-colors', logoColor)}>일할지도</span>
+      <nav className={cn(
+        'fixed inset-x-0 top-0 z-50 flex items-center justify-between transition-all duration-500',
+        'px-8 lg:px-16 h-[60px]',
+        light
+          ? 'bg-transparent'
+          : 'bg-white/90 backdrop-blur-xl border-b border-[#E5E1DA]/60 shadow-[0_1px_0_rgba(0,0,0,0.04)]'
+      )}>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <span className={cn(
+            'w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-black transition-all',
+            'bg-gradient-to-br from-brand-mid to-brand'
+          )}>일</span>
+          <span className={cn(
+            'text-[15px] font-black tracking-tight transition-colors',
+            light ? 'text-white' : 'text-dark'
+          )}>일할지도</span>
         </Link>
 
-        <ul className="hidden md:flex items-center gap-7 list-none">
-          {navLinks.map(link => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className={cn('text-sm font-medium no-underline hover:text-brand transition-colors', textColor)}
-              >
-                {link.label}
+        {/* Desktop nav */}
+        <ul className="hidden md:flex items-center gap-8">
+          {[
+            { href: '/#how', label: '이용방법' },
+            { href: '/programs', label: '프로그램' },
+            { href: '/apply', label: '신청' },
+          ].map(({ href, label }) => (
+            <li key={href}>
+              <Link href={href} className={cn(
+                'text-[13px] font-semibold tracking-wide transition-colors',
+                light ? 'text-white/75 hover:text-white' : 'text-muted hover:text-dark'
+              )}>
+                {label}
               </Link>
             </li>
           ))}
         </ul>
 
-        <div className="flex items-center gap-3">
-          <Button asChild size="sm" className="hidden md:inline-flex">
-            <Link href="/apply">프로그램 신청</Link>
-          </Button>
-          <button
-            className={cn('md:hidden p-1', textColor)}
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        {/* CTA */}
+        <Link href="/apply" className={cn(
+          'hidden md:flex items-center gap-2 text-[13px] font-bold px-4 py-2 rounded-full transition-all',
+          light
+            ? 'bg-white text-brand hover:bg-white/90'
+            : 'bg-brand text-white hover:bg-brand-dark'
+        )}>
+          프로그램 신청
+        </Link>
+
+        {/* Mobile hamburger */}
+        <button
+          onClick={() => setOpen(!open)}
+          className={cn('md:hidden w-8 h-8 flex flex-col justify-center gap-[5px] items-center', light ? 'text-white' : 'text-dark')}
+        >
+          <span className={cn('block h-[1.5px] w-5 bg-current transition-all', open && 'rotate-45 translate-y-[6.5px]')} />
+          <span className={cn('block h-[1.5px] w-5 bg-current transition-all', open && 'opacity-0')} />
+          <span className={cn('block h-[1.5px] w-5 bg-current transition-all', open && '-rotate-45 -translate-y-[6.5px]')} />
+        </button>
       </nav>
 
-      {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-dark/95 pt-16 flex flex-col px-6 gap-6 md:hidden">
-          {navLinks.map(link => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-xl font-bold text-white no-underline hover:text-brand-mid"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Button asChild size="lg" className="mt-4">
-            <Link href="/apply" onClick={() => setMobileOpen(false)}>프로그램 신청</Link>
-          </Button>
-        </div>
-      )}
+      {/* Mobile menu */}
+      <div className={cn(
+        'fixed inset-0 z-40 bg-dark flex flex-col px-8 pt-20 pb-10 transition-all duration-300 md:hidden',
+        open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+      )}>
+        {[
+          { href: '/', label: '홈' },
+          { href: '/programs', label: '프로그램' },
+          { href: '/apply', label: '신청하기' },
+        ].map(({ href, label }) => (
+          <Link key={href} href={href}
+            className="text-3xl font-black text-white/80 hover:text-white py-4 border-b border-white/10 transition-colors">
+            {label}
+          </Link>
+        ))}
+        <Link href="/apply"
+          className="mt-8 bg-brand-mid text-white text-center py-4 rounded-2xl text-lg font-black">
+          지금 신청하기 →
+        </Link>
+      </div>
     </>
   )
 }
