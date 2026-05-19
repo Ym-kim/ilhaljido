@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
+import { LanguageProvider } from '@/context/LanguageContext'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
@@ -22,9 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ko" className={`${inter.variable} scroll-smooth`}>
       <body className="min-h-full bg-white text-gray-900 antialiased flex flex-col">
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
+        <LanguageProvider>
+          <Navbar />
+          <div className="flex-1">{children}</div>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   )
