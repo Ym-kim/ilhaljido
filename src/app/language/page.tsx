@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 import { BookOpen, Globe, Users, Star } from 'lucide-react'
 
@@ -109,8 +108,6 @@ export default function LanguagePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }

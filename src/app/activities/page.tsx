@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 
 const ACTS = [
@@ -40,7 +39,6 @@ export default function ActivitiesPage() {
           ))}
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

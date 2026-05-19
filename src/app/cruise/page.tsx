@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 import { Anchor, Wifi, Globe, Star } from 'lucide-react'
 
@@ -69,7 +68,6 @@ export default function CruisePage() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

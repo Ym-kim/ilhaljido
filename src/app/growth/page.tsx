@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 
 const CAMPS = [
@@ -37,7 +36,6 @@ export default function GrowthPage() {
           ))}
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

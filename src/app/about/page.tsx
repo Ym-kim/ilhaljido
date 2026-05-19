@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 import { CheckCircle2, Users, Zap, Globe } from 'lucide-react'
 
@@ -50,7 +49,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

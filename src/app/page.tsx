@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { ChevronDown, Star, Wifi, ArrowRight, CheckCircle2, Building2 } from 'lucide-react'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 
 const STAYS = [
@@ -156,8 +155,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }

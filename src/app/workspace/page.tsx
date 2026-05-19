@@ -1,6 +1,5 @@
 'use client'
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import { useLang } from '@/context/LanguageContext'
 import { Wifi, Monitor, Building2, Zap, Volume2, Coffee } from 'lucide-react'
 
@@ -40,7 +39,6 @@ export default function WorkspacePage() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }
