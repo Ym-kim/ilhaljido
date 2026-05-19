@@ -30,11 +30,11 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   const isDark = transparent && !scrolled
   const bg = isDark ? 'bg-transparent' : 'bg-white shadow-sm'
   const textColor = isDark ? 'text-white' : 'text-gray-800'
-  const menuColor = isDark ? 'text-white/80 hover:text-white' : 'text-gray-600 hover:text-teal-600'
+  const menuColor = isDark ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-teal-600'
 
   return (
     <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${bg}`}>
-      <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
         {/* 로고 */}
         <Link href="/" className={`flex items-center gap-2 ${textColor} font-black text-base`}>
@@ -46,7 +46,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
         <ul className="hidden lg:flex items-center gap-6">
           {NAV_LINKS.map(n => (
             <li key={n.key}>
-              <Link href={n.href} className={`text-xs font-semibold transition-colors ${menuColor}`}>
+              <Link href={n.href} className={`text-sm font-semibold transition-colors ${menuColor}`}>
                 {tr(n.key)}
               </Link>
             </li>
@@ -72,10 +72,10 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             ))}
           </div>
 
-          <Link href="#" className={`text-xs font-medium ${menuColor}`}>{tr('nav_login')}</Link>
+          <Link href="#" className={`text-sm font-medium ${menuColor}`}>{tr('nav_login')}</Link>
 
           <Link href="/about"
-            className="bg-teal-500 text-white text-xs font-bold px-4 py-2 rounded-full hover:bg-teal-400 transition-colors">
+            className="bg-teal-500 text-white text-sm font-bold px-5 py-2 rounded-full hover:bg-teal-400 transition-colors">
             {tr('nav_cta')}
           </Link>
         </div>

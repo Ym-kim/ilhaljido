@@ -7,7 +7,7 @@ import { useLang } from '@/context/LanguageContext'
 export default function Footer() {
   const { tr } = useLang()
   return (
-    <footer className="bg-[#0a0a0a] text-white/40 py-16 px-6">
+    <footer className="bg-[#0a0a0a] text-white/65 py-16 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-2">
@@ -15,7 +15,7 @@ export default function Footer() {
               <Mountain className="w-5 h-5 text-teal-500" />
               <span className="font-black text-white text-lg">Wakation</span>
             </div>
-            <p className="text-sm leading-relaxed text-white/30 max-w-xs">Stay. Work. Grow.</p>
+            <p className="text-sm leading-relaxed text-white/55 max-w-xs">Stay. Work. Grow.</p>
           </div>
           <div>
             <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">{tr('footer_service')}</h4>
@@ -32,7 +32,7 @@ export default function Footer() {
           <div>
             <h4 className="text-white/60 text-xs font-bold uppercase tracking-widest mb-4">{tr('footer_contact')}</h4>
             <ul className="space-y-2 text-sm">
-              <li className="text-white/30">hello@wakation.kr</li>
+              <li className="text-white/60">hello@wakation.kr</li>
               <li><Link href="/about" className="hover:text-white transition-colors">{tr('nav_about')}</Link></li>
             </ul>
           </div>
