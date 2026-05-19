@@ -9,12 +9,6 @@ export function formatPrice(price: number): string {
   return new Intl.NumberFormat('ko-KR').format(price) + '원'
 }
 
-export function formatDate(dateStr: string): string {
-  return new Intl.DateTimeFormat('ko-KR', {
-    year: 'numeric', month: 'long', day: 'numeric', weekday: 'short',
-  }).format(new Date(dateStr))
-}
-
 export function formatDateRange(start: string, end: string): string {
   const s = new Date(start)
   const e = new Date(end)
