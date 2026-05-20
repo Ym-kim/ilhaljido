@@ -1,7 +1,6 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
-import Navbar from '@/components/Navbar'
 
 const CONTACT_TYPES = [
   {
@@ -39,7 +38,6 @@ const CONTACT_TYPES = [
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
-      <Navbar />
 
       {/* ── Hero ── */}
       <section className="pt-28 pb-12 px-6 text-center">

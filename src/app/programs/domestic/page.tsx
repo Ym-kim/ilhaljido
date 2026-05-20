@@ -1,12 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import Navbar from '@/components/Navbar'
-import { MapPin, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { MapPin, ArrowRight, CheckCircle2, Home } from 'lucide-react'
+import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { ICON_STROKE } from '@/lib/icons'
 
 const CURRENT = [
   {
-    tag: '🔥 모집중', tagColor: 'bg-teal-500',
+    tag: '모집중', tagColor: 'bg-brand-mid',
     name: 'Wakation 양양 1기 파일럿',
     region: '강원도 양양',
     duration: '2박 3일',
@@ -28,7 +29,6 @@ const UPCOMING = [
 export default function DomesticPage() {
   return (
     <div className="min-h-screen bg-[#111]">
-      <Navbar />
 
       {/* Hero */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">
@@ -36,11 +36,13 @@ export default function DomesticPage() {
           alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
-          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-3">🏡 국내 워케이션</p>
-          <h1 className="text-5xl md:text-6xl font-black text-white leading-tight">
+          <SectionEyebrow onDark className="flex items-center gap-2">
+            <Home className="w-4 h-4 inline" strokeWidth={ICON_STROKE} /> 국내 워케이션
+          </SectionEyebrow>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
             국내 거점에서<br />일하고 성장하다
           </h1>
-          <p className="text-white/60 mt-3 max-w-xl">양양·강릉·제주·전주·여수. 사무실을 벗어난 공간에서 업무 몰입과 회복, 성장이 동시에.</p>
+          <p className="text-lead-on-dark mt-4 max-w-xl">양양·강릉·제주·전주·여수. 사무실을 벗어난 공간에서 업무 몰입과 회복, 성장이 동시에.</p>
         </div>
       </section>
 

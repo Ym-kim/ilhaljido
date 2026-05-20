@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import Navbar from '@/components/Navbar'
 
 const PROGRAMS = [
   {
@@ -55,7 +54,6 @@ const PROGRAMS = [
 export default function ProgramsPage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
-      <Navbar />
 
       {/* ── Hero ── */}
       <section className="relative h-[50vh] flex items-end overflow-hidden">

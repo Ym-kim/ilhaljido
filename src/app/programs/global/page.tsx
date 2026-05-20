@@ -1,8 +1,9 @@
 'use client'
 
-import Navbar from '@/components/Navbar'
-import { MapPin, ArrowRight } from 'lucide-react'
+import { MapPin, ArrowRight, Globe2 } from 'lucide-react'
 import Link from 'next/link'
+import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { ICON_STROKE } from '@/lib/icons'
 
 const DESTINATIONS = [
   { name: '발리 워케이션', country: '인도네시아', region: '발리 우붓·짱구', tag: '정글·바다', status: '준비중', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80' },
@@ -16,7 +17,6 @@ const DESTINATIONS = [
 export default function GlobalPage() {
   return (
     <div className="min-h-screen bg-[#111]">
-      <Navbar />
 
       {/* Hero */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">
@@ -24,11 +24,13 @@ export default function GlobalPage() {
           alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
-          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-3">🌏 글로벌 워케이션</p>
-          <h1 className="text-5xl md:text-6xl font-black text-white leading-tight">
+          <SectionEyebrow onDark className="!flex items-center gap-2">
+            <Globe2 className="w-4 h-4" strokeWidth={ICON_STROKE} /> 글로벌 워케이션
+          </SectionEyebrow>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
             전 세계 거점에서<br />일하며 성장하다
           </h1>
-          <p className="text-white/60 mt-3 max-w-xl">발리·치앙마이·오사카·다낭·세부·호주. 글로벌 체류 환경에서 업무와 네트워킹을 동시에.</p>
+          <p className="text-lead-on-dark mt-4 max-w-xl">발리·치앙마이·오사카·다낭·세부·호주. 글로벌 체류 환경에서 업무와 네트워킹을 동시에.</p>
         </div>
       </section>
 

@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { Wifi, Monitor, VolumeX, MapPin, Home, Globe, Building2, Users, Airplay, Store } from 'lucide-react'
-import Navbar from '@/components/Navbar'
 
 const SPACE_TYPES = [
   {
@@ -47,7 +46,6 @@ const VERIFY_CRITERIA = [
 export default function InfrastructurePage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
 
       {/* ── Hero ── */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">

@@ -1,5 +1,4 @@
 'use client'
-import Navbar from '@/components/Navbar'
 import { useLang } from '@/context/LanguageContext'
 import { CheckCircle2, Users, Zap, Globe } from 'lucide-react'
 
@@ -7,7 +6,6 @@ export default function AboutPage() {
   const { tr } = useLang()
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       {/* Hero */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">
         <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />

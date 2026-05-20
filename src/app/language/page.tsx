@@ -1,5 +1,4 @@
 'use client'
-import Navbar from '@/components/Navbar'
 import { useLang } from '@/context/LanguageContext'
 import { BookOpen, Globe, Users, Star } from 'lucide-react'
 
@@ -36,7 +35,6 @@ export default function LanguagePage() {
   const { tr } = useLang()
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
-      <Navbar />
 
       {/* Hero */}
       <section className="relative h-[60vh] flex items-end overflow-hidden">

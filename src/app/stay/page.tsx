@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Navbar from '@/components/Navbar'
 import { useLang } from '@/context/LanguageContext'
 import { Star, Wifi, CheckCircle2, MapPin } from 'lucide-react'
 
@@ -33,7 +32,6 @@ export default function StayPage() {
 
   return (
     <div className="min-h-screen bg-[#111]">
-      <Navbar />
 
       {/* 히어로 */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">

@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { ArrowRight, RotateCcw } from 'lucide-react'
-import Navbar from '@/components/Navbar'
 
 type Step = 1 | 2 | 3 | 4
 
@@ -91,7 +90,6 @@ export default function VisaAiPage() {
 
   return (
     <div className="min-h-screen bg-[#0f0f0f]">
-      <Navbar />
 
       {/* ── Hero text ── */}
       <section className="pt-28 pb-16 px-6 text-center">

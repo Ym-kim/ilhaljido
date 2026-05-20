@@ -1,5 +1,4 @@
 'use client'
-import Navbar from '@/components/Navbar'
 import { useLang } from '@/context/LanguageContext'
 
 const CAMPS = [
@@ -15,7 +14,6 @@ export default function GrowthPage() {
   const { tr } = useLang()
   return (
     <div className="min-h-screen bg-[#111]">
-      <Navbar />
       <section className="relative h-[55vh] flex items-end overflow-hidden">
         <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />

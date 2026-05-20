@@ -1,5 +1,4 @@
 'use client'
-import Navbar from '@/components/Navbar'
 import { useLang } from '@/context/LanguageContext'
 import { Anchor, Wifi, Globe, Star } from 'lucide-react'
 
@@ -13,7 +12,6 @@ export default function CruisePage() {
   const { tr } = useLang()
   return (
     <div className="min-h-screen bg-white">
-      <Navbar />
       <section className="relative h-[60vh] flex items-end overflow-hidden">
         <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />

@@ -1,8 +1,9 @@
 'use client'
 
-import Navbar from '@/components/Navbar'
-import { ArrowRight, Globe, Users, TrendingUp, Building2 } from 'lucide-react'
+import { ArrowRight, Globe, Users, TrendingUp, Building2, LineChart } from 'lucide-react'
 import Link from 'next/link'
+import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { ICON_STROKE } from '@/lib/icons'
 
 const FEATURES = [
   { icon: <Globe className="w-6 h-6" />, title: '현장 시장조사', desc: '현지 도매상·박람회·로컬 유통망을 직접 눈으로 확인' },
@@ -20,7 +21,6 @@ const UPCOMING = [
 export default function MarketPage() {
   return (
     <div className="min-h-screen bg-[#111]">
-      <Navbar />
 
       {/* Hero */}
       <section className="relative h-[55vh] flex items-end overflow-hidden">
@@ -28,11 +28,13 @@ export default function MarketPage() {
           alt="" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
-          <p className="text-orange-400 text-xs font-black tracking-widest uppercase mb-3">📊 시장조사단·박람회</p>
-          <h1 className="text-5xl md:text-6xl font-black text-white leading-tight">
+          <SectionEyebrow onDark className="!flex items-center gap-2 !text-amber-400">
+            <LineChart className="w-4 h-4" strokeWidth={ICON_STROKE} /> 시장조사단·박람회
+          </SectionEyebrow>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
             글로벌 시장을<br />직접 보고 사업에 연결
           </h1>
-          <p className="text-white/60 mt-3 max-w-xl">이커머스·소싱·무역·글로벌 셀링을 준비하는 사업자를 위한 현장 시장조사 프로그램.</p>
+          <p className="text-lead-on-dark mt-4 max-w-xl">이커머스·소싱·무역·글로벌 셀링을 준비하는 사업자를 위한 현장 시장조사 프로그램.</p>
         </div>
       </section>
 
