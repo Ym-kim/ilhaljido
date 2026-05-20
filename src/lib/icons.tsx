@@ -68,14 +68,15 @@ export const PARTNER_ICONS: Record<PartnerIconKey, LucideIcon> = {
   global: Globe2,
 }
 
+/** @deprecated Use partner id from i18n content instead */
 export function partnerKeyFromTitle(title: string): PartnerIconKey {
-  if (title.includes('지자체') || title.includes('관광')) return 'government'
-  if (title.includes('숙소') || title.includes('공간')) return 'space'
-  if (title.includes('강의') || title.includes('교육')) return 'education'
-  if (title.includes('어학') || title.includes('유학')) return 'language'
-  if (title.includes('에어비앤비') || title.includes('호스트')) return 'host'
-  if (title.includes('HR') || title.includes('기업')) return 'corporate'
-  if (title.includes('B2G') || title.includes('생활인구')) return 'b2g'
+  if (/government|지자체|관광|local government/i.test(title)) return 'government'
+  if (/space|숙소|공간|stay/i.test(title)) return 'space'
+  if (/education|강의|교육|lecture/i.test(title)) return 'education'
+  if (/language|어학|유학|language school/i.test(title)) return 'language'
+  if (/host|에어비앤비|airbnb/i.test(title)) return 'host'
+  if (/corporate|HR|기업|enterprise/i.test(title)) return 'corporate'
+  if (/b2g|생활인구/i.test(title)) return 'b2g'
   return 'global'
 }
 

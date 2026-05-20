@@ -7,15 +7,8 @@ import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import type { Lang } from '@/lib/i18n'
+import { getNavPrograms } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
-
-const PROGRAMS_CHILDREN = [
-  { href: '/programs/domestic', label: '국내 워케이션' },
-  { href: '/programs/global', label: '글로벌 워케이션' },
-  { href: '/programs/market', label: '시장조사단·박람회' },
-  { href: '/language', label: '어학·유학' },
-  { href: '/cruise', label: '크루즈 워케이션' },
-]
 
 const SIMPLE_LINKS: { key: string; href: string }[] = [
   { key: 'nav_about', href: '/about' },
@@ -28,6 +21,7 @@ const SIMPLE_LINKS: { key: string; href: string }[] = [
 
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
   const { lang, setLang, tr } = useLang()
+  const programsChildren = getNavPrograms(lang)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mobilePrograms, setMobilePrograms] = useState(false)
@@ -70,7 +64,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden">
-                {PROGRAMS_CHILDREN.map((c) => (
+                {programsChildren.map((c) => (
                   <Link
                     key={c.href}
                     href={c.href}
@@ -153,7 +147,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             </button>
             {mobilePrograms && (
               <div className="pl-3 pb-3 space-y-1">
-                {PROGRAMS_CHILDREN.map((c) => (
+                {programsChildren.map((c) => (
                   <Link
                     key={c.href}
                     href={c.href}

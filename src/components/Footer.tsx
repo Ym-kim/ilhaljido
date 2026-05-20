@@ -16,7 +16,7 @@ export default function Footer() {
             <p className="text-[0.9375rem] leading-relaxed text-white/55 max-w-sm font-medium">
               Stay. Work. Grow.
             </p>
-            <p className="text-caption-on-dark mt-2">일하는 사람을 위한 글로벌 체류형 성장 플랫폼</p>
+            <p className="text-caption-on-dark mt-2">{tr('footer_tagline')}</p>
           </div>
           <div>
             <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">

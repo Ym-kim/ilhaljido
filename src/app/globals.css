@@ -38,7 +38,20 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.035em;
   line-height: 1.15;
   font-weight: 800;
-  color: inherit;
+}
+
+/* Dark sections: ensure readable text even without per-element utilities */
+.dark-surface {
+  color: rgba(255, 255, 255, 0.88);
+}
+.dark-surface h1,
+.dark-surface h2,
+.dark-surface h3,
+.dark-surface h4 {
+  color: #ffffff;
+}
+.dark-surface p {
+  color: rgba(255, 255, 255, 0.72);
 }
 
 /* Typography scale */

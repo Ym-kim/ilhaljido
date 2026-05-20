@@ -15,9 +15,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (saved && ['KO', 'EN', 'JP'].includes(saved)) setLangState(saved)
   }, [])
 
+  useEffect(() => {
+    const htmlLang = lang === 'KO' ? 'ko' : lang === 'EN' ? 'en' : 'ja'
+    document.documentElement.lang = htmlLang
+  }, [lang])
+
   const setLang = (l: Lang) => {
     setLangState(l)
     localStorage.setItem('wakation_lang', l)
+    document.cookie = `wakation_lang=${l};path=/;max-age=31536000;SameSite=Lax`
   }
 
   const tr = (key: string) => t[lang][key] ?? t['KO'][key] ?? key
