@@ -96,6 +96,56 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
               <p className="text-muted leading-relaxed">{program.description}</p>
             </div>
 
+            {/* 숙소 정보 */}
+            <div className="bg-cream rounded-2xl border border-border p-6">
+              <h2 className="text-lg font-black text-dark mb-4 flex items-center gap-2">
+                <Home size={18} className="text-brand" /> 숙소 안내
+              </h2>
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                {[
+                  { label: '객실 타입', val: '1인 1실 독립 객실' },
+                  { label: '뷰', val: '오션뷰 (바다 조망)' },
+                  { label: '업무 환경', val: '전용 책상 + 의자 구비' },
+                  { label: '인터넷', val: 'WiFi 100Mbps+ 실측' },
+                ].map(({ label, val }) => (
+                  <div key={label} className="bg-white rounded-xl p-3 border border-border">
+                    <p className="text-xs text-muted mb-0.5">{label}</p>
+                    <p className="text-sm font-bold text-dark">{val}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-muted leading-relaxed">
+                양양 바다가 보이는 프라이빗 1인 1실 객실에서 2박 3일을 보냅니다.
+                전용 책상과 의자가 구비되어 있어 객실에서도 업무가 가능합니다.
+              </p>
+            </div>
+
+            {/* 성장 세션 전문성 */}
+            <div className="bg-cream rounded-2xl border border-border p-6">
+              <h2 className="text-lg font-black text-dark mb-4 flex items-center gap-2">
+                <BookOpen size={18} className="text-brand" /> 성장 세션 안내
+              </h2>
+              <div className="flex items-start gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-brand-pale border border-brand/20 flex items-center justify-center text-brand font-black text-sm shrink-0">W</div>
+                <div>
+                  <p className="text-sm font-black text-dark">Wakation 호스트 팀 · AI 실무 전문가</p>
+                  <p className="text-xs text-muted mt-0.5">Claude / ChatGPT / Midjourney 실무 활용 전문</p>
+                </div>
+              </div>
+              <ul className="space-y-2">
+                {[
+                  'Claude·ChatGPT 활용 업무 자동화 (이메일·문서·리포트)',
+                  'AI 이미지 생성 — 상세페이지·브랜드 콘텐츠 제작',
+                  '1인 사업 방향 정리 — 포지셔닝·타겟·채널 설계',
+                  '네트워킹 — 같은 목적의 참가자 간 사업 연결',
+                ].map(item => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-muted">
+                    <CheckCircle2 size={14} className="text-brand mt-0.5 shrink-0" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
             {/* Tags */}
             <div>
               <h2 className="text-lg font-black text-dark mb-3">프로그램 특징</h2>

@@ -22,12 +22,18 @@ function ApplyForm() {
   const searchParams = useSearchParams()
   const programParam = searchParams.get('program') ?? ''
 
+  const isYangyang = programParam.toLowerCase().includes('yangyang')
+
   const [form, setForm] = useState({
     name: '', phone: '', email: '',
     job_type: '', program_id: programParam,
     work_style: '', interests: [] as string[],
     rest_preferences: [] as string[],
-    duration_preference: '', budget_range: '', message: '',
+    duration_preference: '', budget_range: '',
+    date_preference: '',
+    companion_count: '0',
+    companion_names: '',
+    message: '',
   })
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
@@ -173,6 +179,55 @@ function ApplyForm() {
         </div>
       </div>
 
+      {/* 양양 전용: 희망 참가 일정 */}
+      {isYangyang && (
+        <div>
+          <label className="block text-sm font-bold text-dark mb-2">
+            희망 참가 일정 <span className="text-red-500">*</span>
+          </label>
+          <div className="space-y-2">
+            {[
+              '6월 20일(금) – 6월 22일(일)',
+              '6월 27일(금) – 6월 29일(일)',
+              '7월 4일(금) – 7월 6일(일)',
+              '미정 (일정 추천 받을게요)',
+            ].map(opt => (
+              <label key={opt} className="flex items-center gap-2.5 cursor-pointer p-3 rounded-xl border border-border hover:border-brand-mid transition-colors">
+                <input type="radio" name="date_preference" value={opt}
+                  checked={form.date_preference === opt}
+                  onChange={() => setForm(f => ({ ...f, date_preference: opt }))}
+                  className="accent-brand w-4 h-4 shrink-0" />
+                <span className="text-sm text-text font-medium">{opt}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 동반 참가자 */}
+      <div>
+        <label className="block text-sm font-bold text-dark mb-2">동반 참가자</label>
+        <div className="flex flex-wrap gap-2 mb-3">
+          {['혼자 참가', '2명 (나 포함)', '3명 (나 포함)', '4명 이상'].map(opt => (
+            <button key={opt} type="button"
+              onClick={() => setForm(f => ({ ...f, companion_count: opt, companion_names: opt === '혼자 참가' ? '' : f.companion_names }))}
+              className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-all ${
+                form.companion_count === opt
+                  ? 'bg-brand-pale border-brand text-brand'
+                  : 'bg-white border-border text-muted hover:border-brand'
+              }`}>
+              {opt}
+            </button>
+          ))}
+        </div>
+        {form.companion_count !== '혼자 참가' && form.companion_count !== '0' && (
+          <input value={form.companion_names}
+            onChange={e => setForm(f => ({ ...f, companion_names: e.target.value }))}
+            placeholder="동반 참가자 이름 (예: 김영희, 박철수)"
+            className="w-full border border-border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-brand-mid transition-colors" />
+        )}
+      </div>
+
       {/* 기간 + 예산 */}
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -239,6 +294,30 @@ export default function ApplyPage() {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* 예약 확정 프로세스 */}
+            <div className="mt-8 bg-brand-pale border border-brand/20 rounded-2xl p-5">
+              <p className="text-xs font-black text-brand tracking-widest uppercase mb-4">예약 확정 프로세스</p>
+              <ol className="space-y-3">
+                {[
+                  { step: '01', title: '신청서 제출', desc: '오른쪽 폼 작성 후 제출 (5분 소요)' },
+                  { step: '02', title: '담당자 확인 연락', desc: '3일 내 전화 또는 문자로 직접 연락' },
+                  { step: '03', title: '결제 링크 발송', desc: '일정 확인 후 이메일로 결제 링크 발송' },
+                  { step: '04', title: '입금 완료 → 예약 확정', desc: '입금 확인 즉시 확정 문자 발송' },
+                ].map(s => (
+                  <li key={s.step} className="flex items-start gap-3">
+                    <span className="w-6 h-6 rounded-full bg-brand text-white text-xs font-black flex items-center justify-center shrink-0 mt-0.5">{s.step}</span>
+                    <div>
+                      <p className="text-sm font-bold text-dark">{s.title}</p>
+                      <p className="text-xs text-muted">{s.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <p className="text-xs text-muted mt-4 pt-3 border-t border-brand/10">
+                💡 신청서 제출만으로는 예약이 확정되지 않아요. 담당자 확인 후 결제 링크를 받으셔야 최종 확정됩니다.
+              </p>
             </div>
           </div>
 
