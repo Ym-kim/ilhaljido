@@ -57,6 +57,8 @@ type DomesticCurrent = {
   img: string
   href: string
   price: string
+  originalPrice?: string
+  date?: Loc<string>
   duration: Loc<string>
   name: Loc<string>
   region: Loc<string>
@@ -384,18 +386,20 @@ const DOMESTIC_CURRENT: DomesticCurrent[] = [
     img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
     href: '/programs/yangyang-1',
     price: '299,000',
+    originalPrice: '399,000',
+    date: loc('6월 17일(수) – 19일(금)', 'Jun 17(Wed) – 19(Fri)', '6月17日(水)〜19日(金)'),
     duration: loc('2박 3일', '2 nights · 3 days', '2泊3日'),
-    name: loc('Wakation 양양 1기 파일럿', 'Wakation Yangyang Pilot Cohort 1', 'Wakation襄陽1期パイロット'),
+    name: loc('양양 Wakation 파일럿 프로그램', 'Yangyang Wakation Pilot Program', '襄陽Wakationパイロットプログラム'),
     region: loc('강원도 양양', 'Yangyang, Gangwon', '江原道・襄陽'),
     desc: loc(
-      '양양 바다 앞에서 일하고, 쉬고, 성장 방향을 잡는 체류형 워케이션 성장 프로그램.',
-      'Work, rest, and set your growth direction by the sea in Yangyang.',
-      '襄陽の海辺で働き、休み、成長の方向を定めるプログラム。'
+      '바다가 보이는 탁 트인 환경에서 일하고, 쉬고, 연결되는 2박 3일. 딱딱한 교육이 아닌 네트워킹형 워케이션입니다.',
+      'Work, rest, and connect in an open ocean-view setting — a networking-first workation, not a seminar.',
+      '海が見える開放的な環境で働き、休み、繋がる2泊3日。教育ではなくネットワーキング型ワーケーション。'
     ),
     includes: loc(
-      ['2박 숙박', '웨이브웍스 종일', '바베큐 네트워킹', '성장 세션'],
-      ['2-night stay', 'Full-day Wave Works', 'BBQ networking', 'Growth session'],
-      ['2泊宿泊', 'Wave Works終日', 'BBQネットワーキング', '成長セッション']
+      ['2박 숙박 (2인 1실)', '바베큐 네트워킹 파티', '자유 업무 시간', '자연스러운 네트워킹'],
+      ['2-night stay (shared room)', 'BBQ networking party', 'Free work time', 'Organic networking'],
+      ['2泊宿泊（2人1室）', 'BBQネットワーキング', '自由業務時間', '自然なネットワーキング']
     ),
   },
 ]
@@ -623,7 +627,7 @@ export function getApplyProgramOptions(lang: Lang) {
     { value: 'network-chuncheon', label: tloc(lang, loc('1인 기업가 네트워킹 캠프 — 강원 춘천 (7/23~26)', 'Solopreneur networking — Chuncheon (Jul 23–26)', 'ネットワーキング — 春川')) },
     { value: 'japan-osaka', label: tloc(lang, loc('일본 시장조사 워케이션 (8월 예정)', 'Japan market research (Aug, TBD)', '日本市場調査（8月予定）')) },
     { value: 'design-tongyeong', label: tloc(lang, loc('디자인 & 브랜딩 집중 캠프 — 경남 통영 (8월 예정)', 'Design & branding camp — Tongyeong (Aug, TBD)', 'デザインキャンプ（8月予定）')) },
-    { value: 'yangyang-1', label: tloc(lang, loc('양양 워케이션 1기 (6월~7월)', 'Yangyang workation cohort 1 (Jun–Jul)', '襄陽ワーケーション1期（6〜7月）')) },
+    { value: 'yangyang-1', label: tloc(lang, loc('양양 Wakation 파일럿 — 6/17(수)~19(금)', 'Yangyang Wakation Pilot — Jun 17–19', '襄陽パイロット — 6/17〜19')) },
     { value: 'undecided', label: tloc(lang, loc('아직 정하지 않았어요 (추천받고 싶어요)', 'Not sure yet (want recommendations)', 'まだ決めていない（おすすめ希望）')) },
   ]
 }
@@ -633,22 +637,19 @@ export function getYangyangDateOptions(lang: Lang) {
     lang,
     loc(
       [
-        '6월 20일(금) ~ 6월 22일(일)',
-        '6월 27일(금) ~ 6월 29일(일)',
-        '7월 4일(금) ~ 7월 6일(일)',
-        '미정 (일정 추천 받을게요)',
+        '6월 17일(수) – 6월 19일(금) ← 확정 일정',
+        '1인실 신청 (+30,000원/박)',
+        '2인 1실 기본',
       ],
       [
-        'Fri Jun 20 – Sun Jun 22',
-        'Fri Jun 27 – Sun Jun 29',
-        'Fri Jul 4 – Sun Jul 6',
-        'Flexible (please recommend dates)',
+        'Jun 17(Wed) – Jun 19(Fri) ← Confirmed',
+        'Single room (+₩30,000/night)',
+        'Shared room (default)',
       ],
       [
-        '6月20日(金)〜22日(日)',
-        '6月27日(金)〜29日(日)',
-        '7月4日(金)〜6日(日)',
-        '未定（日程の提案希望）',
+        '6月17日(水)〜19日(金) ← 確定日程',
+        '1人室申請（+30,000ウォン/泊）',
+        '2人1室（基本）',
       ]
     )
   )
