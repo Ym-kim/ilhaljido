@@ -384,7 +384,7 @@ const DOMESTIC_CURRENT: DomesticCurrent[] = [
   {
     id: 'yangyang-1',
     img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-    href: '/programs/yangyang-1',
+    href: 'https://wakation-yangyang.vercel.app/',
     price: '299,000',
     originalPrice: '399,000',
     date: loc('6월 17일(수) – 19일(금)', 'Jun 17(Wed) – 19(Fri)', '6月17日(水)〜19日(金)'),

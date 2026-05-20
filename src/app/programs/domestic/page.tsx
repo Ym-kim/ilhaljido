@@ -60,9 +60,7 @@ export default function DomesticPage() {
                       <span className="text-3xl font-black text-white">₩{p.price}</span>
                       <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
                     </div>
-                    <Link href={p.href} className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">
-                      {tr('learn_more')} <ArrowRight className="w-4 h-4" />
-                    </Link>
+                    {p.href.startsWith('http') ? (<a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">{tr('learn_more')} <ArrowRight className="w-4 h-4" /></a>) : (<Link href={p.href} className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">{tr('learn_more')} <ArrowRight className="w-4 h-4" /></Link>)}
                   </div>
                 </div>
               </div>
