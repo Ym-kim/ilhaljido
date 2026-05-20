@@ -526,43 +526,33 @@ export function getDomesticUpcoming(lang: Lang) {
   }))
 }
 
-export function getSampleSchedule(lang: Lang, durationNights: number) {
-  const lastDay = durationNights + 1
+export function getSampleSchedule(lang: Lang, _durationNights: number) {
   const days = [
     {
-      day: loc('DAY 1', 'DAY 1', 'DAY 1'),
-      title: loc('도착 & 오리엔테이션', 'Arrival & orientation', '到着＆オリエンテーション'),
+      day: loc('DAY 1 · 6월 17일(수)', 'DAY 1 · Jun 17 (Wed)', 'DAY 1 · 6月17日(水)'),
+      title: loc('도착 · 체크인 · 첫 만남', 'Arrival · Check-in · First Meet', '到着・チェックイン・初対面'),
       items: loc(
-        ['숙소 체크인 및 짐 정리', '참가자 오리엔테이션 & 아이스브레이킹', '첫날 저녁 로컬 식당 탐방'],
-        ['Check in and settle in', 'Orientation & icebreaking', 'First evening local dinner'],
-        ['チェックイン', 'オリエンテーション', '初日の夕食']
+        ['오후 양양 도착 및 숙소 체크인', '오리엔테이션 & 자기소개 (어떤 일을 하는지, 기대하는 점)', '자유 업무 및 휴식', '저녁 네트워킹 — 자신의 일·브랜드·프로젝트를 자연스럽게 소개'],
+        ['Afternoon arrival & check-in', 'Orientation & intro (what you do, your goals)', 'Free work or rest', 'Evening networking — casual intro of your work & projects'],
+        ['午後到着・チェックイン', 'オリエンテーション＆自己紹介', '自由業務・休憩', '夜ネットワーキング']
       ),
     },
     {
-      day: loc('DAY 2', 'DAY 2', 'DAY 2'),
-      title: loc('업무 집중 + 프로그램', 'Focus work + program', '集中ワーク＋プログラム'),
+      day: loc('DAY 2 · 6월 18일(목)', 'DAY 2 · Jun 18 (Thu)', 'DAY 2 · 6月18日(木)'),
+      title: loc('집중 업무 · 바다 · 바베큐 파티', 'Focus Work · Sea · BBQ Party', '集中ワーク・海・BBQパーティ'),
       items: loc(
-        ['오전 09:00~12:00 자유 업무 집중 시간 (공유오피스)', '오후 13:00~17:00 메인 프로그램 워크숍', '저녁 자유 시간 (선택: 로컬 체험 투어)'],
-        ['09:00–12:00 focused work (coworking)', '13:00–17:00 main workshop', 'Evening free (optional local tour)'],
-        ['午前集中ワーク', '午後ワークショップ', '夜は自由時間']
+        ['오전 집중 업무 시간 — 노트북 업무, 기획, 콘텐츠 제작 등 본인 업무에 집중', '점심 자유 식사 — 양양 로컬 공간 탐방', '오후 자유 업무 또는 해변 산책, 카페, 개인 휴식', '저녁 바베큐 네트워킹 파티 — 함께 식사하며 대화, 협력 가능성 탐색', '밤 자유 교류 시간 (희망자)'],
+        ['Morning focus work — laptop, planning, content creation', 'Lunch free — explore Yangyang local spots', 'Afternoon free work or beach walk, cafe, rest', 'Evening BBQ networking — dinner, conversation, explore collaboration', 'Night free socializing (optional)'],
+        ['午前集中ワーク', '昼食自由・ローカル探索', '午後自由業務or海散歩', '夜BBQネットワーキング', '夜の自由交流']
       ),
     },
     {
-      day: loc('DAY 3', 'DAY 3', 'DAY 3'),
-      title: loc('심화 세션 + 네트워킹', 'Deep dive + networking', '深化セッション＋ネットワーク'),
+      day: loc('DAY 3 · 6월 19일(금)', 'DAY 3 · Jun 19 (Fri)', 'DAY 3 · 6月19日(金)'),
+      title: loc('정리 · 경험 공유 · 해산', 'Wrap-up · Experience Share · Goodbye', 'まとめ・体験共有・解散'),
       items: loc(
-        ['오전 업무 집중 시간', '오후 실습 프로젝트 & 피드백', '저녁 네트워킹 파티'],
-        ['Morning focus work', 'Afternoon project & feedback', 'Evening networking'],
-        ['午前ワーク', '午後プロジェクト', '夜ネットワーキング']
-      ),
-    },
-    {
-      day: loc(`DAY ${lastDay}`, `DAY ${lastDay}`, `DAY ${lastDay}`),
-      title: loc('마무리 & 출발', 'Wrap-up & departure', 'まとめ＆出発'),
-      items: loc(
-        ['오전 결과 발표 & 소감 나누기', '점심 후 자유 체크아웃', '다음 워케이션 할인 혜택 제공'],
-        ['Morning share-out', 'Free checkout after lunch', 'Discount on your next workation'],
-        ['午前振り返り', '午後チェックアウト', '次回割引特典']
+        ['오전 자유 업무 또는 마지막 휴식', '워케이션 경험 공유 — 느낀 점, 새로운 연결, 가능성을 가볍게 나누기', '정오 전후 체크아웃 및 자유 해산', '이후 자율 일정 — 더 머물거나 각자 이동'],
+        ['Morning free work or last rest', 'Share workation experience — reflections, connections, possibilities', 'Checkout around noon, free departure', 'Free individual plans after — extend your stay or head home'],
+        ['午前自由業務・最後の休憩', 'ワーケーション体験共有', '正午前後チェックアウト', '自由解散']
       ),
     },
   ]
