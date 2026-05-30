@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react'
 import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
+import { useAuth } from '@/context/AuthContext'
 import { ICON_STROKE } from '@/lib/icons'
 import type { Lang } from '@/lib/i18n'
 import { getNavPrograms } from '@/lib/i18n'
@@ -21,6 +22,7 @@ const SIMPLE_LINKS: { key: string; href: string }[] = [
 
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
   const { lang, setLang, tr } = useLang()
+  const { user, signOut } = useAuth()
   const programsChildren = getNavPrograms(lang)
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -111,6 +113,47 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               </button>
             ))}
           </div>
+          {user ? (
+            <div className="group relative">
+              <button
+                type="button"
+                className={cn(
+                  'flex items-center gap-1.5 text-[0.8125rem] font-bold px-3 py-2 rounded-full border transition-colors',
+                  isTransparentNow
+                    ? 'border-white/25 text-white hover:bg-white/10'
+                    : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+                )}
+              >
+                <User className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                <span className="max-w-[100px] truncate">{user.user_metadata?.name || user.email?.split('@')[0]}</span>
+                <ChevronDown className="w-3 h-3" strokeWidth={ICON_STROKE} />
+              </button>
+              <div className="absolute top-full right-0 mt-1 w-44 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
+                <Link href="/mypage" className="block px-4 py-2 text-xs font-medium text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-colors">
+                  마이페이지
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => signOut()}
+                  className="w-full text-left flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-700 hover:text-red-500 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> 로그아웃
+                </button>
+              </div>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className={cn(
+                'text-[0.8125rem] font-bold px-3 py-2 rounded-full border transition-colors',
+                isTransparentNow
+                  ? 'border-white/25 text-white hover:bg-white/10'
+                  : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+              )}
+            >
+              로그인
+            </Link>
+          )}
           <Link href="/programs" className="btn-primary !px-5 !py-2.5 !text-[0.9375rem] !shadow-md">
             {tr('nav_cta')}
           </Link>
@@ -187,7 +230,25 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               </button>
             ))}
           </div>
-          <Link href="/programs" onClick={() => setOpen(false)} className="btn-primary w-full mt-4 !py-3.5">
+          {user ? (
+            <>
+              <Link href="/mypage" onClick={() => setOpen(false)} className="block mt-4 text-center text-[0.9375rem] font-bold py-3 rounded-full border border-gray-200 text-gray-700">
+                마이페이지 ({user.user_metadata?.name || user.email?.split('@')[0]})
+              </Link>
+              <button
+                type="button"
+                onClick={() => { signOut(); setOpen(false) }}
+                className="block w-full mt-2 text-center text-[0.875rem] font-bold py-2.5 text-red-500"
+              >
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <Link href="/login" onClick={() => setOpen(false)} className="block mt-4 text-center text-[0.9375rem] font-bold py-3 rounded-full border border-gray-200 text-gray-700">
+              로그인 / 회원가입
+            </Link>
+          )}
+          <Link href="/programs" onClick={() => setOpen(false)} className="btn-primary w-full mt-3 !py-3.5">
             {tr('nav_cta')}
           </Link>
         </div>

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
+import { AuthProvider } from '@/context/AuthContext'
 import { SiteNavbar } from '@/components/layout/SiteNavbar'
 import { MainContent } from '@/components/layout/MainContent'
 import Footer from '@/components/Footer'
@@ -25,9 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ko" className={`${inter.variable} scroll-smooth`}>
       <body className="min-h-full bg-[#0f0f0f] text-[#141414] antialiased flex flex-col">
         <LanguageProvider>
-          <SiteNavbar />
-          <MainContent>{children}</MainContent>
-          <Footer />
+          <AuthProvider>
+            <SiteNavbar />
+            <MainContent>{children}</MainContent>
+            <Footer />
+          </AuthProvider>
         </LanguageProvider>
       </body>
     </html>
