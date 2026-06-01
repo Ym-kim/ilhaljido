@@ -375,6 +375,7 @@ const GLOBAL_DESTINATIONS: GlobalDest[] = [
   { id: 'bali', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80', name: loc('발리 워케이션', 'Bali workation', 'バリ・ワーケーション'), country: loc('인도네시아', 'Indonesia', 'インドネシア'), region: loc('발리 우붓·짱구', 'Ubud · Seminyak', 'ウブド・スミニャック'), tag: loc('정글·바다', 'Jungle · sea', 'ジャングル・海') },
   { id: 'chiangmai', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80', name: loc('치앙마이 워케이션', 'Chiang Mai workation', 'チェンマイ'), country: loc('태국', 'Thailand', 'タイ'), region: loc('치앙마이 님만', 'Nimman, Chiang Mai', 'ニマン'), tag: loc('도심·자연', 'City · nature', '都市・自然') },
   { id: 'japan', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80', name: loc('오사카·도쿄 워케이션', 'Osaka · Tokyo workation', '大阪・東京'), country: loc('일본', 'Japan', '日本'), region: loc('오사카·도쿄', 'Osaka · Tokyo', '大阪・東京'), tag: loc('비즈니스', 'Business', 'ビジネス') },
+  { id: 'japan-ryokan', img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80', name: loc('일본 료칸 온천 워케이션', 'Japan Ryokan & Onsen Workation', '日本旅館・温泉ワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('하코네·아타미·닛코', 'Hakone · Atami · Nikko', '箱根・熱海・日光'), tag: loc('료칸·온천', 'Ryokan · Onsen', '旅館・温泉') },
   { id: 'danang', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', name: loc('다낭 워케이션', 'Da Nang workation', 'ダナン'), country: loc('베트남', 'Vietnam', 'ベトナム'), region: loc('다낭·호이안', 'Da Nang · Hoi An', 'ダナン・ホイアン'), tag: loc('해변', 'Beach', 'ビーチ') },
   { id: 'cebu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
   { id: 'australia', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
@@ -409,6 +410,50 @@ const DOMESTIC_UPCOMING: SimpleCard[] = [
   { id: 'jeju', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80', title: loc('제주 워케이션', 'Jeju workation', '済州ワーケーション'), region: loc('제주도', 'Jeju Island', '済州島') },
   { id: 'jeonju', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80', title: loc('전주 워케이션', 'Jeonju workation', '全州ワーケーション'), region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州') },
   { id: 'yeosu', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', title: loc('여수 워케이션', 'Yeosu workation', '麗水ワーケーション'), region: loc('전라남도 여수', 'Yeosu, Jeollanam', '全南・麗水') },
+]
+
+type DomesticThemedProgram = {
+  id: string
+  img: string
+  theme: Loc<string>
+  name: Loc<string>
+  region: Loc<string>
+  date: Loc<string>
+}
+
+const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
+  {
+    id: 'healing-taean',
+    img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80',
+    theme: loc('🧘 힐링·요가', '🧘 Healing · Yoga', '🧘 ヒーリング・ヨガ'),
+    name: loc('번아웃 탈출 힐링 워케이션', 'Burnout Recovery Workation', 'バーンアウト回復ワーケーション'),
+    region: loc('충남 태안', 'Taean, Chungnam', '忠南・泰安'),
+    date: loc('7월 7일–11일', 'Jul 7–11', '7月7〜11日'),
+  },
+  {
+    id: 'network-chuncheon',
+    img: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80',
+    theme: loc('🤝 1인기업 네트워킹', '🤝 Networking', '🤝 ネットワーキング'),
+    name: loc('1인 기업가 네트워킹 캠프', 'Solopreneur Networking Camp', '一人起業家ネットワーキング'),
+    region: loc('강원 춘천', 'Chuncheon, Gangwon', '江原・春川'),
+    date: loc('7월 23일–26일', 'Jul 23–26', '7月23〜26日'),
+  },
+  {
+    id: 'ai-sokcho',
+    img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80',
+    theme: loc('🚀 AI 크리에이터', '🚀 AI Creator', '🚀 AIクリエイター'),
+    name: loc('AI 활용 실무 집중 캠프', 'AI Skills Intensive Camp', 'AI実務集中キャンプ'),
+    region: loc('강원 속초', 'Sokcho, Gangwon', '江原・束草'),
+    date: loc('8월 예정', 'Aug (TBD)', '8月予定'),
+  },
+  {
+    id: 'local-jeonju',
+    img: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80',
+    theme: loc('🍜 미식·로컬', '🍜 Local Food', '🍜 ローカルグルメ'),
+    name: loc('전주 한옥마을 미식 워케이션', 'Jeonju Hanok Village Food Workation', '全州ハノク村グルメ旅'),
+    region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州'),
+    date: loc('8월 예정', 'Aug (TBD)', '8月予定'),
+  },
 ]
 
 function mapStay(lang: Lang, items: StayItem[]) {
@@ -523,6 +568,17 @@ export function getDomesticUpcoming(lang: Lang) {
     img: u.img,
     title: tloc(lang, u.title),
     region: tloc(lang, u.region),
+  }))
+}
+
+export function getDomesticThemedUpcoming(lang: Lang) {
+  return DOMESTIC_THEMED_UPCOMING.map((p) => ({
+    id: p.id,
+    img: p.img,
+    theme: tloc(lang, p.theme),
+    name: tloc(lang, p.name),
+    region: tloc(lang, p.region),
+    date: tloc(lang, p.date),
   }))
 }
 

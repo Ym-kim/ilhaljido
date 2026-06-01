@@ -25,6 +25,7 @@ export {
   getGlobalDestinations,
   getDomesticCurrent,
   getDomesticUpcoming,
+  getDomesticThemedUpcoming,
   getSampleSchedule,
   getCategoryLabels,
   getStatusLabels,
