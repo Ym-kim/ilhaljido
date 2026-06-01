@@ -13,9 +13,9 @@ import { cn } from '@/lib/utils'
 
 const SIMPLE_LINKS: { key: string; href: string }[] = [
   { key: 'nav_about', href: '/about' },
-  { key: 'nav_learn', href: '/learn' },
   { key: 'nav_infrastructure', href: '/infrastructure' },
   { key: 'nav_visa', href: '/visa-ai' },
+  { key: 'nav_learn', href: '/learn' },
 ]
 
 const CONTACT_LINKS = [
