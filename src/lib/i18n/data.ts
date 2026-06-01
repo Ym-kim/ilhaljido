@@ -454,6 +454,22 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州'),
     date: loc('8월 예정', 'Aug (TBD)', '8月予定'),
   },
+  {
+    id: 'golf-jeju',
+    img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80',
+    theme: loc('⛳ 골프 네트워킹', '⛳ Golf Networking', '⛳ ゴルフネットワーク'),
+    name: loc('제주 골프 비즈니스 워케이션', 'Jeju Golf Business Workation', '済州ゴルフ・ビジネス'),
+    region: loc('제주도', 'Jeju Island', '済州島'),
+    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+  },
+  {
+    id: 'sports-busan',
+    img: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80',
+    theme: loc('🏟️ 스포츠 관람', '🏟️ Sports Watching', '🏟️ スポーツ観戦'),
+    name: loc('부산 야구·축구 스포츠 워케이션', 'Busan Sports Watching Workation', '釜山スポーツ観戦'),
+    region: loc('부산광역시', 'Busan', '釜山'),
+    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+  },
 ]
 
 function mapStay(lang: Lang, items: StayItem[]) {
