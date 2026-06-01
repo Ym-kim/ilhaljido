@@ -10,7 +10,7 @@ import { ICON_STROKE } from '@/lib/icons'
 export default function DomesticPage() {
   const { lang, tr } = useLang()
   const current = getDomesticCurrent(lang)
-  const themed = getDomesticThemedUpcoming(lang)
+  const themed = getDomesticThemedUpcoming(lang).filter((p) => !p.isGlobal)
   const upcoming = getDomesticUpcoming(lang)
 
   return (

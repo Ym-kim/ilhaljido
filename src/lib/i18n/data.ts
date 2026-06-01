@@ -420,6 +420,7 @@ type DomesticThemedProgram = {
   name: Loc<string>
   region: Loc<string>
   date: Loc<string>
+  isGlobal?: boolean
 }
 
 const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
@@ -470,6 +471,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     name: loc('일본 오키나와 골프 워케이션', 'Okinawa Golf Workation', '沖縄ゴルフワーケーション'),
     region: loc('일본 오키나와', 'Okinawa, Japan', '日本・沖縄'),
     date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+    isGlobal: true,
   },
   {
     id: 'sports-busan',
@@ -604,6 +606,7 @@ export function getDomesticThemedUpcoming(lang: Lang) {
     name: tloc(lang, p.name),
     region: tloc(lang, p.region),
     date: tloc(lang, p.date),
+    isGlobal: p.isGlobal ?? false,
   }))
 }
 
