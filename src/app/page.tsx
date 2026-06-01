@@ -17,13 +17,13 @@ import {
 } from '@/lib/icons'
 
 const THEME_ITEMS = [
-  { labelKey: 'home_theme_healing_l', descKey: 'home_theme_healing_d', href: '/programs/domestic', emoji: '🧘' },
-  { labelKey: 'home_theme_network_l', descKey: 'home_theme_network_d', href: '/programs/domestic', emoji: '🤝' },
-  { labelKey: 'home_theme_local_l', descKey: 'home_theme_local_d', href: '/programs/domestic', emoji: '🗺️' },
+  { labelKey: 'home_theme_healing_l', descKey: 'home_theme_healing_d', href: '/programs/healing', emoji: '🧘' },
+  { labelKey: 'home_theme_network_l', descKey: 'home_theme_network_d', href: '/programs/networking', emoji: '🤝' },
+  { labelKey: 'home_theme_local_l', descKey: 'home_theme_local_d', href: '/programs/local', emoji: '🗺️' },
   { labelKey: 'home_theme_growth_l', descKey: 'home_theme_growth_d', href: '/growth', emoji: '🚀' },
   { labelKey: 'home_theme_japan_l', descKey: 'home_theme_japan_d', href: '/programs/global', emoji: '🏯' },
-  { labelKey: 'home_theme_golf_l', descKey: 'home_theme_golf_d', href: '/programs/domestic', emoji: '⛳' },
-  { labelKey: 'home_theme_sports_l', descKey: 'home_theme_sports_d', href: '/programs/domestic', emoji: '🏟️' },
+  { labelKey: 'home_theme_golf_l', descKey: 'home_theme_golf_d', href: '/programs/golf', emoji: '⛳' },
+  { labelKey: 'home_theme_sports_l', descKey: 'home_theme_sports_d', href: '/programs/sports', emoji: '🏟️' },
 ] as const
 
 const SPACE_KEYS = [
