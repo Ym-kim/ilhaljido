@@ -13,11 +13,14 @@ import { cn } from '@/lib/utils'
 
 const SIMPLE_LINKS: { key: string; href: string }[] = [
   { key: 'nav_about', href: '/about' },
-  { key: 'nav_growth', href: '/growth' },
+  { key: 'nav_learn', href: '/learn' },
   { key: 'nav_infrastructure', href: '/infrastructure' },
   { key: 'nav_visa', href: '/visa-ai' },
+]
+
+const CONTACT_LINKS = [
+  { key: 'nav_contact_inquire', href: '/contact' },
   { key: 'nav_partnership', href: '/partnership' },
-  { key: 'nav_contact', href: '/contact' },
 ]
 
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
@@ -27,6 +30,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mobilePrograms, setMobilePrograms] = useState(false)
+  const [mobileContact, setMobileContact] = useState(false)
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 48)
@@ -86,6 +90,26 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               </Link>
             </li>
           ))}
+
+          <li className="group relative">
+            <button type="button" className={cn('flex items-center gap-1', linkCls)}>
+              {tr('nav_contact')}
+              <ChevronDown className="w-4 h-4 opacity-70" strokeWidth={ICON_STROKE} />
+            </button>
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-44 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden">
+                {CONTACT_LINKS.map((c) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    className="block px-4 py-2.5 text-[0.9375rem] font-medium text-gray-700 hover:text-brand-mid hover:bg-brand-pale transition-colors"
+                  >
+                    {tr(c.key)}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </li>
         </ul>
 
         <div className="hidden lg:flex items-center gap-3 shrink-0">
@@ -214,6 +238,31 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               {tr(n.key)}
             </Link>
           ))}
+
+          <div className="border-b border-gray-50">
+            <button
+              type="button"
+              onClick={() => setMobileContact(!mobileContact)}
+              className="w-full flex justify-between items-center text-gray-800 text-[0.9375rem] font-semibold py-3"
+            >
+              {tr('nav_contact')}
+              <ChevronDown className={cn('w-4 h-4 transition-transform', mobileContact && 'rotate-180')} strokeWidth={ICON_STROKE} />
+            </button>
+            {mobileContact && (
+              <div className="pl-3 pb-3 space-y-1">
+                {CONTACT_LINKS.map((c) => (
+                  <Link
+                    key={c.href}
+                    href={c.href}
+                    onClick={() => setOpen(false)}
+                    className="block text-gray-600 text-[0.9375rem] py-2 hover:text-brand-mid"
+                  >
+                    {tr(c.key)}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="flex gap-2 pt-4">
             {(['KO', 'EN', 'JP'] as Lang[]).map((l) => (

@@ -1,0 +1,282 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "Wakation" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e5]: W
+        - generic [ref=e6]: Wakation
+      - list [ref=e7]:
+        - listitem [ref=e8]:
+          - link "소개" [ref=e9] [cursor=pointer]:
+            - /url: /about
+        - listitem [ref=e10]:
+          - button "프로그램" [ref=e11]:
+            - text: 프로그램
+            - img [ref=e12]
+        - listitem [ref=e14]:
+          - link "성장캠프" [ref=e15] [cursor=pointer]:
+            - /url: /growth
+        - listitem [ref=e16]:
+          - link "스테이·워크스페이스" [ref=e17] [cursor=pointer]:
+            - /url: /infrastructure
+        - listitem [ref=e18]:
+          - link "비자·체류 AI" [ref=e19] [cursor=pointer]:
+            - /url: /visa-ai
+        - listitem [ref=e20]:
+          - link "파트너십" [ref=e21] [cursor=pointer]:
+            - /url: /partnership
+        - listitem [ref=e22]:
+          - link "문의" [ref=e23] [cursor=pointer]:
+            - /url: /contact
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - button "KO" [ref=e26]
+          - button "EN" [ref=e27]
+          - button "JP" [ref=e28]
+        - link "로그인" [ref=e29] [cursor=pointer]:
+          - /url: /login
+        - link "프로그램 보기" [ref=e30] [cursor=pointer]:
+          - /url: /programs
+  - generic [ref=e32]:
+    - generic [ref=e36]:
+      - generic [ref=e37]: Stay · Work · Learn · Move
+      - heading "일하는 사람을 위한 글로벌 체류형 성장 플랫폼" [level=1] [ref=e38]
+      - paragraph [ref=e39]: 국내외 워케이션·성장캠프·비자 AI를 하나의 플랫폼에서
+      - generic [ref=e40]:
+        - link "프로그램 보기" [ref=e41] [cursor=pointer]:
+          - /url: /programs
+        - link "비자·체류 AI" [ref=e42] [cursor=pointer]:
+          - /url: /visa-ai
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - paragraph [ref=e46]: 6개
+        - paragraph [ref=e47]: 카테고리
+      - generic [ref=e48]:
+        - paragraph [ref=e49]: 360만
+        - paragraph [ref=e50]: 프리랜서
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: 20+
+        - paragraph [ref=e53]: 글로벌 도시
+      - generic [ref=e54]:
+        - paragraph [ref=e55]: AI
+        - paragraph [ref=e56]: 비자 안내
+    - generic [ref=e58]:
+      - generic [ref=e59]:
+        - paragraph [ref=e60]: Platform
+        - heading "6가지 체류형 성장 카테고리" [level=2] [ref=e61]
+        - paragraph [ref=e62]: 하나의 플랫폼에서 워케이션의 모든 것을
+      - generic [ref=e63]:
+        - link "국내 워케이션 양양·강릉·제주 등 국내 거점 자세히 보기" [ref=e64] [cursor=pointer]:
+          - /url: /programs/domestic
+          - img [ref=e66]
+          - generic [ref=e69]:
+            - heading "국내 워케이션" [level=3] [ref=e70]
+            - paragraph [ref=e71]: 양양·강릉·제주 등 국내 거점
+          - generic [ref=e72]:
+            - text: 자세히 보기
+            - img [ref=e73]
+        - link "글로벌 워케이션 발리·치앙마이·도쿄 등 해외 거점 자세히 보기" [ref=e75] [cursor=pointer]:
+          - /url: /programs/global
+          - img [ref=e77]
+          - generic [ref=e82]:
+            - heading "글로벌 워케이션" [level=3] [ref=e83]
+            - paragraph [ref=e84]: 발리·치앙마이·도쿄 등 해외 거점
+          - generic [ref=e85]:
+            - text: 자세히 보기
+            - img [ref=e86]
+        - link "시장조사단·박람회 글로벌 시장을 직접 보고 사업에 연결 자세히 보기" [ref=e88] [cursor=pointer]:
+          - /url: /programs/market
+          - img [ref=e90]
+          - generic [ref=e93]:
+            - heading "시장조사단·박람회" [level=3] [ref=e94]
+            - paragraph [ref=e95]: 글로벌 시장을 직접 보고 사업에 연결
+          - generic [ref=e96]:
+            - text: 자세히 보기
+            - img [ref=e97]
+        - link "어학·유학 일하면서 언어를 배우는 체류 프로그램 자세히 보기" [ref=e99] [cursor=pointer]:
+          - /url: /language
+          - img [ref=e101]
+          - generic [ref=e105]:
+            - heading "어학·유학" [level=3] [ref=e106]
+            - paragraph [ref=e107]: 일하면서 언어를 배우는 체류 프로그램
+          - generic [ref=e108]:
+            - text: 자세히 보기
+            - img [ref=e109]
+        - link "크루즈 워케이션 바다 위에서 일하며 이동하는 워케이션 자세히 보기" [ref=e111] [cursor=pointer]:
+          - /url: /cruise
+          - img [ref=e113]
+          - generic [ref=e117]:
+            - heading "크루즈 워케이션" [level=3] [ref=e118]
+            - paragraph [ref=e119]: 바다 위에서 일하며 이동하는 워케이션
+          - generic [ref=e120]:
+            - text: 자세히 보기
+            - img [ref=e121]
+        - link "성장캠프 실무형 성장 캠프 3박 4일 이상 자세히 보기" [ref=e123] [cursor=pointer]:
+          - /url: /growth
+          - img [ref=e125]
+          - generic [ref=e128]:
+            - heading "성장캠프" [level=3] [ref=e129]
+            - paragraph [ref=e130]: 실무형 성장 캠프 3박 4일 이상
+          - generic [ref=e131]:
+            - text: 자세히 보기
+            - img [ref=e132]
+    - generic [ref=e135]:
+      - generic [ref=e136]:
+        - paragraph [ref=e137]: Discover by Theme
+        - heading "테마로 찾는 워케이션" [level=2] [ref=e138]
+        - paragraph [ref=e139]: 어떤 방식으로 일하고 쉬고 싶으신가요?
+      - generic [ref=e140]:
+        - link "🧘 힐링·회복 요가·명상·바다 산책으로 리듬을 되찾는 워케이션" [ref=e141] [cursor=pointer]:
+          - /url: /programs/domestic
+          - generic [ref=e142]: 🧘
+          - generic [ref=e143]:
+            - paragraph [ref=e144]: 힐링·회복
+            - paragraph [ref=e145]: 요가·명상·바다 산책으로 리듬을 되찾는 워케이션
+          - img [ref=e146]
+        - link "🤝 네트워킹 비슷한 일을 하는 사람들과 자연스럽게 연결되는 프로그램" [ref=e148] [cursor=pointer]:
+          - /url: /programs/domestic
+          - generic [ref=e149]: 🤝
+          - generic [ref=e150]:
+            - paragraph [ref=e151]: 네트워킹
+            - paragraph [ref=e152]: 비슷한 일을 하는 사람들과 자연스럽게 연결되는 프로그램
+          - img [ref=e153]
+        - link "🗺️ 로컬 탐방 미식·시장·골목을 걸으며 새로운 인사이트를 얻는 체류" [ref=e155] [cursor=pointer]:
+          - /url: /programs/domestic
+          - generic [ref=e156]: 🗺️
+          - generic [ref=e157]:
+            - paragraph [ref=e158]: 로컬 탐방
+            - paragraph [ref=e159]: 미식·시장·골목을 걸으며 새로운 인사이트를 얻는 체류
+          - img [ref=e160]
+        - link "🚀 AI·성장 AI 툴과 콘텐츠 제작을 집중적으로 익히는 실무 캠프" [ref=e162] [cursor=pointer]:
+          - /url: /growth
+          - generic [ref=e163]: 🚀
+          - generic [ref=e164]:
+            - paragraph [ref=e165]: AI·성장
+            - paragraph [ref=e166]: AI 툴과 콘텐츠 제작을 집중적으로 익히는 실무 캠프
+          - img [ref=e167]
+        - link "🏯 일본 소도시 료칸·온천·골프·로컬 거점에서 일하는 일본 워케이션" [ref=e169] [cursor=pointer]:
+          - /url: /programs/global
+          - generic [ref=e170]: 🏯
+          - generic [ref=e171]:
+            - paragraph [ref=e172]: 일본 소도시
+            - paragraph [ref=e173]: 료칸·온천·골프·로컬 거점에서 일하는 일본 워케이션
+          - img [ref=e174]
+    - generic [ref=e177]:
+      - paragraph [ref=e178]: AI Concierge
+      - img [ref=e181]
+      - heading "비자·체류 AI" [level=2] [ref=e184]
+      - paragraph [ref=e185]: 국가·목적·기간을 선택하면 AI가 맞춤 체류 정보를 안내합니다.
+      - paragraph [ref=e186]: 일본·태국·인도네시아·베트남·호주·포르투갈 등 20개국 이상. 비자 종류 추천부터 체류 요건 요약까지.
+      - link "비자·체류 AI 시작하기" [ref=e187] [cursor=pointer]:
+        - /url: /visa-ai
+        - text: 비자·체류 AI 시작하기
+        - img [ref=e188]
+    - generic [ref=e191]:
+      - generic [ref=e192]:
+        - generic [ref=e193]:
+          - paragraph [ref=e194]: Infrastructure
+          - heading "Wakation이 검증한 스테이·워크스페이스" [level=2] [ref=e195]
+        - link "전체 보기" [ref=e196] [cursor=pointer]:
+          - /url: /infrastructure
+          - text: 전체 보기
+          - img [ref=e197]
+      - generic [ref=e199]:
+        - link "국내 숙소 국내 숙소 양양·강릉·제주·전주 등 국내 거점의 워케이션 검증 숙소" [ref=e200] [cursor=pointer]:
+          - /url: /infrastructure
+          - img "국내 숙소" [ref=e201]
+          - generic [ref=e203]:
+            - heading "국내 숙소" [level=3] [ref=e204]
+            - paragraph [ref=e205]: 양양·강릉·제주·전주 등 국내 거점의 워케이션 검증 숙소
+        - link "해외 숙소 해외 숙소 발리·치앙마이·오사카·포르투갈 등 글로벌 체류 검증 공간" [ref=e206] [cursor=pointer]:
+          - /url: /infrastructure
+          - img "해외 숙소" [ref=e207]
+          - generic [ref=e209]:
+            - heading "해외 숙소" [level=3] [ref=e210]
+            - paragraph [ref=e211]: 발리·치앙마이·오사카·포르투갈 등 글로벌 체류 검증 공간
+        - link "공유오피스 공유오피스 실측 100Mbps+ 와이파이, 전용 데스크, 집중 환경 검증" [ref=e212] [cursor=pointer]:
+          - /url: /infrastructure
+          - img "공유오피스" [ref=e213]
+          - generic [ref=e215]:
+            - heading "공유오피스" [level=3] [ref=e216]
+            - paragraph [ref=e217]: 실측 100Mbps+ 와이파이, 전용 데스크, 집중 환경 검증
+    - generic [ref=e220]:
+      - generic [ref=e221]:
+        - paragraph [ref=e222]: Partnership
+        - heading "함께 만드는 Wakation" [level=2] [ref=e223]
+        - paragraph [ref=e224]: 지자체·숙소·강사·어학원·에어비앤비 호스트·기업 HR까지. Wakation은 다양한 파트너와 함께 체류형 성장 생태계를 만들어갑니다.
+        - list [ref=e225]:
+          - listitem [ref=e226]:
+            - img [ref=e227]
+            - text: 지자체·관광재단 — 생활인구 프로그램
+          - listitem [ref=e229]:
+            - img [ref=e230]
+            - text: 숙소·공유오피스·코리빙 — 공간 파트너
+          - listitem [ref=e232]:
+            - img [ref=e233]
+            - text: 강의 플랫폼·강사 — 교육 콘텐츠
+          - listitem [ref=e235]:
+            - img [ref=e236]
+            - text: 에어비앤비 호스트 — 파트너 스테이
+          - listitem [ref=e238]:
+            - img [ref=e239]
+            - text: 기업 HR·리트릿 — 기업 워케이션
+        - link "파트너십 알아보기" [ref=e241] [cursor=pointer]:
+          - /url: /partnership
+          - text: 파트너십 알아보기
+          - img [ref=e242]
+      - generic [ref=e244]:
+        - generic [ref=e245]:
+          - img [ref=e247]
+          - paragraph [ref=e249]: 지자체·관광재단
+        - generic [ref=e250]:
+          - img [ref=e252]
+          - paragraph [ref=e256]: 공간 파트너
+        - generic [ref=e257]:
+          - img [ref=e259]
+          - paragraph [ref=e261]: 교육 파트너
+        - generic [ref=e262]:
+          - img [ref=e264]
+          - paragraph [ref=e267]: 기업 HR
+  - contentinfo [ref=e268]:
+    - generic [ref=e269]:
+      - generic [ref=e270]:
+        - generic [ref=e271]:
+          - link "Wakation" [ref=e272] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e273]: W
+            - generic [ref=e274]: Wakation
+          - paragraph [ref=e275]: Stay. Work. Grow.
+          - paragraph [ref=e276]: 일하는 사람을 위한 글로벌 체류형 성장 플랫폼
+        - generic [ref=e277]:
+          - heading "서비스" [level=4] [ref=e278]
+          - list [ref=e279]:
+            - listitem [ref=e280]:
+              - link "프로그램" [ref=e281] [cursor=pointer]:
+                - /url: /programs
+            - listitem [ref=e282]:
+              - link "스테이·워크스페이스" [ref=e283] [cursor=pointer]:
+                - /url: /infrastructure
+            - listitem [ref=e284]:
+              - link "비자·체류 AI" [ref=e285] [cursor=pointer]:
+                - /url: /visa-ai
+            - listitem [ref=e286]:
+              - link "성장캠프" [ref=e287] [cursor=pointer]:
+                - /url: /growth
+            - listitem [ref=e288]:
+              - link "파트너십" [ref=e289] [cursor=pointer]:
+                - /url: /partnership
+        - generic [ref=e290]:
+          - heading "문의" [level=4] [ref=e291]
+          - list [ref=e292]:
+            - listitem [ref=e293]: hello@wakation.kr
+            - listitem [ref=e294]:
+              - link "문의" [ref=e295] [cursor=pointer]:
+                - /url: /contact
+      - generic [ref=e296]:
+        - generic [ref=e297]: © 2026 Wakation by StayForward. All rights reserved.
+        - generic [ref=e298]:
+          - link "개인정보처리방침" [ref=e299] [cursor=pointer]:
+            - /url: "#"
+          - link "이용약관" [ref=e300] [cursor=pointer]:
+            - /url: "#"
+  - alert [ref=e301]
