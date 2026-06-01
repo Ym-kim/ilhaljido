@@ -7,7 +7,7 @@ export default function GolfPage() {
       eyebrow="⛳ 골프 네트워킹"
       titleKey="golf_hero_title"
       descKey="golf_hero_desc"
-      themeIds={['golf-jeju']}
+      themeIds={['golf-jeju', 'golf-okinawa']}
       emailSubject="골프 네트워킹 워케이션 사전 신청"
     />
   )

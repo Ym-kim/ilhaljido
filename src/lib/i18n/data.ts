@@ -379,6 +379,7 @@ const GLOBAL_DESTINATIONS: GlobalDest[] = [
   { id: 'danang', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', name: loc('다낭 워케이션', 'Da Nang workation', 'ダナン'), country: loc('베트남', 'Vietnam', 'ベトナム'), region: loc('다낭·호이안', 'Da Nang · Hoi An', 'ダナン・ホイアン'), tag: loc('해변', 'Beach', 'ビーチ') },
   { id: 'cebu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
   { id: 'australia', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
+  { id: 'japan-golf', img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80', name: loc('일본 골프 네트워킹 워케이션', 'Japan Golf Networking Workation', '日本ゴルフネットワークワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('오키나와·규슈·도쿄', 'Okinawa · Kyushu · Tokyo', '沖縄・九州・東京'), tag: loc('골프·네트워킹', 'Golf · Networking', 'ゴルフ・ネットワーク') },
 ]
 
 const DOMESTIC_CURRENT: DomesticCurrent[] = [
@@ -460,6 +461,14 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('⛳ 골프 네트워킹', '⛳ Golf Networking', '⛳ ゴルフネットワーク'),
     name: loc('제주 골프 비즈니스 워케이션', 'Jeju Golf Business Workation', '済州ゴルフ・ビジネス'),
     region: loc('제주도', 'Jeju Island', '済州島'),
+    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+  },
+  {
+    id: 'golf-okinawa',
+    img: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800&q=80',
+    theme: loc('⛳ 골프 네트워킹 · 해외', '⛳ Golf Networking · Overseas', '⛳ ゴルフネットワーク・海外'),
+    name: loc('일본 오키나와 골프 워케이션', 'Okinawa Golf Workation', '沖縄ゴルフワーケーション'),
+    region: loc('일본 오키나와', 'Okinawa, Japan', '日本・沖縄'),
     date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
   },
   {
