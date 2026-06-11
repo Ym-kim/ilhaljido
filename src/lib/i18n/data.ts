@@ -581,6 +581,8 @@ export function getDomesticCurrent(lang: Lang) {
     img: p.img,
     href: p.href,
     price: p.price,
+    originalPrice: p.originalPrice,
+    date: p.date ? tloc(lang, p.date) : undefined,
     duration: tloc(lang, p.duration),
     name: tloc(lang, p.name),
     region: tloc(lang, p.region),

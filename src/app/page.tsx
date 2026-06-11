@@ -100,7 +100,7 @@ export default function HomePage() {
                       <div>
                         <p className="text-white/40 text-xs flex items-center gap-1 mb-2">
                           <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
-                          {p.region} · {p.duration}
+                          {p.region} · {p.duration}{p.date ? ` · ${p.date}` : ''}
                         </p>
                         <h2 className="text-xl font-black text-white mb-2">{p.name}</h2>
                         <p className="text-white/50 text-sm leading-relaxed mb-4">{p.desc}</p>
@@ -117,6 +117,9 @@ export default function HomePage() {
                         <div>
                           <span className="text-2xl font-black text-white">₩{p.price}</span>
                           <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
+                          {p.originalPrice && (
+                            <span className="ml-2 text-white/30 text-sm line-through">₩{p.originalPrice}</span>
+                          )}
                         </div>
                         {p.href.startsWith('http') ? (
                           <a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
