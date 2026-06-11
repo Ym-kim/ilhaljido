@@ -13,9 +13,7 @@ import { cn } from '@/lib/utils'
 
 const SIMPLE_LINKS: { key: string; href: string }[] = [
   { key: 'nav_about', href: '/about' },
-  { key: 'nav_infrastructure', href: '/infrastructure' },
   { key: 'nav_visa', href: '/visa-ai' },
-  { key: 'nav_learn', href: '/learn' },
 ]
 
 const CONTACT_LINKS = [
@@ -70,11 +68,16 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             </button>
             <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <div className="bg-white rounded-xl shadow-xl border border-gray-100 py-2 overflow-hidden">
-                {programsChildren.map((c) => (
+                {programsChildren.map((c, i) => (
                   <Link
-                    key={c.href}
+                    key={`${c.href}-${i}`}
                     href={c.href}
-                    className="block px-4 py-2.5 text-[0.9375rem] font-medium text-gray-700 hover:text-brand-mid hover:bg-brand-pale transition-colors"
+                    className={cn(
+                      'block px-4 py-2.5 text-[0.9375rem] font-medium transition-colors',
+                      c.isHighlight
+                        ? 'text-brand-mid font-bold hover:bg-brand-pale border-b border-gray-100 mb-1'
+                        : 'text-gray-700 hover:text-brand-mid hover:bg-brand-pale'
+                    )}
                   >
                     {c.label}
                   </Link>
@@ -214,12 +217,15 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             </button>
             {mobilePrograms && (
               <div className="pl-3 pb-3 space-y-1">
-                {programsChildren.map((c) => (
+                {programsChildren.map((c, i) => (
                   <Link
-                    key={c.href}
+                    key={`${c.href}-${i}`}
                     href={c.href}
                     onClick={() => setOpen(false)}
-                    className="block text-gray-600 text-[0.9375rem] py-2 hover:text-brand-mid"
+                    className={cn(
+                      'block text-[0.9375rem] py-2',
+                      c.isHighlight ? 'text-brand-mid font-bold' : 'text-gray-600 hover:text-brand-mid'
+                    )}
                   >
                     {c.label}
                   </Link>
