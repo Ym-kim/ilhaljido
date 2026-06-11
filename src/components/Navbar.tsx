@@ -33,7 +33,7 @@ const MEGA_COLUMNS: MegaGroup[][] = [
         { labelKey: 'mega_theme_ryokan', href: '/programs/global' },
         { labelKey: 'mega_theme_yoga', href: '/programs/healing' },
         { labelKey: 'mega_theme_golf', href: '/programs/golf' },
-        { labelKey: 'mega_theme_sports', href: '/programs/sports' },
+        { labelKey: 'home_theme_sports_l', href: '/programs/sports' },
         { labelKey: 'mega_theme_local', href: '/programs/local' },
         { labelKey: 'home_theme_network_l', href: '/programs/networking' },
       ],
