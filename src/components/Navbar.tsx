@@ -171,9 +171,6 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                                 : 'font-medium text-gray-700 hover:text-brand-mid hover:bg-brand-pale'
                             )}
                           >
-                            {d.isHighlight && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse shrink-0" />
-                            )}
                             {tr(d.labelKey)}
                           </Link>
                         </div>
@@ -320,9 +317,6 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                                 : 'font-medium text-gray-600 hover:text-brand-mid hover:bg-brand-pale'
                             )}
                           >
-                            {d.isHighlight && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse shrink-0" />
-                            )}
                             {tr(d.labelKey)}
                           </Link>
                         </div>
