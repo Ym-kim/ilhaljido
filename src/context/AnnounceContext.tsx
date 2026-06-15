@@ -3,31 +3,33 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { DOMESTIC_CURRENT } from '@/lib/i18n/data'
 
+type ActiveProgram = (typeof DOMESTIC_CURRENT)[0]
 type AnnounceCtx = { visible: boolean; dismiss: () => void }
 
 const AnnounceContext = createContext<AnnounceCtx>({ visible: false, dismiss: () => {} })
 
-const STORAGE_KEY = 'wb_ann_v2'
-
 export function AnnounceProvider({ children }: { children: React.ReactNode }) {
   const [visible, setVisible] = useState(false)
+  const [activeProgram, setActiveProgram] = useState<ActiveProgram | null>(null)
 
   useEffect(() => {
-    if (DOMESTIC_CURRENT.length > 0 && !localStorage.getItem(STORAGE_KEY)) {
-      setVisible(true)
-    }
+    const today = new Date().toISOString().slice(0, 10) // YYYY-MM-DD
+    const active =
+      DOMESTIC_CURRENT.find(
+        (p) => today <= p.recruitEnd && !localStorage.getItem(`wb_ann_${p.id}`)
+      ) ?? null
+    setActiveProgram(active)
+    setVisible(active !== null)
   }, [])
 
   const dismiss = () => {
+    if (activeProgram) {
+      localStorage.setItem(`wb_ann_${activeProgram.id}`, '1')
+    }
     setVisible(false)
-    localStorage.setItem(STORAGE_KEY, '1')
   }
 
-  return (
-    <AnnounceContext.Provider value={{ visible, dismiss }}>
-      {children}
-    </AnnounceContext.Provider>
-  )
+  return <AnnounceContext.Provider value={{ visible, dismiss }}>{children}</AnnounceContext.Provider>
 }
 
 export const useAnnounce = () => useContext(AnnounceContext)

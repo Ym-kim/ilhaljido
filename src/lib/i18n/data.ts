@@ -58,6 +58,8 @@ type DomesticCurrent = {
   href: string
   price: string
   originalPrice?: string
+  recruitEnd: string    // YYYY-MM-DD, 이 날짜 이후에는 모집중 배너 숨김
+  eventEnd: string      // YYYY-MM-DD, 행사 종료일
   date?: Loc<string>
   duration: Loc<string>
   name: Loc<string>
@@ -389,6 +391,8 @@ export const DOMESTIC_CURRENT: DomesticCurrent[] = [
     href: 'https://wakation-yangyang.vercel.app/',
     price: '290,000',
     originalPrice: '399,000',
+    recruitEnd: '2026-06-16',
+    eventEnd: '2026-06-19',
     date: loc('6월 17일(수) – 19일(금)', 'Jun 17(Wed) – 19(Fri)', '6月17日(水)〜19日(金)'),
     duration: loc('2박 3일', '2 nights · 3 days', '2泊3日'),
     name: loc('양양 Wakation 파일럿 프로그램', 'Yangyang Wakation Pilot Program', '襄陽Wakationパイロットプログラム'),
