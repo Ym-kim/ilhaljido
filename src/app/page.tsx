@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, MapPin, CheckCircle2 } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { IconTile } from '@/components/brand/IconTile'
 import { useLang } from '@/context/LanguageContext'
-import { getHomeCategories } from '@/lib/i18n'
+import { getHomeCategories, getDomesticCurrent } from '@/lib/i18n'
 import {
   AiIcon,
   CATEGORY_ACCENT,
@@ -13,8 +13,14 @@ import {
   CATEGORY_ICONS,
   ICON_STROKE,
   PARTNER_ICONS,
-  type PartnerIconKey,
 } from '@/lib/icons'
+
+const PARTNER_ICON_MAP = {
+  government: PARTNER_ICONS.government,
+  space: PARTNER_ICONS.space,
+  education: PARTNER_ICONS.education,
+  corporate: PARTNER_ICONS.corporate,
+}
 
 const THEME_ITEMS = [
   { labelKey: 'home_theme_healing_l', descKey: 'home_theme_healing_d', href: '/programs/healing', emoji: '🧘' },
@@ -32,21 +38,6 @@ const SPACE_KEYS = [
   { titleKey: 'home_space_cowork_t', descKey: 'home_space_cowork_d', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
 ] as const
 
-const PARTNER_TILES: { id: PartnerIconKey; titleKey: string }[] = [
-  { id: 'government', titleKey: 'home_partner_tile_gov' },
-  { id: 'space', titleKey: 'home_partner_tile_space' },
-  { id: 'education', titleKey: 'home_partner_tile_edu' },
-  { id: 'corporate', titleKey: 'home_partner_tile_hr' },
-]
-
-const PARTNER_LIST_KEYS = [
-  'home_partner_li_1',
-  'home_partner_li_2',
-  'home_partner_li_3',
-  'home_partner_li_4',
-  'home_partner_li_5',
-] as const
-
 const STAT_KEYS = [
   ['home_stat_1_v', 'home_stat_1_l'],
   ['home_stat_2_v', 'home_stat_2_l'],
@@ -55,8 +46,9 @@ const STAT_KEYS = [
 ] as const
 
 export default function HomePage() {
-  const { tr } = useLang()
+  const { lang, tr } = useLang()
   const categories = getHomeCategories()
+  const recruitingPrograms = getDomesticCurrent(lang)
 
   return (
     <div className="min-h-screen bg-[#0f0f0f]">
@@ -85,6 +77,74 @@ export default function HomePage() {
               {tr('hero_cta2')}
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* 지금 모집 중 */}
+      <section className="bg-[#0f0f0f] border-b border-white/8 py-14 md:py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-6 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-brand-mid animate-pulse inline-block" />
+            {tr('home_recruiting_eyebrow')}
+          </p>
+          {recruitingPrograms.length > 0 ? (
+            <div className="space-y-5">
+              {recruitingPrograms.map((p) => (
+                <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
+                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
+                    </div>
+                    <div className="p-7 flex flex-col justify-between flex-1">
+                      <div>
+                        <p className="text-white/40 text-xs flex items-center gap-1 mb-2">
+                          <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                          {p.region} · {p.duration}{p.date ? ` · ${p.date}` : ''}
+                        </p>
+                        <h2 className="text-xl font-black text-white mb-2">{p.name}</h2>
+                        <p className="text-white/50 text-sm leading-relaxed mb-4">{p.desc}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {p.includes.map((t) => (
+                            <span key={t} className="flex items-center gap-1 bg-white/5 text-white/60 text-xs px-3 py-1 rounded-full border border-white/10">
+                              <CheckCircle2 className="w-3 h-3 text-brand-mid" strokeWidth={ICON_STROKE} />
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-5">
+                        <div>
+                          <span className="text-2xl font-black text-white">₩{p.price}</span>
+                          <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
+                          {p.originalPrice && (
+                            <span className="ml-2 text-white/30 text-sm line-through">₩{p.originalPrice}</span>
+                          )}
+                        </div>
+                        {p.href.startsWith('http') ? (
+                          <a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                          </a>
+                        ) : (
+                          <Link href={p.href} className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 text-center">
+              <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
+              <p className="text-white/50 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
+              <a href="mailto:hello@wakation.kr" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+                {tr('inquire')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              </a>
+            </div>
+          )}
         </div>
       </section>
 
@@ -217,40 +277,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="dark-surface py-20 md:py-28 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-14 md:gap-16 items-center">
-            <div>
-              <SectionEyebrow onDark>{tr('home_partner_eyebrow')}</SectionEyebrow>
-              <SectionTitle onDark className="mb-5">
-                {tr('home_partner_title')}
-              </SectionTitle>
-              <p className="text-caption-on-dark leading-relaxed mb-8">{tr('home_partner_desc')}</p>
-              <ul className="space-y-3 mb-10">
-                {PARTNER_LIST_KEYS.map((key) => (
-                  <li key={key} className="text-[0.9375rem] text-white/65 flex items-start gap-3 font-medium">
-                    <Check className="w-4 h-4 text-brand-mid shrink-0 mt-0.5" strokeWidth={2.5} />
-                    {tr(key)}
-                  </li>
-                ))}
-              </ul>
-              <Link href="/partnership" className="btn-ghost-light">
-                {tr('home_partner_cta')}
-                <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {PARTNER_TILES.map((p) => {
-                const Icon = PARTNER_ICONS[p.id]
+      {/* 파트너십 신뢰 배너 (전체 섹션 → 1줄 배너로 축소) */}
+      <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-7 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-1">
+              {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
+                const Icon = PARTNER_ICON_MAP[k]
                 return (
-                  <div key={p.id} className="card-dark p-5 flex flex-col gap-3">
-                    <IconTile icon={Icon} onDark />
-                    <p className="text-white font-bold text-[0.9375rem] leading-snug">{tr(p.titleKey)}</p>
+                  <div key={k} className="w-8 h-8 rounded-full bg-white/8 border border-white/15 flex items-center justify-center">
+                    <Icon className="w-3.5 h-3.5 text-white/50" strokeWidth={ICON_STROKE} />
                   </div>
                 )
               })}
             </div>
+            <p className="text-white/55 text-sm font-medium">{tr('home_partner_banner_text')}</p>
           </div>
+          <Link href="/partnership" className="shrink-0 text-brand-mid text-sm font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all">
+            {tr('home_partner_banner_cta')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+          </Link>
         </div>
       </section>
     </div>

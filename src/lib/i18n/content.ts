@@ -26,12 +26,11 @@ export type ProgramCard = {
 
 export function getHomeCategories(): HomeCategory[] {
   return [
-    { id: 'teal', labelKey: 'home_cat_domestic_l', descKey: 'home_cat_domestic_d', href: '/programs/domestic' },
-    { id: 'blue', labelKey: 'home_cat_global_l', descKey: 'home_cat_global_d', href: '/programs/global' },
-    { id: 'orange', labelKey: 'home_cat_market_l', descKey: 'home_cat_market_d', href: '/programs/market' },
-    { id: 'rose', labelKey: 'home_cat_language_l', descKey: 'home_cat_language_d', href: '/language' },
-    { id: 'cyan', labelKey: 'home_cat_cruise_l', descKey: 'home_cat_cruise_d', href: '/cruise' },
-    { id: 'green', labelKey: 'home_cat_growth_l', descKey: 'home_cat_growth_d', href: '/growth' },
+    { id: 'teal', labelKey: 'home_cat_workation_l', descKey: 'home_cat_workation_d', href: '/programs' },
+    { id: 'blue', labelKey: 'home_cat_theme_l', descKey: 'home_cat_theme_d', href: '/programs/domestic' },
+    { id: 'green', labelKey: 'home_cat_learn_l', descKey: 'home_cat_learn_d', href: '/learn' },
+    { id: 'orange', labelKey: 'home_cat_bizglobal_l', descKey: 'home_cat_bizglobal_d', href: '/programs/market' },
+    { id: 'cyan', labelKey: 'home_cat_globalstay_l', descKey: 'home_cat_globalstay_d', href: '/programs/global' },
   ]
 }
 
@@ -99,11 +98,13 @@ export function getGrowthCamps() {
 
 export function getNavPrograms(lang: Lang) {
   return [
+    { href: '/programs/domestic', label: translate(lang, 'nav_prog_recruiting'), isHighlight: true },
     { href: '/programs/domestic', label: translate(lang, 'nav_prog_domestic') },
     { href: '/programs/global', label: translate(lang, 'nav_prog_global') },
-    { href: '/programs/market', label: translate(lang, 'nav_prog_market') },
-    { href: '/language', label: translate(lang, 'nav_prog_language') },
-    { href: '/cruise', label: translate(lang, 'nav_prog_cruise') },
+    { href: '/programs/domestic', label: translate(lang, 'nav_prog_theme_wak') },
+    { href: '/learn', label: translate(lang, 'nav_learn') },
+    { href: '/programs/market', label: translate(lang, 'nav_prog_bizglobal') },
+    { href: '/programs/global', label: translate(lang, 'nav_prog_globalstay') },
   ]
 }
 

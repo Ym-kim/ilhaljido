@@ -58,6 +58,8 @@ type DomesticCurrent = {
   href: string
   price: string
   originalPrice?: string
+  recruitEnd: string    // YYYY-MM-DD, 이 날짜 이후에는 모집중 배너 숨김
+  eventEnd: string      // YYYY-MM-DD, 행사 종료일
   date?: Loc<string>
   duration: Loc<string>
   name: Loc<string>
@@ -382,13 +384,15 @@ const GLOBAL_DESTINATIONS: GlobalDest[] = [
   { id: 'japan-golf', img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80', name: loc('일본 골프 네트워킹 워케이션', 'Japan Golf Networking Workation', '日本ゴルフネットワークワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('오키나와·규슈·도쿄', 'Okinawa · Kyushu · Tokyo', '沖縄・九州・東京'), tag: loc('골프·네트워킹', 'Golf · Networking', 'ゴルフ・ネットワーク') },
 ]
 
-const DOMESTIC_CURRENT: DomesticCurrent[] = [
+export const DOMESTIC_CURRENT: DomesticCurrent[] = [
   {
     id: 'yangyang-1',
     img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
     href: 'https://wakation-yangyang.vercel.app/',
     price: '290,000',
     originalPrice: '399,000',
+    recruitEnd: '2026-06-16',
+    eventEnd: '2026-06-19',
     date: loc('6월 17일(수) – 19일(금)', 'Jun 17(Wed) – 19(Fri)', '6月17日(水)〜19日(金)'),
     duration: loc('2박 3일', '2 nights · 3 days', '2泊3日'),
     name: loc('양양 Wakation 파일럿 프로그램', 'Yangyang Wakation Pilot Program', '襄陽Wakationパイロットプログラム'),
@@ -581,6 +585,8 @@ export function getDomesticCurrent(lang: Lang) {
     img: p.img,
     href: p.href,
     price: p.price,
+    originalPrice: p.originalPrice,
+    date: p.date ? tloc(lang, p.date) : undefined,
     duration: tloc(lang, p.duration),
     name: tloc(lang, p.name),
     region: tloc(lang, p.region),
