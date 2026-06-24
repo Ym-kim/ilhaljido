@@ -168,7 +168,7 @@ export default function MarketPage() {
 
             <a
 
-              href="mailto:hello@wakation.kr?subject=Market%20research%20pre-register"
+              href="mailto:wakation.sf@gmail.com?subject=Market%20research%20pre-register"
 
               className="bg-orange-500 text-white font-black px-8 py-3.5 rounded-full hover:bg-orange-400 transition-all text-sm flex items-center justify-center gap-2"
 

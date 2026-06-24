@@ -140,7 +140,7 @@ export default function HomePage() {
             <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 text-center">
               <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
               <p className="text-white/50 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
-              <a href="mailto:hello@wakation.kr" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+              <a href="mailto:wakation.sf@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
                 {tr('inquire')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </a>
             </div>

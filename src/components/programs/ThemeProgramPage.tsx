@@ -19,7 +19,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
   const { lang, tr } = useLang()
   const programs = getDomesticThemedUpcoming(lang).filter((p) => themeIds.includes(p.id))
 
-  const mailto = `mailto:hello@wakation.kr?subject=${encodeURIComponent(emailSubject)}`
+  const mailto = `mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(emailSubject)}`
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">

@@ -56,7 +56,7 @@ export default function GlobalPage() {
                   <div className="flex items-center justify-between">
                     <span className="text-white/30 text-xs">{tr('domestic_coming_soon')}</span>
                     <a
-                      href="mailto:hello@wakation.kr"
+                      href="mailto:wakation.sf@gmail.com"
                       className="text-teal-400 text-xs font-bold hover:text-teal-300 transition-colors flex items-center gap-1"
                     >
                       {tr('pre_register')} <ArrowRight className="w-3 h-3" />
@@ -75,7 +75,7 @@ export default function GlobalPage() {
           <p className="text-caption-on-dark text-sm mb-8 whitespace-pre-line">{tr('global_cta_desc')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="mailto:hello@wakation.kr?subject=Global%20workation%20pre-register"
+              href="mailto:wakation.sf@gmail.com?subject=Global%20workation%20pre-register"
               className="bg-teal-500 text-white font-black px-8 py-3.5 rounded-full hover:bg-teal-400 transition-all text-sm"
             >
               {tr('global_preregister_btn')}

@@ -321,8 +321,8 @@ const KO: Record<string, string> = {
   contact_kakao_t: '카카오 오픈채팅',
   contact_kakao_d: '빠른 답변이 필요하신 분은 카카오 오픈채팅을 이용해 주세요.',
   contact_kakao_btn: '카카오 오픈채팅 열기',
-  contact_kakao_alert: '카카오 오픈채팅은 준비 중입니다. hello@wakation.kr로 문의해 주세요.',
-  contact_note: '모든 문의는 hello@wakation.kr 로 접수됩니다. 담당자가 1영업일 이내 연락드립니다.',
+  contact_kakao_alert: '카카오 오픈채팅은 준비 중입니다. wakation.sf@gmail.com로 문의해 주세요.',
+  contact_note: '모든 문의는 wakation.sf@gmail.com 로 접수됩니다. 담당자가 1영업일 이내 연락드립니다.',
 
   visa_badge: '정식 서비스 준비중',
   visa_title: '비자·체류 AI',
@@ -761,8 +761,8 @@ const EN: Record<string, string> = {
   contact_kakao_t: 'Kakao open chat',
   contact_kakao_d: 'Need a quick reply? Use our Kakao open chat.',
   contact_kakao_btn: 'Open Kakao chat',
-  contact_kakao_alert: 'Kakao chat is coming soon. Please email hello@wakation.kr.',
-  contact_note: 'All inquiries go to hello@wakation.kr. We reply within one business day.',
+  contact_kakao_alert: 'Kakao chat is coming soon. Please email wakation.sf@gmail.com.',
+  contact_note: 'All inquiries go to wakation.sf@gmail.com. We reply within one business day.',
 
   visa_badge: 'Full service coming soon',
   visa_title: 'Visa & stay AI',
@@ -1201,8 +1201,8 @@ const JP: Record<string, string> = {
   contact_kakao_t: 'カカオオープンチャット',
   contact_kakao_d: 'お急ぎの方はカカオオープンチャットをご利用ください。',
   contact_kakao_btn: 'カカオチャットを開く',
-  contact_kakao_alert: 'カカオチャットは準備中です。hello@wakation.kr までご連絡ください。',
-  contact_note: 'すべてのお問い合わせは hello@wakation.kr へ。1営業日以内に返信します。',
+  contact_kakao_alert: 'カカオチャットは準備中です。wakation.sf@gmail.com までご連絡ください。',
+  contact_note: 'すべてのお問い合わせは wakation.sf@gmail.com へ。1営業日以内に返信します。',
 
   visa_badge: '正式サービス準備中',
   visa_title: 'ビザ・滞在AI',

@@ -43,7 +43,7 @@ export default function Footer() {
               {tr('footer_contact')}
             </h4>
             <ul className="space-y-2.5 text-[0.9375rem] font-medium">
-              <li className="text-white/55">hello@wakation.kr</li>
+              <li className="text-white/55">wakation.sf@gmail.com</li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
                   {tr('nav_contact')}
