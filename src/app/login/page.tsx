@@ -1,13 +1,24 @@
 'use client'
 
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Mountain, Mail, Lock, ArrowRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 
+function safeRedirectPath(raw: string | null): string {
+  if (!raw) return '/mypage'
+  // 내부 경로만 허용: '/'로 시작, '//'나 '://' 포함 금지
+  if (raw.startsWith('/') && !raw.startsWith('//') && !raw.includes('://')) {
+    return raw
+  }
+  return '/mypage'
+}
+
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = safeRedirectPath(searchParams.get('redirect'))
   const supabase = createClient()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,7 +35,7 @@ export default function LoginPage() {
       setError('이메일 또는 비밀번호가 올바르지 않습니다.')
       return
     }
-    router.push('/mypage')
+    router.push(redirectTo)
     router.refresh()
   }
 
@@ -32,7 +43,7 @@ export default function LoginPage() {
     setError(null)
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: `${location.origin}/auth/callback?next=/mypage` },
+      options: { redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTo)}` },
     })
     if (error) setError('구글 로그인을 시작할 수 없습니다.')
   }
