@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Mountain, Mail, Lock, ArrowRight } from 'lucide-react'
@@ -8,14 +8,13 @@ import { createClient } from '@/lib/supabase/client'
 
 function safeRedirectPath(raw: string | null): string {
   if (!raw) return '/mypage'
-  // 내부 경로만 허용: '/'로 시작, '//'나 '://' 포함 금지
   if (raw.startsWith('/') && !raw.startsWith('//') && !raw.includes('://')) {
     return raw
   }
   return '/mypage'
 }
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = safeRedirectPath(searchParams.get('redirect'))
@@ -128,5 +127,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }
