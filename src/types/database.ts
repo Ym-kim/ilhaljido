@@ -37,6 +37,7 @@ export interface Database {
       applications: {
         Row: {
           id: string
+          user_id: string | null
           program_id: string | null
           name: string
           phone: string
