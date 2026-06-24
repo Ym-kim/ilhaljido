@@ -24,6 +24,7 @@ export {
   getMarketUnits,
   getGlobalDestinations,
   getDomesticCurrent,
+  getDomesticCompleted,
   getDomesticUpcoming,
   getDomesticThemedUpcoming,
   getSampleSchedule,

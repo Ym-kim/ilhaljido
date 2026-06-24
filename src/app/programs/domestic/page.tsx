@@ -1,15 +1,16 @@
 'use client'
 
 import Link from 'next/link'
-import { MapPin, ArrowRight, CheckCircle2, Home } from 'lucide-react'
+import { MapPin, ArrowRight, CheckCircle2, Home, Flag } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
-import { getDomesticCurrent, getDomesticUpcoming, getDomesticThemedUpcoming } from '@/lib/i18n'
+import { getDomesticCurrent, getDomesticCompleted, getDomesticUpcoming, getDomesticThemedUpcoming } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
 
 export default function DomesticPage() {
   const { lang, tr } = useLang()
   const current = getDomesticCurrent(lang)
+  const completed = getDomesticCompleted(lang)
   const themed = getDomesticThemedUpcoming(lang).filter((p) => !p.isGlobal)
   const upcoming = getDomesticUpcoming(lang)
 
@@ -32,43 +33,98 @@ export default function DomesticPage() {
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-6">{tr('domestic_current_title')}</p>
-          {current.map((p) => (
-            <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all">
-              <div className="flex flex-col md:flex-row">
-                <div className="relative md:w-80 h-56 md:h-auto shrink-0 overflow-hidden">
-                  <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                  <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
-                </div>
-                <div className="p-8 flex flex-col justify-between flex-1">
-                  <div>
-                    <p className="text-white/40 text-xs flex items-center gap-1 mb-2">
-                      <MapPin className="w-3 h-3" />
-                      {p.region} · {p.duration}
-                    </p>
-                    <h2 className="text-2xl font-black text-white mb-3">{p.name}</h2>
-                    <p className="text-white/50 text-sm leading-relaxed mb-5">{p.desc}</p>
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {p.includes.map((t) => (
-                        <span key={t} className="flex items-center gap-1 bg-white/5 text-white/60 text-xs px-3 py-1 rounded-full border border-white/10">
-                          <CheckCircle2 className="w-3 h-3 text-teal-400" />
-                          {t}
-                        </span>
-                      ))}
+          {current.length > 0 ? (
+            <div className="space-y-5">
+              {current.map((p) => (
+                <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="relative md:w-80 h-56 md:h-auto shrink-0 overflow-hidden">
+                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
+                    </div>
+                    <div className="p-8 flex flex-col justify-between flex-1">
+                      <div>
+                        <p className="text-white/40 text-xs flex items-center gap-1 mb-2">
+                          <MapPin className="w-3 h-3" />
+                          {p.region} · {p.duration}
+                        </p>
+                        <h2 className="text-2xl font-black text-white mb-3">{p.name}</h2>
+                        <p className="text-white/50 text-sm leading-relaxed mb-5">{p.desc}</p>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {p.includes.map((t) => (
+                            <span key={t} className="flex items-center gap-1 bg-white/5 text-white/60 text-xs px-3 py-1 rounded-full border border-white/10">
+                              <CheckCircle2 className="w-3 h-3 text-teal-400" />
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-3xl font-black text-white">₩{p.price}</span>
+                          <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
+                        </div>
+                        {p.href.startsWith('http') ? (
+                          <a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" />
+                          </a>
+                        ) : (
+                          <Link href={p.href} className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        )}
+                      </div>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-3xl font-black text-white">₩{p.price}</span>
-                      <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
-                    </div>
-                    {p.href.startsWith('http') ? (<a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">{tr('learn_more')} <ArrowRight className="w-4 h-4" /></a>) : (<Link href={p.href} className="bg-teal-500 text-white font-black px-6 py-3 rounded-full hover:bg-teal-400 transition-all flex items-center gap-2 text-sm">{tr('learn_more')} <ArrowRight className="w-4 h-4" /></Link>)}
-                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          ) : (
+            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 text-center mb-6">
+              <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
+              <p className="text-white/50 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
+              <a href="mailto:hello@wakation.kr" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+                {tr('inquire')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              </a>
+            </div>
+          )}
         </div>
       </section>
+
+      {completed.length > 0 && (
+        <section className="py-12 px-6 bg-[#161616]">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-white/30 text-xs font-black tracking-widest uppercase mb-6 flex items-center gap-2">
+              <Flag className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+              {tr('pilot_complete_eyebrow')}
+            </p>
+            <div className="grid md:grid-cols-2 gap-5">
+              {completed.map((p) => (
+                <div key={p.id} className="bg-[#1a1a1a] border border-white/8 rounded-2xl overflow-hidden opacity-80">
+                  <div className="relative h-40 overflow-hidden">
+                    <img src={p.img} alt={p.name} className="w-full h-full object-cover grayscale" />
+                    <div className="absolute inset-0 bg-black/60" />
+                    <span className="absolute top-3 left-3 bg-white/10 backdrop-blur-sm text-white/60 text-xs font-bold px-2.5 py-1 rounded-full border border-white/15">
+                      {tr('pilot_complete_eyebrow')}
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <p className="text-white/30 text-xs flex items-center gap-1 mb-1.5">
+                      <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                      {p.region}{p.date ? ` · ${p.date}` : ''}
+                    </p>
+                    <h3 className="text-white/70 font-black text-base mb-2">{p.name}</h3>
+                    <p className="text-white/35 text-xs leading-relaxed mb-4">{p.desc}</p>
+                    <a href="mailto:hello@wakation.kr" className="inline-flex items-center gap-1.5 text-white/40 text-xs hover:text-teal-400 transition-colors">
+                      {tr('home_recruiting_coming_title')} <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="py-16 px-6 bg-[#161616]">
         <div className="max-w-6xl mx-auto">
@@ -128,4 +184,3 @@ export default function DomesticPage() {
     </div>
   )
 }
-

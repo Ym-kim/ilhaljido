@@ -580,19 +580,37 @@ export function getGlobalDestinations(lang: Lang) {
 }
 
 export function getDomesticCurrent(lang: Lang) {
-  return DOMESTIC_CURRENT.map((p) => ({
-    id: p.id,
-    img: p.img,
-    href: p.href,
-    price: p.price,
-    originalPrice: p.originalPrice,
-    date: p.date ? tloc(lang, p.date) : undefined,
-    duration: tloc(lang, p.duration),
-    name: tloc(lang, p.name),
-    region: tloc(lang, p.region),
-    desc: tloc(lang, p.desc),
-    includes: tloc(lang, p.includes),
-  }))
+  const today = new Date().toISOString().slice(0, 10)
+  return DOMESTIC_CURRENT
+    .filter((p) => p.eventEnd >= today)
+    .map((p) => ({
+      id: p.id,
+      img: p.img,
+      href: p.href,
+      price: p.price,
+      originalPrice: p.originalPrice,
+      date: p.date ? tloc(lang, p.date) : undefined,
+      duration: tloc(lang, p.duration),
+      name: tloc(lang, p.name),
+      region: tloc(lang, p.region),
+      desc: tloc(lang, p.desc),
+      includes: tloc(lang, p.includes),
+    }))
+}
+
+export function getDomesticCompleted(lang: Lang) {
+  const today = new Date().toISOString().slice(0, 10)
+  return DOMESTIC_CURRENT
+    .filter((p) => p.eventEnd < today)
+    .map((p) => ({
+      id: p.id,
+      img: p.img,
+      date: p.date ? tloc(lang, p.date) : undefined,
+      duration: tloc(lang, p.duration),
+      name: tloc(lang, p.name),
+      region: tloc(lang, p.region),
+      desc: tloc(lang, p.desc),
+    }))
 }
 
 export function getDomesticUpcoming(lang: Lang) {

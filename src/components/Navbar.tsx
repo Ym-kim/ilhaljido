@@ -19,10 +19,8 @@ const NAV_ITEMS: NavItem[] = [
   {
     key: 'nav_programs',
     items: [
-      { labelKey: 'nav_prog_recruiting', href: '/programs/domestic', isHighlight: true },
       { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
       { labelKey: 'nav_prog_global', href: '/programs/global' },
-      { labelKey: 'nav_prog_yangyang', href: '/programs/domestic' },
       { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
     ],
   },
