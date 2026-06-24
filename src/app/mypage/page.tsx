@@ -10,7 +10,7 @@ import { createClient } from '@/lib/supabase/client'
 type Application = {
   id: string
   program_id: string | null
-  program_title: string | null
+  programs: { title: string } | null
   status: string | null
   created_at: string
 }
@@ -33,7 +33,7 @@ export default function MyPage() {
     const load = async () => {
       const { data } = await (supabase as any)
         .from('applications')
-        .select('id, program_id, program_title, status, created_at')
+        .select('id, program_id, programs(title), status, created_at')
         .eq('user_id', user.id)
         .order('created_at', { ascending: false })
       setApps((data as Application[]) || [])
@@ -108,18 +108,24 @@ export default function MyPage() {
               {apps.map((app) => (
                 <div key={app.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
                   <div>
-                    <p className="font-bold text-gray-900 text-sm">{app.program_title || app.program_id || '프로그램'}</p>
+                    <p className="font-bold text-gray-900 text-sm">{app.programs?.title || app.program_id || '프로그램'}</p>
                     <p className="text-xs text-gray-500 flex items-center gap-1 mt-1">
                       <Calendar className="w-3 h-3" />
                       {new Date(app.created_at).toLocaleDateString('ko-KR')}
                     </p>
                   </div>
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-                    app.status === 'approved' ? 'bg-teal-100 text-teal-700'
-                    : app.status === 'rejected' ? 'bg-red-100 text-red-600'
+                    app.status === 'confirmed'       ? 'bg-teal-100 text-teal-700'
+                    : app.status === 'cancelled'     ? 'bg-red-100 text-red-600'
+                    : app.status === 'contacted'     ? 'bg-blue-100 text-blue-700'
+                    : app.status === 'payment_pending' ? 'bg-purple-100 text-purple-700'
                     : 'bg-gray-200 text-gray-600'
                   }`}>
-                    {app.status === 'approved' ? '승인됨' : app.status === 'rejected' ? '반려' : '검토중'}
+                    {app.status === 'confirmed'         ? '참가 확정'
+                      : app.status === 'cancelled'      ? '취소'
+                      : app.status === 'contacted'      ? '담당자 연락 완료'
+                      : app.status === 'payment_pending' ? '결제 대기'
+                      : '신청 접수'}
                   </span>
                 </div>
               ))}

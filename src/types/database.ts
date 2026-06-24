@@ -2,7 +2,7 @@ export type Json = string | number | boolean | null | { [key: string]: Json } | 
 
 export type ProgramCategory = 'growth' | 'healing' | 'network' | 'global'
 export type ProgramStatus = 'open' | 'soon' | 'full' | 'closed'
-export type ApplicationStatus = 'pending' | 'contacted' | 'confirmed' | 'cancelled'
+export type ApplicationStatus = 'pending' | 'contacted' | 'payment_pending' | 'confirmed' | 'cancelled'
 export type WorkStyle = 'focus' | 'relaxed' | 'balanced'
 
 export interface Database {
@@ -37,6 +37,7 @@ export interface Database {
       applications: {
         Row: {
           id: string
+          user_id: string | null
           program_id: string | null
           name: string
           phone: string
