@@ -32,7 +32,9 @@ export default function DomesticPage() {
 
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-6">{tr('domestic_current_title')}</p>
+          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-6">
+            {current.length > 0 ? tr('domestic_current_title') : tr('home_recruiting_coming_title')}
+          </p>
           {current.length > 0 ? (
             <div className="space-y-5">
               {current.map((p) => (

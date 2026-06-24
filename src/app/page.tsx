@@ -84,8 +84,8 @@ export default function HomePage() {
       <section className="bg-[#0f0f0f] border-b border-white/8 py-14 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-6 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-brand-mid animate-pulse inline-block" />
-            {tr('home_recruiting_eyebrow')}
+            {recruitingPrograms.length > 0 && <span className="w-2 h-2 rounded-full bg-brand-mid animate-pulse inline-block" />}
+            {recruitingPrograms.length > 0 ? tr('home_recruiting_eyebrow') : tr('home_recruiting_coming_title')}
           </p>
           {recruitingPrograms.length > 0 ? (
             <div className="space-y-5">
