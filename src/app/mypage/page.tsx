@@ -115,15 +115,17 @@ export default function MyPage() {
                     </p>
                   </div>
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${
-                    app.status === 'confirmed' ? 'bg-teal-100 text-teal-700'
-                    : app.status === 'cancelled' ? 'bg-red-100 text-red-600'
-                    : app.status === 'contacted' ? 'bg-blue-100 text-blue-700'
+                    app.status === 'confirmed'       ? 'bg-teal-100 text-teal-700'
+                    : app.status === 'cancelled'     ? 'bg-red-100 text-red-600'
+                    : app.status === 'contacted'     ? 'bg-blue-100 text-blue-700'
+                    : app.status === 'payment_pending' ? 'bg-purple-100 text-purple-700'
                     : 'bg-gray-200 text-gray-600'
                   }`}>
-                    {app.status === 'confirmed' ? '확정'
-                      : app.status === 'cancelled' ? '취소'
-                      : app.status === 'contacted' ? '연락중'
-                      : '검토중'}
+                    {app.status === 'confirmed'         ? '참가 확정'
+                      : app.status === 'cancelled'      ? '취소'
+                      : app.status === 'contacted'      ? '담당자 연락 완료'
+                      : app.status === 'payment_pending' ? '결제 대기'
+                      : '신청 접수'}
                   </span>
                 </div>
               ))}

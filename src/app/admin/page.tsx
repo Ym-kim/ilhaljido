@@ -6,15 +6,16 @@ import { useAuth } from '@/context/AuthContext'
 import {
   Users, Clock, CheckCircle2, XCircle,
   PhoneCall, RefreshCw, Search,
-  ChevronRight, Calendar, Briefcase,
+  ChevronRight, Calendar, Briefcase, CreditCard,
 } from 'lucide-react'
 import type { Application } from '@/types/database'
 
 const STATUS_MAP = {
-  pending:   { label: '신규 접수', color: 'bg-amber-100 text-amber-800', icon: Clock },
-  contacted: { label: '연락 완료', color: 'bg-blue-100 text-blue-800', icon: PhoneCall },
-  confirmed: { label: '확정', color: 'bg-emerald-100 text-emerald-800', icon: CheckCircle2 },
-  cancelled: { label: '취소', color: 'bg-red-100 text-red-800', icon: XCircle },
+  pending:         { label: '신규 접수', color: 'bg-amber-100 text-amber-800',    icon: Clock },
+  contacted:       { label: '연락 완료', color: 'bg-blue-100 text-blue-800',      icon: PhoneCall },
+  payment_pending: { label: '결제 대기', color: 'bg-purple-100 text-purple-800',  icon: CreditCard },
+  confirmed:       { label: '확정',      color: 'bg-emerald-100 text-emerald-800', icon: CheckCircle2 },
+  cancelled:       { label: '취소',      color: 'bg-red-100 text-red-800',        icon: XCircle },
 } as const
 
 type AdminApp = Application & { programs?: { title: string; location: string } | null }

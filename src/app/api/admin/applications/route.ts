@@ -39,7 +39,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'Missing id' }, { status: 400 })
   }
 
-  const validStatuses = ['pending', 'contacted', 'confirmed', 'cancelled']
+  const validStatuses = ['pending', 'contacted', 'payment_pending', 'confirmed', 'cancelled']
   if (status !== undefined && !validStatuses.includes(status)) {
     return NextResponse.json({ error: 'Invalid status' }, { status: 400 })
   }
