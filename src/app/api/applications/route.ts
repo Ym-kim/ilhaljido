@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
       message: typeof body.message === 'string' ? body.message.slice(0, 1000) : null,
       status: 'pending',
       admin_memo: null,
-      user_id: user?.id ?? null,
+      ...(user?.id ? { user_id: user.id } : {}),
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
