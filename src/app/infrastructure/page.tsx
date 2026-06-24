@@ -104,7 +104,7 @@ export default function InfrastructurePage() {
           <SectionTitle className="mb-4 text-center">{tr('infra_inquiry_title')}</SectionTitle>
           <p className="text-gray-500 text-sm mb-8">{tr('infra_inquiry_desc')}</p>
           <Link
-            href="mailto:wakation.sf@gmail.com?subject=Space%20listing"
+            href="mailto:wakation.kr@gmail.com?subject=Space%20listing"
             className="inline-flex items-center gap-2 bg-teal-500 text-white font-bold px-8 py-4 rounded-full hover:bg-teal-400 transition-all"
           >
             {tr('infra_inquiry_btn')}

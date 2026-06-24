@@ -388,12 +388,12 @@ export const DOMESTIC_CURRENT: DomesticCurrent[] = [
   {
     id: 'yangyang-1',
     img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-    href: 'https://wakation-yangyang.vercel.app/',
+    href: '/programs/domestic',
     price: '290,000',
     originalPrice: '399,000',
     recruitEnd: '2026-06-16',
     eventEnd: '2026-06-19',
-    date: loc('6월 17일(수) – 19일(금)', 'Jun 17(Wed) – 19(Fri)', '6月17日(水)〜19日(金)'),
+    date: loc('2026년 6월 17–19일 진행 완료', 'Completed Jun 17–19, 2026', '2026年6月17〜19日 終了'),
     duration: loc('2박 3일', '2 nights · 3 days', '2泊3日'),
     name: loc('양양 Wakation 파일럿 프로그램', 'Yangyang Wakation Pilot Program', '襄陽Wakationパイロットプログラム'),
     region: loc('강원도 양양', 'Yangyang, Gangwon', '江原道・襄陽'),
@@ -434,7 +434,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('🧘 힐링·요가', '🧘 Healing · Yoga', '🧘 ヒーリング・ヨガ'),
     name: loc('번아웃 탈출 힐링 워케이션', 'Burnout Recovery Workation', 'バーンアウト回復ワーケーション'),
     region: loc('충남 태안', 'Taean, Chungnam', '忠南・泰安'),
-    date: loc('7월 7일–11일', 'Jul 7–11', '7月7〜11日'),
+    date: loc('2026년 하반기 예정', '2H 2026 (TBD)', '2026年下半期予定'),
   },
   {
     id: 'network-chuncheon',
@@ -442,7 +442,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('🤝 1인기업 네트워킹', '🤝 Networking', '🤝 ネットワーキング'),
     name: loc('1인 기업가 네트워킹 캠프', 'Solopreneur Networking Camp', '一人起業家ネットワーキング'),
     region: loc('강원 춘천', 'Chuncheon, Gangwon', '江原・春川'),
-    date: loc('7월 23일–26일', 'Jul 23–26', '7月23〜26日'),
+    date: loc('2026년 하반기 예정', '2H 2026 (TBD)', '2026年下半期予定'),
   },
   {
     id: 'ai-sokcho',
@@ -719,13 +719,10 @@ export function getRestOptions(lang: Lang) {
 export function getApplyProgramOptions(lang: Lang) {
   return [
     { value: '', label: tloc(lang, loc('선택해 주세요', 'Please select', '選択してください')) },
-    { value: 'ai-sokcho', label: tloc(lang, loc('AI 활용 실무 집중 캠프 — 강원 속초 (6/12~15)', 'AI skills camp — Sokcho (Jun 12–15)', 'AI実務キャンプ — 束草')) },
-    { value: 'marketing-gapyeong', label: tloc(lang, loc('온라인 마케팅 & 상세페이지 — 경기 가평 (6/26~29)', 'Online marketing camp — Gapyeong (Jun 26–29)', 'マーケティング — 加平')) },
-    { value: 'healing-taean', label: tloc(lang, loc('번아웃 탈출 힐링 워케이션 — 충남 태안 (7/7~11)', 'Burnout healing workation — Taean (Jul 7–11)', 'ヒーリング — 泰安')) },
-    { value: 'network-chuncheon', label: tloc(lang, loc('1인 기업가 네트워킹 캠프 — 강원 춘천 (7/23~26)', 'Solopreneur networking — Chuncheon (Jul 23–26)', 'ネットワーキング — 春川')) },
-    { value: 'japan-osaka', label: tloc(lang, loc('일본 시장조사 워케이션 (8월 예정)', 'Japan market research (Aug, TBD)', '日本市場調査（8月予定）')) },
-    { value: 'design-tongyeong', label: tloc(lang, loc('디자인 & 브랜딩 집중 캠프 — 경남 통영 (8월 예정)', 'Design & branding camp — Tongyeong (Aug, TBD)', 'デザインキャンプ（8月予定）')) },
-    { value: 'yangyang-1', label: tloc(lang, loc('양양 Wakation 파일럿 — 6/17(수)~19(금)', 'Yangyang Wakation Pilot — Jun 17–19', '襄陽パイロット — 6/17〜19')) },
+    { value: 'healing-taean', label: tloc(lang, loc('번아웃 탈출 힐링 워케이션 — 충남 태안 (하반기 예정)', 'Burnout healing workation — Taean (2H 2026, TBD)', 'ヒーリング — 泰安（下半期予定）')) },
+    { value: 'network-chuncheon', label: tloc(lang, loc('1인 기업가 네트워킹 캠프 — 강원 춘천 (하반기 예정)', 'Solopreneur networking — Chuncheon (2H 2026, TBD)', 'ネットワーキング — 春川（下半期予定）')) },
+    { value: 'japan-osaka', label: tloc(lang, loc('일본 시장조사 워케이션 (2026년 하반기 예정)', 'Japan market research (2H 2026, TBD)', '日本市場調査（2026年下半期予定）')) },
+    { value: 'design-tongyeong', label: tloc(lang, loc('디자인 & 브랜딩 집중 캠프 — 경남 통영 (2026년 하반기 예정)', 'Design & branding camp — Tongyeong (2H 2026, TBD)', 'デザインキャンプ（2026年下半期予定）')) },
     { value: 'undecided', label: tloc(lang, loc('아직 정하지 않았어요 (추천받고 싶어요)', 'Not sure yet (want recommendations)', 'まだ決めていない（おすすめ希望）')) },
   ]
 }

@@ -26,7 +26,7 @@ export function Footer() {
           <div>
             <h4 className="text-white/55 text-xs font-bold tracking-widest uppercase mb-4">문의</h4>
             <ul className="space-y-2 text-sm list-none">
-              <li className="text-white/38">wakation@email.com</li>
+              <li className="text-white/38">wakation.kr@gmail.com</li>
               <li><Link href="/apply" className="text-white/38 hover:text-white/80 no-underline transition-colors">신청하기</Link></li>
               <li><a href="#faq" className="text-white/38 hover:text-white/80 no-underline transition-colors">FAQ</a></li>
             </ul>

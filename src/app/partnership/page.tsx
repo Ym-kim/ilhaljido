@@ -55,7 +55,7 @@ export default function PartnershipPage() {
                     <p className="text-caption leading-relaxed">{tr(p.descKey)}</p>
                   </div>
                   <a
-                    href="mailto:wakation.sf@gmail.com?subject=Partnership"
+                    href="mailto:wakation.kr@gmail.com?subject=Partnership"
                     className="inline-flex items-center gap-1.5 text-brand-mid text-[0.875rem] font-bold hover:gap-2.5 transition-all"
                   >
                     {tr('inquire')}
@@ -75,11 +75,11 @@ export default function PartnershipPage() {
             {tr('partnership_cta_title')}
           </SectionTitle>
           <p className="text-caption-on-dark mb-10 leading-relaxed max-w-lg mx-auto">{tr('partnership_cta_desc')}</p>
-          <a href="mailto:wakation.sf@gmail.com?subject=Partnership" className="btn-primary text-base">
+          <a href="mailto:wakation.kr@gmail.com?subject=Partnership" className="btn-primary text-base">
             {tr('partnership_cta_btn')}
             <ArrowRight className="w-5 h-5" strokeWidth={ICON_STROKE} />
           </a>
-          <p className="text-white/45 text-[0.875rem] mt-6 font-medium">wakation.sf@gmail.com</p>
+          <p className="text-white/45 text-[0.875rem] mt-6 font-medium">wakation.kr@gmail.com</p>
         </div>
       </section>
     </div>
