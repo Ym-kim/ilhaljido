@@ -92,13 +92,19 @@ export async function POST(req: NextRequest) {
       message: typeof body.message === 'string' ? body.message.slice(0, 1000) : null,
       status: 'pending',
       admin_memo: null,
-      ...(user?.id ? { user_id: user.id } : {}),
+      user_id: user?.id ?? null,
     }
+
+    // expand migration 실행 전 user_id 컬럼이 없을 수 있으므로 조건부로 제외
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const insertPayload: any = user?.id
+      ? applicationData
+      : (({ user_id: _uid, ...rest }) => rest)(applicationData)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: application, error: appError } = await (admin as any)
       .from('applications')
-      .insert(applicationData)
+      .insert(insertPayload)
       .select()
       .single()
 
