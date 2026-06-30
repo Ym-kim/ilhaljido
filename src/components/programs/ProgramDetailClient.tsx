@@ -187,8 +187,8 @@ export function ProgramDetailClient({ program }: { program: Program }) {
 
               <div className="mt-5 pt-4 border-t border-border">
                 <div className="text-xs font-bold text-dark mb-2">{tr('prog_contact')}</div>
-                <a href="mailto:wakation.kr@gmail.com" className="text-sm text-brand hover:underline">
-                  wakation.kr@gmail.com
+                <a href="mailto:wakation.sf@gmail.com" className="text-sm text-brand hover:underline">
+                  wakation.sf@gmail.com
                 </a>
               </div>
             </div>

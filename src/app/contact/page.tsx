@@ -29,7 +29,7 @@ export default function ContactPage() {
             {CONTACT_KEYS.map((c) => (
               <a
                 key={c.titleKey}
-                href={`mailto:wakation.kr@gmail.com?subject=${encodeURIComponent(c.subject)}`}
+                href={`mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(c.subject)}`}
                 className="group bg-white rounded-3xl border border-gray-100 shadow-sm p-8 hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 flex flex-col gap-4"
               >
                 <div className="flex-1">

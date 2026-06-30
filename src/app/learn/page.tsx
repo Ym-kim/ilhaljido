@@ -96,7 +96,7 @@ export default function LearnPage() {
                   <p className="text-white/50 text-sm leading-relaxed">{d.desc}</p>
                   <div className="mt-5">
                     <a
-                      href="mailto:wakation.kr@gmail.com"
+                      href="mailto:wakation.sf@gmail.com"
                       className="inline-flex items-center gap-1.5 text-teal-400 text-xs font-bold hover:text-teal-300 transition-colors"
                     >
                       {lang === 'KO' ? '사전 알림 신청' : lang === 'EN' ? 'Pre-register' : '事前登録'} <ArrowRight className="w-3 h-3" />
@@ -125,7 +125,7 @@ export default function LearnPage() {
               : '講義・ワークショップ進行に関心のある専門家やチームを探しています。'}
           </p>
           <a
-            href="mailto:wakation.kr@gmail.com?subject=강의·세미나 문의"
+            href="mailto:wakation.sf@gmail.com?subject=강의·세미나 문의"
             className="inline-flex items-center gap-2 bg-teal-500 text-white font-black px-8 py-4 rounded-full hover:bg-teal-400 transition-all"
           >
             <Mail className="w-4 h-4" strokeWidth={ICON_STROKE} />

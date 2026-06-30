@@ -85,7 +85,7 @@ export default function DomesticPage() {
             <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 text-center mb-6">
               <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
               <p className="text-white/50 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
-              <a href="mailto:wakation.kr@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+              <a href="mailto:wakation.sf@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
                 {tr('inquire')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </a>
             </div>
@@ -117,7 +117,7 @@ export default function DomesticPage() {
                     </p>
                     <h3 className="text-white/70 font-black text-base mb-2">{p.name}</h3>
                     <p className="text-white/35 text-xs leading-relaxed mb-4">{p.desc}</p>
-                    <a href="mailto:wakation.kr@gmail.com" className="inline-flex items-center gap-1.5 text-white/40 text-xs hover:text-teal-400 transition-colors">
+                    <a href="mailto:wakation.sf@gmail.com" className="inline-flex items-center gap-1.5 text-white/40 text-xs hover:text-teal-400 transition-colors">
                       {tr('home_recruiting_coming_title')} <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                     </a>
                   </div>
@@ -147,7 +147,7 @@ export default function DomesticPage() {
                   <h3 className="text-white font-black text-sm mb-3">{p.name}</h3>
                   <div className="flex items-center justify-between">
                     <span className="text-teal-400/70 text-xs font-bold">{p.date}</span>
-                    <a href="mailto:wakation.kr@gmail.com" className="text-white/50 text-xs hover:text-teal-400 transition-colors flex items-center gap-1">
+                    <a href="mailto:wakation.sf@gmail.com" className="text-white/50 text-xs hover:text-teal-400 transition-colors flex items-center gap-1">
                       {tr('pre_register')} <ArrowRight className="w-3 h-3" />
                     </a>
                   </div>
@@ -177,7 +177,7 @@ export default function DomesticPage() {
           </div>
           <div className="mt-10 text-center">
             <p className="text-white/40 text-sm mb-4">{tr('domestic_notify_desc')}</p>
-            <a href="mailto:wakation.kr@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+            <a href="mailto:wakation.sf@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
               {tr('domestic_notify_btn')}
             </a>
           </div>
