@@ -17,7 +17,7 @@ export default function DomesticPage() {
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="" className="absolute inset-0 w-full h-full object-cover" fetchPriority="high" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark className="flex items-center gap-2">
@@ -41,7 +41,7 @@ export default function DomesticPage() {
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all">
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-80 h-56 md:h-auto shrink-0 overflow-hidden">
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
                     </div>
                     <div className="p-8 flex flex-col justify-between flex-1">
@@ -104,7 +104,7 @@ export default function DomesticPage() {
               {completed.map((p) => (
                 <div key={p.id} className="bg-[#1a1a1a] border border-white/8 rounded-2xl overflow-hidden opacity-80">
                   <div className="relative h-40 overflow-hidden">
-                    <img src={p.img} alt={p.name} className="w-full h-full object-cover grayscale" />
+                    <img src={p.img} alt={p.name} className="w-full h-full object-cover grayscale" loading="lazy" />
                     <div className="absolute inset-0 bg-black/60" />
                     <span className="absolute top-3 left-3 bg-white/10 backdrop-blur-sm text-white/60 text-xs font-bold px-2.5 py-1 rounded-full border border-white/15">
                       {tr('pilot_complete_eyebrow')}

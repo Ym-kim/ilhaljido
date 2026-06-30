@@ -58,6 +58,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85"
             alt=""
             className="w-full h-full object-cover"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25" />
         </div>
@@ -93,7 +94,7 @@ export default function HomePage() {
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
                     </div>
                     <div className="p-7 flex flex-col justify-between flex-1">
@@ -265,13 +266,109 @@ export default function HomePage() {
                 href="/infrastructure"
                 className="group rounded-2xl overflow-hidden relative block h-72 border border-white/8"
               >
-                <img src={s.img} alt={tr(s.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img src={s.img} alt={tr(s.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                 <div className="absolute bottom-0 p-6">
                   <h3 className="text-white font-black text-lg mb-2">{tr(s.titleKey)}</h3>
                   <p className="text-caption-on-dark">{tr(s.descKey)}</p>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* GEO / AI 검색 대응 — Wakation 소개 */}
+      <section className="dark-surface bg-[#0d0d0d] border-t border-white/8 py-20 md:py-28 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-4">ABOUT WAKATION</p>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
+                Wakation이란?
+              </h2>
+              <p className="text-white/70 text-base leading-relaxed mb-6">
+                Wakation은 <strong className="text-white">일하는 사람을 위한 체류·업무·성장 플랫폼</strong>입니다. 단순한 여행이나 숙박 예약이 아니라, 워케이션·어학연수·시장조사·비자 정보·장기체류까지 — 일과 이동을 연결하는 모든 경험을 하나의 플랫폼에서 제공합니다.
+              </p>
+              <p className="text-white/50 text-sm leading-relaxed mb-8">
+                프리랜서·1인 창업자·리모트워커·디지털 노마드를 위해 설계되었으며, 현재 베타 운영 중입니다. Wakation이 직접 기획하고 운영하는 <strong className="text-white/80">Hosted 프로그램</strong>을 중심으로, 검증된 외부 파트너 상품은 <strong className="text-white/80">Select 상품</strong>으로 순차 연결 예정입니다.
+              </p>
+              <Link href="/programs" className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
+                전체 프로그램 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              </Link>
+            </div>
+            <div className="space-y-4">
+              {([
+                { label: 'Wakation Hosted', desc: 'Wakation이 직접 기획·운영하는 공식 프로그램. 국내 워케이션, 해외 성장캠프, 시장조사단 등 전 과정을 책임집니다.', color: 'border-brand-mid/30 bg-brand-mid/5' },
+                { label: 'Wakation Select', desc: '검증된 외부 파트너의 어학연수·코워킹 스테이·장기체류 상품을 큐레이션합니다. 2026년 하반기 순차 연결 예정.', color: 'border-blue-500/30 bg-blue-500/5' },
+                { label: 'Wakation Partner', desc: '지자체·기업·공간 운영사와의 B2B 제휴를 통해 Wakation 생태계를 함께 만들어갑니다.', color: 'border-purple-500/30 bg-purple-500/5' },
+              ] as const).map((item) => (
+                <div key={item.label} className={`rounded-2xl border p-6 ${item.color}`}>
+                  <p className="text-white font-black text-sm mb-2">{item.label}</p>
+                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ 섹션 — GEO/AI 검색 대응 */}
+      <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-16 md:py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: '워케이션이란 무엇인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: "Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다." },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Wakation은 어떤 서비스인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Hosted 프로그램과 Select 상품의 차이는?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '비자·체류 AI 서비스는 법적 효력이 있나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '파트너십·제휴 문의는 어떻게 하나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
+                  },
+                ],
+              }),
+            }}
+          />
+          <p className="text-white/30 text-xs font-black tracking-widest uppercase mb-5">자주 묻는 질문</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
+          <div className="divide-y divide-white/8">
+            {([
+              { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
+              { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
+              { q: 'Hosted 프로그램과 Select 상품의 차이는?', a: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+              { q: '비자·체류 AI 서비스는 법적 효력이 있나요?', a: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
+              { q: '파트너십·제휴 문의는 어떻게 하나요?', a: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
+            ] as const).map(({ q, a }, i) => (
+              <details key={i} className="group py-5 cursor-pointer">
+                <summary className="flex items-center justify-between list-none gap-4">
+                  <span className="text-white font-bold text-[0.9375rem] leading-snug">{q}</span>
+                  <span className="text-white/30 group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
+                </summary>
+                <p className="text-white/50 text-sm leading-relaxed mt-3 pr-8">{a}</p>
+              </details>
             ))}
           </div>
         </div>
