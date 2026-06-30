@@ -6,6 +6,8 @@ import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getGlobalDestinations } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 
 const SELECT_PRODUCTS = [
   {
@@ -166,6 +168,14 @@ export default function GlobalPage() {
           </p>
         </div>
       </section>
+
+      {/* 외부 서비스 — 해외 체류 준비 */}
+      <AffiliateSection
+        eyebrow="해외 체류 준비"
+        title="글로벌 워케이션 필수 체크리스트"
+        subtitle="숙소·체험·eSIM·여행자보험 등 해외 체류 준비를 도와주는 외부 서비스입니다. Wakation Select 직접 상품과 별개입니다."
+        items={GLOBAL_PREP_ITEMS}
+      />
 
       {/* CTA */}
       <section className="py-16 px-6 bg-[#0d0d0d]">

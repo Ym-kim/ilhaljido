@@ -11,6 +11,8 @@ import {
   VISA_DURATIONS,
   getVisaMockResult,
 } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { VISA_PREP_ITEMS } from '@/lib/affiliate/links'
 
 type Step = 1 | 2 | 3 | 4
 
@@ -242,6 +244,15 @@ export default function VisaAiPage() {
           )}
         </div>
       </section>
+
+      {/* 외부 서비스 — 비자·체류 준비 */}
+      <AffiliateSection
+        eyebrow="체류 준비"
+        title="해외 체류 준비 체크리스트"
+        subtitle="비자 신청 후 출국 전 챙겨야 할 eSIM·여행자보험·항공권 예약 확인서. 각 외부 서비스 링크입니다."
+        items={VISA_PREP_ITEMS}
+        cols={3}
+      />
 
       <section className="border-t border-white/10 py-10 px-6 bg-[#111]">
         <div className="max-w-3xl mx-auto text-center">
