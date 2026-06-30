@@ -58,6 +58,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85"
             alt=""
             className="w-full h-full object-cover"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25" />
         </div>
@@ -93,7 +94,7 @@ export default function HomePage() {
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
                     </div>
                     <div className="p-7 flex flex-col justify-between flex-1">
@@ -265,7 +266,7 @@ export default function HomePage() {
                 href="/infrastructure"
                 className="group rounded-2xl overflow-hidden relative block h-72 border border-white/8"
               >
-                <img src={s.img} alt={tr(s.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <img src={s.img} alt={tr(s.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                 <div className="absolute bottom-0 p-6">
                   <h3 className="text-white font-black text-lg mb-2">{tr(s.titleKey)}</h3>

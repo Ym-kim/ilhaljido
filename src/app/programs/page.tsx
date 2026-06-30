@@ -1,10 +1,140 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Mail, BellRing, Handshake } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getProgramsList } from '@/lib/i18n'
+
+const SELECT_CATEGORIES = [
+  {
+    id: 'stay',
+    emoji: '🏨',
+    name: '숙소·장기체류',
+    desc: '워케이션·장기체류에 최적화된 숙소. 주간/월간 단위 체류 상품을 파트너사와 연결합니다.',
+    status: '파트너 모집중',
+    statusColor: 'bg-teal-500/15 text-teal-400 border-teal-500/20',
+    cta: '파트너 제안하기',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=숙소·장기체류%20파트너%20제안',
+  },
+  {
+    id: 'cowork',
+    emoji: '💻',
+    name: '공유오피스·코워킹',
+    desc: '국내외 코워킹 스페이스와 공유오피스. 일 잘 되는 환경에서 일하는 사람을 위한 공간 파트너십.',
+    status: '제휴 검토중',
+    statusColor: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
+    cta: '제휴 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=코워킹%20제휴%20문의',
+  },
+  {
+    id: 'activity',
+    emoji: '🌿',
+    name: '현지 체험',
+    desc: '현지에서만 경험할 수 있는 투어·액티비티·문화 체험. 워케이션 참가자 대상 큐레이션 예정.',
+    status: '준비중',
+    statusColor: 'bg-white/8 text-white/40 border-white/10',
+    cta: '알림 받기',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=현지%20체험%20알림%20신청',
+  },
+  {
+    id: 'transport',
+    emoji: '✈️',
+    name: '교통·항공·이동',
+    desc: '워케이션 동선에 맞춘 항공권·렌터카·현지 교통 연결. 파트너 API 연동 검토 중.',
+    status: '제휴 검토중',
+    statusColor: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
+    cta: '제휴 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=교통·항공%20제휴%20문의',
+  },
+  {
+    id: 'language',
+    emoji: '📚',
+    name: '어학·유학',
+    desc: '일본·영어·기타 외국어 집중 연수와 워케이션을 결합한 패키지. Select 상품으로 연결 예정.',
+    status: '사전 문의 가능',
+    statusColor: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
+    cta: '사전 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=어학·유학%20사전%20문의',
+  },
+  {
+    id: 'visa',
+    emoji: '🛂',
+    name: '비자·체류 정보',
+    desc: '국가별 워케이션 비자, 디지털 노마드 비자, 장기체류 허가. AI 기반 정보 제공 준비 중.',
+    status: '준비중',
+    statusColor: 'bg-white/8 text-white/40 border-white/10',
+    cta: '알림 받기',
+    ctaHref: '/visa-ai',
+  },
+  {
+    id: 'market',
+    emoji: '📊',
+    name: '시장조사단·박람회',
+    desc: '해외 박람회 동반 참가 및 현장 리서치 프로그램. Wakation Hosted + Select 파트너 모집 중.',
+    status: '파트너 모집중',
+    statusColor: 'bg-teal-500/15 text-teal-400 border-teal-500/20',
+    cta: '파트너 제안하기',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=시장조사단%20파트너%20제안',
+  },
+  {
+    id: 'cruise',
+    emoji: '🚢',
+    name: '크루즈',
+    desc: '이동하면서 일하는 새로운 형태의 크루즈 워케이션. 파트너 모집 및 수요 조사 중.',
+    status: '파트너 모집중',
+    statusColor: 'bg-teal-500/15 text-teal-400 border-teal-500/20',
+    cta: '프로그램 제안하기',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=크루즈%20워케이션%20제안',
+  },
+  {
+    id: 'golf',
+    emoji: '⛳',
+    name: '골프·스포츠',
+    desc: '골프 포함 스포츠 워케이션 패키지. 국내외 골프 리조트 파트너십 검토 중.',
+    status: '제휴 검토중',
+    statusColor: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
+    cta: '제휴 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=골프·스포츠%20제휴%20문의',
+  },
+  {
+    id: 'education',
+    emoji: '🎓',
+    name: '교육·VOD·강의',
+    desc: '워케이션 중 성장을 위한 온·오프라인 강의, VOD, 코칭 프로그램. 에듀테크 파트너 모집 중.',
+    status: '파트너 모집중',
+    statusColor: 'bg-teal-500/15 text-teal-400 border-teal-500/20',
+    cta: '파트너 제안하기',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=교육·VOD%20파트너%20제안',
+  },
+  {
+    id: 'wellness',
+    emoji: '🧘',
+    name: '요가·힐링',
+    desc: '요가 리트릿, 명상, 힐링 워케이션. 웰니스와 업무의 균형을 찾는 사람들을 위한 프로그램.',
+    status: '사전 문의 가능',
+    statusColor: 'bg-amber-500/15 text-amber-400 border-amber-500/20',
+    cta: '사전 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=요가·힐링%20워케이션%20사전%20문의',
+  },
+  {
+    id: 'ryokan',
+    emoji: '♨️',
+    name: '료칸·온천',
+    desc: '일본 전통 료칸에서 업무와 온천을 함께. 일본 파트너사와 연결하는 고품격 워케이션.',
+    status: '제휴 검토중',
+    statusColor: 'bg-blue-500/15 text-blue-400 border-blue-500/20',
+    cta: '제휴 문의',
+    ctaHref: 'mailto:wakation.sf@gmail.com?subject=료칸·온천%20제휴%20문의',
+  },
+]
+
+const STATUS_ICON = {
+  '파트너 모집중': Handshake,
+  '제휴 검토중': Mail,
+  '준비중': BellRing,
+  '사전 문의 가능': Mail,
+}
 
 export default function ProgramsPage() {
   const { tr } = useLang()
@@ -18,6 +148,7 @@ export default function ProgramsPage() {
             src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1800&q=80"
             alt=""
             className="w-full h-full object-cover"
+            fetchPriority="high"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
@@ -31,6 +162,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
+      {/* Wakation Hosted — 공식 프로그램 */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
@@ -49,6 +181,7 @@ export default function ProgramsPage() {
                     src={p.img}
                     alt={tr(p.titleKey)}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
                   />
                   {p.badgeKey && (
                     <div className="absolute top-4 left-4">
@@ -71,6 +204,70 @@ export default function ProgramsPage() {
         </div>
       </section>
 
+      {/* Wakation Select — 12개 카테고리 수익화 기반 */}
+      <section className="py-20 px-6 bg-[#0f0f0f] dark-surface">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <p className="text-blue-400 text-xs font-black tracking-widest uppercase mb-4">WAKATION SELECT</p>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+              단계적으로 연결되는<br className="hidden sm:block" /> 파트너 상품 카테고리
+            </h2>
+            <p className="text-white/50 text-sm max-w-xl mx-auto leading-relaxed">
+              Wakation은 직접 운영하는 Hosted 프로그램 외에, 검증된 외부 파트너와의 Select 상품을 순차 연결합니다.<br />
+              현재 파트너십 수요 조사 및 제휴 협의 진행 중입니다.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {SELECT_CATEGORIES.map((cat) => {
+              const StatusIcon = STATUS_ICON[cat.status as keyof typeof STATUS_ICON] ?? BellRing
+              const isMailto = cat.ctaHref.startsWith('mailto:')
+              return (
+                <div
+                  key={cat.id}
+                  className="bg-[#1a1a1a] border border-white/8 rounded-2xl p-6 hover:border-white/15 transition-all"
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <span className="text-2xl">{cat.emoji}</span>
+                    <span className={`text-[0.65rem] font-bold px-2.5 py-1 rounded-full border flex items-center gap-1 ${cat.statusColor}`}>
+                      <StatusIcon className="w-3 h-3" strokeWidth={2} />
+                      {cat.status}
+                    </span>
+                  </div>
+                  <h3 className="text-white font-black mb-2">{cat.name}</h3>
+                  <p className="text-white/45 text-xs leading-relaxed mb-5">{cat.desc}</p>
+                  {isMailto ? (
+                    <a
+                      href={cat.ctaHref}
+                      className="w-full flex items-center justify-center gap-1.5 bg-white/6 text-white/55 font-bold py-2.5 rounded-xl border border-white/10 text-xs hover:bg-white/12 hover:text-white/80 transition-all"
+                    >
+                      {cat.cta} <ArrowRight className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={cat.ctaHref}
+                      className="w-full flex items-center justify-center gap-1.5 bg-white/6 text-white/55 font-bold py-2.5 rounded-xl border border-white/10 text-xs hover:bg-white/12 hover:text-white/80 transition-all"
+                    >
+                      {cat.cta} <ArrowRight className="w-3 h-3" />
+                    </Link>
+                  )}
+                </div>
+              )
+            })}
+          </div>
+          <div className="mt-10 text-center">
+            <p className="text-white/30 text-xs mb-3">파트너십 제안 및 제휴 문의</p>
+            <a
+              href="mailto:wakation.sf@gmail.com?subject=Wakation%20파트너십%20제안"
+              className="inline-flex items-center gap-2 bg-white/8 text-white/60 font-bold px-6 py-3 rounded-full border border-white/15 text-sm hover:bg-white/15 hover:text-white transition-all"
+            >
+              <Mail className="w-4 h-4" />
+              wakation.sf@gmail.com
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
       <section className="dark-surface py-20 px-6 bg-gray-900">
         <div className="max-w-3xl mx-auto text-center">
           <SectionTitle onDark className="mb-4 text-center">
