@@ -312,6 +312,67 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* FAQ 섹션 — GEO/AI 검색 대응 */}
+      <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-16 md:py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: '워케이션이란 무엇인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: "Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다." },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Wakation은 어떤 서비스인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Hosted 프로그램과 Select 상품의 차이는?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '비자·체류 AI 서비스는 법적 효력이 있나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '파트너십·제휴 문의는 어떻게 하나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
+                  },
+                ],
+              }),
+            }}
+          />
+          <p className="text-white/30 text-xs font-black tracking-widest uppercase mb-5">자주 묻는 질문</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
+          <div className="divide-y divide-white/8">
+            {([
+              { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
+              { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
+              { q: 'Hosted 프로그램과 Select 상품의 차이는?', a: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+              { q: '비자·체류 AI 서비스는 법적 효력이 있나요?', a: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
+              { q: '파트너십·제휴 문의는 어떻게 하나요?', a: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
+            ] as const).map(({ q, a }, i) => (
+              <details key={i} className="group py-5 cursor-pointer">
+                <summary className="flex items-center justify-between list-none gap-4">
+                  <span className="text-white font-bold text-[0.9375rem] leading-snug">{q}</span>
+                  <span className="text-white/30 group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
+                </summary>
+                <p className="text-white/50 text-sm leading-relaxed mt-3 pr-8">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 파트너십 신뢰 배너 (전체 섹션 → 1줄 배너로 축소) */}
       <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-7 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
