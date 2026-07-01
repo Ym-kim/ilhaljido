@@ -6,6 +6,8 @@ import { AnnounceProvider } from '@/context/AnnounceContext'
 import { SiteNavbar } from '@/components/layout/SiteNavbar'
 import { MainContent } from '@/components/layout/MainContent'
 import Footer from '@/components/Footer'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
@@ -39,6 +41,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.wakation.kr',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION
+      ? { 'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION }
+      : undefined,
   },
 }
 
@@ -74,6 +82,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SiteNavbar />
               <MainContent>{children}</MainContent>
               <Footer />
+              <Analytics />
+              <SpeedInsights />
             </AnnounceProvider>
           </AuthProvider>
         </LanguageProvider>
