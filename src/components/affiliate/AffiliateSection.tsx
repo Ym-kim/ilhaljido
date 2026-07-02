@@ -12,15 +12,27 @@ interface AffiliateSectionProps {
   cols?: 2 | 3
 }
 
-// disclosure는 active_affiliate 또는 api_ready 항목이 하나라도 있을 때만 표시
+// ─── 수익 추적 활성 statuses ─────────────────────────────────────────────────
 const ACTIVE_STATUSES = new Set(['active_affiliate', 'api_ready'])
 
-const DISCLOSURE_LINE1 =
+// ─── 외부 링크 (클릭 가능, 수익 추적 없음) ───────────────────────────────────
+const PUBLIC_EXTERNAL_STATUSES = new Set([
+  'public_external_link',
+  'manual_link',
+  'placeholder',
+])
+
+// ─── Disclosure 문구 ─────────────────────────────────────────────────────────
+const DISCLOSURE_AFFILIATE =
   '* 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다. ' +
   '외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.'
 
-const DISCLOSURE_LINE2 =
+const DISCLOSURE_AFFILIATE_LINE2 =
   'Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.'
+
+const DISCLOSURE_PUBLIC_EXTERNAL =
+  '* 일부 링크는 일반 외부 링크이며, 제휴 추적이 아직 적용되지 않았을 수 있습니다. ' +
+  '외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.'
 
 export function AffiliateSection({
   eyebrow = 'WAKATION SELECT',
@@ -35,6 +47,8 @@ export function AffiliateSection({
   if (visibleItems.length === 0) return null
 
   const hasActiveAffiliate = visibleItems.some((i) => ACTIVE_STATUSES.has(i.status))
+  const hasPublicExternal = visibleItems.some((i) => PUBLIC_EXTERNAL_STATUSES.has(i.status))
+  const showDisclosure = hasActiveAffiliate || hasPublicExternal
 
   const gridCols =
     cols === 2
@@ -58,16 +72,18 @@ export function AffiliateSection({
             <AffiliateCard key={item.id} item={item} />
           ))}
         </div>
-        {/* disclosure: active_affiliate 항목이 있을 때만 표시 */}
-        {hasActiveAffiliate && (
+        {/* Disclosure — active_affiliate: 제휴 문구, public_external만 있을 때: 일반 외부 링크 문구 */}
+        {showDisclosure && (
           <div className="mt-8 space-y-1 max-w-2xl">
-            <p className="text-white/20 text-[0.65rem] leading-relaxed">
-              {disclosure ?? DISCLOSURE_LINE1}
-            </p>
-            {!disclosure && (
-              <p className="text-white/15 text-[0.65rem] leading-relaxed">
-                {DISCLOSURE_LINE2}
-              </p>
+            {disclosure ? (
+              <p className="text-white/20 text-[0.65rem] leading-relaxed">{disclosure}</p>
+            ) : hasActiveAffiliate ? (
+              <>
+                <p className="text-white/20 text-[0.65rem] leading-relaxed">{DISCLOSURE_AFFILIATE}</p>
+                <p className="text-white/15 text-[0.65rem] leading-relaxed">{DISCLOSURE_AFFILIATE_LINE2}</p>
+              </>
+            ) : (
+              <p className="text-white/20 text-[0.65rem] leading-relaxed">{DISCLOSURE_PUBLIC_EXTERNAL}</p>
             )}
           </div>
         )}

@@ -10,6 +10,7 @@ const CONTACT_KEYS = [
   { titleKey: 'contact_corp_t', descKey: 'contact_corp_d', subject: 'Corporate' },
   { titleKey: 'contact_space_t', descKey: 'contact_space_d', subject: 'Space listing' },
   { titleKey: 'contact_media_t', descKey: 'contact_media_d', subject: 'Press' },
+  { titleKey: 'contact_affiliate_t', descKey: 'contact_affiliate_d', subject: 'Affiliate link issue' },
 ] as const
 
 export default function ContactPage() {

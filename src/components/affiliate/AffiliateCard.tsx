@@ -56,6 +56,13 @@ const STATUS_META: Record<
     badgeClass: 'bg-white/5 text-white/30 border-white/8',
     isAffiliate: false,
   },
+  // 비제휴 외부 링크 (클릭 가능, 수익 추적 없음)
+  public_external_link: {
+    rel: 'noopener noreferrer',
+    badgeText: '외부 링크',
+    badgeClass: 'bg-white/5 text-white/30 border-white/8',
+    isAffiliate: false,
+  },
   placeholder: {
     rel: 'noopener noreferrer',
     badgeText: '외부 링크',

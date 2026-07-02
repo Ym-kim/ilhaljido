@@ -323,6 +323,8 @@ const KO: Record<string, string> = {
   contact_kakao_btn: '카카오 오픈채팅 열기',
   contact_kakao_alert: '카카오 오픈채팅은 준비 중입니다. wakation.sf@gmail.com로 문의해 주세요.',
   contact_note: '모든 문의는 wakation.sf@gmail.com 로 접수됩니다. 담당자가 1영업일 이내 연락드립니다.',
+  contact_affiliate_t: '외부 링크 오류·제휴 서비스 문의',
+  contact_affiliate_d: 'Booking.com, Airalo, KKday 등 제휴 링크가 작동하지 않거나, 새로운 외부 파트너십 제안이 있으시면 이 채널로 보내주세요.',
 
   visa_badge: '정식 서비스 준비중',
   visa_title: '비자·체류 AI',
@@ -770,6 +772,8 @@ const EN: Record<string, string> = {
   contact_kakao_btn: 'Open Kakao chat',
   contact_kakao_alert: 'Kakao chat is coming soon. Please email wakation.sf@gmail.com.',
   contact_note: 'All inquiries go to wakation.sf@gmail.com. We reply within one business day.',
+  contact_affiliate_t: 'External link issue · affiliate inquiry',
+  contact_affiliate_d: 'If a partner link (Booking.com, Airalo, KKday, etc.) is not working, or if you have a new external partnership proposal, please use this channel.',
 
   visa_badge: 'Full service coming soon',
   visa_title: 'Visa & stay AI',
@@ -1217,6 +1221,8 @@ const JP: Record<string, string> = {
   contact_kakao_btn: 'カカオチャットを開く',
   contact_kakao_alert: 'カカオチャットは準備中です。wakation.sf@gmail.com までご連絡ください。',
   contact_note: 'すべてのお問い合わせは wakation.sf@gmail.com へ。1営業日以内に返信します。',
+  contact_affiliate_t: '外部リンクのエラー・提携サービスのお問い合わせ',
+  contact_affiliate_d: 'Booking.com、Airalo、KKdayなどの提携リンクが機能しない場合、または新しいパートナーシップのご提案はこちらからどうぞ。',
 
   visa_badge: '正式サービス準備中',
   visa_title: 'ビザ・滞在AI',
