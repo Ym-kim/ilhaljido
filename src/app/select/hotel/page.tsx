@@ -19,7 +19,7 @@ const REGIONS = [
   { label: '🇻🇳 베트남', ids: ['vietnam-danang', 'vietnam-hcmc'] },
   { label: '🇮🇩 발리·인도네시아', ids: ['indonesia-bali'] },
   { label: '🇵🇹 포르투갈', ids: ['portugal-lisbon'] },
-  { label: '🇰🇷 국내', ids: ['korea-jeju', 'korea-gangneung'] },
+  { label: '🇰🇷 국내', ids: ['korea-jeju', 'korea-yangyang', 'korea-gangneung'] },
 ]
 
 export default function HotelSelectPage() {

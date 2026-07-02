@@ -191,6 +191,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/bali-hotels-list-723/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -209,6 +216,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/lisbon-hotels-list-1231/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -226,6 +240,38 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Jeju',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/jeju-hotels-list-737/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
+    ],
+  },
+  {
+    id: 'korea-yangyang',
+    flag: '🏄',
+    city: '양양',
+    cityEn: 'Yangyang',
+    country: '국내',
+    gradient: 'from-teal-900/25 to-[#1a1a1a]',
+    tags: ['서퍼 성지', '동해 뷰'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Yangyang',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/yangyang-hotels-list-6430/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -266,7 +312,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'KKday',
         status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/country/japan',
+        href: 'https://www.kkday.com/ko/destination/jp-japan',
         label: '일본 체험 보기',
         emoji: '🎌',
       },
@@ -284,7 +330,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'KKday',
         status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/city/fukuoka',
+        href: 'https://www.kkday.com/ko/destination/jp-japan',
         label: '후쿠오카 체험',
         emoji: '🎌',
       },
@@ -302,7 +348,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'KKday',
         status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/country/vietnam',
+        href: 'https://www.kkday.com/ko/destination/vn-vietnam',
         label: '베트남 체험 보기',
         emoji: '🎌',
       },
@@ -320,7 +366,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'KKday',
         status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/country/indonesia',
+        href: 'https://www.kkday.com/ko/destination/id-indonesia',
         label: '발리 체험 보기',
         emoji: '🎌',
       },
