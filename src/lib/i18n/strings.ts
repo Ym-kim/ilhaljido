@@ -439,6 +439,13 @@ const KO: Record<string, string> = {
   apply_date_preference: '희망 참가 일정',
   apply_companion: '동반 참가자',
   apply_companion_names_placeholder: '동반 참가자 이름 (예: 김영희, 박철수)',
+
+  nav_select: 'Select',
+  nav_select_hotel: '숙소 예약',
+  nav_select_activity: '현지 체험',
+  nav_select_esim: 'eSIM',
+  nav_select_learn: '강의·학습',
+  nav_select_all: '전체 보기',
 }
 
 const EN: Record<string, string> = {
@@ -879,6 +886,13 @@ const EN: Record<string, string> = {
   apply_date_preference: 'Preferred dates',
   apply_companion: 'Companions',
   apply_companion_names_placeholder: 'Companion names (e.g. Jane Doe, John Smith)',
+
+  nav_select: 'Select',
+  nav_select_hotel: 'Hotel Booking',
+  nav_select_activity: 'Activities',
+  nav_select_esim: 'eSIM',
+  nav_select_learn: 'Courses',
+  nav_select_all: 'View all',
 }
 
 const JP: Record<string, string> = {
@@ -1319,6 +1333,13 @@ const JP: Record<string, string> = {
   apply_date_preference: '希望参加日程',
   apply_companion: '同伴者',
   apply_companion_names_placeholder: '同伴者のお名前（例：山田花子、佐藤太郎）',
+
+  nav_select: 'Select',
+  nav_select_hotel: '宿泊予約',
+  nav_select_activity: '現地体験',
+  nav_select_esim: 'eSIM',
+  nav_select_learn: '講座・学習',
+  nav_select_all: 'すべて見る',
 }
 
 export const STRINGS: Record<Lang, Record<string, string>> = { KO, EN, JP }
