@@ -269,11 +269,10 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* 외부 서비스 — 워케이션 중 성장 */}
+      {/* 워케이션 중 성장 */}
       <AffiliateSection
-        eyebrow="워케이션 중 성장"
-        title="이동 중에도 계속 배우세요"
-        subtitle="Wakation 직접 상품과 별개로, 워케이션 기간 동안 자기계발에 활용할 수 있는 외부 교육 서비스입니다."
+        title="워케이션 중에도 계속 성장하세요"
+        subtitle="이동 시간·여유 시간을 활용해 스킬을 쌓을 수 있는 온라인 강의 플랫폼입니다."
         items={PROGRAMS_LEARN_ITEMS}
         cols={2}
       />

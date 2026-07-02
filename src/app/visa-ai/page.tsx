@@ -245,11 +245,10 @@ export default function VisaAiPage() {
         </div>
       </section>
 
-      {/* 외부 서비스 — 비자·체류 준비 */}
+      {/* 비자 이후 체류 준비 서비스 */}
       <AffiliateSection
-        eyebrow="체류 준비"
-        title="해외 체류 준비 체크리스트"
-        subtitle="비자 신청 후 출국 전 챙겨야 할 eSIM·여행자보험·항공권 예약 확인서. 각 외부 서비스 링크입니다."
+        title="비자 받았다면, 이것도 미리 준비하세요"
+        subtitle="항공권 예약 확인서, eSIM 개통까지. 출국 전 빠뜨리기 쉬운 것들입니다."
         items={VISA_PREP_ITEMS}
         cols={3}
       />

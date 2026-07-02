@@ -17,10 +17,10 @@ const ACTIVE_STATUSES = new Set(['active_affiliate', 'api_ready'])
 
 const DISCLOSURE_DEFAULT =
   '* 일부 외부 링크는 제휴 마케팅 프로그램을 통해 수익이 발생할 수 있습니다. ' +
-  'Wakation이 해당 서비스의 품질을 보증하지 않으며, 이용 전 각 서비스 약관을 확인하세요.'
+  'Wakation은 해당 서비스의 가입을 권유하거나 품질을 보증하지 않습니다. 이용 전 각 서비스 약관을 확인하세요.'
 
 export function AffiliateSection({
-  eyebrow,
+  eyebrow = 'WAKATION SELECT',
   title,
   subtitle,
   items,
@@ -42,11 +42,9 @@ export function AffiliateSection({
     <section className="py-16 px-6 bg-[#111] border-t border-white/8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-10">
-          {eyebrow && (
-            <p className="text-white/30 text-xs font-black tracking-widest uppercase mb-3">
-              {eyebrow}
-            </p>
-          )}
+          <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3">
+            {eyebrow}
+          </p>
           <h2 className="text-2xl font-black text-white mb-2">{title}</h2>
           {subtitle && (
             <p className="text-white/40 text-sm leading-relaxed max-w-2xl">{subtitle}</p>
@@ -59,7 +57,7 @@ export function AffiliateSection({
         </div>
         {/* disclosure: active_affiliate 항목이 있을 때만 표시 */}
         {hasActiveAffiliate && (
-          <p className="mt-8 text-white/25 text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="mt-8 text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
             {disclosure ?? DISCLOSURE_DEFAULT}
           </p>
         )}

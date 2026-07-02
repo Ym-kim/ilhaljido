@@ -24,20 +24,25 @@
 import type { AffiliateItem } from './types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 베이스 URL — 운영자 가입 후 tracking URL로 교체
+// 베이스 URL
 // ─────────────────────────────────────────────────────────────────────────────
 export const AFFILIATE_BASE = {
-  // status: placeholder → 가입 후 tracking URL로 교체
+  // ✅ active_affiliate — tracking URL 적용됨
+  // NOTE: Booking.com 공식 딥링크 형식: /searchresults.html?aid=7854081&ss={destination}
+  // 실제 캠페인 링크는 affiliate.booking.com 파트너 도구에서 생성·검증 후 사용 권장
+  booking:    'https://www.booking.com/?aid=7854081',
+
+  // ⏳ pending_approval — 가입 완료, tracking link 수령 전
   tripcom:    'https://kr.trip.com',
-  booking:    'https://www.booking.com',
+  airalo:     'https://www.airalo.com',
+  inflearn:   'https://www.inflearn.com',
+
+  // ⏸ coming_soon — 보류 중 (AffiliateSection에서 자동 제외)
+  safetywing: 'https://safetywing.com/nomad-insurance',
+
+  // placeholder — 가입 전
   klook:      'https://www.klook.com/ko',
   kkday:      'https://www.kkday.com/ko',
-  airalo:     'https://www.airalo.com',
-  safetywing: 'https://safetywing.com/nomad-insurance',
-  inflearn:   'https://www.inflearn.com',
-  // active_affiliate 예시 (tracking URL 적용 후):
-  // booking: 'https://www.booking.com/?aid=1234567',
-  // inflearn: 'https://www.inflearn.com/?aff=WAKXXX',
 } as const
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -45,34 +50,56 @@ export const AFFILIATE_BASE = {
 // ─────────────────────────────────────────────────────────────────────────────
 export const GLOBAL_PREP_ITEMS: AffiliateItem[] = [
   {
+    id: 'hotel-booking',
+    name: 'Booking.com',
+    category: 'hotel',
+    status: 'active_affiliate',
+    emoji: '🛎',
+    desc: '전 세계 숙박 예약. 장기체류·아파트먼트·서비스드 레지던스 검색에 적합합니다.',
+    cta: '숙소 예약하기',
+    href: AFFILIATE_BASE.booking,
+    badge: '장기체류',
+    trackingId: 'aid=7854081',
+    // NOTE: 딥링크 형식 affiliate.booking.com에서 검증 권장
+    deepLinks: {
+      japan:    'https://www.booking.com/searchresults.html?aid=7854081&ss=Japan',
+      vietnam:  'https://www.booking.com/searchresults.html?aid=7854081&ss=Vietnam',
+      bali:     'https://www.booking.com/searchresults.html?aid=7854081&ss=Bali',
+      portugal: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Portugal',
+      korea:    'https://www.booking.com/searchresults.html?aid=7854081&ss=South+Korea',
+    },
+  },
+  {
     id: 'hotel-tripcom',
     name: 'Trip.com',
     category: 'hotel',
-    status: 'placeholder',             // → 가입 승인 후 'active_affiliate'로 변경
+    status: 'pending_approval',
     emoji: '🏨',
     desc: '숙소·항공·투어를 한 곳에서. 워케이션 목적지별 장기체류 숙소를 검색해보세요.',
     cta: '숙소 찾아보기',
+    // TODO: Trip.com 파트너 도구에서 tracking link 생성 후 교체
     href: AFFILIATE_BASE.tripcom,
     badge: '숙소·항공',
-    trackingId: '',                    // 승인 후 파트너 ID 입력 (예: 'WK-TRIP-001')
+    trackingId: '',
     deepLinks: {
-      japan:    '',                    // 예: 'https://kr.trip.com/hotels/japan/?Allianceid=XXX'
+      japan:    '',
       bali:     '',
       vietnam:  '',
       portugal: '',
     },
   },
   {
-    id: 'hotel-booking',
-    name: 'Booking.com',
-    category: 'hotel',
-    status: 'placeholder',
-    emoji: '🛎',
-    desc: '전 세계 숙박 예약. 장기체류·아파트먼트·서비스드 레지던스 검색에 적합합니다.',
-    cta: '숙소 예약하기',
-    href: AFFILIATE_BASE.booking,
-    badge: '장기체류',
-    trackingId: '',                    // 예: 'aid=1234567'
+    id: 'esim-airalo',
+    name: 'Airalo',
+    category: 'esim',
+    status: 'pending_approval',
+    emoji: '📡',
+    desc: '200개국 eSIM 즉시 구매. 해외 도착 전 스마트폰에 설치, 공항 유심 줄 없이 바로 연결.',
+    cta: 'eSIM 구매하기',
+    // TODO: Airalo 파트너스 승인 후 referral link로 교체
+    href: AFFILIATE_BASE.airalo,
+    badge: 'eSIM',
+    trackingId: '',
   },
   {
     id: 'activity-klook',
@@ -104,28 +131,16 @@ export const GLOBAL_PREP_ITEMS: AffiliateItem[] = [
     trackingId: '',
   },
   {
-    id: 'esim-airalo',
-    name: 'Airalo',
-    category: 'esim',
-    status: 'placeholder',
-    emoji: '📡',
-    desc: '200개국 eSIM 즉시 구매. 해외 도착 전 스마트폰에 설치, 공항 유심 줄 없이 바로 연결.',
-    cta: 'eSIM 구매하기',
-    href: AFFILIATE_BASE.airalo,
-    badge: 'eSIM',
-    trackingId: '',                    // 예: 'referral_code=WAKATION'
-  },
-  {
     id: 'insurance-safetywing',
     name: 'SafetyWing',
     category: 'insurance',
-    status: 'placeholder',
+    status: 'coming_soon',
     emoji: '🛡',
     desc: '디지털 노마드·장기체류 여행자를 위한 월 단위 여행자보험. 188개국 커버.',
     cta: '보험 알아보기',
     href: AFFILIATE_BASE.safetywing,
     badge: '여행자보험',
-    trackingId: '',                    // 예: 'referral=WAKXXX'
+    trackingId: '',
   },
 ]
 
@@ -137,7 +152,7 @@ export const VISA_PREP_ITEMS: AffiliateItem[] = [
     id: 'esim-airalo-visa',
     name: 'Airalo eSIM',
     category: 'esim',
-    status: 'placeholder',
+    status: 'pending_approval',
     emoji: '📡',
     desc: '200개국 eSIM 즉시 구매. 비자 수령 전에도 미리 설치해두면 입국 즉시 데이터 연결 가능.',
     cta: 'eSIM 구매하기',
@@ -146,27 +161,27 @@ export const VISA_PREP_ITEMS: AffiliateItem[] = [
     trackingId: '',
   },
   {
+    id: 'hotel-booking-visa',
+    name: 'Booking.com',
+    category: 'hotel',
+    status: 'active_affiliate',
+    emoji: '✈️',
+    desc: '항공·숙소 예약. 비자 신청 시 필요한 항공권·숙소 예약 확인서를 발급받을 수 있습니다.',
+    cta: '항공·숙소 예약',
+    href: AFFILIATE_BASE.booking,
+    badge: '항공·숙소',
+    trackingId: 'aid=7854081',
+  },
+  {
     id: 'insurance-safetywing-visa',
     name: 'SafetyWing 여행자보험',
     category: 'insurance',
-    status: 'placeholder',
+    status: 'coming_soon',
     emoji: '🛡',
     desc: '장기체류·워케이션에 특화된 여행자보험. 일부 비자에서 보험 증명서 요구 시 활용 가능.',
     cta: '보험 알아보기',
     href: AFFILIATE_BASE.safetywing,
     badge: '여행자보험',
-    trackingId: '',
-  },
-  {
-    id: 'hotel-tripcom-visa',
-    name: 'Trip.com',
-    category: 'hotel',
-    status: 'placeholder',
-    emoji: '✈️',
-    desc: '항공·숙소 예약. 비자 신청 시 필요한 항공권·숙소 예약 확인서를 발급받을 수 있습니다.',
-    cta: '항공·숙소 예약',
-    href: AFFILIATE_BASE.tripcom,
-    badge: '항공·숙소',
     trackingId: '',
   },
 ]
@@ -179,12 +194,13 @@ export const PROGRAMS_LEARN_ITEMS: AffiliateItem[] = [
     id: 'edu-inflearn',
     name: '인프런',
     category: 'education',
-    status: 'placeholder',
+    status: 'pending_approval',
     emoji: '🎓',
     desc: 'IT·개발·디자인·비즈니스 강의. 워케이션 이동 중 배우고, 도착해서 바로 적용하세요.',
     cta: '강의 둘러보기',
+    // TODO: 인프런 파트너스에서 강의별 파트너 링크 생성 후 교체
     href: AFFILIATE_BASE.inflearn,
-    badge: '외부 서비스',
-    trackingId: '',                    // 승인 후: 'inflearn.com/partners' 링크로 교체
+    badge: '온라인 강의',
+    trackingId: '',
   },
 ]

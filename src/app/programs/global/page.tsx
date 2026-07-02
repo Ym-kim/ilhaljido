@@ -169,11 +169,10 @@ export default function GlobalPage() {
         </div>
       </section>
 
-      {/* 외부 서비스 — 해외 체류 준비 */}
+      {/* 워케이션 준비 서비스 */}
       <AffiliateSection
-        eyebrow="해외 체류 준비"
-        title="글로벌 워케이션 필수 체크리스트"
-        subtitle="숙소·체험·eSIM·여행자보험 등 해외 체류 준비를 도와주는 외부 서비스입니다. Wakation Select 직접 상품과 별개입니다."
+        title="출국 전 준비, 한번에 확인하세요"
+        subtitle="숙소 예약부터 eSIM까지, 해외 워케이션 출발 전 챙겨야 할 것들을 모았습니다."
         items={GLOBAL_PREP_ITEMS}
       />
 
