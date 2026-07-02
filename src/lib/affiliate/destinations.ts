@@ -75,8 +75,8 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
       {
         provider: 'Trip.com',
-        status: 'approved_needs_link',
-        href: 'https://kr.trip.com/hotels/tokyo-hotels-list-228/',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/tokyo-hotels-list-228/?Allianceid=9024807',
         label: '호텔 보기',
         emoji: '🏨',
       },
@@ -100,8 +100,8 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
       {
         provider: 'Trip.com',
-        status: 'approved_needs_link',
-        href: 'https://kr.trip.com/hotels/osaka-hotels-list-219/',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/osaka-hotels-list-219/?Allianceid=9024807',
         label: '호텔 보기',
         emoji: '🏨',
       },
@@ -125,8 +125,8 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
       {
         provider: 'Trip.com',
-        status: 'approved_needs_link',
-        href: 'https://kr.trip.com/hotels/fukuoka-hotels-list-248/',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/fukuoka-hotels-list-248/?Allianceid=9024807',
         label: '호텔 보기',
         emoji: '🏨',
       },
@@ -150,8 +150,8 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
       {
         provider: 'Trip.com',
-        status: 'approved_needs_link',
-        href: 'https://kr.trip.com/hotels/da-nang-hotels-list-1356/',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/da-nang-hotels-list-1356/?Allianceid=9024807',
         label: '호텔 보기',
         emoji: '🏨',
       },
