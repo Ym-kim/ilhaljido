@@ -1,25 +1,41 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // AffiliateStatus — 각 링크의 현재 상태
 //
-//   placeholder      가입 전. 서비스 홈페이지 URL만 있음. rel=noopener only.
-//   pending_approval 가입 신청 완료, 승인 대기 중.
-//   active_affiliate 실제 tracking link 적용. rel="sponsored" 사용. 수익 발생.
-//   manual_link      트래킹 없는 일반 외부 링크 (비제휴, 콘텐츠 목적).
-//   api_ready        API/위젯 연동 완료. rel="sponsored" 사용. 수익 발생.
-//   coming_soon      미오픈. 섹션에서 자동 제외됨.
+// ┌─ 가입 전 ────────────────────────────────────────────────────────────────┐
+//   placeholder                가입 전. 홈페이지 URL만. rel=noopener.
+// ├─ 심사 중 ────────────────────────────────────────────────────────────────┤
+//   pending_approval           가입 신청, 심사 결과 대기 중.
+// ├─ 승인 완료, 링크 대기 ─────────────────────────────────────────────────────┤
+//   approved_needs_link        승인 완료. tracking/deep link 수령 전.
+//   approved_needs_course_links 승인 완료. 강의별 파트너 링크 생성 전. (인프런)
+//   needs_referral_link        가입 완료. referral link 확인/수령 전. (Airalo)
+// ├─ 활성 (수익 발생) ──────────────────────────────────────────────────────┤
+//   active_affiliate           tracking link 적용. rel="sponsored". 수익 발생.
+//   api_ready                  API/위젯 연동. rel="sponsored". 수익 발생.
+// ├─ 기타 ───────────────────────────────────────────────────────────────────┤
+//   manual_link                비제휴 외부 링크 (콘텐츠 목적).
+//   coming_soon                보류/미오픈. 섹션에서 자동 제외.
+// └──────────────────────────────────────────────────────────────────────────┘
 //
-// Google Sheet 연동 구조:
-//   id | name | category | status | href | trackingId | badge | deepLinks(JSON)
-//   MCP로 Sheet → links.ts 자동 동기화 가능 (각 필드가 Sheet 컬럼에 1:1 대응)
+// 운영자 다음 액션:
+//   approved_needs_link        → 파트너 도구에서 tracking link 생성 후 개발팀 전달
+//   approved_needs_course_links → 인프런 파트너스에서 강의별 링크 생성 후 전달
+//   needs_referral_link        → 파트너스 대시보드에서 referral link 복사 후 전달
+//   → 전달 시: href=실제링크, trackingId=파트너ID, status='active_affiliate'
+//
+// Google Sheet 연동: id | name | category | status | href | trackingId | badge | deepLinks(JSON)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export type AffiliateStatus =
-  | 'placeholder'       // 가입 전 — 홈페이지 URL, 배지·제휴 표시 없음
-  | 'pending_approval'  // 가입 완료, 승인 대기 — "신청 검토중" 표시
-  | 'active_affiliate'  // tracking link 적용 — "외부 제휴" 배지, disclosure 표시
-  | 'manual_link'       // 비제휴 외부 링크 — "외부 링크" 배지
-  | 'api_ready'         // API/위젯 연동 완료 — "제휴 API" 배지, disclosure 표시
-  | 'coming_soon'       // 미오픈 — AffiliateSection에서 자동 제외
+  | 'placeholder'                // 가입 전
+  | 'pending_approval'           // 가입 신청, 심사 대기
+  | 'approved_needs_link'        // 승인 완료, tracking/deep link 수령 전
+  | 'approved_needs_course_links'// 승인 완료, 강의별 링크 생성 전 (인프런)
+  | 'needs_referral_link'        // 가입 완료, referral link 확인 전 (Airalo)
+  | 'active_affiliate'           // tracking link 적용, 수익 발생
+  | 'manual_link'                // 비제휴 외부 링크
+  | 'api_ready'                  // API/위젯 연동, 수익 발생
+  | 'coming_soon'                // 보류/미오픈, 섹션 자동 제외
 
 export type AffiliateCategory =
   | 'hotel'
@@ -31,7 +47,7 @@ export type AffiliateCategory =
   | 'visa'
 
 export interface AffiliateDeepLinks {
-  [destination: string]: string  // e.g. { japan: 'https://...', bali: 'https://...' }
+  [destination: string]: string
 }
 
 export interface AffiliateItem {
@@ -44,6 +60,6 @@ export interface AffiliateItem {
   cta: string
   href: string
   badge?: string
-  trackingId?: string           // 파트너 ID (공개 가능, 개발팀 전달 OK)
-  deepLinks?: AffiliateDeepLinks // 목적지별 딥링크 (active_affiliate 이후 추가)
+  trackingId?: string
+  deepLinks?: AffiliateDeepLinks
 }

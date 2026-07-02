@@ -6,6 +6,8 @@ import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getMarketFeatures, getMarketUnits } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { MARKET_PREP_ITEMS } from '@/lib/affiliate/links'
 
 const FEAT_ICONS = { field: Globe, network: Users, connect: TrendingUp, fair: Building2 } as const
 
@@ -150,6 +152,13 @@ export default function MarketPage() {
           </p>
         </div>
       </section>
+
+      {/* 현지 체험·이동 준비 */}
+      <AffiliateSection
+        title="현지 체험·이동 준비를 한번에"
+        subtitle="시장조사단 출국 전, 현지 투어 예약부터 숙소·eSIM까지 챙겨야 할 것들을 모았습니다."
+        items={MARKET_PREP_ITEMS}
+      />
 
       {/* CTA */}
       <section className="py-16 px-6 bg-gradient-to-br from-orange-900/30 to-[#111]">

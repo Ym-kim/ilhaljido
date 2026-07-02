@@ -4,10 +4,12 @@ import { ArrowUpRight, Clock } from 'lucide-react'
 import type { AffiliateItem } from '@/lib/affiliate/types'
 
 // status별 공개 화면 정책
-//   active_affiliate / api_ready → rel="sponsored", teal 배지, disclosure 대상
-//   pending_approval             → rel="noopener", "준비중" 배지, disclosure 미대상
-//   placeholder / manual_link   → rel="noopener", 회색 배지, disclosure 미대상
-//   coming_soon                  → AffiliateSection에서 자동 제외 (렌더 안 됨)
+//   active_affiliate / api_ready               → rel="sponsored", teal 배지, disclosure 대상
+//   approved_needs_link / approved_needs_course_links / needs_referral_link
+//                                              → rel="noopener", "준비중" 배지 (승인완료·링크대기)
+//   pending_approval                           → rel="noopener", "준비중" 배지 (심사중)
+//   placeholder / manual_link                  → rel="noopener", 회색 배지
+//   coming_soon                                → AffiliateSection에서 자동 제외
 
 const STATUS_META: Record<
   string,
@@ -24,6 +26,25 @@ const STATUS_META: Record<
     badgeText: '제휴 API',
     badgeClass: 'bg-teal-500/15 text-teal-400 border-teal-500/25',
     isAffiliate: true,
+  },
+  // 승인 완료, 링크 수령 전 — 사용자에게는 "준비중"으로 동일하게 표시
+  approved_needs_link: {
+    rel: 'noopener noreferrer',
+    badgeText: '준비중',
+    badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
+    isAffiliate: false,
+  },
+  approved_needs_course_links: {
+    rel: 'noopener noreferrer',
+    badgeText: '준비중',
+    badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
+    isAffiliate: false,
+  },
+  needs_referral_link: {
+    rel: 'noopener noreferrer',
+    badgeText: '준비중',
+    badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
+    isAffiliate: false,
   },
   pending_approval: {
     rel: 'noopener noreferrer',
@@ -78,7 +99,9 @@ export function AffiliateCard({ item, className = '' }: AffiliateCardProps) {
             </span>
           )}
           <span className={`text-[0.6rem] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${meta.badgeClass}`}>
-            {item.status === 'pending_approval' && <Clock className="w-2.5 h-2.5" />}
+            {['pending_approval','approved_needs_link','approved_needs_course_links','needs_referral_link'].includes(item.status) && (
+              <Clock className="w-2.5 h-2.5" />
+            )}
             {meta.badgeText}
           </span>
         </div>
