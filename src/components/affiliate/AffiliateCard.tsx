@@ -5,10 +5,11 @@ import type { AffiliateItem } from '@/lib/affiliate/types'
 
 // status별 공개 화면 정책
 //   active_affiliate / api_ready               → rel="sponsored", teal 배지, disclosure 대상
-//   approved_needs_link / approved_needs_course_links / needs_referral_link
-//                                              → rel="noopener", "준비중" 배지 (승인완료·링크대기)
-//   pending_approval                           → rel="noopener", "준비중" 배지 (심사중)
-//   placeholder / manual_link                  → rel="noopener", 회색 배지
+//   approved_needs_link                        → "링크 준비중" (승인 완료, tracking link 대기)
+//   approved_needs_course_links                → "링크 준비중" (승인 완료, 강의 링크 대기)
+//   needs_referral_link                        → "추천 준비중" (가입 완료, referral link 대기)
+//   pending_approval                           → "승인 확인중" (심사 진행중)
+//   placeholder / manual_link                  → "외부 링크" 회색 배지
 //   coming_soon                                → AffiliateSection에서 자동 제외
 
 const STATUS_META: Record<
@@ -27,29 +28,32 @@ const STATUS_META: Record<
     badgeClass: 'bg-teal-500/15 text-teal-400 border-teal-500/25',
     isAffiliate: true,
   },
-  // 승인 완료, 링크 수령 전 — 사용자에게는 "준비중"으로 동일하게 표시
+  // 승인 완료, tracking link 수령 전
   approved_needs_link: {
     rel: 'noopener noreferrer',
-    badgeText: '준비중',
+    badgeText: '링크 준비중',
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     isAffiliate: false,
   },
+  // 승인 완료, 강의별 파트너 링크 생성 전
   approved_needs_course_links: {
     rel: 'noopener noreferrer',
-    badgeText: '준비중',
+    badgeText: '링크 준비중',
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     isAffiliate: false,
   },
+  // 가입 완료, referral link 확인 전
   needs_referral_link: {
     rel: 'noopener noreferrer',
-    badgeText: '준비중',
+    badgeText: '추천 준비중',
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     isAffiliate: false,
   },
+  // 가입 신청, 심사 결과 대기
   pending_approval: {
     rel: 'noopener noreferrer',
-    badgeText: '준비중',
-    badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
+    badgeText: '승인 확인중',
+    badgeClass: 'bg-white/5 text-white/30 border-white/8',
     isAffiliate: false,
   },
   placeholder: {

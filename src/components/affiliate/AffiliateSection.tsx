@@ -15,9 +15,12 @@ interface AffiliateSectionProps {
 // disclosure는 active_affiliate 또는 api_ready 항목이 하나라도 있을 때만 표시
 const ACTIVE_STATUSES = new Set(['active_affiliate', 'api_ready'])
 
-const DISCLOSURE_DEFAULT =
-  '* 일부 외부 링크는 제휴 마케팅 프로그램을 통해 수익이 발생할 수 있습니다. ' +
-  'Wakation은 해당 서비스의 가입을 권유하거나 품질을 보증하지 않습니다. 이용 전 각 서비스 약관을 확인하세요.'
+const DISCLOSURE_LINE1 =
+  '* 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다. ' +
+  '외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.'
+
+const DISCLOSURE_LINE2 =
+  'Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.'
 
 export function AffiliateSection({
   eyebrow = 'WAKATION SELECT',
@@ -57,9 +60,16 @@ export function AffiliateSection({
         </div>
         {/* disclosure: active_affiliate 항목이 있을 때만 표시 */}
         {hasActiveAffiliate && (
-          <p className="mt-8 text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
-            {disclosure ?? DISCLOSURE_DEFAULT}
-          </p>
+          <div className="mt-8 space-y-1 max-w-2xl">
+            <p className="text-white/20 text-[0.65rem] leading-relaxed">
+              {disclosure ?? DISCLOSURE_LINE1}
+            </p>
+            {!disclosure && (
+              <p className="text-white/15 text-[0.65rem] leading-relaxed">
+                {DISCLOSURE_LINE2}
+              </p>
+            )}
+          </div>
         )}
       </div>
     </section>
