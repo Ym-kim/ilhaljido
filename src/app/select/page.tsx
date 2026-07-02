@@ -3,6 +3,8 @@
 import Link from 'next/link'
 import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 
 const CATEGORIES = [
   {
@@ -17,7 +19,6 @@ const CATEGORIES = [
     badgeClass: 'bg-teal-500/15 text-teal-400 border-teal-500/25',
     accent: 'border-teal-500/20 hover:border-teal-500/35',
     glow: 'hover:shadow-teal-500/5',
-    destinations: ['🗼 도쿄', '🏯 오사카', '🌊 다낭', '🌴 발리', '🍊 제주'],
   },
   {
     id: 'activity',
@@ -26,12 +27,11 @@ const CATEGORIES = [
     emoji: '🎌',
     label: '현지 체험',
     title: '목적지별 투어·액티비티',
-    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday 파트너 상품 큐레이션.',
+    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday·Klook 파트너 상품 큐레이션.',
     badge: '링크 준비중',
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     accent: 'border-white/8 hover:border-white/18',
     glow: '',
-    destinations: ['🎌 일본', '🌿 베트남', '🌺 발리'],
   },
   {
     id: 'esim',
@@ -45,7 +45,6 @@ const CATEGORIES = [
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     accent: 'border-white/8 hover:border-white/18',
     glow: '',
-    destinations: ['🇯🇵 일본', '🇻🇳 베트남', '🇮🇩 발리', '🇵🇹 포르투갈'],
   },
   {
     id: 'learn',
@@ -59,15 +58,21 @@ const CATEGORIES = [
     badgeClass: 'bg-amber-500/10 text-amber-400/60 border-amber-500/15',
     accent: 'border-white/8 hover:border-white/18',
     glow: '',
-    destinations: ['🤖 AI 자동화', '📢 마케팅', '⚡ 생산성', '💻 개발'],
   },
 ]
 
 export default function SelectPage() {
+  const hotelItems = HOME_FEATURED_ITEMS.filter((i) =>
+    ['feat-tokyo-hotel', 'feat-osaka-hotel', 'feat-fukuoka-hotel', 'feat-bali-hotel'].includes(i.id)
+  )
+  const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
+    ['feat-japan-activity', 'feat-japan-esim'].includes(i.id)
+  )
+
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       {/* Hero */}
-      <section className="pt-20 pb-16 px-6">
+      <section className="pt-20 pb-12 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-4">
             WAKATION SELECT
@@ -76,8 +81,8 @@ export default function SelectPage() {
             워케이션 준비,<br />
             <span className="text-teal-400">한 곳에서</span> 끝내세요
           </h1>
-          <p className="text-white/45 text-base leading-relaxed max-w-xl mb-3">
-            숙소 예약부터 현지 체험, eSIM, 온라인 강의까지. Wakation이 워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
+          <p className="text-white/45 text-base leading-relaxed max-w-xl mb-2">
+            숙소 예약부터 현지 체험, eSIM, 온라인 강의까지. 워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
           </p>
           <p className="text-white/25 text-xs">
             외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다.
@@ -85,63 +90,121 @@ export default function SelectPage() {
         </div>
       </section>
 
-      {/* Category grid */}
-      <section className="px-6 pb-20">
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 gap-5">
-          {CATEGORIES.map((cat) => {
-            const Icon = cat.icon
-            return (
-              <Link
-                key={cat.id}
-                href={cat.href}
-                className={`group relative flex flex-col bg-[#1a1a1a] border rounded-2xl p-6 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${cat.accent} ${cat.glow}`}
-              >
-                {/* Teal accent top line for affiliate */}
-                {cat.id === 'hotel' && (
-                  <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-teal-500/35 to-transparent" />
-                )}
+      {/* Category navigation */}
+      <section className="px-6 pb-10 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-8">
+          <p className="text-white/30 text-[0.65rem] font-black tracking-[0.18em] uppercase mb-4">
+            카테고리
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {CATEGORIES.map((cat) => {
+              const Icon = cat.icon
+              return (
+                <Link
+                  key={cat.id}
+                  href={cat.href}
+                  className={`group relative flex flex-col items-center text-center bg-[#1a1a1a] border rounded-xl p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${cat.accent} ${cat.glow}`}
+                >
+                  {cat.id === 'hotel' && (
+                    <div className="absolute top-0 inset-x-4 h-px bg-gradient-to-r from-transparent via-teal-500/35 to-transparent" />
+                  )}
+                  <span className="text-2xl mb-2">{cat.emoji}</span>
+                  <p className="text-white font-black text-xs leading-tight mb-1">{cat.label}</p>
+                  <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
+                    {cat.badge}
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
 
-                <div className="flex items-start justify-between mb-5">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl leading-none">{cat.emoji}</span>
-                    <span
-                      className={`text-[0.6rem] font-bold px-2 py-0.5 rounded-full border ${cat.badgeClass}`}
-                    >
-                      {cat.badge}
-                    </span>
-                  </div>
-                  <ArrowRight
-                    className="w-4 h-4 text-white/25 group-hover:text-white/50 group-hover:translate-x-0.5 transition-all"
-                    strokeWidth={ICON_STROKE}
-                  />
-                </div>
+      {/* 추천 숙소 상품 */}
+      <section className="px-6 pb-10 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-10">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <p className="text-white/30 text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1">
+                인기 숙소
+              </p>
+              <h2 className="text-white font-black text-lg">목적지별 추천 숙소</h2>
+            </div>
+            <Link
+              href="/select/hotel"
+              className="text-teal-400 text-xs font-bold flex items-center gap-1 hover:gap-1.5 transition-all"
+            >
+              전체 보기 <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {hotelItems.map((item) => (
+              <AffiliateCard key={item.id} item={item} visual />
+            ))}
+          </div>
+        </div>
+      </section>
 
-                <p className="text-white/40 text-[0.7rem] font-bold uppercase tracking-wider mb-1">
-                  {cat.label}
-                </p>
-                <h2 className="text-white font-black text-lg leading-snug mb-2">{cat.title}</h2>
-                <p className="text-white/40 text-xs leading-relaxed mb-5 flex-1">{cat.desc}</p>
+      {/* 체험·eSIM */}
+      <section className="px-6 pb-10 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-10">
+          <div className="flex items-end justify-between mb-6">
+            <div>
+              <p className="text-white/30 text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1">
+                체험 · eSIM
+              </p>
+              <h2 className="text-white font-black text-lg">현지 체험 & 데이터 연결</h2>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {etcItems.map((item) => (
+              <AffiliateCard key={item.id} item={item} visual />
+            ))}
+          </div>
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            <Link
+              href="/select/activity"
+              className="group flex items-center justify-between bg-white/3 border border-white/8 hover:border-white/18 rounded-xl p-4 transition-all"
+            >
+              <span className="text-white/60 text-sm font-bold">현지 체험 전체 보기</span>
+              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" strokeWidth={ICON_STROKE} />
+            </Link>
+            <Link
+              href="/select/esim"
+              className="group flex items-center justify-between bg-white/3 border border-white/8 hover:border-white/18 rounded-xl p-4 transition-all"
+            >
+              <span className="text-white/60 text-sm font-bold">eSIM 전체 보기</span>
+              <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+        </div>
+      </section>
 
-                {/* Destination pills */}
-                <div className="flex flex-wrap gap-1.5">
-                  {cat.destinations.map((d) => (
-                    <span
-                      key={d}
-                      className="text-[0.65rem] font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/35 border border-white/8"
-                    >
-                      {d}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            )
-          })}
+      {/* 강의 배너 */}
+      <section className="px-6 pb-14 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-10">
+          <Link
+            href="/select/learn"
+            className="group flex items-center justify-between bg-gradient-to-r from-indigo-950/60 to-violet-950/40 border border-indigo-500/15 hover:border-indigo-500/30 rounded-2xl p-6 transition-all"
+          >
+            <div>
+              <p className="text-indigo-400/70 text-[0.65rem] font-black tracking-widest uppercase mb-2">
+                강의 · 학습
+              </p>
+              <p className="text-white font-black text-lg mb-1">🎓 워케이션 중 성장하는 강의</p>
+              <p className="text-white/40 text-sm">AI 자동화, 마케팅, 생산성. 인프런 파트너 강의 큐레이션.</p>
+            </div>
+            <ArrowRight
+              className="w-5 h-5 text-white/30 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all shrink-0 ml-6"
+              strokeWidth={ICON_STROKE}
+            />
+          </Link>
         </div>
       </section>
 
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-white/5">
-        <div className="max-w-6xl mx-auto pt-10 space-y-1">
+        <div className="max-w-6xl mx-auto pt-8 space-y-1">
           <p className="text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
             * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
             외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.

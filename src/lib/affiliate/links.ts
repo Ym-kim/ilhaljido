@@ -21,3 +21,6 @@ export const VISA_PREP_ITEMS = getItemsFor('visa')
 
 // /programs 하단 섹션
 export const PROGRAMS_LEARN_ITEMS = getItemsFor('programs')
+
+// 홈 피처드 추천 상품 섹션
+export const HOME_FEATURED_ITEMS = getItemsFor('home')

@@ -14,6 +14,8 @@ import {
   ICON_STROKE,
   PARTNER_ICONS,
 } from '@/lib/icons'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 
 const PARTNER_ICON_MAP = {
   government: PARTNER_ICONS.government,
@@ -300,7 +302,7 @@ export default function HomePage() {
             <div className="space-y-4">
               {([
                 { label: 'Wakation Hosted', desc: 'Wakation이 직접 기획·운영하는 공식 프로그램. 국내 워케이션, 해외 성장캠프, 시장조사단 등 전 과정을 책임집니다.', color: 'border-brand-mid/30 bg-brand-mid/5' },
-                { label: 'Wakation Select', desc: '검증된 외부 파트너의 어학연수·코워킹 스테이·장기체류 상품을 큐레이션합니다. 2026년 하반기 순차 연결 예정.', color: 'border-blue-500/30 bg-blue-500/5' },
+                { label: 'Wakation Select', desc: '목적지별 숙소·현지 체험·eSIM을 큐레이션합니다. Booking.com, Trip.com, KKday, Airalo 등 검증된 외부 파트너 상품을 지금 바로 확인할 수 있습니다.', color: 'border-blue-500/30 bg-blue-500/5' },
                 { label: 'Wakation Partner', desc: '지자체·기업·공간 운영사와의 B2B 제휴를 통해 Wakation 생태계를 함께 만들어갑니다.', color: 'border-purple-500/30 bg-purple-500/5' },
               ] as const).map((item) => (
                 <div key={item.label} className={`rounded-2xl border p-6 ${item.color}`}>
@@ -309,6 +311,45 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 워케이션 준비 추천 상품 */}
+      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-20 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3">
+                WAKATION SELECT
+              </p>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
+                워케이션 준비, 지금 바로
+              </h2>
+              <p className="text-white/40 text-sm max-w-lg leading-relaxed">
+                목적지별 숙소·체험·eSIM을 한 곳에서. Wakation이 워케이션에 맞는 외부 서비스를 큐레이션합니다.
+              </p>
+            </div>
+            <Link
+              href="/select"
+              className="shrink-0 inline-flex items-center gap-1.5 text-teal-400 text-sm font-bold hover:gap-2.5 transition-all"
+            >
+              전체 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {HOME_FEATURED_ITEMS.map((item) => (
+              <AffiliateCard key={item.id} item={item} visual />
+            ))}
+          </div>
+          <div className="mt-8 space-y-1">
+            <p className="text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
+              * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
+              외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
+            </p>
+            <p className="text-white/15 text-[0.65rem] leading-relaxed max-w-2xl">
+              Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
+            </p>
           </div>
         </div>
       </section>

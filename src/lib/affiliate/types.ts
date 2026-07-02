@@ -51,6 +51,7 @@ export type ProductType =
 
 // ─── 노출 페이지 ──────────────────────────────────────────────────────────────
 export type ShowOnPage =
+  | 'home'     // 홈 피처드 섹션
   | 'select'
   | 'programs'
   | 'global'
@@ -85,9 +86,16 @@ export interface AffiliateItem {
   badge?: string                  // 카테고리 레이블 칩
   trackingId?: string             // 파트너 ID (공개 안전한 값만)
   deepLinks?: AffiliateDeepLinks
-  // ── 추가 필드 (items.ts용) ──────────────────────────────────────────────────
+  // ── 기존 추가 필드 ──────────────────────────────────────────────────────────
   displayTitle?: string           // 화면 표시명 (name과 다를 경우)
   priority?: number               // 노출 우선순위 (낮을수록 먼저)
   showOn?: ShowOnPage[]           // 노출 페이지 지정
   sourceNote?: string             // 운영자용 상태 메모
+
+  // ── B2C 상품 표시 필드 ────────────────────────────────────────────────────
+  productTitle?: string           // 상품명 (e.g. "도쿄 장기체류 숙소 예약")
+  destination?: string            // 목적지 표시 (e.g. "🗼 도쿄 · 일본")
+  country?: string                // 국가 (e.g. "일본")
+  coverGradient?: string          // 카드 헤더 Tailwind 그라디언트
+  operatorAction?: string         // 다음 운영자 액션 요약
 }
