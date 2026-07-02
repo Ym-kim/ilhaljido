@@ -32,8 +32,8 @@ export const AFFILIATE_BASE = {
   // ✅ active_affiliate — aid=7854081 적용 완료
   booking:    'https://www.booking.com/?aid=7854081',
 
-  // 🔶 approved_needs_link — 승인 완료, tracking link 수령 전
-  tripcom:    'https://kr.trip.com',
+  // ✅ active_affiliate — Allianceid=9024807 적용 완료
+  tripcom:    'https://kr.trip.com/?Allianceid=9024807',
   kkday:      'https://www.kkday.com/ko',
 
   // 🔶 approved_needs_course_links — 강의별 링크 생성 전
@@ -87,22 +87,22 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     name: 'Trip.com',
     category: 'hotel',
     productType: 'stay',
-    status: 'approved_needs_link',
+    status: 'active_affiliate',
     emoji: '🏨',
     desc: '숙소·항공·투어를 한 곳에서. 워케이션 목적지별 장기체류 숙소를 검색해보세요.',
     cta: '숙소 찾아보기',
-    href: AFFILIATE_BASE.tripcom,
+    href: 'https://kr.trip.com/?Allianceid=9024807',
     badge: '숙소·항공',
-    trackingId: '',
+    trackingId: 'Allianceid=9024807',
     deepLinks: {
-      japan:    '',
-      bali:     '',
-      vietnam:  '',
-      portugal: '',
+      japan:    'https://kr.trip.com/hotels/japan-hotels/?Allianceid=9024807',
+      bali:     'https://kr.trip.com/hotels/bali-hotels/?Allianceid=9024807',
+      vietnam:  'https://kr.trip.com/hotels/vietnam-hotels/?Allianceid=9024807',
+      portugal: 'https://kr.trip.com/hotels/portugal-hotels/?Allianceid=9024807',
     },
     priority: 3,
     showOn: ['global', 'select'],
-    sourceNote: 'public URL, tracking not active — operator needs to replace with tracking link from Trip.com partner dashboard',
+    sourceNote: 'affiliate tracking active — Allianceid=9024807',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
