@@ -11,6 +11,8 @@ import {
   VISA_DURATIONS,
   getVisaMockResult,
 } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { VISA_PREP_ITEMS } from '@/lib/affiliate/links'
 
 type Step = 1 | 2 | 3 | 4
 
@@ -242,6 +244,14 @@ export default function VisaAiPage() {
           )}
         </div>
       </section>
+
+      {/* 비자 이후 체류 준비 서비스 */}
+      <AffiliateSection
+        title="비자 받았다면, 이것도 미리 준비하세요"
+        subtitle="항공권 예약 확인서, eSIM 개통까지. 출국 전 빠뜨리기 쉬운 것들입니다."
+        items={VISA_PREP_ITEMS}
+        cols={3}
+      />
 
       <section className="border-t border-white/10 py-10 px-6 bg-[#111]">
         <div className="max-w-3xl mx-auto text-center">

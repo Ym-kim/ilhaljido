@@ -5,6 +5,8 @@ import { ArrowRight, Mail, BellRing, Handshake } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getProgramsList } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 
 const SELECT_CATEGORIES = [
   {
@@ -266,6 +268,14 @@ export default function ProgramsPage() {
           </div>
         </div>
       </section>
+
+      {/* 워케이션 중 성장 */}
+      <AffiliateSection
+        title="워케이션 중에도 계속 성장하세요"
+        subtitle="이동 시간·여유 시간을 활용해 스킬을 쌓을 수 있는 온라인 강의 플랫폼입니다."
+        items={PROGRAMS_LEARN_ITEMS}
+        cols={2}
+      />
 
       {/* CTA */}
       <section className="dark-surface py-20 px-6 bg-gray-900">

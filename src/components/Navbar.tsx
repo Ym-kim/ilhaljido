@@ -53,6 +53,16 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_visa', href: '/visa-ai' },
     ],
   },
+  {
+    key: 'nav_select',
+    items: [
+      { labelKey: 'nav_select_hotel', href: '/select/hotel' },
+      { labelKey: 'nav_select_activity', href: '/select/activity' },
+      { labelKey: 'nav_select_esim', href: '/select/esim' },
+      { labelKey: 'nav_select_learn', href: '/select/learn' },
+      { labelKey: 'nav_select_all', href: '/select', hasDivider: true },
+    ],
+  },
   { key: 'nav_visa', href: '/visa-ai' },
   { key: 'nav_partnership', href: '/partnership' },
 ]
