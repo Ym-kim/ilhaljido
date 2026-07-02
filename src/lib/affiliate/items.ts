@@ -75,7 +75,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       korea:    'https://www.booking.com/searchresults.html?aid=7854081&ss=South+Korea',
     },
     priority: 1,
-    showOn: ['global', 'market', 'visa', 'select'],
+    showOn: ['global', 'market', 'select'],
     sourceNote: 'affiliate tracking active — aid=7854081',
   },
 
@@ -147,7 +147,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     badge: 'eSIM',
     trackingId: '',
     priority: 4,
-    showOn: ['global', 'market', 'visa', 'select'],
+    showOn: ['global', 'market', 'select'],
     sourceNote: 'public URL, tracking not active — operator needs to replace with referral link from Airalo partner dashboard',
   },
 
