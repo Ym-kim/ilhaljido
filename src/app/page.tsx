@@ -316,18 +316,18 @@ export default function HomePage() {
       </section>
 
       {/* 워케이션 준비 추천 상품 */}
-      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-20 px-6">
+      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-24 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
             <div>
-              <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3">
+              <p className="text-teal-500/70 text-[0.65rem] font-black tracking-[0.22em] uppercase mb-3">
                 WAKATION SELECT
               </p>
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-2">
-                워케이션 준비, 지금 바로
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 leading-tight">
+                워케이션 준비,<br className="hidden sm:block" /> 지금 바로
               </h2>
-              <p className="text-white/40 text-sm max-w-lg leading-relaxed">
-                목적지별 숙소·체험·eSIM을 한 곳에서. Wakation이 워케이션에 맞는 외부 서비스를 큐레이션합니다.
+              <p className="text-white/45 text-sm md:text-base max-w-lg leading-relaxed">
+                목적지별 숙소·체험·eSIM을 한 곳에서.<br className="hidden sm:block" /> Wakation이 워케이션에 맞는 외부 서비스를 큐레이션합니다.
               </p>
             </div>
             <Link
@@ -337,7 +337,7 @@ export default function HomePage() {
               전체 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {HOME_FEATURED_ITEMS.map((item) => (
               <AffiliateCard key={item.id} item={item} visual />
             ))}

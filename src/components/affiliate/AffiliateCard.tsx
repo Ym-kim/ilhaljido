@@ -95,34 +95,39 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
       href={item.href}
       target="_blank"
       rel={meta.rel}
-      className={`group relative flex flex-col bg-[#1a1a1a] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 ${
+      className={`group relative flex flex-col bg-[#1a1a1a] rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1 ${
         meta.isAffiliate
-          ? 'border border-teal-500/20 hover:border-teal-500/40 hover:shadow-lg hover:shadow-teal-500/6'
-          : 'border border-white/8 hover:border-white/20'
+          ? 'border border-teal-500/20 hover:border-teal-500/45 hover:shadow-xl hover:shadow-teal-500/8'
+          : 'border border-white/8 hover:border-white/22'
       } ${className}`}
     >
       {/* ── 비주얼 헤더 (visual 모드) ── */}
       {showCover && (
         <div
-          className={`relative h-24 flex items-end pb-3 px-4 overflow-hidden bg-gradient-to-br ${
+          className={`relative h-44 overflow-hidden bg-gradient-to-br ${
             item.coverGradient ?? 'from-white/8 to-white/3'
           }`}
         >
+          {/* 제휴 상단 광채 */}
           {meta.isAffiliate && (
-            <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent" />
+            <div className="absolute top-0 inset-x-0 h-[1.5px] bg-gradient-to-r from-transparent via-teal-400/55 to-transparent" />
           )}
           {/* 배경 대형 이모지 */}
           <span
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-5xl opacity-15 select-none pointer-events-none"
+            className="absolute right-5 top-1/2 -translate-y-1/2 text-[5.5rem] opacity-[0.18] select-none pointer-events-none leading-none"
             aria-hidden
           >
             {item.emoji}
           </span>
+          {/* 카드 하단으로 자연스럽게 넘어가는 그라디언트 */}
+          <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
           {/* 목적지 레이블 */}
           {item.destination && (
-            <span className="relative z-10 text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-black/45 text-white/80 border border-white/12 backdrop-blur-sm">
-              {item.destination}
-            </span>
+            <div className="absolute bottom-3.5 left-4">
+              <span className="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1.5 rounded-full bg-black/60 text-white/90 border border-white/15 backdrop-blur-sm">
+                {item.destination}
+              </span>
+            </div>
           )}
         </div>
       )}
@@ -153,7 +158,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         </div>
 
         {/* 타이틀 */}
-        <p className="text-white font-black text-sm leading-snug mb-1.5">{title}</p>
+        <p className="text-white font-black text-[0.9375rem] leading-snug mb-1.5">{title}</p>
 
         {/* via 서비스명 (visual 모드에서 productTitle이 name과 다를 때) */}
         {visual && item.productTitle && item.productTitle !== item.name && (

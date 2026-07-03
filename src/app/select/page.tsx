@@ -72,17 +72,18 @@ export default function SelectPage() {
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       {/* Hero */}
-      <section className="pt-20 pb-12 px-6">
+      <section className="pt-20 pb-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-4">
+          <p className="text-teal-500/70 text-[0.65rem] font-black tracking-[0.22em] uppercase mb-5">
             WAKATION SELECT
           </p>
-          <h1 className="text-4xl md:text-5xl font-black text-white leading-tight mb-4">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.06] tracking-tight mb-5">
             워케이션 준비,<br />
             <span className="text-teal-400">한 곳에서</span> 끝내세요
           </h1>
-          <p className="text-white/45 text-base leading-relaxed max-w-xl mb-2">
-            숙소 예약부터 현지 체험, eSIM, 온라인 강의까지. 워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
+          <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-xl mb-3">
+            숙소 예약부터 현지 체험, eSIM, 온라인 강의까지.<br className="hidden sm:block" />
+            워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
           </p>
           <p className="text-white/25 text-xs">
             외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다.
@@ -98,21 +99,27 @@ export default function SelectPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {CATEGORIES.map((cat) => {
-              const Icon = cat.icon
               return (
                 <Link
                   key={cat.id}
                   href={cat.href}
-                  className={`group relative flex flex-col items-center text-center bg-[#1a1a1a] border rounded-xl p-4 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md ${cat.accent} ${cat.glow}`}
+                  className={`group relative flex flex-col bg-[#1a1a1a] border rounded-2xl p-5 transition-all duration-200 hover:-translate-y-1 hover:shadow-lg ${cat.accent} ${cat.glow}`}
                 >
                   {cat.id === 'hotel' && (
-                    <div className="absolute top-0 inset-x-4 h-px bg-gradient-to-r from-transparent via-teal-500/35 to-transparent" />
+                    <div className="absolute top-0 inset-x-4 h-px bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
                   )}
-                  <span className="text-2xl mb-2">{cat.emoji}</span>
-                  <p className="text-white font-black text-xs leading-tight mb-1">{cat.label}</p>
-                  <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
-                    {cat.badge}
-                  </span>
+                  <div className="flex items-start justify-between mb-3">
+                    <span className="text-2xl">{cat.emoji}</span>
+                    <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
+                      {cat.badge}
+                    </span>
+                  </div>
+                  <p className="text-white font-black text-sm mb-1.5">{cat.label}</p>
+                  <p className="text-white/35 text-[0.7rem] leading-relaxed line-clamp-2">{cat.title}</p>
+                  <div className="mt-4 flex items-center gap-1 text-white/25 group-hover:text-teal-400/70 text-[0.65rem] font-bold transition-colors">
+                    둘러보기
+                    <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                  </div>
                 </Link>
               )
             })}
@@ -121,20 +128,20 @@ export default function SelectPage() {
       </section>
 
       {/* 추천 숙소 상품 */}
-      <section className="px-6 pb-10 border-t border-white/5">
-        <div className="max-w-6xl mx-auto pt-10">
-          <div className="flex items-end justify-between mb-6">
+      <section className="px-6 pb-14 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-12">
+          <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-white/30 text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1">
+              <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-2">
                 인기 숙소
               </p>
-              <h2 className="text-white font-black text-lg">목적지별 추천 숙소</h2>
+              <h2 className="text-white font-black text-xl md:text-2xl">목적지별 추천 숙소</h2>
             </div>
             <Link
               href="/select/hotel"
-              className="text-teal-400 text-xs font-bold flex items-center gap-1 hover:gap-1.5 transition-all"
+              className="text-teal-400 text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all shrink-0"
             >
-              전체 보기 <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+              전체 보기 <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -146,15 +153,13 @@ export default function SelectPage() {
       </section>
 
       {/* 체험·eSIM */}
-      <section className="px-6 pb-10 border-t border-white/5">
-        <div className="max-w-6xl mx-auto pt-10">
-          <div className="flex items-end justify-between mb-6">
-            <div>
-              <p className="text-white/30 text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1">
-                체험 · eSIM
-              </p>
-              <h2 className="text-white font-black text-lg">현지 체험 & 데이터 연결</h2>
-            </div>
+      <section className="px-6 pb-14 border-t border-white/5">
+        <div className="max-w-6xl mx-auto pt-12">
+          <div className="mb-8">
+            <p className="text-white/40 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-2">
+              체험 · eSIM
+            </p>
+            <h2 className="text-white font-black text-xl md:text-2xl">현지 체험 & 데이터 연결</h2>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {etcItems.map((item) => (
