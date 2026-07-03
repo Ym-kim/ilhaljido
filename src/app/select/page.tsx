@@ -99,6 +99,7 @@ export default function SelectPage() {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {CATEGORIES.map((cat) => {
+              const Icon = cat.icon
               return (
                 <Link
                   key={cat.id}
@@ -109,7 +110,9 @@ export default function SelectPage() {
                     <div className="absolute top-0 inset-x-4 h-px bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
                   )}
                   <div className="flex items-start justify-between mb-3">
-                    <span className="text-2xl">{cat.emoji}</span>
+                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${cat.id === 'hotel' ? 'bg-teal-500/15' : 'bg-white/8'}`}>
+                      <Icon className={`w-4 h-4 ${cat.id === 'hotel' ? 'text-teal-400' : 'text-white/50'}`} strokeWidth={ICON_STROKE} />
+                    </div>
                     <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
                       {cat.badge}
                     </span>
