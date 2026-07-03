@@ -151,41 +151,41 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="dark-surface bg-[#111] border-y border-white/8 py-12 md:py-14">
+      <section className="bg-white border-y border-[#e5e1da] py-12 md:py-14">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STAT_KEYS.map(([v, l]) => (
             <div key={l}>
-              <p className="text-3xl md:text-4xl font-black text-white mb-2">{tr(v)}</p>
-              <p className="text-stat-label">{tr(l)}</p>
+              <p className="text-3xl md:text-4xl font-black text-[#141414] mb-2">{tr(v)}</p>
+              <p className="text-sm font-semibold text-[#7a7a7a]">{tr(l)}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="dark-surface py-20 md:py-28 px-6">
+      <section className="bg-[#f9f7f3] py-20 md:py-28 px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14 md:mb-16">
-            <SectionEyebrow onDark>{tr('home_platform_eyebrow')}</SectionEyebrow>
-            <SectionTitle onDark className="mb-4 text-center">
+            <SectionEyebrow>{tr('home_platform_eyebrow')}</SectionEyebrow>
+            <SectionTitle className="mb-4 text-center">
               {tr('home_platform_title')}
             </SectionTitle>
-            <p className="text-caption-on-dark">{tr('home_platform_desc')}</p>
+            <p className="text-[#6b6b6b] text-base leading-relaxed max-w-xl mx-auto">{tr('home_platform_desc')}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {categories.map((cat) => {
               const Icon = CATEGORY_ICONS[cat.id]
               return (
                 <Link
                   key={cat.href}
                   href={cat.href}
-                  className={`card-dark group p-7 flex flex-col gap-5 hover:border-white/15 hover:shadow-2xl ${CATEGORY_GLOW[cat.id]} transition-all duration-300 hover:-translate-y-0.5`}
+                  className="card-light group p-7 flex flex-col gap-5 hover:border-[#d0ccc4] hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
                 >
-                  <IconTile icon={Icon} size="lg" onDark />
+                  <IconTile icon={Icon} size="lg" />
                   <div>
-                    <h3 className={`text-xl font-black mb-2 ${CATEGORY_ACCENT[cat.id]}`}>{tr(cat.labelKey)}</h3>
-                    <p className="text-caption-on-dark leading-relaxed">{tr(cat.descKey)}</p>
+                    <h3 className="text-xl font-black mb-2 text-[#141414]">{tr(cat.labelKey)}</h3>
+                    <p className="text-[#6b6b6b] text-sm leading-relaxed">{tr(cat.descKey)}</p>
                   </div>
-                  <span className="text-[0.875rem] font-semibold text-white/45 group-hover:text-emerald-400 transition-colors flex items-center gap-1.5 mt-auto">
+                  <span className="text-[0.875rem] font-semibold text-[#aaa9a6] group-hover:text-brand-mid transition-colors flex items-center gap-1.5 mt-auto">
                     {tr('learn_more')}
                     <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
                   </span>
@@ -196,28 +196,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="dark-surface py-20 md:py-28 px-6 bg-[#0a0a0a] border-t border-white/5">
+      <section className="bg-white py-20 md:py-28 px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-14">
-            <SectionEyebrow onDark>{tr('home_theme_eyebrow')}</SectionEyebrow>
-            <SectionTitle onDark className="mb-3 text-center">
+            <SectionEyebrow>{tr('home_theme_eyebrow')}</SectionEyebrow>
+            <SectionTitle className="mb-3 text-center">
               {tr('home_theme_title')}
             </SectionTitle>
-            <p className="text-caption-on-dark">{tr('home_theme_desc')}</p>
+            <p className="text-[#6b6b6b] text-base leading-relaxed max-w-xl mx-auto">{tr('home_theme_desc')}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             {THEME_ITEMS.map((t) => (
               <Link
                 key={t.labelKey}
                 href={t.href}
-                className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-emerald-500/40 rounded-2xl px-6 py-4 transition-all duration-200 hover:-translate-y-0.5"
+                className="group flex items-center gap-3 bg-white hover:bg-[#f9f7f3] border border-[#e5e1da] hover:border-brand-mid/30 rounded-2xl px-5 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
               >
                 <span className="text-2xl">{t.emoji}</span>
                 <div className="text-left">
-                  <p className="text-white font-bold text-[0.9375rem] leading-tight">{tr(t.labelKey)}</p>
-                  <p className="text-white/45 text-xs mt-0.5 max-w-[200px] leading-relaxed">{tr(t.descKey)}</p>
+                  <p className="text-[#141414] font-bold text-[0.9375rem] leading-tight">{tr(t.labelKey)}</p>
+                  <p className="text-[#7a7a7a] text-xs mt-0.5 max-w-[200px] leading-relaxed">{tr(t.descKey)}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-emerald-400 transition-colors ml-2 shrink-0" strokeWidth={2} />
+                <ArrowRight className="w-4 h-4 text-[#c8c4be] group-hover:text-brand-mid transition-colors ml-2 shrink-0" strokeWidth={2} />
               </Link>
             ))}
           </div>
@@ -281,33 +281,33 @@ export default function HomePage() {
       </section>
 
       {/* GEO / AI 검색 대응 — Wakation 소개 */}
-      <section className="dark-surface bg-[#0d0d0d] border-t border-white/8 py-20 md:py-28 px-6">
+      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-4">ABOUT WAKATION</p>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-6 leading-tight">
+              <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-4">ABOUT WAKATION</p>
+              <h2 className="text-3xl md:text-4xl font-black text-[#141414] mb-6 leading-tight">
                 Wakation이란?
               </h2>
-              <p className="text-white/70 text-base leading-relaxed mb-6">
-                Wakation은 <strong className="text-white">일하는 사람을 위한 체류·업무·성장 플랫폼</strong>입니다. 단순한 여행이나 숙박 예약이 아니라, 워케이션·어학연수·시장조사·비자 정보·장기체류까지 — 일과 이동을 연결하는 모든 경험을 하나의 플랫폼에서 제공합니다.
+              <p className="text-[#4a4a4a] text-base leading-relaxed mb-6">
+                Wakation은 <strong className="text-[#141414]">일하는 사람을 위한 체류·업무·성장 플랫폼</strong>입니다. 단순한 여행이나 숙박 예약이 아니라, 워케이션·어학연수·시장조사·비자 정보·장기체류까지 — 일과 이동을 연결하는 모든 경험을 하나의 플랫폼에서 제공합니다.
               </p>
-              <p className="text-white/50 text-sm leading-relaxed mb-8">
-                프리랜서·1인 창업자·리모트워커·디지털 노마드를 위해 설계되었으며, 현재 베타 운영 중입니다. Wakation이 직접 기획하고 운영하는 <strong className="text-white/80">Hosted 프로그램</strong>을 중심으로, 검증된 외부 파트너 상품은 <strong className="text-white/80">Select 상품</strong>으로 순차 연결 예정입니다.
+              <p className="text-[#7a7a7a] text-sm leading-relaxed mb-8">
+                프리랜서·1인 창업자·리모트워커·디지털 노마드를 위해 설계되었으며, 현재 베타 운영 중입니다. Wakation이 직접 기획하고 운영하는 <strong className="text-[#4a4a4a]">Hosted 프로그램</strong>을 중심으로, 검증된 외부 파트너 상품은 <strong className="text-[#4a4a4a]">Select 상품</strong>으로 순차 연결 예정입니다.
               </p>
               <Link href="/programs" className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
                 전체 프로그램 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {([
-                { label: 'Wakation Hosted', desc: 'Wakation이 직접 기획·운영하는 공식 프로그램. 국내 워케이션, 해외 성장캠프, 시장조사단 등 전 과정을 책임집니다.', color: 'border-brand-mid/30 bg-brand-mid/5' },
-                { label: 'Wakation Select', desc: '목적지별 숙소·현지 체험·eSIM을 큐레이션합니다. Booking.com, Trip.com, KKday, Airalo 등 검증된 외부 파트너 상품을 지금 바로 확인할 수 있습니다.', color: 'border-blue-500/30 bg-blue-500/5' },
-                { label: 'Wakation Partner', desc: '지자체·기업·공간 운영사와의 B2B 제휴를 통해 Wakation 생태계를 함께 만들어갑니다.', color: 'border-purple-500/30 bg-purple-500/5' },
+                { label: 'Wakation Hosted', desc: 'Wakation이 직접 기획·운영하는 공식 프로그램. 국내 워케이션, 해외 성장캠프, 시장조사단 등 전 과정을 책임집니다.', color: 'border-brand-mid/20 bg-white' },
+                { label: 'Wakation Select', desc: '목적지별 숙소·현지 체험·eSIM을 큐레이션합니다. Booking.com, Trip.com, KKday, Airalo 등 검증된 외부 파트너 상품을 지금 바로 확인할 수 있습니다.', color: 'border-blue-200 bg-white' },
+                { label: 'Wakation Partner', desc: '지자체·기업·공간 운영사와의 B2B 제휴를 통해 Wakation 생태계를 함께 만들어갑니다.', color: 'border-purple-200 bg-white' },
               ] as const).map((item) => (
-                <div key={item.label} className={`rounded-2xl border p-6 ${item.color}`}>
-                  <p className="text-white font-black text-sm mb-2">{item.label}</p>
-                  <p className="text-white/50 text-sm leading-relaxed">{item.desc}</p>
+                <div key={item.label} className={`rounded-2xl border p-6 shadow-sm ${item.color}`}>
+                  <p className="text-[#141414] font-black text-sm mb-2">{item.label}</p>
+                  <p className="text-[#7a7a7a] text-sm leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -316,20 +316,20 @@ export default function HomePage() {
       </section>
 
       {/* 워케이션 준비 추천 상품 */}
-      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-24">
+      <section className="bg-white border-t border-[#e5e1da] py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <p className="text-teal-500/70 text-[0.65rem] font-black tracking-[0.22em] uppercase mb-3">
+              <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-3">
                 WAKATION SELECT
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#141414] leading-tight">
                 지금 예약 많은<br className="sm:hidden" /> 워케이션 목적지
               </h2>
             </div>
             <Link
               href="/select"
-              className="shrink-0 inline-flex items-center gap-1.5 text-teal-400 text-sm font-bold hover:gap-2.5 transition-all pb-1"
+              className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all pb-1"
             >
               전체 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </Link>
@@ -349,18 +349,18 @@ export default function HomePage() {
           ))}
         </div>
         <div className="mt-8 px-6 max-w-6xl mx-auto space-y-1">
-            <p className="text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
+            <p className="text-[#b8b4ae] text-[0.65rem] leading-relaxed max-w-2xl">
               * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
               외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
             </p>
-            <p className="text-white/15 text-[0.65rem] leading-relaxed max-w-2xl">
+            <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
               Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
             </p>
           </div>
       </section>
 
       {/* FAQ 섹션 — GEO/AI 검색 대응 */}
-      <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-16 md:py-20 px-6">
+      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <script
             type="application/ld+json"
@@ -398,9 +398,9 @@ export default function HomePage() {
               }),
             }}
           />
-          <p className="text-white/30 text-xs font-black tracking-widest uppercase mb-5">자주 묻는 질문</p>
-          <h2 className="text-2xl md:text-3xl font-black text-white mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
-          <div className="divide-y divide-white/8">
+          <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-5">자주 묻는 질문</p>
+          <h2 className="text-2xl md:text-3xl font-black text-[#141414] mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
+          <div className="divide-y divide-[#e5e1da]">
             {([
               { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
               { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
@@ -410,31 +410,31 @@ export default function HomePage() {
             ] as const).map(({ q, a }, i) => (
               <details key={i} className="group py-5 cursor-pointer">
                 <summary className="flex items-center justify-between list-none gap-4">
-                  <span className="text-white font-bold text-[0.9375rem] leading-snug">{q}</span>
-                  <span className="text-white/30 group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
+                  <span className="text-[#141414] font-bold text-[0.9375rem] leading-snug">{q}</span>
+                  <span className="text-[#c0bdb8] group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
                 </summary>
-                <p className="text-white/50 text-sm leading-relaxed mt-3 pr-8">{a}</p>
+                <p className="text-[#6b6b6b] text-sm leading-relaxed mt-3 pr-8">{a}</p>
               </details>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 파트너십 신뢰 배너 (전체 섹션 → 1줄 배너로 축소) */}
-      <section className="dark-surface bg-[#0a0a0a] border-t border-white/8 py-7 px-6">
+      {/* 파트너십 신뢰 배너 */}
+      <section className="bg-white border-t border-[#e5e1da] py-7 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="flex -space-x-1">
               {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
                 const Icon = PARTNER_ICON_MAP[k]
                 return (
-                  <div key={k} className="w-8 h-8 rounded-full bg-white/8 border border-white/15 flex items-center justify-center">
-                    <Icon className="w-3.5 h-3.5 text-white/50" strokeWidth={ICON_STROKE} />
+                  <div key={k} className="w-8 h-8 rounded-full bg-[#f2efe9] border border-[#e5e1da] flex items-center justify-center">
+                    <Icon className="w-3.5 h-3.5 text-[#8a8a8a]" strokeWidth={ICON_STROKE} />
                   </div>
                 )
               })}
             </div>
-            <p className="text-white/55 text-sm font-medium">{tr('home_partner_banner_text')}</p>
+            <p className="text-[#7a7a7a] text-sm font-medium">{tr('home_partner_banner_text')}</p>
           </div>
           <Link href="/partnership" className="shrink-0 text-brand-mid text-sm font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all">
             {tr('home_partner_banner_cta')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
