@@ -121,6 +121,15 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           </span>
           {/* 카드 하단으로 자연스럽게 넘어가는 그라디언트 */}
           <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#1a1a1a] to-transparent" />
+          {/* 우상단: active 배지 (Stayfolio 스타일) */}
+          {meta.isAffiliate && (
+            <div className="absolute top-3.5 right-3.5">
+              <span className="inline-flex items-center gap-1 text-[0.6rem] font-black px-2 py-1 rounded-full bg-teal-500/25 text-teal-300 border border-teal-500/30 backdrop-blur-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse inline-block" />
+                예약 가능
+              </span>
+            </div>
+          )}
           {/* 목적지 레이블 */}
           {item.destination && (
             <div className="absolute bottom-3.5 left-4">

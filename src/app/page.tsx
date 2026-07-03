@@ -316,33 +316,39 @@ export default function HomePage() {
       </section>
 
       {/* 워케이션 준비 추천 상품 */}
-      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <section className="dark-surface bg-[#111] border-t border-white/8 py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-8">
             <div>
               <p className="text-teal-500/70 text-[0.65rem] font-black tracking-[0.22em] uppercase mb-3">
                 WAKATION SELECT
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white mb-3 leading-tight">
-                워케이션 준비,<br className="hidden sm:block" /> 지금 바로
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-tight">
+                지금 예약 많은<br className="sm:hidden" /> 워케이션 목적지
               </h2>
-              <p className="text-white/45 text-sm md:text-base max-w-lg leading-relaxed">
-                목적지별 숙소·체험·eSIM을 한 곳에서.<br className="hidden sm:block" /> Wakation이 워케이션에 맞는 외부 서비스를 큐레이션합니다.
-              </p>
             </div>
             <Link
               href="/select"
-              className="shrink-0 inline-flex items-center gap-1.5 text-teal-400 text-sm font-bold hover:gap-2.5 transition-all"
+              className="shrink-0 inline-flex items-center gap-1.5 text-teal-400 text-sm font-bold hover:gap-2.5 transition-all pb-1"
             >
               전체 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {HOME_FEATURED_ITEMS.map((item) => (
-              <AffiliateCard key={item.id} item={item} visual />
-            ))}
-          </div>
-          <div className="mt-8 space-y-1">
+        </div>
+        {/* 모바일: 수평 스냅 스크롤 (Airbnb 패턴) / sm+: 3열 그리드 */}
+        <div className="
+          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-6
+          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
+          lg:grid-cols-3 max-w-6xl sm:mx-auto
+          [&::-webkit-scrollbar]:hidden
+        ">
+          {HOME_FEATURED_ITEMS.map((item) => (
+            <div key={item.id} className="min-w-[78vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
+              <AffiliateCard item={item} visual />
+            </div>
+          ))}
+        </div>
+        <div className="mt-8 px-6 max-w-6xl mx-auto space-y-1">
             <p className="text-white/20 text-[0.65rem] leading-relaxed max-w-2xl">
               * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
               외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
@@ -351,7 +357,6 @@ export default function HomePage() {
               Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
             </p>
           </div>
-        </div>
       </section>
 
       {/* FAQ 섹션 — GEO/AI 검색 대응 */}

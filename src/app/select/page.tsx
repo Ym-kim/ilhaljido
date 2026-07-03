@@ -1,10 +1,21 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
+
+// 목적지 필터 (에어비앤비 + Trip.com 스타일)
+const DEST_FILTERS = [
+  { id: 'all',      label: '전체',      flag: '🌏' },
+  { id: 'japan',    label: '일본',      flag: '🇯🇵' },
+  { id: 'bali',     label: '발리',      flag: '🇮🇩' },
+  { id: 'activity', label: '현지 체험', flag: '🎌' },
+  { id: 'esim',     label: 'eSIM',     flag: '📡' },
+] as const
+type DestFilter = typeof DEST_FILTERS[number]['id']
 
 const CATEGORIES = [
   {
@@ -62,12 +73,23 @@ const CATEGORIES = [
 ]
 
 export default function SelectPage() {
-  const hotelItems = HOME_FEATURED_ITEMS.filter((i) =>
+  const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
+
+  const allHotelItems = HOME_FEATURED_ITEMS.filter((i) =>
     ['feat-tokyo-hotel', 'feat-osaka-hotel', 'feat-fukuoka-hotel', 'feat-bali-hotel'].includes(i.id)
   )
   const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
     ['feat-japan-activity', 'feat-japan-esim'].includes(i.id)
   )
+
+  // 필터 적용
+  const hotelItems = activeFilter === 'all'
+    ? allHotelItems
+    : activeFilter === 'japan'
+    ? allHotelItems.filter((i) => i.country === '일본')
+    : activeFilter === 'bali'
+    ? allHotelItems.filter((i) => i.country === '인도네시아')
+    : allHotelItems
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
@@ -131,14 +153,16 @@ export default function SelectPage() {
       </section>
 
       {/* 추천 숙소 상품 */}
-      <section className="px-6 pb-14 border-t border-white/5">
-        <div className="max-w-6xl mx-auto pt-12">
-          <div className="flex items-end justify-between mb-8">
+      <section className="pb-14 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6 pt-12">
+          <div className="flex items-end justify-between mb-6">
             <div>
               <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-2">
                 인기 숙소
               </p>
-              <h2 className="text-white font-black text-xl md:text-2xl">목적지별 추천 숙소</h2>
+              <h2 className="text-white font-black text-xl md:text-2xl">
+                워케이션러들이 선택한 숙소
+              </h2>
             </div>
             <Link
               href="/select/hotel"
@@ -147,11 +171,37 @@ export default function SelectPage() {
               전체 보기 <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {hotelItems.map((item) => (
-              <AffiliateCard key={item.id} item={item} visual />
+
+          {/* 목적지 필터 pills (에어비앤비 + Trip.com 스타일) */}
+          <div className="flex gap-2 overflow-x-auto pb-4 [&::-webkit-scrollbar]:hidden mb-6">
+            {DEST_FILTERS.filter(f => ['all','japan','bali'].includes(f.id)).map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className={`shrink-0 inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full border transition-all duration-150 ${
+                  activeFilter === f.id
+                    ? 'bg-teal-500/15 border-teal-500/40 text-teal-300'
+                    : 'bg-white/4 border-white/10 text-white/50 hover:border-white/22 hover:text-white/75'
+                }`}
+              >
+                <span>{f.flag}</span> {f.label}
+              </button>
             ))}
           </div>
+        </div>
+
+        {/* 모바일: 수평 스냅 스크롤 / sm+: 2열 / lg+: 4열 */}
+        <div className="
+          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 px-6
+          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
+          lg:grid-cols-4 max-w-6xl sm:mx-auto
+          [&::-webkit-scrollbar]:hidden
+        ">
+          {hotelItems.map((item) => (
+            <div key={item.id} className="min-w-[72vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
+              <AffiliateCard item={item} visual />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -162,7 +212,10 @@ export default function SelectPage() {
             <p className="text-white/40 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-2">
               체험 · eSIM
             </p>
-            <h2 className="text-white font-black text-xl md:text-2xl">현지 체험 & 데이터 연결</h2>
+            <h2 className="text-white font-black text-xl md:text-2xl">
+              도착하기 전 미리 준비하세요
+            </h2>
+            <p className="text-white/35 text-sm mt-1.5">현지 투어·액티비티, 그리고 공항 도착 즉시 연결되는 eSIM</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {etcItems.map((item) => (
