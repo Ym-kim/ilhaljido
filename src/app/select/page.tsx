@@ -187,17 +187,10 @@ export default function SelectPage() {
           </div>
         </div>
 
-        {/* 모바일: 수평 스냅 스크롤 / sm+: 2열 / lg+: 4열 */}
-        <div className="
-          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-3 px-6
-          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
-          lg:grid-cols-4 max-w-6xl sm:mx-auto
-          [&::-webkit-scrollbar]:hidden
-        ">
+        {/* 모바일: 2열 그리드 / lg+: 4열 */}
+        <div className="grid grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-4 max-w-6xl sm:mx-auto">
           {hotelItems.map((item) => (
-            <div key={item.id} className="min-w-[72vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
-              <AffiliateCard item={item} visual />
-            </div>
+            <AffiliateCard key={item.id} item={item} visual />
           ))}
         </div>
       </section>

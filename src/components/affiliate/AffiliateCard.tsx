@@ -37,17 +37,17 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   const title = item.productTitle ?? item.displayTitle ?? item.name
   const hasPhoto = visual && !!item.coverPhoto
 
-  // ── visual 모드: 밝은 사진 카드 ────────────────────────────────────────────
+  // ── visual 모드: 밝은 사진 카드 (2열 그리드 최적화) ──────────────────────────
   if (visual) {
     return (
       <a
         href={item.href}
         target="_blank"
         rel={meta.rel}
-        className={`group bg-white rounded-2xl overflow-hidden border border-[#e8e4de] hover:border-[#c8c4be] hover:shadow-xl transition-all duration-200 hover:-translate-y-1 flex flex-col ${className}`}
+        className={`group bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-[#e8e4de] hover:border-[#c8c4be] hover:shadow-lg sm:hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 sm:hover:-translate-y-1 flex flex-col ${className}`}
       >
-        {/* 사진 헤더 */}
-        <div className="relative h-48 overflow-hidden bg-[#f0ede7] shrink-0">
+        {/* 사진 헤더 — 모바일 h-32, sm+ h-44 */}
+        <div className="relative h-32 sm:h-44 overflow-hidden bg-[#f0ede7] shrink-0">
           {hasPhoto ? (
             <img
               src={item.coverPhoto}
@@ -57,19 +57,19 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             />
           ) : (
             <div className={`w-full h-full bg-gradient-to-br ${item.coverGradient ?? 'from-[#e8e4de] to-[#f5f3ef]'} flex items-center justify-center`}>
-              <span className="text-6xl opacity-25 select-none">{item.emoji}</span>
+              <span className="text-5xl opacity-25 select-none">{item.emoji}</span>
             </div>
           )}
 
           {hasPhoto && (
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
           )}
 
           {/* 예약 가능 배지 */}
           {meta.isAffiliate && (
-            <div className="absolute top-3 left-3">
-              <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2.5 py-1 rounded-full bg-white/95 text-emerald-700 border border-emerald-200/60 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
+            <div className="absolute top-2 left-2">
+              <span className="inline-flex items-center gap-1 text-[0.55rem] font-bold px-2 py-0.5 rounded-full bg-white/95 text-emerald-700 border border-emerald-200/60 shadow-sm">
+                <span className="w-1 h-1 rounded-full bg-emerald-500 animate-pulse inline-block" />
                 예약 가능
               </span>
             </div>
@@ -77,53 +77,52 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
           {/* 준비중 배지 */}
           {!meta.isAffiliate && (
-            <div className="absolute top-3 right-3">
-              <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-1 rounded-full bg-black/55 text-white/90 border border-white/15">
-                {PENDING_STATUSES.has(item.status) && <Clock className="w-2.5 h-2.5" />}
+            <div className="absolute top-2 right-2">
+              <span className="inline-flex items-center gap-1 text-[0.55rem] font-bold px-2 py-0.5 rounded-full bg-black/55 text-white/90">
+                {PENDING_STATUSES.has(item.status) && <Clock className="w-2 h-2" />}
                 {meta.badgeText}
               </span>
             </div>
           )}
 
-          {/* 목적지 (사진 하단 텍스트) */}
+          {/* 목적지 (사진 하단) */}
           {hasPhoto && item.destination && (
-            <div className="absolute bottom-3 left-4">
-              <p className="text-white/90 text-[0.72rem] font-semibold drop-shadow-sm">
+            <div className="absolute bottom-2 left-3">
+              <p className="text-white/92 text-[0.62rem] font-semibold drop-shadow-sm leading-tight">
                 {item.destination}
               </p>
             </div>
           )}
         </div>
 
-        {/* 콘텐츠 */}
-        <div className="p-4 flex flex-col flex-1">
+        {/* 콘텐츠 — 컴팩트 */}
+        <div className="p-3 sm:p-4 flex flex-col flex-1">
           {/* 목적지 (사진 없을 때) */}
           {!hasPhoto && item.destination && (
-            <p className="text-[#8a8784] text-[0.7rem] font-semibold mb-1">{item.destination}</p>
+            <p className="text-[#8a8784] text-[0.62rem] font-semibold mb-0.5">{item.destination}</p>
           )}
 
           {/* 상품명 */}
-          <p className="text-[#141414] font-black text-[0.9375rem] leading-snug mb-1">{title}</p>
+          <p className="text-[#141414] font-black text-sm sm:text-[0.9375rem] leading-snug mb-1">
+            {title}
+          </p>
 
           {/* via + 가격 */}
-          <div className="flex items-center justify-between mt-0.5 mb-2.5">
-            <p className="text-[#b8b4ae] text-[0.65rem]">via {item.name}</p>
+          <div className="flex items-center justify-between mt-0.5 mb-0">
+            <p className="text-[#c0bdb8] text-[0.6rem]">via {item.name}</p>
             {item.priceFrom && (
-              <p className="text-brand-mid font-black text-sm">{item.priceFrom}</p>
+              <p className="text-brand-mid font-black text-xs sm:text-sm">{item.priceFrom}</p>
             )}
           </div>
 
-          {/* 설명 */}
-          <p className="text-[#7a7a7a] text-xs leading-relaxed flex-1 line-clamp-2">{item.desc}</p>
-
-          {/* CTA */}
-          <div className={`mt-3 pt-3 border-t border-[#f0ede8] flex items-center gap-1 text-[0.8125rem] font-bold transition-colors duration-150 ${
+          {/* CTA — 모바일에서 심플하게 */}
+          <div className={`mt-auto pt-2.5 sm:pt-3 border-t border-[#f0ede8] flex items-center gap-0.5 text-xs sm:text-[0.8125rem] font-bold transition-colors duration-150 ${
             meta.isAffiliate
               ? 'text-brand-mid group-hover:text-brand'
               : 'text-[#a8a5a0] group-hover:text-[#6b6b6b]'
           }`}>
-            {item.cta}
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            <span className="truncate">{item.cta}</span>
+            <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
           </div>
         </div>
       </a>

@@ -146,20 +146,13 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* 카드 — 모바일: 수평 스냅 스크롤 / sm+: 3열 그리드 */}
-        <div className="
-          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-6
-          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
-          lg:grid-cols-3 max-w-6xl sm:mx-auto
-          [&::-webkit-scrollbar]:hidden
-        ">
+        {/* 카드 — 모바일: 2열 그리드 / lg+: 3열 그리드 */}
+        <div className="grid grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
           {featuredItems.map((item) => (
-            <div key={item.id} className="min-w-[78vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
-              <AffiliateCard item={item} visual />
-            </div>
+            <AffiliateCard key={item.id} item={item} visual />
           ))}
           {featuredItems.length === 0 && (
-            <div className="min-w-[78vw] sm:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f9f7f3] border border-[#e5e1da]">
+            <div className="col-span-2 lg:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f9f7f3] border border-[#e5e1da]">
               <p className="text-[#a0a0a0] text-sm">준비 중인 목적지입니다</p>
             </div>
           )}
