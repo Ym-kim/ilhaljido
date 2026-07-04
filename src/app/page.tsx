@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, MapPin, CheckCircle2 } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
@@ -23,6 +24,13 @@ const PARTNER_ICON_MAP = {
   education: PARTNER_ICONS.education,
   corporate: PARTNER_ICONS.corporate,
 }
+
+const DEST_FILTERS = [
+  { id: 'all',   label: '전체',  flag: '🌏' },
+  { id: 'japan', label: '일본',  flag: '🇯🇵' },
+  { id: 'bali',  label: '발리',  flag: '🇮🇩' },
+] as const
+type DestFilter = typeof DEST_FILTERS[number]['id']
 
 const THEME_ITEMS = [
   { labelKey: 'home_theme_healing_l', descKey: 'home_theme_healing_d', href: '/programs/healing', emoji: '🧘' },
@@ -49,11 +57,22 @@ const STAT_KEYS = [
 
 export default function HomePage() {
   const { lang, tr } = useLang()
+  const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   const categories = getHomeCategories()
   const recruitingPrograms = getDomesticCurrent(lang)
 
+  const featuredItems = activeFilter === 'all'
+    ? HOME_FEATURED_ITEMS
+    : HOME_FEATURED_ITEMS.filter((i) => {
+        if (activeFilter === 'japan') return i.country === '일본'
+        if (activeFilter === 'bali') return i.country === '인도네시아'
+        return true
+      })
+
   return (
     <div className="min-h-screen bg-[#0f0f0f]">
+
+      {/* ── 히어로 ── */}
       <section className="relative min-h-[92vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
           <img
@@ -83,7 +102,92 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 지금 모집 중 */}
+      {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
+      <section className="bg-white border-b border-[#e5e1da] pt-14 pb-10 md:pt-20 md:pb-14">
+        {/* 헤더 */}
+        <div className="max-w-6xl mx-auto px-6 mb-7">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-6">
+            <div>
+              <p className="text-brand-mid text-[0.65rem] font-black tracking-[0.18em] uppercase mb-3 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+                WAKATION SELECT · 지금 예약 가능
+              </p>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#141414] leading-tight tracking-tight">
+                워케이션 목적지 숙소,<br className="sm:hidden" />
+                <span className="text-brand-mid"> 지금 바로 예약</span>하세요
+              </h2>
+              <p className="text-[#7a7a7a] text-sm mt-3">
+                Booking.com · Trip.com 제휴 할인 · 장기체류 특화
+              </p>
+            </div>
+            <Link
+              href="/select"
+              className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
+            >
+              전체 상품 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+
+          {/* 목적지 필터 pills */}
+          <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
+            {DEST_FILTERS.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className={`shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-full border transition-all duration-150 ${
+                  activeFilter === f.id
+                    ? 'bg-[#141414] border-[#141414] text-white shadow-sm'
+                    : 'bg-white border-[#e5e1da] text-[#7a7a7a] hover:border-[#c8c4be] hover:text-[#141414]'
+                }`}
+              >
+                <span>{f.flag}</span> {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 카드 — 모바일: 수평 스냅 스크롤 / sm+: 3열 그리드 */}
+        <div className="
+          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-6
+          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
+          lg:grid-cols-3 max-w-6xl sm:mx-auto
+          [&::-webkit-scrollbar]:hidden
+        ">
+          {featuredItems.map((item) => (
+            <div key={item.id} className="min-w-[78vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
+              <AffiliateCard item={item} visual />
+            </div>
+          ))}
+          {featuredItems.length === 0 && (
+            <div className="min-w-[78vw] sm:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f9f7f3] border border-[#e5e1da]">
+              <p className="text-[#a0a0a0] text-sm">준비 중인 목적지입니다</p>
+            </div>
+          )}
+        </div>
+
+        {/* 디스클로저 */}
+        <div className="mt-6 px-6 max-w-6xl mx-auto space-y-1">
+          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+            * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
+            외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
+            Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
+          </p>
+        </div>
+      </section>
+
+      {/* ── 통계 ── */}
+      <section className="bg-white border-b border-[#e5e1da] py-12 md:py-14">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {STAT_KEYS.map(([v, l]) => (
+            <div key={l}>
+              <p className="text-3xl md:text-4xl font-black text-[#141414] mb-2">{tr(v)}</p>
+              <p className="text-sm font-semibold text-[#7a7a7a]">{tr(l)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 지금 모집 중 ── */}
       <section className="bg-[#0f0f0f] border-b border-white/8 py-14 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-6 flex items-center gap-2">
@@ -151,17 +255,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white border-y border-[#e5e1da] py-12 md:py-14">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {STAT_KEYS.map(([v, l]) => (
-            <div key={l}>
-              <p className="text-3xl md:text-4xl font-black text-[#141414] mb-2">{tr(v)}</p>
-              <p className="text-sm font-semibold text-[#7a7a7a]">{tr(l)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
+      {/* ── 플랫폼 카테고리 ── */}
       <section className="bg-[#f9f7f3] py-20 md:py-28 px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14 md:mb-16">
@@ -196,6 +290,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 테마별 워케이션 ── */}
       <section className="bg-white py-20 md:py-28 px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 md:mb-14">
@@ -224,6 +319,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── AI 비자·체류 ── */}
       <section className="dark-surface py-20 md:py-28 px-6 bg-gradient-to-br from-[#0a1628] via-[#0f1f3d] to-[#0f0f0f] border-y border-white/5">
         <div className="max-w-3xl mx-auto text-center">
           <SectionEyebrow onDark>{tr('home_ai_eyebrow')}</SectionEyebrow>
@@ -244,6 +340,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 공간 인프라 ── */}
       <section className="dark-surface py-20 md:py-28 px-6 bg-[#111]">
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
@@ -280,7 +377,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GEO / AI 검색 대응 — Wakation 소개 */}
+      {/* ── Wakation 소개 (GEO 대응) ── */}
       <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
@@ -315,52 +412,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 워케이션 준비 추천 상품 */}
-      <section className="bg-white border-t border-[#e5e1da] py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-3">
-                WAKATION SELECT
-              </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#141414] leading-tight">
-                지금 예약 많은<br className="sm:hidden" /> 워케이션 목적지
-              </h2>
-            </div>
-            <Link
-              href="/select"
-              className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all pb-1"
-            >
-              전체 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-            </Link>
-          </div>
-        </div>
-        {/* 모바일: 수평 스냅 스크롤 (Airbnb 패턴) / sm+: 3열 그리드 */}
-        <div className="
-          flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 px-6
-          sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:px-6
-          lg:grid-cols-3 max-w-6xl sm:mx-auto
-          [&::-webkit-scrollbar]:hidden
-        ">
-          {HOME_FEATURED_ITEMS.map((item) => (
-            <div key={item.id} className="min-w-[78vw] sm:min-w-0 snap-center flex-shrink-0 sm:flex-shrink sm:flex-initial">
-              <AffiliateCard item={item} visual />
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 px-6 max-w-6xl mx-auto space-y-1">
-            <p className="text-[#b8b4ae] text-[0.65rem] leading-relaxed max-w-2xl">
-              * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
-              외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
-            </p>
-            <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
-              Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
-            </p>
-          </div>
-      </section>
-
-      {/* FAQ 섹션 — GEO/AI 검색 대응 */}
-      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-16 md:py-20 px-6">
+      {/* ── FAQ (GEO/AI 검색 대응) ── */}
+      <section className="bg-white border-t border-[#e5e1da] py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <script
             type="application/ld+json"
@@ -382,7 +435,7 @@ export default function HomePage() {
                   {
                     '@type': 'Question',
                     name: 'Hosted 프로그램과 Select 상품의 차이는?',
-                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 제휴 서비스입니다.' },
                   },
                   {
                     '@type': 'Question',
@@ -404,7 +457,7 @@ export default function HomePage() {
             {([
               { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
               { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
-              { q: 'Hosted 프로그램과 Select 상품의 차이는?', a: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 어학연수·코워킹·시장조사 프로그램을 큐레이션해 연결하는 제휴 서비스로 2026년 하반기 순차 오픈 예정입니다.' },
+              { q: 'Hosted 프로그램과 Select 상품의 차이는?', a: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 제휴 서비스입니다.' },
               { q: '비자·체류 AI 서비스는 법적 효력이 있나요?', a: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
               { q: '파트너십·제휴 문의는 어떻게 하나요?', a: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
             ] as const).map(({ q, a }, i) => (
@@ -420,15 +473,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 파트너십 신뢰 배너 */}
-      <section className="bg-white border-t border-[#e5e1da] py-7 px-6">
+      {/* ── 파트너십 신뢰 배너 ── */}
+      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-7 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="flex -space-x-1">
               {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
                 const Icon = PARTNER_ICON_MAP[k]
                 return (
-                  <div key={k} className="w-8 h-8 rounded-full bg-[#f2efe9] border border-[#e5e1da] flex items-center justify-center">
+                  <div key={k} className="w-8 h-8 rounded-full bg-[#ede9e2] border border-[#e5e1da] flex items-center justify-center">
                     <Icon className="w-3.5 h-3.5 text-[#8a8a8a]" strokeWidth={ICON_STROKE} />
                   </div>
                 )
@@ -444,4 +497,3 @@ export default function HomePage() {
     </div>
   )
 }
-
