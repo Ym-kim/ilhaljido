@@ -34,11 +34,11 @@ const DEST_FILTERS = [
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
 const CATEGORY_PHOTOS: Record<string, string> = {
-  teal:   'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+  teal:   'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
   blue:   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
   green:  'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
   orange: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-  cyan:   'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
+  cyan:   'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
 }
 
 const THEME_ITEMS = [
@@ -113,7 +113,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
-      <section className="bg-white border-b border-[#e5e1da] pt-14 pb-10 md:pt-20 md:pb-14">
+      <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
         {/* 헤더 */}
         <div className="max-w-6xl mx-auto px-6 mb-7">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-6">
@@ -147,7 +147,7 @@ export default function HomePage() {
                 className={`shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-full border transition-all duration-150 ${
                   activeFilter === f.id
                     ? 'bg-[#141414] border-[#141414] text-white shadow-sm'
-                    : 'bg-white border-[#e5e1da] text-[#7a7a7a] hover:border-[#c8c4be] hover:text-[#141414]'
+                    : 'bg-white border-[#dbeafe] text-[#7a7a7a] hover:border-[#93c5fd] hover:text-[#141414]'
                 }`}
               >
                 <span>{f.flag}</span> {f.label}
@@ -162,7 +162,7 @@ export default function HomePage() {
             <AffiliateCard key={item.id} item={item} visual />
           ))}
           {featuredItems.length === 0 && (
-            <div className="col-span-2 lg:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f9f7f3] border border-[#e5e1da]">
+            <div className="col-span-2 lg:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f0f9ff] border border-[#dbeafe]">
               <p className="text-[#a0a0a0] text-sm">준비 중인 목적지입니다</p>
             </div>
           )}
@@ -179,7 +179,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 통계 ── */}
-      <section className="bg-white border-b border-[#e5e1da] py-12 md:py-14">
+      <section className="bg-white border-b border-[#dbeafe] py-12 md:py-14">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {STAT_KEYS.map(([v, l]) => (
             <div key={l}>
@@ -259,7 +259,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 플랫폼 카테고리 ── */}
-      <section className="bg-[#f9f7f3] py-14 md:py-20 px-4 sm:px-6 border-b border-[#e5e1da]">
+      <section className="bg-[#f0f9ff] py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 md:mb-10">
             <SectionEyebrow>{tr('home_platform_eyebrow')}</SectionEyebrow>
@@ -275,7 +275,7 @@ export default function HomePage() {
                 <Link
                   key={cat.href}
                   href={cat.href}
-                  className="group relative rounded-2xl overflow-hidden h-44 sm:h-52 block border border-[#e5e1da] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                  className="group relative rounded-2xl overflow-hidden h-44 sm:h-52 block border border-[#dbeafe] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   {photo && (
                     <img
@@ -300,7 +300,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 테마별 워케이션 ── */}
-      <section className="bg-white py-14 md:py-20 px-4 sm:px-6 border-b border-[#e5e1da]">
+      <section className="bg-white py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8 md:mb-10">
             <SectionEyebrow>{tr('home_theme_eyebrow')}</SectionEyebrow>
@@ -314,7 +314,7 @@ export default function HomePage() {
               <Link
                 key={t.labelKey}
                 href={t.href}
-                className="group relative rounded-2xl overflow-hidden h-36 sm:h-44 block border border-[#e5e1da] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+                className="group relative rounded-2xl overflow-hidden h-36 sm:h-44 block border border-[#dbeafe] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
               >
                 <img
                   src={t.photo}
@@ -392,7 +392,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Wakation 소개 (GEO 대응) ── */}
-      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-20 md:py-28 px-6">
+      <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
@@ -427,7 +427,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ (GEO/AI 검색 대응) ── */}
-      <section className="bg-white border-t border-[#e5e1da] py-16 md:py-20 px-6">
+      <section className="bg-white border-t border-[#dbeafe] py-16 md:py-20 px-6">
         <div className="max-w-3xl mx-auto">
           <script
             type="application/ld+json"
@@ -467,7 +467,7 @@ export default function HomePage() {
           />
           <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-5">자주 묻는 질문</p>
           <h2 className="text-2xl md:text-3xl font-black text-[#141414] mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
-          <div className="divide-y divide-[#e5e1da]">
+          <div className="divide-y divide-[#dbeafe]">
             {([
               { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
               { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
@@ -488,14 +488,14 @@ export default function HomePage() {
       </section>
 
       {/* ── 파트너십 신뢰 배너 ── */}
-      <section className="bg-[#f9f7f3] border-t border-[#e5e1da] py-7 px-6">
+      <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-7 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="flex -space-x-1">
               {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
                 const Icon = PARTNER_ICON_MAP[k]
                 return (
-                  <div key={k} className="w-8 h-8 rounded-full bg-[#ede9e2] border border-[#e5e1da] flex items-center justify-center">
+                  <div key={k} className="w-8 h-8 rounded-full bg-[#ede9e2] border border-[#dbeafe] flex items-center justify-center">
                     <Icon className="w-3.5 h-3.5 text-[#8a8a8a]" strokeWidth={ICON_STROKE} />
                   </div>
                 )

@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowUpRight, Clock } from 'lucide-react'
+import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen } from 'lucide-react'
 import type { AffiliateItem } from '@/lib/affiliate/types'
 
 const STATUS_META: Record<
@@ -25,6 +25,13 @@ const PENDING_STATUSES = new Set([
   'needs_referral_link',
 ])
 
+const PRODUCT_TYPE_ICONS = {
+  stay:      BedDouble,
+  activity:  Compass,
+  esim:      Wifi,
+  education: BookOpen,
+} as const
+
 interface AffiliateCardProps {
   item: AffiliateItem
   className?: string
@@ -36,6 +43,9 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   const meta = STATUS_META[item.status] ?? STATUS_META.placeholder
   const title = item.productTitle ?? item.displayTitle ?? item.name
   const hasPhoto = visual && !!item.coverPhoto
+  const ProductIcon = item.productType && item.productType in PRODUCT_TYPE_ICONS
+    ? PRODUCT_TYPE_ICONS[item.productType as keyof typeof PRODUCT_TYPE_ICONS]
+    : null
 
   // ── visual 모드: 사진 카드 (2열 모바일 가독성 최적화) ────────────────────────
   if (visual) {
@@ -44,10 +54,10 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         href={item.href}
         target="_blank"
         rel={meta.rel}
-        className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-[#ede9e3] hover:border-[#c8c4be] transition-all duration-200 hover:-translate-y-0.5 flex flex-col ${className}`}
+        className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-[#dbeafe] hover:border-[#93c5fd] transition-all duration-200 hover:-translate-y-0.5 flex flex-col ${className}`}
       >
         {/* 사진 — 모바일 h-36, sm+ h-48 */}
-        <div className="relative h-36 sm:h-48 overflow-hidden bg-[#f0ede7] shrink-0">
+        <div className="relative h-36 sm:h-48 overflow-hidden bg-[#eff6ff] shrink-0">
           {hasPhoto ? (
             <img
               src={item.coverPhoto}
@@ -70,6 +80,15 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
               <p className="text-white font-bold text-[0.78rem] sm:text-sm leading-tight drop-shadow-lg truncate">
                 {item.destination}
               </p>
+            </div>
+          )}
+
+          {/* 상품 타입 픽토그램 — 좌상단 */}
+          {ProductIcon && (
+            <div className="absolute top-2.5 left-2.5">
+              <span className="w-7 h-7 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center">
+                <ProductIcon className="w-3.5 h-3.5 text-white" />
+              </span>
             </div>
           )}
 
