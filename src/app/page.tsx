@@ -26,21 +26,30 @@ const PARTNER_ICON_MAP = {
 }
 
 const DEST_FILTERS = [
-  { id: 'all',   label: '전체',  flag: '🌏' },
-  { id: 'japan', label: '일본',  flag: '🇯🇵' },
-  { id: 'bali',  label: '발리',  flag: '🇮🇩' },
+  { id: 'all',     label: '전체',   flag: '🌏' },
+  { id: 'japan',   label: '일본',   flag: '🇯🇵' },
+  { id: 'bali',    label: '발리',   flag: '🇮🇩' },
+  { id: 'vietnam', label: '베트남', flag: '🇻🇳' },
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
+const CATEGORY_PHOTOS: Record<string, string> = {
+  teal:   'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80',
+  blue:   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
+  green:  'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
+  orange: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+  cyan:   'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
+}
+
 const THEME_ITEMS = [
-  { labelKey: 'home_theme_healing_l', descKey: 'home_theme_healing_d', href: '/programs/healing', emoji: '🧘' },
-  { labelKey: 'home_theme_network_l', descKey: 'home_theme_network_d', href: '/programs/networking', emoji: '🤝' },
-  { labelKey: 'home_theme_local_l', descKey: 'home_theme_local_d', href: '/programs/local', emoji: '🗺️' },
-  { labelKey: 'home_theme_growth_l', descKey: 'home_theme_growth_d', href: '/growth', emoji: '🚀' },
-  { labelKey: 'home_theme_japan_l', descKey: 'home_theme_japan_d', href: '/programs/global', emoji: '🏯' },
-  { labelKey: 'home_theme_golf_l', descKey: 'home_theme_golf_d', href: '/programs/golf', emoji: '⛳' },
-  { labelKey: 'home_theme_sports_l', descKey: 'home_theme_sports_d', href: '/programs/sports', emoji: '🏟️' },
-] as const
+  { labelKey: 'home_theme_healing_l',  descKey: 'home_theme_healing_d',  href: '/programs/healing',    emoji: '🧘', photo: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_network_l',  descKey: 'home_theme_network_d',  href: '/programs/networking', emoji: '🤝', photo: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_local_l',    descKey: 'home_theme_local_d',    href: '/programs/local',      emoji: '🗺️', photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_growth_l',   descKey: 'home_theme_growth_d',   href: '/growth',               emoji: '🚀', photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/programs/global',     emoji: '🏯', photo: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_golf_l',     descKey: 'home_theme_golf_d',     href: '/programs/golf',       emoji: '⛳', photo: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_sports_l',   descKey: 'home_theme_sports_d',   href: '/programs/sports',     emoji: '🏟️', photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' },
+]
 
 const SPACE_KEYS = [
   { titleKey: 'home_space_domestic_t', descKey: 'home_space_domestic_d', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80' },
@@ -64,8 +73,9 @@ export default function HomePage() {
   const featuredItems = activeFilter === 'all'
     ? HOME_FEATURED_ITEMS
     : HOME_FEATURED_ITEMS.filter((i) => {
-        if (activeFilter === 'japan') return i.country === '일본'
-        if (activeFilter === 'bali') return i.country === '인도네시아'
+        if (activeFilter === 'japan')   return i.country === '일본'
+        if (activeFilter === 'bali')    return i.country === '인도네시아'
+        if (activeFilter === 'vietnam') return i.country === '베트남'
         return true
       })
 
@@ -249,33 +259,39 @@ export default function HomePage() {
       </section>
 
       {/* ── 플랫폼 카테고리 ── */}
-      <section className="bg-[#f9f7f3] py-20 md:py-28 px-6 border-b border-[#e5e1da]">
+      <section className="bg-[#f9f7f3] py-14 md:py-20 px-4 sm:px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-14 md:mb-16">
+          <div className="mb-8 md:mb-10">
             <SectionEyebrow>{tr('home_platform_eyebrow')}</SectionEyebrow>
-            <SectionTitle className="mb-4 text-center">
+            <SectionTitle className="mb-2">
               {tr('home_platform_title')}
             </SectionTitle>
-            <p className="text-[#6b6b6b] text-base leading-relaxed max-w-xl mx-auto">{tr('home_platform_desc')}</p>
+            <p className="text-[#6b6b6b] text-sm leading-relaxed max-w-lg">{tr('home_platform_desc')}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {categories.map((cat) => {
-              const Icon = CATEGORY_ICONS[cat.id]
+              const photo = CATEGORY_PHOTOS[cat.id]
               return (
                 <Link
                   key={cat.href}
                   href={cat.href}
-                  className="card-light group p-7 flex flex-col gap-5 hover:border-[#d0ccc4] hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+                  className="group relative rounded-2xl overflow-hidden h-44 sm:h-52 block border border-[#e5e1da] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
-                  <IconTile icon={Icon} size="lg" />
-                  <div>
-                    <h3 className="text-xl font-black mb-2 text-[#141414]">{tr(cat.labelKey)}</h3>
-                    <p className="text-[#6b6b6b] text-sm leading-relaxed">{tr(cat.descKey)}</p>
+                  {photo && (
+                    <img
+                      src={photo}
+                      alt={tr(cat.labelKey)}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="text-white font-black text-[0.9375rem] sm:text-lg leading-snug">{tr(cat.labelKey)}</h3>
+                    <p className="text-white/60 text-[0.65rem] sm:text-xs mt-0.5 flex items-center gap-1">
+                      {tr('learn_more')} <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    </p>
                   </div>
-                  <span className="text-[0.875rem] font-semibold text-[#aaa9a6] group-hover:text-brand-mid transition-colors flex items-center gap-1.5 mt-auto">
-                    {tr('learn_more')}
-                    <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-                  </span>
                 </Link>
               )
             })}
@@ -284,28 +300,33 @@ export default function HomePage() {
       </section>
 
       {/* ── 테마별 워케이션 ── */}
-      <section className="bg-white py-20 md:py-28 px-6 border-b border-[#e5e1da]">
+      <section className="bg-white py-14 md:py-20 px-4 sm:px-6 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 md:mb-14">
+          <div className="mb-8 md:mb-10">
             <SectionEyebrow>{tr('home_theme_eyebrow')}</SectionEyebrow>
-            <SectionTitle className="mb-3 text-center">
+            <SectionTitle className="mb-2">
               {tr('home_theme_title')}
             </SectionTitle>
-            <p className="text-[#6b6b6b] text-base leading-relaxed max-w-xl mx-auto">{tr('home_theme_desc')}</p>
+            <p className="text-[#6b6b6b] text-sm leading-relaxed max-w-lg">{tr('home_theme_desc')}</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {THEME_ITEMS.map((t) => (
               <Link
                 key={t.labelKey}
                 href={t.href}
-                className="group flex items-center gap-3 bg-white hover:bg-[#f9f7f3] border border-[#e5e1da] hover:border-brand-mid/30 rounded-2xl px-5 py-3.5 shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5"
+                className="group relative rounded-2xl overflow-hidden h-36 sm:h-44 block border border-[#e5e1da] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
               >
-                <span className="text-2xl">{t.emoji}</span>
-                <div className="text-left">
-                  <p className="text-[#141414] font-bold text-[0.9375rem] leading-tight">{tr(t.labelKey)}</p>
-                  <p className="text-[#7a7a7a] text-xs mt-0.5 max-w-[200px] leading-relaxed">{tr(t.descKey)}</p>
+                <img
+                  src={t.photo}
+                  alt={tr(t.labelKey)}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3.5">
+                  <span className="text-lg leading-none block mb-1">{t.emoji}</span>
+                  <p className="text-white font-bold text-sm leading-snug">{tr(t.labelKey)}</p>
                 </div>
-                <ArrowRight className="w-4 h-4 text-[#c8c4be] group-hover:text-brand-mid transition-colors ml-2 shrink-0" strokeWidth={2} />
               </Link>
             ))}
           </div>
