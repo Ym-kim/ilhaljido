@@ -73,6 +73,8 @@ const KO: Record<string, string> = {
   // ── 홈 v3 — 모바일 스티키 바 ──
   prep_title: '떠나기 전, 준비하기',
   prep_sub: '숙소·체험·eSIM·강의까지 — 워케이션 준비를 한 번에 끝내세요.',
+  cruise_search: '크루즈 검색',
+  port_stay: '출발지 숙소',
   h3_bar_stay: '숙소 검색',
   h3_bar_apply: '프로그램 신청',
 
@@ -662,6 +664,8 @@ const EN: Record<string, string> = {
   // ── Home v3 — Mobile sticky bar ──
   prep_title: 'Get ready before you go',
   prep_sub: 'Stays, activities, eSIM and courses — finish your workation prep in one place.',
+  cruise_search: 'Search cruises',
+  port_stay: 'Pre-cruise stay',
   h3_bar_stay: 'Find stays',
   h3_bar_apply: 'Apply',
 
@@ -1250,6 +1254,8 @@ const JP: Record<string, string> = {
   // ── ホームv3 — モバイルバー ──
   prep_title: '出発前の準備',
   prep_sub: '宿・体験・eSIM・講座まで、ワーケーションの準備をまとめて。',
+  cruise_search: 'クルーズ検索',
+  port_stay: '出発地の宿',
   h3_bar_stay: '宿泊検索',
   h3_bar_apply: '申し込む',
 

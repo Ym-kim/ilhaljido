@@ -70,9 +70,19 @@ export default function LanguagePage() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-auto">
-                    <span className="text-2xl font-black text-gray-900">₩{p.price}</span>
-                    <span className="text-sm text-gray-400"> ~</span>
+                  <div className="mt-auto flex items-center justify-between gap-3">
+                    <div>
+                      <span className="text-2xl font-black text-gray-900">₩{p.price}</span>
+                      <span className="text-sm text-gray-400"> ~</span>
+                    </div>
+                    <a
+                      href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(p.stayQuery)}`}
+                      target="_blank"
+                      rel="sponsored noopener noreferrer"
+                      className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-light transition-all shadow-sm"
+                    >
+                      {tr('h3_bar_stay')}
+                    </a>
                   </div>
                 </div>
               </div>
