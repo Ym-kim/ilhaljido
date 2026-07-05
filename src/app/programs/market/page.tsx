@@ -8,6 +8,7 @@ import { getMarketFeatures, getMarketUnits } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { MARKET_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 const FEAT_ICONS = { field: Globe, network: Users, connect: TrendingUp, fair: Building2 } as const
 
@@ -157,7 +158,7 @@ export default function MarketPage() {
       <AffiliateSection
         title="현지 체험·이동 준비를 한번에"
         subtitle="시장조사단 출국 전, 현지 투어 예약부터 숙소·eSIM까지 챙겨야 할 것들을 모았습니다."
-        items={MARKET_PREP_ITEMS}
+        items={MARKET_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
       />
 
       {/* CTA */}

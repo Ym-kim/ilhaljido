@@ -13,6 +13,7 @@ import {
 } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { VISA_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 type Step = 1 | 2 | 3 | 4
 
@@ -247,9 +248,9 @@ export default function VisaAiPage() {
 
       {/* 비자 이후 체류 준비 서비스 */}
       <AffiliateSection
-        title="비자 받았다면, 이것도 미리 준비하세요"
-        subtitle="항공권 예약 확인서, eSIM 개통까지. 출국 전 빠뜨리기 쉬운 것들입니다."
-        items={VISA_PREP_ITEMS}
+        title={tr('vsel_prep_t')}
+        subtitle={tr('vsel_prep_d')}
+        items={VISA_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
         cols={3}
       />
 

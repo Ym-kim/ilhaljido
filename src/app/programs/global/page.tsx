@@ -8,6 +8,7 @@ import { getGlobalDestinations } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 
 export default function GlobalPage() {
@@ -81,18 +82,17 @@ export default function GlobalPage() {
             <div>
               <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-2">WAKATION SELECT</p>
               <p className="text-white font-black text-lg mb-1.5">
-                숙소 예약부터 eSIM, 현지 체험, 강의까지
+                {tr('gsel_banner_t')}
               </p>
               <p className="text-white/40 text-sm leading-relaxed max-w-md">
-                해외 워케이션 준비에 필요한 외부 서비스를 목적지별로 큐레이션합니다.
-                숙소 예약은 지금 바로 가능합니다.
+                {tr('gsel_banner_d')}
               </p>
             </div>
             <Link
               href="/select"
               className="shrink-0 inline-flex items-center gap-2 bg-teal-500/15 text-teal-300 border border-teal-500/30 px-5 py-2.5 rounded-full font-black text-sm hover:bg-teal-500/25 hover:text-teal-200 transition-all"
             >
-              상품 보러가기
+              {tr('gsel_banner_cta')}
               <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
@@ -101,9 +101,9 @@ export default function GlobalPage() {
 
       {/* 워케이션 준비 서비스 */}
       <AffiliateSection
-        title="출국 전 준비, 한번에 확인하세요"
-        subtitle="숙소 예약부터 eSIM까지, 해외 워케이션 출발 전 챙겨야 할 것들을 모았습니다."
-        items={GLOBAL_PREP_ITEMS}
+        title={tr('gsel_prep_t')}
+        subtitle={tr('gsel_prep_d')}
+        items={GLOBAL_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
       />
 
       {/* CTA */}

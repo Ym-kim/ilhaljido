@@ -6,7 +6,7 @@ import type { Lang } from '@/lib/i18n'
 // 새 홈 피처드 상품 추가 시 여기에 EN/JP 항목도 함께 추가할 것
 // ─────────────────────────────────────────────────────────────────────────────
 
-type Overlay = Partial<Pick<AffiliateItem, 'productTitle' | 'destination' | 'desc' | 'cta' | 'badge'>>
+type Overlay = Partial<Pick<AffiliateItem, 'name' | 'displayTitle' | 'productTitle' | 'destination' | 'desc' | 'cta' | 'badge'>>
 
 const EN: Record<string, Overlay> = {
   'hotel-booking': {
@@ -30,9 +30,31 @@ const EN: Record<string, Overlay> = {
     badge: 'eSIM',
   },
   'edu-inflearn': {
+    name: 'Inflearn',
     desc: 'IT, dev, design and business courses. Learn on the move, apply on arrival.',
     cta: 'Browse courses',
     badge: 'Online courses',
+  },
+  'insurance-safetywing': {
+    desc: 'Monthly travel insurance for digital nomads and long-stayers — 188 countries covered.',
+    cta: 'Explore coverage',
+    badge: 'Travel insurance',
+  },
+  'hotel-booking-visa': {
+    displayTitle: 'Flight & stay booking',
+    desc: 'Get the flight and stay confirmations you need for visa applications.',
+    cta: 'Book flight & stay',
+    badge: 'Flight · Stay',
+  },
+  'esim-airalo-visa': {
+    desc: 'Install before your visa arrives — data connects the moment you land. 200+ countries.',
+    cta: 'Get an eSIM',
+    badge: 'eSIM',
+  },
+  'hotel-booking-market': {
+    desc: 'Local hotels and apartments — long-stay options for research trips.',
+    cta: 'Book a stay',
+    badge: 'Long stay',
   },
   'feat-tokyo-hotel': {
     productTitle: 'Tokyo long-stay hotels',
@@ -114,9 +136,31 @@ const JP: Record<string, Overlay> = {
     badge: 'eSIM',
   },
   'edu-inflearn': {
+    name: 'Inflearn',
     desc: 'IT・開発・デザイン・ビジネス講座。移動中に学び、到着後すぐ実践。',
     cta: '講座を見る',
     badge: 'オンライン講座',
+  },
+  'insurance-safetywing': {
+    desc: 'ノマド・長期滞在者向けの月単位トラベル保険。188カ国をカバー。',
+    cta: '保険を見る',
+    badge: '旅行保険',
+  },
+  'hotel-booking-visa': {
+    displayTitle: '航空券・宿の予約',
+    desc: 'ビザ申請に必要な航空券・宿泊の予約確認書を取得できます。',
+    cta: '航空券・宿を予約',
+    badge: '航空 · 宿',
+  },
+  'esim-airalo-visa': {
+    desc: 'ビザ受領前にインストールしておけば入国後すぐ接続。200カ国対応。',
+    cta: 'eSIMを購入',
+    badge: 'eSIM',
+  },
+  'hotel-booking-market': {
+    desc: '現地のホテル・アパートメント。市場調査の長期滞在に適した宿を。',
+    cta: '宿を予約',
+    badge: '長期滞在',
   },
   'feat-tokyo-hotel': {
     productTitle: '東京の長期滞在ホテル',
