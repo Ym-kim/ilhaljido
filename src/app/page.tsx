@@ -26,14 +26,14 @@ const DEST_FILTERS = [
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
-// 히어로 목적지 퀵칩 — /select/hotel 목적지 섹션으로 연결
-const HERO_DEST_KEYS = [
-  'dest_tokyo',
-  'dest_osaka',
-  'dest_fukuoka',
-  'dest_bali',
-  'dest_danang',
-  'dest_jeju',
+// 히어로 목적지 퀵칩 — /select/hotel의 해당 도시 카드로 바로 연결
+const HERO_DESTS = [
+  { labelKey: 'dest_tokyo',   anchor: 'japan-tokyo' },
+  { labelKey: 'dest_osaka',   anchor: 'japan-osaka' },
+  { labelKey: 'dest_fukuoka', anchor: 'japan-fukuoka' },
+  { labelKey: 'dest_bali',    anchor: 'indonesia-bali' },
+  { labelKey: 'dest_danang',  anchor: 'vietnam-danang' },
+  { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
 ] as const
 
 const CATEGORY_PHOTOS: Record<string, string> = {
@@ -137,9 +137,9 @@ export default function HomePage() {
               {tr('h3_search_label')}
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
-              {HERO_DEST_KEYS.map((k) => (
-                <Link key={k} href="/select/hotel" className="chip-dest">
-                  {tr(k)}
+              {HERO_DESTS.map((d) => (
+                <Link key={d.labelKey} href={`/select/hotel#${d.anchor}`} className="chip-dest">
+                  {tr(d.labelKey)}
                 </Link>
               ))}
             </div>

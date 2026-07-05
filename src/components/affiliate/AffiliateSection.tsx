@@ -10,6 +10,8 @@ interface AffiliateSectionProps {
   items: AffiliateItem[]
   disclosure?: string
   cols?: 2 | 3
+  /** light: 밝은 커머스 페이지용 (visual 카드) */
+  tone?: 'dark' | 'light'
 }
 
 // ─── 수익 추적 활성 statuses ─────────────────────────────────────────────────
@@ -41,7 +43,9 @@ export function AffiliateSection({
   items,
   disclosure,
   cols = 3,
+  tone = 'dark',
 }: AffiliateSectionProps) {
+  const light = tone === 'light'
   // coming_soon 자동 제외
   const visibleItems = items.filter((i) => i.status !== 'coming_soon')
   if (visibleItems.length === 0) return null
@@ -56,34 +60,34 @@ export function AffiliateSection({
       : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
 
   return (
-    <section className="py-16 px-6 bg-[#111] border-t border-white/8">
+    <section className={light ? 'py-16 px-6 bg-white border-t border-[#e0f2fe]' : 'py-16 px-6 bg-[#111] border-t border-white/8'}>
       <div className="max-w-6xl mx-auto">
         <div className="mb-10">
-          <p className="text-teal-500/60 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3">
+          <p className={`text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3 ${light ? 'text-brand-mid' : 'text-teal-500/60'}`}>
             {eyebrow}
           </p>
-          <h2 className="text-2xl font-black text-white mb-2">{title}</h2>
+          <h2 className={`text-2xl font-black mb-2 ${light ? 'text-[#111827]' : 'text-white'}`}>{title}</h2>
           {subtitle && (
-            <p className="text-white/40 text-sm leading-relaxed max-w-2xl">{subtitle}</p>
+            <p className={`text-sm leading-relaxed max-w-2xl ${light ? 'text-[#64748b]' : 'text-white/40'}`}>{subtitle}</p>
           )}
         </div>
         <div className={`grid ${gridCols} gap-4`}>
           {visibleItems.map((item) => (
-            <AffiliateCard key={item.id} item={item} />
+            <AffiliateCard key={item.id} item={item} visual={light} />
           ))}
         </div>
         {/* Disclosure — active_affiliate: 제휴 문구, public_external만 있을 때: 일반 외부 링크 문구 */}
         {showDisclosure && (
           <div className="mt-8 space-y-1 max-w-2xl">
             {disclosure ? (
-              <p className="text-white/20 text-[0.65rem] leading-relaxed">{disclosure}</p>
+              <p className={`text-[0.65rem] leading-relaxed ${light ? 'text-[#a8a29e]' : 'text-white/20'}`}>{disclosure}</p>
             ) : hasActiveAffiliate ? (
               <>
-                <p className="text-white/20 text-[0.65rem] leading-relaxed">{DISCLOSURE_AFFILIATE}</p>
-                <p className="text-white/15 text-[0.65rem] leading-relaxed">{DISCLOSURE_AFFILIATE_LINE2}</p>
+                <p className={`text-[0.65rem] leading-relaxed ${light ? 'text-[#a8a29e]' : 'text-white/20'}`}>{DISCLOSURE_AFFILIATE}</p>
+                <p className={`text-[0.65rem] leading-relaxed ${light ? 'text-[#c0bcb6]' : 'text-white/15'}`}>{DISCLOSURE_AFFILIATE_LINE2}</p>
               </>
             ) : (
-              <p className="text-white/20 text-[0.65rem] leading-relaxed">{DISCLOSURE_PUBLIC_EXTERNAL}</p>
+              <p className={`text-[0.65rem] leading-relaxed ${light ? 'text-[#a8a29e]' : 'text-white/20'}`}>{DISCLOSURE_PUBLIC_EXTERNAL}</p>
             )}
           </div>
         )}
