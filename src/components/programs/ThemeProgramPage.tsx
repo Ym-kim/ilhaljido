@@ -5,6 +5,9 @@ import Link from 'next/link'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticThemedUpcoming } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 type Props = {
   heroImage: string
@@ -67,6 +70,14 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
           )}
         </div>
       </section>
+
+      {/* 여행 준비 크로스셀 — Wakation Select */}
+      <AffiliateSection
+        eyebrow="Wakation Select"
+        title={tr('prep_title')}
+        subtitle={tr('prep_sub')}
+        items={GLOBAL_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+      />
 
       <section className="py-16 px-6 bg-[#0d0d0d]">
         <div className="max-w-2xl mx-auto text-center">

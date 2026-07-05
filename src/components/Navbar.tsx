@@ -40,8 +40,9 @@ const NAV_ITEMS: NavItem[] = [
     items: [
       { labelKey: 'nav_growth', href: '/growth' },
       { labelKey: 'nav_learn', href: '/learn' },
-      { labelKey: 'mega_learn_ai', href: '/learn' },
+      { labelKey: 'mega_learn_ai', href: '/growth' },
       { labelKey: 'nav_founder_net', href: '/programs/networking' },
+      { labelKey: 'nav_select_learn', href: '/select/learn', hasDivider: true },
     ],
   },
   {
@@ -51,6 +52,8 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_prog_language', href: '/language' },
       { labelKey: 'nav_prog_globalstay', href: '/programs/global' },
       { labelKey: 'nav_visa', href: '/visa-ai' },
+      { labelKey: 'nav_select_hotel', href: '/select/hotel', hasDivider: true },
+      { labelKey: 'nav_select_esim', href: '/select/esim' },
     ],
   },
   {

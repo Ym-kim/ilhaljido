@@ -9,6 +9,31 @@ import type { Lang } from '@/lib/i18n'
 type Overlay = Partial<Pick<AffiliateItem, 'productTitle' | 'destination' | 'desc' | 'cta' | 'badge'>>
 
 const EN: Record<string, Overlay> = {
+  'hotel-booking': {
+    desc: 'Book stays worldwide — great for long stays, apartments and serviced residences.',
+    cta: 'Book a stay',
+    badge: 'Long stay',
+  },
+  'hotel-tripcom': {
+    desc: 'Stays, flights and tours in one place. Search long-stay hotels by destination.',
+    cta: 'Find stays',
+    badge: 'Stay · Flight',
+  },
+  'activity-kkday': {
+    desc: 'Local tours, activities, tickets and transit passes across Japan, Taiwan and SEA.',
+    cta: 'Book activities',
+    badge: 'Experiences',
+  },
+  'esim-airalo': {
+    desc: 'Instant eSIM for 200+ countries. Install before you land — skip the SIM queue.',
+    cta: 'Get an eSIM',
+    badge: 'eSIM',
+  },
+  'edu-inflearn': {
+    desc: 'IT, dev, design and business courses. Learn on the move, apply on arrival.',
+    cta: 'Browse courses',
+    badge: 'Online courses',
+  },
   'feat-tokyo-hotel': {
     productTitle: 'Tokyo long-stay hotels',
     destination: 'Tokyo · Japan',
@@ -68,6 +93,31 @@ const EN: Record<string, Overlay> = {
 }
 
 const JP: Record<string, Overlay> = {
+  'hotel-booking': {
+    desc: '世界中の宿泊予約。長期滞在・アパートメント・サービスレジデンスに最適。',
+    cta: '宿を予約',
+    badge: '長期滞在',
+  },
+  'hotel-tripcom': {
+    desc: '宿・航空券・ツアーをひとつに。目的地別の長期滞在ホテルを検索。',
+    cta: '宿を探す',
+    badge: '宿 · 航空',
+  },
+  'activity-kkday': {
+    desc: '現地ツアー・アクティビティ・入場券・交通パス。日本・台湾・東南アジアが充実。',
+    cta: '体験を予約',
+    badge: '現地体験',
+  },
+  'esim-airalo': {
+    desc: '200カ国対応のeSIMを即時購入。到着前にインストールして並ばず接続。',
+    cta: 'eSIMを購入',
+    badge: 'eSIM',
+  },
+  'edu-inflearn': {
+    desc: 'IT・開発・デザイン・ビジネス講座。移動中に学び、到着後すぐ実践。',
+    cta: '講座を見る',
+    badge: 'オンライン講座',
+  },
   'feat-tokyo-hotel': {
     productTitle: '東京の長期滞在ホテル',
     destination: '東京 · 日本',
