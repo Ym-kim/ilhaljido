@@ -2,21 +2,14 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, MapPin, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
-import { IconTile } from '@/components/brand/IconTile'
 import { useLang } from '@/context/LanguageContext'
-import { getHomeCategories, getDomesticCurrent } from '@/lib/i18n'
-import {
-  AiIcon,
-  CATEGORY_ACCENT,
-  CATEGORY_GLOW,
-  CATEGORY_ICONS,
-  ICON_STROKE,
-  PARTNER_ICONS,
-} from '@/lib/icons'
+import { getHomeCategories, getDomesticCurrent, getDomesticThemedUpcoming } from '@/lib/i18n'
+import { AiIcon, ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 const PARTNER_ICON_MAP = {
   government: PARTNER_ICONS.government,
@@ -26,12 +19,22 @@ const PARTNER_ICON_MAP = {
 }
 
 const DEST_FILTERS = [
-  { id: 'all',     label: '전체',   flag: '🌏' },
-  { id: 'japan',   label: '일본',   flag: '🇯🇵' },
-  { id: 'bali',    label: '발리',   flag: '🇮🇩' },
-  { id: 'vietnam', label: '베트남', flag: '🇻🇳' },
+  { id: 'all',     labelKey: 'filter_all' },
+  { id: 'japan',   labelKey: 'filter_japan' },
+  { id: 'bali',    labelKey: 'filter_bali' },
+  { id: 'vietnam', labelKey: 'filter_vietnam' },
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
+
+// 히어로 목적지 퀵칩 — /select/hotel 목적지 섹션으로 연결
+const HERO_DEST_KEYS = [
+  'dest_tokyo',
+  'dest_osaka',
+  'dest_fukuoka',
+  'dest_bali',
+  'dest_danang',
+  'dest_jeju',
+] as const
 
 const CATEGORY_PHOTOS: Record<string, string> = {
   teal:   'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
@@ -69,8 +72,9 @@ export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   const categories = getHomeCategories()
   const recruitingPrograms = getDomesticCurrent(lang)
+  const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
 
-  const featuredItems = activeFilter === 'all'
+  const featuredItems = (activeFilter === 'all'
     ? HOME_FEATURED_ITEMS
     : HOME_FEATURED_ITEMS.filter((i) => {
         if (activeFilter === 'japan')   return i.country === '일본'
@@ -78,36 +82,97 @@ export default function HomePage() {
         if (activeFilter === 'vietnam') return i.country === '베트남'
         return true
       })
+  ).map((i) => localizeAffiliateItem(i, lang))
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f]">
+    <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
-      {/* ── 히어로 ── */}
-      <section className="relative min-h-[92vh] flex items-end overflow-hidden dark-surface">
+      {/* ── 히어로 — 예약 의도형 ── */}
+      <section className="relative min-h-[94vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85"
+            src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1800&q=85"
             alt=""
             className="w-full h-full object-cover"
             fetchPriority="high"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/40 to-[#04121f]/15" />
         </div>
-        <div className="relative w-full max-w-6xl mx-auto px-6 pb-24 md:pb-28">
-          <SectionEyebrow onDark pill>
-            {tr('hero_badge')}
-          </SectionEyebrow>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.08] mb-6 whitespace-pre-line tracking-tight">
-            {tr('hero_sub')}
+        <div className="relative w-full max-w-6xl mx-auto px-6 pb-16 md:pb-20">
+          {/* 신뢰 배지 라인 */}
+          <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
+            <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-300 animate-pulse inline-block" />
+              {tr('h3_badge_pilot')}
+            </span>
+            <span className="hidden sm:inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1.5 rounded-full bg-white/8 text-white/90 border border-white/15 backdrop-blur-md">
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-300" strokeWidth={ICON_STROKE} />
+              {tr('h3_badge_partner')}
+            </span>
+          </div>
+
+          <h1
+            className="animate-rise text-[2.6rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-5 tracking-tight"
+            style={{ animationDelay: '0.15s' }}
+          >
+            {tr('h3_title_pre')}
+            <br />
+            <span className="text-gradient-ocean">{tr('h3_title_accent')}</span>
+            {tr('h3_title_post')}
           </h1>
-          <p className="text-lead-on-dark max-w-2xl mb-10">{tr('hero_desc')}</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/programs" className="btn-primary">
-              {tr('hero_cta1')}
-            </Link>
-            <Link href="/visa-ai" className="btn-secondary">
-              {tr('hero_cta2')}
-            </Link>
+          <p
+            className="animate-rise text-white/90 text-base sm:text-lg font-medium max-w-xl mb-8"
+            style={{ animationDelay: '0.25s' }}
+          >
+            {tr('h3_sub')}
+          </p>
+
+          {/* 목적지 퀵서치 카드 */}
+          <div
+            className="animate-rise max-w-3xl rounded-3xl bg-black/40 border border-white/15 backdrop-blur-xl p-5 sm:p-6 mb-6"
+            style={{ animationDelay: '0.35s' }}
+          >
+            <p className="text-white/80 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
+              <Search className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+              {tr('h3_search_label')}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-5">
+              {HERO_DEST_KEYS.map((k) => (
+                <Link key={k} href="/select/hotel" className="chip-dest">
+                  {tr(k)}
+                </Link>
+              ))}
+            </div>
+            <div className="h-px bg-white/10 mb-5" />
+            <div className="flex flex-col sm:flex-row gap-2.5">
+              <Link
+                href="/select/hotel"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)]"
+              >
+                <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                {tr('h3_cta_stay')}
+              </Link>
+              <Link
+                href="/programs"
+                className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl border border-white/25 transition-all"
+              >
+                {tr('h3_cta_programs')}
+                <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              </Link>
+            </div>
+          </div>
+
+          {/* 통계 인라인 스트립 */}
+          <div
+            className="animate-rise flex flex-wrap items-center gap-x-6 gap-y-2"
+            style={{ animationDelay: '0.45s' }}
+          >
+            {STAT_KEYS.map(([v, l]) => (
+              <p key={l} className="text-white/75 text-[0.8125rem] font-medium">
+                <span className="text-white font-black text-base mr-1.5">{tr(v)}</span>
+                {tr(l)}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -120,21 +185,19 @@ export default function HomePage() {
             <div>
               <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
-                WAKATION SELECT · 지금 예약 가능
+                Wakation Select · {tr('h3_sel_live')}
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#141414] leading-snug tracking-tight">
-                워케이션 목적지 숙소,<br className="sm:hidden" />
-                <span className="text-brand-mid"> 지금 바로 예약</span>하세요
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight">
+                {tr('h3_sel_title_pre')}<br className="sm:hidden" />
+                <span className="text-brand-mid">{tr('h3_sel_title_accent')}</span>
               </h2>
-              <p className="text-[#9a9a9a] text-[0.8125rem] mt-2">
-                Booking.com · Trip.com 제휴 · 장기체류 특화
-              </p>
+              <p className="text-[#64748b] text-sm mt-2.5">{tr('h3_sel_sub')}</p>
             </div>
             <Link
               href="/select"
               className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
             >
-              전체 상품 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              {tr('view_all')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
 
@@ -144,13 +207,13 @@ export default function HomePage() {
               <button
                 key={f.id}
                 onClick={() => setActiveFilter(f.id)}
-                className={`shrink-0 inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full border transition-all duration-150 ${
+                className={`shrink-0 inline-flex items-center text-sm font-semibold px-4.5 py-2 rounded-full border transition-all duration-150 ${
                   activeFilter === f.id
-                    ? 'bg-[#141414] border-[#141414] text-white shadow-sm'
-                    : 'bg-white border-[#dbeafe] text-[#6b6b6b] hover:border-[#93c5fd] hover:text-[#141414]'
+                    ? 'bg-[#111827] border-[#111827] text-white shadow-sm'
+                    : 'bg-white border-[#dbeafe] text-[#475569] hover:border-[#93c5fd] hover:text-[#111827]'
                 }`}
               >
-                <span>{f.flag}</span> {f.label}
+                {tr(f.labelKey)}
               </button>
             ))}
           </div>
@@ -163,42 +226,28 @@ export default function HomePage() {
           ))}
           {featuredItems.length === 0 && (
             <div className="col-span-2 lg:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f0f9ff] border border-[#dbeafe]">
-              <p className="text-[#a0a0a0] text-sm">준비 중인 목적지입니다</p>
+              <p className="text-[#94a3b8] text-sm">{tr('h3_sel_empty')}</p>
             </div>
           )}
         </div>
 
         {/* 디스클로저 */}
         <div className="mt-6 px-6 max-w-6xl mx-auto space-y-1">
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
-            * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
-            외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
-            Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
+          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
+            {tr('h3_disclosure')}
           </p>
         </div>
       </section>
 
-      {/* ── 통계 ── */}
-      <section className="bg-white border-b border-[#dbeafe] py-12 md:py-14">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {STAT_KEYS.map(([v, l]) => (
-            <div key={l}>
-              <p className="text-3xl md:text-4xl font-black text-[#141414] mb-2">{tr(v)}</p>
-              <p className="text-sm font-semibold text-[#7a7a7a]">{tr(l)}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 지금 모집 중 ── */}
-      <section className="bg-[#0f0f0f] border-b border-white/8 py-14 md:py-16 px-6">
+      {/* ── 지금 모집 중 / 다음 라인업 ── */}
+      <section className="bg-gradient-to-b from-[#04121f] to-[#0a1e33] border-b border-white/8 py-16 md:py-20 px-6 dark-surface">
         <div className="max-w-6xl mx-auto">
-          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-6 flex items-center gap-2">
-            {recruitingPrograms.length > 0 && <span className="w-2 h-2 rounded-full bg-brand-mid animate-pulse inline-block" />}
-            {recruitingPrograms.length > 0 ? tr('home_recruiting_eyebrow') : tr('home_recruiting_coming_title')}
-          </p>
           {recruitingPrograms.length > 0 ? (
             <div className="space-y-5">
+              <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-1 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse inline-block" />
+                {tr('home_recruiting_eyebrow')}
+              </p>
               {recruitingPrograms.map((p) => (
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
                   <div className="flex flex-col md:flex-row">
@@ -247,13 +296,64 @@ export default function HomePage() {
               ))}
             </div>
           ) : (
-            <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-8 text-center">
-              <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
-              <p className="text-white/50 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
-              <a href="mailto:wakation.sf@gmail.com" className="inline-flex items-center gap-2 bg-white/10 text-white font-bold px-6 py-3 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
-                {tr('inquire')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-              </a>
-            </div>
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8">
+                <div>
+                  <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse inline-block" />
+                    Wakation Hosted · {tr('h3_lineup_eyebrow')}
+                  </p>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight">
+                    {tr('h3_lineup_title_pre')}
+                    <span className="text-sky-400">{tr('h3_lineup_title_accent')}</span>
+                  </h2>
+                  <p className="text-white/75 text-sm mt-2.5 max-w-xl leading-relaxed">
+                    {tr('h3_lineup_sub')}
+                  </p>
+                </div>
+                <Link
+                  href="/apply"
+                  className="shrink-0 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(14,165,233,0.4)]"
+                >
+                  <Bell className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                  {tr('h3_lineup_cta')}
+                </Link>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {upcomingPrograms.map((p) => (
+                  <Link
+                    key={p.id}
+                    href="/apply"
+                    className="group relative rounded-3xl overflow-hidden block h-64 sm:h-72 border border-white/10 hover:border-sky-400/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)]"
+                  >
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/30 to-transparent" />
+                    <span className="absolute top-4 left-4 text-[0.7rem] font-bold px-2.5 py-1 rounded-full bg-black/55 text-white border border-white/20 backdrop-blur-sm">
+                      {p.theme}
+                    </span>
+                    <span className="absolute top-4 right-4 text-[0.7rem] font-bold px-2.5 py-1 rounded-full bg-sky-500/90 text-white shadow-md">
+                      {p.date}
+                    </span>
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <p className="text-white/70 text-xs flex items-center gap-1 mb-1.5">
+                        <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                        {p.region}
+                      </p>
+                      <h3 className="text-white font-black text-lg leading-snug mb-2.5">{p.name}</h3>
+                      <span className="inline-flex items-center gap-1.5 text-sky-300 text-[0.8125rem] font-bold group-hover:gap-2.5 transition-all">
+                        <Bell className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                        {tr('h3_lineup_card_cta')}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </section>
@@ -266,7 +366,7 @@ export default function HomePage() {
             <SectionTitle className="mb-2">
               {tr('home_platform_title')}
             </SectionTitle>
-            <p className="text-[#6b6b6b] text-sm leading-relaxed max-w-lg">{tr('home_platform_desc')}</p>
+            <p className="text-[#475569] text-sm leading-relaxed max-w-lg">{tr('home_platform_desc')}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
             {categories.map((cat) => {
@@ -307,7 +407,7 @@ export default function HomePage() {
             <SectionTitle className="mb-2">
               {tr('home_theme_title')}
             </SectionTitle>
-            <p className="text-[#6b6b6b] text-sm leading-relaxed max-w-lg">{tr('home_theme_desc')}</p>
+            <p className="text-[#475569] text-sm leading-relaxed max-w-lg">{tr('home_theme_desc')}</p>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {THEME_ITEMS.map((t) => (
@@ -322,10 +422,9 @@ export default function HomePage() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3.5">
-                  <span className="text-lg leading-none block mb-1">{t.emoji}</span>
-                  <p className="text-white font-bold text-sm leading-snug">{tr(t.labelKey)}</p>
+                  <p className="text-white font-bold text-sm sm:text-[0.9375rem] leading-snug">{tr(t.labelKey)}</p>
                 </div>
               </Link>
             ))}
@@ -397,28 +496,28 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
               <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">ABOUT WAKATION</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#141414] mb-6 leading-tight">
-                Wakation이란?
+              <h2 className="text-3xl md:text-4xl font-black text-[#111827] mb-6 leading-tight">
+                {tr('h3_about_title')}
               </h2>
-              <p className="text-[#4a4a4a] text-base leading-relaxed mb-6">
-                Wakation은 <strong className="text-[#141414]">일하는 사람을 위한 체류·업무·성장 플랫폼</strong>입니다. 단순한 여행이나 숙박 예약이 아니라, 워케이션·어학연수·시장조사·비자 정보·장기체류까지 — 일과 이동을 연결하는 모든 경험을 하나의 플랫폼에서 제공합니다.
+              <p className="text-[#374151] text-base leading-relaxed mb-6">
+                {tr('h3_about_p1')}
               </p>
-              <p className="text-[#7a7a7a] text-sm leading-relaxed mb-8">
-                프리랜서·1인 창업자·리모트워커·디지털 노마드를 위해 설계되었으며, 현재 베타 운영 중입니다. Wakation이 직접 기획하고 운영하는 <strong className="text-[#4a4a4a]">Hosted 프로그램</strong>을 중심으로, 검증된 외부 파트너 상품은 <strong className="text-[#4a4a4a]">Select 상품</strong>으로 순차 연결 예정입니다.
+              <p className="text-[#64748b] text-sm leading-relaxed mb-8">
+                {tr('h3_about_p2')}
               </p>
               <Link href="/programs" className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
-                전체 프로그램 보기 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
             <div className="space-y-3">
               {([
-                { label: 'Wakation Hosted', desc: 'Wakation이 직접 기획·운영하는 공식 프로그램. 국내 워케이션, 해외 성장캠프, 시장조사단 등 전 과정을 책임집니다.', color: 'border-brand-mid/20 bg-white' },
-                { label: 'Wakation Select', desc: '목적지별 숙소·현지 체험·eSIM을 큐레이션합니다. Booking.com, Trip.com, KKday, Airalo 등 검증된 외부 파트너 상품을 지금 바로 확인할 수 있습니다.', color: 'border-blue-200 bg-white' },
-                { label: 'Wakation Partner', desc: '지자체·기업·공간 운영사와의 B2B 제휴를 통해 Wakation 생태계를 함께 만들어갑니다.', color: 'border-purple-200 bg-white' },
+                { label: 'Wakation Hosted', descKey: 'h3_about_hosted_d', color: 'border-brand-mid/20 bg-white' },
+                { label: 'Wakation Select', descKey: 'h3_about_select_d', color: 'border-blue-200 bg-white' },
+                { label: 'Wakation Partner', descKey: 'h3_about_partner_d', color: 'border-purple-200 bg-white' },
               ] as const).map((item) => (
                 <div key={item.label} className={`rounded-2xl border p-6 shadow-sm ${item.color}`}>
-                  <p className="text-[#141414] font-black text-sm mb-2">{item.label}</p>
-                  <p className="text-[#7a7a7a] text-sm leading-relaxed">{item.desc}</p>
+                  <p className="text-[#111827] font-black text-sm mb-2">{item.label}</p>
+                  <p className="text-[#64748b] text-sm leading-relaxed">{tr(item.descKey)}</p>
                 </div>
               ))}
             </div>
@@ -465,22 +564,16 @@ export default function HomePage() {
               }),
             }}
           />
-          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">자주 묻는 질문</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#141414] mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">{tr('h3_faq_eyebrow')}</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111827] mb-10">{tr('h3_faq_title')}</h2>
           <div className="divide-y divide-[#dbeafe]">
-            {([
-              { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
-              { q: 'Wakation은 어떤 서비스인가요?', a: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
-              { q: 'Hosted 프로그램과 Select 상품의 차이는?', a: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 제휴 서비스입니다.' },
-              { q: '비자·체류 AI 서비스는 법적 효력이 있나요?', a: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
-              { q: '파트너십·제휴 문의는 어떻게 하나요?', a: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
-            ] as const).map(({ q, a }, i) => (
-              <details key={i} className="group py-5 cursor-pointer">
+            {([1, 2, 3, 4, 5] as const).map((n) => (
+              <details key={n} className="group py-5 cursor-pointer">
                 <summary className="flex items-center justify-between list-none gap-4">
-                  <span className="text-[#141414] font-bold text-[0.9375rem] leading-snug">{q}</span>
-                  <span className="text-[#c0bdb8] group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
+                  <span className="text-[#111827] font-bold text-[0.9375rem] leading-snug">{tr(`h3_faq_q${n}`)}</span>
+                  <span className="text-[#94a3b8] group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
                 </summary>
-                <p className="text-[#6b6b6b] text-sm leading-relaxed mt-3 pr-8">{a}</p>
+                <p className="text-[#475569] text-sm leading-relaxed mt-3 pr-8">{tr(`h3_faq_a${n}`)}</p>
               </details>
             ))}
           </div>
@@ -508,6 +601,24 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* ── 모바일 스티키 예약 바 ── */}
+      <div className="sticky-cta-bar flex md:hidden">
+        <Link
+          href="/select/hotel"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-brand-mid text-white font-bold text-sm px-4 py-3 rounded-xl"
+        >
+          <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          {tr('h3_bar_stay')}
+        </Link>
+        <Link
+          href="/apply"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#0a1e33] text-white font-bold text-sm px-4 py-3 rounded-xl"
+        >
+          <Bell className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          {tr('h3_bar_apply')}
+        </Link>
+      </div>
     </div>
   )
 }
