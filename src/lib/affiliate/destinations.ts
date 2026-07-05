@@ -33,7 +33,8 @@ export interface DestinationEntry {
   city: string       // 한국어 도시명
   cityEn: string     // 영문 도시명 (URL 등에 사용)
   country: string    // 한국어 국가명
-  gradient: string   // Tailwind gradient for card bg
+  gradient: string   // Tailwind gradient for card bg (photo 없을 때 fallback)
+  photo?: string     // 목적지 실사진 URL (카드 헤더)
   tags: string[]     // 최대 2개
   links: ServiceLink[]
 }
@@ -59,6 +60,7 @@ export interface LearnCategory {
 export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   {
     id: 'japan-tokyo',
+    photo: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80',
     flag: '🗼',
     city: '도쿄',
     cityEn: 'Tokyo',
@@ -84,6 +86,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-osaka',
+    photo: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
     flag: '🏯',
     city: '오사카',
     cityEn: 'Osaka',
@@ -109,6 +112,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-fukuoka',
+    photo: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
     flag: '🍜',
     city: '후쿠오카',
     cityEn: 'Fukuoka',
@@ -134,6 +138,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'vietnam-danang',
+    photo: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
     flag: '🌊',
     city: '다낭',
     cityEn: 'Da Nang',
@@ -159,6 +164,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'vietnam-hcmc',
+    photo: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=700&q=80',
     flag: '🛵',
     city: '호치민',
     cityEn: 'Ho Chi Minh City',
@@ -177,6 +183,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'indonesia-bali',
+    photo: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
     flag: '🌴',
     city: '발리',
     cityEn: 'Bali',
@@ -202,6 +209,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'portugal-lisbon',
+    photo: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
     flag: '🌉',
     city: '리스본',
     cityEn: 'Lisbon',
@@ -227,6 +235,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-jeju',
+    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
     flag: '🍊',
     city: '제주',
     cityEn: 'Jeju',
@@ -252,6 +261,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-yangyang',
+    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
     flag: '🏄',
     city: '양양',
     cityEn: 'Yangyang',
@@ -277,6 +287,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-gangneung',
+    photo: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=80',
     flag: '🌊',
     city: '강릉',
     cityEn: 'Gangneung',
@@ -302,6 +313,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
 export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
   {
     id: 'activity-japan',
+    photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80',
     flag: '🎌',
     city: '일본 전체',
     cityEn: 'Japan',
@@ -320,6 +332,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'activity-japan-fukuoka',
+    photo: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=700&q=80',
     flag: '🍜',
     city: '후쿠오카',
     cityEn: 'Fukuoka',
@@ -338,6 +351,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'activity-vietnam',
+    photo: 'https://images.unsplash.com/photo-1540541338537-1d4d4ae5d526?auto=format&fit=crop&w=700&q=80',
     flag: '🌿',
     city: '베트남 전체',
     cityEn: 'Vietnam',
@@ -356,6 +370,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'activity-bali',
+    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
     flag: '🌺',
     city: '발리',
     cityEn: 'Bali',
@@ -381,6 +396,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
 export const ESIM_DESTINATIONS: DestinationEntry[] = [
   {
     id: 'esim-japan',
+    photo: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80',
     flag: '🇯🇵',
     city: '일본',
     cityEn: 'Japan',
@@ -399,6 +415,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-vietnam',
+    photo: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
     flag: '🇻🇳',
     city: '베트남',
     cityEn: 'Vietnam',
@@ -417,6 +434,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-indonesia',
+    photo: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
     flag: '🇮🇩',
     city: '인도네시아·발리',
     cityEn: 'Indonesia',
@@ -435,6 +453,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-portugal',
+    photo: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
     flag: '🇵🇹',
     city: '포르투갈',
     cityEn: 'Portugal',
@@ -453,6 +472,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-korea',
+    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
     flag: '🇰🇷',
     city: '한국',
     cityEn: 'South Korea',
@@ -471,6 +491,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-global',
+    photo: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=700&q=80',
     flag: '🌍',
     city: '글로벌',
     cityEn: 'Global',

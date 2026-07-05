@@ -70,6 +70,8 @@ const STAT_KEYS = [
 export default function HomePage() {
   const { lang, tr } = useLang()
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
+  // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
+  const [heroDest, setHeroDest] = useState<(typeof HERO_DESTS)[number] | null>(null)
   const categories = getHomeCategories()
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
@@ -138,19 +140,25 @@ export default function HomePage() {
             </p>
             <div className="flex flex-wrap gap-2 mb-5">
               {HERO_DESTS.map((d) => (
-                <Link key={d.labelKey} href={`/select/hotel#${d.anchor}`} className="chip-dest">
+                <button
+                  key={d.labelKey}
+                  type="button"
+                  onClick={() => setHeroDest(heroDest?.anchor === d.anchor ? null : d)}
+                  className={`chip-dest ${heroDest?.anchor === d.anchor ? 'chip-dest-active' : ''}`}
+                >
                   {tr(d.labelKey)}
-                </Link>
+                </button>
               ))}
             </div>
             <div className="h-px bg-white/10 mb-5" />
             <div className="flex flex-col sm:flex-row gap-2.5">
               <Link
-                href="/select/hotel"
+                href={heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel'}
                 className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)]"
               >
                 <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
                 {tr('h3_cta_stay')}
+                {heroDest && <span className="opacity-90">· {tr(heroDest.labelKey)}</span>}
               </Link>
               <Link
                 href="/programs"

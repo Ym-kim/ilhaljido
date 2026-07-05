@@ -3,9 +3,15 @@
 import Link from 'next/link'
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
+import { useHashScroll } from '@/hooks/useHashScroll'
+import { useLang } from '@/context/LanguageContext'
+import { localizeLearnCategory } from '@/lib/affiliate/localizeDest'
 import { LEARN_CATEGORIES } from '@/lib/affiliate/destinations'
 
 export default function LearnSelectPage() {
+  const { lang, tr } = useLang()
+  useHashScroll()
+
   return (
     <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
@@ -25,16 +31,16 @@ export default function LearnSelectPage() {
       <section className="px-6 pt-6 pb-14">
         <div className="max-w-6xl mx-auto">
           <p className="text-amber-600 text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3">
-            WAKATION SELECT · 강의·학습
+            Wakation Select · {tr('sell_cat')}
           </p>
           <h1 className="text-3xl md:text-4xl font-bold text-[#111827] mb-3">
-            🎓 워케이션 중 성장하는 강의
+            {tr('sel_cat_learn_t')}
           </h1>
           <p className="text-[#64748b] text-sm leading-relaxed max-w-xl">
-            이동 중, 카페에서, 숙소에서. 워케이션의 여유 시간을 인프런 온라인 강의로 채우세요.
+            {tr('sell_desc')}
           </p>
           <p className="text-amber-600/80 text-xs mt-3 font-medium">
-            ※ 현재 파트너 강의 링크 준비 중. 카테고리 페이지로 이동 후 탐색 가능합니다.
+            {tr('sell_note')}
           </p>
         </div>
       </section>
@@ -43,10 +49,11 @@ export default function LearnSelectPage() {
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
           <p className="text-[#94a3b8] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
-            강의 카테고리
+            {tr('sell_label')}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {LEARN_CATEGORIES.map((cat) => {
+            {LEARN_CATEGORIES.map((raw) => {
+              const cat = localizeLearnCategory(raw, lang)
               const isPending = cat.status === 'approved_needs_course_links'
               return (
                 <a
@@ -63,7 +70,7 @@ export default function LearnSelectPage() {
                       {isPending && (
                         <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600/80 border border-amber-500/15">
                           <Clock className="w-2.5 h-2.5" />
-                          링크 준비중
+                          {tr('sel_badge_prep')}
                         </span>
                       )}
                       <ArrowUpRight
@@ -101,10 +108,9 @@ export default function LearnSelectPage() {
             <div className="flex items-start gap-4">
               <span className="text-3xl">📚</span>
               <div>
-                <p className="text-[#111827] font-black mb-1">인프런이란?</p>
+                <p className="text-[#111827] font-black mb-1">{tr('sell_inflearn_t')}</p>
                 <p className="text-[#64748b] text-sm leading-relaxed">
-                  국내 최대 개발·IT·창업 온라인 강의 플랫폼. 40만 개 이상의 강의. 한국어 자막·커뮤니티 완비.
-                  구독형 또는 단건 구매로 수강 가능합니다.
+                  {tr('sell_inflearn_d')}
                 </p>
               </div>
             </div>
@@ -116,11 +122,10 @@ export default function LearnSelectPage() {
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
           <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
-            * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
-            외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
+            {tr('sel_disc_1')}
           </p>
           <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
-            Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
+            {tr('sel_disc_2')}
           </p>
         </div>
       </section>

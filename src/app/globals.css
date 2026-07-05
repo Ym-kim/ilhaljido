@@ -246,6 +246,13 @@ nav ul { list-style: none; }
   border-color: rgba(255, 255, 255, 0.45);
   transform: translateY(-1px);
 }
+.chip-dest-active,
+.chip-dest-active:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #04121f;
+  font-weight: 800;
+}
 
 /* 모바일 스티키 예약 바 */
 .sticky-cta-bar {
