@@ -9,6 +9,7 @@ import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { HOTEL_DESTINATIONS } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { FEATURED_STAYS } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 
@@ -74,8 +75,24 @@ export default function HotelSelectPage() {
         </div>
       </section>
 
+      {/* 에디터 추천 개별 숙소 — 실존 검증 상품 */}
+      <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
+        <div className="max-w-6xl mx-auto pt-10">
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+            {tr('selh_editors')}
+          </p>
+          <p className="text-[#64748b] text-sm mb-6">{tr('selh_editors_d')}</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {FEATURED_STAYS.map((item) => (
+              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Partner overview */}
-      <section className="px-6 pb-10 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
+      <section className="px-6 pb-10 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
           <p className="text-[#94a3b8] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
             {tr('selh_partners')}

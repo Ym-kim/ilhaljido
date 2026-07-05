@@ -6,7 +6,7 @@ import type { Lang } from '@/lib/i18n'
 // 새 홈 피처드 상품 추가 시 여기에 EN/JP 항목도 함께 추가할 것
 // ─────────────────────────────────────────────────────────────────────────────
 
-type Overlay = Partial<Pick<AffiliateItem, 'name' | 'displayTitle' | 'productTitle' | 'destination' | 'desc' | 'cta' | 'badge'>>
+type Overlay = Partial<Pick<AffiliateItem, 'name' | 'displayTitle' | 'productTitle' | 'destination' | 'desc' | 'cta' | 'badge' | 'priceFrom'>>
 
 const EN: Record<string, Overlay> = {
   'hotel-booking': {
@@ -55,6 +55,83 @@ const EN: Record<string, Overlay> = {
     desc: 'Local hotels and apartments — long-stay options for research trips.',
     cta: 'Book a stay',
     badge: 'Long stay',
+  },
+  'stay-millennials-shibuya': {
+    priceFrom: '₩40,000+',
+    destination: 'Tokyo · Japan',
+    desc: 'Two floors of .andwork coworking inside the hotel. 6 min from Shibuya station, free coffee and happy hour.',
+    cta: 'See rooms', badge: 'Built-in coworking',
+  },
+  'stay-lively-osaka': {
+    priceFrom: '₩80,000+',
+    destination: 'Osaka · Japan',
+    desc: 'Seven work-friendly lounges in the Honmachi business district. Rated 8.7 by 2,600+ guests.',
+    cta: 'See rooms', badge: 'Lounge work',
+  },
+  'stay-webase-hakata': {
+    priceFrom: '₩30,000+',
+    destination: 'Fukuoka · Japan',
+    desc: 'Free 9th-floor coworking space with terrace. 3 min from Nakasu-Kawabata station, rated 8.6.',
+    cta: 'See rooms', badge: 'Free coworking',
+  },
+  'stay-tribal-bali': {
+    priceFrom: '₩20,000+',
+    destination: 'Canggu, Bali · Indonesia',
+    desc: "Bali's first purpose-built coworking stay. Poolside workspace and a real nomad community.",
+    cta: 'See rooms', badge: 'Nomad favorite',
+  },
+  'stay-chicland-danang': {
+    priceFrom: '₩80,000+',
+    destination: 'Da Nang · Vietnam',
+    desc: '2 min to My Khe beach, café-style lounge and rooftop pool. Near the An Thuong nomad area, rated 8.6.',
+    cta: 'See rooms', badge: 'Beach work',
+  },
+  'stay-playce-jeju': {
+    priceFrom: '₩70,000+',
+    destination: 'Seongsan, Jeju · Korea',
+    desc: 'Rooms with separate work desks and dedicated workation packages. Near Seongsan Ilchulbong.',
+    cta: 'See rooms', badge: 'Workation-ready',
+  },
+  'stay-kantary-chiangmai': {
+    priceFrom: '₩80,000+',
+    destination: 'Nimman, Chiang Mai · Thailand',
+    desc: 'Serviced apartments with kitchenettes, built for long stays. Walk to Maya Mall and One Nimman.',
+    cta: 'See rooms', badge: 'Long stay',
+  },
+  'act-tokyo-disney': {
+    priceFrom: '₩80,000+',
+    productTitle: 'Tokyo Disneyland · DisneySea ticket',
+    destination: 'Tokyo · Japan',
+    desc: '1-day pass with instant mobile QR entry. Make a workation weekend special.',
+    cta: 'View product', badge: 'Best seller',
+  },
+  'act-osaka-usj': {
+    priceFrom: '₩80,000+',
+    productTitle: 'Universal Studios Japan ticket',
+    destination: 'Osaka · Japan',
+    desc: '1-day pass with Express Pass options. Skip the lines on your Osaka weekend.',
+    cta: 'View product', badge: 'Express',
+  },
+  'act-fukuoka-bustour': {
+    priceFrom: '₩80,000+',
+    productTitle: 'Fukuoka day bus tour (KR guide)',
+    destination: 'Fukuoka · Japan',
+    desc: 'Dazaifu, Yufuin and Beppu in one day. Departs Hakata station with a Korean-speaking guide.',
+    cta: 'View product', badge: 'Guided',
+  },
+  'act-bali-ubud': {
+    priceFrom: '₩40,000+',
+    productTitle: 'Bali Ubud private tour (KR guide)',
+    destination: 'Bali · Indonesia',
+    desc: 'Half-day customizable private tour — temples and rice terraces, your route.',
+    cta: 'View product', badge: 'Private',
+  },
+  'act-danang-banahills': {
+    priceFrom: '₩100,000+',
+    productTitle: 'Da Nang Ba Na Hills private tour',
+    destination: 'Da Nang · Vietnam',
+    desc: 'Golden Bridge, tickets, lunch and pickup included. Private-vehicle day tour.',
+    cta: 'View product', badge: 'All-inclusive',
   },
   'feat-tokyo-hotel': {
     productTitle: 'Tokyo long-stay hotels',
@@ -161,6 +238,83 @@ const JP: Record<string, Overlay> = {
     desc: '現地のホテル・アパートメント。市場調査の長期滞在に適した宿を。',
     cta: '宿を予約',
     badge: '長期滞在',
+  },
+  'stay-millennials-shibuya': {
+    priceFrom: '₩40,000+',
+    destination: '東京 · 日本',
+    desc: 'ホテル内にコワーキング「.andwork」2フロア。渋谷駅徒歩6分、無料コーヒーとハッピーアワーも。',
+    cta: '客室を見る', badge: 'コワーキング内蔵',
+  },
+  'stay-lively-osaka': {
+    priceFrom: '₩80,000+',
+    destination: '大阪 · 日本',
+    desc: '作業できる共用ラウンジが7カ所。本町ビジネス地区、評価8.7（2,600件以上）。',
+    cta: '客室を見る', badge: 'ラウンジワーク',
+  },
+  'stay-webase-hakata': {
+    priceFrom: '₩30,000+',
+    destination: '福岡 · 日本',
+    desc: '9階の宿泊者無料コワーキング＋テラス。中洲川端駅徒歩3分、評価8.6。',
+    cta: '客室を見る', badge: '無料コワーキング',
+  },
+  'stay-tribal-bali': {
+    priceFrom: '₩20,000+',
+    destination: 'チャングー、バリ · インドネシア',
+    desc: 'バリ初のコワーキング特化型ステイ。プールサイドのワークスペースとノマドコミュニティ。',
+    cta: '客室を見る', badge: 'ノマドの聖地',
+  },
+  'stay-chicland-danang': {
+    priceFrom: '₩80,000+',
+    destination: 'ダナン · ベトナム',
+    desc: 'ミーケビーチ徒歩2分、カフェ風ラウンジとルーフトッププール。評価8.6。',
+    cta: '客室を見る', badge: 'ビーチワーク',
+  },
+  'stay-playce-jeju': {
+    priceFrom: '₩70,000+',
+    destination: '済州 城山 · 韓国',
+    desc: '寝室とワークデスクを分けた客室、ワーケーション専用パッケージも。城山日出峰近く。',
+    cta: '客室を見る', badge: 'ワーケーション特化',
+  },
+  'stay-kantary-chiangmai': {
+    priceFrom: '₩80,000+',
+    destination: 'ニマン、チェンマイ · タイ',
+    desc: 'キッチネット付きサービスアパート。長期滞在向け、マヤモール徒歩圏。',
+    cta: '客室を見る', badge: '長期滞在',
+  },
+  'act-tokyo-disney': {
+    priceFrom: '₩80,000+',
+    productTitle: '東京ディズニーランド・シー チケット',
+    destination: '東京 · 日本',
+    desc: 'モバイルQRで即入場の1日券。ワーケーションの週末を特別に。',
+    cta: '商品を見る', badge: '人気No.1',
+  },
+  'act-osaka-usj': {
+    priceFrom: '₩80,000+',
+    productTitle: 'USJ入場券',
+    destination: '大阪 · 日本',
+    desc: '1日券＋エクスプレスパスのオプション。並ばない大阪の週末。',
+    cta: '商品を見る', badge: 'エクスプレス',
+  },
+  'act-fukuoka-bustour': {
+    priceFrom: '₩80,000+',
+    productTitle: '福岡近郊バスツアー',
+    destination: '福岡 · 日本',
+    desc: '太宰府・湯布院・別府を1日で。博多駅発。',
+    cta: '商品を見る', badge: 'ガイド付き',
+  },
+  'act-bali-ubud': {
+    priceFrom: '₩40,000+',
+    productTitle: 'バリ ウブド プライベートツアー',
+    destination: 'バリ · インドネシア',
+    desc: '寺院・ライステラスを半日でカスタム。自由なコースで。',
+    cta: '商品を見る', badge: 'プライベート',
+  },
+  'act-danang-banahills': {
+    priceFrom: '₩100,000+',
+    productTitle: 'ダナン バナヒルズ ツアー',
+    destination: 'ダナン · ベトナム',
+    desc: 'ゴールデンブリッジ、入場券・昼食・送迎込み。専用車の日帰りツアー。',
+    cta: '商品を見る', badge: 'オールインクルーシブ',
   },
   'feat-tokyo-hotel': {
     productTitle: '東京の長期滞在ホテル',
