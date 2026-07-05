@@ -60,6 +60,24 @@ export default function CruisePage() {
                     ₩{r.price}
                     <span className="text-sm text-gray-400 font-normal">{tr('per_person')}</span>
                   </span>
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    <a
+                      href="https://kr.trip.com/cruises/?Allianceid=9024807"
+                      target="_blank"
+                      rel="sponsored noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 bg-brand-mid text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-light transition-all shadow-sm"
+                    >
+                      {tr('cruise_search')} · Trip.com
+                    </a>
+                    <a
+                      href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(r.portQuery)}`}
+                      target="_blank"
+                      rel="sponsored noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 border border-gray-200 text-gray-500 px-4 py-2 rounded-full text-xs font-bold hover:border-brand-mid hover:text-brand-mid transition-all"
+                    >
+                      {tr('port_stay')}
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}

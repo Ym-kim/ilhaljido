@@ -100,7 +100,15 @@ export default function MarketPage() {
                 <div className="p-5">
                   <p className="text-white/40 text-xs mb-1">{u.region}</p>
                   <h3 className="text-white font-black mb-2">{u.name}</h3>
-                  <p className="text-white/30 text-xs">{u.target}</p>
+                  <p className="text-white/30 text-xs mb-4">{u.target}</p>
+                  <a
+                    href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(u.stayQuery)}`}
+                    target="_blank"
+                    rel="sponsored noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 bg-orange-500/15 text-orange-300 border border-orange-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold hover:bg-orange-500/25 hover:text-orange-200 transition-all"
+                  >
+                    {tr('h3_bar_stay')}
+                  </a>
                 </div>
               </div>
             ))}

@@ -28,6 +28,7 @@ type ActivityItem = { id: string; img: string; title: Loc<string>; region: Loc<s
 type FeatureItem = { id: string; title: Loc<string>; desc: Loc<string> }
 type LangProgram = {
   id: string
+  stayQuery: string     // Booking.com ss= 검색어
   img: string
   price: string
   name: Loc<string>
@@ -38,13 +39,14 @@ type LangProgram = {
 }
 type CruiseRoute = {
   id: string
+  portQuery: string     // 출발 항구 도시 — Booking.com ss=
   img: string
   price: string
   name: Loc<string>
   ports: Loc<string>
   days: Loc<string>
 }
-type MarketUnit = { id: string; img: string; name: Loc<string>; region: Loc<string>; target: Loc<string> }
+type MarketUnit = { id: string; stayQuery: string; img: string; name: Loc<string>; region: Loc<string>; target: Loc<string> }
 type GlobalDest = {
   id: string
   stayQuery?: string    // Booking.com ss= 검색어 (숙소 직결)
@@ -283,6 +285,7 @@ const LANG_FEATURES: FeatureItem[] = [
 const LANG_PROGRAMS: LangProgram[] = [
   {
     id: 'cebu',
+    stayQuery: 'Cebu',
     img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
     price: '2,800,000',
     name: loc('필리핀 세부 어학연수', 'Cebu language stay', 'セブ語学留学'),
@@ -293,6 +296,7 @@ const LANG_PROGRAMS: LangProgram[] = [
   },
   {
     id: 'tokyo',
+    stayQuery: 'Tokyo',
     img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
     price: '3,500,000',
     name: loc('일본 도쿄 비즈니스 일본어', 'Tokyo business Japanese', '東京ビジネス日本語'),
@@ -303,6 +307,7 @@ const LANG_PROGRAMS: LangProgram[] = [
   },
   {
     id: 'malta',
+    stayQuery: 'Malta',
     img: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80',
     price: '4,200,000',
     name: loc('몰타 영어 집중 과정', 'Malta intensive English', 'マルタ英語集中'),
@@ -313,6 +318,7 @@ const LANG_PROGRAMS: LangProgram[] = [
   },
   {
     id: 'vancouver',
+    stayQuery: 'Vancouver',
     img: 'https://images.unsplash.com/photo-1560814304-4f05b62af116?auto=format&fit=crop&w=800&q=80',
     price: '5,800,000',
     name: loc('캐나다 밴쿠버 영어 연수', 'Vancouver English stay', 'バンクーバー英語留学'),
@@ -332,6 +338,7 @@ const CRUISE_FEATURES: FeatureItem[] = [
 const CRUISE_ROUTES: CruiseRoute[] = [
   {
     id: 'east-asia',
+    portQuery: 'Busan',
     img: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=80',
     price: '1,200,000',
     name: loc('동아시아 크루즈 워케이션', 'East Asia cruise workation', '東アジアクルーズ'),
@@ -340,6 +347,7 @@ const CRUISE_ROUTES: CruiseRoute[] = [
   },
   {
     id: 'sea',
+    portQuery: 'Singapore',
     img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=800&q=80',
     price: '1,800,000',
     name: loc('동남아 크루즈 워케이션', 'Southeast Asia cruise', '東南アジアクルーズ'),
@@ -348,6 +356,7 @@ const CRUISE_ROUTES: CruiseRoute[] = [
   },
   {
     id: 'med',
+    portQuery: 'Barcelona',
     img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
     price: '3,500,000',
     name: loc('지중해 크루즈 워케이션', 'Mediterranean cruise', '地中海クルーズ'),
@@ -366,6 +375,7 @@ const MARKET_FEATURES: FeatureItem[] = [
 const MARKET_UNITS: MarketUnit[] = [
   {
     id: 'osaka',
+    stayQuery: 'Osaka',
     img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80',
     name: loc('일본 오사카 시장조사단', 'Osaka market research unit', '大阪市場調査団'),
     region: loc('오사카·도쿄', 'Osaka · Tokyo', '大阪・東京'),
@@ -373,6 +383,7 @@ const MARKET_UNITS: MarketUnit[] = [
   },
   {
     id: 'guangzhou',
+    stayQuery: 'Guangzhou',
     img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
     name: loc('중국 광저우 무역박람회', 'Guangzhou trade fair tour', '広州貿易博覧会'),
     region: loc('광저우·선전', 'Guangzhou · Shenzhen', '広州・深圳'),
@@ -380,6 +391,7 @@ const MARKET_UNITS: MarketUnit[] = [
   },
   {
     id: 'bangkok',
+    stayQuery: 'Bangkok',
     img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80',
     name: loc('태국 방콕 시장조사단', 'Bangkok market research unit', 'バンコク市場調査団'),
     region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ'),
@@ -544,6 +556,7 @@ export function getLanguageFeatures(lang: Lang) {
 export function getLanguagePrograms(lang: Lang) {
   return LANG_PROGRAMS.map((p) => ({
     id: p.id,
+    stayQuery: p.stayQuery,
     img: p.img,
     price: p.price,
     name: tloc(lang, p.name),
@@ -561,6 +574,7 @@ export function getCruiseFeatures(lang: Lang) {
 export function getCruiseRoutes(lang: Lang) {
   return CRUISE_ROUTES.map((r) => ({
     id: r.id,
+    portQuery: r.portQuery,
     img: r.img,
     price: r.price,
     name: tloc(lang, r.name),
@@ -576,6 +590,7 @@ export function getMarketFeatures(lang: Lang) {
 export function getMarketUnits(lang: Lang) {
   return MARKET_UNITS.map((u) => ({
     id: u.id,
+    stayQuery: u.stayQuery,
     img: u.img,
     name: tloc(lang, u.name),
     region: tloc(lang, u.region),
