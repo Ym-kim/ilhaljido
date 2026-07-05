@@ -2,20 +2,31 @@
 
 import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen } from 'lucide-react'
 import type { AffiliateItem } from '@/lib/affiliate/types'
+import type { Lang } from '@/lib/i18n'
+import { useLang } from '@/context/LanguageContext'
+
+type BadgeKey = 'affiliate' | 'api' | 'link_prep' | 'ref_prep' | 'review' | 'external'
 
 const STATUS_META: Record<
   string,
-  { rel: string; badgeText: string; isAffiliate: boolean }
+  { rel: string; badgeKey: BadgeKey; isAffiliate: boolean }
 > = {
-  active_affiliate:            { rel: 'sponsored noopener noreferrer', badgeText: '제휴',      isAffiliate: true  },
-  api_ready:                   { rel: 'sponsored noopener noreferrer', badgeText: '제휴 API',  isAffiliate: true  },
-  approved_needs_link:         { rel: 'noopener noreferrer',           badgeText: '링크 준비중', isAffiliate: false },
-  approved_needs_course_links: { rel: 'noopener noreferrer',           badgeText: '링크 준비중', isAffiliate: false },
-  needs_referral_link:         { rel: 'noopener noreferrer',           badgeText: '추천 준비중', isAffiliate: false },
-  pending_approval:            { rel: 'noopener noreferrer',           badgeText: '승인 확인중', isAffiliate: false },
-  public_external_link:        { rel: 'noopener noreferrer',           badgeText: '외부 링크',  isAffiliate: false },
-  placeholder:                 { rel: 'noopener noreferrer',           badgeText: '외부 링크',  isAffiliate: false },
-  manual_link:                 { rel: 'noopener noreferrer',           badgeText: '외부 링크',  isAffiliate: false },
+  active_affiliate:            { rel: 'sponsored noopener noreferrer', badgeKey: 'affiliate', isAffiliate: true  },
+  api_ready:                   { rel: 'sponsored noopener noreferrer', badgeKey: 'api',       isAffiliate: true  },
+  approved_needs_link:         { rel: 'noopener noreferrer',           badgeKey: 'link_prep', isAffiliate: false },
+  approved_needs_course_links: { rel: 'noopener noreferrer',           badgeKey: 'link_prep', isAffiliate: false },
+  needs_referral_link:         { rel: 'noopener noreferrer',           badgeKey: 'ref_prep',  isAffiliate: false },
+  pending_approval:            { rel: 'noopener noreferrer',           badgeKey: 'review',    isAffiliate: false },
+  public_external_link:        { rel: 'noopener noreferrer',           badgeKey: 'external',  isAffiliate: false },
+  placeholder:                 { rel: 'noopener noreferrer',           badgeKey: 'external',  isAffiliate: false },
+  manual_link:                 { rel: 'noopener noreferrer',           badgeKey: 'external',  isAffiliate: false },
+}
+
+// 배지 문구 — 3개 언어
+const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'available', string>> = {
+  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', available: '예약 가능' },
+  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', available: 'Book now' },
+  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', available: '予約可能' },
 }
 
 const PENDING_STATUSES = new Set([
@@ -40,6 +51,8 @@ interface AffiliateCardProps {
 }
 
 export function AffiliateCard({ item, className = '', visual = false }: AffiliateCardProps) {
+  const { lang } = useLang()
+  const badgeText = BADGE_TEXT[lang] ?? BADGE_TEXT.KO
   const meta = STATUS_META[item.status] ?? STATUS_META.placeholder
   const title = item.productTitle ?? item.displayTitle ?? item.name
   const hasPhoto = visual && !!item.coverPhoto
@@ -97,7 +110,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             <div className="absolute top-2.5 right-2.5">
               <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-white/95 text-emerald-700 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
-                예약 가능
+                {badgeText.available}
               </span>
             </div>
           )}
@@ -107,7 +120,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             <div className="absolute top-2.5 right-2.5">
               <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-black/60 text-white/90">
                 {PENDING_STATUSES.has(item.status) && <Clock className="w-2 h-2" />}
-                {meta.badgeText}
+                {badgeText[meta.badgeKey]}
               </span>
             </div>
           )}
@@ -116,13 +129,13 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         {/* 콘텐츠 */}
         <div className="px-3.5 pt-3 pb-4 sm:px-4 sm:pt-3.5 sm:pb-4 flex flex-col flex-1">
           {/* 상품명 */}
-          <p className="text-[#1a1a1a] font-semibold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2 flex-1">
+          <p className="text-[#111827] font-bold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2 flex-1">
             {title}
           </p>
 
           {/* 가격 + CTA */}
           <div className="mt-3 flex items-center justify-between">
-            <p className={`font-bold text-sm sm:text-[0.9375rem] ${
+            <p className={`font-bold text-[0.9375rem] sm:text-base ${
               meta.isAffiliate ? 'text-brand-mid' : 'text-[#9a9793]'
             }`}>
               {item.priceFrom ?? item.cta}
@@ -166,7 +179,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             <div className="absolute top-3 right-3">
               <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-1 rounded-full bg-black/50 text-white/90 border border-white/15">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse inline-block" />
-                예약 가능
+                {badgeText.available}
               </span>
             </div>
           )}
@@ -200,7 +213,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
                 : 'bg-white/6 text-white/32 border-white/10'
             }`}>
               {PENDING_STATUSES.has(item.status) && <Clock className="w-2.5 h-2.5" />}
-              {meta.badgeText}
+              {badgeText[meta.badgeKey]}
             </span>
           </div>
         </div>
