@@ -909,3 +909,83 @@ export function translatePriceInclude(lang: Lang, item: string): string {
   }
   return map[item] ? tloc(lang, map[item]) : item
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// /programs — Wakation Select 파트너 카테고리 12종
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type SelectCategoryStatus = 'recruiting' | 'reviewing' | 'preparing' | 'inquiry'
+
+type SelectCategory = {
+  id: string
+  emoji: string
+  status: SelectCategoryStatus
+  ctaHref: string
+  name: Loc<string>
+  desc: Loc<string>
+  cta: Loc<string>
+}
+
+const SELECT_CATEGORY_STATUS_LABEL: Record<SelectCategoryStatus, Loc<string>> = {
+  recruiting: loc('파트너 모집중', 'Recruiting partners', 'パートナー募集中'),
+  reviewing: loc('제휴 검토중', 'In discussion', '提携検討中'),
+  preparing: loc('준비중', 'Coming soon', '準備中'),
+  inquiry: loc('사전 문의 가능', 'Inquiries open', '事前問い合わせ可'),
+}
+
+const CTA_PROPOSE = loc('파트너 제안하기', 'Propose partnership', 'パートナー提案')
+const CTA_INQUIRE = loc('제휴 문의', 'Partnership inquiry', '提携問い合わせ')
+const CTA_NOTIFY = loc('알림 받기', 'Get notified', '通知を受け取る')
+const CTA_PRE = loc('사전 문의', 'Early inquiry', '事前問い合わせ')
+
+const SELECT_CATEGORIES_DATA: SelectCategory[] = [
+  { id: 'stay', emoji: '🏨', status: 'recruiting', ctaHref: 'mailto:wakation.sf@gmail.com?subject=숙소·장기체류%20파트너%20제안', cta: CTA_PROPOSE,
+    name: loc('숙소·장기체류', 'Stays · long-term', '宿泊・長期滞在'),
+    desc: loc('워케이션·장기체류에 최적화된 숙소. 주간/월간 단위 체류 상품을 파트너사와 연결합니다.', 'Stays optimized for workations and long-term travel — weekly and monthly products with partners.', 'ワーケーション・長期滞在向けの宿。週・月単位の滞在商品をパートナーと接続。') },
+  { id: 'cowork', emoji: '💻', status: 'reviewing', ctaHref: 'mailto:wakation.sf@gmail.com?subject=코워킹%20제휴%20문의', cta: CTA_INQUIRE,
+    name: loc('공유오피스·코워킹', 'Coworking spaces', 'コワーキング'),
+    desc: loc('국내외 코워킹 스페이스와 공유오피스. 일 잘 되는 환경에서 일하는 사람을 위한 공간 파트너십.', 'Coworking spaces at home and abroad — space partnerships for people who work well anywhere.', '国内外のコワーキング・シェアオフィス。働く人のための空間パートナーシップ。') },
+  { id: 'activity', emoji: '🌿', status: 'preparing', ctaHref: 'mailto:wakation.sf@gmail.com?subject=현지%20체험%20알림%20신청', cta: CTA_NOTIFY,
+    name: loc('현지 체험', 'Local experiences', '現地体験'),
+    desc: loc('현지에서만 경험할 수 있는 투어·액티비티·문화 체험. 워케이션 참가자 대상 큐레이션 예정.', 'Tours, activities and culture you can only find on location — curation for workationers.', '現地でしかできないツアー・体験。ワーケーター向けキュレーション予定。') },
+  { id: 'transport', emoji: '✈️', status: 'reviewing', ctaHref: 'mailto:wakation.sf@gmail.com?subject=교통·항공%20제휴%20문의', cta: CTA_INQUIRE,
+    name: loc('교통·항공·이동', 'Flights & transport', '交通・航空・移動'),
+    desc: loc('워케이션 동선에 맞춘 항공권·렌터카·현지 교통 연결. 파트너 API 연동 검토 중.', 'Flights, rentals and local transport matched to workation routes. Partner API under review.', 'ワーケーション動線に合わせた航空券・レンタカー・交通。API連携検討中。') },
+  { id: 'language', emoji: '📚', status: 'inquiry', ctaHref: 'mailto:wakation.sf@gmail.com?subject=어학·유학%20사전%20문의', cta: CTA_PRE,
+    name: loc('어학·유학', 'Language stays', '語学・留学'),
+    desc: loc('일본·영어·기타 외국어 집중 연수와 워케이션을 결합한 패키지. Select 상품으로 연결 예정.', 'Intensive language programs combined with workations — coming as Select products.', '語学集中研修とワーケーションを組み合わせたパッケージ。Select商品として接続予定。') },
+  { id: 'visa', emoji: '🛂', status: 'preparing', ctaHref: '/visa-ai', cta: CTA_NOTIFY,
+    name: loc('비자·체류 정보', 'Visa & stay info', 'ビザ・滞在情報'),
+    desc: loc('국가별 워케이션 비자, 디지털 노마드 비자, 장기체류 허가. AI 기반 정보 제공 준비 중.', 'Workation visas, digital-nomad visas and long-stay permits by country — AI-powered guidance in prep.', '国別のワーケーションビザ・ノマドビザ・長期滞在許可。AI情報提供を準備中。') },
+  { id: 'market', emoji: '📊', status: 'recruiting', ctaHref: 'mailto:wakation.sf@gmail.com?subject=시장조사단%20파트너%20제안', cta: CTA_PROPOSE,
+    name: loc('시장조사단·박람회', 'Market research trips', '市場調査団・展示会'),
+    desc: loc('해외 박람회 동반 참가 및 현장 리서치 프로그램. Wakation Hosted + Select 파트너 모집 중.', 'Trade-fair visits and on-site research programs — Hosted + Select partners wanted.', '海外展示会同行・現地リサーチ。Hosted＋Selectパートナー募集中。') },
+  { id: 'cruise', emoji: '🚢', status: 'recruiting', ctaHref: 'mailto:wakation.sf@gmail.com?subject=크루즈%20워케이션%20제안', cta: CTA_PROPOSE,
+    name: loc('크루즈', 'Cruise', 'クルーズ'),
+    desc: loc('이동하면서 일하는 새로운 형태의 크루즈 워케이션. 파트너 모집 및 수요 조사 중.', 'A new way to work while you sail. Recruiting partners and gauging demand.', '移動しながら働くクルーズワーケーション。パートナー募集・需要調査中。') },
+  { id: 'golf', emoji: '⛳', status: 'reviewing', ctaHref: 'mailto:wakation.sf@gmail.com?subject=골프·스포츠%20제휴%20문의', cta: CTA_INQUIRE,
+    name: loc('골프·스포츠', 'Golf & sports', 'ゴルフ・スポーツ'),
+    desc: loc('골프 포함 스포츠 워케이션 패키지. 국내외 골프 리조트 파트너십 검토 중.', 'Sports workation packages including golf — resort partnerships under review.', 'ゴルフを含むスポーツワーケーション。リゾート提携検討中。') },
+  { id: 'education', emoji: '🎓', status: 'recruiting', ctaHref: 'mailto:wakation.sf@gmail.com?subject=교육·VOD%20파트너%20제안', cta: CTA_PROPOSE,
+    name: loc('교육·VOD·강의', 'Education & courses', '教育・VOD・講座'),
+    desc: loc('워케이션 중 성장을 위한 온·오프라인 강의, VOD, 코칭 프로그램. 에듀테크 파트너 모집 중.', 'Courses, VOD and coaching for growth on a workation — edtech partners wanted.', '成長のための講座・VOD・コーチング。エドテックパートナー募集中。') },
+  { id: 'wellness', emoji: '🧘', status: 'inquiry', ctaHref: 'mailto:wakation.sf@gmail.com?subject=요가·힐링%20워케이션%20사전%20문의', cta: CTA_PRE,
+    name: loc('요가·힐링', 'Yoga & wellness', 'ヨガ・ヒーリング'),
+    desc: loc('요가 리트릿, 명상, 힐링 워케이션. 웰니스와 업무의 균형을 찾는 사람들을 위한 프로그램.', 'Yoga retreats, meditation and healing workations — for balance seekers.', 'ヨガリトリート・瞑想・ヒーリング。バランスを求める人のためのプログラム。') },
+  { id: 'ryokan', emoji: '♨️', status: 'reviewing', ctaHref: 'mailto:wakation.sf@gmail.com?subject=료칸·온천%20제휴%20문의', cta: CTA_INQUIRE,
+    name: loc('료칸·온천', 'Ryokan & onsen', '旅館・温泉'),
+    desc: loc('일본 전통 료칸에서 업무와 온천을 함께. 일본 파트너사와 연결하는 고품격 워케이션.', 'Work and onsen at traditional Japanese ryokan — premium workations with Japan partners.', '伝統旅館で仕事と温泉を。日本パートナーとつなぐ上質なワーケーション。') },
+]
+
+export function getSelectCategories(lang: Lang) {
+  return SELECT_CATEGORIES_DATA.map((c) => ({
+    id: c.id,
+    emoji: c.emoji,
+    status: c.status,
+    statusLabel: tloc(lang, SELECT_CATEGORY_STATUS_LABEL[c.status]),
+    ctaHref: c.ctaHref,
+    name: tloc(lang, c.name),
+    desc: tloc(lang, c.desc),
+    cta: tloc(lang, c.cta),
+  }))
+}

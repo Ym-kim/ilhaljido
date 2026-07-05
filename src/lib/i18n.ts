@@ -12,6 +12,7 @@ export {
   getVisaMockResult,
 } from './i18n/content'
 export {
+  getSelectCategories,
   getStayAsia,
   getStayOceania,
   getActivities,

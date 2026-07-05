@@ -4,144 +4,29 @@ import Link from 'next/link'
 import { ArrowRight, Mail, BellRing, Handshake } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
-import { getProgramsList } from '@/lib/i18n'
+import { getProgramsList, getSelectCategories } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
-const SELECT_CATEGORIES = [
-  {
-    id: 'stay',
-    emoji: '🏨',
-    name: '숙소·장기체류',
-    desc: '워케이션·장기체류에 최적화된 숙소. 주간/월간 단위 체류 상품을 파트너사와 연결합니다.',
-    status: '파트너 모집중',
-    statusColor: 'bg-teal-50 text-teal-700 border-teal-200',
-    cta: '파트너 제안하기',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=숙소·장기체류%20파트너%20제안',
-  },
-  {
-    id: 'cowork',
-    emoji: '💻',
-    name: '공유오피스·코워킹',
-    desc: '국내외 코워킹 스페이스와 공유오피스. 일 잘 되는 환경에서 일하는 사람을 위한 공간 파트너십.',
-    status: '제휴 검토중',
-    statusColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    cta: '제휴 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=코워킹%20제휴%20문의',
-  },
-  {
-    id: 'activity',
-    emoji: '🌿',
-    name: '현지 체험',
-    desc: '현지에서만 경험할 수 있는 투어·액티비티·문화 체험. 워케이션 참가자 대상 큐레이션 예정.',
-    status: '준비중',
-    statusColor: 'bg-gray-50 text-gray-500 border-gray-200',
-    cta: '알림 받기',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=현지%20체험%20알림%20신청',
-  },
-  {
-    id: 'transport',
-    emoji: '✈️',
-    name: '교통·항공·이동',
-    desc: '워케이션 동선에 맞춘 항공권·렌터카·현지 교통 연결. 파트너 API 연동 검토 중.',
-    status: '제휴 검토중',
-    statusColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    cta: '제휴 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=교통·항공%20제휴%20문의',
-  },
-  {
-    id: 'language',
-    emoji: '📚',
-    name: '어학·유학',
-    desc: '일본·영어·기타 외국어 집중 연수와 워케이션을 결합한 패키지. Select 상품으로 연결 예정.',
-    status: '사전 문의 가능',
-    statusColor: 'bg-amber-50 text-amber-700 border-amber-200',
-    cta: '사전 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=어학·유학%20사전%20문의',
-  },
-  {
-    id: 'visa',
-    emoji: '🛂',
-    name: '비자·체류 정보',
-    desc: '국가별 워케이션 비자, 디지털 노마드 비자, 장기체류 허가. AI 기반 정보 제공 준비 중.',
-    status: '준비중',
-    statusColor: 'bg-gray-50 text-gray-500 border-gray-200',
-    cta: '알림 받기',
-    ctaHref: '/visa-ai',
-  },
-  {
-    id: 'market',
-    emoji: '📊',
-    name: '시장조사단·박람회',
-    desc: '해외 박람회 동반 참가 및 현장 리서치 프로그램. Wakation Hosted + Select 파트너 모집 중.',
-    status: '파트너 모집중',
-    statusColor: 'bg-teal-50 text-teal-700 border-teal-200',
-    cta: '파트너 제안하기',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=시장조사단%20파트너%20제안',
-  },
-  {
-    id: 'cruise',
-    emoji: '🚢',
-    name: '크루즈',
-    desc: '이동하면서 일하는 새로운 형태의 크루즈 워케이션. 파트너 모집 및 수요 조사 중.',
-    status: '파트너 모집중',
-    statusColor: 'bg-teal-50 text-teal-700 border-teal-200',
-    cta: '프로그램 제안하기',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=크루즈%20워케이션%20제안',
-  },
-  {
-    id: 'golf',
-    emoji: '⛳',
-    name: '골프·스포츠',
-    desc: '골프 포함 스포츠 워케이션 패키지. 국내외 골프 리조트 파트너십 검토 중.',
-    status: '제휴 검토중',
-    statusColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    cta: '제휴 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=골프·스포츠%20제휴%20문의',
-  },
-  {
-    id: 'education',
-    emoji: '🎓',
-    name: '교육·VOD·강의',
-    desc: '워케이션 중 성장을 위한 온·오프라인 강의, VOD, 코칭 프로그램. 에듀테크 파트너 모집 중.',
-    status: '파트너 모집중',
-    statusColor: 'bg-teal-50 text-teal-700 border-teal-200',
-    cta: '파트너 제안하기',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=교육·VOD%20파트너%20제안',
-  },
-  {
-    id: 'wellness',
-    emoji: '🧘',
-    name: '요가·힐링',
-    desc: '요가 리트릿, 명상, 힐링 워케이션. 웰니스와 업무의 균형을 찾는 사람들을 위한 프로그램.',
-    status: '사전 문의 가능',
-    statusColor: 'bg-amber-50 text-amber-700 border-amber-200',
-    cta: '사전 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=요가·힐링%20워케이션%20사전%20문의',
-  },
-  {
-    id: 'ryokan',
-    emoji: '♨️',
-    name: '료칸·온천',
-    desc: '일본 전통 료칸에서 업무와 온천을 함께. 일본 파트너사와 연결하는 고품격 워케이션.',
-    status: '제휴 검토중',
-    statusColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    cta: '제휴 문의',
-    ctaHref: 'mailto:wakation.sf@gmail.com?subject=료칸·온천%20제휴%20문의',
-  },
-]
-
 const STATUS_ICON = {
-  '파트너 모집중': Handshake,
-  '제휴 검토중': Mail,
-  '준비중': BellRing,
-  '사전 문의 가능': Mail,
-}
+  recruiting: Handshake,
+  reviewing: Mail,
+  preparing: BellRing,
+  inquiry: Mail,
+} as const
+
+const STATUS_COLOR = {
+  recruiting: 'bg-teal-50 text-teal-700 border-teal-200',
+  reviewing: 'bg-blue-50 text-blue-700 border-blue-200',
+  preparing: 'bg-gray-50 text-gray-500 border-gray-200',
+  inquiry: 'bg-amber-50 text-amber-700 border-amber-200',
+} as const
 
 export default function ProgramsPage() {
   const { lang, tr } = useLang()
   const programs = getProgramsList()
+  const selectCategories = getSelectCategories(lang)
 
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
@@ -213,16 +98,15 @@ export default function ProgramsPage() {
           <div className="text-center mb-14">
             <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-4">WAKATION SELECT</p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#111827] mb-4 leading-tight">
-              단계적으로 연결되는<br className="hidden sm:block" /> 파트너 상품 카테고리
+              {tr('prog_sel_title_1')}<br className="hidden sm:block" /> {tr('prog_sel_title_2')}
             </h2>
             <p className="text-[#64748b] text-sm max-w-xl mx-auto leading-relaxed">
-              Wakation은 직접 운영하는 Hosted 프로그램 외에, 검증된 외부 파트너와의 Select 상품을 순차 연결합니다.<br />
-              현재 파트너십 수요 조사 및 제휴 협의 진행 중입니다.
+              {tr('prog_sel_desc')}
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {SELECT_CATEGORIES.map((cat) => {
-              const StatusIcon = STATUS_ICON[cat.status as keyof typeof STATUS_ICON] ?? BellRing
+            {selectCategories.map((cat) => {
+              const StatusIcon = STATUS_ICON[cat.status] ?? BellRing
               const isMailto = cat.ctaHref.startsWith('mailto:')
               return (
                 <div
@@ -231,9 +115,9 @@ export default function ProgramsPage() {
                 >
                   <div className="flex items-start justify-between mb-4">
                     <span className="text-2xl">{cat.emoji}</span>
-                    <span className={`text-[0.65rem] font-bold px-2.5 py-1 rounded-full border flex items-center gap-1 ${cat.statusColor}`}>
+                    <span className={`text-[0.65rem] font-bold px-2.5 py-1 rounded-full border flex items-center gap-1 ${STATUS_COLOR[cat.status]}`}>
                       <StatusIcon className="w-3 h-3" strokeWidth={2} />
-                      {cat.status}
+                      {cat.statusLabel}
                     </span>
                   </div>
                   <h3 className="text-[#111827] font-black mb-2">{cat.name}</h3>
@@ -258,7 +142,7 @@ export default function ProgramsPage() {
             })}
           </div>
           <div className="mt-10 text-center">
-            <p className="text-[#94a3b8] text-xs mb-3">파트너십 제안 및 제휴 문의</p>
+            <p className="text-[#94a3b8] text-xs mb-3">{tr('prog_sel_partner_line')}</p>
             <a
               href="mailto:wakation.sf@gmail.com?subject=Wakation%20파트너십%20제안"
               className="inline-flex items-center gap-2 bg-white text-[#475569] font-bold px-6 py-3 rounded-full border border-[#dbeafe] text-sm hover:border-[#7dd3fc] hover:text-[#111827] transition-all"
@@ -273,8 +157,8 @@ export default function ProgramsPage() {
       {/* 워케이션 중 성장 */}
       <AffiliateSection
         tone="light"
-        title="워케이션 중에도 계속 성장하세요"
-        subtitle="이동 시간·여유 시간을 활용해 스킬을 쌓을 수 있는 온라인 강의 플랫폼입니다."
+        title={tr('prog_learn_title')}
+        subtitle={tr('prog_learn_sub')}
         items={PROGRAMS_LEARN_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
         cols={2}
       />
