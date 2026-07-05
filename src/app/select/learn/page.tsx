@@ -7,6 +7,9 @@ import { useHashScroll } from '@/hooks/useHashScroll'
 import { useLang } from '@/context/LanguageContext'
 import { localizeLearnCategory } from '@/lib/affiliate/localizeDest'
 import { LEARN_CATEGORIES } from '@/lib/affiliate/destinations'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { FEATURED_COURSES } from '@/lib/affiliate/featured'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 export default function LearnSelectPage() {
   const { lang, tr } = useLang()
@@ -42,6 +45,22 @@ export default function LearnSelectPage() {
           <p className="text-amber-600/80 text-xs mt-3 font-medium">
             {tr('sell_note')}
           </p>
+        </div>
+      </section>
+
+      {/* 에디터 추천 강의 — 실존 인기 강의 */}
+      <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
+        <div className="max-w-6xl mx-auto pt-10">
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+            {tr('learn_featured')}
+          </p>
+          <p className="text-[#64748b] text-sm mb-6">{tr('learn_featured_d')}</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+            {FEATURED_COURSES.map((item) => (
+              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+            ))}
+          </div>
         </div>
       </section>
 

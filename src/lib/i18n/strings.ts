@@ -73,6 +73,10 @@ const KO: Record<string, string> = {
   // ── 홈 v3 — 모바일 스티키 바 ──
   prep_title: '떠나기 전, 준비하기',
   prep_sub: '숙소·체험·eSIM·강의까지 — 워케이션 준비를 한 번에 끝내세요.',
+  cruise_featured: '지금 예약 가능한 크루즈',
+  cruise_featured_d: '실제 운항 중인 크루즈 상품을 골랐습니다. 좌석·일정은 판매처에서 확인하세요.',
+  learn_featured: '에디터 추천 강의',
+  learn_featured_d: '워케이션 중 듣기 좋은 인기 강의를 골랐습니다.',
   cruise_search: '크루즈 검색',
   port_stay: '출발지 숙소',
   h3_bar_stay: '숙소 검색',
@@ -668,6 +672,10 @@ const EN: Record<string, string> = {
   // ── Home v3 — Mobile sticky bar ──
   prep_title: 'Get ready before you go',
   prep_sub: 'Stays, activities, eSIM and courses — finish your workation prep in one place.',
+  cruise_featured: 'Cruises you can book now',
+  cruise_featured_d: 'Real, currently-operating cruise products. Check seats and dates at the seller.',
+  learn_featured: 'Editor-picked courses',
+  learn_featured_d: 'Popular courses that fit workation downtime.',
   cruise_search: 'Search cruises',
   port_stay: 'Pre-cruise stay',
   h3_bar_stay: 'Find stays',
@@ -1262,6 +1270,10 @@ const JP: Record<string, string> = {
   // ── ホームv3 — モバイルバー ──
   prep_title: '出発前の準備',
   prep_sub: '宿・体験・eSIM・講座まで、ワーケーションの準備をまとめて。',
+  cruise_featured: '今予約できるクルーズ',
+  cruise_featured_d: '実際に運航中のクルーズ商品を厳選。空席・日程は販売元でご確認を。',
+  learn_featured: 'エディター推薦講座',
+  learn_featured_d: 'ワーケーション中に聴きたい人気講座を厳選。',
   cruise_search: 'クルーズ検索',
   port_stay: '出発地の宿',
   h3_bar_stay: '宿泊検索',
