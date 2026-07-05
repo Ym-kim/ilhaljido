@@ -113,26 +113,26 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           )}
         </div>
 
-        {/* 콘텐츠 — 3요소만: 제목 / 가격 / 화살표 */}
-        <div className="px-3 pt-3 pb-3.5 sm:px-4 sm:pt-3.5 sm:pb-4 flex flex-col flex-1">
-          {/* 상품명 — 2줄 */}
-          <p className="text-[#111] font-extrabold text-[0.875rem] sm:text-base leading-snug line-clamp-2 flex-1">
+        {/* 콘텐츠 */}
+        <div className="px-3.5 pt-3 pb-4 sm:px-4 sm:pt-3.5 sm:pb-4 flex flex-col flex-1">
+          {/* 상품명 */}
+          <p className="text-[#1a1a1a] font-semibold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2 flex-1">
             {title}
           </p>
 
-          {/* 가격 + CTA 화살표 */}
-          <div className={`mt-2.5 flex items-center justify-between ${
-            meta.isAffiliate ? 'text-brand-mid' : 'text-[#9a9793]'
-          }`}>
-            <p className="font-black text-[0.9375rem] sm:text-base">
+          {/* 가격 + CTA */}
+          <div className="mt-3 flex items-center justify-between">
+            <p className={`font-bold text-sm sm:text-[0.9375rem] ${
+              meta.isAffiliate ? 'text-brand-mid' : 'text-[#9a9793]'
+            }`}>
               {item.priceFrom ?? item.cta}
             </p>
-            <span className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-150 ${
+            <span className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors duration-150 ${
               meta.isAffiliate
                 ? 'bg-brand-mid/10 group-hover:bg-brand-mid text-brand-mid group-hover:text-white'
-                : 'bg-[#f0ede8] group-hover:bg-[#e0ddd8] text-[#9a9793]'
+                : 'bg-[#eff6ff] group-hover:bg-[#dbeafe] text-[#9a9793]'
             }`}>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3 h-3" />
             </span>
           </div>
         </div>

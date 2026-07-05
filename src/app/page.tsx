@@ -118,16 +118,16 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6 mb-7">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-6">
             <div>
-              <p className="text-brand-mid text-[0.65rem] font-black tracking-[0.18em] uppercase mb-3 flex items-center gap-2">
+              <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
                 WAKATION SELECT · 지금 예약 가능
               </p>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#141414] leading-tight tracking-tight">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#141414] leading-snug tracking-tight">
                 워케이션 목적지 숙소,<br className="sm:hidden" />
                 <span className="text-brand-mid"> 지금 바로 예약</span>하세요
               </h2>
-              <p className="text-[#7a7a7a] text-sm mt-3">
-                Booking.com · Trip.com 제휴 할인 · 장기체류 특화
+              <p className="text-[#9a9a9a] text-[0.8125rem] mt-2">
+                Booking.com · Trip.com 제휴 · 장기체류 특화
               </p>
             </div>
             <Link
@@ -144,10 +144,10 @@ export default function HomePage() {
               <button
                 key={f.id}
                 onClick={() => setActiveFilter(f.id)}
-                className={`shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-full border transition-all duration-150 ${
+                className={`shrink-0 inline-flex items-center gap-1.5 text-sm font-medium px-4 py-2 rounded-full border transition-all duration-150 ${
                   activeFilter === f.id
                     ? 'bg-[#141414] border-[#141414] text-white shadow-sm'
-                    : 'bg-white border-[#dbeafe] text-[#7a7a7a] hover:border-[#93c5fd] hover:text-[#141414]'
+                    : 'bg-white border-[#dbeafe] text-[#6b6b6b] hover:border-[#93c5fd] hover:text-[#141414]'
                 }`}
               >
                 <span>{f.flag}</span> {f.label}
@@ -193,7 +193,7 @@ export default function HomePage() {
       {/* ── 지금 모집 중 ── */}
       <section className="bg-[#0f0f0f] border-b border-white/8 py-14 md:py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-6 flex items-center gap-2">
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-6 flex items-center gap-2">
             {recruitingPrograms.length > 0 && <span className="w-2 h-2 rounded-full bg-brand-mid animate-pulse inline-block" />}
             {recruitingPrograms.length > 0 ? tr('home_recruiting_eyebrow') : tr('home_recruiting_coming_title')}
           </p>
@@ -396,7 +396,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <div>
-              <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-4">ABOUT WAKATION</p>
+              <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">ABOUT WAKATION</p>
               <h2 className="text-3xl md:text-4xl font-black text-[#141414] mb-6 leading-tight">
                 Wakation이란?
               </h2>
@@ -465,8 +465,8 @@ export default function HomePage() {
               }),
             }}
           />
-          <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-5">자주 묻는 질문</p>
-          <h2 className="text-2xl md:text-3xl font-black text-[#141414] mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">자주 묻는 질문</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#141414] mb-10">Wakation, 궁금하신 점이 있으신가요?</h2>
           <div className="divide-y divide-[#dbeafe]">
             {([
               { q: '워케이션이란 무엇인가요?', a: 'Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다.' },
