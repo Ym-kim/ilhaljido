@@ -71,6 +71,8 @@ const KO: Record<string, string> = {
   h3_lineup_card_cta: '사전알림 받기',
 
   // ── 홈 v3 — 모바일 스티키 바 ──
+  prep_title: '떠나기 전, 준비하기',
+  prep_sub: '숙소·체험·eSIM·강의까지 — 워케이션 준비를 한 번에 끝내세요.',
   h3_bar_stay: '숙소 검색',
   h3_bar_apply: '프로그램 신청',
 
@@ -507,7 +509,7 @@ const KO: Record<string, string> = {
   apply_companion: '동반 참가자',
   apply_companion_names_placeholder: '동반 참가자 이름 (예: 김영희, 박철수)',
 
-  nav_select: 'Select',
+  nav_select: '예약',
   nav_select_hotel: '숙소 예약',
   nav_select_activity: '현지 체험',
   nav_select_esim: 'eSIM',
@@ -586,6 +588,8 @@ const EN: Record<string, string> = {
   h3_lineup_card_cta: 'Notify me',
 
   // ── Home v3 — Mobile sticky bar ──
+  prep_title: 'Get ready before you go',
+  prep_sub: 'Stays, activities, eSIM and courses — finish your workation prep in one place.',
   h3_bar_stay: 'Find stays',
   h3_bar_apply: 'Apply',
 
@@ -1021,7 +1025,7 @@ const EN: Record<string, string> = {
   apply_companion: 'Companions',
   apply_companion_names_placeholder: 'Companion names (e.g. Jane Doe, John Smith)',
 
-  nav_select: 'Select',
+  nav_select: 'Book',
   nav_select_hotel: 'Hotel Booking',
   nav_select_activity: 'Activities',
   nav_select_esim: 'eSIM',
@@ -1100,6 +1104,8 @@ const JP: Record<string, string> = {
   h3_lineup_card_cta: '通知を受け取る',
 
   // ── ホームv3 — モバイルバー ──
+  prep_title: '出発前の準備',
+  prep_sub: '宿・体験・eSIM・講座まで、ワーケーションの準備をまとめて。',
   h3_bar_stay: '宿泊検索',
   h3_bar_apply: '申し込む',
 
@@ -1535,7 +1541,7 @@ const JP: Record<string, string> = {
   apply_companion: '同伴者',
   apply_companion_names_placeholder: '同伴者のお名前（例：山田花子、佐藤太郎）',
 
-  nav_select: 'Select',
+  nav_select: '予約',
   nav_select_hotel: '宿泊予約',
   nav_select_activity: '現地体験',
   nav_select_esim: 'eSIM',

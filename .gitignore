@@ -48,3 +48,6 @@ next-env.d.ts
 # local screenshots / images
 *.png
 *.jpg
+
+# app icons are source assets
+!src/app/*.png

@@ -1,5 +1,8 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getLanguageFeatures, getLanguagePrograms } from '@/lib/i18n'
 import { BookOpen, Globe, Users, Star } from 'lucide-react'
@@ -77,6 +80,14 @@ export default function LanguagePage() {
           </div>
         </div>
       </section>
+
+      {/* 여행 준비 크로스셀 — Wakation Select */}
+      <AffiliateSection
+        eyebrow="Wakation Select"
+        title={tr('prep_title')}
+        subtitle={tr('prep_sub')}
+        items={GLOBAL_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+      />
     </div>
   )
 }

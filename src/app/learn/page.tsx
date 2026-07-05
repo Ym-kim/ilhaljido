@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { BookOpen, Mic, Users, TrendingUp, ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { ICON_STROKE } from '@/lib/icons'
 
 const PROGRAMS = [
@@ -133,6 +136,14 @@ export default function LearnPage() {
           </a>
         </div>
       </section>
+
+      {/* 여행 준비 크로스셀 — Wakation Select */}
+      <AffiliateSection
+        eyebrow="Wakation Select"
+        title={tr('prep_title')}
+        subtitle={tr('prep_sub')}
+        items={PROGRAMS_LEARN_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+      />
     </div>
   )
 }
