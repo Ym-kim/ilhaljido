@@ -46,6 +46,7 @@ export interface DestinationEntry {
 export interface LearnCategory {
   id: string
   emoji: string
+  photo?: string   // 카드 헤더 사진
   title: string
   desc: string
   status: AffiliateStatus
@@ -517,6 +518,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
 export const LEARN_CATEGORIES: LearnCategory[] = [
   {
     id: 'learn-ai',
+    photo: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80',
     emoji: '🤖',
     title: 'AI·업무 자동화',
     desc: 'ChatGPT, n8n, Make.com, Python 자동화. 워케이션 중 생산성을 높이는 AI 도구.',
@@ -526,6 +528,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
   },
   {
     id: 'learn-marketing',
+    photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=700&q=80',
     emoji: '📢',
     title: '창업·마케팅·브랜딩',
     desc: '퍼포먼스 마케팅, 브랜드 전략, SNS 운영. 이동 중에 사업을 키우는 실전 강의.',
@@ -535,6 +538,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
   },
   {
     id: 'learn-productivity',
+    photo: 'https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=700&q=80',
     emoji: '⚡',
     title: '생산성·노션·자동화',
     desc: '노션, Obsidian, 제텔카스텐. 워케이션 라이프스타일에 맞는 업무 시스템 구축.',
@@ -544,6 +548,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
   },
   {
     id: 'learn-dev',
+    photo: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80',
     emoji: '💻',
     title: '개발·프로그래밍',
     desc: '웹 개발, 앱 개발, 클라우드. 기술로 워케이션을 더 자유롭게.',
@@ -553,6 +558,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
   },
   {
     id: 'learn-language',
+    photo: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80',
     emoji: '🗣',
     title: '언어·커뮤니케이션',
     desc: '영어, 일어, 베트남어. 워케이션 현지에서 바로 쓸 수 있는 언어 강의.',
@@ -562,6 +568,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
   },
   {
     id: 'learn-finance',
+    photo: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&q=80',
     emoji: '💰',
     title: '재무·투자·세금',
     desc: '프리랜서·1인 기업 세금, 해외 소득 신고, 투자. 워케이션 비용을 영리하게.',

@@ -154,7 +154,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   }
 
   // ── 기본 모드: 다크 카드 (어두운 배경 페이지용) ─────────────────────────────
-  const showCover = !!(item.coverGradient || item.destination)
+  const showCover = !!(item.coverPhoto || item.coverGradient || item.destination)
   return (
     <a
       href={item.href}
@@ -168,12 +168,21 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
     >
       {showCover && (
         <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${item.coverGradient ?? 'from-white/8 to-white/3'}`}>
+          {item.coverPhoto ? (
+            <img
+              src={item.coverPhoto}
+              alt={title}
+              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
+              loading="lazy"
+            />
+          ) : (
+            <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[5.5rem] opacity-[0.16] select-none pointer-events-none leading-none" aria-hidden>
+              {item.emoji}
+            </span>
+          )}
           {meta.isAffiliate && (
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
           )}
-          <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[5.5rem] opacity-[0.16] select-none pointer-events-none leading-none" aria-hidden>
-            {item.emoji}
-          </span>
           <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#1c1b1a] to-transparent" />
           {meta.isAffiliate && (
             <div className="absolute top-3 right-3">

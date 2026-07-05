@@ -57,6 +57,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking',
+    coverPhoto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80',
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -84,6 +85,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-tripcom',
+    coverPhoto: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80',
     name: 'Trip.com',
     category: 'hotel',
     productType: 'stay',
@@ -110,6 +112,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'activity-kkday',
+    coverPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=700&q=80',
     name: 'KKday',
     category: 'activity',
     productType: 'activity',
@@ -136,6 +139,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'esim-airalo',
+    coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80',
     name: 'Airalo',
     category: 'esim',
     productType: 'esim',
@@ -156,6 +160,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'edu-inflearn',
+    coverPhoto: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80',
     name: '인프런',
     category: 'education',
     productType: 'education',
@@ -201,6 +206,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'insurance-safetywing',
+    coverPhoto: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
     name: 'SafetyWing',
     category: 'insurance',
     productType: 'insurance',
@@ -221,6 +227,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking-visa',
+    coverPhoto: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80',
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -242,6 +249,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'esim-airalo-visa',
+    coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80',
     name: 'Airalo eSIM',
     category: 'esim',
     productType: 'esim',
@@ -262,6 +270,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking-market',
+    coverPhoto: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80',
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
