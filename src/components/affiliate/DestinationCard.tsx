@@ -55,15 +55,15 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
 
   return (
     <div
-      className={`relative flex flex-col bg-gradient-to-b ${entry.gradient} border border-white/8 rounded-2xl p-5 hover:border-white/16 transition-all duration-200 hover:-translate-y-0.5 ${className}`}
+      className={`relative flex flex-col bg-gradient-to-b ${entry.gradient} border border-white/8 rounded-2xl p-5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${className}`}
     >
       {hasActive && (
-        <div className="absolute top-0 inset-x-6 h-px bg-gradient-to-r from-transparent via-teal-500/30 to-transparent" />
+        <div className="absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
       )}
 
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
-        <span className="text-3xl leading-none">{entry.flag}</span>
+        <span className="text-4xl leading-none">{entry.flag}</span>
         <div className="flex flex-wrap gap-1 justify-end">
           {entry.tags.map((tag) => (
             <span
@@ -78,7 +78,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
 
       {/* Destination name */}
       <p className="text-[0.7rem] text-white/40 font-medium mb-0.5">{entry.country}</p>
-      <p className="text-white font-black text-base mb-4 leading-tight">{entry.city}</p>
+      <p className="text-white font-black text-lg mb-4 leading-tight">{entry.city}</p>
 
       {/* Service links */}
       <div className="flex flex-wrap gap-1.5 mt-auto">

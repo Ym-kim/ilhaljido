@@ -3,22 +3,22 @@
 
 @theme inline {
   --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
-  --color-brand: #1b5e3b;
-  --color-brand-dark: #134429;
-  --color-brand-mid: #25a260;
-  --color-brand-light: #3d9a6a;
-  --color-brand-pale: #eaf5ef;
+  --color-brand: #0c4a6e;
+  --color-brand-dark: #082f49;
+  --color-brand-mid: #0284c7;
+  --color-brand-light: #0ea5e9;
+  --color-brand-pale: #e0f2fe;
   --color-dark: #0a0a0a;
   --color-surface: #141414;
   --color-surface-elevated: #1c1c1c;
   --color-text: #141414;
   --color-muted: #5c5c5c;
-  --color-cream: #f9f7f3;
-  --color-border: #e5e1da;
+  --color-cream: #f0f9ff;
+  --color-border: #dbeafe;
 }
 
 html {
-  font-size: 17px;
+  font-size: 16px;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -28,18 +28,18 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: 1rem;
-  line-height: 1.6;
-  letter-spacing: -0.02em;
+  line-height: 1.65;
+  letter-spacing: -0.015em;
   color: var(--color-text);
-  font-weight: 500;
+  font-weight: 400;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  font-weight: 700;
   word-break: keep-all;
   overflow-wrap: break-word;
 }
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 .text-eyebrow {
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--color-brand-mid);
 }
@@ -70,34 +70,34 @@ h1, h2, h3, h4, h5, h6 {
 .text-eyebrow-on-dark {
   font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #6ee7b7;
+  color: #7dd3fc;
 }
 
 .text-lead {
   font-size: 1.0625rem;
   line-height: 1.65;
-  font-weight: 500;
+  font-weight: 400;
   color: #404040;
 }
 
 .text-lead-on-dark {
   font-size: 1.0625rem;
   line-height: 1.65;
-  font-weight: 500;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.78);
 }
 
 .text-caption {
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 400;
   color: #525252;
 }
 
 .text-caption-on-dark {
   font-size: 0.9375rem;
-  font-weight: 500;
+  font-weight: 400;
   color: rgba(255, 255, 255, 0.62);
 }
 
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-brand-mid);
   border-radius: 9999px;
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(37, 162, 96, 0.35);
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.35);
 }
 .btn-primary:hover {
   background: var(--color-brand-light);
@@ -186,7 +186,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 0.75rem;
-  background: rgba(37, 162, 96, 0.12);
+  background: rgba(2, 132, 199, 0.12);
   color: var(--color-brand-mid);
   flex-shrink: 0;
 }
@@ -198,8 +198,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .icon-tile-on-dark {
-  background: rgba(37, 162, 96, 0.18);
-  color: #6ee7b7;
+  background: rgba(2, 132, 199, 0.18);
+  color: #7dd3fc;
 }
 
 a { text-decoration: none; }

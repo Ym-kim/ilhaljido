@@ -96,6 +96,8 @@ export interface AffiliateItem {
   productTitle?: string           // 상품명 (e.g. "도쿄 장기체류 숙소 예약")
   destination?: string            // 목적지 표시 (e.g. "🗼 도쿄 · 일본")
   country?: string                // 국가 (e.g. "일본")
-  coverGradient?: string          // 카드 헤더 Tailwind 그라디언트
+  coverGradient?: string          // 카드 헤더 Tailwind 그라디언트 (사진 없을 때 fallback)
+  coverPhoto?: string             // 실제 목적지 사진 URL (visual 모드)
+  priceFrom?: string              // 시작 가격 표시 (e.g. "₩79,000~")
   operatorAction?: string         // 다음 운영자 액션 요약
 }
