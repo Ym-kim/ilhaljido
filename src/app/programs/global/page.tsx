@@ -58,11 +58,22 @@ export default function GlobalPage() {
                     {d.region}
                   </p>
                   <h3 className="text-white font-black mb-3">{d.name}</h3>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/30 text-xs">{tr('domestic_coming_soon')}</span>
+                  <div className="flex items-center justify-between gap-2">
+                    {d.stayQuery ? (
+                      <a
+                        href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(d.stayQuery)}`}
+                        target="_blank"
+                        rel="sponsored noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 bg-teal-500/15 text-teal-300 border border-teal-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold hover:bg-teal-500/25 hover:text-teal-200 transition-all"
+                      >
+                        {tr('h3_bar_stay')} <ArrowRight className="w-3 h-3" />
+                      </a>
+                    ) : (
+                      <span className="text-white/30 text-xs">{tr('domestic_coming_soon')}</span>
+                    )}
                     <a
                       href="mailto:wakation.sf@gmail.com"
-                      className="text-teal-400 text-xs font-bold hover:text-teal-300 transition-colors flex items-center gap-1"
+                      className="text-white/40 text-xs font-bold hover:text-teal-300 transition-colors flex items-center gap-1 shrink-0"
                     >
                       {tr('pre_register')} <ArrowRight className="w-3 h-3" />
                     </a>

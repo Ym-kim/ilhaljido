@@ -61,26 +61,37 @@ export default function LearnSelectPage() {
                   href={cat.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex flex-col bg-white border border-[#e0f2fe] rounded-2xl p-5 hover:border-[#7dd3fc] transition-all duration-200 hover:-translate-y-0.5"
+                  className="group relative flex flex-col bg-white border border-[#e0f2fe] rounded-2xl overflow-hidden hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
                 >
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <span className="text-3xl leading-none">{cat.emoji}</span>
-                    <div className="flex items-center gap-1.5">
+                  {/* 사진 헤더 */}
+                  {cat.photo && (
+                    <div className="relative h-28 overflow-hidden bg-[#f0f9ff]">
+                      <img
+                        src={cat.photo}
+                        alt={cat.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
                       {isPending && (
-                        <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600/80 border border-amber-500/15">
+                        <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-black/55 text-white/90">
                           <Clock className="w-2.5 h-2.5" />
                           {tr('sel_badge_prep')}
                         </span>
                       )}
-                      <ArrowUpRight
-                        className="w-3.5 h-3.5 text-[#cbd5e1] group-hover:text-[#64748b] transition-colors"
-                        strokeWidth={ICON_STROKE}
-                      />
                     </div>
+                  )}
+
+                  <div className="flex flex-col flex-1 p-5">
+                  {/* Header */}
+                  <div className="flex items-start justify-between mb-3">
+                    <p className="text-[#111827] font-black text-base leading-snug">{cat.title}</p>
+                    <ArrowUpRight
+                      className="w-3.5 h-3.5 text-[#cbd5e1] group-hover:text-[#64748b] transition-colors shrink-0 mt-1"
+                      strokeWidth={ICON_STROKE}
+                    />
                   </div>
 
-                  <p className="text-[#111827] font-black text-base leading-snug mb-2">{cat.title}</p>
                   <p className="text-[#64748b] text-xs leading-relaxed mb-4 flex-1">{cat.desc}</p>
 
                   {/* Tag pills */}
@@ -93,6 +104,7 @@ export default function LearnSelectPage() {
                         {tag}
                       </span>
                     ))}
+                  </div>
                   </div>
                 </a>
               )

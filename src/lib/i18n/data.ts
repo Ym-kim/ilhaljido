@@ -5,6 +5,7 @@ import type { Space } from '@/types'
 
 type StayItem = {
   id: string
+  bookingQuery: string  // Booking.com ss= 검색어
   img: string
   score: number
   price: string
@@ -46,6 +47,7 @@ type CruiseRoute = {
 type MarketUnit = { id: string; img: string; name: Loc<string>; region: Loc<string>; target: Loc<string> }
 type GlobalDest = {
   id: string
+  stayQuery?: string    // Booking.com ss= 검색어 (숙소 직결)
   img: string
   name: Loc<string>
   country: Loc<string>
@@ -71,6 +73,7 @@ type DomesticCurrent = {
 const STAY_ASIA: StayItem[] = [
   {
     id: 'jeju',
+    bookingQuery: 'Jeju',
     img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
     score: 9.8,
     price: '148,000',
@@ -82,6 +85,7 @@ const STAY_ASIA: StayItem[] = [
   },
   {
     id: 'gangwon',
+    bookingQuery: 'Sokcho',
     img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
     score: 9.6,
     price: '98,000',
@@ -93,6 +97,7 @@ const STAY_ASIA: StayItem[] = [
   },
   {
     id: 'yeosu',
+    bookingQuery: 'Yeosu',
     img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
     score: 9.4,
     price: '128,000',
@@ -104,6 +109,7 @@ const STAY_ASIA: StayItem[] = [
   },
   {
     id: 'bali',
+    bookingQuery: 'Ubud',
     img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
     score: 9.7,
     price: '65,000',
@@ -115,6 +121,7 @@ const STAY_ASIA: StayItem[] = [
   },
   {
     id: 'chiangmai',
+    bookingQuery: 'Chiang Mai',
     img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
     score: 9.5,
     price: '42,000',
@@ -126,6 +133,7 @@ const STAY_ASIA: StayItem[] = [
   },
   {
     id: 'danang',
+    bookingQuery: 'Da Nang',
     img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80',
     score: 9.3,
     price: '58,000',
@@ -140,6 +148,7 @@ const STAY_ASIA: StayItem[] = [
 const STAY_OCEANIA: StayItem[] = [
   {
     id: 'sydney',
+    bookingQuery: 'Sydney',
     img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
     score: 9.6,
     price: '185,000',
@@ -151,6 +160,7 @@ const STAY_OCEANIA: StayItem[] = [
   },
   {
     id: 'melbourne',
+    bookingQuery: 'Melbourne',
     img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
     score: 9.4,
     price: '162,000',
@@ -162,6 +172,7 @@ const STAY_OCEANIA: StayItem[] = [
   },
   {
     id: 'byron',
+    bookingQuery: 'Byron Bay',
     img: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80',
     score: 9.7,
     price: '210,000',
@@ -173,6 +184,7 @@ const STAY_OCEANIA: StayItem[] = [
   },
   {
     id: 'auckland',
+    bookingQuery: 'Auckland',
     img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
     score: 9.5,
     price: '175,000',
@@ -184,6 +196,7 @@ const STAY_OCEANIA: StayItem[] = [
   },
   {
     id: 'queenstown',
+    bookingQuery: 'Queenstown',
     img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
     score: 9.8,
     price: '195,000',
@@ -195,6 +208,7 @@ const STAY_OCEANIA: StayItem[] = [
   },
   {
     id: 'fiji',
+    bookingQuery: 'Fiji',
     img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80',
     score: 9.6,
     price: '145,000',
@@ -374,14 +388,14 @@ const MARKET_UNITS: MarketUnit[] = [
 ]
 
 const GLOBAL_DESTINATIONS: GlobalDest[] = [
-  { id: 'bali', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80', name: loc('발리 워케이션', 'Bali workation', 'バリ・ワーケーション'), country: loc('인도네시아', 'Indonesia', 'インドネシア'), region: loc('발리 우붓·짱구', 'Ubud · Seminyak', 'ウブド・スミニャック'), tag: loc('정글·바다', 'Jungle · sea', 'ジャングル・海') },
-  { id: 'chiangmai', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80', name: loc('치앙마이 워케이션', 'Chiang Mai workation', 'チェンマイ'), country: loc('태국', 'Thailand', 'タイ'), region: loc('치앙마이 님만', 'Nimman, Chiang Mai', 'ニマン'), tag: loc('도심·자연', 'City · nature', '都市・自然') },
-  { id: 'japan', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80', name: loc('오사카·도쿄 워케이션', 'Osaka · Tokyo workation', '大阪・東京'), country: loc('일본', 'Japan', '日本'), region: loc('오사카·도쿄', 'Osaka · Tokyo', '大阪・東京'), tag: loc('비즈니스', 'Business', 'ビジネス') },
-  { id: 'japan-ryokan', img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80', name: loc('일본 료칸 온천 워케이션', 'Japan Ryokan & Onsen Workation', '日本旅館・温泉ワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('하코네·아타미·닛코', 'Hakone · Atami · Nikko', '箱根・熱海・日光'), tag: loc('료칸·온천', 'Ryokan · Onsen', '旅館・温泉') },
-  { id: 'danang', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', name: loc('다낭 워케이션', 'Da Nang workation', 'ダナン'), country: loc('베트남', 'Vietnam', 'ベトナム'), region: loc('다낭·호이안', 'Da Nang · Hoi An', 'ダナン・ホイアン'), tag: loc('해변', 'Beach', 'ビーチ') },
-  { id: 'cebu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
-  { id: 'australia', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
-  { id: 'japan-golf', img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80', name: loc('일본 골프 네트워킹 워케이션', 'Japan Golf Networking Workation', '日本ゴルフネットワークワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('오키나와·규슈·도쿄', 'Okinawa · Kyushu · Tokyo', '沖縄・九州・東京'), tag: loc('골프·네트워킹', 'Golf · Networking', 'ゴルフ・ネットワーク') },
+  { id: 'bali', stayQuery: 'Ubud', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80', name: loc('발리 워케이션', 'Bali workation', 'バリ・ワーケーション'), country: loc('인도네시아', 'Indonesia', 'インドネシア'), region: loc('발리 우붓·짱구', 'Ubud · Seminyak', 'ウブド・スミニャック'), tag: loc('정글·바다', 'Jungle · sea', 'ジャングル・海') },
+  { id: 'chiangmai', stayQuery: 'Chiang Mai', img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80', name: loc('치앙마이 워케이션', 'Chiang Mai workation', 'チェンマイ'), country: loc('태국', 'Thailand', 'タイ'), region: loc('치앙마이 님만', 'Nimman, Chiang Mai', 'ニマン'), tag: loc('도심·자연', 'City · nature', '都市・自然') },
+  { id: 'japan', stayQuery: 'Tokyo', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80', name: loc('오사카·도쿄 워케이션', 'Osaka · Tokyo workation', '大阪・東京'), country: loc('일본', 'Japan', '日本'), region: loc('오사카·도쿄', 'Osaka · Tokyo', '大阪・東京'), tag: loc('비즈니스', 'Business', 'ビジネス') },
+  { id: 'japan-ryokan', stayQuery: 'Hakone', img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80', name: loc('일본 료칸 온천 워케이션', 'Japan Ryokan & Onsen Workation', '日本旅館・温泉ワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('하코네·아타미·닛코', 'Hakone · Atami · Nikko', '箱根・熱海・日光'), tag: loc('료칸·온천', 'Ryokan · Onsen', '旅館・温泉') },
+  { id: 'danang', stayQuery: 'Da Nang', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', name: loc('다낭 워케이션', 'Da Nang workation', 'ダナン'), country: loc('베트남', 'Vietnam', 'ベトナム'), region: loc('다낭·호이안', 'Da Nang · Hoi An', 'ダナン・ホイアン'), tag: loc('해변', 'Beach', 'ビーチ') },
+  { id: 'cebu', stayQuery: 'Cebu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
+  { id: 'australia', stayQuery: 'Sydney', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
+  { id: 'japan-golf', stayQuery: 'Okinawa', img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80', name: loc('일본 골프 네트워킹 워케이션', 'Japan Golf Networking Workation', '日本ゴルフネットワークワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('오키나와·규슈·도쿄', 'Okinawa · Kyushu · Tokyo', '沖縄・九州・東京'), tag: loc('골프·네트워킹', 'Golf · Networking', 'ゴルフ・ネットワーク') },
 ]
 
 export const DOMESTIC_CURRENT: DomesticCurrent[] = [
@@ -490,6 +504,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
 function mapStay(lang: Lang, items: StayItem[]) {
   return items.map((s) => ({
     id: s.id,
+    bookingQuery: s.bookingQuery,
     img: s.img,
     score: s.score,
     price: s.price,
@@ -571,6 +586,7 @@ export function getMarketUnits(lang: Lang) {
 export function getGlobalDestinations(lang: Lang) {
   return GLOBAL_DESTINATIONS.map((d) => ({
     id: d.id,
+    stayQuery: d.stayQuery,
     img: d.img,
     name: tloc(lang, d.name),
     country: tloc(lang, d.country),

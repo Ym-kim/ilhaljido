@@ -98,7 +98,12 @@ export default function StayPage() {
           {/* 숙소 그리드 */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {spaces.map((s) => (
-              <div key={s.id} className="group rounded-3xl overflow-hidden cursor-pointer bg-[#1a1a1a] hover:scale-[1.02] transition-transform duration-300">
+              <a
+                key={s.id}
+                href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(s.bookingQuery)}`}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="group rounded-3xl overflow-hidden cursor-pointer bg-[#1a1a1a] hover:scale-[1.02] transition-transform duration-300 block">
                 <div className="relative h-56 overflow-hidden">
                   <img
                     src={s.img}
@@ -129,8 +134,11 @@ export default function StayPage() {
                       <span className="text-white/30 font-normal text-xs">{tr('per_night')}</span>
                     </div>
                   </div>
+                  <div className="mt-4 flex items-center justify-center gap-1.5 bg-teal-500/12 text-teal-300 border border-teal-500/25 rounded-xl py-2.5 text-xs font-bold group-hover:bg-teal-500/20 group-hover:text-teal-200 transition-all">
+                    {tr('nav_select_hotel')} · Booking.com
+                  </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
