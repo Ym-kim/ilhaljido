@@ -3,9 +3,9 @@
 import { ArrowUpRight, Clock } from 'lucide-react'
 import type { DestinationEntry, ServiceLink } from '@/lib/affiliate/destinations'
 
-// active_affiliate/api_ready → teal, 실제 수익 추적
-// approved_needs_link/needs_referral_link/approved_needs_course_links → amber, 링크 대기
-// placeholder/manual_link/pending_approval → gray, 일반 외부 링크
+// active_affiliate/api_ready → 브랜드 블루 filled CTA, 실제 수익 추적
+// approved_needs_link/needs_referral_link/approved_needs_course_links → 회색 outline, 링크 대기
+// placeholder/manual_link/pending_approval → 연회색 외부 링크
 
 function ServiceButton({ link }: { link: ServiceLink }) {
   const isActive = link.status === 'active_affiliate' || link.status === 'api_ready'
@@ -24,18 +24,17 @@ function ServiceButton({ link }: { link: ServiceLink }) {
       href={link.href}
       target="_blank"
       rel={rel}
-      className={`inline-flex items-center gap-1.5 text-[0.7rem] font-bold px-3 py-1.5 rounded-full border transition-all duration-150 ${
+      className={`inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3.5 py-2 rounded-full transition-all duration-150 ${
         isActive
-          ? 'border-teal-500/35 text-teal-300/90 hover:border-teal-500/60 hover:text-teal-200 hover:bg-teal-500/8'
+          ? 'bg-brand-mid text-white shadow-sm hover:bg-brand-light hover:shadow-md'
           : isPending
-          ? 'border-amber-500/20 text-amber-400/55 hover:border-amber-500/35 hover:text-amber-400/80'
-          : 'border-white/10 text-white/35 hover:border-white/20 hover:text-white/55'
+          ? 'border border-[#e2e8f0] text-[#94a3b8] hover:border-[#cbd5e1] hover:text-[#64748b]'
+          : 'border border-[#e2e8f0] text-[#94a3b8] hover:border-[#cbd5e1] hover:text-[#64748b]'
       }`}
     >
-      <span>{link.emoji}</span>
       {link.provider}
       {isPending && <Clock className="w-2.5 h-2.5 opacity-60" />}
-      {isActive && <ArrowUpRight className="w-2.5 h-2.5" />}
+      {isActive && <ArrowUpRight className="w-3 h-3" />}
     </a>
   )
 }
@@ -50,15 +49,15 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
     (l) => l.status === 'active_affiliate' || l.status === 'api_ready'
   )
 
-  // 첫 번째 링크를 주 CTA로
-  const primaryLink = entry.links[0]
-
   return (
     <div
-      className={`relative flex flex-col bg-gradient-to-b ${entry.gradient} border border-white/8 rounded-2xl p-5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${className}`}
+      id={entry.id}
+      className={`relative flex flex-col bg-white border rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg scroll-mt-28 ${
+        hasActive ? 'border-[#bae6fd] hover:border-[#7dd3fc]' : 'border-[#e2e8f0] hover:border-[#cbd5e1]'
+      } ${className}`}
     >
       {hasActive && (
-        <div className="absolute top-0 inset-x-6 h-[1.5px] bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
+        <div className="absolute top-0 inset-x-6 h-[2px] rounded-b bg-gradient-to-r from-transparent via-sky-400/70 to-transparent" />
       )}
 
       {/* Header */}
@@ -68,7 +67,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
           {entry.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-white/6 text-white/40 border border-white/8"
+              className="text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-[#f0f9ff] text-[#0369a1] border border-[#e0f2fe]"
             >
               {tag}
             </span>
@@ -77,8 +76,8 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
       </div>
 
       {/* Destination name */}
-      <p className="text-[0.7rem] text-white/40 font-medium mb-0.5">{entry.country}</p>
-      <p className="text-white font-black text-lg mb-4 leading-tight">{entry.city}</p>
+      <p className="text-[0.7rem] text-[#94a3b8] font-medium mb-0.5">{entry.country}</p>
+      <p className="text-[#111827] font-black text-lg mb-4 leading-tight">{entry.city}</p>
 
       {/* Service links */}
       <div className="flex flex-wrap gap-1.5 mt-auto">
