@@ -1,8 +1,10 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
-import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { FEATURED_CRUISES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getCruiseFeatures, getCruiseRoutes } from '@/lib/i18n'
 import { Anchor, Wifi, Globe } from 'lucide-react'
@@ -80,6 +82,22 @@ export default function CruisePage() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 지금 예약 가능한 크루즈 — 실존 상품 */}
+      <section className="px-6 py-14 bg-[#f0f9ff] border-t border-[#e0f2fe]">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+            {tr('cruise_featured')}
+          </p>
+          <p className="text-[#64748b] text-sm mb-6">{tr('cruise_featured_d')}</p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {FEATURED_CRUISES.map((item) => (
+              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
           </div>
         </div>
