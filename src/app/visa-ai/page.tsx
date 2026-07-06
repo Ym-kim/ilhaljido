@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ArrowRight, RotateCcw } from 'lucide-react'
+import { ArrowRight, RotateCcw, Sparkles, LogIn } from 'lucide-react'
 import { SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
+import { useAuth } from '@/context/AuthContext'
 import {
   VISA_COUNTRIES,
   VISA_PURPOSES,
@@ -25,10 +26,13 @@ interface Selections {
 
 export default function VisaAiPage() {
   const { lang, tr } = useLang()
+  const { user } = useAuth()
   const [step, setStep] = useState<Step>(1)
   const [selections, setSelections] = useState<Selections>({ country: '', purpose: '', duration: '' })
   const [loading, setLoading] = useState(false)
   const [showResult, setShowResult] = useState(false)
+  const [aiResult, setAiResult] = useState<string | null>(null)
+  const [aiFailed, setAiFailed] = useState(false)
 
   const stepLabelKeys = ['visa_step_country', 'visa_step_purpose', 'visa_step_duration', 'visa_step_result'] as const
 
@@ -47,13 +51,42 @@ export default function VisaAiPage() {
   }
 
   function selectDuration(d: string) {
-    setSelections((prev) => ({ ...prev, duration: d }))
+    const sel = { ...selections, duration: d }
+    setSelections(sel)
     setLoading(true)
     setStep(4)
-    setTimeout(() => {
-      setLoading(false)
-      setShowResult(true)
-    }, 1800)
+
+    // 로그인 사용자: 실시간 AI 분석 (베타 무료) / 비로그인: 기본 가이드(mock)
+    if (user) {
+      fetch('/api/visa', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          country: VISA_COUNTRIES.find((c) => c.value === sel.country)?.label.KO ?? sel.country,
+          purpose: VISA_PURPOSES.find((p) => p.value === sel.purpose)?.label.KO ?? sel.purpose,
+          duration: VISA_DURATIONS.find((x) => x.value === sel.duration)?.label.KO ?? sel.duration,
+          lang,
+        }),
+      })
+        .then(async (r) => {
+          const data = await r.json()
+          if (r.ok && data.analysis) {
+            setAiResult(data.analysis)
+          } else {
+            setAiFailed(true)
+          }
+        })
+        .catch(() => setAiFailed(true))
+        .finally(() => {
+          setLoading(false)
+          setShowResult(true)
+        })
+    } else {
+      setTimeout(() => {
+        setLoading(false)
+        setShowResult(true)
+      }, 1800)
+    }
   }
 
   function reset() {
@@ -61,6 +94,8 @@ export default function VisaAiPage() {
     setSelections({ country: '', purpose: '', duration: '' })
     setLoading(false)
     setShowResult(false)
+    setAiResult(null)
+    setAiFailed(false)
   }
 
   const result =
@@ -207,15 +242,55 @@ export default function VisaAiPage() {
                     </SectionTitle>
                   </div>
 
+                  {/* 비로그인 — 실시간 AI 유도 배너 */}
+                  {!user && (
+                    <div className="mb-5 bg-gradient-to-r from-teal-500/12 to-sky-500/8 border border-teal-500/30 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      <div>
+                        <p className="text-teal-300 font-bold text-sm mb-1 flex items-center gap-1.5">
+                          <Sparkles className="w-4 h-4" /> {tr('visa_login_banner_t')}
+                        </p>
+                        <p className="text-white/55 text-xs leading-relaxed">{tr('visa_login_banner_d')}</p>
+                      </div>
+                      <Link
+                        href="/login"
+                        className="shrink-0 inline-flex items-center gap-1.5 bg-teal-500 text-white font-bold text-xs px-4 py-2.5 rounded-full hover:bg-teal-400 transition-all"
+                      >
+                        <LogIn className="w-3.5 h-3.5" /> {tr('visa_login_btn')}
+                      </Link>
+                    </div>
+                  )}
+
+                  {/* AI 실패 안내 */}
+                  {user && aiFailed && (
+                    <div className="mb-5 bg-amber-500/10 border border-amber-500/25 rounded-2xl p-4">
+                      <p className="text-amber-300/90 text-xs">{tr('visa_ai_fail')}</p>
+                    </div>
+                  )}
+
+                  {/* 실시간 AI 분석 결과 (로그인 · 베타) */}
+                  {aiResult && (
+                    <div className="mb-5 bg-[#0d1f1c] border border-teal-500/35 rounded-2xl p-6 relative overflow-hidden">
+                      <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
+                      <p className="text-teal-300 text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5" /> {tr('visa_live_badge')}
+                      </p>
+                      <div className="text-white/85 text-sm leading-relaxed whitespace-pre-wrap">{aiResult}</div>
+                    </div>
+                  )}
+
                   <div className="space-y-4">
+                    {!aiResult && (
                     <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6">
                       <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_type')}</p>
                       <p className="text-white font-bold">{result.visaType}</p>
                     </div>
+                    )}
+                    {!aiResult && (
                     <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6">
                       <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_req')}</p>
                       <p className="text-white/75 text-sm leading-relaxed">{result.requirement}</p>
                     </div>
+                    )}
                     <div className="bg-[#1a1a1a] border border-teal-500/30 rounded-2xl p-6">
                       <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_prog')}</p>
                       <p className="text-white font-bold mb-3">{result.program}</p>
@@ -230,6 +305,9 @@ export default function VisaAiPage() {
                       <p className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-1">{tr('visa_label_official')}</p>
                       <p className="text-white/55 text-xs">{result.official}</p>
                     </div>
+
+                    {/* 요금제 고지 — 베타 무료 → 연간 멤버십 */}
+                    <p className="text-white/30 text-[0.7rem] text-center pt-2">{tr('visa_beta_notice')}</p>
                   </div>
 
                   <button
