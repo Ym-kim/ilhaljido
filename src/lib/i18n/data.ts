@@ -1020,3 +1020,125 @@ export function getSelectCategories(lang: Lang) {
     cta: tloc(lang, c.cta),
   }))
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 지역 지원 프로그램 — 지자체 한달살기/워케이션 지원사업 큐레이션
+// (2026-07 웹 리서치 검증. 마감·조건은 변동 가능 — 분기별 갱신 권장)
+// 벤치마킹: monthler.kr — 최대지원금 환산 배지 + 상태칩 + 조건 태그
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type SupportStatus = 'open' | 'always' | 'upcoming' | 'check'
+
+type SupportProgram = {
+  id: string
+  region: Loc<string>
+  name: Loc<string>
+  benefit: Loc<string>       // 지원 내용 요약
+  maxBenefit?: string        // "최대 ₩300,000" 환산 배지 (불명확하면 생략)
+  status: SupportStatus
+  deadline: Loc<string>      // 마감/모집 상태 설명
+  conditions: Loc<string[]>  // 조건 태그 (최대 3)
+  href: string               // 공식 공고/신청 링크
+}
+
+const SUPPORT_STATUS_LABEL: Record<SupportStatus, Loc<string>> = {
+  open: loc('모집중', 'Open now', '募集中'),
+  always: loc('상시 모집', 'Rolling', '随時募集'),
+  upcoming: loc('모집 예정', 'Opening soon', '募集予定'),
+  check: loc('공고 확인', 'Check notice', '公告確認'),
+}
+
+const SUPPORT_PROGRAMS: SupportProgram[] = [
+  {
+    id: 'jeju-voucher',
+    region: loc('제주', 'Jeju', '済州'),
+    name: loc('제주 민간형 워케이션 바우처', 'Jeju Workation Voucher', '済州ワーケーションバウチャー'),
+    benefit: loc('숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳', 'Stay+office voucher up to ₩50,000/night at 17 partner offices', '宿泊＋オフィス1泊最大5万W、提携オフィス17カ所'),
+    maxBenefit: '최대 ₩300,000',
+    status: 'always',
+    deadline: loc('예산 소진 시까지', 'Until budget runs out', '予算消化まで'),
+    conditions: loc(['도외 재직자·사업자', '3박 4일 이상'], ['Non-Jeju workers', '3+ nights'], ['道外の在職者', '3泊以上']),
+    href: 'http://jejuworkation.or.kr/Supportproject',
+  },
+  {
+    id: 'busan-workation',
+    region: loc('부산', 'Busan', '釜山'),
+    name: loc('부산형 워케이션', 'Busan Workation', '釜山型ワーケーション'),
+    benefit: loc('업무공간 무료 + 웰컴키트 + 관광 바우처·할인쿠폰', 'Free workspace + welcome kit + tour vouchers', 'ワークスペース無料＋観光バウチャー'),
+    maxBenefit: '공간 무료',
+    status: 'always',
+    deadline: loc('상시 (기업등록 후 신청)', 'Rolling (register first)', '随時（企業登録後）'),
+    conditions: loc(['부산 외 재직자·대표', '재직증명 필요'], ['Non-Busan workers', 'Proof of work'], ['釜山外の在職者', '在職証明']),
+    href: 'https://www.busaness.com/',
+  },
+  {
+    id: 'gangwon-workation',
+    region: loc('강원', 'Gangwon', '江原'),
+    name: loc('강원 워케이션', 'Gangwon Workation', '江原ワーケーション'),
+    benefit: loc('숙박 3박 + 공유오피스 + 지역체험 패키지', '3-night stay + coworking + local experiences', '宿泊3泊＋コワーキング＋体験'),
+    maxBenefit: '3박 패키지',
+    status: 'check',
+    deadline: loc('회차별 모집 — 공고 확인', 'Batch-based — check notice', '回次別募集'),
+    conditions: loc(['재직자·프리랜서·특고', '4대보험 또는 증빙'], ['Workers & freelancers', 'Proof required'], ['在職者・フリーランス']),
+    href: 'https://worcation.co.kr/gw/enroll',
+  },
+  {
+    id: 'namhae-onemonth',
+    region: loc('경남 남해', 'Namhae', '南海'),
+    name: loc('남해 한달살기', 'Namhae One-Month Stay', '南海1カ月暮らし'),
+    benefit: loc('숙박 일 7만원 + 체험비 7~12만원 + 보험료 지원', '₩70,000/day stay + activity fees + insurance', '宿泊日7万W＋体験費＋保険'),
+    maxBenefit: '최대 ₩2,310,000',
+    status: 'upcoming',
+    deadline: loc('2차 모집 공고 대기 (예년 6~7월)', '2nd batch expected Jun–Jul', '2次募集待ち'),
+    conditions: loc(['경남 외 거주', '1일 1SNS 필수'], ['Non-Gyeongnam residents', 'Daily SNS post'], ['慶南外居住', '毎日SNS必須']),
+    href: 'https://www.monthler.kr/programs/4621',
+  },
+  {
+    id: 'gunsan-village',
+    region: loc('전북 군산', 'Gunsan', '群山'),
+    name: loc('군산 말랭이마을 한달살기', 'Gunsan Village One-Month', '群山マレンイ村1カ月'),
+    benefit: loc('숙소 제공 + 체험활동비 주 10만원', 'Free stay + ₩100,000/week activity budget', '宿提供＋体験費週10万W'),
+    maxBenefit: '주 ₩100,000+숙소',
+    status: 'check',
+    deadline: loc('기수제 수시 — 공고 확인', 'Cohort-based — check notice', '期数制・公告確認'),
+    conditions: loc(['군산 외 거주', 'SNS 홍보 가능자'], ['Non-Gunsan residents', 'SNS promotion'], ['群山外居住', 'SNS広報']),
+    href: 'https://www.monthler.kr/programs/1551',
+  },
+  {
+    id: 'muan-jeonnam',
+    region: loc('전남 무안', 'Muan', '務安'),
+    name: loc('전남에서 살아보기 (무안)', 'Live in Jeonnam (Muan)', '全南で暮らしてみる'),
+    benefit: loc('휴양마을 최장 3개월 체류 + 숙박 제공', 'Up to 3-month village stay, lodging provided', '最長3カ月滞在＋宿泊提供'),
+    maxBenefit: '3개월 숙박',
+    status: 'upcoming',
+    deadline: loc('8월 2차 모집 예정', '2nd batch in August', '8月2次募集予定'),
+    conditions: loc(['타 시도 도시민', '귀농귀촌 관심자'], ['Non-Jeonnam urbanites', 'Rural-life interest'], ['他市道の都市民']),
+    href: 'https://www.greendaero.go.kr/',
+  },
+  {
+    id: 'rural-living',
+    region: loc('전국', 'Nationwide', '全国'),
+    name: loc('농촌에서 살아보기', 'Rural Living Program', '農村で暮らしてみる'),
+    benefit: loc('숙소 무료 + 월 30만원 연수비 (인구감소지역 마을)', 'Free stay + ₩300,000/month stipend', '宿無料＋月30万W研修費'),
+    maxBenefit: '월 ₩300,000+숙소',
+    status: 'always',
+    deadline: loc('마을별 상시/기수별 모집', 'Village-based rolling', '村別に随時'),
+    conditions: loc(['만 19세 이상', '타 지역 거주', 'SNS 과제'], ['Age 19+', 'Non-local', 'SNS tasks'], ['満19歳以上', '他地域居住']),
+    href: 'https://www.greendaero.go.kr/',
+  },
+]
+
+export function getSupportPrograms(lang: Lang) {
+  return SUPPORT_PROGRAMS.map((p) => ({
+    id: p.id,
+    region: tloc(lang, p.region),
+    name: tloc(lang, p.name),
+    benefit: tloc(lang, p.benefit),
+    maxBenefit: p.maxBenefit,
+    status: p.status,
+    statusLabel: tloc(lang, SUPPORT_STATUS_LABEL[p.status]),
+    deadline: tloc(lang, p.deadline),
+    conditions: tloc(lang, p.conditions),
+    href: p.href,
+  }))
+}

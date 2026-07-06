@@ -13,6 +13,7 @@ export {
 } from './i18n/content'
 export {
   getSelectCategories,
+  getSupportPrograms,
   getStayAsia,
   getStayOceania,
   getActivities,
