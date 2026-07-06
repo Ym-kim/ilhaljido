@@ -160,46 +160,156 @@ export function getVisaMockResult(
   const countryLabel = VISA_COUNTRIES.find((c) => c.value === country)?.label[lang] ?? country
   const purposeLabel = VISA_PURPOSES.find((p) => p.value === purpose)?.label[lang] ?? purpose
 
+  // 2026-07 리서치 검증 — 한국 여권 기준. 분기별 갱신 권장 (memory: 비자 데이터 갱신 룰)
   const visaByCountry: Record<string, Record<Lang, string>> = {
     japan: {
-      KO: '관광 비자(단기체류 90일 무비자) / 취업·연수 비자',
-      EN: 'Tourist (90-day visa-free) / work & training visas',
-      JP: '観光（90日ビザ免除）/ 就労・研修ビザ',
+      KO: '무비자 90일 · 디지털노마드 비자(특정활동, 연소득 1,000만엔↑, 6개월)',
+      EN: 'Visa-free 90d · Digital Nomad visa (¥10M+ income, 6 months)',
+      JP: 'ビザ免除90日 · デジタルノマド（年収1,000万円↑、6カ月）',
     },
     thailand: {
-      KO: '관광 비자(30일) / TR-O 비자 / METV 복수비자',
-      EN: 'Tourist (30 days) / TR-O / METV multi-entry',
-      JP: '観光（30日）/ TR-O / METV',
+      KO: '무비자 30일(축소 확정) · DTV 비자(5년 복수, 회당 180일, 잔고 50만밧)',
+      EN: 'Visa-free 30d (reduced) · DTV (5-yr multi, 180d/entry, ฿500K funds)',
+      JP: 'ビザ免除30日（短縮）· DTV（5年数次、180日、50万バーツ）',
     },
     indonesia: {
-      KO: '소셜·문화 비자(B211A) / 비즈니스 비자',
-      EN: 'Social-cultural (B211A) / business visa',
-      JP: '社交・文化（B211A）/ ビジネスビザ',
+      KO: '무비자 30일 / e-VOA 30+30일 · E33G 원격근무 KITAS(1년, 연소득 $60,000)',
+      EN: 'Visa-free 30d / e-VOA · E33G Remote Worker KITAS (1yr, $60K income)',
+      JP: 'ビザ免除30日 · E33Gリモートワーク（1年、年収$60,000）',
     },
     vietnam: {
-      KO: '전자 비자(E-Visa 90일) / 비즈니스 비자',
-      EN: 'E-Visa (90 days) / business visa',
-      JP: '電子ビザ（90日）/ ビジネスビザ',
+      KO: '무비자 45일(2028.3까지 한시) · e-Visa 90일($25)',
+      EN: 'Visa-free 45d (until Mar 2028) · e-Visa 90d ($25)',
+      JP: 'ビザ免除45日（2028.3まで）· 電子ビザ90日',
     },
     australia: {
-      KO: '워킹홀리데이 / 학생 비자(500)',
-      EN: 'Working holiday / student visa (500)',
-      JP: 'ワーホリ / 学生ビザ（500）',
+      KO: 'ETA(601) 회당 3개월 · 노마드비자 없음 → 워킹홀리데이(417, 18-30세)',
+      EN: 'ETA 3mo/entry · no nomad visa → Working Holiday (417)',
+      JP: 'ETA 3カ月 · ノマドビザなし → ワーホリ（417）',
     },
     canada: {
-      KO: '워킹홀리데이(IEC) / 학생 비자',
-      EN: 'Working holiday (IEC) / student visa',
-      JP: 'ワーホリ（IEC）/ 学生ビザ',
+      KO: 'eTA 최대 6개월 · 노마드비자 없음 → 워킹홀리데이(IEC)',
+      EN: 'eTA up to 6mo · no nomad visa → IEC Working Holiday',
+      JP: 'eTA 最大6カ月 · ワーホリ（IEC）',
     },
     portugal: {
-      KO: '디지털 노마드 비자 / D7 패시브 인컴 비자',
-      EN: 'Digital nomad visa / D7 passive income visa',
-      JP: 'デジタルノマド / D7',
+      KO: '셰겐 90/180 · D8 노마드비자(월 €3,680, 2026 기준)',
+      EN: 'Schengen 90/180 · D8 nomad visa (€3,680/mo, 2026)',
+      JP: 'シェンゲン90/180 · D8ノマドビザ（月€3,680）',
+    },
+    taiwan: {
+      KO: '무비자 90일 · 디지털노마드 비자(연소득 $40K/30세↑, $20K/20대) 최대 2년',
+      EN: 'Visa-free 90d · Nomad visa ($40K or $20K income) up to 2 yrs',
+      JP: 'ビザ免除90日 · ノマドビザ 最大2年',
+    },
+    philippines: {
+      KO: '무비자 30일 · DNV 노마드비자(연소득 $24,000, 1+1년) — 한국인 대상 여부 대사관 확인',
+      EN: 'Visa-free 30d · DNV ($24K income, 1+1yr) — confirm eligibility',
+      JP: 'ビザ免除30日 · DNV（年収$24,000）— 対象要確認',
+    },
+    singapore: {
+      KO: '무비자 90일 · 전용 노마드비자 없음 (단기 워케이션은 무비자로 충분)',
+      EN: 'Visa-free 90d · no nomad visa (visa-free covers short stays)',
+      JP: 'ビザ免除90日 · ノマドビザなし',
+    },
+    malaysia: {
+      KO: '무비자 90일 · DE Rantau 노마드패스(IT 연 $24K / 비IT $60K, 3-12개월)',
+      EN: 'Visa-free 90d · DE Rantau Nomad Pass (3-12mo)',
+      JP: 'ビザ免除90日 · DE Rantauノマドパス',
+    },
+    usa: {
+      KO: 'ESTA 90일 · 노마드비자 없음 (B1/B2도 원격근무는 회색지대 — 주의)',
+      EN: 'ESTA 90d · no nomad visa (remote work is a gray area)',
+      JP: 'ESTA 90日 · ノマドビザなし（リモートはグレー）',
+    },
+    spain: {
+      KO: '셰겐 90/180 · DNV 노마드비자(월 €2,850, 최대 5년, 베컴법 24% 세율)',
+      EN: 'Schengen 90/180 · DNV (€2,850/mo, up to 5 yrs, 24% tax option)',
+      JP: 'シェンゲン90/180 · DNV（月€2,850、最大5年）',
+    },
+    france: {
+      KO: '셰겐 90/180 · 노마드비자 없음 — 2025.6부터 방문비자 원격근무 공식 금지',
+      EN: 'Schengen 90/180 · no nomad visa — remote work banned on visitor visa (2025)',
+      JP: 'シェンゲン90/180 · 訪問ビザでのリモート禁止（2025.6〜）',
+    },
+    italy: {
+      KO: '셰겐 90/180 · 디지털노마드 비자(연 €28,000, 해외 소득원)',
+      EN: 'Schengen 90/180 · Digital Nomad visa (€28K/yr income)',
+      JP: 'シェンゲン90/180 · ノマドビザ（年€28,000）',
+    },
+    germany: {
+      KO: '셰겐 90/180 · 전용 없음 → Freiberufler 프리랜서 비자(독일 내 고객 필요)',
+      EN: 'Schengen 90/180 · Freiberufler freelance visa (needs German clients)',
+      JP: 'シェンゲン90/180 · フリーランスビザ',
+    },
+    czech: {
+      KO: '셰겐 90/180 · Zivno/노마드 프로그램(월 약 CZK 60,530) — 대상국 확인 권장',
+      EN: 'Schengen 90/180 · Zivno / nomad program (~CZK 60,530/mo)',
+      JP: 'シェンゲン90/180 · Zivno（月約CZK 60,530）',
+    },
+    hungary: {
+      KO: '셰겐 90/180 · White Card(월 €3,000+저축 €10,000, 최대 2년, 가족 동반 불가)',
+      EN: 'Schengen 90/180 · White Card (€3,000/mo, max 2 yrs, no family)',
+      JP: 'シェンゲン90/180 · ホワイトカード（月€3,000）',
+    },
+    croatia: {
+      KO: '셰겐 90/180 · 노마드 체류허가(월 €2,540, 최대 12개월, 외국소득 비과세)',
+      EN: 'Schengen 90/180 · DN permit (€2,540/mo, 12mo, foreign income untaxed)',
+      JP: 'シェンゲン90/180 · ノマド滞在許可（月€2,540）',
+    },
+    georgia: {
+      KO: '무비자 360일(약 1년!) · 전용비자 불필요 — 무비자만으로 장기 체류',
+      EN: 'Visa-free 360 days — long stays possible with no visa at all',
+      JP: 'ビザ免除360日 — ビザなしで長期滞在可',
+    },
+    uae: {
+      KO: '무비자 90일 · Virtual Working Programme(월 $3,500, 1년 거주허가)',
+      EN: 'Visa-free 90d · Virtual Working Programme ($3,500/mo, 1-yr permit)',
+      JP: 'ビザ免除90日 · バーチャルワーキング（月$3,500）',
     },
     other: {
       KO: '목적지별 개별 확인 필요',
       EN: 'Check requirements per destination',
       JP: '目的地ごとに個別確認',
+    },
+  }
+
+  // 국가별 최신 변동·주의사항 (있는 국가만)
+  const noteByCountry: Record<string, Record<Lang, string>> = {
+    thailand: {
+      KO: '⚠️ 무비자 60→30일 축소 확정(시행 임박). 장기 체류는 DTV 권장.',
+      EN: '⚠️ Visa-free cut 60→30 days. Consider DTV for longer stays.',
+      JP: '⚠️ ビザ免除60→30日に短縮。長期はDTV推奨。',
+    },
+    indonesia: {
+      KO: '⚠️ 2025.6부터 비자 연장 온라인 중단 — 대면 신청만 가능.',
+      EN: '⚠️ Visa extensions are in-person only since Jun 2025.',
+      JP: '⚠️ 延長はオンライン不可（対面のみ）。',
+    },
+    vietnam: {
+      KO: '45일 면제는 2028.3까지 한시 조치입니다.',
+      EN: '45-day exemption is temporary (until Mar 2028).',
+      JP: '45日免除は2028.3までの限定措置。',
+    },
+    taiwan: {
+      KO: '✨ 2026.1부터 노마드비자 최대 2년으로 확대.',
+      EN: '✨ Nomad visa extended to 2 years max (Jan 2026).',
+      JP: '✨ 2026.1からノマドビザ最大2年に拡大。',
+    },
+    france: {
+      KO: '⚠️ 방문비자(VLS-TS) 원격근무 공식 금지(2025.6~).',
+      EN: '⚠️ Remote work officially banned on visitor visas (since Jun 2025).',
+      JP: '⚠️ 訪問ビザでのリモートワーク禁止。',
+    },
+    japan: {
+      KO: '노마드비자는 민간 의료보험(1천만엔 보장) 필수, 연장 불가.',
+      EN: 'Nomad visa needs private insurance; non-renewable.',
+      JP: 'ノマドビザは民間保険必須、延長不可。',
+    },
+    georgia: {
+      KO: '183일 이상 체류 시 세법상 거주자 — 개인사업자 1% 과세 활용 가능.',
+      EN: 'Tax resident after 183 days — 1% small-business tax available.',
+      JP: '183日超で税務上の居住者に。',
     },
   }
 
@@ -267,7 +377,7 @@ export function getVisaMockResult(
 
   return {
     visaType: visaByCountry[country]?.[lang] ?? visaByCountry.other[lang],
-    requirement: reqByDuration[duration]?.[lang] ?? reqByDuration.short[lang],
+    requirement: [noteByCountry[country]?.[lang], reqByDuration[duration]?.[lang] ?? reqByDuration.short[lang]].filter(Boolean).join(' '),
     program: progByPurpose[purpose]?.[lang] ?? translate(lang, 'nav_programs'),
     official: official[lang],
   }

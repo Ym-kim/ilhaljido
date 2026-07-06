@@ -100,8 +100,23 @@ export default function SupportProgramsPage() {
             ))}
           </div>
 
+          {/* 프로그램 무료 등록 배너 — monthler 셀프서브 벤치마킹 */}
+          <Link
+            href="/programs/support/register"
+            className="group mt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-gradient-to-r from-[#0a1e33] to-[#0c4a6e] rounded-2xl p-6 hover:shadow-lg transition-all"
+          >
+            <div>
+              <p className="text-white font-black text-base mb-1">{tr('preg_banner_t')}</p>
+              <p className="text-white/60 text-sm">{tr('preg_banner_d')}</p>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1.5 bg-white text-[#0a1e33] font-bold text-sm px-5 py-2.5 rounded-full group-hover:bg-sky-50 transition-colors">
+              {tr('preg_banner_cta')}
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </Link>
+
           {/* 정보 갱신 고지 */}
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl mt-8">
+          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl mt-6">
             {tr('support_notice')}
           </p>
         </div>
