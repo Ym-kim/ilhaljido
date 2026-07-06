@@ -76,7 +76,7 @@ const STAY_ASIA: StayItem[] = [
   {
     id: 'jeju',
     bookingQuery: 'Jeju',
-    img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
     score: 9.8,
     price: '148,000',
     wifi: '500Mbps',
@@ -88,7 +88,7 @@ const STAY_ASIA: StayItem[] = [
   {
     id: 'gangwon',
     bookingQuery: 'Sokcho',
-    img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80',
     score: 9.6,
     price: '98,000',
     wifi: '300Mbps',
@@ -100,7 +100,7 @@ const STAY_ASIA: StayItem[] = [
   {
     id: 'yeosu',
     bookingQuery: 'Yeosu',
-    img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=800&q=80',
     score: 9.4,
     price: '128,000',
     wifi: '400Mbps',
@@ -124,7 +124,7 @@ const STAY_ASIA: StayItem[] = [
   {
     id: 'chiangmai',
     bookingQuery: 'Chiang Mai',
-    img: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=800&q=80',
     score: 9.5,
     price: '42,000',
     wifi: '500Mbps',
@@ -151,7 +151,7 @@ const STAY_OCEANIA: StayItem[] = [
   {
     id: 'sydney',
     bookingQuery: 'Sydney',
-    img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80',
     score: 9.6,
     price: '185,000',
     wifi: '1Gbps',
@@ -187,7 +187,7 @@ const STAY_OCEANIA: StayItem[] = [
   {
     id: 'auckland',
     bookingQuery: 'Auckland',
-    img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80',
     score: 9.5,
     price: '175,000',
     wifi: '500Mbps',
@@ -199,7 +199,7 @@ const STAY_OCEANIA: StayItem[] = [
   {
     id: 'queenstown',
     bookingQuery: 'Queenstown',
-    img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80',
     score: 9.8,
     price: '195,000',
     wifi: '400Mbps',
@@ -286,7 +286,7 @@ const LANG_PROGRAMS: LangProgram[] = [
   {
     id: 'cebu',
     stayQuery: 'Cebu',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=800&q=80',
     price: '2,800,000',
     name: loc('필리핀 세부 어학연수', 'Cebu language stay', 'セブ語学留学'),
     country: loc('필리핀', 'Philippines', 'フィリピン'),
@@ -348,7 +348,7 @@ const CRUISE_ROUTES: CruiseRoute[] = [
   {
     id: 'sea',
     portQuery: 'Singapore',
-    img: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=800&q=80',
     price: '1,800,000',
     name: loc('동남아 크루즈 워케이션', 'Southeast Asia cruise', '東南アジアクルーズ'),
     ports: loc('싱가포르 → 페낭 → 랑카위 → 푸켓', 'Singapore → Penang → Langkawi → Phuket', 'シンガポール→ペナン→ランカウイ→プーケット'),
@@ -357,7 +357,7 @@ const CRUISE_ROUTES: CruiseRoute[] = [
   {
     id: 'med',
     portQuery: 'Barcelona',
-    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80',
+    img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=800&q=80',
     price: '3,500,000',
     name: loc('지중해 크루즈 워케이션', 'Mediterranean cruise', '地中海クルーズ'),
     ports: loc('바르셀로나 → 로마 → 아테네 → 두브로브니크', 'Barcelona → Rome → Athens → Dubrovnik', 'バルセロナ→ローマ→アテネ→ドブロブニク'),
@@ -405,8 +405,8 @@ const GLOBAL_DESTINATIONS: GlobalDest[] = [
   { id: 'japan', stayQuery: 'Tokyo', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80', name: loc('오사카·도쿄 워케이션', 'Osaka · Tokyo workation', '大阪・東京'), country: loc('일본', 'Japan', '日本'), region: loc('오사카·도쿄', 'Osaka · Tokyo', '大阪・東京'), tag: loc('비즈니스', 'Business', 'ビジネス') },
   { id: 'japan-ryokan', stayQuery: 'Hakone', img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80', name: loc('일본 료칸 온천 워케이션', 'Japan Ryokan & Onsen Workation', '日本旅館・温泉ワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('하코네·아타미·닛코', 'Hakone · Atami · Nikko', '箱根・熱海・日光'), tag: loc('료칸·온천', 'Ryokan · Onsen', '旅館・温泉') },
   { id: 'danang', stayQuery: 'Da Nang', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', name: loc('다낭 워케이션', 'Da Nang workation', 'ダナン'), country: loc('베트남', 'Vietnam', 'ベトナム'), region: loc('다낭·호이안', 'Da Nang · Hoi An', 'ダナン・ホイアン'), tag: loc('해변', 'Beach', 'ビーチ') },
-  { id: 'cebu', stayQuery: 'Cebu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
-  { id: 'australia', stayQuery: 'Sydney', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
+  { id: 'cebu', stayQuery: 'Cebu', img: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=800&q=80', name: loc('세부 워케이션', 'Cebu workation', 'セブ'), country: loc('필리핀', 'Philippines', 'フィリピン'), region: loc('세부', 'Cebu', 'セブ'), tag: loc('어학+워케이션', 'Language + workation', '語学＋ワーケーション') },
+  { id: 'australia', stayQuery: 'Sydney', img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80', name: loc('시드니·멜버른', 'Sydney · Melbourne', 'シドニー・メルボルン'), country: loc('호주', 'Australia', 'オーストラリア'), region: loc('NSW·VIC', 'NSW · VIC', 'NSW・VIC'), tag: loc('선진국 인프라', 'Premium infrastructure', '先進インフラ') },
   { id: 'japan-golf', stayQuery: 'Okinawa', img: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80', name: loc('일본 골프 네트워킹 워케이션', 'Japan Golf Networking Workation', '日本ゴルフネットワークワーケーション'), country: loc('일본', 'Japan', '日本'), region: loc('오키나와·규슈·도쿄', 'Okinawa · Kyushu · Tokyo', '沖縄・九州・東京'), tag: loc('골프·네트워킹', 'Golf · Networking', 'ゴルフ・ネットワーク') },
 ]
 
@@ -437,9 +437,9 @@ export const DOMESTIC_CURRENT: DomesticCurrent[] = [
 ]
 
 const DOMESTIC_UPCOMING: SimpleCard[] = [
-  { id: 'gangneung', img: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&q=80', title: loc('강릉 워케이션', 'Gangneung workation', '江陵ワーケーション'), region: loc('강원도 강릉', 'Gangneung, Gangwon', '江原・江陵') },
+  { id: 'gangneung', img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80', title: loc('강릉 워케이션', 'Gangneung workation', '江陵ワーケーション'), region: loc('강원도 강릉', 'Gangneung, Gangwon', '江原・江陵') },
   { id: 'jeju', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80', title: loc('제주 워케이션', 'Jeju workation', '済州ワーケーション'), region: loc('제주도', 'Jeju Island', '済州島') },
-  { id: 'jeonju', img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80', title: loc('전주 워케이션', 'Jeonju workation', '全州ワーケーション'), region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州') },
+  { id: 'jeonju', img: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80', title: loc('전주 워케이션', 'Jeonju workation', '全州ワーケーション'), region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州') },
   { id: 'yeosu', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', title: loc('여수 워케이션', 'Yeosu workation', '麗水ワーケーション'), region: loc('전라남도 여수', 'Yeosu, Jeollanam', '全南・麗水') },
 ]
 
@@ -1052,7 +1052,7 @@ const SUPPORT_STATUS_LABEL: Record<SupportStatus, Loc<string>> = {
 const SUPPORT_PROGRAMS: SupportProgram[] = [
   {
     id: 'jeju-voucher',
-    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
     region: loc('제주', 'Jeju', '済州'),
     name: loc('제주 민간형 워케이션 바우처', 'Jeju Workation Voucher', '済州ワーケーションバウチャー'),
     benefit: loc('숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳', 'Stay+office voucher up to ₩50,000/night at 17 partner offices', '宿泊＋オフィス1泊最大5万W、提携オフィス17カ所'),
@@ -1064,7 +1064,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'busan-workation',
-    photo: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
     region: loc('부산', 'Busan', '釜山'),
     name: loc('부산형 워케이션', 'Busan Workation', '釜山型ワーケーション'),
     benefit: loc('업무공간 무료 + 웰컴키트 + 관광 바우처·할인쿠폰', 'Free workspace + welcome kit + tour vouchers', 'ワークスペース無料＋観光バウチャー'),
@@ -1076,7 +1076,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gangwon-workation',
-    photo: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80',
     region: loc('강원', 'Gangwon', '江原'),
     name: loc('강원 워케이션', 'Gangwon Workation', '江原ワーケーション'),
     benefit: loc('숙박 3박 + 공유오피스 + 지역체험 패키지', '3-night stay + coworking + local experiences', '宿泊3泊＋コワーキング＋体験'),
@@ -1100,7 +1100,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'rural-living',
-    photo: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80',
     region: loc('전국', 'Nationwide', '全国'),
     name: loc('농촌에서 살아보기', 'Rural Living Program', '農村で暮らしてみる'),
     benefit: loc('숙소 무료 + 월 30만원 연수비 (인구감소지역 마을)', 'Free stay + ₩300,000/month stipend', '宿無料＋月30万W研修費'),
@@ -1112,7 +1112,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'chungnam-month',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
     region: loc('충남', 'Chungnam', '忠南'),
     name: loc('충남 한달살기', 'Chungnam Month-Stay', '忠南1カ月暮らし'),
     benefit: loc('6~29박 숙박비 + 식비·교통비 일부 + 체험활동비 + 여행자보험 (시군별 상이)', '6–29 nights lodging + meals/transport aid + activities + insurance', '6〜29泊宿泊費＋食費・交通一部＋体験費＋保険'),
@@ -1148,7 +1148,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'eochon-workation',
-    photo: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80',
     region: loc('전국 어촌', 'Fishing villages', '全国漁村'),
     name: loc('어촌마을 워케이션', 'Fishing Village Workation', '漁村ワーケーション'),
     benefit: loc('전국 13개 어촌휴양마을 — 공유오피스+숙박+조식+체험, 체류일수별 차등 지원', '13 seaside villages — coworking+stay+breakfast+activities, tiered support', '全国13漁村 — オフィス＋宿泊＋朝食＋体験'),

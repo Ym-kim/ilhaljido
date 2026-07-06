@@ -113,7 +113,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-fukuoka',
-    photo: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1533050487297-09b450131914?auto=format&fit=crop&w=700&q=80',
     flag: '🍜',
     city: '후쿠오카',
     cityEn: 'Fukuoka',
@@ -210,7 +210,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'portugal-lisbon',
-    photo: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=700&q=80',
     flag: '🌉',
     city: '리스본',
     cityEn: 'Lisbon',
@@ -236,7 +236,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-jeju',
-    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
     flag: '🍊',
     city: '제주',
     cityEn: 'Jeju',
@@ -262,7 +262,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-yangyang',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
     flag: '🏄',
     city: '양양',
     cityEn: 'Yangyang',
@@ -288,7 +288,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-gangneung',
-    photo: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80',
     flag: '🌊',
     city: '강릉',
     cityEn: 'Gangneung',
@@ -345,7 +345,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'thailand-chiangmai',
-    photo: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
     flag: '🛕',
     city: '치앙마이',
     cityEn: 'Chiang Mai',
@@ -364,7 +364,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'thailand-bangkok',
-    photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80',
     flag: '🏙',
     city: '방콕',
     cityEn: 'Bangkok',
@@ -383,7 +383,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'vietnam-nhatrang',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80',
     flag: '🌅',
     city: '나트랑',
     cityEn: 'Nha Trang',
@@ -402,7 +402,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'philippines-cebu',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=700&q=80',
     flag: '🏝',
     city: '세부',
     cityEn: 'Cebu',
@@ -421,7 +421,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'taiwan-taipei',
-    photo: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=700&q=80',
     flag: '🧋',
     city: '타이베이',
     cityEn: 'Taipei',
@@ -440,7 +440,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'singapore-city',
-    photo: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=700&q=80',
     flag: '🦁',
     city: '싱가포르',
     cityEn: 'Singapore',
@@ -459,7 +459,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-busan',
-    photo: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
     flag: '🌉',
     city: '부산',
     cityEn: 'Busan',
@@ -478,7 +478,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-sapporo',
-    photo: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
     flag: '❄️',
     city: '삿포로',
     cityEn: 'Sapporo',
@@ -497,7 +497,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-kobe',
-    photo: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=700&q=80',
     flag: '⚓',
     city: '고베',
     cityEn: 'Kobe',
@@ -554,7 +554,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'australia-sydney',
-    photo: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=700&q=80',
     flag: '🎭',
     city: '시드니',
     cityEn: 'Sydney',
@@ -630,7 +630,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'china-hongkong',
-    photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1518599807935-37015b9cefcb?auto=format&fit=crop&w=700&q=80',
     flag: '🌃',
     city: '홍콩',
     cityEn: 'Hong Kong',
@@ -694,7 +694,7 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'activity-japan-fukuoka',
-    photo: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80',
     flag: '🍜',
     city: '후쿠오카',
     cityEn: 'Fukuoka',
@@ -815,7 +815,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-portugal',
-    photo: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=700&q=80',
     flag: '🇵🇹',
     city: '포르투갈',
     cityEn: 'Portugal',
@@ -834,7 +834,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'esim-korea',
-    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
+    photo: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
     flag: '🇰🇷',
     city: '한국',
     cityEn: 'South Korea',
