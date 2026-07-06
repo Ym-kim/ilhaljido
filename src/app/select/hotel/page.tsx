@@ -18,13 +18,15 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
   ['hotel-booking', 'hotel-tripcom'].includes(i.id)
 )
 
-// 국가별 그룹핑
+// 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
 const REGIONS = [
-  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-fukuoka'] },
-  { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-hcmc'] },
-  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali'] },
-  { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon'] },
-  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-jeju', 'korea-yangyang', 'korea-gangneung'] },
+  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-okinawa'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
+  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung'], featuredIds: ['stay-playce-jeju'] },
+  { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok'], featuredIds: ['stay-kantary-chiangmai'] },
+  { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang'] },
+  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali'], featuredIds: ['stay-tribal-bali'] },
+  { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: [] },
+  { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon'], featuredIds: [] },
 ]
 
 export default function HotelSelectPage() {
@@ -75,24 +77,41 @@ export default function HotelSelectPage() {
         </div>
       </section>
 
-      {/* 에디터 추천 개별 숙소 — 실존 검증 상품 */}
-      <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
-        <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
-            {tr('selh_editors')}
-          </p>
-          <p className="text-[#64748b] text-sm mb-6">{tr('selh_editors_d')}</p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            {FEATURED_STAYS.map((item) => (
-              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Destination sections — 추천 개별 숙소 먼저, 도시 검색은 폴백 */}
+      {REGIONS.map((region) => {
+        const destinations = HOTEL_DESTINATIONS.filter((d) => region.ids.includes(d.id))
+        const featured = FEATURED_STAYS.filter((i) => region.featuredIds.includes(i.id))
+        if (destinations.length === 0 && featured.length === 0) return null
+        return (
+          <section key={region.id} id={region.id} className="px-6 pb-10 border-t border-[#e0f2fe] scroll-mt-24">
+            <div className="max-w-6xl mx-auto pt-10">
+              <p className="text-[#111827] font-black text-base mb-5">{tr(region.labelKey)}</p>
 
-      {/* Partner overview */}
-      <section className="px-6 pb-10 border-t border-[#e0f2fe]">
+              {/* 1) 에디터 추천 개별 숙소 */}
+              {featured.length > 0 && (
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 mb-6">
+                  {featured.map((item) => (
+                    <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+                  ))}
+                </div>
+              )}
+
+              {/* 2) 도시별 전체 검색 (폴백) */}
+              <p className="text-[#94a3b8] text-[0.65rem] font-bold tracking-[0.14em] uppercase mb-3">
+                {tr('selh_region_search')}
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {destinations.map((entry) => (
+                  <DestinationCard key={entry.id} entry={localizeDestination(entry, lang)} />
+                ))}
+              </div>
+            </div>
+          </section>
+        )
+      })}
+
+      {/* Partner overview — 원하는 도시가 없을 때 최종 폴백 */}
+      <section className="px-6 pb-10 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
         <div className="max-w-6xl mx-auto pt-10">
           <p className="text-[#94a3b8] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
             {tr('selh_partners')}
@@ -104,24 +123,6 @@ export default function HotelSelectPage() {
           </div>
         </div>
       </section>
-
-      {/* Destination sections */}
-      {REGIONS.map((region) => {
-        const destinations = HOTEL_DESTINATIONS.filter((d) => region.ids.includes(d.id))
-        if (destinations.length === 0) return null
-        return (
-          <section key={region.id} id={region.id} className="px-6 pb-10 border-t border-[#e0f2fe] scroll-mt-24">
-            <div className="max-w-6xl mx-auto pt-10">
-              <p className="text-[#111827] font-black text-base mb-5">{tr(region.labelKey)}</p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {destinations.map((entry) => (
-                  <DestinationCard key={entry.id} entry={localizeDestination(entry, lang)} />
-                ))}
-              </div>
-            </div>
-          </section>
-        )
-      })}
 
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">

@@ -9,7 +9,13 @@ import { getHomeCategories, getDomesticCurrent, getDomesticThemedUpcoming } from
 import { AiIcon, ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
+import { FEATURED_STAYS } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+
+// 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결)
+const HOME_EDITOR_PICKS = FEATURED_STAYS.filter((i) =>
+  ['stay-millennials-shibuya', 'stay-tribal-bali', 'stay-playce-jeju', 'stay-chicland-danang'].includes(i.id)
+)
 
 const PARTNER_ICON_MAP = {
   government: PARTNER_ICONS.government,
@@ -33,6 +39,7 @@ const HERO_DESTS = [
   { labelKey: 'dest_fukuoka', anchor: 'japan-fukuoka' },
   { labelKey: 'dest_bali',    anchor: 'indonesia-bali' },
   { labelKey: 'dest_danang',  anchor: 'vietnam-danang' },
+  { labelKey: 'dest_chiangmai', anchor: 'thailand-chiangmai' },
   { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
 ] as const
 
@@ -76,9 +83,11 @@ export default function HomePage() {
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
 
+  // 추천 실상품을 먼저, 도시 검색 카드를 뒤에 — 둘러보다 아래에서 검색으로 이어지는 흐름
+  const merged = [...HOME_EDITOR_PICKS, ...HOME_FEATURED_ITEMS]
   const featuredItems = (activeFilter === 'all'
-    ? HOME_FEATURED_ITEMS
-    : HOME_FEATURED_ITEMS.filter((i) => {
+    ? merged
+    : merged.filter((i) => {
         if (activeFilter === 'japan')   return i.country === '일본'
         if (activeFilter === 'bali')    return i.country === '인도네시아'
         if (activeFilter === 'vietnam') return i.country === '베트남'
