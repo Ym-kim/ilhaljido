@@ -13,6 +13,15 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = await createClient()
+
+    // 토큰 비용 보호 — 로그인 사용자만 AI 호출 가능
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.json(
+        { error: 'AI 검색은 로그인 후 이용할 수 있습니다.', requiresAuth: true },
+        { status: 401 }
+      )
+    }
     const { data: programs } = await supabase
       .from('programs')
       .select('id, title, location, category, price, tags, description')

@@ -1,8 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWorkcationRecommendation } from '@/lib/anthropic'
+import { createClient } from '@/lib/supabase/server'
 
 export async function POST(request: NextRequest) {
   try {
+    // 토큰 비용 보호 — 로그인 사용자만 AI 호출 가능
+    const supabase = await createClient()
+    const { data: { user } } = await supabase.auth.getUser()
+    if (!user) {
+      return NextResponse.json(
+        { error: 'AI 추천은 로그인 후 이용할 수 있습니다.', requiresAuth: true },
+        { status: 401 }
+      )
+    }
+
     const body = await request.json()
     const { query, spaces, userContext } = body
 
