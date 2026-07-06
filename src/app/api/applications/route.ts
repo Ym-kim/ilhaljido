@@ -74,6 +74,22 @@ export async function POST(req: NextRequest) {
     // Use admin client for INSERT so service_role bypasses RLS
     const admin = createAdminClient()
 
+    // 지속형 레이트리밋 — 서버리스 콜드스타트에도 유효 (in-memory Map 보완)
+    // 동일 이메일 10분 내 3건 초과 시 차단 → 스팸 제출로 인한 토큰 낭비·DB 오염 방지
+    const email = (body.email as string).trim().toLowerCase()
+    const tenMinAgo = new Date(Date.now() - 10 * 60_000).toISOString()
+    const { count: recentCount } = await admin
+      .from('applications')
+      .select('id', { count: 'exact', head: true })
+      .eq('email', email)
+      .gte('created_at', tenMinAgo)
+    if ((recentCount ?? 0) >= 3) {
+      return NextResponse.json(
+        { error: '동일 이메일로 신청이 너무 많습니다. 잠시 후 다시 시도해주세요.' },
+        { status: 429 }
+      )
+    }
+
     const applicationData: ApplicationInsert = {
       program_id: typeof body.program_id === 'string' ? body.program_id : null,
       name: (body.name as string).trim().slice(0, 100),
