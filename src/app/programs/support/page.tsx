@@ -58,19 +58,27 @@ export default function SupportProgramsPage() {
                 href={p.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col bg-white border border-[#dbeafe] rounded-2xl p-5 hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+                className="group flex flex-col bg-white border border-[#dbeafe] rounded-2xl overflow-hidden hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
               >
-                {/* 상단: 지역 + 상태칩 */}
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-1 text-[0.7rem] font-bold text-[#64748b]">
-                    <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
-                    {p.region}
-                  </span>
-                  <span className={`text-[0.65rem] font-bold px-2.5 py-1 rounded-full ${STATUS_STYLE[p.status]}`}>
+                {/* 지역 사진 헤더 — 상태칩·지역 오버레이 */}
+                <div className="relative h-36 overflow-hidden bg-[#eff6ff]">
+                  <img
+                    src={p.photo}
+                    alt={p.region}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+                  <span className={`absolute top-3 right-3 text-[0.65rem] font-bold px-2.5 py-1 rounded-full shadow-sm ${STATUS_STYLE[p.status]}`}>
                     {p.statusLabel}
+                  </span>
+                  <span className="absolute bottom-3 left-4 inline-flex items-center gap-1 text-white font-black text-base drop-shadow-lg">
+                    <MapPin className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                    {p.region}
                   </span>
                 </div>
 
+                <div className="flex flex-col flex-1 p-5">
                 {/* 사업명 */}
                 <p className="text-[#111827] font-black text-[0.9375rem] leading-snug mb-1.5">{p.name}</p>
                 <p className="text-[#64748b] text-xs leading-relaxed mb-3 flex-1">{p.benefit}</p>
@@ -95,6 +103,7 @@ export default function SupportProgramsPage() {
                   <span className="inline-flex items-center gap-1 text-brand-mid text-xs font-bold group-hover:gap-1.5 transition-all">
                     {tr('support_apply')} <ArrowUpRight className="w-3 h-3" />
                   </span>
+                </div>
                 </div>
               </a>
             ))}

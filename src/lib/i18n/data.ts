@@ -1031,6 +1031,7 @@ export type SupportStatus = 'open' | 'always' | 'upcoming' | 'check'
 
 type SupportProgram = {
   id: string
+  photo: string          // 지역 사진 (검증 풀)
   region: Loc<string>
   name: Loc<string>
   benefit: Loc<string>       // 지원 내용 요약
@@ -1051,6 +1052,7 @@ const SUPPORT_STATUS_LABEL: Record<SupportStatus, Loc<string>> = {
 const SUPPORT_PROGRAMS: SupportProgram[] = [
   {
     id: 'jeju-voucher',
+    photo: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
     region: loc('제주', 'Jeju', '済州'),
     name: loc('제주 민간형 워케이션 바우처', 'Jeju Workation Voucher', '済州ワーケーションバウチャー'),
     benefit: loc('숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳', 'Stay+office voucher up to ₩50,000/night at 17 partner offices', '宿泊＋オフィス1泊最大5万W、提携オフィス17カ所'),
@@ -1062,6 +1064,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'busan-workation',
+    photo: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80',
     region: loc('부산', 'Busan', '釜山'),
     name: loc('부산형 워케이션', 'Busan Workation', '釜山型ワーケーション'),
     benefit: loc('업무공간 무료 + 웰컴키트 + 관광 바우처·할인쿠폰', 'Free workspace + welcome kit + tour vouchers', 'ワークスペース無料＋観光バウチャー'),
@@ -1073,6 +1076,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gangwon-workation',
+    photo: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=700&q=80',
     region: loc('강원', 'Gangwon', '江原'),
     name: loc('강원 워케이션', 'Gangwon Workation', '江原ワーケーション'),
     benefit: loc('숙박 3박 + 공유오피스 + 지역체험 패키지', '3-night stay + coworking + local experiences', '宿泊3泊＋コワーキング＋体験'),
@@ -1083,29 +1087,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     href: 'https://worcation.co.kr/gw/enroll',
   },
   {
-    id: 'namhae-onemonth',
-    region: loc('경남 남해', 'Namhae', '南海'),
-    name: loc('남해 한달살기', 'Namhae One-Month Stay', '南海1カ月暮らし'),
-    benefit: loc('숙박 일 7만원 + 체험비 7~12만원 + 보험료 지원', '₩70,000/day stay + activity fees + insurance', '宿泊日7万W＋体験費＋保険'),
-    maxBenefit: '최대 ₩2,310,000',
-    status: 'upcoming',
-    deadline: loc('2차 모집 공고 대기 (예년 6~7월)', '2nd batch expected Jun–Jul', '2次募集待ち'),
-    conditions: loc(['경남 외 거주', '1일 1SNS 필수'], ['Non-Gyeongnam residents', 'Daily SNS post'], ['慶南外居住', '毎日SNS必須']),
-    href: 'https://www.monthler.kr/programs/4621',
-  },
-  {
-    id: 'gunsan-village',
-    region: loc('전북 군산', 'Gunsan', '群山'),
-    name: loc('군산 말랭이마을 한달살기', 'Gunsan Village One-Month', '群山マレンイ村1カ月'),
-    benefit: loc('숙소 제공 + 체험활동비 주 10만원', 'Free stay + ₩100,000/week activity budget', '宿提供＋体験費週10万W'),
-    maxBenefit: '주 ₩100,000+숙소',
-    status: 'check',
-    deadline: loc('기수제 수시 — 공고 확인', 'Cohort-based — check notice', '期数制・公告確認'),
-    conditions: loc(['군산 외 거주', 'SNS 홍보 가능자'], ['Non-Gunsan residents', 'SNS promotion'], ['群山外居住', 'SNS広報']),
-    href: 'https://www.monthler.kr/programs/1551',
-  },
-  {
     id: 'muan-jeonnam',
+    photo: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
     region: loc('전남 무안', 'Muan', '務安'),
     name: loc('전남에서 살아보기 (무안)', 'Live in Jeonnam (Muan)', '全南で暮らしてみる'),
     benefit: loc('휴양마을 최장 3개월 체류 + 숙박 제공', 'Up to 3-month village stay, lodging provided', '最長3カ月滞在＋宿泊提供'),
@@ -1117,6 +1100,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'rural-living',
+    photo: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80',
     region: loc('전국', 'Nationwide', '全国'),
     name: loc('농촌에서 살아보기', 'Rural Living Program', '農村で暮らしてみる'),
     benefit: loc('숙소 무료 + 월 30만원 연수비 (인구감소지역 마을)', 'Free stay + ₩300,000/month stipend', '宿無料＋月30万W研修費'),
@@ -1126,11 +1110,60 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     conditions: loc(['만 19세 이상', '타 지역 거주', 'SNS 과제'], ['Age 19+', 'Non-local', 'SNS tasks'], ['満19歳以上', '他地域居住']),
     href: 'https://www.greendaero.go.kr/',
   },
+  {
+    id: 'chungnam-month',
+    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    region: loc('충남', 'Chungnam', '忠南'),
+    name: loc('충남 한달살기', 'Chungnam Month-Stay', '忠南1カ月暮らし'),
+    benefit: loc('6~29박 숙박비 + 식비·교통비 일부 + 체험활동비 + 여행자보험 (시군별 상이)', '6–29 nights lodging + meals/transport aid + activities + insurance', '6〜29泊宿泊費＋食費・交通一部＋体験費＋保険'),
+    maxBenefit: '최대 29박 지원',
+    status: 'check',
+    deadline: loc('시군별 순차 모집 — 공고 확인', 'By city/county — check notices', '市郡別に順次募集'),
+    conditions: loc(['충남 외 거주 성인', '시군별 정원제'], ['Non-Chungnam adults', 'Quota per county'], ['忠南外居住の成人']),
+    href: 'https://tour.chungnam.go.kr',
+  },
+  {
+    id: 'ulsan-ucation',
+    photo: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80',
+    region: loc('울산', 'Ulsan', '蔚山'),
+    name: loc('유케이션 (울산 워케이션)', 'U-cation (Ulsan Workation)', 'ユケーション（蔚山）'),
+    benefit: loc('숙박+체험 포함 참가비 2만원(1박)~18.5만원 — 대폭 보조 운영', 'Stay+activities from just ₩20,000/night — heavily subsidized', '宿泊＋体験込み参加費2万W〜（大幅補助）'),
+    maxBenefit: '참가비 ₩20,000~',
+    status: 'always',
+    deadline: loc('2026.4~11 평일 상시 (예산 소진 시 종료)', 'Rolling Apr–Nov weekdays', '2026.4〜11 平日随時'),
+    conditions: loc(['울산 외 근로자·사업자', '프리랜서·특고 가능'], ['Non-Ulsan workers', 'Freelancers OK'], ['蔚山外の勤労者']),
+    href: 'https://uctf.or.kr/tour-mice/ucation/intro',
+  },
+  {
+    id: 'incheon-workation',
+    photo: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
+    region: loc('인천', 'Incheon', '仁川'),
+    name: loc('인천워케이션', 'Incheon Workation', '仁川ワーケーション'),
+    benefit: loc('송도·영종도·강화 호텔+공유오피스+체험 8종 패키지, 시 지원 할인가', '8 hotel+coworking+experience packages at city-subsidized rates', '松島・永宗島など8種パッケージ（市補助価格）'),
+    maxBenefit: '시 지원 할인가',
+    status: 'always',
+    deadline: loc('연중 패키지 판매형', 'Year-round packages', '通年パッケージ型'),
+    conditions: loc(['개인 신청 가능', '2박 이상'], ['Individuals OK', '2+ nights'], ['個人申請可', '2泊以上']),
+    href: 'https://www.incheonworkation.co.kr',
+  },
+  {
+    id: 'eochon-workation',
+    photo: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=700&q=80',
+    region: loc('전국 어촌', 'Fishing villages', '全国漁村'),
+    name: loc('어촌마을 워케이션', 'Fishing Village Workation', '漁村ワーケーション'),
+    benefit: loc('전국 13개 어촌휴양마을 — 공유오피스+숙박+조식+체험, 체류일수별 차등 지원', '13 seaside villages — coworking+stay+breakfast+activities, tiered support', '全国13漁村 — オフィス＋宿泊＋朝食＋体験'),
+    maxBenefit: '숙박+오피스 지원',
+    status: 'open',
+    deadline: loc('연중 모집 (2026.4~)', 'Open year-round', '通年募集'),
+    conditions: loc(['개인 신청 가능', '원격근무 가능자'], ['Individuals OK', 'Remote-workable'], ['個人申請可', 'リモート可']),
+    href: 'https://www.seantour.kr',
+  },
 ]
 
 export function getSupportPrograms(lang: Lang) {
   return SUPPORT_PROGRAMS.map((p) => ({
     id: p.id,
+    photo: p.photo,
     region: tloc(lang, p.region),
     name: tloc(lang, p.name),
     benefit: tloc(lang, p.benefit),
