@@ -9,12 +9,21 @@ import { getHomeCategories, getDomesticCurrent, getDomesticThemedUpcoming } from
 import { AiIcon, ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
-import { FEATURED_STAYS } from '@/lib/affiliate/featured'
+import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
-// 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결)
-const HOME_EDITOR_PICKS = FEATURED_STAYS.filter((i) =>
-  ['stay-millennials-shibuya', 'stay-tribal-bali', 'stay-playce-jeju', 'stay-chicland-danang'].includes(i.id)
+// 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
+const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
+const HOME_EDITOR_PICKS = ALL_STAYS.filter((i) =>
+  [
+    'stay-millennials-shibuya',
+    'stay-tribal-bali',
+    'stay-playce-jeju',
+    'stay-chicland-danang',
+    'stay-kantary-chiangmai',
+    'stay-adina-sydney',
+    'stay-nomadshub-cebu',
+  ].includes(i.id)
 )
 
 const PARTNER_ICON_MAP = {
@@ -25,10 +34,14 @@ const PARTNER_ICON_MAP = {
 }
 
 const DEST_FILTERS = [
-  { id: 'all',     labelKey: 'filter_all' },
-  { id: 'japan',   labelKey: 'filter_japan' },
-  { id: 'bali',    labelKey: 'filter_bali' },
-  { id: 'vietnam', labelKey: 'filter_vietnam' },
+  { id: 'all',         labelKey: 'filter_all',         country: null },
+  { id: 'japan',       labelKey: 'filter_japan',       country: '일본' },
+  { id: 'korea',       labelKey: 'filter_korea',       country: '국내' },
+  { id: 'bali',        labelKey: 'filter_bali',        country: '인도네시아' },
+  { id: 'vietnam',     labelKey: 'filter_vietnam',     country: '베트남' },
+  { id: 'thailand',    labelKey: 'filter_thailand',    country: '태국' },
+  { id: 'philippines', labelKey: 'filter_philippines', country: '필리핀' },
+  { id: 'australia',   labelKey: 'filter_australia',   country: '호주' },
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
@@ -85,14 +98,10 @@ export default function HomePage() {
 
   // 추천 실상품을 먼저, 도시 검색 카드를 뒤에 — 둘러보다 아래에서 검색으로 이어지는 흐름
   const merged = [...HOME_EDITOR_PICKS, ...HOME_FEATURED_ITEMS]
-  const featuredItems = (activeFilter === 'all'
+  const activeCountry = DEST_FILTERS.find((f) => f.id === activeFilter)?.country ?? null
+  const featuredItems = (activeCountry === null
     ? merged
-    : merged.filter((i) => {
-        if (activeFilter === 'japan')   return i.country === '일본'
-        if (activeFilter === 'bali')    return i.country === '인도네시아'
-        if (activeFilter === 'vietnam') return i.country === '베트남'
-        return true
-      })
+    : merged.filter((i) => i.country === activeCountry)
   ).map((i) => localizeAffiliateItem(i, lang))
 
   return (

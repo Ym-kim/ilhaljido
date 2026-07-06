@@ -61,6 +61,10 @@ const KO: Record<string, string> = {
   filter_japan: '일본',
   filter_bali: '발리',
   filter_vietnam: '베트남',
+  filter_thailand: '태국',
+  filter_korea: '국내',
+  filter_australia: '호주',
+  filter_philippines: '필리핀',
 
   // ── 홈 v3 — Hosted 라인업 ──
   h3_lineup_eyebrow: '다음 라인업',
@@ -668,6 +672,10 @@ const EN: Record<string, string> = {
   filter_japan: 'Japan',
   filter_bali: 'Bali',
   filter_vietnam: 'Vietnam',
+  filter_thailand: 'Thailand',
+  filter_korea: 'Korea',
+  filter_australia: 'Australia',
+  filter_philippines: 'Philippines',
 
   // ── Home v3 — Hosted lineup ──
   h3_lineup_eyebrow: 'Upcoming',
@@ -1274,6 +1282,10 @@ const JP: Record<string, string> = {
   filter_japan: '日本',
   filter_bali: 'バリ',
   filter_vietnam: 'ベトナム',
+  filter_thailand: 'タイ',
+  filter_korea: '韓国国内',
+  filter_australia: 'オーストラリア',
+  filter_philippines: 'フィリピン',
 
   // ── ホームv3 — Hostedラインナップ ──
   h3_lineup_eyebrow: '次のラインナップ',
