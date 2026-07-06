@@ -7,6 +7,8 @@ import { useLang } from '@/context/LanguageContext'
 import { getDomesticThemedUpcoming } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
+import { THEME_EXPERIENCES } from '@/lib/affiliate/featured'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 type Props = {
@@ -15,10 +17,12 @@ type Props = {
   titleKey: string
   descKey: string
   themeIds: string[]
+  featuredExperienceIds?: string[]
   emailSubject: string
 }
 
-export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject }: Props) {
+export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [] }: Props) {
+  const themeProducts = THEME_EXPERIENCES.filter((i) => featuredExperienceIds.includes(i.id))
   const { lang, tr } = useLang()
   const programs = getDomesticThemedUpcoming(lang).filter((p) => themeIds.includes(p.id))
 
@@ -70,6 +74,24 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
           )}
         </div>
       </section>
+
+      {/* 테마 맞춤 실상품 — KKday */}
+      {themeProducts.length > 0 && (
+        <section className="py-14 px-6 bg-[#0d0d0d] border-t border-white/8">
+          <div className="max-w-6xl mx-auto">
+            <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse inline-block" />
+              {tr('theme_featured')}
+            </p>
+            <p className="text-white/60 text-sm mb-6">{tr('theme_featured_d')}</p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+              {themeProducts.map((item) => (
+                <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 여행 준비 크로스셀 — Wakation Select */}
       <AffiliateSection

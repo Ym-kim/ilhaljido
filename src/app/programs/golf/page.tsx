@@ -8,6 +8,7 @@ export default function GolfPage() {
       titleKey="golf_hero_title"
       descKey="golf_hero_desc"
       themeIds={['golf-jeju', 'golf-okinawa']}
+      featuredExperienceIds={['theme-golf-montgomerie','theme-golf-hoiana']}
       emailSubject="골프 네트워킹 워케이션 사전 신청"
     />
   )
