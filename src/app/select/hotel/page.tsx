@@ -9,7 +9,7 @@ import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { HOTEL_DESTINATIONS } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
-import { FEATURED_STAYS } from '@/lib/affiliate/featured'
+import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 
@@ -20,12 +20,14 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
 
 // 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
 const REGIONS = [
-  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-okinawa'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
+  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
   { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung'], featuredIds: ['stay-playce-jeju'] },
   { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok'], featuredIds: ['stay-kantary-chiangmai'] },
   { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang'] },
-  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali'], featuredIds: ['stay-tribal-bali'] },
-  { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: [] },
+  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali', 'indonesia-ubud', 'indonesia-canggu'], featuredIds: ['stay-tribal-bali'] },
+  { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: ['stay-nomadshub-cebu'] },
+  { id: 'region-oceania',   labelKey: 'region_oceania',   ids: ['australia-sydney', 'australia-melbourne', 'australia-goldcoast'], featuredIds: ['stay-adina-sydney'] },
+  { id: 'region-china',     labelKey: 'region_china',     ids: ['china-shanghai', 'china-hongkong', 'china-guangzhou'], featuredIds: [] },
   { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon'], featuredIds: [] },
 ]
 
@@ -80,7 +82,7 @@ export default function HotelSelectPage() {
       {/* Destination sections — 추천 개별 숙소 먼저, 도시 검색은 폴백 */}
       {REGIONS.map((region) => {
         const destinations = HOTEL_DESTINATIONS.filter((d) => region.ids.includes(d.id))
-        const featured = FEATURED_STAYS.filter((i) => region.featuredIds.includes(i.id))
+        const featured = [...FEATURED_STAYS, ...FEATURED_STAYS_V2].filter((i) => region.featuredIds.includes(i.id))
         if (destinations.length === 0 && featured.length === 0) return null
         return (
           <section key={region.id} id={region.id} className="px-6 pb-10 border-t border-[#e0f2fe] scroll-mt-24">

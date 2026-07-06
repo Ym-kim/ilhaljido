@@ -8,6 +8,7 @@ export default function LocalPage() {
       titleKey="local_hero_title"
       descKey="local_hero_desc"
       themeIds={['local-jeonju']}
+      featuredExperienceIds={['theme-local-kuromon']}
       emailSubject="미식 로컬 워케이션 사전 신청"
     />
   )

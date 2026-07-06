@@ -8,6 +8,7 @@ export default function SportsPage() {
       titleKey="sports_hero_title"
       descKey="sports_hero_desc"
       themeIds={['sports-busan']}
+      featuredExperienceIds={['theme-sports-tokyodome']}
       emailSubject="스포츠 관람 워케이션 사전 신청"
     />
   )

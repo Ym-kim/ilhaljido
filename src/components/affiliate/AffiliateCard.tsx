@@ -105,6 +105,17 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </div>
           )}
 
+          {/* 실제 평점 — 좌상단 픽토그램 옆 (리서치 확인 값만) */}
+          {item.rating && (
+            <div className={`absolute top-2.5 ${ProductIcon ? 'left-11' : 'left-2.5'}`}>
+              <span className="inline-flex items-center gap-1 text-[0.65rem] font-black px-2 py-1 rounded-full bg-white/95 text-[#111827] shadow-sm">
+                <span className="text-amber-500">★</span>
+                {item.rating}
+                {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
+              </span>
+            </div>
+          )}
+
           {/* 예약 가능 dot */}
           {meta.isAffiliate && (
             <div className="absolute top-2.5 right-2.5">

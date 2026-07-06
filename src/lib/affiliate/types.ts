@@ -99,5 +99,7 @@ export interface AffiliateItem {
   coverGradient?: string          // 카드 헤더 Tailwind 그라디언트 (사진 없을 때 fallback)
   coverPhoto?: string             // 실제 목적지 사진 URL (visual 모드)
   priceFrom?: string              // 시작 가격 표시 (e.g. "₩79,000~")
+  rating?: string                 // 실제 평점 표시 (e.g. "8.7" — 리서치로 확인된 값만)
+  reviews?: string                // 리뷰 수 표시 (e.g. "2,005")
   operatorAction?: string         // 다음 운영자 액션 요약
 }

@@ -451,7 +451,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Vietnam',
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1540541338537-1d4d4ae5d526?auto=format&fit=crop&w=600&q=80',
+    coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80',
     coverGradient: 'from-teal-900 via-cyan-950 to-[#0d0d0d]',
     priceFrom: '₩49,000~',
     priority: 7,
