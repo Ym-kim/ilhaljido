@@ -228,6 +228,22 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
               </div>
             </div>
 
+            {/* 로그인 버튼 — 비로그인 시 */}
+            {!user && (
+              <Link
+                href="/login"
+                className={cn(
+                  'flex items-center gap-1.5 text-[0.8125rem] font-bold px-3.5 py-1.5 rounded-full border transition-colors',
+                  isTransparentNow
+                    ? 'border-white/25 text-white hover:bg-white/10'
+                    : 'border-gray-200 text-gray-700 hover:bg-gray-50'
+                )}
+              >
+                <User className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                {tr('nav_login')}
+              </Link>
+            )}
+
             {/* User menu — logged-in only */}
             {user && (
               <div className="group relative">
