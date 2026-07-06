@@ -112,7 +112,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'activity-kkday',
-    coverPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
     name: 'KKday',
     category: 'activity',
     productType: 'activity',
