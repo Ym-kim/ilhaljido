@@ -30,7 +30,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '코워킹 내장',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩4만~',
+    priceFrom: '₩40,000~',
   },
   {
     id: 'stay-lively-osaka',
@@ -50,7 +50,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '라운지 워크',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
   },
   {
     id: 'stay-webase-hakata',
@@ -69,7 +69,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '무료 코워킹',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩3만~',
+    priceFrom: '₩30,000~',
   },
   {
     id: 'stay-tribal-bali',
@@ -88,7 +88,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '노마드 성지',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩2만~',
+    priceFrom: '₩20,000~',
   },
   {
     id: 'stay-chicland-danang',
@@ -107,7 +107,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '비치 워크',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
   },
   {
     id: 'stay-playce-jeju',
@@ -127,7 +127,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '워케이션 특화',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩7만~',
+    priceFrom: '₩70,000~',
   },
   {
     id: 'stay-kantary-chiangmai',
@@ -147,7 +147,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     badge: '장기체류',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
   },
 ]
 
@@ -168,7 +168,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '인기 1위',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체, status → active_affiliate',
   },
   {
@@ -187,7 +187,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '익스프레스',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -206,7 +206,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '한국어 가이드',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩8만~',
+    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -225,7 +225,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '프라이빗',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩4만~',
+    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -244,7 +244,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '올인클루시브',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩10만~',
+    priceFrom: '₩100,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
 ]
@@ -266,7 +266,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '수익 추적',
     trackingId: 'Allianceid=9024807',
     coverPhoto: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩36만~',
+    priceFrom: '₩360,000~',
   },
   {
     id: 'cruise-msc-bellissima-busan',
@@ -284,7 +284,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '부산 출항',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩79.9만~',
+    priceFrom: '₩799,000~',
     operatorAction: 'MSC 제휴 프로그램 검토 → 제휴 시 tracking URL 교체',
   },
   {
@@ -303,7 +303,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '가성비',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩30만대~',
+    priceFrom: '₩300,000~',
     operatorAction: '팬스타 제휴 문의 → 제휴 시 tracking URL 교체',
   },
   {
@@ -432,7 +432,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     badge: '풀키친',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩18만~',
+    priceFrom: '₩180,000~',
   },
   {
     id: 'stay-nomadshub-cebu',
@@ -450,7 +450,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     badge: '코리빙',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩1.5만~',
+    priceFrom: '₩15,000~',
   },
 ]
 
@@ -472,7 +472,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '골프',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩13만~',
+    priceFrom: '₩130,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -491,7 +491,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '골프',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩18만~',
+    priceFrom: '₩180,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -510,7 +510,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '힐링',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩3만~',
+    priceFrom: '₩30,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -529,7 +529,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '요가',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩3만~',
+    priceFrom: '₩30,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -548,7 +548,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '야구 직관',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩4만~',
+    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -567,7 +567,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '미식',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩4만~',
+    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
 ]
