@@ -24,9 +24,9 @@ const STATUS_META: Record<
 
 // 배지 문구 — 3개 언어
 const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'available', string>> = {
-  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', available: '예약 가능' },
-  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', available: 'Book now' },
-  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', available: '予約可能' },
+  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', available: '제휴사 예약' },
+  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', available: 'Book via partner' },
+  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', available: '提携先で予約' },
 }
 
 const PENDING_STATUSES = new Set([

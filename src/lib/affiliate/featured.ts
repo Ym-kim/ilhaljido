@@ -25,12 +25,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '도쿄 · 일본',
     country: '일본',
     desc: '호텔 안에 코워킹 .andwork 2개 층. 시부야역 도보 6분, 무료 커피와 해피아워까지.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('jp/the-millennials-shibuya-shibuya-ku.html'),
     badge: '코워킹 내장',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩40,000~',
   },
   {
     id: 'stay-lively-osaka',
@@ -45,12 +44,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '오사카 · 일본',
     country: '일본',
     desc: '작업 가능한 공용 라운지 7곳. 혼마치 비즈니스 지구, 평점 8.7 (2,600+ 리뷰).',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('jp/the-lively-osaka.html'),
     badge: '라운지 워크',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
   },
   {
     id: 'stay-webase-hakata',
@@ -64,12 +62,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '후쿠오카 · 일본',
     country: '일본',
     desc: '9층 전용 코워킹(투숙객 무료) + 테라스. 나카스카와바타역 도보 3분, 평점 8.6.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('jp/webase-hakata-hostel.html'),
     badge: '무료 코워킹',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩30,000~',
   },
   {
     id: 'stay-tribal-bali',
@@ -83,12 +80,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '발리 짱구 · 인도네시아',
     country: '인도네시아',
     desc: '발리 최초 코워킹 전용 설계 숙소. 풀사이드 워크스페이스와 노마드 커뮤니티.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('id/tribal-bali-mengwi.html'),
     badge: '노마드 성지',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩20,000~',
   },
   {
     id: 'stay-chicland-danang',
@@ -102,12 +98,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '다낭 · 베트남',
     country: '베트남',
     desc: '미케비치 도보 2분, 카페형 라운지와 루프탑 풀. 노마드 거점 안트엉 인근, 평점 8.6.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('vn/chicland-da-nang.html'),
     badge: '비치 워크',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
   },
   {
     id: 'stay-playce-jeju',
@@ -122,12 +117,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '제주 성산 · 국내',
     country: '국내',
     desc: '침실과 업무 데스크 분리형 객실, 워케이션 전용 패키지 운영. 성산 일출봉 인근.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('kr/playce-camp-jeju.html'),
     badge: '워케이션 특화',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩70,000~',
   },
   {
     id: 'stay-kantary-chiangmai',
@@ -142,12 +136,11 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     destination: '치앙마이 님만 · 태국',
     country: '태국',
     desc: '키치넷 딸린 서비스드 아파트, 장기 체류 특화. 마야몰·원님만 도보권.',
-    cta: '객실 보기',
+    cta: '실시간 요금 확인',
     href: B('th/kantary-hills-chiang-mai.html'),
     badge: '장기체류',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
   },
 ]
 
@@ -165,10 +158,9 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     desc: '모바일 QR로 즉시 입장하는 1일권. 워케이션 주말을 특별하게.',
     cta: '상품 보기',
     href: 'https://www.kkday.com/ko/product/19252',
-    badge: '인기 1위',
+    badge: '인기 체험',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체, status → active_affiliate',
   },
   {
@@ -187,7 +179,6 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '익스프레스',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -206,7 +197,6 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '한국어 가이드',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩80,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -225,7 +215,6 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '프라이빗',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -244,7 +233,6 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     badge: '올인클루시브',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩100,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
 ]
@@ -266,7 +254,6 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '수익 추적',
     trackingId: 'Allianceid=9024807',
     coverPhoto: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩360,000~',
   },
   {
     id: 'cruise-msc-bellissima-busan',
@@ -284,7 +271,6 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '부산 출항',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩799,000~',
     operatorAction: 'MSC 제휴 프로그램 검토 → 제휴 시 tracking URL 교체',
   },
   {
@@ -303,7 +289,6 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     badge: '가성비',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩300,000~',
     operatorAction: '팬스타 제휴 문의 → 제휴 시 tracking URL 교체',
   },
   {
@@ -432,7 +417,6 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     badge: '풀키친',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩180,000~',
   },
   {
     id: 'stay-nomadshub-cebu',
@@ -450,7 +434,6 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     badge: '코리빙',
     trackingId: 'aid=7854081',
     coverPhoto: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩15,000~',
   },
 ]
 
@@ -472,7 +455,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '골프',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩130,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -491,7 +473,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '골프',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩180,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -510,7 +491,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '힐링',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩30,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -529,7 +509,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '요가',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩30,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -548,7 +527,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '야구 직관',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
   {
@@ -567,7 +545,6 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     badge: '미식',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80',
-    priceFrom: '₩40,000~',
     operatorAction: 'KKpartners 딥링크 수령 → href 교체',
   },
 ]
