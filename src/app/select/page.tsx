@@ -263,6 +263,9 @@ export default function SelectPage() {
           <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
             Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
           </p>
+          <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
+            요금과 상품 조건은 제휴사 사이트에서 최종 확인됩니다.
+          </p>
         </div>
       </section>
     </div>
