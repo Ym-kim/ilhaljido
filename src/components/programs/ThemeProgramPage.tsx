@@ -2,6 +2,7 @@
 
 import { MapPin, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticThemedUpcoming } from '@/lib/i18n'
@@ -31,7 +32,8 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        {/* LCP 이미지 — next/image로 반응형 srcset·우선 로드 (모바일에 1800px 원본 전송 방지) */}
+        <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{eyebrow}</SectionEyebrow>

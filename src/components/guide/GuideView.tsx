@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ArrowLeft, Search, MapPin, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
@@ -36,10 +37,13 @@ export function GuideView({ guide }: { guide: CityGuide }) {
     <div className="min-h-screen bg-white">
       {/* ── 히어로 ── */}
       <section className="relative h-[300px] md:h-[380px] overflow-hidden dark-surface">
-        <img
+        <Image
           src={guide.heroPhoto}
           alt={guide.name[lang]}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/30" />
         <div className="absolute inset-0 flex items-end">
