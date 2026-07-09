@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, Clock } from 'lucide-react'
 import type { DestinationEntry, ServiceLink } from '@/lib/affiliate/destinations'
+import { trackAffiliateClick } from '@/lib/track'
 
 // active_affiliate/api_ready → 브랜드 블루 filled CTA, 실제 수익 추적
 // approved_needs_link/needs_referral_link/approved_needs_course_links → 회색 outline, 링크 대기
@@ -24,6 +25,7 @@ function ServiceButton({ link }: { link: ServiceLink }) {
       href={link.href}
       target="_blank"
       rel={rel}
+      onClick={() => trackAffiliateClick({ provider: link.provider, status: link.status })}
       className={`inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3.5 py-2 rounded-full transition-all duration-150 ${
         isActive
           ? 'bg-brand-mid text-white shadow-sm hover:bg-brand-light hover:shadow-md'

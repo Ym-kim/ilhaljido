@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getWorkcationRecommendation } from '@/lib/anthropic'
 import { createClient } from '@/lib/supabase/server'
 
+export const maxDuration = 60
+
 export async function POST(request: NextRequest) {
   try {
     // 토큰 비용 보호 — 로그인 사용자만 AI 호출 가능
