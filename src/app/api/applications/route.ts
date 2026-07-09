@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { createClient } from '@/lib/supabase/server'
 import Anthropic from '@anthropic-ai/sdk'
+import { geminiGenerate, hasGeminiKey } from '@/lib/gemini'
 import type { ApplicationInsert } from '@/types/database'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
@@ -179,17 +180,31 @@ ${programs.map((p, i) => `${i + 1}. [${p.id}] ${p.title} - ${p.location} (${p.pr
   "summary": "신청자에게 맞는 워케이션 스타일 요약 (2-3문장)"
 }`
 
-  const message = await anthropic.messages.create({
-    model: 'claude-sonnet-4-6',
-    max_tokens: 1024,
-    messages: [{ role: 'user', content: prompt }],
-  })
-
-  const content = message.content[0]
-  if (content.type !== 'text') return
+  // 1차: Gemini 무료 (JSON 강제) / 실패 시 Anthropic 폴백
+  let rawText = ''
+  if (hasGeminiKey()) {
+    try {
+      rawText = await geminiGenerate({ user: prompt, json: true, maxOutputTokens: 1024 })
+      console.log('[applications-ai] provider=gemini')
+    } catch (e) {
+      console.error('[applications-ai] gemini failed, falling back to anthropic:', e)
+    }
+  }
+  if (!rawText) {
+    const message = await anthropic.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 1024,
+      messages: [{ role: 'user', content: prompt }],
+    })
+    console.log('[applications-ai] provider=anthropic')
+    const content = message.content[0]
+    if (content.type !== 'text') return
+    rawText = content.text
+  }
 
   try {
-    const parsed = JSON.parse(content.text)
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/)
+    const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : rawText)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (admin as any).from('ai_recommendations').insert({
       application_id: applicationId,

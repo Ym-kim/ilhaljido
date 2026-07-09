@@ -1,5 +1,6 @@
 import 'server-only'
 import Anthropic from '@anthropic-ai/sdk'
+import { geminiGenerate, hasGeminiKey } from '@/lib/gemini'
 
 export const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -31,12 +32,29 @@ ${JSON.stringify(spaces, null, 2)}
   "tips": ["워케이션 팁1", "워케이션 팁2", "워케이션 팁3"]
 }`
 
+  // 1차: Gemini 무료 (JSON 강제 응답) / 실패 시 Anthropic 폴백
+  if (hasGeminiKey()) {
+    try {
+      const text = await geminiGenerate({
+        system: systemPrompt,
+        user: userMessage,
+        json: true,
+        maxOutputTokens: 1024,
+      })
+      console.log('[ai-recommend] provider=gemini')
+      return JSON.parse(text)
+    } catch (e) {
+      console.error('[ai-recommend] gemini failed, falling back to anthropic:', e)
+    }
+  }
+
   const message = await anthropic.messages.create({
     model: 'claude-sonnet-4-6',
     max_tokens: 1024,
     system: systemPrompt,
     messages: [{ role: 'user', content: userMessage }],
   })
+  console.log('[ai-recommend] provider=anthropic')
 
   const content = message.content[0]
   if (content.type !== 'text') throw new Error('Unexpected response type')

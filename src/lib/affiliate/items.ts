@@ -34,7 +34,7 @@ export const AFFILIATE_BASE = {
 
   // ✅ active_affiliate — Allianceid=9024807 적용 완료
   tripcom:    'https://kr.trip.com/?Allianceid=9024807',
-  kkday:      'https://www.kkday.com/ko?cid=19243',
+  kkday:      'https://www.kkday.com/ko?cid=25833',
 
   // 🔶 approved_needs_course_links — 강의별 링크 생성 전
   inflearn:   'https://www.inflearn.com',
@@ -131,7 +131,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     },
     priority: 2,
     showOn: ['global', 'market', 'select'],
-    sourceNote: 'KKpartners cid=19243 tracking active (2026-07-09)',
+    sourceNote: 'KKpartners cid=25833 tracking active (2026-07-09)',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
@@ -396,15 +396,15 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     country: '일본',
     desc: '도쿄·오사카·후쿠오카 현지 투어, 교통패스, 입장권. 워케이션 목적지별 체험 상품.',
     cta: '체험 둘러보기',
-    href: 'https://www.kkday.com/ko/destination/jp-japan?cid=19243',
+    href: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     badge: '현지 체험',
-    trackingId: 'cid=19243',
+    trackingId: 'cid=25833',
     coverPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80',
     coverGradient: 'from-red-900 via-rose-950 to-[#0d0d0d]',
     priority: 5,
     showOn: ['home'],
-    sourceNote: 'KKpartners cid=19243 tracking active (2026-07-09)',
-    operatorAction: 'KKpartners cid=19243 적용 완료 (2026-07-09)',
+    sourceNote: 'KKpartners cid=25833 tracking active (2026-07-09)',
+    operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
 
   {
@@ -464,15 +464,15 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     country: '인도네시아',
     desc: '우붓 라이스테라스, 서핑 레슨, 사원 투어. 발리에서만 할 수 있는 체험을 예약하세요.',
     cta: '발리 체험 보기',
-    href: 'https://www.kkday.com/ko/destination/id-bali?cid=19243',
+    href: 'https://www.kkday.com/ko/destination/id-bali?cid=25833',
     badge: '현지 체험',
-    trackingId: 'cid=19243',
+    trackingId: 'cid=25833',
     coverPhoto: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80',
     coverGradient: 'from-orange-900 via-amber-950 to-[#0d0d0d]',
     priority: 8,
     showOn: ['home'],
-    sourceNote: 'KKpartners cid=19243 tracking active (2026-07-09)',
-    operatorAction: 'KKpartners cid=19243 적용 완료 (2026-07-09)',
+    sourceNote: 'KKpartners cid=25833 tracking active (2026-07-09)',
+    operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
 ]
 
