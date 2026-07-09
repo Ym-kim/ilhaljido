@@ -11,6 +11,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { MomentRail } from '@/components/home/MomentRail'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -264,6 +265,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ── 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 ── */}
+      <MomentRail />
 
       {/* ── 지금 모집 중 / 다음 라인업 ── */}
       <section className="bg-gradient-to-b from-[#04121f] to-[#0a1e33] border-b border-white/8 py-16 md:py-20 px-6 dark-surface">
