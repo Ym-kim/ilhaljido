@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ArrowLeft, Plane } from 'lucide-react'
@@ -27,8 +28,17 @@ const T: Record<string, L> = {
   home: { KO: '홈', EN: 'Home', JP: 'ホーム' },
 }
 
-export function GuideHubView() {
-  const { lang } = useLang()
+export function GuideHubView({ forceLang }: { forceLang?: Lang } = {}) {
+  // forceLang: /en·/ja 로케일 라우트용 — 정적 생성 시 해당 언어로 렌더 (SEO)
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+
   const factLabels = CITY_GUIDES[0].facts.map((f) => f.label[lang])
 
   return (
@@ -55,7 +65,7 @@ export function GuideHubView() {
           {CITY_GUIDES.map((g) => (
             <Link
               key={g.slug}
-              href={`/guide/${g.slug}`}
+              href={`${prefix}/guide/${g.slug}`}
               className="group relative rounded-2xl overflow-hidden h-52 border border-[#dbeafe] hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
             >
               <Image
@@ -94,7 +104,7 @@ export function GuideHubView() {
               {CITY_GUIDES.map((g, i) => (
                 <tr key={g.slug} className={i % 2 ? 'bg-[#f8fbff]' : 'bg-white'}>
                   <td className="px-4 py-3 font-bold text-[#111827]">
-                    <Link href={`/guide/${g.slug}`} className="hover:text-brand-mid transition-colors">
+                    <Link href={`${prefix}/guide/${g.slug}`} className="hover:text-brand-mid transition-colors">
                       {g.name[lang]}
                     </Link>
                   </td>

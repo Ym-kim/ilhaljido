@@ -63,5 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
+    // EN·JA 로케일 가이드 (hreflang 상호 연결)
+    ...['en', 'ja'].flatMap((loc) => [
+      { url: `${BASE}/${loc}/guide`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.7 },
+      ...CITY_GUIDES.map((g) => ({
+        url: `${BASE}/${loc}/guide/${g.slug}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.65,
+      })),
+    ]),
   ]
 }

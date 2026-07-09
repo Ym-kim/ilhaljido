@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CITY_GUIDES, getGuide } from '@/lib/guides'
+import { CITY_GUIDES, getGuide, guideLanguageAlternates } from '@/lib/guides'
 import { GuideView } from '@/components/guide/GuideView'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -22,11 +22,14 @@ export async function generateMetadata({
   const guide = getGuide(city)
   if (!guide) return {}
   return {
-    title: `${guide.name.KO} 워케이션 가이드 | Wakation`,
+    title: `${guide.name.KO} 워케이션 가이드`,
     description: guide.tagline.KO,
-    alternates: { canonical: `https://www.wakation.kr/guide/${guide.slug}` },
+    alternates: {
+      canonical: `https://www.wakation.kr/guide/${guide.slug}`,
+      languages: guideLanguageAlternates(`/guide/${guide.slug}`),
+    },
     openGraph: {
-      title: `${guide.name.KO} 워케이션 가이드 | Wakation`,
+      title: `${guide.name.KO} 워케이션 가이드`,
       description: guide.tagline.KO,
       images: [guide.heroPhoto],
     },
