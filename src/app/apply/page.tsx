@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Phone, Sparkles, CreditCard, RefreshCw, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useLang } from '@/context/LanguageContext'
+import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
 import {
   getApplyProgramOptions,
   getJobTypeOptions,
@@ -54,6 +55,7 @@ function ApplyForm() {
   const [submitting, setSubmitting] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
+  const [consent, setConsent] = useState(false)
 
   function toggleChip(field: 'interests' | 'rest_preferences', val: string) {
     setForm((f) => ({
@@ -334,9 +336,11 @@ function ApplyForm() {
         />
       </div>
 
+      <ConsentCheckbox checked={consent} onChange={setConsent} />
+
       {error && <p className="text-red-500 text-sm bg-red-50 border border-red-100 rounded-lg px-4 py-3">{error}</p>}
 
-      <Button type="submit" size="lg" className="w-full" disabled={submitting}>
+      <Button type="submit" size="lg" className="w-full" disabled={submitting || !consent}>
         {submitting ? tr('apply_submitting') : tr('apply_submit_btn')}
       </Button>
       <p className="text-xs text-muted text-center">{tr('apply_privacy')}</p>

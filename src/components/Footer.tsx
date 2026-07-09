@@ -3,9 +3,14 @@
 import Link from 'next/link'
 import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
+import { BUSINESS } from '@/lib/legal'
 
 export default function Footer() {
-  const { tr } = useLang()
+  const { tr, lang } = useLang()
+  const companyName = lang === 'KO' ? BUSINESS.companyKo : BUSINESS.companyEn
+  const address = lang === 'KO' ? BUSINESS.addressKo : BUSINESS.addressEn
+  const bizLabel = lang === 'KO' ? '사업자등록번호' : lang === 'JP' ? '事業者登録番号' : 'Business reg. no.'
+  const ceoLabel = lang === 'KO' ? '대표' : lang === 'JP' ? '代表' : 'CEO'
 
   return (
     <footer className="bg-[#0a0a0a] text-white/70 py-16 px-6 border-t border-white/5">
@@ -52,13 +57,19 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-white/8 pt-6 flex flex-col sm:flex-row justify-between gap-3 text-[0.875rem] text-white/45">
+        {/* 사업자 정보 — 전자상거래법·신뢰 시그널 */}
+        <div className="border-t border-white/8 pt-6 mb-4 text-[0.8125rem] text-white/40 leading-relaxed">
+          <p>{companyName} · {ceoLabel} {BUSINESS.ceo} · {bizLabel} {BUSINESS.bizNo}</p>
+          <p>{address}</p>
+          <p>{BUSINESS.email}</p>
+        </div>
+        <div className="flex flex-col sm:flex-row justify-between gap-3 text-[0.875rem] text-white/45">
           <span>{tr('footer_copy')}</span>
           <div className="flex gap-5">
-            <Link href="#" className="hover:text-white/80 transition-colors">
+            <Link href="/privacy" className="hover:text-white/80 transition-colors font-medium">
               {tr('footer_privacy')}
             </Link>
-            <Link href="#" className="hover:text-white/80 transition-colors">
+            <Link href="/terms" className="hover:text-white/80 transition-colors">
               {tr('footer_terms')}
             </Link>
           </div>
