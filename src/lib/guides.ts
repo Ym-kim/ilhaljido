@@ -24,7 +24,12 @@ export type CityGuide = {
   /** featured.ts 아이템 id */
   stayIds: string[]
   activityIds: string[]
+  /** Trip.com 노선 페이지 (Allianceid 부착, 실물 검증 2026-07-09) */
+  flightUrl?: string
 }
+
+const FLIGHT = (slug: string) =>
+  `https://kr.trip.com/flights/${slug}/?Allianceid=9024807`
 
 const HERO = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1600&h=700&q=80`
@@ -78,6 +83,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-millennials-shibuya'],
     activityIds: ['act-tokyo-disney'],
+    flightUrl: FLIGHT('seoul-to-tokyo/airfares-sel-tyo'),
   },
   {
     slug: 'fukuoka',
@@ -120,6 +126,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-webase-hakata'],
     activityIds: ['act-fukuoka-bustour'],
+    flightUrl: FLIGHT('seoul-to-fukuoka/airfares-sel-fuk'),
   },
   {
     slug: 'danang',
@@ -162,6 +169,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-chicland-danang'],
     activityIds: ['act-danang-banahills'],
+    flightUrl: FLIGHT('seoul-to-danang/airfares-sel-dad'),
   },
   {
     slug: 'bali',
@@ -204,6 +212,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-tribal-bali'],
     activityIds: ['act-bali-ubud'],
+    flightUrl: FLIGHT('seoul-to-denpasar/airfares-sel-dps'),
   },
   {
     slug: 'chiangmai',
@@ -246,6 +255,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-kantary-chiangmai'],
     activityIds: [],
+    flightUrl: FLIGHT('seoul-to-chiangmai/airfares-sel-cnx'),
   },
   {
     slug: 'jeju',
@@ -288,6 +298,7 @@ export const CITY_GUIDES: CityGuide[] = [
     ],
     stayIds: ['stay-playce-jeju'],
     activityIds: [],
+    flightUrl: FLIGHT('seoul-to-jeju/airfares-sel-cju'),
   },
 ]
 
@@ -305,6 +316,7 @@ export const GUIDE_UI: Record<string, L> = {
     JP: 'リサーチで実在を検証したワーケーション向きの宿',
   },
   searchCta: { KO: '이 도시 전체 숙소 검색', EN: 'Search all stays in this city', JP: 'この街の宿をすべて検索' },
+  flightCta: { KO: '항공권 요금 비교', EN: 'Compare flights', JP: '航空券を比較' },
   otherGuides: { KO: '다른 도시 가이드', EN: 'More city guides', JP: 'ほかの都市ガイド' },
   visaHint: {
     KO: '이 도시의 비자·체류 조건이 궁금하다면',
