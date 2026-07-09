@@ -4,6 +4,9 @@ import { ArrowRight } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 
+// 카카오톡 채널 (실제 운영 채널)
+const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_xiPxbXG'
+
 const CONTACT_KEYS = [
   { titleKey: 'contact_prog_t', descKey: 'contact_prog_d', subject: 'Program' },
   { titleKey: 'contact_partner_t', descKey: 'contact_partner_d', subject: 'Partnership' },
@@ -42,6 +45,20 @@ export default function ContactPage() {
                 </div>
               </a>
             ))}
+          </div>
+
+          <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-3xl p-8 text-center">
+            <h3 className="text-xl font-black text-gray-900 mb-2">{tr('contact_kakao_t')}</h3>
+            <p className="text-gray-500 text-sm mb-5">{tr('contact_kakao_d')}</p>
+            <a
+              href={KAKAO_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-full hover:bg-yellow-300 transition-colors"
+            >
+              {tr('contact_kakao_btn')}
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
 
           <div className="mt-10 text-center">
