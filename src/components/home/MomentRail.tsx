@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { MOMENTS } from '@/lib/moments'
+import { CITY_GUIDES } from '@/lib/guides'
 import { ICON_STROKE } from '@/lib/icons'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -77,6 +78,21 @@ export function MomentRail() {
                 {tr('home_moments_cta')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
               </span>
             </div>
+          </Link>
+        ))}
+      </div>
+
+      {/* 도시 가이드 진입 칩 — SEO 내부 링크 + 체류 동선 */}
+      <div className="max-w-6xl mx-auto px-6 mt-7 flex flex-wrap items-center gap-2.5">
+        <span className="text-[#64748b] text-xs font-semibold mr-1">{tr('home_moments_guides')}</span>
+        {CITY_GUIDES.map((g) => (
+          <Link
+            key={g.slug}
+            href={`/guide/${g.slug}`}
+            className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-[#dbeafe] bg-white text-[#475569] text-xs font-semibold hover:border-[#93c5fd] hover:text-[#111827] transition-all"
+          >
+            {g.name[lang]}
+            <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
           </Link>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { CITY_GUIDES } from '@/lib/guides'
 
 const BASE = 'https://www.wakation.kr'
 
@@ -6,6 +7,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
   return [
+    ...CITY_GUIDES.map((g) => ({
+      url: `${BASE}/guide/${g.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
     { url: BASE,                         lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${BASE}/select`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     { url: `${BASE}/programs`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
