@@ -435,6 +435,17 @@ export function getGuide(slug: string): CityGuide | undefined {
   return CITY_GUIDES.find((g) => g.slug === slug)
 }
 
+// hreflang alternates — KO(기본)·EN·JA 로케일 URL 상호 연결 (path 예: '/guide/tokyo')
+const BASE_URL = 'https://www.wakation.kr'
+export function guideLanguageAlternates(path: string) {
+  return {
+    ko: `${BASE_URL}${path}`,
+    en: `${BASE_URL}/en${path}`,
+    ja: `${BASE_URL}/ja${path}`,
+    'x-default': `${BASE_URL}${path}`,
+  }
+}
+
 export const GUIDE_UI: Record<string, L> = {
   eyebrow: { KO: 'City Guide', EN: 'City Guide', JP: 'City Guide' },
   areasTitle: { KO: '일하기 좋은 동네', EN: 'Where to work', JP: '働きやすいエリア' },

@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ArrowLeft, Search, MapPin, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
+import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import { CITY_GUIDES, GUIDE_UI, type CityGuide } from '@/lib/guides'
@@ -18,8 +20,16 @@ import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 
 const ALL_ITEMS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2, ...FEATURED_ACTIVITIES]
 
-export function GuideView({ guide }: { guide: CityGuide }) {
-  const { lang } = useLang()
+export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: Lang }) {
+  // forceLang: /en·/ja 로케일 라우트용 — 정적 생성 시 해당 언어로 렌더 (SEO)
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+
+  // 로케일 URL 방문 시 사이트 언어(네비 등)도 동기화
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
 
   const stays = guide.stayIds
     .map((id) => ALL_ITEMS.find((i) => i.id === id))
@@ -32,6 +42,8 @@ export function GuideView({ guide }: { guide: CityGuide }) {
   const affiliateItems = [...stays, ...activities]
 
   const others = CITY_GUIDES.filter((g) => g.slug !== guide.slug)
+  // 로케일 라우트에서는 가이드 간 링크도 같은 로케일 유지 (크롤러가 EN/JA 그래프 순회)
+  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
   return (
     <div className="min-h-screen bg-white">
@@ -165,7 +177,7 @@ export function GuideView({ guide }: { guide: CityGuide }) {
             {others.map((g) => (
               <Link
                 key={g.slug}
-                href={`/guide/${g.slug}`}
+                href={`${prefix}/guide/${g.slug}`}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-[#dbeafe] bg-white text-[#475569] text-sm font-semibold hover:border-[#93c5fd] hover:text-[#111827] transition-all"
               >
                 {g.name[lang]}
