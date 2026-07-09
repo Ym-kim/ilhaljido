@@ -132,8 +132,10 @@ export async function POST(req: NextRequest) {
       .select('id, title, category, location, date_start, date_end, price, status, tags, description')
       .in('status', ['open', 'soon'])
 
-    if (programs && programs.length > 0) {
-      generateAIRecommendation(application.id, body, programs).catch(console.error)
+    // AI 추천은 로그인 사용자에게만 생성 — 익명 제출發 무제한 Anthropic 호출(denial-of-wallet) 차단
+    // 프롬프트엔 raw body가 아닌 길이 제한된 applicationData를 전달 (토큰 증폭 방지)
+    if (user?.id && programs && programs.length > 0) {
+      generateAIRecommendation(application.id, applicationData, programs).catch(console.error)
     }
 
     return NextResponse.json({ success: true, id: application.id }, { status: 201 })

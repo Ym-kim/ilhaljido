@@ -11,6 +11,9 @@ export async function POST(req: NextRequest) {
     if (!query?.trim()) {
       return NextResponse.json({ error: '검색어를 입력해주세요.' }, { status: 400 })
     }
+    if (typeof query !== 'string' || query.length > 500) {
+      return NextResponse.json({ error: '검색어가 너무 깁니다.' }, { status: 400 })
+    }
 
     const supabase = await createClient()
 
@@ -60,7 +63,8 @@ ${(programs as ProgramRow[]).map(p => `ID: ${p.id} | ${p.title} | ${p.location} 
     if (content.type !== 'text') throw new Error('Unexpected response type')
 
     const parsed = JSON.parse(content.text)
-    const matched = (programs as ProgramRow[]).filter(p => parsed.matched_ids.includes(p.id))
+    const matchedIds: string[] = Array.isArray(parsed.matched_ids) ? parsed.matched_ids : []
+    const matched = (programs as ProgramRow[]).filter(p => matchedIds.includes(p.id))
 
     return NextResponse.json({
       programs: matched,

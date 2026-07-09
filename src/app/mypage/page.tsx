@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { User, Mail, Calendar, LogOut, ArrowRight, FileText } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
-import { createClient } from '@/lib/supabase/client'
 
 type Application = {
   id: string
@@ -18,7 +17,6 @@ type Application = {
 export default function MyPage() {
   const router = useRouter()
   const { user, loading, signOut } = useAuth()
-  const supabase = createClient()
   const [apps, setApps] = useState<Application[]>([])
   const [appsLoading, setAppsLoading] = useState(true)
 
@@ -31,13 +29,16 @@ export default function MyPage() {
   useEffect(() => {
     if (!user) return
     const load = async () => {
-      const { data } = await (supabase as any)
-        .from('applications')
-        .select('id, program_id, programs(title), status, created_at')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-      setApps((data as Application[]) || [])
-      setAppsLoading(false)
+      try {
+        // 서버 API가 getUser()로 신원 확인 후 user_id 필터 강제 → RLS 무관하게 본인 데이터만
+        const res = await fetch('/api/my/applications')
+        const json = await res.json()
+        setApps((json.applications as Application[]) || [])
+      } catch {
+        setApps([])
+      } finally {
+        setAppsLoading(false)
+      }
     }
     load()
   }, [user])
