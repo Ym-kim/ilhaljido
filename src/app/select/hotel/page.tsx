@@ -8,6 +8,7 @@ import { useLang } from '@/context/LanguageContext'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { HOTEL_DESTINATIONS } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { WishlistRail } from '@/components/affiliate/WishlistRail'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -78,6 +79,9 @@ export default function HotelSelectPage() {
           </div>
         </div>
       </section>
+
+      {/* 찜한 상품 — 재방문 재클릭 동선 (찜 있을 때만 렌더) */}
+      <WishlistRail />
 
       {/* Destination sections — 추천 개별 숙소 먼저, 도시 검색은 폴백 */}
       {REGIONS.map((region) => {

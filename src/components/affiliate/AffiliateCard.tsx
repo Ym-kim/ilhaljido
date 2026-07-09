@@ -1,10 +1,11 @@
 'use client'
 
-import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen } from 'lucide-react'
+import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen, Heart } from 'lucide-react'
 import type { AffiliateItem } from '@/lib/affiliate/types'
 import type { Lang } from '@/lib/i18n'
 import { useLang } from '@/context/LanguageContext'
 import { trackAffiliateClick } from '@/lib/track'
+import { useWishlist } from '@/hooks/useWishlist'
 
 type BadgeKey = 'affiliate' | 'api' | 'link_prep' | 'ref_prep' | 'review' | 'external'
 
@@ -53,6 +54,8 @@ interface AffiliateCardProps {
 
 export function AffiliateCard({ item, className = '', visual = false }: AffiliateCardProps) {
   const { lang } = useLang()
+  const { has, toggle } = useWishlist()
+  const saved = has(item.id)
   const badgeText = BADGE_TEXT[lang] ?? BADGE_TEXT.KO
   const meta = STATUS_META[item.status] ?? STATUS_META.placeholder
   const title = item.productTitle ?? item.displayTitle ?? item.name
@@ -138,6 +141,23 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
               </span>
             </div>
           )}
+
+          {/* 위시리스트 ♥ — 재방문 시 재클릭 동선 (localStorage, 비용 0) */}
+          <button
+            type="button"
+            aria-label={saved ? 'remove from wishlist' : 'add to wishlist'}
+            onClick={(e) => {
+              e.preventDefault()
+              e.stopPropagation()
+              toggle(item.id)
+            }}
+            className="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center hover:bg-black/65 transition-colors"
+          >
+            <Heart
+              className={`w-4 h-4 transition-colors ${saved ? 'text-rose-400 fill-rose-400' : 'text-white'}`}
+              strokeWidth={2}
+            />
+          </button>
         </div>
 
         {/* 콘텐츠 */}
