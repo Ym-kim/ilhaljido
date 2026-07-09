@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { MOMENTS } from '@/lib/moments'
@@ -46,11 +47,12 @@ export function MomentRail() {
             href={`/select/hotel#${m.anchor}`}
             className="group relative shrink-0 snap-start w-[200px] sm:w-[220px] aspect-[3/5] rounded-2xl overflow-hidden bg-[#0a1e33] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
-            <img
+            <Image
               src={m.photo}
               alt={`${m.dest[lang]} — ${m.title[lang].replace('\n', ' ')}`}
-              className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
+              fill
+              sizes="220px"
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
             {/* 그라디언트 오버레이 */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/35" />

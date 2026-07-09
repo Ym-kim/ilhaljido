@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, ArrowLeft, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
@@ -57,11 +58,12 @@ export function GuideHubView() {
               href={`/guide/${g.slug}`}
               className="group relative rounded-2xl overflow-hidden h-52 border border-[#dbeafe] hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
             >
-              <img
+              <Image
                 src={g.heroPhoto}
                 alt={g.name[lang]}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                loading="lazy"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-5">

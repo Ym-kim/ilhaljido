@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, RotateCcw, Sparkles, MapPin } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
@@ -115,11 +116,12 @@ export function DestinationFinder() {
                         : 'border-white/10 bg-white/[0.03] hover:border-white/25'
                     }`}
                   >
-                    <img
+                    <Image
                       src={c.photo}
                       alt={c.name[lang]}
+                      width={112}
+                      height={112}
                       className="w-24 h-24 md:w-28 md:h-28 object-cover shrink-0"
-                      loading="lazy"
                     />
                     <div className="flex-1 py-3 pr-3 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
