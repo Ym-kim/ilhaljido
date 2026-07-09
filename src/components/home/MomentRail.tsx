@@ -95,6 +95,13 @@ export function MomentRail() {
             <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
           </Link>
         ))}
+        <Link
+          href="/moments/submit"
+          className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-brand-mid text-white text-xs font-bold hover:bg-brand-light transition-all"
+        >
+          {tr('home_moments_submit')}
+          <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+        </Link>
       </div>
     </section>
   )
