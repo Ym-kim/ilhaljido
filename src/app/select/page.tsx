@@ -5,15 +5,13 @@ import Link from 'next/link'
 import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
-import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
-import { localizeAffiliateItem } from '@/lib/affiliate/localize'
-import { useLang } from '@/context/LanguageContext'
+import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 
 // 목적지 필터 (에어비앤비 스타일)
 const DEST_FILTERS = [
-  { id: 'all',   labelKey: 'filter_all' },
-  { id: 'japan', labelKey: 'filter_japan' },
-  { id: 'bali',  labelKey: 'filter_bali' },
+  { id: 'all',   label: '전체', flag: '🌏' },
+  { id: 'japan', label: '일본', flag: '🇯🇵' },
+  { id: 'bali',  label: '발리', flag: '🇮🇩' },
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
@@ -22,10 +20,10 @@ const CATEGORIES = [
     id: 'hotel',
     href: '/select/hotel',
     icon: BedDouble,
-    labelKey: 'nav_select_hotel',
-    titleKey: 'sel_cat_hotel_t',
+    label: '숙소 예약',
+    title: '목적지별 숙소 큐레이션',
     desc: '도쿄·오사카·후쿠오카·다낭·발리·리스본·제주. Booking.com과 Trip.com으로 바로 검색.',
-    badgeKey: 'sel_badge_active',
+    badge: '제휴',
     badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
     iconBg: 'bg-emerald-50',
@@ -36,10 +34,10 @@ const CATEGORIES = [
     id: 'activity',
     href: '/select/activity',
     icon: Sparkles,
-    labelKey: 'nav_select_activity',
-    titleKey: 'sel_cat_act_t',
+    label: '현지 체험',
+    title: '목적지별 투어·액티비티',
     desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday·Klook 파트너 상품 큐레이션.',
-    badgeKey: 'sel_badge_prep',
+    badge: '링크 준비중',
     badgeClass: 'bg-amber-50 text-amber-600 border-amber-200',
     cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
     iconBg: 'bg-[#f5f3ef]',
@@ -50,10 +48,10 @@ const CATEGORIES = [
     id: 'esim',
     href: '/select/esim',
     icon: Wifi,
-    labelKey: 'nav_select_esim',
-    titleKey: 'sel_cat_esim_t',
+    label: 'eSIM',
+    title: '목적지별 eSIM 즉시 구매',
     desc: '일본·베트남·발리·포르투갈. Airalo로 도착 전 설치, 공항에서 바로 연결.',
-    badgeKey: 'sel_badge_ref',
+    badge: '추천 준비중',
     badgeClass: 'bg-amber-50 text-amber-600 border-amber-200',
     cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
     iconBg: 'bg-[#f5f3ef]',
@@ -64,10 +62,10 @@ const CATEGORIES = [
     id: 'learn',
     href: '/select/learn',
     icon: BookOpen,
-    labelKey: 'nav_select_learn',
-    titleKey: 'sel_cat_learn_t',
+    label: '강의·학습',
+    title: '워케이션 중 성장하는 강의',
     desc: 'AI 자동화, 마케팅, 생산성, 개발. 인프런 파트너 강의 카테고리 큐레이션.',
-    badgeKey: 'sel_badge_prep',
+    badge: '링크 준비중',
     badgeClass: 'bg-amber-50 text-amber-600 border-amber-200',
     cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
     iconBg: 'bg-[#f5f3ef]',
@@ -77,7 +75,6 @@ const CATEGORIES = [
 ]
 
 export default function SelectPage() {
-  const { lang, tr } = useLang()
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
 
   const allHotelItems = HOME_FEATURED_ITEMS.filter((i) =>
@@ -103,14 +100,15 @@ export default function SelectPage() {
             WAKATION SELECT
           </p>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#141414] leading-[1.06] tracking-tight mb-5">
-            {tr('sel_hub_t_pre')}<br />
-            <span className="text-brand-mid">{tr('sel_hub_t_accent')}</span>{tr('sel_hub_t_post')}
+            워케이션 준비,<br />
+            <span className="text-brand-mid">한 곳에서</span> 끝내세요
           </h1>
           <p className="text-[#5c5c5c] text-base md:text-lg leading-relaxed max-w-xl mb-3">
-            {tr('sel_hub_desc')}
+            숙소 예약부터 현지 체험, eSIM, 온라인 강의까지.<br className="hidden sm:block" />
+            워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
           </p>
           <p className="text-[#a0a0a0] text-xs">
-            {tr('sel_hub_note')}
+            외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다.
           </p>
         </div>
       </section>
@@ -119,7 +117,7 @@ export default function SelectPage() {
       <section className="px-6 py-10 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <p className="text-[#a0a0a0] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-4">
-            {tr('sel_cat_label')}
+            카테고리
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {CATEGORIES.map((cat) => {
@@ -135,13 +133,13 @@ export default function SelectPage() {
                       <Icon className={`w-4 h-4 ${cat.iconColor}`} strokeWidth={ICON_STROKE} />
                     </div>
                     <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
-                      {tr(cat.badgeKey)}
+                      {cat.badge}
                     </span>
                   </div>
-                  <p className="text-[#141414] font-black text-sm mb-1">{tr(cat.labelKey)}</p>
-                  <p className="text-[#7a7a7a] text-[0.7rem] leading-relaxed line-clamp-2">{tr(cat.titleKey)}</p>
+                  <p className="text-[#141414] font-black text-sm mb-1">{cat.label}</p>
+                  <p className="text-[#7a7a7a] text-[0.7rem] leading-relaxed line-clamp-2">{cat.title}</p>
                   <div className={`mt-4 flex items-center gap-1 text-[0.65rem] font-semibold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
-                    {tr('sel_browse')}
+                    둘러보기
                     <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                   </div>
                 </Link>
@@ -157,17 +155,17 @@ export default function SelectPage() {
           <div className="flex items-end justify-between mb-5">
             <div>
               <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-2">
-                {tr('sel_pop_eyebrow')}
+                추천 숙소
               </p>
               <h2 className="text-[#141414] font-black text-xl md:text-2xl">
-                {tr('sel_pop_title')}
+                Wakation 큐레이션 숙소
               </h2>
             </div>
             <Link
               href="/select/hotel"
               className="text-brand-mid text-sm font-bold flex items-center gap-1 hover:gap-2 transition-all shrink-0"
             >
-              {tr('view_all')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+              전체 보기 <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
 
@@ -183,7 +181,7 @@ export default function SelectPage() {
                     : 'bg-white border-[#e5e1da] text-[#7a7a7a] hover:border-[#c8c4be] hover:text-[#4a4a4a]'
                 }`}
               >
-                {tr(f.labelKey)}
+                <span>{f.flag}</span> {f.label}
               </button>
             ))}
           </div>
@@ -192,7 +190,7 @@ export default function SelectPage() {
         {/* 모바일: 2열 그리드 / lg+: 4열 */}
         <div className="grid grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-4 max-w-6xl sm:mx-auto">
           {hotelItems.map((item) => (
-            <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+            <AffiliateCard key={item.id} item={item} visual />
           ))}
         </div>
       </section>
@@ -202,16 +200,16 @@ export default function SelectPage() {
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
             <p className="text-[#a0a0a0] text-xs font-bold tracking-widest uppercase mb-2">
-              {tr('sel_ready_eyebrow')}
+              체험 · eSIM
             </p>
             <h2 className="text-[#141414] font-black text-xl md:text-2xl">
-              {tr('sel_ready_title')}
+              도착하기 전 미리 준비하세요
             </h2>
-            <p className="text-[#7a7a7a] text-sm mt-1.5">{tr('sel_ready_desc')}</p>
+            <p className="text-[#7a7a7a] text-sm mt-1.5">현지 투어·액티비티, 그리고 공항 도착 즉시 연결되는 eSIM</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {etcItems.map((item) => (
-              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+              <AffiliateCard key={item.id} item={item} visual />
             ))}
           </div>
           <div className="mt-5 grid grid-cols-2 gap-3">
@@ -219,14 +217,14 @@ export default function SelectPage() {
               href="/select/activity"
               className="group flex items-center justify-between bg-white border border-[#e5e1da] hover:border-[#c8c4be] rounded-xl p-4 transition-all hover:shadow-sm"
             >
-              <span className="text-[#5c5c5c] text-sm font-bold">{tr('sel_act_viewall')}</span>
+              <span className="text-[#5c5c5c] text-sm font-bold">현지 체험 전체 보기</span>
               <ArrowRight className="w-4 h-4 text-[#c0bdb8] group-hover:text-brand-mid transition-colors" strokeWidth={ICON_STROKE} />
             </Link>
             <Link
               href="/select/esim"
               className="group flex items-center justify-between bg-white border border-[#e5e1da] hover:border-[#c8c4be] rounded-xl p-4 transition-all hover:shadow-sm"
             >
-              <span className="text-[#5c5c5c] text-sm font-bold">{tr('sel_esim_viewall')}</span>
+              <span className="text-[#5c5c5c] text-sm font-bold">eSIM 전체 보기</span>
               <ArrowRight className="w-4 h-4 text-[#c0bdb8] group-hover:text-brand-mid transition-colors" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
@@ -242,10 +240,10 @@ export default function SelectPage() {
           >
             <div>
               <p className="text-indigo-500 text-xs font-bold tracking-widest uppercase mb-2">
-                {tr('sel_learn_banner_eyebrow')}
+                강의 · 학습
               </p>
-              <p className="text-[#141414] font-black text-lg mb-1">{tr('sel_cat_learn_t')}</p>
-              <p className="text-[#6b6b6b] text-sm">{tr('sel_learn_banner_d')}</p>
+              <p className="text-[#141414] font-black text-lg mb-1">🎓 워케이션 중 성장하는 강의</p>
+              <p className="text-[#6b6b6b] text-sm">AI 자동화, 마케팅, 생산성. 인프런 파트너 강의 큐레이션.</p>
             </div>
             <ArrowRight
               className="w-5 h-5 text-[#c0bdb8] group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all shrink-0 ml-6"
@@ -259,10 +257,14 @@ export default function SelectPage() {
       <section className="px-6 pb-16 pt-8">
         <div className="max-w-6xl mx-auto space-y-1">
           <p className="text-[#b8b4ae] text-[0.65rem] leading-relaxed max-w-2xl">
-            {tr('sel_disc_1')}
+            * 일부 외부 링크는 제휴 마케팅 프로그램을 통해 Wakation에 수익이 발생할 수 있습니다.
+            외부 서비스의 예약·결제·환불·이용 조건은 각 서비스의 약관을 따릅니다.
           </p>
           <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
-            {tr('sel_disc_2')}
+            Wakation이 직접 운영하는 프로그램과 외부 제휴 서비스는 구분됩니다.
+          </p>
+          <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">
+            요금과 상품 조건은 제휴사 사이트에서 최종 확인됩니다.
           </p>
         </div>
       </section>

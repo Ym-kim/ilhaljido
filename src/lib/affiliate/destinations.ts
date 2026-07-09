@@ -242,7 +242,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Jeju',
     country: '국내',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
-    tags: ['국내 1위 워케이션', '자연+카페'],
+    tags: ['국내 워케이션 추천', '자연+카페'],
     links: [
       {
         provider: 'Booking.com',
@@ -764,7 +764,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Japan',
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
-    tags: ['$11.50부터', 'Softbank·Docomo'],
+    tags: ['즉시 개통', 'Softbank·Docomo'],
     links: [
       {
         provider: 'Airalo',
