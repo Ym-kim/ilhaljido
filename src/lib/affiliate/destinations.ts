@@ -360,6 +360,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/chiang-mai-hotels-list-623/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -378,6 +385,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Bangkok',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/bangkok-hotels-list-359/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },

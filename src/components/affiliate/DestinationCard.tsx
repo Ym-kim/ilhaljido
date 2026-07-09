@@ -50,6 +50,11 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
   const hasActive = entry.links.some(
     (l) => l.status === 'active_affiliate' || l.status === 'api_ready'
   )
+  // Trip.com 우선 노출 — 2026 국내 여행앱 데이터 근거(모바일인덱스 2026.3: 트립닷컴 MAU 257만 >
+  // 아고다 202만, 부킹 앱 순위권 밖 / 트립 YoY +55% 급성장). 친숙한 UI로 랜딩 = 전환율 유리
+  const sortedLinks = [...entry.links].sort(
+    (a, b) => (b.provider === 'Trip.com' ? 1 : 0) - (a.provider === 'Trip.com' ? 1 : 0)
+  )
 
   return (
     <div
@@ -99,7 +104,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
 
       {/* Service links */}
       <div className="flex flex-wrap gap-1.5 p-4">
-        {entry.links.map((link) => (
+        {sortedLinks.map((link) => (
           <ServiceButton key={`${entry.id}-${link.provider}`} link={link} />
         ))}
       </div>

@@ -56,6 +56,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: r.priority,
     })),
     // 도시 가이드 (guides.ts에 추가 시 자동 반영)
+    { url: `${BASE}/guide`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.85 },
     ...CITY_GUIDES.map((g) => ({
       url: `${BASE}/guide/${g.slug}`,
       lastModified: now,

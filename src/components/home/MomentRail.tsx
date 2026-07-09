@@ -84,7 +84,9 @@ export function MomentRail() {
 
       {/* 도시 가이드 진입 칩 — SEO 내부 링크 + 체류 동선 */}
       <div className="max-w-6xl mx-auto px-6 mt-7 flex flex-wrap items-center gap-2.5">
-        <span className="text-[#64748b] text-xs font-semibold mr-1">{tr('home_moments_guides')}</span>
+        <Link href="/guide" className="text-[#64748b] text-xs font-bold mr-1 hover:text-brand-mid transition-colors underline-offset-2 hover:underline">
+          {tr('home_moments_guides')}
+        </Link>
         {CITY_GUIDES.map((g) => (
           <Link
             key={g.slug}
