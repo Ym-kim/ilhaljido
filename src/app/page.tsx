@@ -13,6 +13,7 @@ import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { MomentRail } from '@/components/home/MomentRail'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
+import { NotifySignup } from '@/components/home/NotifySignup'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -389,6 +390,11 @@ export default function HomePage() {
                     </div>
                   </Link>
                 ))}
+              </div>
+
+              {/* 오픈 알림 이메일 수집 — 신청 전 단계 트래픽을 리드로 전환 */}
+              <div className="mt-8 max-w-xl">
+                <NotifySignup />
               </div>
             </>
           )}

@@ -1,9 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, ArrowLeft, Search, MapPin } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Search, MapPin, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
+import { trackAffiliateClick } from '@/lib/track'
 import { CITY_GUIDES, GUIDE_UI, type CityGuide } from '@/lib/guides'
 import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -114,16 +115,30 @@ export function GuideView({ guide }: { guide: CityGuide }) {
         </div>
       )}
 
-      {/* ── 도시 전체 검색 폴백 CTA ── */}
+      {/* ── 도시 전체 검색 + 항공권 CTA ── */}
       <section className="max-w-5xl mx-auto px-6 pb-12 md:pb-16">
-        <Link
-          href={`/select/hotel#${guide.anchor}`}
-          className="btn-primary w-full sm:w-auto justify-center"
-        >
-          <Search className="w-4 h-4" strokeWidth={ICON_STROKE} />
-          {GUIDE_UI.searchCta[lang]}
-          <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-        </Link>
+        <div className="flex flex-col sm:flex-row gap-2.5">
+          <Link
+            href={`/select/hotel#${guide.anchor}`}
+            className="btn-primary justify-center"
+          >
+            <Search className="w-4 h-4" strokeWidth={ICON_STROKE} />
+            {GUIDE_UI.searchCta[lang]}
+            <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          </Link>
+          {guide.flightUrl && (
+            <a
+              href={guide.flightUrl}
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              onClick={() => trackAffiliateClick({ id: `flight-${guide.slug}`, provider: 'Trip.com', status: 'active_affiliate' })}
+              className="inline-flex items-center gap-2 justify-center px-6 py-3.5 rounded-full border-2 border-brand-mid text-brand-mid font-bold text-[0.9375rem] hover:bg-brand-mid hover:text-white transition-all"
+            >
+              <Plane className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              {GUIDE_UI.flightCta[lang]}
+            </a>
+          )}
+        </div>
         <div className="mt-5 flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
           <span className="text-[#64748b]">{GUIDE_UI.visaHint[lang]}</span>
           <Link

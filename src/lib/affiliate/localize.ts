@@ -56,6 +56,13 @@ const EN: Record<string, Overlay> = {
     cta: 'Book a stay',
     badge: 'Long stay',
   },
+  'feat-flight-tripcom': {
+    productTitle: 'Compare & book flights',
+    destination: 'All routes from Seoul',
+    desc: 'Compare fares by airline for workation destinations. One-way, round-trip and multi-city.',
+    cta: 'Compare flights',
+    badge: 'Flights',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -335,6 +342,13 @@ const JP: Record<string, Overlay> = {
     desc: '現地のホテル・アパートメント。市場調査の長期滞在に適した宿を。',
     cta: '宿を予約',
     badge: '長期滞在',
+  },
+  'feat-flight-tripcom': {
+    productTitle: '航空券の料金比較・予約',
+    destination: 'ソウル発 全路線',
+    desc: 'ワーケーション目的地行きの航空券を航空会社別に比較。片道・往復・周遊に対応。',
+    cta: '航空券を比較',
+    badge: '航空券',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',

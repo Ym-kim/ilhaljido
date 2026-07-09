@@ -430,6 +430,30 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     operatorAction: 'Airalo 파트너 대시보드 → referral link 복사 후 href 교체, status → active_affiliate',
   },
 
+  // ──────────────────────────────────────────────────────────────────────────
+  // 항공 — Trip.com (2026-07-09 신설: 활성 파트너로 고단가 항공 커미션 채널 개설)
+  // 도시별 노선 페이지는 guides.ts flightUrl 참고 (실물 검증 완료)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-flight-tripcom',
+    name: 'Trip.com',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '✈️',
+    productTitle: '항공권 요금 비교·예약',
+    destination: '인천·김포 출발 전 노선',
+    desc: '워케이션 목적지행 항공권을 항공사별로 비교. 편도·왕복·다구간 실시간 검색.',
+    cta: '항공권 요금 비교',
+    href: 'https://kr.trip.com/flights/?Allianceid=9024807',
+    badge: '항공',
+    trackingId: 'Allianceid=9024807',
+    coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
+    priority: 4,
+    showOn: ['home', 'select', 'global'],
+    sourceNote: 'affiliate tracking active — Allianceid=9024807 (flights 랜딩 실물 검증 2026-07-09)',
+  },
+
   {
     id: 'feat-vietnam-hotel',
     name: 'Booking.com',
