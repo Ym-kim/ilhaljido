@@ -32,6 +32,11 @@ export default function SpacesPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, spaces: allSpaces }),
       })
+      if (!res.ok) {
+        // 401(로그인 필요)·429·5xx 무음 실패 방지
+        alert(tr('spaces_ai_error'))
+        return
+      }
       const data = await res.json()
       setAiResult({ reasoning: data.reasoning, tips: data.tips })
       if (data.spaceIds?.length > 0) {

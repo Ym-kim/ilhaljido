@@ -4,6 +4,7 @@ import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen } from 'lucide-
 import type { AffiliateItem } from '@/lib/affiliate/types'
 import type { Lang } from '@/lib/i18n'
 import { useLang } from '@/context/LanguageContext'
+import { trackAffiliateClick } from '@/lib/track'
 
 type BadgeKey = 'affiliate' | 'api' | 'link_prep' | 'ref_prep' | 'review' | 'external'
 
@@ -67,6 +68,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         href={item.href}
         target="_blank"
         rel={meta.rel}
+        onClick={() => trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })}
         className={`group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-[#dbeafe] hover:border-[#93c5fd] transition-all duration-200 hover:-translate-y-0.5 flex flex-col ${className}`}
       >
         {/* 사진 — 모바일 h-36, sm+ h-48 */}
@@ -172,6 +174,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
       href={item.href}
       target="_blank"
       rel={meta.rel}
+      onClick={() => trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })}
       className={`group relative flex flex-col bg-[#1c1b1a] rounded-2xl overflow-hidden transition-all duration-200 hover:-translate-y-0.5 ${
         meta.isAffiliate
           ? 'border border-emerald-500/18 hover:border-emerald-500/38 hover:shadow-lg'

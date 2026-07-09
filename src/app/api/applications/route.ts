@@ -6,6 +6,9 @@ import type { ApplicationInsert } from '@/types/database'
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
+// AI 추천 생성이 뒤따르므로 함수 타임아웃 상향
+export const maxDuration = 60
+
 // In-memory rate limit: max 3 submissions per IP per 60 seconds
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>()
 const RATE_LIMIT = 3

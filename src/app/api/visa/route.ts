@@ -11,6 +11,9 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 // - 정식 오픈 시: 사용량 테이블(visa_queries) 기반 일일 한도 추가 예정
 // ─────────────────────────────────────────────────────────────────────────────
 
+// web_search 툴(최대 3회) + 생성으로 기본 타임아웃 초과 가능 → 60초로 상향 (504 방지)
+export const maxDuration = 60
+
 const LANG_NAME: Record<string, string> = { KO: '한국어', EN: 'English', JP: '日本語' }
 
 export async function POST(req: NextRequest) {
