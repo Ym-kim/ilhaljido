@@ -101,10 +101,15 @@ export default function HomePage() {
   // 추천 실상품을 먼저, 도시 검색 카드를 뒤에 — 둘러보다 아래에서 검색으로 이어지는 흐름
   const merged = [...HOME_EDITOR_PICKS, ...HOME_FEATURED_ITEMS]
   const activeCountry = DEST_FILTERS.find((f) => f.id === activeFilter)?.country ?? null
+  // 수익 추적 활성(active_affiliate/api_ready) 카드를 상단에 — 노출당 기대 커미션 극대화 (안정 정렬)
+  const ACTIVE = new Set(['active_affiliate', 'api_ready'])
   const featuredItems = (activeCountry === null
     ? merged
     : merged.filter((i) => i.country === activeCountry)
-  ).map((i) => localizeAffiliateItem(i, lang))
+  )
+    .map((i, idx) => ({ i, idx }))
+    .sort((a, b) => (ACTIVE.has(b.i.status) ? 1 : 0) - (ACTIVE.has(a.i.status) ? 1 : 0) || a.idx - b.idx)
+    .map(({ i }) => localizeAffiliateItem(i, lang))
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
