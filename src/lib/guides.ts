@@ -300,6 +300,135 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-jeju/airfares-sel-cju'),
   },
+  {
+    slug: 'osaka',
+    anchor: 'japan-osaka',
+    heroPhoto: HERO('1590559899731-a382839e5549'),
+    name: { KO: '오사카', EN: 'Osaka', JP: '大阪' },
+    tagline: {
+      KO: '시차 0 · 직항 1시간대 — 주말을 붙이기 가장 쉬운 워케이션',
+      EN: 'Zero jet lag, a short flight — the easiest weekend-extension workation',
+      JP: '時差ゼロ・短距離フライト — 週末を足しやすいワーケーション',
+    },
+    intro: {
+      KO: '한국과 시차가 없고 직항 1시간대라 금요일 반차로도 시작할 수 있는 도시입니다. 혼마치 비즈니스 지구에는 작업 가능한 공용 라운지를 여러 곳 갖춘 숙소가 있고, 일과 후에는 도톤보리와 신세카이의 먹자골목이 기다립니다.',
+      EN: 'No time difference and a roughly 1.5-hour flight — you can start with a Friday half-day. The Honmachi business district has stays with multiple work-friendly lounges, and Dotonbori and Shinsekai food streets wait after log-off.',
+      JP: '時差がなく直行便も短時間、金曜半休からでも始められる街。本町ビジネス地区には作業できる共用ラウンジを備えた宿があり、仕事の後は道頓堀と新世界の食べ歩きが待っています。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '0시간', EN: '0 hours', JP: '0時間' } },
+      { label: F.flight, value: { KO: '약 1시간 40분', EN: '~1h 40m', JP: '約1時間40分' } },
+      { label: F.currency, value: { KO: '엔 (JPY)', EN: 'JPY', JP: '円 (JPY)' } },
+      { label: F.season, value: { KO: '봄 · 가을', EN: 'Spring · Autumn', JP: '春 · 秋' } },
+    ],
+    areas: [
+      {
+        name: { KO: '혼마치', EN: 'Honmachi', JP: '本町' },
+        desc: {
+          KO: '오사카의 비즈니스 중심. 작업 가능한 공용 라운지를 7곳 갖춘 숙소가 있어 낮 업무 거점으로 삼기 좋습니다.',
+          EN: 'Osaka’s business core — home to a stay with seven work-friendly lounges, a solid daytime base.',
+          JP: '大阪のビジネス中心地。作業できる共用ラウンジを7カ所備えた宿があり、日中の拠点に最適。',
+        },
+      },
+      {
+        name: { KO: '난바 · 신세카이', EN: 'Namba · Shinsekai', JP: '難波 · 新世界' },
+        desc: {
+          KO: '마감 후의 보상 구역. 도톤보리 야경과 신세카이 쿠시카츠 골목까지 지하철 몇 정거장이면 닿습니다.',
+          EN: 'The after-deadline reward zone — Dotonbori’s lights and Shinsekai’s kushikatsu alleys are a few subway stops away.',
+          JP: '締め切り後のご褒美エリア。道頓堀の夜景と新世界の串カツ横丁まで地下鉄数駅。',
+        },
+      },
+    ],
+    stayIds: ['stay-lively-osaka'],
+    activityIds: ['act-osaka-usj'],
+    flightUrl: FLIGHT('seoul-to-osaka/airfares-sel-osa'),
+  },
+  {
+    slug: 'cebu',
+    anchor: 'philippines-cebu',
+    heroPhoto: HERO('1573790387438-4da905039392'),
+    name: { KO: '세부', EN: 'Cebu', JP: 'セブ' },
+    tagline: {
+      KO: '시차 1시간 — 회의는 그대로, 주말엔 아일랜드 호핑',
+      EN: 'One hour behind — meetings intact, island hopping on weekends',
+      JP: '時差1時間 — 会議はそのまま、週末はアイランドホッピング',
+    },
+    intro: {
+      KO: '한국보다 1시간 느려 실시간 협업에 지장이 거의 없는 열대 거점입니다. 세부 시티에는 핫데스크를 포함한 코워킹+코리빙이 있어 노마드의 기지로 쓰기 좋고, 주말엔 막탄에서 바로 바다로 나갈 수 있습니다. 12~5월 건기가 최적기입니다.',
+      EN: 'Just one hour behind Korea, so real-time collaboration barely changes. Cebu City has co-living with hot desks included — a proper nomad base — and Mactan’s sea is right there for weekends. Dec–May dry season is prime.',
+      JP: '韓国·日本より1時間遅いだけで、リアルタイム協業にほぼ支障なし。セブシティにはホットデスク込みのコワーキング＋コリビングがあり、週末はマクタンの海へ。12〜5月の乾季がベスト。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '-1시간', EN: '−1 hour', JP: '−1時間' } },
+      { label: F.flight, value: { KO: '약 4시간 30분', EN: '~4h 30m', JP: '約4時間30分' } },
+      { label: F.currency, value: { KO: '페소 (PHP)', EN: 'PHP', JP: 'ペソ (PHP)' } },
+      { label: F.season, value: { KO: '12~5월 (건기)', EN: 'Dec–May (dry)', JP: '12〜5月（乾季）' } },
+    ],
+    areas: [
+      {
+        name: { KO: '세부 시티', EN: 'Cebu City', JP: 'セブシティ' },
+        desc: {
+          KO: '핫데스크 포함 코워킹+코리빙이 있는 도심. IT 파크 주변으로 카페와 야간에도 여는 식당이 모여 있습니다.',
+          EN: 'The urban core with co-living + coworking (hot desks included). Cafés and late-hours eateries cluster around IT Park.',
+          JP: 'ホットデスク込みのコリビングがある都心。ITパーク周辺にカフェや深夜営業の飲食店が集中。',
+        },
+      },
+      {
+        name: { KO: '막탄', EN: 'Mactan', JP: 'マクタン' },
+        desc: {
+          KO: '공항이 있는 리조트 섬. 다이빙·아일랜드 호핑의 출발점이라 주말 리셋 동선이 짧습니다.',
+          EN: 'The resort island with the airport — the launch point for diving and island hopping, keeping weekend resets short.',
+          JP: '空港のあるリゾート島。ダイビングやアイランドホッピングの起点で、週末リセットの動線が短い。',
+        },
+      },
+    ],
+    stayIds: ['stay-nomadshub-cebu'],
+    activityIds: [],
+    flightUrl: FLIGHT('seoul-to-cebu/airfares-sel-ceb'),
+  },
+  {
+    slug: 'sydney',
+    anchor: 'australia-sydney',
+    heroPhoto: HERO('1506973035872-a4ec16b8e8d9'),
+    name: { KO: '시드니', EN: 'Sydney', JP: 'シドニー' },
+    tagline: {
+      KO: '시차 1~2시간 — 계절을 뒤집는 실시간 협업 워케이션',
+      EN: 'Only 1–2 hours ahead — flip the seasons without breaking collaboration',
+      JP: '時差1〜2時間 — 季節を反転させるリアルタイム協業ワーケーション',
+    },
+    intro: {
+      KO: '한국과 시차가 1~2시간(서머타임 기준)뿐이라 팀 협업 리듬을 그대로 유지하면서 남반구의 반대 계절을 살 수 있습니다. CBD에는 풀키친 아파트호텔이 있어 장기 체류 생활이 편하고, 하버 뷰 카페들이 오후 업무 자리가 되어 줍니다.',
+      EN: 'Just 1–2 hours ahead of Korea (with DST), so team rhythms stay intact while you live the opposite season. Full-kitchen aparthotels in the CBD make long stays easy, and harbour-view cafés become your afternoon desks.',
+      JP: '韓国·日本との時差は1〜2時間（サマータイム基準）。チームのリズムを保ったまま南半球の逆の季節を暮らせます。CBDのフルキッチン付きアパートホテルで長期滞在も快適。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '+1~2시간', EN: '+1–2 hours', JP: '+1〜2時間' } },
+      { label: F.flight, value: { KO: '약 10시간 30분', EN: '~10h 30m', JP: '約10時間30分' } },
+      { label: F.currency, value: { KO: '호주달러 (AUD)', EN: 'AUD', JP: '豪ドル (AUD)' } },
+      { label: F.season, value: { KO: '9~11월 · 3~5월', EN: 'Sep–Nov · Mar–May', JP: '9〜11月 · 3〜5月' } },
+    ],
+    areas: [
+      {
+        name: { KO: 'CBD · 타운홀', EN: 'CBD · Town Hall', JP: 'CBD · タウンホール' },
+        desc: {
+          KO: '타운홀역 도보 2분에 풀키친 아파트호텔이 있는 도심. 교통·마트·카페가 모두 도보권이라 장기 체류의 기본기가 갖춰져 있습니다.',
+          EN: 'The city core — a full-kitchen aparthotel sits two minutes from Town Hall station, with transit, groceries and cafés all on foot.',
+          JP: 'タウンホール駅徒歩2分にフルキッチン付きアパートホテル。交通・スーパー・カフェが徒歩圏で長期滞在の基本が揃う。',
+        },
+      },
+      {
+        name: { KO: '서리힐스', EN: 'Surry Hills', JP: 'サリーヒルズ' },
+        desc: {
+          KO: '시드니 카페 문화의 중심. 브런치와 스페셜티 커피 사이에서 노트북을 여는 로컬들의 동네입니다.',
+          EN: 'The heart of Sydney café culture — a neighborhood where locals open laptops between brunch and specialty coffee.',
+          JP: 'シドニーのカフェ文化の中心。ブランチとスペシャルティコーヒーの間でPCを開くローカルの街。',
+        },
+      },
+    ],
+    stayIds: ['stay-adina-sydney'],
+    activityIds: [],
+    flightUrl: FLIGHT('seoul-to-sydney/airfares-sel-syd'),
+  },
 ]
 
 export function getGuide(slug: string): CityGuide | undefined {
