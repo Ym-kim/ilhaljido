@@ -110,7 +110,8 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
       {/* ── 히어로 — 예약 의도형 ── */}
-      <section className="relative min-h-[94vh] flex items-end overflow-hidden dark-surface">
+      {/* pt-24: 콘텐츠가 items-end로 하단 정렬될 때 고정 navbar(65px) 뒤로 숨지 않도록 상단 여백 보장 (모바일) */}
+      <section className="relative min-h-[94vh] flex items-end overflow-hidden dark-surface pt-24 md:pt-0">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1800&q=85"

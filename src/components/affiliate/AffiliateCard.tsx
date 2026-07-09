@@ -111,17 +111,18 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
               <span className="inline-flex items-center gap-1 text-[0.65rem] font-black px-2 py-1 rounded-full bg-white/95 text-[#111827] shadow-sm">
                 <span className="text-amber-500">★</span>
                 {item.rating}
-                {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
+                {/* 리뷰수는 좁은 2열 모바일에서 우측 배지와 겹치므로 sm+에서만 노출 */}
+                {item.reviews && <span className="hidden sm:inline font-medium text-[#94a3b8]">({item.reviews})</span>}
               </span>
             </div>
           )}
 
-          {/* 예약 가능 dot */}
+          {/* 예약 가능 — 모바일은 점만(좌상단 평점과 겹침 방지), sm+는 텍스트 포함 */}
           {meta.isAffiliate && (
             <div className="absolute top-2.5 right-2.5">
-              <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-white/95 text-emerald-700 shadow-sm">
+              <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-1.5 sm:px-2 py-0.5 rounded-full bg-white/95 text-emerald-700 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
-                {badgeText.available}
+                <span className="hidden sm:inline">{badgeText.available}</span>
               </span>
             </div>
           )}
