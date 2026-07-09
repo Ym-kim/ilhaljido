@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle2, Send, Camera } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
+import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -80,6 +81,7 @@ export default function MomentSubmitPage() {
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
+  const [consent, setConsent] = useState(false)
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((p) => ({ ...p, [k]: e.target.value }))
@@ -196,11 +198,13 @@ export default function MomentSubmitPage() {
 
               <p className="text-[#94a3b8] text-[0.6875rem] leading-relaxed">{T.consent[lang]}</p>
 
+              <ConsentCheckbox checked={consent} onChange={setConsent} />
+
               {error && <p className="text-red-500 text-sm">{error}</p>}
 
               <button
                 type="submit"
-                disabled={sending}
+                disabled={sending || !consent}
                 className="w-full inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light disabled:opacity-60 text-white font-bold text-[0.9375rem] px-6 py-4 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.35)]"
               >
                 <Send className="w-4 h-4" strokeWidth={ICON_STROKE} />

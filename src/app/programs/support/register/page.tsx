@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle2, Send } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
+import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
 
 // monthler 벤치마킹 — 지자체·공간·업체 셀프서브 등록 (공급 콘텐츠 확보 채널)
 // 저장: 기존 /api/applications 재활용 (job_type='프로그램 등록 제안', message에 구조화)
@@ -34,6 +35,7 @@ export default function ProgramRegisterPage() {
   const [sending, setSending] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
+  const [consent, setConsent] = useState(false)
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((p) => ({ ...p, [k]: e.target.value }))
@@ -167,11 +169,13 @@ export default function ProgramRegisterPage() {
                 <textarea value={form.message} onChange={set('message')} rows={4} className={inputCls} />
               </div>
 
+              <ConsentCheckbox checked={consent} onChange={setConsent} />
+
               {error && <p className="text-red-500 text-sm">{error}</p>}
 
               <button
                 type="submit"
-                disabled={sending}
+                disabled={sending || !consent}
                 className="w-full inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light disabled:opacity-60 text-white font-bold text-[0.9375rem] px-6 py-4 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.35)]"
               >
                 <Send className="w-4 h-4" strokeWidth={ICON_STROKE} />

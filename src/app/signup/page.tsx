@@ -16,11 +16,16 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [agreed, setAgreed] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError(null)
 
+    if (!agreed) {
+      setError('이용약관 및 개인정보처리방침에 동의해주세요.')
+      return
+    }
     if (password !== confirm) {
       setError('비밀번호가 일치하지 않습니다.')
       return
@@ -151,13 +156,28 @@ export default function SignupPage() {
               </div>
             </div>
 
+            <label className="flex items-start gap-2.5 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-0.5 w-4 h-4 shrink-0 accent-teal-500 cursor-pointer"
+              />
+              <span className="text-gray-500 text-xs leading-snug">
+                <Link href="/terms" target="_blank" className="text-teal-600 font-semibold underline">이용약관</Link>
+                {' '}및{' '}
+                <Link href="/privacy" target="_blank" className="text-teal-600 font-semibold underline">개인정보처리방침</Link>
+                에 동의합니다 (필수)
+              </span>
+            </label>
+
             {error && (
               <div className="bg-red-50 border border-red-100 text-red-600 text-xs px-4 py-2.5 rounded-xl">{error}</div>
             )}
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || !agreed}
               className="w-full bg-teal-500 text-white font-bold py-3 rounded-xl hover:bg-teal-400 transition-colors flex items-center justify-center gap-2 disabled:opacity-50">
               {loading ? '가입 중...' : <>회원가입 <ArrowRight className="w-4 h-4" /></>}
             </button>
