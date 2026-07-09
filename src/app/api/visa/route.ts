@@ -24,9 +24,17 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    const { country, purpose, duration, lang = 'KO' } = await req.json()
+    const body = await req.json()
+    const { country, purpose, duration, lang = 'KO' } = body
     if (!country || !purpose || !duration) {
       return NextResponse.json({ error: '필수 파라미터가 없습니다.' }, { status: 400 })
+    }
+    // 입력 타입·길이 검증 — 초대형 문자열로 인한 입력 토큰 비용 증폭 차단
+    if (
+      typeof country !== 'string' || typeof purpose !== 'string' || typeof duration !== 'string' ||
+      country.length > 60 || purpose.length > 100 || duration.length > 60
+    ) {
+      return NextResponse.json({ error: '입력 형식이 올바르지 않습니다.' }, { status: 400 })
     }
 
     const langName = LANG_NAME[lang] ?? '한국어'
