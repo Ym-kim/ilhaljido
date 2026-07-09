@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowUpRight, Clock, BedDouble, Compass, Wifi, BookOpen, Heart } from 'lucide-react'
 import type { AffiliateItem } from '@/lib/affiliate/types'
 import type { Lang } from '@/lib/i18n'
@@ -77,11 +78,12 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         {/* 사진 — 모바일 h-36, sm+ h-48 */}
         <div className="relative h-36 sm:h-48 overflow-hidden bg-[#eff6ff] shrink-0">
           {hasPhoto ? (
-            <img
-              src={item.coverPhoto}
+            <Image
+              src={item.coverPhoto!}
               alt={title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              loading="lazy"
+              fill
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 384px"
+              className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
           ) : (
             <div className={`w-full h-full bg-gradient-to-br ${item.coverGradient ?? 'from-[#e8e4de] to-[#f5f3ef]'} flex items-center justify-center`}>
@@ -204,11 +206,12 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
       {showCover && (
         <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${item.coverGradient ?? 'from-white/8 to-white/3'}`}>
           {item.coverPhoto ? (
-            <img
+            <Image
               src={item.coverPhoto}
               alt={title}
-              className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
-              loading="lazy"
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+              className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
             />
           ) : (
             <span className="absolute right-5 top-1/2 -translate-y-1/2 text-[5.5rem] opacity-[0.16] select-none pointer-events-none leading-none" aria-hidden>

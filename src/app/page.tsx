@@ -294,7 +294,7 @@ export default function HomePage() {
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 288px" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
                     </div>
                     <div className="p-7 flex flex-col justify-between flex-1">
@@ -368,11 +368,12 @@ export default function HomePage() {
                     href="/apply"
                     className="group relative rounded-3xl overflow-hidden block h-64 sm:h-72 border border-white/10 hover:border-sky-400/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)]"
                   >
-                    <img
+                    <Image
                       src={p.img}
                       alt={p.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/30 to-transparent" />
                     <span className="absolute top-4 left-4 text-[0.7rem] font-bold px-2.5 py-1 rounded-full bg-black/55 text-white border border-white/20 backdrop-blur-sm">
@@ -425,11 +426,12 @@ export default function HomePage() {
                   className="group relative rounded-2xl overflow-hidden h-44 sm:h-52 block border border-[#dbeafe] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
                 >
                   {photo && (
-                    <img
+                    <Image
                       src={photo}
                       alt={tr(cat.labelKey)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      loading="lazy"
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 384px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
@@ -463,11 +465,12 @@ export default function HomePage() {
                 href={t.href}
                 className="group relative rounded-2xl overflow-hidden h-36 sm:h-44 block border border-[#dbeafe] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
               >
-                <img
+                <Image
                   src={t.photo}
                   alt={tr(t.labelKey)}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3.5">
@@ -528,7 +531,7 @@ export default function HomePage() {
                 href="/infrastructure"
                 className="group rounded-2xl overflow-hidden relative block h-72 border border-white/8"
               >
-                <img src={s.img} alt={tr(s.titleKey)} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                <Image src={s.img} alt={tr(s.titleKey)} fill sizes="(max-width: 768px) 100vw, 384px" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                 <div className="absolute bottom-0 p-6">
                   <h3 className="text-white font-black text-lg mb-2">{tr(s.titleKey)}</h3>

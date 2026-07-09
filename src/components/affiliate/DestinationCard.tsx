@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ArrowUpRight, Clock } from 'lucide-react'
 import type { DestinationEntry, ServiceLink } from '@/lib/affiliate/destinations'
 import { trackAffiliateClick } from '@/lib/track'
@@ -66,11 +67,12 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
       {/* 목적지 사진 헤더 */}
       <div className="relative h-36 overflow-hidden bg-[#eff6ff]">
         {entry.photo ? (
-          <img
+          <Image
             src={entry.photo}
             alt={entry.city}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-            loading="lazy"
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-[#e0f2fe] to-[#f0f9ff] flex items-center justify-center">
