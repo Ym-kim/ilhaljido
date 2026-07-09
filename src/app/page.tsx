@@ -12,6 +12,7 @@ import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { MomentRail } from '@/components/home/MomentRail'
+import { DestinationFinder } from '@/components/home/DestinationFinder'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -461,6 +462,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── 목적지 추천 위저드 (룰베이스, API 0원) ── */}
+      <DestinationFinder />
 
       {/* ── AI 비자·체류 ── */}
       <section className="dark-surface py-20 md:py-28 px-6 bg-gradient-to-br from-[#0a1628] via-[#0f1f3d] to-[#0f0f0f] border-y border-white/5">
