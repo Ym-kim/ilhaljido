@@ -685,8 +685,8 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
     links: [
       {
         provider: 'KKday',
-        status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/destination/jp-japan',
+        status: 'active_affiliate',
+        href: 'https://www.kkday.com/ko/destination/jp-japan?cid=19243',
         label: '일본 체험 보기',
         emoji: '🎌',
       },
@@ -704,8 +704,8 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
     links: [
       {
         provider: 'KKday',
-        status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/destination/jp-japan',
+        status: 'active_affiliate',
+        href: 'https://www.kkday.com/ko/destination/jp-japan?cid=19243',
         label: '후쿠오카 체험',
         emoji: '🎌',
       },
@@ -723,8 +723,8 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
     links: [
       {
         provider: 'KKday',
-        status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/destination/vn-vietnam',
+        status: 'active_affiliate',
+        href: 'https://www.kkday.com/ko/destination/vn-vietnam?cid=19243',
         label: '베트남 체험 보기',
         emoji: '🎌',
       },
@@ -742,8 +742,8 @@ export const ACTIVITY_DESTINATIONS: DestinationEntry[] = [
     links: [
       {
         provider: 'KKday',
-        status: 'approved_needs_link',
-        href: 'https://www.kkday.com/ko/destination/id-indonesia',
+        status: 'active_affiliate',
+        href: 'https://www.kkday.com/ko/destination/id-indonesia?cid=19243',
         label: '발리 체험 보기',
         emoji: '🎌',
       },
