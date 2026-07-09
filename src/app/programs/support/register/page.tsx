@@ -118,15 +118,15 @@ export default function ProgramRegisterPage() {
                 </div>
                 <div>
                   <label className={labelCls}>{tr('preg_contact')} *</label>
-                  <input required value={form.contact} onChange={set('contact')} className={inputCls} />
+                  <input required autoComplete="name" value={form.contact} onChange={set('contact')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{tr('preg_email')} *</label>
-                  <input required type="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <input required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{tr('preg_phone')} *</label>
-                  <input required value={form.phone} onChange={set('phone')} className={inputCls} />
+                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
               </div>
 

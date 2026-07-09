@@ -161,15 +161,15 @@ export default function MomentSubmitPage() {
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className={labelCls}>{T.name[lang]} *</label>
-                  <input required value={form.name} onChange={set('name')} className={inputCls} />
+                  <input required autoComplete="name" value={form.name} onChange={set('name')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{T.email[lang]} *</label>
-                  <input required type="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <input required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{T.phone[lang]} *</label>
-                  <input required value={form.phone} onChange={set('phone')} className={inputCls} />
+                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{T.insta[lang]}</label>

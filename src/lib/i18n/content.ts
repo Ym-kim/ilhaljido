@@ -139,6 +139,7 @@ export const VISA_PURPOSES: VisaOption[] = [
   { value: 'workation', label: { KO: '워케이션', EN: 'Workation', JP: 'ワーケーション' } },
   { value: 'language', label: { KO: '어학연수', EN: 'Language study', JP: '語学留学' } },
   { value: 'study', label: { KO: '유학', EN: 'Study abroad', JP: '留学' } },
+  { value: 'workingholiday', label: { KO: '워킹홀리데이', EN: 'Working holiday', JP: 'ワーキングホリデー' } },
   { value: 'market', label: { KO: '시장조사', EN: 'Market research', JP: '市場調査' } },
   { value: 'business', label: { KO: '비즈니스', EN: 'Business', JP: 'ビジネス' } },
   { value: 'nomad', label: { KO: '디지털 노마드', EN: 'Digital nomad', JP: 'デジタルノマド' } },
