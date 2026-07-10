@@ -1,6 +1,7 @@
 'use client'
 
 import { ArrowRight, Globe, Users, TrendingUp, Building2, LineChart, MapPin } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
@@ -47,7 +48,7 @@ export default function MarketPage() {
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1800&q=85" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <Image src="https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1800&q=85" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark className="!flex items-center gap-2 !text-amber-400">
@@ -91,7 +92,7 @@ export default function MarketPage() {
             {upcoming.map((u) => (
               <div key={u.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-orange-500/20 transition-all">
                 <div className="relative h-44 overflow-hidden">
-                  <img src={u.img} alt={u.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <Image src={u.img} alt={u.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-black/50" />
                   <span className="absolute top-4 left-4 bg-orange-500/80 text-white text-xs font-bold px-3 py-1 rounded-full">
                     {tr('domestic_coming_soon')}
@@ -133,7 +134,7 @@ export default function MarketPage() {
             {SELECT_MARKET_PRODUCTS.map((p) => (
               <div key={p.id} className="bg-[#1a1a1a] border border-white/8 rounded-3xl overflow-hidden">
                 <div className="relative h-44 overflow-hidden">
-                  <img src={p.img} alt={p.name} className="w-full h-full object-cover opacity-50" />
+                  <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span className="bg-blue-500/70 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">{p.category}</span>

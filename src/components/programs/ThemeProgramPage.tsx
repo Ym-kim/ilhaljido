@@ -54,7 +54,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
               {programs.map((p) => (
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-2xl overflow-hidden hover:border-teal-500/30 transition-all">
                   <div className="relative h-52 overflow-hidden">
-                    <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <span className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full border border-white/20">{p.theme}</span>
                   </div>
