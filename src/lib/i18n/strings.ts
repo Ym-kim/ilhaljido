@@ -649,6 +649,7 @@ const KO: Record<string, string> = {
   apply_companion_names_placeholder: '동반 참가자 이름 (예: 김영희, 박철수)',
 
   nav_select: '예약',
+  nav_select_guide: '도시 가이드',
   nav_select_hotel: '숙소 예약',
   nav_select_activity: '현지 체험',
   nav_select_esim: 'eSIM',
@@ -1304,6 +1305,7 @@ const EN: Record<string, string> = {
   apply_companion_names_placeholder: 'Companion names (e.g. Jane Doe, John Smith)',
 
   nav_select: 'Book',
+  nav_select_guide: 'City Guides',
   nav_select_hotel: 'Hotel Booking',
   nav_select_activity: 'Activities',
   nav_select_esim: 'eSIM',
@@ -1959,6 +1961,7 @@ const JP: Record<string, string> = {
   apply_companion_names_placeholder: '同伴者のお名前（例：山田花子、佐藤太郎）',
 
   nav_select: '予約',
+  nav_select_guide: '都市ガイド',
   nav_select_hotel: '宿泊予約',
   nav_select_activity: '現地体験',
   nav_select_esim: 'eSIM',
