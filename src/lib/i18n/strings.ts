@@ -557,6 +557,9 @@ const KO: Record<string, string> = {
 
   footer_service: '서비스',
   footer_contact: '문의',
+  footer_community: '커뮤니티',
+  footer_cafe: '네이버 카페',
+  footer_kakao: '카카오톡 채널',
   footer_copy: '© 2026 Wakation by StayForward. All rights reserved.',
   footer_privacy: '개인정보처리방침',
   footer_terms: '이용약관',
@@ -1213,6 +1216,9 @@ const EN: Record<string, string> = {
 
   footer_service: 'Services',
   footer_contact: 'Contact',
+  footer_community: 'Community',
+  footer_cafe: 'Naver Cafe',
+  footer_kakao: 'KakaoTalk Channel',
   footer_copy: '© 2026 Wakation by StayForward. All rights reserved.',
   footer_privacy: 'Privacy Policy',
   footer_terms: 'Terms of Service',
@@ -1869,6 +1875,9 @@ const JP: Record<string, string> = {
 
   footer_service: 'サービス',
   footer_contact: 'お問い合わせ',
+  footer_community: 'コミュニティ',
+  footer_cafe: 'NAVERカフェ',
+  footer_kakao: 'カカオトークチャンネル',
   footer_copy: '© 2026 Wakation by StayForward. All rights reserved.',
   footer_privacy: 'プライバシーポリシー',
   footer_terms: '利用規約',

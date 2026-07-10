@@ -50,15 +50,26 @@ export default function ContactPage() {
           <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-3xl p-8 text-center">
             <h3 className="text-xl font-black text-gray-900 mb-2">{tr('contact_kakao_t')}</h3>
             <p className="text-gray-500 text-sm mb-5">{tr('contact_kakao_d')}</p>
-            <a
-              href={KAKAO_CHANNEL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-full hover:bg-yellow-300 transition-colors"
-            >
-              {tr('contact_kakao_btn')}
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href={KAKAO_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 font-bold px-8 py-3.5 rounded-full hover:bg-yellow-300 transition-colors"
+              >
+                {tr('contact_kakao_btn')}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="https://cafe.naver.com/shcafa32"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-[#03c75a] text-white font-bold px-8 py-3.5 rounded-full hover:bg-[#02b350] transition-colors"
+              >
+                {tr('footer_cafe')}
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           <div className="mt-10 text-center">
