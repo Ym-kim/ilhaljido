@@ -1,10 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, ArrowLeft, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
+import { overlapWithSeoul } from '@/lib/overlap'
 import { ICON_STROKE } from '@/lib/icons'
 import { CITY_GUIDES } from '@/lib/guides'
 import type { Lang } from '@/lib/i18n/types'
@@ -24,6 +25,7 @@ const T: Record<string, L> = {
   },
   compareTitle: { KO: '한눈에 비교', EN: 'Compare at a glance', JP: 'ひと目で比較' },
   city: { KO: '도시', EN: 'City', JP: '都市' },
+  overlap: { KO: '워크타임 겹침', EN: 'Work overlap', JP: '勤務時間の重なり' },
   viewGuide: { KO: '가이드 보기', EN: 'View guide', JP: 'ガイドを見る' },
   home: { KO: '홈', EN: 'Home', JP: 'ホーム' },
 }
@@ -38,6 +40,14 @@ export function GuideHubView({ forceLang }: { forceLang?: Lang } = {}) {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
+
+  // 워크타임 겹침 — 클라이언트 전용 계산 (DST 반영, hydration 안전)
+  const [overlaps, setOverlaps] = useState<Record<string, number> | null>(null)
+  useEffect(() => {
+    const m: Record<string, number> = {}
+    CITY_GUIDES.forEach((g) => { m[g.slug] = overlapWithSeoul(g.timeZone).overlapH })
+    setOverlaps(m)
+  }, [])
 
   const factLabels = CITY_GUIDES[0].facts.map((f) => f.label[lang])
 
@@ -94,6 +104,7 @@ export function GuideHubView({ forceLang }: { forceLang?: Lang } = {}) {
             <thead>
               <tr className="bg-[#f0f9ff] text-[#475569]">
                 <th className="text-left font-bold px-4 py-3">{T.city[lang]}</th>
+                <th className="text-left font-bold px-4 py-3">{T.overlap[lang]}</th>
                 {factLabels.map((l) => (
                   <th key={l} className="text-left font-bold px-4 py-3">{l}</th>
                 ))}
@@ -107,6 +118,21 @@ export function GuideHubView({ forceLang }: { forceLang?: Lang } = {}) {
                     <Link href={`${prefix}/guide/${g.slug}`} className="hover:text-brand-mid transition-colors">
                       {g.name[lang]}
                     </Link>
+                  </td>
+                  <td className="px-4 py-3">
+                    {overlaps ? (
+                      <span className={`inline-flex items-center gap-1 text-xs font-bold px-2 py-0.5 rounded-full ${
+                        overlaps[g.slug] >= 9
+                          ? 'bg-emerald-50 text-emerald-700'
+                          : overlaps[g.slug] >= 7
+                          ? 'bg-sky-50 text-sky-700'
+                          : 'bg-amber-50 text-amber-700'
+                      }`}>
+                        {overlaps[g.slug]}h
+                      </span>
+                    ) : (
+                      <span className="text-[#cbd5e1] text-xs">—</span>
+                    )}
                   </td>
                   {g.facts.map((f, j) => (
                     <td key={j} className="px-4 py-3 text-[#475569]">{f.value[lang]}</td>

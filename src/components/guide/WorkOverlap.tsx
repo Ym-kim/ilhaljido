@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Clock3 } from 'lucide-react'
 import type { Lang } from '@/lib/i18n/types'
+import { nowIn, overlapWithSeoul, WORK_START, WORK_END } from '@/lib/overlap'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 워크타임 오버랩 — 워케이션 결정 팩터 1위(타임존 궁합)를 시각화 (차별화 기능)
@@ -35,11 +36,6 @@ function verdictKey(h: number): string {
   return 'partial'
 }
 
-// 해당 타임존의 '현재 로컬 시각' Date (시스템 tz에 투영된 근사 — 시·분 표시/차이 계산용)
-function nowIn(tz: string): Date {
-  return new Date(new Date().toLocaleString('en-US', { timeZone: tz }))
-}
-
 export function WorkOverlap({ timeZone, cityName, lang }: { timeZone: string; cityName: string; lang: Lang }) {
   const [now, setNow] = useState<Date | null>(null)
 
@@ -55,13 +51,9 @@ export function WorkOverlap({ timeZone, cityName, lang }: { timeZone: string; ci
   }
 
   const seoulNow = nowIn('Asia/Seoul')
-  const localNow = nowIn(timeZone)
-  // 시차(시간): 30분 단위 반올림 (본 서비스 도시는 전부 정수)
-  const diffH = Math.round(((localNow.getTime() - seoulNow.getTime()) / 3_600_000) * 2) / 2
+  const { diffH } = overlapWithSeoul(timeZone)
 
   // 서울 시간축 기준 근무창: 서울 9~18 / 현지 9~18 → 서울축 [9 - diffH, 18 - diffH]
-  const WORK_START = 9
-  const WORK_END = 18
   const localStartOnSeoul = WORK_START - diffH
   const localEndOnSeoul = WORK_END - diffH
   const overlapStart = Math.max(WORK_START, localStartOnSeoul)
