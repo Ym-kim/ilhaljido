@@ -758,29 +758,6 @@ export function getApplyProgramOptions(lang: Lang) {
   ]
 }
 
-export function getYangyangDateOptions(lang: Lang) {
-  return tloc(
-    lang,
-    loc(
-      [
-        '6월 17일(수) – 6월 19일(금) ← 확정 일정',
-        '1인실 신청 (+30,000원/박)',
-        '2인 1실 기본',
-      ],
-      [
-        'Jun 17(Wed) – Jun 19(Fri) ← Confirmed',
-        'Single room (+₩30,000/night)',
-        'Shared room (default)',
-      ],
-      [
-        '6月17日(水)〜19日(金) ← 確定日程',
-        '1人室申請（+30,000ウォン/泊）',
-        '2人1室（基本）',
-      ]
-    )
-  )
-}
-
 export function getCompanionOptions(lang: Lang) {
   return tloc(
     lang,
@@ -1035,7 +1012,7 @@ type SupportProgram = {
   region: Loc<string>
   name: Loc<string>
   benefit: Loc<string>       // 지원 내용 요약
-  maxBenefit?: string        // "최대 ₩300,000" 환산 배지 (불명확하면 생략)
+  maxBenefit?: Loc<string>   // "최대 ₩300,000" 환산 배지 (불명확하면 생략)
   status: SupportStatus
   deadline: Loc<string>      // 마감/모집 상태 설명
   conditions: Loc<string[]>  // 조건 태그 (최대 3)
@@ -1056,7 +1033,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('제주', 'Jeju', '済州'),
     name: loc('제주 민간형 워케이션 바우처', 'Jeju Workation Voucher', '済州ワーケーションバウチャー'),
     benefit: loc('숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳', 'Stay+office voucher up to ₩50,000/night at 17 partner offices', '宿泊＋オフィス1泊最大5万W、提携オフィス17カ所'),
-    maxBenefit: '최대 ₩300,000',
+    maxBenefit: loc('최대 ₩300,000', 'Up to ₩300,000', '最大₩300,000'),
     status: 'always',
     deadline: loc('예산 소진 시까지', 'Until budget runs out', '予算消化まで'),
     conditions: loc(['도외 재직자·사업자', '3박 4일 이상'], ['Non-Jeju workers', '3+ nights'], ['道外の在職者', '3泊以上']),
@@ -1068,7 +1045,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('부산', 'Busan', '釜山'),
     name: loc('부산형 워케이션', 'Busan Workation', '釜山型ワーケーション'),
     benefit: loc('업무공간 무료 + 웰컴키트 + 관광 바우처·할인쿠폰', 'Free workspace + welcome kit + tour vouchers', 'ワークスペース無料＋観光バウチャー'),
-    maxBenefit: '공간 무료',
+    maxBenefit: loc('공간 무료', 'Free workspace', 'スペース無料'),
     status: 'always',
     deadline: loc('상시 (기업등록 후 신청)', 'Rolling (register first)', '随時（企業登録後）'),
     conditions: loc(['부산 외 재직자·대표', '재직증명 필요'], ['Non-Busan workers', 'Proof of work'], ['釜山外の在職者', '在職証明']),
@@ -1080,7 +1057,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('강원', 'Gangwon', '江原'),
     name: loc('강원 워케이션', 'Gangwon Workation', '江原ワーケーション'),
     benefit: loc('숙박 3박 + 공유오피스 + 지역체험 패키지', '3-night stay + coworking + local experiences', '宿泊3泊＋コワーキング＋体験'),
-    maxBenefit: '3박 패키지',
+    maxBenefit: loc('3박 패키지', '3-night package', '3泊パッケージ'),
     status: 'check',
     deadline: loc('회차별 모집 — 공고 확인', 'Batch-based — check notice', '回次別募集'),
     conditions: loc(['재직자·프리랜서·특고', '4대보험 또는 증빙'], ['Workers & freelancers', 'Proof required'], ['在職者・フリーランス']),
@@ -1092,7 +1069,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('전남 무안', 'Muan', '務安'),
     name: loc('전남에서 살아보기 (무안)', 'Live in Jeonnam (Muan)', '全南で暮らしてみる'),
     benefit: loc('휴양마을 최장 3개월 체류 + 숙박 제공', 'Up to 3-month village stay, lodging provided', '最長3カ月滞在＋宿泊提供'),
-    maxBenefit: '3개월 숙박',
+    maxBenefit: loc('3개월 숙박', '3-month stay', '3カ月宿泊'),
     status: 'upcoming',
     deadline: loc('8월 2차 모집 예정', '2nd batch in August', '8月2次募集予定'),
     conditions: loc(['타 시도 도시민', '귀농귀촌 관심자'], ['Non-Jeonnam urbanites', 'Rural-life interest'], ['他市道の都市民']),
@@ -1104,7 +1081,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('전국', 'Nationwide', '全国'),
     name: loc('농촌에서 살아보기', 'Rural Living Program', '農村で暮らしてみる'),
     benefit: loc('숙소 무료 + 월 30만원 연수비 (인구감소지역 마을)', 'Free stay + ₩300,000/month stipend', '宿無料＋月30万W研修費'),
-    maxBenefit: '월 ₩300,000+숙소',
+    maxBenefit: loc('월 ₩300,000+숙소', '₩300,000/mo + stay', '月₩300,000＋宿泊'),
     status: 'always',
     deadline: loc('마을별 상시/기수별 모집', 'Village-based rolling', '村別に随時'),
     conditions: loc(['만 19세 이상', '타 지역 거주', 'SNS 과제'], ['Age 19+', 'Non-local', 'SNS tasks'], ['満19歳以上', '他地域居住']),
@@ -1116,7 +1093,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('충남', 'Chungnam', '忠南'),
     name: loc('충남 한달살기', 'Chungnam Month-Stay', '忠南1カ月暮らし'),
     benefit: loc('6~29박 숙박비 + 식비·교통비 일부 + 체험활동비 + 여행자보험 (시군별 상이)', '6–29 nights lodging + meals/transport aid + activities + insurance', '6〜29泊宿泊費＋食費・交通一部＋体験費＋保険'),
-    maxBenefit: '최대 29박 지원',
+    maxBenefit: loc('최대 29박 지원', 'Up to 29 nights', '最大29泊支援'),
     status: 'check',
     deadline: loc('시군별 순차 모집 — 공고 확인', 'By city/county — check notices', '市郡別に順次募集'),
     conditions: loc(['충남 외 거주 성인', '시군별 정원제'], ['Non-Chungnam adults', 'Quota per county'], ['忠南外居住の成人']),
@@ -1128,7 +1105,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('울산', 'Ulsan', '蔚山'),
     name: loc('유케이션 (울산 워케이션)', 'U-cation (Ulsan Workation)', 'ユケーション（蔚山）'),
     benefit: loc('숙박+체험 포함 참가비 2만원(1박)~18.5만원 — 대폭 보조 운영', 'Stay+activities from just ₩20,000/night — heavily subsidized', '宿泊＋体験込み参加費2万W〜（大幅補助）'),
-    maxBenefit: '참가비 ₩20,000~',
+    maxBenefit: loc('참가비 ₩20,000~', 'Fee from ₩20,000', '参加費₩20,000〜'),
     status: 'always',
     deadline: loc('2026.4~11 평일 상시 (예산 소진 시 종료)', 'Rolling Apr–Nov weekdays', '2026.4〜11 平日随時'),
     conditions: loc(['울산 외 근로자·사업자', '프리랜서·특고 가능'], ['Non-Ulsan workers', 'Freelancers OK'], ['蔚山外の勤労者']),
@@ -1140,7 +1117,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('인천', 'Incheon', '仁川'),
     name: loc('인천워케이션', 'Incheon Workation', '仁川ワーケーション'),
     benefit: loc('송도·영종도·강화 호텔+공유오피스+체험 8종 패키지, 시 지원 할인가', '8 hotel+coworking+experience packages at city-subsidized rates', '松島・永宗島など8種パッケージ（市補助価格）'),
-    maxBenefit: '시 지원 할인가',
+    maxBenefit: loc('시 지원 할인가', 'City-subsidized rates', '市補助価格'),
     status: 'always',
     deadline: loc('연중 패키지 판매형', 'Year-round packages', '通年パッケージ型'),
     conditions: loc(['개인 신청 가능', '2박 이상'], ['Individuals OK', '2+ nights'], ['個人申請可', '2泊以上']),
@@ -1152,7 +1129,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     region: loc('전국 어촌', 'Fishing villages', '全国漁村'),
     name: loc('어촌마을 워케이션', 'Fishing Village Workation', '漁村ワーケーション'),
     benefit: loc('전국 13개 어촌휴양마을 — 공유오피스+숙박+조식+체험, 체류일수별 차등 지원', '13 seaside villages — coworking+stay+breakfast+activities, tiered support', '全国13漁村 — オフィス＋宿泊＋朝食＋体験'),
-    maxBenefit: '숙박+오피스 지원',
+    maxBenefit: loc('숙박+오피스 지원', 'Stay + office support', '宿泊＋オフィス支援'),
     status: 'open',
     deadline: loc('연중 모집 (2026.4~)', 'Open year-round', '通年募集'),
     conditions: loc(['개인 신청 가능', '원격근무 가능자'], ['Individuals OK', 'Remote-workable'], ['個人申請可', 'リモート可']),
@@ -1167,7 +1144,7 @@ export function getSupportPrograms(lang: Lang) {
     region: tloc(lang, p.region),
     name: tloc(lang, p.name),
     benefit: tloc(lang, p.benefit),
-    maxBenefit: p.maxBenefit,
+    maxBenefit: p.maxBenefit ? tloc(lang, p.maxBenefit) : undefined,
     status: p.status,
     statusLabel: tloc(lang, SUPPORT_STATUS_LABEL[p.status]),
     deadline: tloc(lang, p.deadline),

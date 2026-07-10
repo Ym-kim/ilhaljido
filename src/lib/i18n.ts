@@ -40,7 +40,6 @@ export {
   getWorkStyleOptions,
   getDurationOptions,
   getBudgetOptions,
-  getYangyangDateOptions,
   getCompanionOptions,
   getRegionLabel,
   getSpaceTypeLabel,

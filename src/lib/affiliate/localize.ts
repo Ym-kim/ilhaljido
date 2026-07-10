@@ -56,6 +56,16 @@ const EN: Record<string, Overlay> = {
     cta: 'Book a stay',
     badge: 'Long stay',
   },
+  'hotel-booking-domestic': {
+    desc: 'Find stays in Yangyang, Gangneung, Jeju and more — before or after your program dates.',
+    cta: 'Search Korea stays',
+    badge: 'Korea stays',
+  },
+  'activity-kkday-domestic': {
+    desc: 'Local tours and tickets across Gangwon, Busan and Jeju — fill your workation evenings and weekends.',
+    cta: 'See Korea experiences',
+    badge: 'Korea experiences',
+  },
   'feat-flight-tripcom': {
     productTitle: 'Compare & book flights',
     destination: 'All routes from Seoul',
@@ -342,6 +352,16 @@ const JP: Record<string, Overlay> = {
     desc: '現地のホテル・アパートメント。市場調査の長期滞在に適した宿を。',
     cta: '宿を予約',
     badge: '長期滞在',
+  },
+  'hotel-booking-domestic': {
+    desc: '襄陽・江陵・済州など、プログラム前後に泊まる韓国国内の宿を検索。',
+    cta: '韓国の宿を検索',
+    badge: '国内の宿',
+  },
+  'activity-kkday-domestic': {
+    desc: '江原・釜山・済州のローカルツアーと入場券。ワーケーションの夜と週末に。',
+    cta: '韓国の体験を見る',
+    badge: '国内体験',
   },
   'feat-flight-tripcom': {
     productTitle: '航空券の料金比較・予約',

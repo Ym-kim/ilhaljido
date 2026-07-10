@@ -57,6 +57,9 @@ export type ShowOnPage =
   | 'global'
   | 'market'
   | 'visa'
+  | 'domestic' // /programs/domestic 하단 섹션
+  | 'esim'     // /select/esim 활성 파트너 병행 섹션
+  | 'learn'    // /select/learn 활성 파트너 병행 섹션
 
 // ─── 카테고리 (레거시 — ProductType 사용 권장) ────────────────────────────────
 export type AffiliateCategory =

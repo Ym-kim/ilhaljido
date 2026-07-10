@@ -89,7 +89,7 @@ export function AffiliateSection({
     <section className={light ? 'py-16 px-6 bg-white border-t border-[#e0f2fe]' : 'py-16 px-6 bg-[#111] border-t border-white/8'}>
       <div className="max-w-6xl mx-auto">
         <div className="mb-10">
-          <p className={`text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3 ${light ? 'text-brand-mid' : 'text-teal-500/60'}`}>
+          <p className={`text-[0.65rem] font-black tracking-[0.2em] uppercase mb-3 ${light ? 'text-brand-mid' : 'text-sky-500/70'}`}>
             {eyebrow}
           </p>
           <h2 className={`text-2xl font-black mb-2 ${light ? 'text-[#111827]' : 'text-white'}`}>{title}</h2>

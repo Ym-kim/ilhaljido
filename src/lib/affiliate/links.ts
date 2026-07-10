@@ -22,5 +22,14 @@ export const VISA_PREP_ITEMS = getItemsFor('visa')
 // /programs 하단 섹션
 export const PROGRAMS_LEARN_ITEMS = getItemsFor('programs')
 
+// /programs/domestic 하단 섹션
+export const DOMESTIC_PREP_ITEMS = getItemsFor('domestic')
+
+// /select/esim — 제휴 링크 대기(Airalo) 중 활성 파트너 병행 노출
+export const ESIM_ALT_ITEMS = getItemsFor('esim')
+
+// /select/learn — 강의 링크 대기(인프런) 중 활성 파트너 병행 노출
+export const LEARN_ALT_ITEMS = getItemsFor('learn')
+
 // 홈 피처드 추천 상품 섹션
 export const HOME_FEATURED_ITEMS = getItemsFor('home')

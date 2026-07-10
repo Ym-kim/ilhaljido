@@ -8,6 +8,9 @@ import { useLang } from '@/context/LanguageContext'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { ESIM_DESTINATIONS } from '@/lib/affiliate/destinations'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { ESIM_ALT_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 const HOW_TO = [
   { step: '1', textKey: 'sele_s1' },
@@ -85,6 +88,14 @@ export default function EsimSelectPage() {
           </div>
         </div>
       </section>
+
+      {/* 활성 파트너 병행 — 항공·숙소·체험 (Airalo 링크 대기 중 수익 동선) */}
+      <AffiliateSection
+        tone="light"
+        title={tr('sele_alt_title')}
+        subtitle={tr('sele_alt_sub')}
+        items={ESIM_ALT_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+      />
 
       {/* Airalo intro */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">

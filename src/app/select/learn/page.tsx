@@ -9,7 +9,9 @@ import { useLang } from '@/context/LanguageContext'
 import { localizeLearnCategory } from '@/lib/affiliate/localizeDest'
 import { LEARN_CATEGORIES } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
+import { LEARN_ALT_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 export default function LearnSelectPage() {
@@ -127,6 +129,14 @@ export default function LearnSelectPage() {
           </div>
         </div>
       </section>
+
+      {/* 활성 파트너 병행 — 항공·숙소·체험 (인프런 링크 대기 중 수익 동선) */}
+      <AffiliateSection
+        tone="light"
+        title={tr('sell_alt_title')}
+        subtitle={tr('sell_alt_sub')}
+        items={LEARN_ALT_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+      />
 
       {/* Inflearn intro */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
