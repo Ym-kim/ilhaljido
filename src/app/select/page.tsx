@@ -36,7 +36,7 @@ const CATEGORIES = [
     icon: Sparkles,
     label: '현지 체험',
     title: '목적지별 투어·액티비티',
-    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday 파트너 상품 큐레이션.',
+    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday·Klook 파트너 상품 큐레이션.',
     badge: '제휴',
     badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
