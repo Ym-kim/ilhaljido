@@ -122,10 +122,7 @@ export default function StayPage() {
                     <span className="text-white/50 text-xs flex items-center gap-1">
                       <Wifi className="w-3 h-3 text-teal-400" />{s.wifi}
                     </span>
-                    <div>
-                      <span className="text-teal-400 font-black text-lg">₩{s.price}</span>
-                      <span className="text-white/30 font-normal text-xs">{tr('per_night')}</span>
-                    </div>
+                    {/* 고정가 노출 제거 — 가격표현 금지 방침 */}
                   </div>
                   <div className="mt-4 flex items-center justify-center gap-1.5 bg-teal-500/12 text-teal-300 border border-teal-500/25 rounded-xl py-2.5 text-xs font-bold group-hover:bg-teal-500/20 group-hover:text-teal-200 transition-all">
                     {tr('nav_select_hotel')} · Booking.com

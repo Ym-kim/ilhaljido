@@ -49,7 +49,7 @@ export default function GrowthPage() {
 
               key={c.num}
 
-              className="group bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-teal-500/40 transition-all cursor-pointer"
+              className="group bg-white/5 border border-white/10 rounded-3xl p-7 hover:border-teal-500/40 transition-all"
 
             >
 

@@ -36,7 +36,7 @@ const CATEGORIES = [
     icon: Sparkles,
     label: '현지 체험',
     title: '목적지별 투어·액티비티',
-    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday·Klook 파트너 상품 큐레이션.',
+    desc: '일본·베트남·발리 현지 투어, 교통패스, 입장권. KKday 파트너 상품 큐레이션.',
     badge: '제휴',
     badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
@@ -81,7 +81,8 @@ export default function SelectPage() {
     ['feat-tokyo-hotel', 'feat-osaka-hotel', 'feat-fukuoka-hotel', 'feat-bali-hotel'].includes(i.id)
   )
   const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
-    ['feat-japan-activity', 'feat-japan-esim'].includes(i.id)
+    // 활성 파트너 우선: 항공(Trip)·발리 체험(KKday) 추가 — 대기 카드(Airalo)만 있던 섹션 보강
+    ['feat-flight-tripcom', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim'].includes(i.id)
   )
 
   const hotelItems = activeFilter === 'all'

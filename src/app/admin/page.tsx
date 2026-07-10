@@ -130,7 +130,7 @@ export default function AdminPage() {
       <div className="bg-white border-b border-border px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
           <span className="w-8 h-8 rounded-[9px] bg-gradient-to-br from-brand-mid to-brand flex items-center justify-center text-white text-sm font-black">일</span>
-          <span className="font-black text-dark">일할지도 관리자</span>
+          <span className="font-black text-dark">Wakation 관리자</span>
         </div>
         <div className="flex items-center gap-3">
           <span className="text-sm text-muted">총 신청 {counts.all}건</span>

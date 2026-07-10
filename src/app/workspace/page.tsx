@@ -4,6 +4,9 @@ import Image from 'next/image'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getWorkspaceFeatures } from '@/lib/i18n'
 import { Wifi, Monitor, Building2, Zap, Volume2, Coffee } from 'lucide-react'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 const ICONS = {
   wifi: Wifi,
@@ -47,6 +50,16 @@ export default function WorkspacePage() {
           </div>
         </div>
       </section>
+
+      {/* 코워킹 내장 숙소 — 막다른 페이지였던 곳에 문맥 최적 크로스셀 (Booking 활성) */}
+      <AffiliateSection
+        eyebrow="WAKATION SELECT"
+        title={tr('ws_stays_title')}
+        subtitle={tr('ws_stays_sub')}
+        items={[...FEATURED_STAYS, ...FEATURED_STAYS_V2].map((i) => localizeAffiliateItem(i, lang))}
+        tone="light"
+        cols={3}
+      />
     </div>
   )
 }

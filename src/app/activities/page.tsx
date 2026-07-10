@@ -6,6 +6,9 @@ import Image from 'next/image'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 
 import { getActivities } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { FEATURED_ACTIVITIES, THEME_EXPERIENCES } from '@/lib/affiliate/featured'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 
 
@@ -45,7 +48,7 @@ export default function ActivitiesPage() {
 
           {acts.map((a) => (
 
-            <div key={a.id} className="group rounded-3xl overflow-hidden cursor-pointer bg-white shadow-sm hover:shadow-xl transition-shadow">
+            <div key={a.id} className="group rounded-3xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
 
               <div className="relative h-52 overflow-hidden">
                 <Image src={a.img} alt={a.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -68,6 +71,16 @@ export default function ActivitiesPage() {
         </div>
 
       </section>
+
+      {/* 예약 가능한 실상품 — KKday 제휴 (감사: 동명 페이지에 활성 카탈로그 미연결이던 최대 수익 공백) */}
+      <AffiliateSection
+        eyebrow="WAKATION SELECT"
+        title={tr('act_featured_title')}
+        subtitle={tr('act_featured_sub')}
+        items={[...FEATURED_ACTIVITIES, ...THEME_EXPERIENCES].map((i) => localizeAffiliateItem(i, lang))}
+        tone="light"
+        cols={3}
+      />
 
     </div>
 
