@@ -157,7 +157,7 @@ async function generateAIRecommendation(
 ) {
   const admin = createAdminClient()
 
-  const prompt = `당신은 일할지도(Wakation) 워케이션 플랫폼의 AI 어시스턴트입니다.
+  const prompt = `당신은 Wakation 워케이션 플랫폼의 AI 어시스턴트입니다.
 신청자 정보를 바탕으로 가장 적합한 워케이션 프로그램을 추천해주세요.
 
 신청자 정보:

@@ -303,7 +303,7 @@ const LANG_PROGRAMS: LangProgram[] = [
     country: loc('일본', 'Japan', '日本'),
     level: loc('초~고급', 'All levels', '全レベル'),
     duration: loc('2주~', '2+ weeks', '2週間〜'),
-    tags: loc(['비즈니스 특화', 'Qoo10 연계', '현지 기업 방문'], ['Business focus', 'Qoo10 Japan', 'Company visits'], ['ビジネス特化', 'Qoo10連携', '企業訪問']),
+    tags: loc(['비즈니스 특화', '비즈니스 일본어', '도심 캠퍼스'], ['Business focus', 'Business Japanese', 'City campus'], ['ビジネス特化', 'ビジネス日本語', '都心キャンパス']),
   },
   {
     id: 'malta',
@@ -325,7 +325,7 @@ const LANG_PROGRAMS: LangProgram[] = [
     country: loc('캐나다', 'Canada', 'カナダ'),
     level: loc('전 레벨', 'All levels', '全レベル'),
     duration: loc('4주~', '4+ weeks', '4週間〜'),
-    tags: loc(['북미 영어', '취업 연계', '액티비티 포함'], ['North American English', 'Career support', 'Activities included'], ['北米英語', '就職連携', 'アクティビティ付']),
+    tags: loc(['북미 영어', '스피킹 집중', '액티비티 포함'], ['North American English', 'Speaking focus', 'Activities included'], ['北米英語', 'スピーキング集中', 'アクティビティ付']),
   },
 ]
 

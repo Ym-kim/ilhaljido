@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="http://pf.kakao.com/_xiPxbXG"
+                  href="https://pf.kakao.com/_xiPxbXG"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

@@ -11,7 +11,7 @@ export async function getWorkcationRecommendation(
   spaces: unknown[],
   userContext?: string
 ): Promise<{ reasoning: string; spaceIds: string[]; tips: string[] }> {
-  const systemPrompt = `당신은 일할지도(Wakation)의 AI 워케이션 매니저입니다.
+  const systemPrompt = `당신은 Wakation의 AI 워케이션 매니저입니다.
 프리랜서와 1인 사업자가 최적의 워케이션 공간을 찾을 수 있도록 도와줍니다.
 주어진 공간 목록에서 사용자의 요청에 가장 맞는 곳을 추천하고,
 왜 그 공간이 좋은지 친근하고 구체적으로 설명해주세요.

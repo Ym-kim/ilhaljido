@@ -59,10 +59,7 @@ export default function CruisePage() {
                   <p className="text-gray-400 text-xs mb-1">{r.days}</p>
                   <h3 className="font-black text-gray-900 text-xl mb-2">{r.name}</h3>
                   <p className="text-gray-400 text-sm mb-4">{r.ports}</p>
-                  <span className="text-2xl font-black text-teal-500">
-                    ₩{r.price}
-                    <span className="text-sm text-gray-400 font-normal">{tr('per_person')}</span>
-                  </span>
+                  {/* 고정가 노출 제거 — 가격표현 금지 방침 (요금은 파트너사에서 최종 확인) */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     <a
                       href="https://kr.trip.com/cruises/?Allianceid=9024807"

@@ -86,7 +86,7 @@ const organizationJsonLd = {
     availableLanguage: ['Korean', 'English', 'Japanese'],
   },
   // 공식 채널 — 커뮤니티·메신저 (검색엔진에 동일 주체 신호)
-  sameAs: ['https://cafe.naver.com/shcafa32', 'http://pf.kakao.com/_xiPxbXG'],
+  sameAs: ['https://cafe.naver.com/shcafa32', 'https://pf.kakao.com/_xiPxbXG'],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

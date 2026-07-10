@@ -5,7 +5,7 @@ import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 
 // 카카오톡 채널 (실제 운영 채널)
-const KAKAO_CHANNEL_URL = 'http://pf.kakao.com/_xiPxbXG'
+const KAKAO_CHANNEL_URL = 'https://pf.kakao.com/_xiPxbXG'
 
 const CONTACT_KEYS = [
   { titleKey: 'contact_prog_t', descKey: 'contact_prog_d', subject: 'Program' },

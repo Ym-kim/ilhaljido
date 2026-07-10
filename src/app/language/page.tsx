@@ -67,11 +67,8 @@ export default function LanguagePage() {
                       </span>
                     ))}
                   </div>
-                  <div className="mt-auto flex items-center justify-between gap-3">
-                    <div>
-                      <span className="text-2xl font-black text-gray-900">₩{p.price}</span>
-                      <span className="text-sm text-gray-400"> ~</span>
-                    </div>
+                  {/* 고정가 노출 제거 — 가격표현 금지 방침 (요금은 파트너사에서 확인) */}
+                  <div className="mt-auto flex items-center justify-end gap-3">
                     <a
                       href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(p.stayQuery)}`}
                       target="_blank"

@@ -76,7 +76,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       korea:    'https://www.booking.com/searchresults.html?aid=7854081&ss=South+Korea',
     },
     priority: 1,
-    showOn: ['global', 'select'],
+    showOn: ['global', 'select', 'programs'],
     sourceNote: 'affiliate tracking active — aid=7854081',
   },
 
@@ -130,7 +130,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       vietnam: '',
     },
     priority: 2,
-    showOn: ['global', 'market', 'select'],
+    showOn: ['global', 'market', 'select', 'programs'],
     sourceNote: 'KKpartners cid=25833 tracking active (2026-07-09)',
   },
 
@@ -450,7 +450,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     trackingId: 'Allianceid=9024807',
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     priority: 4,
-    showOn: ['home', 'select', 'global'],
+    showOn: ['home', 'select', 'global', 'visa', 'programs'],
     sourceNote: 'affiliate tracking active — Allianceid=9024807 (flights 랜딩 실물 검증 2026-07-09)',
   },
 

@@ -189,18 +189,7 @@ function SpaceCard({
           ))}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-lg font-bold text-gray-900">{formatPrice(space.pricePerDay)}</span>
-            <span className="text-xs text-gray-400">{tr('spaces_per_day')}</span>
-          </div>
-          <button
-            type="button"
-            className="bg-teal-500 text-white px-4 py-2 rounded-xl text-xs font-medium hover:bg-teal-600 transition-colors"
-          >
-            {tr('learn_more')}
-          </button>
-        </div>
+        {/* 가격·상세 버튼 제거 — mock 일당가 노출(가격표현 금지 방침) + 목적지 없는 죽은 버튼이었음 */}
       </div>
     </div>
   )
