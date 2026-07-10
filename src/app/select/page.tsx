@@ -106,10 +106,11 @@ export default function SelectPage() {
           </h1>
           <p className="text-[#5c5c5c] text-base md:text-lg leading-relaxed max-w-xl mb-3">
             숙소 예약부터 현지 체험, eSIM, 온라인 강의까지.<br className="hidden sm:block" />
-            워케이션에 맞는 외부 서비스를 목적지별로 큐레이션합니다.
+            워케이션에 맞는 외부 제휴 서비스를 목적지별로 큐레이션합니다.
           </p>
           <p className="text-[#a0a0a0] text-xs">
-            외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다.
+            외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다. 요금과 상품 조건은 제휴사 사이트에서 최종 확인됩니다.
+            수요가 검증된 카테고리는 Wakation 직접 계약 상품으로 전환됩니다.
           </p>
         </div>
       </section>
