@@ -42,8 +42,8 @@ export const AFFILIATE_BASE = {
   // 🔶 needs_referral_link — referral link 확인 전
   airalo:     'https://www.airalo.com',
 
-  // ⬜ placeholder — 가입 전
-  klook:      'https://www.klook.com/ko',
+  // ✅ active_affiliate — aid=126848 적용 (2026-07-15)
+  klook:      'https://www.klook.com/ko/?aid=126848',
 
   // 🔴 coming_soon — 보류
   safetywing: 'https://safetywing.com/nomad-insurance',
@@ -177,28 +177,23 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   },
 
   // ──────────────────────────────────────────────────────────────────────────
-  // 현지 체험 — Klook (가입 전)
+  // 현지 체험 — Klook (aid=126848 활성, 2026-07-15)
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'activity-klook',
     name: 'Klook',
     category: 'activity',
     productType: 'activity',
-    status: 'placeholder',
+    status: 'active_affiliate',
     emoji: '🌿',
     desc: '현지 투어·액티비티·교통패스·입장권. 워케이션 목적지 체험 상품을 큐레이션합니다.',
     cta: '체험 찾아보기',
-    href: AFFILIATE_BASE.klook,
+    href: 'https://www.klook.com/ko/?aid=126848',
     badge: '현지 체험',
-    trackingId: '',
-    deepLinks: {
-      japan:   '',
-      bali:    '',
-      vietnam: '',
-    },
+    trackingId: 'aid=126848',
     priority: 6,
     showOn: ['select'],
-    sourceNote: 'public URL, tracking not active — 가입 전 placeholder',
+    sourceNote: 'aid=126848 부착 (2026-07-15) — aid 파라미터 형식은 실유통 Klook 어필리에이트 URL로 실물검증. 대시보드 승인·집계 확인 필요',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
