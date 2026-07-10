@@ -26,6 +26,8 @@ export type CityGuide = {
   activityIds: string[]
   /** Trip.com 노선 페이지 (Allianceid 부착, 실물 검증 2026-07-09) */
   flightUrl?: string
+  /** IANA 타임존 — 워크타임 오버랩 위젯용 */
+  timeZone: string
 }
 
 const FLIGHT = (slug: string) =>
@@ -84,6 +86,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-millennials-shibuya'],
     activityIds: ['act-tokyo-disney'],
     flightUrl: FLIGHT('seoul-to-tokyo/airfares-sel-tyo'),
+    timeZone: 'Asia/Tokyo',
   },
   {
     slug: 'fukuoka',
@@ -127,6 +130,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-webase-hakata'],
     activityIds: ['act-fukuoka-bustour'],
     flightUrl: FLIGHT('seoul-to-fukuoka/airfares-sel-fuk'),
+    timeZone: 'Asia/Tokyo',
   },
   {
     slug: 'danang',
@@ -170,6 +174,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-chicland-danang'],
     activityIds: ['act-danang-banahills'],
     flightUrl: FLIGHT('seoul-to-danang/airfares-sel-dad'),
+    timeZone: 'Asia/Ho_Chi_Minh',
   },
   {
     slug: 'bali',
@@ -213,6 +218,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-tribal-bali'],
     activityIds: ['act-bali-ubud'],
     flightUrl: FLIGHT('seoul-to-denpasar/airfares-sel-dps'),
+    timeZone: 'Asia/Makassar',
   },
   {
     slug: 'chiangmai',
@@ -256,6 +262,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-kantary-chiangmai'],
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-chiangmai/airfares-sel-cnx'),
+    timeZone: 'Asia/Bangkok',
   },
   {
     slug: 'jeju',
@@ -299,6 +306,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-playce-jeju'],
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-jeju/airfares-sel-cju'),
+    timeZone: 'Asia/Seoul',
   },
   {
     slug: 'osaka',
@@ -342,6 +350,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-lively-osaka'],
     activityIds: ['act-osaka-usj'],
     flightUrl: FLIGHT('seoul-to-osaka/airfares-sel-osa'),
+    timeZone: 'Asia/Tokyo',
   },
   {
     slug: 'cebu',
@@ -385,6 +394,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-nomadshub-cebu'],
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-cebu/airfares-sel-ceb'),
+    timeZone: 'Asia/Manila',
   },
   {
     slug: 'sydney',
@@ -428,6 +438,7 @@ export const CITY_GUIDES: CityGuide[] = [
     stayIds: ['stay-adina-sydney'],
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-sydney/airfares-sel-syd'),
+    timeZone: 'Australia/Sydney',
   },
 ]
 

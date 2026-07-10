@@ -9,6 +9,7 @@ import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import { CITY_GUIDES, GUIDE_UI, type CityGuide } from '@/lib/guides'
+import { WorkOverlap } from '@/components/guide/WorkOverlap'
 import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
@@ -92,11 +93,12 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         </div>
       </section>
 
-      {/* ── 인트로 ── */}
+      {/* ── 인트로 + 워크타임 오버랩 ── */}
       <section className="max-w-5xl mx-auto px-6 py-10 md:py-14">
-        <p className="text-[#334155] text-[0.9375rem] md:text-base leading-relaxed max-w-3xl">
+        <p className="text-[#334155] text-[0.9375rem] md:text-base leading-relaxed max-w-3xl mb-8">
           {guide.intro[lang]}
         </p>
+        <WorkOverlap timeZone={guide.timeZone} cityName={guide.name[lang]} lang={lang} />
       </section>
 
       {/* ── 일하기 좋은 동네 ── */}
