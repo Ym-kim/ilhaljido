@@ -115,6 +115,18 @@ const EN: Record<string, Overlay> = {
     desc: 'Serviced apartments with kitchenettes, built for long stays. Walk to Maya Mall and One Nimman.',
     cta: 'See rooms', badge: 'Long stay',
   },
+  'stay-lyf-sukhumvit-bangkok': {
+    productTitle: 'lyf Sukhumvit 8 Bangkok',
+    destination: 'Bangkok · Thailand',
+    desc: 'Co-living 3 min from Nana BTS. Coworking space, kitchenettes and a rooftop — built for nomads.',
+    cta: 'See rooms', badge: 'Co-living',
+  },
+  'stay-citizenm-taipei': {
+    productTitle: 'citizenM Taipei North Gate',
+    destination: 'Taipei · Taiwan',
+    desc: 'Smart hotel a walk from Ximending. Location rated 9.3, 24/7 lounge for late-night work.',
+    cta: 'See rooms', badge: 'Smart hotel',
+  },
   'act-tokyo-disney': {
     productTitle: 'Tokyo Disneyland · DisneySea ticket',
     destination: 'Tokyo · Japan',
@@ -405,6 +417,18 @@ const JP: Record<string, Overlay> = {
     destination: '済州 城山 · 韓国',
     desc: '寝室とワークデスクを分けた客室、ワーケーション専用パッケージも。城山日出峰近く。',
     cta: '客室を見る', badge: 'ワーケーション特化',
+  },
+  'stay-lyf-sukhumvit-bangkok': {
+    productTitle: 'lyf スクンビット8 バンコク',
+    destination: 'バンコク · タイ',
+    desc: 'ナナ駅徒歩3分のコリビング。コワーキング・簡易キッチン・ルーフトップ完備。',
+    cta: '客室を見る', badge: 'コリビング',
+  },
+  'stay-citizenm-taipei': {
+    productTitle: 'シチズンM 台北ノースゲート',
+    destination: '台北 · 台湾',
+    desc: '西門町徒歩圏のスマートホテル。立地評価9.3、24時間ラウンジで夜作業も。',
+    cta: '客室を見る', badge: 'スマートホテル',
   },
   'stay-kantary-chiangmai': {
     productTitle: 'カンタリーヒルズ・チェンマイ',

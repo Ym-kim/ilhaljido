@@ -542,6 +542,66 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
     ],
   },
+
+  // ── 일본 소도시 (2026-07-15 테마 신설) — Booking 검색 패턴만 사용(검증된 안전 패턴)
+  // 사진: 가와구치코=검증 풀 후지산 / 가나자와=1493780474015 육안 검증(전통 찻집거리) /
+  //       유후인=적합 사진 미확보 → gradient 폴백 (추측 배정 금지 원칙)
+  {
+    id: 'japan-kawaguchiko',
+    photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
+    flag: '🗻',
+    city: '가와구치코',
+    cityEn: 'Kawaguchiko',
+    country: '일본',
+    gradient: 'from-indigo-900/25 to-[#1a1a1a]',
+    tags: ['후지산 뷰', '조용한 몰입'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Fujikawaguchiko',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'japan-kanazawa',
+    photo: 'https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?auto=format&fit=crop&w=700&q=80',
+    flag: '🏮',
+    city: '가나자와',
+    cityEn: 'Kanazawa',
+    country: '일본',
+    gradient: 'from-amber-900/25 to-[#1a1a1a]',
+    tags: ['전통 거리', '미식 도시'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Kanazawa',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'japan-yufuin',
+    flag: '♨️',
+    city: '유후인',
+    cityEn: 'Yufuin',
+    country: '일본',
+    gradient: 'from-emerald-900/25 to-[#1a1a1a]',
+    tags: ['온천 마을', '조용한 몰입'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Yufuin',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
   {
     id: 'indonesia-ubud',
     photo: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80',

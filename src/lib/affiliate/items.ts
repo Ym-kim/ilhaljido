@@ -287,8 +287,9 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       vietnam: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Vietnam',
     },
     priority: 1,
-    showOn: ['market'],
-    sourceNote: 'affiliate tracking active — aid=7854081',
+    // 시장조사단은 프로그램으로 취급 — 숙소 제휴 연동 제외 (2026-07-15 운영자 지시, showOn에서 market 제거)
+    showOn: [],
+    sourceNote: 'affiliate tracking active — aid=7854081 (market 노출 중단)',
   },
 
   // ──────────────────────────────────────────────────────────────────────────

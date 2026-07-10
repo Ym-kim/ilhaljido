@@ -115,13 +115,12 @@ export default function MarketPage() {
                   <p className="text-white/40 text-xs mb-1">{u.region}</p>
                   <h3 className="text-white font-black mb-2">{u.name}</h3>
                   <p className="text-white/30 text-xs mb-4">{u.target}</p>
+                  {/* 시장조사단은 Wakation 프로그램 — 숙소 제휴 연동 대신 사전 신청 동선 (2026-07-15 지시) */}
                   <a
-                    href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(u.stayQuery)}`}
-                    target="_blank"
-                    rel="sponsored noopener noreferrer"
+                    href="mailto:wakation.sf@gmail.com?subject=Market%20research%20pre-register"
                     className="inline-flex items-center gap-1.5 bg-orange-500/15 text-orange-300 border border-orange-500/30 px-3.5 py-1.5 rounded-full text-xs font-bold hover:bg-orange-500/25 hover:text-orange-200 transition-all"
                   >
-                    {tr('h3_bar_stay')}
+                    {tr('market_preregister_btn')}
                   </a>
                 </div>
               </div>

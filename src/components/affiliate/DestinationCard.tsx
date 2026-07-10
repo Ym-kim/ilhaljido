@@ -9,17 +9,11 @@ import { trackAffiliateClick } from '@/lib/track'
 // approved_needs_link/needs_referral_link/approved_needs_course_links → 회색 outline, 링크 대기
 // placeholder/manual_link/pending_approval → 연회색 외부 링크
 
-function ServiceButton({ link }: { link: ServiceLink }) {
+// 단일 CTA — 파트너별 버튼 분리 대신 대표 파트너 1개로 통일 (2026-07-15 운영자 지시)
+// 우선순위: 활성 파트너 중 Trip.com(국내 MAU 1위) → 활성 아무거나 → 첫 링크
+function PrimaryButton({ link }: { link: ServiceLink }) {
   const isActive = link.status === 'active_affiliate' || link.status === 'api_ready'
-  const isPending = [
-    'approved_needs_link',
-    'approved_needs_course_links',
-    'needs_referral_link',
-  ].includes(link.status)
-
-  const rel = isActive
-    ? 'sponsored noopener noreferrer'
-    : 'noopener noreferrer'
+  const rel = isActive ? 'sponsored noopener noreferrer' : 'noopener noreferrer'
 
   return (
     <a
@@ -27,19 +21,25 @@ function ServiceButton({ link }: { link: ServiceLink }) {
       target="_blank"
       rel={rel}
       onClick={() => trackAffiliateClick({ provider: link.provider, status: link.status })}
-      className={`inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3.5 py-2 rounded-full transition-all duration-150 ${
+      className={`flex w-full items-center justify-center gap-1.5 text-[0.8125rem] font-bold px-4 py-2.5 rounded-xl transition-all duration-150 ${
         isActive
           ? 'bg-brand-mid text-white shadow-sm hover:bg-brand-light hover:shadow-md'
-          : isPending
-          ? 'border border-[#e2e8f0] text-[#94a3b8] hover:border-[#cbd5e1] hover:text-[#64748b]'
           : 'border border-[#e2e8f0] text-[#94a3b8] hover:border-[#cbd5e1] hover:text-[#64748b]'
       }`}
     >
-      {link.provider}
-      {isPending && <Clock className="w-2.5 h-2.5 opacity-60" />}
-      {isActive && <ArrowUpRight className="w-3 h-3" />}
+      {link.label}
+      <span className={`text-[0.6875rem] font-semibold ${isActive ? 'text-white/70' : 'text-[#cbd5e1]'}`}>
+        · {link.provider}
+      </span>
+      {isActive ? <ArrowUpRight className="w-3.5 h-3.5" /> : <Clock className="w-3 h-3 opacity-60" />}
     </a>
   )
+}
+
+function pickPrimaryLink(links: ServiceLink[]): ServiceLink | null {
+  if (links.length === 0) return null
+  const actives = links.filter((l) => l.status === 'active_affiliate' || l.status === 'api_ready')
+  return actives.find((l) => l.provider === 'Trip.com') ?? actives[0] ?? links[0]
 }
 
 interface DestinationCardProps {
@@ -51,11 +51,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
   const hasActive = entry.links.some(
     (l) => l.status === 'active_affiliate' || l.status === 'api_ready'
   )
-  // Trip.com 우선 노출 — 2026 국내 여행앱 데이터 근거(모바일인덱스 2026.3: 트립닷컴 MAU 257만 >
-  // 아고다 202만, 부킹 앱 순위권 밖 / 트립 YoY +55% 급성장). 친숙한 UI로 랜딩 = 전환율 유리
-  const sortedLinks = [...entry.links].sort(
-    (a, b) => (b.provider === 'Trip.com' ? 1 : 0) - (a.provider === 'Trip.com' ? 1 : 0)
-  )
+  const primary = pickPrimaryLink(entry.links)
 
   return (
     <div
@@ -104,11 +100,9 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
         </div>
       </div>
 
-      {/* Service links */}
-      <div className="flex flex-wrap gap-1.5 p-4">
-        {sortedLinks.map((link) => (
-          <ServiceButton key={`${entry.id}-${link.provider}`} link={link} />
-        ))}
+      {/* 대표 파트너 단일 CTA */}
+      <div className="p-4">
+        {primary && <PrimaryButton link={primary} />}
       </div>
     </div>
   )
