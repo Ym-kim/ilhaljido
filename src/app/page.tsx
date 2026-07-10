@@ -16,6 +16,12 @@ import { MomentRail } from '@/components/home/MomentRail'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
+import { GrowthEngines } from '@/components/home/GrowthEngines'
+import { LearningSection } from '@/components/home/LearningSection'
+import { ToolsSection } from '@/components/home/ToolsSection'
+import { MediaSection } from '@/components/home/MediaSection'
+import { SponsorSection } from '@/components/home/SponsorSection'
+import { YangyangProof } from '@/components/home/YangyangProof'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -407,6 +413,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── 양양 1기 완료 증거 — 실운영 신뢰 + 리드 수집 ── */}
+      <YangyangProof />
+
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
       <SupportPromoBanner />
 
@@ -451,6 +460,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── 6대 성장 엔진 — Hosted·Select·Learning·Tools·Media·Sponsor ── */}
+      <GrowthEngines />
+
+      {/* ── Wakation Learning — VOD·현장 실습·사후 학습 ── */}
+      <LearningSection />
+
+      {/* ── Wakation Tools — 참가자 진단·리포트 (Beta 준비 중) ── */}
+      <ToolsSection />
 
       {/* ── 테마별 워케이션 ── */}
       <section className="bg-white py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">
@@ -509,6 +527,12 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* ── Wakation Media — 콘텐츠 축 (준비 중 표기) ── */}
+      <MediaSection />
+
+      {/* ── Wakation Experience Partner — 체험형 스폰서십 ── */}
+      <SponsorSection />
 
       {/* ── 공간 인프라 ── */}
       <section className="dark-surface py-20 md:py-28 px-6 bg-[#111]">

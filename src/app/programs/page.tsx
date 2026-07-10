@@ -10,6 +10,14 @@ import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
+import type { Lang } from '@/lib/i18n/types'
+
+// 성장형 프로그램 방향성 — 로드맵 (Hosted + Learning + Tools 결합)
+const DIRECTION_NOTE: Record<Lang, string> = {
+  KO: '앞으로 Wakation 프로그램은 숙소·업무공간·네트워킹에 더해 VOD 사전학습, 현장 실습, 참가자용 웹프로그램을 결합한 성장형 프로그램으로 확장됩니다.',
+  EN: 'Wakation programs are expanding into growth programs that combine stays, workspaces and networking with pre-trip VOD learning, on-site practice, and participant web tools.',
+  JP: '今後のWakationプログラムは、宿泊・ワークスペース・ネットワーキングに加え、事前VOD学習・現地実習・参加者用Webツールを組み合わせた成長型プログラムへ拡張されます。',
+}
 
 const STATUS_ICON = {
   recruiting: Handshake,
@@ -84,6 +92,11 @@ export default function ProgramsPage() {
               </Link>
             ))}
           </div>
+
+          {/* 성장형 프로그램 방향성 */}
+          <p className="mt-10 max-w-3xl mx-auto text-center text-[#64748b] text-sm leading-relaxed bg-[#f0f9ff] border border-[#dbeafe] rounded-2xl px-6 py-5">
+            {DIRECTION_NOTE[lang]}
+          </p>
         </div>
       </section>
 

@@ -43,6 +43,13 @@ export function programPhoto(p: Pick<Program, 'id' | 'image_url'>): string | nul
   return null
 }
 
+// 운영자 보류 회차 (2026-07-11 지시) — 일정 확정 시 여기서 제거하면 모집 캘린더에 재노출
+export const HELD_PROGRAM_IDS = new Set<string>([
+  '59f91d96-0cae-4ced-8cc3-622b7692f70a', // 1인 기업가 네트워킹 캠프 — 춘천 7/23
+  'f4031123-0db9-4c4e-9253-982992ae1006', // 일본 시장조사 + 소도시 워케이션 — 오사카 8/18
+  '684a3f59-1957-4d61-a510-150851d40e27', // 디자인 & 브랜딩 집중 캠프 — 통영 8/27
+])
+
 /** date_start까지 남은 일수 (지났으면 null) */
 export function daysUntilStart(p: Pick<Program, 'date_start'>): number | null {
   const diff = new Date(`${p.date_start}T00:00:00+09:00`).getTime() - Date.now()

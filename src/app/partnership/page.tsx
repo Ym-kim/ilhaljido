@@ -15,6 +15,8 @@ import { getPartnerTypes } from '@/lib/i18n'
 
 import { ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 
+import { ExperiencePartner } from '@/components/partnership/ExperiencePartner'
+
 
 
 export default function PartnershipPage() {
@@ -130,6 +132,9 @@ export default function PartnershipPage() {
       </section>
 
 
+
+      {/* 체험형 스폰서십 — Experience Partner */}
+      <ExperiencePartner />
 
       <section className="dark-surface py-24 px-6 bg-gray-900">
 
