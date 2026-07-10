@@ -676,6 +676,24 @@ const KO: Record<string, string> = {
   nav_select_learn: '강의·학습',
   nav_select_all: '전체 보기',
 
+  // ── 지원사업 프로모 배너 ──
+  home_gov_eyebrow: '정부·지자체 지원',
+  home_gov_title: '지원사업으로 떠나는 국내 워케이션',
+  home_gov_sub: '숙박·오피스 비용을 지원하는 지자체 프로그램을 한곳에 모았습니다. 어촌마을·울산·인천은 지금도 신청할 수 있어요.',
+  home_gov_chip1: '상시·연중 모집 6곳',
+  home_gov_chip2: '최대 29박 지원',
+  home_gov_chip3: '전국 9개 지역',
+  home_gov_cta: '지원사업 모아보기',
+
+  // ── 모집 캘린더 (DB 프로그램) ──
+  prog_cohort_eyebrow: '모집 캘린더',
+  prog_cohort_title: '일정이 확정된 프로그램',
+  prog_cohort_sub: '날짜·장소가 확정된 회차입니다. 카드를 눌러 상세 일정과 포함 사항을 확인하세요.',
+  prog_card_max: '최대 {n}명 소규모',
+  prog_card_left: '잔여 {n}석',
+  prog_card_preorder: '사전예약 접수중',
+  prog_card_closed: '모집 종료',
+
   // ── 인증 (login/signup) ──
   auth_login_title: '로그인',
   auth_login_sub: '이메일과 비밀번호로 로그인하세요.',
@@ -1405,6 +1423,24 @@ const EN: Record<string, string> = {
   nav_select_learn: 'Courses',
   nav_select_all: 'View all',
 
+  // ── Gov support promo banner ──
+  home_gov_eyebrow: 'Public support',
+  home_gov_title: 'Workation in Korea, backed by public programs',
+  home_gov_sub: 'Regional programs that subsidize stays and workspaces, gathered in one place. Fishing villages, Ulsan and Incheon accept applications right now.',
+  home_gov_chip1: '6 rolling programs',
+  home_gov_chip2: 'Up to 29 nights supported',
+  home_gov_chip3: '9 regions nationwide',
+  home_gov_cta: 'Browse support programs',
+
+  // ── Cohort calendar (DB programs) ──
+  prog_cohort_eyebrow: 'Cohort calendar',
+  prog_cohort_title: 'Programs with confirmed dates',
+  prog_cohort_sub: 'Cohorts with fixed dates and locations. Open a card for the full schedule and inclusions.',
+  prog_card_max: 'Max {n} people',
+  prog_card_left: '{n} seats left',
+  prog_card_preorder: 'Pre-registration open',
+  prog_card_closed: 'Closed',
+
   // ── Auth (login/signup) ──
   auth_login_title: 'Log in',
   auth_login_sub: 'Log in with your email and password.',
@@ -2133,6 +2169,24 @@ const JP: Record<string, string> = {
   nav_select_esim: 'eSIM',
   nav_select_learn: '講座・学習',
   nav_select_all: 'すべて見る',
+
+  // ── 支援事業プロモバナー ──
+  home_gov_eyebrow: '政府・自治体支援',
+  home_gov_title: '支援事業で行く韓国国内ワーケーション',
+  home_gov_sub: '宿泊・オフィス費用を支援する自治体プログラムを一カ所に。漁村・蔚山・仁川は今も申請できます。',
+  home_gov_chip1: '随時・通年募集 6件',
+  home_gov_chip2: '最大29泊支援',
+  home_gov_chip3: '全国9地域',
+  home_gov_cta: '支援事業を見る',
+
+  // ── 募集カレンダー (DBプログラム) ──
+  prog_cohort_eyebrow: '募集カレンダー',
+  prog_cohort_title: '日程確定プログラム',
+  prog_cohort_sub: '日程・場所が確定した回です。カードから詳細と含まれる内容をご確認ください。',
+  prog_card_max: '最大{n}名の少人数',
+  prog_card_left: '残り{n}席',
+  prog_card_preorder: '事前予約受付中',
+  prog_card_closed: '募集終了',
 
   // ── 認証 (login/signup) ──
   auth_login_title: 'ログイン',
