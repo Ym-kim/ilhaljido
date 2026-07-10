@@ -114,7 +114,7 @@ export default function VisaAiPage() {
   return (
     <div className="min-h-screen bg-[#0f0f0f] dark-surface">
       <section className="pt-28 pb-16 px-6 text-center">
-        <div className="inline-flex items-center gap-2 bg-teal-500/10 border border-teal-500/30 text-teal-400 text-xs font-bold px-4 py-2 rounded-full mb-6">
+        <div className="inline-flex items-center gap-2 bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-bold px-4 py-2 rounded-full mb-6">
           {tr('visa_badge')}
         </div>
         <h1 className="text-5xl md:text-7xl font-black text-white mb-5">{tr('visa_title')}</h1>
@@ -133,7 +133,7 @@ export default function VisaAiPage() {
                 <div key={key} className="flex items-center gap-2">
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black transition-all ${
-                      isDone ? 'bg-teal-500 text-white' : isActive ? 'bg-white text-gray-900' : 'bg-white/10 text-gray-500'
+                      isDone ? 'bg-brand-mid text-white' : isActive ? 'bg-white text-gray-900' : 'bg-white/10 text-gray-500'
                     }`}
                   >
                     {isDone ? '✓' : s}
@@ -158,7 +158,7 @@ export default function VisaAiPage() {
                     key={c.value}
                     type="button"
                     onClick={() => selectCountry(c.value)}
-                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-teal-500/20 hover:border-teal-500/50 transition-all hover:-translate-y-0.5"
+                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5"
                   >
                     {c.label[lang]}
                   </button>
@@ -169,7 +169,7 @@ export default function VisaAiPage() {
 
           {step === 2 && (
             <div>
-              <p className="text-teal-400 text-sm text-center mb-2">{selectionSummary}</p>
+              <p className="text-sky-400 text-sm text-center mb-2">{selectionSummary}</p>
               <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">
                 {tr('visa_pick_purpose')}
               </SectionTitle>
@@ -179,7 +179,7 @@ export default function VisaAiPage() {
                     key={p.value}
                     type="button"
                     onClick={() => selectPurpose(p.value)}
-                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-teal-500/20 hover:border-teal-500/50 transition-all hover:-translate-y-0.5"
+                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5"
                   >
                     {p.label[lang]}
                   </button>
@@ -197,7 +197,7 @@ export default function VisaAiPage() {
 
           {step === 3 && (
             <div>
-              <p className="text-teal-400 text-sm text-center mb-2">{selectionSummary}</p>
+              <p className="text-sky-400 text-sm text-center mb-2">{selectionSummary}</p>
               <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">
                 {tr('visa_pick_duration')}
               </SectionTitle>
@@ -207,7 +207,7 @@ export default function VisaAiPage() {
                     key={d.value}
                     type="button"
                     onClick={() => selectDuration(d.value)}
-                    className="bg-white/10 border border-white/20 text-white font-bold py-6 rounded-2xl hover:bg-teal-500/20 hover:border-teal-500/50 transition-all hover:-translate-y-0.5 text-lg"
+                    className="bg-white/10 border border-white/20 text-white font-bold py-6 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5 text-lg"
                   >
                     {d.label[lang]}
                   </button>
@@ -227,7 +227,7 @@ export default function VisaAiPage() {
             <div>
               {loading && (
                 <div className="text-center py-16">
-                  <div className="w-16 h-16 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+                  <div className="w-16 h-16 border-4 border-brand-mid border-t-transparent rounded-full animate-spin mx-auto mb-6" />
                   <p className="text-white font-bold text-lg">{tr('visa_analyzing')}</p>
                   <p className="text-caption-on-dark text-sm mt-2">{selectionSummary}</p>
                 </div>
@@ -236,7 +236,7 @@ export default function VisaAiPage() {
               {showResult && result && (
                 <div>
                   <div className="text-center mb-8">
-                    <p className="text-teal-400 text-sm mb-2">{selectionSummary}</p>
+                    <p className="text-sky-400 text-sm mb-2">{selectionSummary}</p>
                     <SectionTitle onDark className="text-center text-2xl">
                       {tr('visa_result_for')}
                     </SectionTitle>
@@ -244,16 +244,16 @@ export default function VisaAiPage() {
 
                   {/* 비로그인 — 실시간 AI 유도 배너 */}
                   {!user && (
-                    <div className="mb-5 bg-gradient-to-r from-teal-500/12 to-sky-500/8 border border-teal-500/30 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="mb-5 bg-gradient-to-r from-sky-500/12 to-blue-500/8 border border-sky-500/30 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
-                        <p className="text-teal-300 font-bold text-sm mb-1 flex items-center gap-1.5">
+                        <p className="text-sky-300 font-bold text-sm mb-1 flex items-center gap-1.5">
                           <Sparkles className="w-4 h-4" /> {tr('visa_login_banner_t')}
                         </p>
                         <p className="text-white/55 text-xs leading-relaxed">{tr('visa_login_banner_d')}</p>
                       </div>
                       <Link
                         href="/login"
-                        className="shrink-0 inline-flex items-center gap-1.5 bg-teal-500 text-white font-bold text-xs px-4 py-2.5 rounded-full hover:bg-teal-400 transition-all"
+                        className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid text-white font-bold text-xs px-4 py-2.5 rounded-full hover:bg-sky-500 transition-all"
                       >
                         <LogIn className="w-3.5 h-3.5" /> {tr('visa_login_btn')}
                       </Link>
@@ -269,9 +269,9 @@ export default function VisaAiPage() {
 
                   {/* 실시간 AI 분석 결과 (로그인 · 베타) */}
                   {aiResult && (
-                    <div className="mb-5 bg-[#0d1f1c] border border-teal-500/35 rounded-2xl p-6 relative overflow-hidden">
-                      <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
-                      <p className="text-teal-300 text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-1.5">
+                    <div className="mb-5 bg-[#0a1e33] border border-sky-500/35 rounded-2xl p-6 relative overflow-hidden">
+                      <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-sky-400/50 to-transparent" />
+                      <p className="text-sky-300 text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5" /> {tr('visa_live_badge')}
                       </p>
                       <div className="text-white/85 text-sm leading-relaxed whitespace-pre-wrap">{aiResult}</div>
@@ -281,22 +281,22 @@ export default function VisaAiPage() {
                   <div className="space-y-4">
                     {!aiResult && (
                     <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6">
-                      <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_type')}</p>
+                      <p className="text-sky-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_type')}</p>
                       <p className="text-white font-bold">{result.visaType}</p>
                     </div>
                     )}
                     {!aiResult && (
                     <div className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-6">
-                      <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_req')}</p>
+                      <p className="text-sky-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_req')}</p>
                       <p className="text-white/75 text-sm leading-relaxed">{result.requirement}</p>
                     </div>
                     )}
-                    <div className="bg-[#1a1a1a] border border-teal-500/30 rounded-2xl p-6">
-                      <p className="text-teal-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_prog')}</p>
+                    <div className="bg-[#1a1a1a] border border-sky-500/30 rounded-2xl p-6">
+                      <p className="text-sky-400 text-xs font-bold tracking-widest uppercase mb-2">{tr('visa_label_prog')}</p>
                       <p className="text-white font-bold mb-3">{result.program}</p>
                       <Link
                         href="/programs"
-                        className="inline-flex items-center gap-1 text-teal-400 text-sm font-semibold hover:gap-2 transition-all"
+                        className="inline-flex items-center gap-1 text-sky-400 text-sm font-semibold hover:gap-2 transition-all"
                       >
                         {tr('nav_cta')} <ArrowRight className="w-3.5 h-3.5" />
                       </Link>

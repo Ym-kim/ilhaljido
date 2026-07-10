@@ -76,7 +76,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       korea:    'https://www.booking.com/searchresults.html?aid=7854081&ss=South+Korea',
     },
     priority: 1,
-    showOn: ['global', 'select', 'programs'],
+    showOn: ['global', 'select', 'programs', 'learn'],
     sourceNote: 'affiliate tracking active — aid=7854081',
   },
 
@@ -103,7 +103,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       portugal: 'https://kr.trip.com/hotels/portugal-hotels/?Allianceid=9024807',
     },
     priority: 3,
-    showOn: ['global', 'select'],
+    showOn: ['global', 'select', 'esim'],
     sourceNote: 'affiliate tracking active — Allianceid=9024807',
   },
 
@@ -130,7 +130,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
       vietnam: '',
     },
     priority: 2,
-    showOn: ['global', 'market', 'select', 'programs'],
+    showOn: ['global', 'market', 'select', 'programs', 'esim', 'learn'],
     sourceNote: 'KKpartners cid=25833 tracking active (2026-07-09)',
   },
 
@@ -292,6 +292,45 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   },
 
   // ──────────────────────────────────────────────────────────────────────────
+  // 국내 워케이션 컨텍스트 — /programs/domestic 하단 (showOn: domestic)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'hotel-booking-domestic',
+    coverPhoto: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80',
+    name: 'Booking.com',
+    category: 'hotel',
+    productType: 'stay',
+    status: 'active_affiliate',
+    emoji: '🏖',
+    desc: '양양·강릉·제주 등 프로그램 일정 전후로 머물 국내 숙소를 검색해보세요.',
+    cta: '국내 숙소 검색',
+    href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=South+Korea',
+    badge: '국내 숙소',
+    trackingId: 'aid=7854081',
+    priority: 1,
+    showOn: ['domestic'],
+    sourceNote: 'affiliate tracking active — aid=7854081 (기존 검증된 searchresults 패턴)',
+  },
+
+  {
+    id: 'activity-kkday-domestic',
+    coverPhoto: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
+    name: 'KKday',
+    category: 'activity',
+    productType: 'activity',
+    status: 'active_affiliate',
+    emoji: '🇰🇷',
+    desc: '강원·부산·제주 로컬 투어와 입장권. 워케이션 저녁·주말을 채울 국내 체험 상품.',
+    cta: '국내 체험 보기',
+    href: 'https://www.kkday.com/ko/destination/kr-south-korea?cid=25833',
+    badge: '국내 체험',
+    trackingId: 'cid=25833',
+    priority: 2,
+    showOn: ['domestic'],
+    sourceNote: 'KKpartners cid=25833 tracking active — 한국 목적지 페이지 WebFetch 실물검증 (2026-07-11)',
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
   // 홈 피처드 — 목적지별 추천 상품 (showOn: home)
   // ──────────────────────────────────────────────────────────────────────────
 
@@ -450,7 +489,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     trackingId: 'Allianceid=9024807',
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     priority: 4,
-    showOn: ['home', 'select', 'global', 'visa', 'programs'],
+    showOn: ['home', 'select', 'global', 'visa', 'programs', 'esim', 'learn'],
     sourceNote: 'affiliate tracking active — Allianceid=9024807 (flights 랜딩 실물 검증 2026-07-09)',
   },
 

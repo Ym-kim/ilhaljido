@@ -24,6 +24,9 @@ import {
   getSampleSchedule,
   translatePriceInclude,
 } from '@/lib/i18n'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import type { Program } from '@/types/database'
 
 const INCLUDES_ICONS: Record<string, React.ReactNode> = {
@@ -195,6 +198,15 @@ export function ProgramDetailClient({ program }: { program: Program }) {
           </div>
         </div>
       </div>
+
+      {/* 떠나기 전, 준비하기 — 크로스셀 */}
+      <AffiliateSection
+        tone="light"
+        title={tr('prep_title')}
+        subtitle={tr('prep_sub')}
+        items={PROGRAMS_LEARN_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+        cols={2}
+      />
     </main>
   )
 }

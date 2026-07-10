@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getMarketFeatures, getMarketUnits } from '@/lib/i18n'
+import { loc, tloc } from '@/lib/i18n/locale'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { MARKET_PREP_ITEMS } from '@/lib/affiliate/links'
@@ -16,26 +17,38 @@ const FEAT_ICONS = { field: Globe, network: Users, connect: TrendingUp, fair: Bu
 const SELECT_MARKET_PRODUCTS = [
   {
     id: 'fair-japan',
-    category: '박람회·전시',
-    region: '일본 · 도쿄',
-    name: '도쿄 유통·박람회 동반 리서치',
-    desc: '일본 주요 전시회 현장 탐방과 바이어 미팅을 연결하는 시장조사 프로그램.',
+    category: loc('박람회·전시', 'Trade fairs', '展示会'),
+    region: loc('일본 · 도쿄', 'Japan · Tokyo', '日本・東京'),
+    name: loc('도쿄 유통·박람회 동반 리서치', 'Tokyo retail & trade fair research', '東京 流通・展示会同行リサーチ'),
+    desc: loc(
+      '일본 주요 전시회 현장 탐방과 바이어 미팅을 연결하는 시장조사 프로그램.',
+      'Field visits to major Japanese trade shows, connected with buyer meetings.',
+      '日本の主要展示会の視察とバイヤーミーティングをつなぐ市場調査プログラム。',
+    ),
     img: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=600&q=70',
   },
   {
     id: 'survey-vietnam',
-    category: '현장 리서치',
-    region: '베트남 · 하노이/호치민',
-    name: '베트남 소비자 현장 리서치',
-    desc: '베트남 현지 소비자 트렌드와 유통 채널을 직접 조사하는 파트너 프로그램.',
+    category: loc('현장 리서치', 'Field research', '現地リサーチ'),
+    region: loc('베트남 · 하노이/호치민', 'Vietnam · Hanoi/HCMC', 'ベトナム・ハノイ/ホーチミン'),
+    name: loc('베트남 소비자 현장 리서치', 'Vietnam consumer field research', 'ベトナム消費者現地リサーチ'),
+    desc: loc(
+      '베트남 현지 소비자 트렌드와 유통 채널을 직접 조사하는 파트너 프로그램.',
+      'A partner program for first-hand research on Vietnamese consumer trends and retail channels.',
+      'ベトナムの消費トレンドと流通チャネルを現地で調査するパートナープログラム。',
+    ),
     img: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=600&q=70',
   },
   {
     id: 'meetup-us',
-    category: '네트워킹',
-    region: '미국 · LA/SF',
-    name: '미국 K-콘텐츠·뷰티 네트워킹',
-    desc: 'LA·SF의 K-뷰티, K-콘텐츠 관련 현지 바이어·에이전시와의 네트워킹 세션.',
+    category: loc('네트워킹', 'Networking', 'ネットワーキング'),
+    region: loc('미국 · LA/SF', 'USA · LA/SF', 'アメリカ・LA/SF'),
+    name: loc('미국 K-콘텐츠·뷰티 네트워킹', 'US K-content & K-beauty networking', '米国 K-コンテンツ・ビューティー ネットワーキング'),
+    desc: loc(
+      'LA·SF의 K-뷰티, K-콘텐츠 관련 현지 바이어·에이전시와의 네트워킹 세션.',
+      'Networking sessions with LA/SF buyers and agencies in K-beauty and K-content.',
+      'LA・SFのK-ビューティー、K-コンテンツ関連バイヤー・エージェンシーとのネットワーキング。',
+    ),
     img: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=600&q=70',
   },
 ]
@@ -123,50 +136,50 @@ export default function MarketPage() {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
             <div>
               <p className="text-blue-400 text-xs font-black tracking-widest uppercase mb-2">WAKATION SELECT</p>
-              <h2 className="text-2xl font-black text-white">파트너 시장조사 프로그램</h2>
-              <p className="text-white/40 text-sm mt-1">검증된 파트너의 해외 리서치·박람회·네트워킹 상품을 연결합니다</p>
+              <h2 className="text-2xl font-black text-white">{tr('market_select_title')}</h2>
+              <p className="text-white/40 text-sm mt-1">{tr('market_select_sub')}</p>
             </div>
             <span className="shrink-0 bg-blue-500/10 text-blue-400 text-xs px-4 py-2 rounded-full border border-blue-500/20 self-start sm:self-auto">
-              2026년 하반기 순차 오픈
+              {tr('market_select_badge')}
             </span>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {SELECT_MARKET_PRODUCTS.map((p) => (
               <div key={p.id} className="bg-[#1a1a1a] border border-white/8 rounded-3xl overflow-hidden">
                 <div className="relative h-44 overflow-hidden">
-                  <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
+                  <Image src={p.img} alt={tloc(lang, p.name)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover opacity-50" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="bg-blue-500/70 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">{p.category}</span>
-                    <span className="bg-white/15 text-white/70 text-xs px-2 py-1 rounded-full backdrop-blur-sm">준비중</span>
+                    <span className="bg-blue-500/70 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">{tloc(lang, p.category)}</span>
+                    <span className="bg-white/15 text-white/70 text-xs px-2 py-1 rounded-full backdrop-blur-sm">{tr('market_select_wip')}</span>
                   </div>
                 </div>
                 <div className="p-5">
                   <p className="text-white/40 text-xs mb-1 flex items-center gap-1">
-                    <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} /> {p.region}
+                    <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} /> {tloc(lang, p.region)}
                   </p>
-                  <h3 className="text-white font-black mb-2 text-sm leading-snug">{p.name}</h3>
-                  <p className="text-white/45 text-xs leading-relaxed mb-4">{p.desc}</p>
+                  <h3 className="text-white font-black mb-2 text-sm leading-snug">{tloc(lang, p.name)}</h3>
+                  <p className="text-white/45 text-xs leading-relaxed mb-4">{tloc(lang, p.desc)}</p>
                   <a
-                    href="mailto:wakation.sf@gmail.com?subject=Select%20시장조사%20프로그램%20제휴%20문의"
+                    href="mailto:wakation.sf@gmail.com?subject=Select%20Market%20Research%20Partnership"
                     className="w-full flex items-center justify-center gap-2 bg-white/6 text-white/50 font-bold py-2.5 rounded-xl border border-white/10 text-xs hover:bg-white/12 hover:text-white/80 transition-all"
                   >
-                    제휴 문의 <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                    {tr('market_select_cta')} <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                   </a>
                 </div>
               </div>
             ))}
           </div>
           <p className="text-center text-white/25 text-xs mt-8">
-            파트너 프로그램 입점 문의: <a href="mailto:wakation.sf@gmail.com" className="underline hover:text-white/50 transition-colors">wakation.sf@gmail.com</a>
+            {tr('market_select_contact')} <a href="mailto:wakation.sf@gmail.com" className="underline hover:text-white/50 transition-colors">wakation.sf@gmail.com</a>
           </p>
         </div>
       </section>
 
       {/* 현지 체험·이동 준비 */}
       <AffiliateSection
-        title="현지 체험·이동 준비를 한번에"
-        subtitle="시장조사단 출국 전, 현지 투어 예약부터 숙소·eSIM까지 챙겨야 할 것들을 모았습니다."
+        title={tr('market_prep_title')}
+        subtitle={tr('market_prep_sub')}
         items={MARKET_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
       />
 

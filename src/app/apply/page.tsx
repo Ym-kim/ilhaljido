@@ -15,7 +15,6 @@ import {
   getWorkStyleOptions,
   getDurationOptions,
   getBudgetOptions,
-  getYangyangDateOptions,
   getCompanionOptions,
 } from '@/lib/i18n'
 
@@ -23,7 +22,6 @@ function ApplyForm() {
   const { lang, tr } = useLang()
   const searchParams = useSearchParams()
   const programParam = searchParams.get('program') ?? ''
-  const isYangyang = programParam.toLowerCase().includes('yangyang')
 
   const programOptions = useMemo(() => getApplyProgramOptions(lang), [lang])
   const jobOptions = useMemo(() => getJobTypeOptions(lang), [lang])
@@ -32,7 +30,6 @@ function ApplyForm() {
   const workStyles = useMemo(() => getWorkStyleOptions(lang), [lang])
   const durations = useMemo(() => getDurationOptions(lang), [lang])
   const budgets = useMemo(() => getBudgetOptions(lang), [lang])
-  const yangyangDates = useMemo(() => getYangyangDateOptions(lang), [lang])
   const companionOptions = useMemo(() => getCompanionOptions(lang), [lang])
   const soloCompanionLabel = companionOptions[0] ?? ''
 
@@ -47,7 +44,6 @@ function ApplyForm() {
     rest_preferences: [] as string[],
     duration_preference: '',
     budget_range: '',
-    date_preference: '',
     companion_count: '0',
     companion_names: '',
     message: '',
@@ -237,32 +233,6 @@ function ApplyForm() {
           ))}
         </div>
       </div>
-
-      {isYangyang && (
-        <div>
-          <label className="block text-sm font-bold text-dark mb-2">
-            {tr('apply_date_preference')} <span className="text-red-500">*</span>
-          </label>
-          <div className="space-y-2">
-            {yangyangDates.map((opt) => (
-              <label
-                key={opt}
-                className="flex items-center gap-2.5 cursor-pointer p-3 rounded-xl border border-border hover:border-brand-mid transition-colors"
-              >
-                <input
-                  type="radio"
-                  name="date_preference"
-                  value={opt}
-                  checked={form.date_preference === opt}
-                  onChange={() => setForm((f) => ({ ...f, date_preference: opt }))}
-                  className="accent-brand w-4 h-4 shrink-0"
-                />
-                <span className="text-sm text-text font-medium">{opt}</span>
-              </label>
-            ))}
-          </div>
-        </div>
-      )}
 
       <div>
         <label className="block text-sm font-bold text-dark mb-2">{tr('apply_companion')}</label>

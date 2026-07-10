@@ -7,6 +7,9 @@ import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticCurrent, getDomesticCompleted, getDomesticUpcoming, getDomesticThemedUpcoming } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
+import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { DOMESTIC_PREP_ITEMS } from '@/lib/affiliate/links'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 export default function DomesticPage() {
   const { lang, tr } = useLang()
@@ -184,6 +187,14 @@ export default function DomesticPage() {
           </div>
         </div>
       </section>
+
+      {/* 국내 워케이션 준비 — 숙소·체험 크로스셀 */}
+      <AffiliateSection
+        title={tr('domestic_prep_title')}
+        subtitle={tr('domestic_prep_sub')}
+        items={DOMESTIC_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
+        cols={2}
+      />
     </div>
   )
 }
