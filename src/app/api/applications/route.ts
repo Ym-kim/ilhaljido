@@ -131,10 +131,13 @@ export async function POST(req: NextRequest) {
     if (appError) throw appError
 
     // AI recommendation — fire-and-forget
+    // 지난 회차는 AI 추천 후보에서 제외 (DB status 미갱신 대비 날짜 필터)
+    const today = new Date().toISOString().slice(0, 10)
     const { data: programs } = await admin
       .from('programs')
       .select('id, title, category, location, date_start, date_end, price, status, tags, description')
       .in('status', ['open', 'soon'])
+      .gte('date_end', today)
 
     // AI 추천은 로그인 사용자에게만 생성 — 익명 제출發 무제한 Anthropic 호출(denial-of-wallet) 차단
     // 프롬프트엔 raw body가 아닌 길이 제한된 applicationData를 전달 (토큰 증폭 방지)

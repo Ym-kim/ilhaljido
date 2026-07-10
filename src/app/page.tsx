@@ -15,6 +15,7 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { MomentRail } from '@/components/home/MomentRail'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
+import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -405,6 +406,9 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
+      <SupportPromoBanner />
 
       {/* ── 플랫폼 카테고리 ── */}
       <section className="bg-[#f0f9ff] py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">

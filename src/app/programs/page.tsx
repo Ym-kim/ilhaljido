@@ -9,6 +9,7 @@ import { getProgramsList, getSelectCategories } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 
 const STATUS_ICON = {
   recruiting: Handshake,
@@ -18,7 +19,7 @@ const STATUS_ICON = {
 } as const
 
 const STATUS_COLOR = {
-  recruiting: 'bg-teal-50 text-teal-700 border-teal-200',
+  recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
   reviewing: 'bg-blue-50 text-blue-700 border-blue-200',
   preparing: 'bg-gray-50 text-gray-500 border-gray-200',
   inquiry: 'bg-amber-50 text-amber-700 border-amber-200',
@@ -45,6 +46,9 @@ export default function ProgramsPage() {
           </h1>
         </div>
       </section>
+
+      {/* 모집 캘린더 — 확정 일정 회차 (Supabase) */}
+      <UpcomingCohorts />
 
       {/* Wakation Hosted — 공식 프로그램 */}
       <section className="py-20 px-6">
@@ -73,7 +77,7 @@ export default function ProgramsPage() {
                 <div className="p-6 flex flex-col flex-1">
                   <h3 className="text-xl font-black text-gray-900 mb-2">{tr(p.titleKey)}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed flex-1">{tr(p.descKey)}</p>
-                  <div className="flex items-center gap-1 text-teal-600 text-sm font-semibold mt-5 group-hover:gap-2 transition-all">
+                  <div className="flex items-center gap-1 text-brand-mid text-sm font-semibold mt-5 group-hover:gap-2 transition-all">
                     {tr('learn_more')} <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -163,7 +167,7 @@ export default function ProgramsPage() {
           <p className="text-caption-on-dark mb-8">{tr('programs_cta_desc')}</p>
           <Link
             href="/visa-ai"
-            className="inline-flex items-center gap-2 bg-teal-500 text-white font-bold px-8 py-4 rounded-full hover:bg-teal-400 transition-all"
+            className="inline-flex items-center gap-2 bg-brand-mid text-white font-bold px-8 py-4 rounded-full hover:bg-sky-500 transition-all"
           >
             {tr('home_ai_cta')} <ArrowRight className="w-4 h-4" />
           </Link>
