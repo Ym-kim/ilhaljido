@@ -450,6 +450,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/taipei-hotels-list-617/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -468,6 +475,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Singapore',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        href: 'https://kr.trip.com/hotels/singapore-hotels-list-73/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
