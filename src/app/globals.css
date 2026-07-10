@@ -1,8 +1,12 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+/* 디스플레이(헤딩) 폰트 — 양양 파일럿 시절 사용하던 Noto Sans KR 복원 (2026-07-15 운영자 요청)
+   본문은 Pretendard 유지: 헤딩=Noto의 단단한 인상 + 본문=Pretendard 가독성 하이브리드 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap');
 @import "tailwindcss";
 
 @theme inline {
   --font-sans: 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', system-ui, sans-serif;
+  --font-display: 'Noto Sans KR', 'Pretendard Variable', 'Apple SD Gothic Neo', system-ui, sans-serif;
   --color-brand: #0c4a6e;
   --color-brand-dark: #082f49;
   --color-brand-mid: #0284c7;
@@ -37,11 +41,17 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  line-height: 1.22;
   font-weight: 700;
   word-break: keep-all;
   overflow-wrap: break-word;
+}
+
+/* 본문 텍스트 유형에 display 폰트가 새지 않도록 버튼·입력은 본문 폰트 유지 */
+button, input, select, textarea {
+  font-family: var(--font-sans);
 }
 
 /* Dark sections: ensure readable text even without per-element utilities */
