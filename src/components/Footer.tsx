@@ -54,6 +54,27 @@ export default function Footer() {
                   {tr('nav_contact')}
                 </Link>
               </li>
+              {/* 공식 커뮤니티 — 신뢰·리텐션 채널 */}
+              <li>
+                <a
+                  href="https://cafe.naver.com/shcafa32"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {tr('footer_cafe')}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://pf.kakao.com/_xiPxbXG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  {tr('footer_kakao')}
+                </a>
+              </li>
             </ul>
           </div>
         </div>
