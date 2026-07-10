@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowLeft, ArrowUpRight, Clock } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useHashScroll } from '@/hooks/useHashScroll'
@@ -85,12 +86,7 @@ export default function LearnSelectPage() {
                   {/* 사진 헤더 */}
                   {cat.photo && (
                     <div className="relative h-28 overflow-hidden bg-[#f0f9ff]">
-                      <img
-                        src={cat.photo}
-                        alt={cat.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        loading="lazy"
-                      />
+                      <Image src={cat.photo} alt={cat.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 to-transparent" />
                       {isPending && (
                         <span className="absolute top-2.5 right-2.5 inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-black/55 text-white/90">

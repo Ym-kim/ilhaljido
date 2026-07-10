@@ -1,5 +1,6 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
+import Image from 'next/image'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { FEATURED_CRUISES } from '@/lib/affiliate/featured'
@@ -19,7 +20,7 @@ export default function CruisePage() {
   return (
     <div className="min-h-screen bg-white">
       <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1800&q=80" alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <Image src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('cruise_badge')}</SectionEyebrow>
@@ -51,8 +52,8 @@ export default function CruisePage() {
           <div className="space-y-6">
             {routes.map((r) => (
               <div key={r.id} className="group flex flex-col md:flex-row gap-6 bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                <div className="md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
-                  <img src={r.img} alt={r.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
+                  <Image src={r.img} alt={r.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
                 <div className="p-6 flex flex-col justify-center flex-1">
                   <p className="text-gray-400 text-xs mb-1">{r.days}</p>

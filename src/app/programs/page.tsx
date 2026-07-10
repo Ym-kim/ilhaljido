@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Mail, BellRing, Handshake } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
@@ -32,12 +33,7 @@ export default function ProgramsPage() {
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[50vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
-          <img
-            src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1800&q=80"
-            alt=""
-            className="w-full h-full object-cover"
-            fetchPriority="high"
-          />
+          <Image src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
         <div className="relative w-full max-w-6xl mx-auto px-6 pb-16">
@@ -65,12 +61,7 @@ export default function ProgramsPage() {
                 className="group bg-white rounded-3xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
                 <div className="relative h-52 overflow-hidden">
-                  <img
-                    src={p.img}
-                    alt={tr(p.titleKey)}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
+                  <Image src={p.img} alt={tr(p.titleKey)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   {p.badgeKey && (
                     <div className="absolute top-4 left-4">
                       <span className="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">

@@ -1,5 +1,6 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
+import Image from 'next/image'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -17,11 +18,7 @@ export default function LanguagePage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        <img
-          src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1800&q=80"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <Image src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('lang_badge')}</SectionEyebrow>
@@ -53,8 +50,8 @@ export default function LanguagePage() {
           <div className="grid md:grid-cols-2 gap-6">
             {programs.map((p) => (
               <div key={p.id} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
-                <div className="md:w-44 h-48 md:h-auto shrink-0 overflow-hidden">
-                  <img src={p.img} alt={p.name} className="w-full h-full object-cover" />
+                <div className="relative md:w-44 h-48 md:h-auto shrink-0 overflow-hidden">
+                  <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                 </div>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-2">

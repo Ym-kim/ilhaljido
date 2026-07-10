@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { MapPin, ArrowRight, CheckCircle2, Home, Flag } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
@@ -17,7 +18,7 @@ export default function DomesticPage() {
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="" className="absolute inset-0 w-full h-full object-cover" fetchPriority="high" />
+        <Image src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark className="flex items-center gap-2">
@@ -41,7 +42,7 @@ export default function DomesticPage() {
                 <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all">
                   <div className="flex flex-col md:flex-row">
                     <div className="relative md:w-80 h-56 md:h-auto shrink-0 overflow-hidden">
-                      <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+                      <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
                     </div>
                     <div className="p-8 flex flex-col justify-between flex-1">
@@ -104,7 +105,7 @@ export default function DomesticPage() {
               {completed.map((p) => (
                 <div key={p.id} className="bg-[#1a1a1a] border border-white/8 rounded-2xl overflow-hidden opacity-80">
                   <div className="relative h-40 overflow-hidden">
-                    <img src={p.img} alt={p.name} className="w-full h-full object-cover grayscale" loading="lazy" />
+                    <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover grayscale" />
                     <div className="absolute inset-0 bg-black/60" />
                     <span className="absolute top-3 left-3 bg-white/10 backdrop-blur-sm text-white/60 text-xs font-bold px-2.5 py-1 rounded-full border border-white/15">
                       {tr('pilot_complete_eyebrow')}
@@ -136,7 +137,7 @@ export default function DomesticPage() {
             {themed.map((p) => (
               <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-2xl overflow-hidden hover:border-teal-500/30 transition-all">
                 <div className="relative h-44 overflow-hidden">
-                  <img src={p.img} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <span className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full border border-white/20">{p.theme}</span>
                 </div>
@@ -165,7 +166,7 @@ export default function DomesticPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {upcoming.map((u) => (
               <div key={u.id} className="group relative rounded-2xl overflow-hidden h-40 cursor-default">
-                <img src={u.img} alt={u.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <Image src={u.img} alt={u.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/60" />
                 <div className="absolute inset-0 flex flex-col justify-end p-4">
                   <p className="text-white/40 text-xs mb-1">{u.region}</p>
