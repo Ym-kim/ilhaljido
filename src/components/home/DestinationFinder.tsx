@@ -124,13 +124,17 @@ export function DestinationFinder() {
                       className="w-24 h-24 md:w-28 md:h-28 object-cover shrink-0"
                     />
                     <div className="flex-1 py-3 pr-3 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
                         <p className="text-white font-bold text-base">{c.name[lang]}</p>
                         {i === 0 && (
                           <span className="text-sky-300 text-[0.6rem] font-bold tracking-wide uppercase bg-sky-400/15 px-2 py-0.5 rounded-full">
                             {FINDER_UI.best[lang]}
                           </span>
                         )}
+                        {/* 워크타임 겹침 — 시차 기반 근사(양쪽 9-18 근무 가정) */}
+                        <span className="text-emerald-300 text-[0.6rem] font-bold bg-emerald-400/12 px-2 py-0.5 rounded-full">
+                          {FINDER_UI.overlapBadge[lang]}{Math.max(0, 9 - c.tzOffset)}h
+                        </span>
                       </div>
                       <p className="text-white/55 text-xs leading-relaxed mb-1.5">{c.reason[lang]}</p>
                       <span className="inline-flex items-center gap-1 text-sky-300 text-xs font-bold group-hover:gap-2 transition-all">

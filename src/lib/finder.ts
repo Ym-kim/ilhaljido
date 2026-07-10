@@ -237,6 +237,7 @@ export const FINDER_UI: Record<string, L> = {
   step: { KO: '질문', EN: 'Question', JP: '質問' },
   resultTitle: { KO: '이 도시들이 잘 맞아요', EN: 'These cities fit you', JP: 'この都市が合いそうです' },
   best: { KO: 'BEST 매치', EN: 'Best match', JP: 'ベストマッチ' },
+  overlapBadge: { KO: '워크타임 겹침 ~', EN: 'Work overlap ~', JP: '勤務重なり ~' },
   seeStays: { KO: '이 도시 숙소 보기', EN: 'See stays here', JP: 'この街の宿を見る' },
   retry: { KO: '다시 찾기', EN: 'Start over', JP: 'もう一度' },
   visaHint: {
