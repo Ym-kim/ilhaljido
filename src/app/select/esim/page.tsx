@@ -9,7 +9,9 @@ import { localizeDestination } from '@/lib/affiliate/localizeDest'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { ESIM_DESTINATIONS } from '@/lib/affiliate/destinations'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ESIM_ALT_ITEMS } from '@/lib/affiliate/links'
+import { FEATURED_ESIM } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 
 const HOW_TO = [
@@ -70,6 +72,22 @@ export default function EsimSelectPage() {
                 </div>
                 <p className="text-[#64748b] text-xs leading-snug">{tr(item.textKey)}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Klook eSIM 실상품 — Airalo와 병행 (이중 수익 채널) */}
+      <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
+        <div className="max-w-6xl mx-auto pt-10">
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+            {tr('sele_klook_title')}
+          </p>
+          <p className="text-[#64748b] text-sm mb-6">{tr('sele_klook_sub')}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            {FEATURED_ESIM.map((item) => (
+              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
           </div>
         </div>

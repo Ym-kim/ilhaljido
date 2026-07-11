@@ -39,8 +39,8 @@ export const AFFILIATE_BASE = {
   // 🔶 approved_needs_course_links — 강의별 링크 생성 전
   inflearn:   'https://www.inflearn.com',
 
-  // 🔶 needs_referral_link — referral link 확인 전
-  airalo:     'https://www.airalo.com',
+  // ✅ active_affiliate — Impact 추적 링크 (2026-07-15, ?u= 딥링크 실물검증)
+  airalo:     'https://airalo.pxf.io/c/7451946/1268485/15608',
 
   // ✅ active_affiliate — aid=126848 적용 (2026-07-15)
   klook:      'https://www.klook.com/ko/?aid=126848',
@@ -143,16 +143,16 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     name: 'Airalo',
     category: 'esim',
     productType: 'esim',
-    status: 'needs_referral_link',
+    status: 'active_affiliate',
     emoji: '📡',
     desc: '200개국 eSIM 즉시 구매. 해외 도착 전 스마트폰에 설치, 공항 유심 줄 없이 바로 연결.',
     cta: 'eSIM 구매하기',
     href: AFFILIATE_BASE.airalo,
     badge: 'eSIM',
-    trackingId: '',
+    trackingId: 'impact 7451946',
     priority: 4,
     showOn: ['global', 'market', 'select'],
-    sourceNote: 'public URL, tracking not active — operator needs to replace with referral link from Airalo partner dashboard',
+    sourceNote: 'Impact 추적 링크 활성 (2026-07-15) — 커미션은 Impact 대시보드에서 확인',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
@@ -248,16 +248,16 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     name: 'Airalo eSIM',
     category: 'esim',
     productType: 'esim',
-    status: 'needs_referral_link',
+    status: 'active_affiliate',
     emoji: '📡',
     desc: '비자 수령 전에도 미리 설치해두면 입국 즉시 데이터 연결 가능. 200개국 커버.',
     cta: 'eSIM 구매하기',
     href: AFFILIATE_BASE.airalo,
     badge: 'eSIM',
-    trackingId: '',
+    trackingId: 'impact 7451946',
     priority: 2,
     showOn: ['visa'],
-    sourceNote: 'public URL, tracking not active — referral link pending',
+    sourceNote: 'Impact 추적 링크 활성 (2026-07-15)',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
@@ -447,22 +447,21 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     name: 'Airalo',
     category: 'esim',
     productType: 'esim',
-    status: 'needs_referral_link',
+    status: 'active_affiliate',
     emoji: '📡',
     productTitle: '일본 eSIM 즉시 구매',
     destination: '일본',
     country: '일본',
     desc: '일본 도착 전 스마트폰에 설치. 무제한·일일 데이터 플랜 선택. 200개국 커버.',
     cta: 'eSIM 구매하기',
-    href: AFFILIATE_BASE.airalo,
+    href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     badge: 'eSIM',
-    trackingId: '',
+    trackingId: 'impact 7451946',
     coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80',
     coverGradient: 'from-violet-900 via-purple-950 to-[#0d0d0d]',
     priority: 6,
     showOn: ['home'],
-    sourceNote: 'public URL, tracking not active — Airalo referral link 수령 후 교체',
-    operatorAction: 'Airalo 파트너 대시보드 → referral link 복사 후 href 교체, status → active_affiliate',
+    sourceNote: 'Impact 추적 딥링크 활성 (2026-07-15, japan-esim 랜딩 실물검증)',
   },
 
   // ──────────────────────────────────────────────────────────────────────────

@@ -22,6 +22,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/programs/market',          priority: 0.8, freq: 'weekly' },
   { path: '/programs/golf',            priority: 0.7, freq: 'monthly' },
   { path: '/programs/healing',         priority: 0.7, freq: 'monthly' },
+  { path: '/japan-towns',              priority: 0.7, freq: 'monthly' },
   { path: '/programs/local',           priority: 0.7, freq: 'monthly' },
   { path: '/programs/networking',      priority: 0.7, freq: 'monthly' },
   { path: '/programs/sports',          priority: 0.7, freq: 'monthly' },

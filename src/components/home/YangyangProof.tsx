@@ -1,6 +1,6 @@
 'use client'
 
-import { CheckCircle2, Clock } from 'lucide-react'
+import { CheckCircle2, Clock, ArrowUpRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { NotifySignup } from '@/components/home/NotifySignup'
@@ -21,6 +21,7 @@ const COPY: Record<string, L> = {
     JP: '海の前で働き休む2泊3日。実際に初回を運営し、その検証をもとに次回を準備しています。',
   },
   notify_label: { KO: '다음 회차·후기 업데이트를 알려드릴게요', EN: "Get updates on the next cohort and the recap", JP: '次回・レポート更新をお知らせします' },
+  view_page: { KO: '양양 1기 모집 페이지 보기', EN: 'See the batch 1 recruiting page', JP: '襄陽1期の募集ページを見る' },
 }
 
 const FACTS: { done: boolean; text: L }[] = [
@@ -41,7 +42,7 @@ export function YangyangProof() {
           <p className="text-sky-400 text-xs font-black tracking-widest uppercase mb-3">{COPY.eyebrow[lang]}</p>
           <h2 className="text-2xl md:text-3xl font-black text-white mb-3">{COPY.title[lang]}</h2>
           <p className="text-white/55 text-sm leading-relaxed mb-7">{COPY.sub[lang]}</p>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2.5 mb-6">
             {FACTS.map((f) => (
               <li key={f.text.KO} className="flex items-center gap-2.5 text-sm">
                 {f.done ? (
@@ -53,6 +54,15 @@ export function YangyangProof() {
               </li>
             ))}
           </ul>
+          {/* 1기 실제 모집 페이지 — 실운영 증거 아카이브 */}
+          <a
+            href="https://wakation-yangyang.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sky-300 text-sm font-bold hover:gap-2.5 transition-all"
+          >
+            {COPY.view_page[lang]} <ArrowUpRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          </a>
         </div>
         <div>
           <p className="text-white/45 text-xs font-semibold mb-2.5">{COPY.notify_label[lang]}</p>

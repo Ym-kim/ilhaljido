@@ -6,9 +6,34 @@ import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getLanguageFeatures, getLanguagePrograms } from '@/lib/i18n'
-import { BookOpen, Globe, Users, Star } from 'lucide-react'
+import { trackAffiliateClick } from '@/lib/track'
+import { BookOpen, Globe, Users, Star, MessagesSquare, ArrowUpRight } from 'lucide-react'
+import type { Lang } from '@/lib/i18n/types'
 
 const FEAT_ICONS = { work: BookOpen, immersion: Globe, community: Users } as const
+
+// 온라인 어학 파트너 — 숙박 딥링크만으로는 어학 니즈를 못 채움 (2026-07-15 운영자 피드백)
+// AmazingTalker: 원어민 1:1 온라인 수업 플랫폼. 현재 공개 링크 — 제휴 프로그램 가입 검토 중
+const TUTOR_COPY: Record<string, Record<Lang, string>> = {
+  eyebrow: { KO: 'ONLINE 1:1 어학', EN: 'ONLINE 1:1 LANGUAGE', JP: 'オンライン1:1語学' },
+  title: { KO: '떠나기 전부터, 현지에서도 — 원어민 1:1 수업', EN: 'Before you go and while you’re there — 1:1 native tutors', JP: '出発前も現地でも — ネイティブ1:1レッスン' },
+  sub: {
+    KO: '어학연수를 준비 중이라면 온라인 1:1 수업으로 회화 기초를 먼저. 워케이션 중에도 시간대에 맞춰 이어갈 수 있습니다.',
+    EN: 'Build conversation basics online before an immersion trip — and keep lessons going on your workation, in your time zone.',
+    JP: '語学研修の前にオンライン1:1で会話の基礎を。ワーケーション中も時差に合わせて継続できます。',
+  },
+  card_desc: {
+    KO: '영어·일본어 등 100+개 언어 원어민 튜터를 시간당 예약. 수업 시간과 튜터를 직접 고르는 방식이라 워케이션 일정과 병행하기 좋습니다.',
+    EN: 'Book native tutors by the hour in 100+ languages. You pick the tutor and the time — easy to fit around a workation.',
+    JP: '英語・日本語など100+言語のネイティブ講師を時間単位で予約。講師と時間を自分で選べます。',
+  },
+  cta: { KO: '튜터 찾아보기', EN: 'Find a tutor', JP: '講師を探す' },
+  note: {
+    KO: '외부 서비스이며 제휴 추적은 아직 적용 전입니다. 수강 조건은 해당 사이트에서 최종 확인됩니다.',
+    EN: 'External service; affiliate tracking not yet applied. Terms are confirmed on their site.',
+    JP: '外部サービスで、提携トラッキングは未適用です。条件は先方サイトでご確認ください。',
+  },
+}
 
 export default function LanguagePage() {
   const { lang, tr } = useLang()
@@ -82,6 +107,34 @@ export default function LanguagePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 온라인 1:1 어학 파트너 — AmazingTalker */}
+      <section className="py-16 px-6 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <p className="text-rose-500 text-xs font-black tracking-widest uppercase mb-3">{TUTOR_COPY.eyebrow[lang]}</p>
+          <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{TUTOR_COPY.title[lang]}</h2>
+          <p className="text-gray-500 text-sm leading-relaxed max-w-2xl mb-8">{TUTOR_COPY.sub[lang]}</p>
+          <div className="bg-rose-50/60 border border-rose-100 rounded-3xl p-7 flex flex-col sm:flex-row sm:items-center gap-6">
+            <div className="w-14 h-14 rounded-2xl bg-white border border-rose-100 flex items-center justify-center text-rose-500 shrink-0">
+              <MessagesSquare className="w-7 h-7" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1">
+              <p className="text-gray-900 font-black mb-1">AmazingTalker</p>
+              <p className="text-gray-500 text-sm leading-relaxed">{TUTOR_COPY.card_desc[lang]}</p>
+            </div>
+            <a
+              href="https://www.amazingtalker.co.kr/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackAffiliateClick({ id: 'lang-amazingtalker', provider: 'AmazingTalker', status: 'public_external_link' })}
+              className="shrink-0 inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold px-6 py-3 rounded-full hover:bg-rose-400 transition-all text-sm"
+            >
+              {TUTOR_COPY.cta[lang]} <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+          <p className="text-gray-400 text-[0.6875rem] mt-3">{TUTOR_COPY.note[lang]}</p>
         </div>
       </section>
 

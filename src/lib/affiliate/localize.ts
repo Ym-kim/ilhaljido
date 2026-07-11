@@ -193,6 +193,18 @@ const EN: Record<string, Overlay> = {
     desc: 'Ethical, no-riding elephant care — passed Klook’s animal-welfare assessment.',
     cta: 'View experience', badge: 'Welfare assessed',
   },
+  'esim-klook-japan': {
+    productTitle: 'Japan eSIM (DOCOMO · Softbank)',
+    destination: 'Japan',
+    desc: 'Activate in 5 minutes via QR. Unlimited or daily plans on local carrier networks.',
+    cta: 'View eSIM', badge: 'Japan-ready',
+  },
+  'esim-klook-asia': {
+    productTitle: 'Asia 30+ countries eSIM',
+    destination: 'Multi-country Asia',
+    desc: 'Japan, Thailand, Vietnam and Taiwan on one eSIM — for multi-stop workation routes.',
+    cta: 'View eSIM', badge: 'Multi-country',
+  },
   'cruise-rci-singapore': {
     productTitle: 'Royal Caribbean Navigator · Singapore 4D',
     destination: 'Singapore → Penang',
@@ -537,6 +549,18 @@ const JP: Record<string, Overlay> = {
     destination: 'チェンマイ · タイ',
     desc: '乗らずに世話をする倫理的な象体験 — Klook動物福祉審査通過。',
     cta: '体験を見る', badge: '動物福祉認証',
+  },
+  'esim-klook-japan': {
+    productTitle: '日本eSIM（DOCOMO・Softbank）',
+    destination: '日本',
+    desc: 'QRで5分開通。現地キャリア回線の無制限・日別プラン。',
+    cta: 'eSIMを見る', badge: '日本特化',
+  },
+  'esim-klook-asia': {
+    productTitle: 'アジア30+カ国 eSIM',
+    destination: 'アジア・マルチ国',
+    desc: '日本・タイ・ベトナム・台湾をeSIM 1枚で。周遊ワーケーションに。',
+    cta: 'eSIMを見る', badge: 'マルチ国',
   },
   'cruise-rci-singapore': {
     productTitle: 'ロイヤルカリビアン ナビゲーター · シンガポール4日',

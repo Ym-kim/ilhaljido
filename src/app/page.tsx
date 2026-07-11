@@ -82,8 +82,8 @@ const THEME_ITEMS = [
   { labelKey: 'home_theme_network_l',  descKey: 'home_theme_network_d',  href: '/programs/networking', emoji: '🤝', photo: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80' },
   { labelKey: 'home_theme_local_l',    descKey: 'home_theme_local_d',    href: '/programs/local',      emoji: '🗺️', photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80' },
   { labelKey: 'home_theme_growth_l',   descKey: 'home_theme_growth_d',   href: '/growth',               emoji: '🚀', photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80' },
-  // 일본 소도시 — 실제 소도시 숙소 섹션(가와구치코·가나자와·유후인)으로 직결 (기존 /programs/global에서 변경)
-  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/select/hotel#region-japan-small', emoji: '🗻', photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=600&q=80' },
+  // 일본 소도시 — 전용 테마 페이지(료칸·온천, /japan-towns)로 직결 (2026-07-15 운영자 피드백 반영)
+  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/japan-towns', emoji: '🗻', photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=600&q=80' },
   { labelKey: 'home_theme_golf_l',     descKey: 'home_theme_golf_d',     href: '/programs/golf',       emoji: '⛳', photo: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=600&q=80' },
   { labelKey: 'home_theme_sports_l',   descKey: 'home_theme_sports_d',   href: '/programs/sports',     emoji: '🏟️', photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' },
 ]
