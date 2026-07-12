@@ -264,6 +264,12 @@ const EN: Record<string, Overlay> = {
     desc: 'Departs Singapore with a Penang call — 3 nights. Ship Wi-Fi makes it a starter cruise workation.',
     cta: 'See fares', badge: 'Tracked',
   },
+  'cruise-msc-world-europa': {
+    productTitle: 'MSC World Europa · Caribbean 8D',
+    destination: 'Fort-de-France → Caribbean isles',
+    desc: 'An 8-day Caribbean loop on MSC’s mega flagship — work on board, rest on the islands.',
+    cta: 'See fares', badge: 'Caribbean loop',
+  },
   'cruise-msc-bellissima-busan': {
     productTitle: 'MSC Bellissima · Busan round-trip',
     destination: 'Busan → Fukuoka · Sasebo',
@@ -673,6 +679,12 @@ const JP: Record<string, Overlay> = {
     destination: 'シンガポール → ペナン',
     desc: 'シンガポール発、ペナン寄港の3泊。船内Wi-Fiで働けるクルーズワーケーション入門。',
     cta: '料金を見る', badge: 'トラッキング',
+  },
+  'cruise-msc-world-europa': {
+    productTitle: 'MSCワールドエウローパ · カリブ海8日',
+    destination: 'フォール·ド·フランス → カリブの島々',
+    desc: 'MSCの超大型旗艦で巡るカリブ海8日。船上で働き、島で休む。',
+    cta: '料金を見る', badge: 'カリブ周遊',
   },
   'cruise-msc-bellissima-busan': {
     productTitle: 'MSCベリッシマ · 釜山発着クルーズ',

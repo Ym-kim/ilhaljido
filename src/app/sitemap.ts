@@ -31,8 +31,9 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/language',                 priority: 0.7, freq: 'monthly' },
   { path: '/learn',                    priority: 0.7, freq: 'monthly' },
   { path: '/growth',                   priority: 0.6, freq: 'monthly' },
-  // AI·정보
+  // AI·정보·도구
   { path: '/visa-ai',                  priority: 0.8, freq: 'monthly' },
+  { path: '/tools/diagnosis',          priority: 0.7, freq: 'monthly' },
   { path: '/about',                    priority: 0.7, freq: 'monthly' },
   { path: '/infrastructure',           priority: 0.6, freq: 'monthly' },
   { path: '/workspace',                priority: 0.6, freq: 'monthly' },
