@@ -50,18 +50,25 @@ const CHECKS: Check[] = [
     finalMustInclude: 'airalo.com',
   },
 
-  // 크루즈 제휴 링크 (Trip.com) — 봇 차단 202/403은 생존으로 간주
+  // 크루즈 제휴 링크 (Trip.com, 전량 Allianceid) — 봇 차단 202/403은 생존으로 간주
   {
     id: 'cruise:msc-world-europa',
-    url: 'https://kr.trip.com/cruises/ship-msc-cruises-msc-world-europa-944?curr=KRW&aid=7434330&sid=293744445',
+    url: 'https://kr.trip.com/cruises/ship-msc-cruises-msc-world-europa-944?curr=KRW&Allianceid=9024807',
     finalMustInclude: 'trip.com',
     okStatuses: [200, 202, 403],
   },
-
-  // 크루즈 비제휴 링크 — 타 도메인 리다이렉트(팬스타식 사망) 감지
-  { id: 'cruise:panstar', url: 'https://www.panstar.co.kr/', finalMustInclude: 'panstar.co.kr' },
-  { id: 'cruise:mycruisebook', url: 'https://www.mycruisebook.com/shop_view/?idx=224', finalMustInclude: 'mycruisebook' },
-  { id: 'cruise:msc', url: 'https://www.msccruises.co.kr/bbs/board.php?bo_table=p1&wr_id=68', finalMustInclude: 'msccruises' },
+  {
+    id: 'cruise:msc-bellissima',
+    url: 'https://kr.trip.com/cruises/ship-msc-mscbellissima-496?curr=KRW&Allianceid=9024807',
+    finalMustInclude: 'trip.com',
+    okStatuses: [200, 202, 403],
+  },
+  {
+    id: 'cruise:costa-serena',
+    url: 'https://kr.trip.com/cruises/ship-costa-costaserena-35?curr=KRW&Allianceid=9024807',
+    finalMustInclude: 'trip.com',
+    okStatuses: [200, 202, 403],
+  },
 
   // 대표 숙소 상세 (Booking) — 봇 챌린지 202도 생존으로 간주
   { id: 'booking:lyf-bangkok', url: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html', okStatuses: [200, 202, 403] },

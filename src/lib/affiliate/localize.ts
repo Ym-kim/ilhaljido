@@ -270,23 +270,17 @@ const EN: Record<string, Overlay> = {
     desc: 'An 8-day Caribbean loop on MSC’s mega flagship — work on board, rest on the islands.',
     cta: 'See fares', badge: 'Caribbean loop',
   },
-  'cruise-msc-bellissima-busan': {
-    productTitle: 'MSC Bellissima · Busan round-trip',
-    destination: 'Busan → Fukuoka · Sasebo',
-    desc: 'Sail from Busan and return to Busan — 4 nights, no flights needed.',
-    cta: 'See dates', badge: 'From Busan',
+  'cruise-msc-bellissima': {
+    productTitle: 'MSC Bellissima · Incheon & Jeju calls',
+    destination: 'Incheon · Tokyo → Jeju · Kyushu',
+    desc: 'Incheon departures and Tokyo–Seogwipo (Jeju) itineraries — the closest MSC mega-ship to Korea.',
+    cta: 'See fares', badge: 'From Korea',
   },
-  'cruise-panstar-osaka': {
-    productTitle: 'Panstar Cruise · Busan–Osaka 5D',
-    destination: 'Busan ↔ Osaka',
-    desc: 'Cruise + Osaka hotel + onboard meals in one package. The easiest first cruise workation.',
-    cta: 'View product', badge: 'Best value',
-  },
-  'cruise-costa-serena-busan': {
-    productTitle: 'Costa Serena · Busan → Taiwan · Japan 6D',
-    destination: 'Busan → Nagasaki · Keelung',
-    desc: 'Departs Busan late August, calling at Nagasaki and Keelung — a full international cruise.',
-    cta: 'See dates', badge: 'Aug departure',
+  'cruise-costa-serena': {
+    productTitle: 'Costa Serena · South America–Europe grand voyage',
+    destination: 'Rio · Buenos Aires → Spain · Portugal',
+    desc: 'A 19–23 day Atlantic crossing — a month-long stay, on board.',
+    cta: 'See fares', badge: 'Grand voyage',
   },
   'course-gpts-automation': {
     productTitle: 'GPTs work automation for professionals',
@@ -686,23 +680,17 @@ const JP: Record<string, Overlay> = {
     desc: 'MSCの超大型旗艦で巡るカリブ海8日。船上で働き、島で休む。',
     cta: '料金を見る', badge: 'カリブ周遊',
   },
-  'cruise-msc-bellissima-busan': {
-    productTitle: 'MSCベリッシマ · 釜山発着クルーズ',
-    destination: '釜山 → 福岡 · 佐世保',
-    desc: '釜山発・釜山着の4泊5日。飛行機なしで始めるクルーズワーケーション。',
-    cta: '日程を見る', badge: '釜山発',
+  'cruise-msc-bellissima': {
+    productTitle: 'MSCベリッシマ · 仁川発·済州寄港',
+    destination: '仁川·東京発 → 済州·九州',
+    desc: '仁川発と東京-西帰浦（済州）寄港の日程。韓国から最も近いMSC超大型船。',
+    cta: '料金を見る', badge: '韓国発',
   },
-  'cruise-panstar-osaka': {
-    productTitle: 'パンスタークルーズ · 釜山-大阪',
-    destination: '釜山 ↔ 大阪',
-    desc: 'クルーズ＋大阪ホテル＋船内食のパッケージ。最も気軽な初クルーズ。',
-    cta: '商品を見る', badge: 'お得',
-  },
-  'cruise-costa-serena-busan': {
-    productTitle: 'コスタセレーナ · 釜山発 台湾·日本6日',
-    destination: '釜山 → 長崎 · 基隆',
-    desc: '8月末釜山発、長崎・基隆寄港の本格国際クルーズ。',
-    cta: '日程を見る', badge: '8月出航',
+  'cruise-costa-serena': {
+    productTitle: 'コスタセレーナ · 南米-欧州グランドボヤージュ',
+    destination: 'リオ·ブエノスアイレス → スペイン·ポルトガル',
+    desc: '大西洋を渡る19〜23日の長期航海。船の上の1カ月暮らし。',
+    cta: '料金を見る', badge: '長期航海',
   },
   'course-gpts-automation': {
     productTitle: 'GPTs業務自動化',

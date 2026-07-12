@@ -852,7 +852,8 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Japan',
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
-    tags: ['즉시 개통', 'Softbank·Docomo'],
+    // 가격 태그: airalo.com/japan-esim 무제한 3일 실측 (기준 2026-07-13, USD 표기로 환율 리스크 회피)
+    tags: ['US$11.50~', '즉시 개통', 'Softbank·Docomo'],
     links: [
       {
         provider: 'Airalo',
@@ -872,7 +873,8 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Vietnam',
     country: '베트남',
     gradient: 'from-yellow-900/25 to-[#1a1a1a]',
-    tags: ['7일·15일·30일', '데이터 무제한'],
+    // 가격 태그: airalo.com/vietnam-esim 무제한 3일 실측 (기준 2026-07-13)
+    tags: ['US$11.50~', '데이터 무제한'],
     links: [
       {
         provider: 'Airalo',
@@ -891,7 +893,8 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Indonesia',
     country: '인도네시아',
     gradient: 'from-green-900/25 to-[#1a1a1a]',
-    tags: ['발리 전용', '즉시 개통'],
+    // 가격 태그: airalo.com/indonesia-esim 무제한 3일 실측 (기준 2026-07-13)
+    tags: ['US$11.00~', '발리 전용'],
     links: [
       {
         provider: 'Airalo',
@@ -910,7 +913,8 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'Portugal',
     country: '포르투갈',
     gradient: 'from-blue-900/25 to-[#1a1a1a]',
-    tags: ['유럽 로밍', '30일+'],
+    // 가격 태그: airalo.com/portugal-esim 무제한 3일 실측 (기준 2026-07-13)
+    tags: ['US$11.50~', '유럽 로밍'],
     links: [
       {
         provider: 'Airalo',
@@ -929,7 +933,8 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
     cityEn: 'South Korea',
     country: '한국',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
-    tags: ['귀국 후 단기', 'SKT·KT'],
+    // 가격 태그: airalo.com/south-korea-esim 무제한 3일 실측 (기준 2026-07-13)
+    tags: ['US$12.00~', 'SKT·KT'],
     links: [
       {
         provider: 'Airalo',
