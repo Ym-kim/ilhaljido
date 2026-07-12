@@ -35,12 +35,13 @@ const CHECKS: Check[] = [
   { id: 'page:japan-towns', url: 'https://www.wakation.kr/japan-towns' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
 
-  // 인프런 파트너스 홍보 링크 → 강의 페이지 + partners= 파라미터
-  { id: 'inflearn:gpts', url: 'https://inf.run/zXusL', finalMustInclude: 'inflearn.com/course' },
-  { id: 'inflearn:chatgpt', url: 'https://inf.run/4j6xb', finalMustInclude: 'inflearn.com/course' },
-  { id: 'inflearn:instagram', url: 'https://inf.run/xTxcg', finalMustInclude: 'inflearn.com/course' },
-  { id: 'inflearn:midjourney', url: 'https://inf.run/F6yGE', finalMustInclude: 'inflearn.com/course' },
-  { id: 'inflearn:smartstore', url: 'https://inf.run/QhWQH', finalMustInclude: 'inflearn.com/course' },
+  // 인프런 파트너스 홍보 링크 — 해외 IP(Vercel)에선 /en/course/로 리다이렉트되므로
+  // 경로 대신 partners= 추적 파라미터 생존을 기준으로 판정 (2026-07-16 오탐 수정)
+  { id: 'inflearn:gpts', url: 'https://inf.run/zXusL', finalMustInclude: 'partners=' },
+  { id: 'inflearn:chatgpt', url: 'https://inf.run/4j6xb', finalMustInclude: 'partners=' },
+  { id: 'inflearn:instagram', url: 'https://inf.run/xTxcg', finalMustInclude: 'partners=' },
+  { id: 'inflearn:midjourney', url: 'https://inf.run/F6yGE', finalMustInclude: 'partners=' },
+  { id: 'inflearn:smartstore', url: 'https://inf.run/QhWQH', finalMustInclude: 'partners=' },
 
   // Airalo Impact 추적 딥링크
   {
