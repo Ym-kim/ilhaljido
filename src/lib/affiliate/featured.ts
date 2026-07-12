@@ -441,8 +441,9 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     country: '국내 출발',
     desc: '크루즈+오사카 호텔+선내식 포함 패키지. 가장 부담 없는 첫 크루즈 워케이션.',
     cta: '팬스타 홈에서 보기',
-    // 기존 상품 상세 URL이 외부 사이트로 리다이렉트되어 사망(2026-07-15 확인) → 공식 메인으로 교체
-    href: 'https://panstar-cruise.com/web/html/00_main/',
+    // panstar-cruise.com 도메인 자체가 타사이트로 넘어감(헬스체크 적발 2026-07-16)
+    // → 진짜 공식 도메인 panstar.co.kr로 교체 (부산-오사카 크루즈 확인)
+    href: 'https://www.panstar.co.kr/',
     badge: '가성비',
     trackingId: '',
     coverPhoto: 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80',
