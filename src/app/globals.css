@@ -228,6 +228,32 @@ nav ul { list-style: none; }
   animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
+/* 히어로 슬로우 줌(Ken Burns) — 첫 화면 정적감 해소. transform만 사용해 LCP 무영향 */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.08); }
+}
+.animate-kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* 프로모 티커 — 어필리에이트 상품 무한 롤링 (호버 시 일시정지는 컴포넌트에서) */
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-ticker {
+  animation: ticker-scroll 36s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns,
+  .animate-ticker {
+    animation: none;
+  }
+}
+
 .text-gradient-ocean {
   background: linear-gradient(100deg, #bae6fd 0%, #38bdf8 55%, #7dd3fc 100%);
   -webkit-background-clip: text;

@@ -90,8 +90,13 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
           ) : (
-            <div className={`w-full h-full bg-gradient-to-br ${item.coverGradient ?? 'from-[#e8e4de] to-[#f5f3ef]'} flex items-center justify-center`}>
-              <span className="text-5xl opacity-20 select-none">{item.emoji}</span>
+            /* 사진 없는 카드 — 흐릿한 이모지 대신 의도된 커버 디자인 (도트 패턴 + 큰 아이콘) */
+            <div className={`relative w-full h-full bg-gradient-to-br ${item.coverGradient ?? 'from-[#0a1e33] to-[#04121f]'} flex items-center justify-center`}>
+              <div
+                className="absolute inset-0 opacity-[0.08]"
+                style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, #fff 1.2px, transparent 0)', backgroundSize: '16px 16px' }}
+              />
+              <span className="relative text-6xl drop-shadow-xl select-none">{item.emoji}</span>
             </div>
           )}
 
@@ -168,10 +173,22 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
         {/* 콘텐츠 */}
         <div className="px-3.5 pt-3 pb-4 sm:px-4 sm:pt-3.5 sm:pb-4 flex flex-col flex-1">
-          {/* 상품명 */}
-          <p className="text-[#111827] font-bold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2 flex-1">
-            {title}
-          </p>
+          <div className="flex-1">
+            {/* 상품명 */}
+            <p className="text-[#111827] font-bold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2">
+              {title}
+            </p>
+            {/* 판매처 · 유형 — 무슨 상품인지 한눈에 (2026-07-15 MD 피드백) */}
+            <p className="text-[#94a3b8] text-[0.65rem] font-semibold mt-0.5">
+              {item.name}{item.badge ? ` · ${item.badge}` : ''}
+            </p>
+            {/* 상품 설명 — 정체를 알 수 있게 2줄 노출 (모바일 좁은 카드는 숨김) */}
+            {item.desc && (
+              <span className="hidden sm:block mt-1.5">
+                <span className="block text-[#64748b] text-[0.7rem] leading-relaxed line-clamp-2">{item.desc}</span>
+              </span>
+            )}
+          </div>
 
           {/* 가격 + CTA */}
           <div className="mt-3 flex items-center justify-between">

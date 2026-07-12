@@ -16,6 +16,7 @@ import { MomentRail } from '@/components/home/MomentRail'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
+import { PromoTicker } from '@/components/home/PromoTicker'
 import { GrowthEngines } from '@/components/home/GrowthEngines'
 import { LearningSection } from '@/components/home/LearningSection'
 import { ToolsSection } from '@/components/home/ToolsSection'
@@ -137,7 +138,7 @@ export default function HomePage() {
             fill
             priority
             sizes="100vw"
-            className="object-cover"
+            className="object-cover animate-kenburns"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/40 to-[#04121f]/15" />
         </div>
@@ -225,6 +226,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── 프로모 티커 — 제휴 상품 롤링 배너 (호버 시 정지) ── */}
+      <PromoTicker />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">

@@ -13,19 +13,15 @@ import type { Lang } from '@/lib/i18n/types'
 const FEAT_ICONS = { work: BookOpen, immersion: Globe, community: Users } as const
 
 // 온라인 어학 파트너 — 숙박 딥링크만으로는 어학 니즈를 못 채움 (2026-07-15 운영자 피드백)
-// AmazingTalker: 원어민 1:1 온라인 수업 플랫폼. 현재 공개 링크 — 제휴 프로그램 가입 검토 중
+// AmazingTalker: 원어민 1:1 온라인 수업 플랫폼. 언어별 페이지는 검색 인덱스로 실존 확인
+// (tutors/english·tutors/japanese·tutors). 공개 링크 — 제휴 프로그램 가입 검토 중
 const TUTOR_COPY: Record<string, Record<Lang, string>> = {
   eyebrow: { KO: 'ONLINE 1:1 어학', EN: 'ONLINE 1:1 LANGUAGE', JP: 'オンライン1:1語学' },
   title: { KO: '떠나기 전부터, 현지에서도 — 원어민 1:1 수업', EN: 'Before you go and while you’re there — 1:1 native tutors', JP: '出発前も現地でも — ネイティブ1:1レッスン' },
   sub: {
-    KO: '어학연수를 준비 중이라면 온라인 1:1 수업으로 회화 기초를 먼저. 워케이션 중에도 시간대에 맞춰 이어갈 수 있습니다.',
-    EN: 'Build conversation basics online before an immersion trip — and keep lessons going on your workation, in your time zone.',
-    JP: '語学研修の前にオンライン1:1で会話の基礎を。ワーケーション中も時差に合わせて継続できます。',
-  },
-  card_desc: {
-    KO: '영어·일본어 등 100+개 언어 원어민 튜터를 시간당 예약. 수업 시간과 튜터를 직접 고르는 방식이라 워케이션 일정과 병행하기 좋습니다.',
-    EN: 'Book native tutors by the hour in 100+ languages. You pick the tutor and the time — easy to fit around a workation.',
-    JP: '英語・日本語など100+言語のネイティブ講師を時間単位で予約。講師と時間を自分で選べます。',
+    KO: '어학연수 전 온라인 1:1 수업으로 회화 기초를 먼저. 워케이션 중에도 시간대에 맞춰 이어갈 수 있습니다. AmazingTalker에서 언어를 골라 시작하세요.',
+    EN: 'Build conversation basics online before an immersion trip — and keep lessons going on your workation. Pick a language on AmazingTalker.',
+    JP: '語学研修の前にオンライン1:1で会話の基礎を。ワーケーション中も時差に合わせて継続。AmazingTalkerで言語を選んで開始。',
   },
   cta: { KO: '튜터 찾아보기', EN: 'Find a tutor', JP: '講師を探す' },
   note: {
@@ -33,7 +29,33 @@ const TUTOR_COPY: Record<string, Record<Lang, string>> = {
     EN: 'External service; affiliate tracking not yet applied. Terms are confirmed on their site.',
     JP: '外部サービスで、提携トラッキングは未適用です。条件は先方サイトでご確認ください。',
   },
+  prog_prep: { KO: '프로그램 준비 중', EN: 'Program in prep', JP: 'プログラム準備中' },
+  prog_prep_desc: {
+    KO: '어학원·유학원 연계를 협의 중입니다. 확정되면 수업·숙소·현지 지원이 묶인 프로그램으로 공개됩니다.',
+    EN: 'We are arranging language-school partnerships. Once confirmed, classes, stays and local support will launch as one program.',
+    JP: '語学学校・留学エージェントとの連携を協議中。確定後、授業・宿・現地サポートを束ねたプログラムとして公開します。',
+  },
+  preregister: { KO: '사전 신청 문의', EN: 'Pre-register inquiry', JP: '事前申込のお問い合わせ' },
 }
+
+// 언어별 트랙 — 실존 확인된 경로만 (중국어·스페인어 등은 전체 페이지에서 선택)
+const TUTOR_TRACKS: { id: string; emoji: string; href: string; name: Record<Lang, string>; desc: Record<Lang, string> }[] = [
+  {
+    id: 'at-english', emoji: '🇺🇸', href: 'https://www.amazingtalker.co.kr/tutors/english',
+    name: { KO: '영어 회화', EN: 'English', JP: '英会話' },
+    desc: { KO: '비즈니스 회화·TESOL 자격 원어민 튜터', EN: 'Business conversation, TESOL-certified natives', JP: 'ビジネス会話・TESOL資格ネイティブ' },
+  },
+  {
+    id: 'at-japanese', emoji: '🇯🇵', href: 'https://www.amazingtalker.co.kr/tutors/japanese',
+    name: { KO: '일본어', EN: 'Japanese', JP: '日本語' },
+    desc: { KO: '일본 진출·워케이션 준비 회화, JLPT 대비', EN: 'Conversation for Japan trips, JLPT prep', JP: '日本滞在向け会話・JLPT対策' },
+  },
+  {
+    id: 'at-all', emoji: '🌍', href: 'https://www.amazingtalker.co.kr/tutors',
+    name: { KO: '40+개 언어 전체', EN: 'All 40+ languages', JP: '40+言語すべて' },
+    desc: { KO: '중국어·스페인어·베트남어 등 전체 튜터 탐색', EN: 'Chinese, Spanish, Vietnamese and more', JP: '中国語・スペイン語・ベトナム語ほか' },
+  },
+]
 
 export default function LanguagePage() {
   const { lang, tr } = useLang()
@@ -71,7 +93,8 @@ export default function LanguagePage() {
 
       <section className="py-16 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-black text-gray-900 mb-10">{tr('lang_programs_title')}</h2>
+          <h2 className="text-3xl font-black text-gray-900 mb-3">{tr('lang_programs_title')}</h2>
+          <p className="text-gray-500 text-sm leading-relaxed max-w-2xl mb-10">{TUTOR_COPY.prog_prep_desc[lang]}</p>
           <div className="grid md:grid-cols-2 gap-6">
             {programs.map((p) => (
               <div key={p.id} className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
@@ -92,15 +115,16 @@ export default function LanguagePage() {
                       </span>
                     ))}
                   </div>
-                  {/* 고정가 노출 제거 — 가격표현 금지 방침 (요금은 파트너사에서 확인) */}
-                  <div className="mt-auto flex items-center justify-end gap-3">
+                  {/* 어학원·유학원 연계 전 — 숙소검색 대신 준비중 상태 + 사전신청 (2026-07-15 기획 수정) */}
+                  <div className="mt-auto flex items-center justify-between gap-3">
+                    <span className="inline-flex items-center gap-1.5 text-[0.65rem] font-bold px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 border border-amber-200">
+                      {TUTOR_COPY.prog_prep[lang]}
+                    </span>
                     <a
-                      href={`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(p.stayQuery)}`}
-                      target="_blank"
-                      rel="sponsored noopener noreferrer"
-                      className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-light transition-all shadow-sm"
+                      href={`mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(`어학연수 사전 신청 — ${p.name}`)}`}
+                      className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-sky-500 transition-all shadow-sm"
                     >
-                      {tr('h3_bar_stay')}
+                      {TUTOR_COPY.preregister[lang]}
                     </a>
                   </div>
                 </div>
@@ -116,23 +140,29 @@ export default function LanguagePage() {
           <p className="text-rose-500 text-xs font-black tracking-widest uppercase mb-3">{TUTOR_COPY.eyebrow[lang]}</p>
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{TUTOR_COPY.title[lang]}</h2>
           <p className="text-gray-500 text-sm leading-relaxed max-w-2xl mb-8">{TUTOR_COPY.sub[lang]}</p>
-          <div className="bg-rose-50/60 border border-rose-100 rounded-3xl p-7 flex flex-col sm:flex-row sm:items-center gap-6">
-            <div className="w-14 h-14 rounded-2xl bg-white border border-rose-100 flex items-center justify-center text-rose-500 shrink-0">
-              <MessagesSquare className="w-7 h-7" strokeWidth={1.75} />
-            </div>
-            <div className="flex-1">
-              <p className="text-gray-900 font-black mb-1">AmazingTalker</p>
-              <p className="text-gray-500 text-sm leading-relaxed">{TUTOR_COPY.card_desc[lang]}</p>
-            </div>
-            <a
-              href="https://www.amazingtalker.co.kr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackAffiliateClick({ id: 'lang-amazingtalker', provider: 'AmazingTalker', status: 'public_external_link' })}
-              className="shrink-0 inline-flex items-center gap-1.5 bg-rose-500 text-white font-bold px-6 py-3 rounded-full hover:bg-rose-400 transition-all text-sm"
-            >
-              {TUTOR_COPY.cta[lang]} <ArrowUpRight className="w-4 h-4" />
-            </a>
+          {/* 언어별 트랙 카드 — 실존 확인 경로만 */}
+          <div className="grid sm:grid-cols-3 gap-4">
+            {TUTOR_TRACKS.map((t) => (
+              <a
+                key={t.id}
+                href={t.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackAffiliateClick({ id: t.id, provider: 'AmazingTalker', status: 'public_external_link' })}
+                className="group bg-rose-50/60 border border-rose-100 rounded-3xl p-6 hover:border-rose-300 hover:shadow-md transition-all"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <span className="text-3xl">{t.emoji}</span>
+                  <ArrowUpRight className="w-4 h-4 text-rose-300 group-hover:text-rose-500 transition-colors" />
+                </div>
+                <p className="text-gray-900 font-black mb-1">{t.name[lang]}</p>
+                <p className="text-gray-500 text-xs leading-relaxed mb-4">{t.desc[lang]}</p>
+                <span className="inline-flex items-center gap-1.5 text-rose-500 text-xs font-bold">
+                  <MessagesSquare className="w-3.5 h-3.5" strokeWidth={1.75} />
+                  AmazingTalker · {TUTOR_COPY.cta[lang]}
+                </span>
+              </a>
+            ))}
           </div>
           <p className="text-gray-400 text-[0.6875rem] mt-3">{TUTOR_COPY.note[lang]}</p>
         </div>
