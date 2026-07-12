@@ -1,0 +1,23 @@
+<svg width="700" height="480" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7f1d1d"/><stop offset="0.6" stop-color="#4c0519"/><stop offset="1" stop-color="#1c0a0a"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="480" fill="url(#bg)"/>
+  <rect width="700" height="480" fill="url(#dots)"/>
+  <!-- SIM 카드 + 전파 모티프 -->
+  <rect x="470" y="110" width="150" height="190" rx="20" fill="none" stroke="#fda4af" stroke-opacity="0.75" stroke-width="4"/>
+  <path d="M470 110 L520 110 L470 160 Z" fill="#fda4af" opacity="0.5"/>
+  <rect x="505" y="180" width="80" height="60" rx="10" fill="#fb7185" opacity="0.45"/>
+  <path d="M545 90 Q595 60 645 90" stroke="#fecdd3" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+  <path d="M560 68 Q595 46 630 68" stroke="#fecdd3" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <circle cx="595" cy="105" r="6" fill="#fecdd3"/>
+  <path d="M40 410 Q120 370 200 406 Q280 442 360 402 Q440 362 520 402 Q600 442 680 398" stroke="#ffffff" stroke-opacity="0.16" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="48" y="300" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#ffffff">일본 eSIM</text>
+  <text x="48" y="356" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#fda4af">QR 5분 개통</text>
+  <text x="50" y="130" font-family="'Pretendard',sans-serif" font-weight="700" font-size="19" letter-spacing="4" fill="#fb7185">DOCOMO · SOFTBANK</text>
+</svg>

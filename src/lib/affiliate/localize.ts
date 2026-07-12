@@ -193,6 +193,24 @@ const EN: Record<string, Overlay> = {
     desc: 'Ethical, no-riding elephant care — passed Klook’s animal-welfare assessment.',
     cta: 'View experience', badge: 'Welfare assessed',
   },
+  'theme-local-nishiki': {
+    productTitle: 'Nishiki Market walking food tour (3h)',
+    destination: 'Kyoto · Japan',
+    desc: 'A guided 3-hour tasting walk through "Kyoto’s kitchen" — join tour via Klook.',
+    cta: 'View tour', badge: 'Food',
+  },
+  'theme-local-gion-food': {
+    productTitle: 'Gion food tour — 13 dishes at 4 eateries',
+    destination: 'Kyoto · Japan',
+    desc: 'An evening tasting tour through four Gion eateries. A local night out after work.',
+    cta: 'View tour', badge: 'Food',
+  },
+  'theme-sports-sumo-osaka': {
+    productTitle: 'Osaka Grand Sumo Tournament viewing (ticket incl.)',
+    destination: 'Osaka · Japan',
+    desc: 'Tournament seat plus a guided half-day walk — a Japan-only spectator experience.',
+    cta: 'View ticket', badge: 'Live sports',
+  },
   'esim-klook-japan': {
     productTitle: 'Japan eSIM (DOCOMO · Softbank)',
     destination: 'Japan',
@@ -549,6 +567,24 @@ const JP: Record<string, Overlay> = {
     destination: 'チェンマイ · タイ',
     desc: '乗らずに世話をする倫理的な象体験 — Klook動物福祉審査通過。',
     cta: '体験を見る', badge: '動物福祉認証',
+  },
+  'theme-local-nishiki': {
+    productTitle: '錦市場ウォーキングフードツアー（3時間）',
+    destination: '京都 · 日本',
+    desc: '「京の台所」錦市場をガイドと食べ歩く3時間のジョインツアー — Klook予約。',
+    cta: 'ツアーを見る', badge: 'グルメ',
+  },
+  'theme-local-gion-food': {
+    productTitle: '祇園フードツアー — 4店舗13品',
+    destination: '京都 · 日本',
+    desc: '祇園の4店舗を巡り13品を味わう夜のグルメツアー。仕事後のローカルな夜に。',
+    cta: 'ツアーを見る', badge: 'グルメ',
+  },
+  'theme-sports-sumo-osaka': {
+    productTitle: '大阪大相撲観覧（チケット込み）',
+    destination: '大阪 · 日本',
+    desc: '観覧席チケット＋ガイド付き半日ウォーク。日本でしかできない観戦体験。',
+    cta: 'チケットを見る', badge: '観戦',
   },
   'esim-klook-japan': {
     productTitle: '日本eSIM（DOCOMO・Softbank）',

@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
     ],
+    // 자체 제작 SVG 커버(/public/covers) 서빙용 — 스크립트 실행 차단 CSP로 안전
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   async headers() {
     return [{ source: '/:path*', headers: SECURITY_HEADERS }]
