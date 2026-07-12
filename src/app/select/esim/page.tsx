@@ -13,6 +13,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ESIM_ALT_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_ESIM } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { usePriceWatch } from '@/hooks/usePriceWatch'
 
 const HOW_TO = [
   { step: '1', textKey: 'sele_s1' },
@@ -24,6 +25,8 @@ const HOW_TO = [
 export default function EsimSelectPage() {
   const { lang, tr } = useLang()
   useHashScroll()
+  // 1일 1회 갱신 검증가 — 목적지 카드 가격 태그(첫 항목) 교체
+  const livePrices = usePriceWatch()
 
   return (
     <div className="min-h-screen bg-white">
@@ -100,9 +103,15 @@ export default function EsimSelectPage() {
             {tr('sele_label')}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {ESIM_DESTINATIONS.map((entry) => (
-              <DestinationCard key={entry.id} entry={localizeDestination(entry, lang)} />
-            ))}
+            {ESIM_DESTINATIONS.map((entry) => {
+              // 가격 태그는 항상 첫 번째 — 최신 검증가 있으면 교체 (US$ 표기는 언어 중립)
+              const live = livePrices[entry.id]
+              const withLivePrice =
+                live && entry.tags[0]?.startsWith('US$')
+                  ? { ...entry, tags: [live, ...entry.tags.slice(1)] }
+                  : entry
+              return <DestinationCard key={entry.id} entry={localizeDestination(withLivePrice, lang)} />
+            })}
           </div>
         </div>
       </section>

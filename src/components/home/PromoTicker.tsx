@@ -1,13 +1,16 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 프로모 티커 — 히어로 직하단 어필리에이트 상품 롤링 배너 (CSS marquee, JS 0)
+// 프로모 티커 v2 — 히어로 직하단 어필리에이트 상품 롤링 배너 (CSS marquee, JS 0)
+// 2026-07-13 운영자 지시 "사이즈 키우고(트립닷컴 참고)" → 썸네일+가격 카드형으로 확대
 // 활성 제휴 상품·지원사업만 큐레이션. 항목 교체는 ITEMS만 수정
+// 사진은 검증 풀·AI 커버만 / 가격은 실측 검증값만 (해당 상품 카드와 동일 출처)
 // ─────────────────────────────────────────────────────────────────────────────
 
 type L = Record<Lang, string>
@@ -15,12 +18,18 @@ type L = Record<Lang, string>
 type TickerItem = {
   id: string
   emoji: string
+  /** 검증 풀 사진 또는 AI 커버 — 없으면 이모지 블록 폴백 */
+  photo?: string
+  /** 실측 검증가만 (언어 중립 표기) */
+  price?: string
   href: string
   external?: boolean
   sponsored?: boolean
   label: L
   tag: L
 }
+
+const U = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=200&q=70`
 
 const ITEMS: TickerItem[] = [
   {
@@ -29,47 +38,78 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '지원사업', EN: 'Support', JP: '支援事業' },
   },
   {
-    id: 'ticker-teamlab', emoji: '🪐', href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', external: true, sponsored: true,
+    id: 'ticker-teamlab', emoji: '🪐', photo: U('1540959733332-eab4deabeeaf'), price: '¥3,600~',
+    href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', external: true, sponsored: true,
     label: { KO: '팀랩 플래닛 도쿄 티켓', EN: 'teamLab Planets TOKYO ticket', JP: 'チームラボプラネッツTOKYO' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
   {
-    id: 'ticker-japan-esim', emoji: '📡', href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim', external: true, sponsored: true,
+    id: 'ticker-japan-esim', emoji: '📡', photo: '/covers/esim-japan-ai.jpeg', price: 'US$11.50~',
+    href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim', external: true, sponsored: true,
     label: { KO: '일본 eSIM — 도착 전 5분 설치', EN: 'Japan eSIM — install before you land', JP: '日本eSIM — 到着前に5分で設置' },
     tag: { KO: 'Airalo', EN: 'Airalo', JP: 'Airalo' },
   },
   {
-    id: 'ticker-osaka-pass', emoji: '🎫', href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848', external: true, sponsored: true,
+    id: 'ticker-bellissima', emoji: '🛳', photo: U('1599640842225-85d111c60e6b'), price: '₩365,766~',
+    href: 'https://kr.trip.com/cruises/ship-msc-mscbellissima-496?curr=KRW&Allianceid=9024807', external: true, sponsored: true,
+    label: { KO: 'MSC 벨리시마 — 인천 출발 크루즈', EN: 'MSC Bellissima — cruises from Incheon', JP: 'MSCベリッシマ — 仁川発クルーズ' },
+    tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
+  },
+  {
+    id: 'ticker-osaka-pass', emoji: '🎫', photo: U('1590559899731-a382839e5549'), price: '¥3,500~',
+    href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848', external: true, sponsored: true,
     label: { KO: '오사카 주유패스 — 교통+40곳 입장', EN: 'Osaka Amazing Pass — transit + 40 spots', JP: '大阪周遊パス — 交通＋40カ所' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
   {
-    id: 'ticker-lyf-bangkok', emoji: '🛋', href: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081', external: true, sponsored: true,
+    id: 'ticker-lyf-bangkok', emoji: '🛋', photo: U('1508009603885-50cf7c579365'),
+    href: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081', external: true, sponsored: true,
     label: { KO: '방콕 코리빙 lyf 수쿰빗 8', EN: 'lyf Sukhumvit 8 Bangkok co-living', JP: 'バンコク コリビング lyf' },
     tag: { KO: 'Booking', EN: 'Booking', JP: 'Booking' },
   },
   {
-    id: 'ticker-flight', emoji: '✈️', href: 'https://kr.trip.com/flights/?Allianceid=9024807', external: true, sponsored: true,
+    id: 'ticker-flight', emoji: '✈️',
+    href: 'https://kr.trip.com/flights/?Allianceid=9024807', external: true, sponsored: true,
     label: { KO: '항공권 요금 비교 — 전 노선', EN: 'Compare flight fares — all routes', JP: '航空券の料金比較 — 全路線' },
     tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
   },
   {
-    id: 'ticker-japan-towns', emoji: '🗻', href: '/japan-towns',
+    id: 'ticker-japan-towns', emoji: '🗻', photo: U('1526481280693-3bfa7568e0f3'),
+    href: '/japan-towns',
     label: { KO: '일본 소도시 — 료칸·온천 워케이션', EN: 'Japan small towns — ryokan & onsen', JP: '日本の小都市 — 旅館・温泉' },
     tag: { KO: 'NEW', EN: 'NEW', JP: 'NEW' },
   },
 ]
 
-function TickerChip({ item, lang }: { item: TickerItem; lang: Lang }) {
+function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
   const cls =
-    'shrink-0 inline-flex items-center gap-2 bg-white/[0.07] hover:bg-white/[0.14] border border-white/12 rounded-full pl-3 pr-4 py-2 transition-colors'
+    'shrink-0 flex items-center gap-3 bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-white/25 rounded-2xl p-2.5 pr-5 transition-colors'
   const inner = (
     <>
-      <span className="text-base leading-none">{item.emoji}</span>
-      <span className="text-[0.6rem] font-black px-1.5 py-0.5 rounded-full bg-sky-400/20 text-sky-300 uppercase tracking-wide">
-        {item.tag[lang]}
+      {item.photo ? (
+        <Image
+          src={item.photo}
+          alt=""
+          width={64}
+          height={64}
+          className="w-14 h-14 md:w-16 md:h-16 rounded-xl object-cover shrink-0"
+        />
+      ) : (
+        <span className="w-14 h-14 md:w-16 md:h-16 rounded-xl bg-white/[0.08] border border-white/10 flex items-center justify-center text-2xl shrink-0">
+          {item.emoji}
+        </span>
+      )}
+      <span className="flex flex-col gap-1 min-w-0">
+        <span className="flex items-center gap-2">
+          <span className="text-[0.6rem] font-black px-1.5 py-0.5 rounded-full bg-sky-400/20 text-sky-300 uppercase tracking-wide">
+            {item.tag[lang]}
+          </span>
+          {item.price && (
+            <span className="text-amber-300 text-xs font-black whitespace-nowrap">{item.price}</span>
+          )}
+        </span>
+        <span className="text-white/90 text-[0.8125rem] font-bold whitespace-nowrap">{item.label[lang]}</span>
       </span>
-      <span className="text-white/85 text-xs font-bold whitespace-nowrap">{item.label[lang]}</span>
     </>
   )
   const onClick = () => {
@@ -89,14 +129,19 @@ function TickerChip({ item, lang }: { item: TickerItem; lang: Lang }) {
 export function PromoTicker() {
   const { lang } = useLang()
   // 이음새 없는 무한 루프 — 동일 목록 2회 렌더 (두 번째는 스크린리더 제외)
+  // 카드형으로 콘텐츠 폭이 커져 duration 상향 (36s → 55s, 체감 속도 유지)
   return (
-    <div className="bg-[#04121f] border-b border-white/8 overflow-hidden py-2.5 group/ticker">
-      <div className="flex w-max gap-2.5 animate-ticker group-hover/ticker:[animation-play-state:paused] motion-reduce:animate-none">
-        <div className="flex gap-2.5 pr-2.5">
-          {ITEMS.map((i) => <TickerChip key={i.id} item={i} lang={lang} />)}
+    <div className="bg-[#04121f] border-b border-white/8 overflow-hidden py-3 group/ticker">
+      {/* duration은 inline으로 — globals.css .animate-ticker(뒤에 로드)가 Tailwind 유틸을 덮는 함정 회피 */}
+      <div
+        className="flex w-max gap-3 animate-ticker group-hover/ticker:[animation-play-state:paused] motion-reduce:animate-none"
+        style={{ animationDuration: '55s' }}
+      >
+        <div className="flex gap-3 pr-3">
+          {ITEMS.map((i) => <TickerCard key={i.id} item={i} lang={lang} />)}
         </div>
-        <div className="flex gap-2.5 pr-2.5" aria-hidden>
-          {ITEMS.map((i) => <TickerChip key={`${i.id}-dup`} item={i} lang={lang} />)}
+        <div className="flex gap-3 pr-3" aria-hidden>
+          {ITEMS.map((i) => <TickerCard key={`${i.id}-dup`} item={i} lang={lang} />)}
         </div>
       </div>
     </div>
