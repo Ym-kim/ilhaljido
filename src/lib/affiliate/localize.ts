@@ -193,6 +193,41 @@ const EN: Record<string, Overlay> = {
     desc: 'Ethical, no-riding elephant care — passed Klook’s animal-welfare assessment.',
     cta: 'View experience', badge: 'Welfare assessed',
   },
+  'theme-golf-alpine-chiangmai': {
+    productTitle: 'Alpine Golf Resort Chiang Mai tee time', destination: 'Chiang Mai · Thailand',
+    desc: 'Easy tee-time booking at Chiang Mai’s signature Alpine GC. Morning round, afternoon work.',
+    cta: 'View tee times', badge: 'Golf',
+  },
+  'theme-golf-pattaya-cc': {
+    productTitle: 'Pattaya Country Club tee time', destination: 'Pattaya · Thailand',
+    desc: 'Tee times near Bangkok — the weekend golf run for a Bangkok workation.',
+    cta: 'View tee times', badge: 'Golf',
+  },
+  'theme-heal-oasis-chiangmai': {
+    productTitle: 'Oasis Spa Chiang Mai massage', destination: 'Chiang Mai · Thailand',
+    desc: 'Chiang Mai’s signature luxury spa brand. Thai massage recovery after work — book via KKday.',
+    cta: 'Book spa', badge: 'Wellness',
+  },
+  'theme-heal-forest-danang': {
+    productTitle: 'Forest Spa Da Nang massage', destination: 'Da Nang · Vietnam',
+    desc: 'City-center spa booking (free pickup option). An evening recovery routine for nomads.',
+    cta: 'Book spa', badge: 'Wellness',
+  },
+  'theme-sports-seoul-baseball': {
+    productTitle: 'Seoul baseball with a local — game + pre-game meal', destination: 'Seoul · Korea',
+    desc: 'A guided night at Jamsil stadium. The evening event of a Korea workation.',
+    cta: 'View ticket', badge: 'Live baseball',
+  },
+  'theme-sports-tottenham': {
+    productTitle: 'Tottenham Hotspur Premier League ticket', destination: 'London · UK',
+    desc: 'PL match day at Spurs’ home ground — a Europe-workation bucket-list item.',
+    cta: 'View ticket', badge: 'Live football',
+  },
+  'theme-local-izakaya-kyoto': {
+    productTitle: 'Kyoto izakaya private half-day tour', destination: 'Kyoto · Japan',
+    desc: 'Eat and drink like a local — from Nishiki Market to backstreet izakayas.',
+    cta: 'View tour', badge: 'Food',
+  },
   'theme-local-nishiki': {
     productTitle: 'Nishiki Market walking food tour (3h)',
     destination: 'Kyoto · Japan',
@@ -567,6 +602,41 @@ const JP: Record<string, Overlay> = {
     destination: 'チェンマイ · タイ',
     desc: '乗らずに世話をする倫理的な象体験 — Klook動物福祉審査通過。',
     cta: '体験を見る', badge: '動物福祉認証',
+  },
+  'theme-golf-alpine-chiangmai': {
+    productTitle: 'アルパインGCチェンマイ ティータイム', destination: 'チェンマイ · タイ',
+    desc: 'チェンマイ屈指の名門アルパインGCを簡単予約。午前ラウンド、午後は仕事。',
+    cta: 'ティータイムを見る', badge: 'ゴルフ',
+  },
+  'theme-golf-pattaya-cc': {
+    productTitle: 'パタヤCC ティータイム予約', destination: 'パタヤ · タイ',
+    desc: 'バンコク近郊のティータイム予約。バンコク滞在の週末ゴルフに。',
+    cta: 'ティータイムを見る', badge: 'ゴルフ',
+  },
+  'theme-heal-oasis-chiangmai': {
+    productTitle: 'オアシススパ・チェンマイ マッサージ', destination: 'チェンマイ · タイ',
+    desc: 'チェンマイ代表の高級スパブランド。仕事後のタイ古式で回復 — KKday予約。',
+    cta: 'スパを予約', badge: 'ヒーリング',
+  },
+  'theme-heal-forest-danang': {
+    productTitle: 'ダナン フォレストスパ マッサージ', destination: 'ダナン · ベトナム',
+    desc: '市内スパの予約（無料送迎オプション）。ノマドの夜の回復ルーティンに。',
+    cta: 'スパを予約', badge: 'ヒーリング',
+  },
+  'theme-sports-seoul-baseball': {
+    productTitle: 'ソウル野球観戦 — ローカルと観戦＋食事', destination: 'ソウル · 韓国',
+    desc: '蚕室球場でガイドと直接観戦。韓国ワーケーションの夜イベント。',
+    cta: 'チケットを見る', badge: '野球観戦',
+  },
+  'theme-sports-tottenham': {
+    productTitle: 'トッテナム プレミアリーグ観戦チケット', destination: 'ロンドン · 英国',
+    desc: 'スパーズ本拠地でのPL観戦。欧州ワーケーションのバケットリスト。',
+    cta: 'チケットを見る', badge: 'サッカー観戦',
+  },
+  'theme-local-izakaya-kyoto': {
+    productTitle: '京都 居酒屋プライベート半日ツアー', destination: '京都 · 日本',
+    desc: '錦市場から路地裏の居酒屋まで、地元流に食べ歩き。',
+    cta: 'ツアーを見る', badge: 'グルメ',
   },
   'theme-local-nishiki': {
     productTitle: '錦市場ウォーキングフードツアー（3時間）',

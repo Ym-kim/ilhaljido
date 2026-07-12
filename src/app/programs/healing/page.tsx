@@ -16,7 +16,7 @@ export default function HealingPage() {
       titleKey="healing_hero_title"
       descKey="healing_hero_desc"
       themeIds={['healing-taean']}
-      featuredExperienceIds={['theme-heal-spa-ubud','theme-heal-yoga-bali']}
+      featuredExperienceIds={['theme-heal-spa-ubud','theme-heal-yoga-bali','theme-heal-oasis-chiangmai','theme-heal-forest-danang']}
       emailSubject="힐링 워케이션 사전 신청"
     />
   )

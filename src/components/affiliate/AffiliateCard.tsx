@@ -184,10 +184,10 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             <span className="block text-[#94a3b8] text-[0.65rem] font-semibold mt-0.5">
               {item.name}{item.badge ? ` · ${item.badge}` : ''}
             </span>
-            {/* 상품 설명 — 정체를 알 수 있게 2줄 노출 (모바일 좁은 카드는 숨김) */}
+            {/* 상품 설명 — 폰에서도 상품 정체가 보이게 항상 노출 (2026-07-16 모바일 패스) */}
             {item.desc && (
-              <span className="hidden sm:block mt-1.5">
-                <span className="block text-[#64748b] text-[0.7rem] leading-relaxed line-clamp-2">{item.desc}</span>
+              <span className="block text-[#64748b] text-[0.7rem] leading-relaxed line-clamp-2 mt-1.5">
+                {item.desc}
               </span>
             )}
           </div>
