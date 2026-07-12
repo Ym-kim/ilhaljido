@@ -1,0 +1,23 @@
+<svg width="700" height="480" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#064e3b"/><stop offset="0.6" stop-color="#134e4a"/><stop offset="1" stop-color="#04211c"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="480" fill="url(#bg)"/>
+  <rect width="700" height="480" fill="url(#dots)"/>
+  <!-- 상승 그래프 + 태그 모티프 -->
+  <path d="M430 250 L500 190 L550 220 L640 120" stroke="#34d399" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M612 118 L640 120 L638 148" stroke="#34d399" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="450" y="270" width="92" height="34" rx="17" fill="#10b981" opacity="0.35"/>
+  <rect x="552" y="270" width="110" height="34" rx="17" fill="#10b981" opacity="0.2"/>
+  <text x="466" y="293" font-family="'Pretendard',sans-serif" font-weight="700" font-size="16" fill="#a7f3d0">키워드</text>
+  <text x="568" y="293" font-family="'Pretendard',sans-serif" font-weight="700" font-size="16" fill="#a7f3d0">상품 SEO</text>
+  <path d="M40 410 Q120 370 200 406 Q280 442 360 402 Q440 362 520 402 Q600 442 680 398" stroke="#ffffff" stroke-opacity="0.16" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="48" y="300" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#ffffff">스마트스토어</text>
+  <text x="48" y="356" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#6ee7b7">키워드 실무</text>
+  <text x="50" y="130" font-family="'Pretendard',sans-serif" font-weight="700" font-size="19" letter-spacing="4" fill="#34d399">SMART STORE SELLING</text>
+</svg>

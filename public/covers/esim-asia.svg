@@ -1,0 +1,23 @@
+<svg width="700" height="480" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0c4a6e"/><stop offset="0.6" stop-color="#1e3a8a"/><stop offset="1" stop-color="#0a1024"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="480" fill="url(#bg)"/>
+  <rect width="700" height="480" fill="url(#dots)"/>
+  <!-- 지구본 궤도 모티프 -->
+  <circle cx="545" cy="185" r="90" fill="none" stroke="#7dd3fc" stroke-opacity="0.7" stroke-width="4"/>
+  <ellipse cx="545" cy="185" rx="90" ry="34" fill="none" stroke="#7dd3fc" stroke-opacity="0.45" stroke-width="3"/>
+  <ellipse cx="545" cy="185" rx="38" ry="90" fill="none" stroke="#7dd3fc" stroke-opacity="0.45" stroke-width="3"/>
+  <circle cx="620" cy="120" r="8" fill="#38bdf8"/>
+  <circle cx="470" cy="240" r="8" fill="#a5b4fc"/>
+  <circle cx="590" cy="262" r="6" fill="#7dd3fc"/>
+  <path d="M40 410 Q120 370 200 406 Q280 442 360 402 Q440 362 520 402 Q600 442 680 398" stroke="#ffffff" stroke-opacity="0.16" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="48" y="300" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#ffffff">아시아 30+국</text>
+  <text x="48" y="356" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#7dd3fc">eSIM 하나로</text>
+  <text x="50" y="130" font-family="'Pretendard',sans-serif" font-weight="700" font-size="19" letter-spacing="4" fill="#38bdf8">MULTI-COUNTRY eSIM</text>
+</svg>

@@ -173,15 +173,17 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
         {/* 콘텐츠 */}
         <div className="px-3.5 pt-3 pb-4 sm:px-4 sm:pt-3.5 sm:pb-4 flex flex-col flex-1">
+          {/* ⚠️ visual 카드는 다크 페이지(.dark-surface)에도 놓임 — `.dark-surface p`가
+              p 색을 흰색으로 덮어써 흰 카드에서 안 보이는 버그가 있어 p 대신 span 사용 */}
           <div className="flex-1">
             {/* 상품명 */}
-            <p className="text-[#111827] font-bold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2">
+            <span className="block text-[#111827] font-bold text-sm sm:text-[0.9375rem] leading-snug line-clamp-2">
               {title}
-            </p>
+            </span>
             {/* 판매처 · 유형 — 무슨 상품인지 한눈에 (2026-07-15 MD 피드백) */}
-            <p className="text-[#94a3b8] text-[0.65rem] font-semibold mt-0.5">
+            <span className="block text-[#94a3b8] text-[0.65rem] font-semibold mt-0.5">
               {item.name}{item.badge ? ` · ${item.badge}` : ''}
-            </p>
+            </span>
             {/* 상품 설명 — 정체를 알 수 있게 2줄 노출 (모바일 좁은 카드는 숨김) */}
             {item.desc && (
               <span className="hidden sm:block mt-1.5">
@@ -192,11 +194,11 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
           {/* 가격 + CTA */}
           <div className="mt-3 flex items-center justify-between">
-            <p className={`font-bold text-[0.9375rem] sm:text-base ${
+            <span className={`font-bold text-[0.9375rem] sm:text-base ${
               meta.isAffiliate ? 'text-brand-mid' : 'text-[#9a9793]'
             }`}>
               {item.priceFrom ?? item.cta}
-            </p>
+            </span>
             <span className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors duration-150 ${
               meta.isAffiliate
                 ? 'bg-brand-mid/10 group-hover:bg-brand-mid text-brand-mid group-hover:text-white'

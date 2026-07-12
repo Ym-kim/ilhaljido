@@ -1,0 +1,22 @@
+<svg width="700" height="480" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#082f49"/><stop offset="0.6" stop-color="#0c4a6e"/><stop offset="1" stop-color="#041424"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="700" height="480" fill="url(#bg)"/>
+  <rect width="700" height="480" fill="url(#dots)"/>
+  <!-- 프레임·컴포넌트 모티프 -->
+  <rect x="440" y="90" width="180" height="120" rx="14" fill="none" stroke="#7dd3fc" stroke-opacity="0.6" stroke-width="3"/>
+  <rect x="480" y="150" width="180" height="120" rx="14" fill="#0284c7" opacity="0.5"/>
+  <rect x="520" y="210" width="120" height="76" rx="12" fill="none" stroke="#ffffff" stroke-opacity="0.4" stroke-width="3" stroke-dasharray="8 7"/>
+  <circle cx="440" cy="90" r="7" fill="#38bdf8"/>
+  <circle cx="620" cy="210" r="7" fill="#38bdf8"/>
+  <path d="M40 410 Q120 370 200 406 Q280 442 360 402 Q440 362 520 402 Q600 442 680 398" stroke="#ffffff" stroke-opacity="0.16" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="48" y="300" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#ffffff">피그마 디자인</text>
+  <text x="48" y="356" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#7dd3fc">→ 웹 퍼블리싱</text>
+  <text x="50" y="130" font-family="'Pretendard',sans-serif" font-weight="700" font-size="19" letter-spacing="4" fill="#38bdf8">FIGMA TO WEB</text>
+</svg>

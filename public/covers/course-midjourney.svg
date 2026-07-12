@@ -1,0 +1,23 @@
+<svg width="700" height="480" viewBox="0 0 700 480" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="700" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2e1065"/><stop offset="0.6" stop-color="#1e1b4b"/><stop offset="1" stop-color="#0a0a1a"/>
+    </linearGradient>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" opacity="0.08"/>
+    </pattern>
+    <radialGradient id="glow" cx="0.75" cy="0.3" r="0.6">
+      <stop stop-color="#a78bfa" stop-opacity="0.35"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="700" height="480" fill="url(#bg)"/>
+  <rect width="700" height="480" fill="url(#dots)"/>
+  <rect width="700" height="480" fill="url(#glow)"/>
+  <circle cx="520" cy="160" r="95" fill="#8b5cf6" opacity="0.55"/>
+  <circle cx="590" cy="230" r="70" fill="#ec4899" opacity="0.45"/>
+  <circle cx="470" cy="250" r="55" fill="#38bdf8" opacity="0.5"/>
+  <path d="M40 400 Q120 360 200 396 Q280 432 360 392 Q440 352 520 392 Q600 432 680 388" stroke="#ffffff" stroke-opacity="0.18" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <text x="48" y="300" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#ffffff">AI 이미지</text>
+  <text x="48" y="356" font-family="'Noto Sans KR','Pretendard',sans-serif" font-weight="900" font-size="52" fill="#c4b5fd">프롬프트 실무</text>
+  <text x="50" y="130" font-family="'Pretendard',sans-serif" font-weight="700" font-size="19" letter-spacing="4" fill="#a78bfa">MIDJOURNEY CLASS</text>
+</svg>
