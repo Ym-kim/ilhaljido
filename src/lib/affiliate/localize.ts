@@ -294,23 +294,11 @@ const EN: Record<string, Overlay> = {
     desc: '10x your work speed with ChatGPT. Great listening for transit time.',
     cta: 'View course', badge: 'Best seller',
   },
-  'course-notion-master': {
-    productTitle: 'Notion complete guide',
-    destination: 'Productivity · Notion',
-    desc: 'Free course rated 4.8 by 40,000+ learners. The starting point of a workation work system.',
-    cta: 'Start free', badge: 'Free',
-  },
   'course-instagram-marketing': {
     productTitle: 'Instagram marketing that sells',
     destination: 'Marketing · Social',
     desc: 'Hands-on Instagram growth for solo businesses — practice with content from your destination.',
     cta: 'View course', badge: 'Marketing',
-  },
-  'course-biz-english-email': {
-    productTitle: 'Business English email with an interpreter',
-    destination: 'Language · Business',
-    desc: 'Real-world English email for workationers working with global partners.',
-    cta: 'View course', badge: 'Biz English',
   },
   'stay-adina-sydney': {
     productTitle: 'Adina Apartment Hotel Sydney Town Hall',
@@ -704,23 +692,11 @@ const JP: Record<string, Overlay> = {
     desc: '仕事の速度を10倍にするChatGPT活用法。移動中の受講にも。',
     cta: '講座を見る', badge: 'ベスト',
   },
-  'course-notion-master': {
-    productTitle: 'Notion完全活用',
-    destination: '生産性 · Notion',
-    desc: '評価4.8、4万人が受講した無料講座。ワーケーション業務システムの出発点。',
-    cta: '無料で受講', badge: '無料',
-  },
   'course-instagram-marketing': {
     productTitle: '売上を伸ばすInstagramマーケ',
     destination: 'マーケ · SNS',
     desc: '一人ビジネスの売上を作るInstagram実践運用。現地コンテンツですぐ実習。',
     cta: '講座を見る', badge: 'マーケ',
-  },
-  'course-biz-english-email': {
-    productTitle: '通訳者と書くビジネス英語メール',
-    destination: '語学 · ビジネス',
-    desc: '海外パートナーと働くワーケーターのための英文メール実践。',
-    cta: '講座を見る', badge: 'ビジネス英語',
   },
   'stay-adina-sydney': {
     productTitle: 'アディナ・アパートメントホテル・シドニー・タウンホール',

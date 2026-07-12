@@ -5,6 +5,7 @@ import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { FEATURED_CRUISES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { usePriceWatch } from '@/hooks/usePriceWatch'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getCruiseFeatures, getCruiseRoutes } from '@/lib/i18n'
@@ -16,6 +17,8 @@ export default function CruisePage() {
   const { lang, tr } = useLang()
   const features = getCruiseFeatures(lang)
   const routes = getCruiseRoutes(lang)
+  // 1일 1회 갱신되는 검증가 — 있으면 정적 priceFrom을 덮어씀
+  const livePrices = usePriceWatch()
 
   return (
     <div className="min-h-screen bg-white">
@@ -95,7 +98,14 @@ export default function CruisePage() {
           <p className="text-[#64748b] text-sm mb-6">{tr('cruise_featured_d')}</p>
           <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {FEATURED_CRUISES.map((item) => (
-              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+              <AffiliateCard
+                key={item.id}
+                item={localizeAffiliateItem(
+                  livePrices[item.id] ? { ...item, priceFrom: livePrices[item.id] } : item,
+                  lang
+                )}
+                visual
+              />
             ))}
           </div>
         </div>
