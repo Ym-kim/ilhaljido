@@ -98,6 +98,7 @@ export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', ev
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={T.placeholder[lang]}
+          aria-label={T.placeholder[lang]}
           className={`flex-1 rounded-2xl px-5 py-3.5 text-sm focus:outline-none transition-colors ${
             light
               ? 'bg-white border border-[#dbeafe] text-[#111827] placeholder-[#94a3b8] focus:border-brand-mid'

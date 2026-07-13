@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Heart, ArrowRight, Compass } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
@@ -33,6 +34,10 @@ const COPY: Record<string, L> = {
 export function WishlistView() {
   const { lang } = useLang()
   const { ids } = useWishlist()
+  // 위시리스트는 mount 후에야 localStorage에서 채워짐 → 그 전엔 빈 상태 대신 대기
+  // (복귀 사용자가 '없음' 화면을 깜빡 보는 문제 방지)
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => setHydrated(true), [])
   const items = getCatalogItems(ids).map((i) => localizeAffiliateItem(i, lang))
 
   return (
@@ -51,7 +56,9 @@ export function WishlistView() {
 
       <section className="px-6 py-12">
         <div className="max-w-6xl mx-auto">
-          {items.length === 0 ? (
+          {!hydrated ? (
+            <div className="min-h-[30vh]" aria-hidden />
+          ) : items.length === 0 ? (
             <div className="bg-[#f8fafc] border border-[#e2e8f0] rounded-3xl px-8 py-16 text-center max-w-xl mx-auto">
               <Compass className="w-10 h-10 text-[#cbd5e1] mx-auto mb-4" strokeWidth={ICON_STROKE} />
               <p className="text-[#111827] font-black text-lg mb-1.5">{COPY.empty_title[lang]}</p>

@@ -31,9 +31,15 @@ const CHECKS: Check[] = [
   { id: 'page:home', url: 'https://www.wakation.kr/' },
   { id: 'page:hotel', url: 'https://www.wakation.kr/select/hotel' },
   { id: 'page:activity', url: 'https://www.wakation.kr/select/activity' },
+  { id: 'page:esim', url: 'https://www.wakation.kr/select/esim' },
   { id: 'page:learn', url: 'https://www.wakation.kr/select/learn' },
   { id: 'page:onsen', url: 'https://www.wakation.kr/programs/onsen' },
+  { id: 'page:collections', url: 'https://www.wakation.kr/collections' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
+
+  // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
+  { id: 'booking:searchresults', url: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo', okStatuses: [200, 202, 403] },
+  { id: 'trip:city-tokyo', url: 'https://kr.trip.com/hotels/tokyo-hotels-list-228/?Allianceid=9024807', finalMustInclude: 'trip.com', okStatuses: [200, 202, 403] },
 
   // 인프런 파트너스 홍보 링크 — 해외 IP(Vercel)에선 /en/course/로 리다이렉트되므로
   // 경로 대신 partners= 추적 파라미터 생존을 기준으로 판정 (2026-07-16 오탐 수정)

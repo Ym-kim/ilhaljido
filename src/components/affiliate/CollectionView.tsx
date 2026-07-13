@@ -41,13 +41,14 @@ export function CollectionView({ slug }: { slug: string }) {
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> {COLLECTIONS_UI.back[lang]}
           </Link>
-          <p className="text-sky-300 text-xs font-black tracking-widest uppercase mb-2.5">
+          {/* span 사용 — .dark-surface p 규칙이 sky 액센트를 흰색으로 덮는 함정 회피 */}
+          <span className="block text-sky-300 text-xs font-black tracking-widest uppercase mb-2.5">
             {COLLECTIONS_UI.eyebrow[lang]}
-          </p>
+          </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3">
             <span className="mr-2" aria-hidden>{col.emoji}</span>{col.title[lang]}
           </h1>
-          <p className="text-sky-200/90 text-sm font-bold mb-2">{col.tagline[lang]}</p>
+          <span className="block text-sky-200 text-sm font-bold mb-2">{col.tagline[lang]}</span>
           <p className="text-white/75 text-sm md:text-base max-w-2xl leading-relaxed">{col.desc[lang]}</p>
         </div>
       </section>

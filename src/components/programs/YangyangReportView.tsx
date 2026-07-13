@@ -98,7 +98,7 @@ export function YangyangReportView() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/40 to-[#04121f]/10" />
         <div className="relative w-full max-w-5xl mx-auto px-6 pb-14">
-          <p className="text-sky-300 text-xs font-black tracking-widest uppercase mb-3">{COPY.eyebrow[lang]}</p>
+          <span className="block text-sky-300 text-xs font-black tracking-widest uppercase mb-3">{COPY.eyebrow[lang]}</span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight whitespace-pre-line mb-4">
             {COPY.title[lang]}
           </h1>
@@ -112,7 +112,7 @@ export function YangyangReportView() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {STATS.map((s) => (
               <div key={s.label.KO} className="bg-white/[0.06] border border-sky-400/20 rounded-2xl px-4 py-6 text-center">
-                <p className="text-sky-300 font-black text-3xl leading-none mb-2 tabular-nums">{s.value}</p>
+                <span className="block text-sky-300 font-black text-3xl leading-none mb-2 tabular-nums">{s.value}</span>
                 <p className="text-white/55 text-xs font-semibold leading-tight">{s.label[lang]}</p>
               </div>
             ))}
