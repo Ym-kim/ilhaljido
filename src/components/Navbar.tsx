@@ -28,7 +28,7 @@ const NAV_ITEMS: NavItem[] = [
   {
     key: 'nav_theme',
     items: [
-      { labelKey: 'mega_theme_ryokan', href: '/programs/global' },
+      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen' },
       { labelKey: 'mega_theme_yoga', href: '/programs/healing' },
       { labelKey: 'home_theme_golf_l', href: '/programs/golf' },
       { labelKey: 'mega_theme_local', href: '/programs/local' },

@@ -32,7 +32,7 @@ const CHECKS: Check[] = [
   { id: 'page:hotel', url: 'https://www.wakation.kr/select/hotel' },
   { id: 'page:activity', url: 'https://www.wakation.kr/select/activity' },
   { id: 'page:learn', url: 'https://www.wakation.kr/select/learn' },
-  { id: 'page:japan-towns', url: 'https://www.wakation.kr/japan-towns' },
+  { id: 'page:onsen', url: 'https://www.wakation.kr/programs/onsen' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
 
   // 인프런 파트너스 홍보 링크 — 해외 IP(Vercel)에선 /en/course/로 리다이렉트되므로

@@ -135,7 +135,7 @@ export const PROFILES: Record<ProfileId, DiagnosisProfile> = {
     },
     recs: [
       {
-        href: '/japan-towns',
+        href: '/programs/onsen',
         label: { KO: '일본 소도시 워케이션', EN: 'Japan small-town workation', JP: '日本の小都市ワーケーション' },
         why: { KO: '온천 소도시의 조용한 몰입 환경', EN: 'Quiet immersion in onsen towns', JP: '温泉街の静かな没入環境' },
       },
@@ -214,7 +214,7 @@ export const PROFILES: Record<ProfileId, DiagnosisProfile> = {
         why: { KO: '회복 중심으로 설계된 프로그램', EN: 'Programs designed around recovery', JP: '回復を中心に設計されたプログラム' },
       },
       {
-        href: '/japan-towns',
+        href: '/programs/onsen',
         label: { KO: '료칸·온천 소도시', EN: 'Ryokan and onsen towns', JP: '旅館·温泉の小都市' },
         why: { KO: '하루를 온천으로 마무리하는 체류', EN: 'End each day at the onsen', JP: '一日を温泉で締めくくる滞在' },
       },
