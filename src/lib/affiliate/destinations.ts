@@ -207,13 +207,9 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
-      {
-        provider: 'Trip.com',
-        status: 'active_affiliate',
-        href: 'https://kr.trip.com/hotels/bali-hotels-list-723/?Allianceid=9024807',
-        label: '호텔 보기',
-        emoji: '🏨',
-      },
+      // ⚠️ Trip bali-hotels-list-723 제거 (2026-07-13) — kr.trip.com에서 723=카메룬의 Bali(북서주)
+      //    호텔을 표시하는 오적용이었음(슬러그는 bali지만 ID가 인니 아님). Booking 단독 유지.
+      //    인니 Bali의 올바른 Trip city ID 확인 전까지 재추가 금지.
     ],
   },
   {
@@ -348,6 +344,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Okinawa',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — okinawa-hotels-list-207 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/okinawa-hotels-list-207/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -862,6 +866,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Nagoya',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — nagoya-hotels-list-360 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/nagoya-hotels-list-360/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
