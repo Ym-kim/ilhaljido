@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { ProductBrowser } from '@/components/affiliate/ProductBrowser'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { useLang } from '@/context/LanguageContext'
@@ -281,6 +282,9 @@ export default function SelectPage() {
           ))}
         </div>
       </section>
+
+      {/* 카테고리 탭 상품 브라우저 — 숙소·체험·eSIM·강의·크루즈·기획전 인라인 탐색 */}
+      <ProductBrowser />
 
       {/* 체험·eSIM */}
       <section className="px-6 py-14 border-b border-[#e5e1da] bg-[#f9f7f3]">
