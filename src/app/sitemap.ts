@@ -28,6 +28,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/programs/sports',          priority: 0.7, freq: 'monthly' },
   { path: '/programs/support',         priority: 0.8, freq: 'weekly' },
   { path: '/programs/support/register', priority: 0.5, freq: 'monthly' },
+  { path: '/report/yangyang',          priority: 0.7, freq: 'monthly' },
   { path: '/language',                 priority: 0.7, freq: 'monthly' },
   { path: '/learn',                    priority: 0.7, freq: 'monthly' },
   { path: '/growth',                   priority: 0.6, freq: 'monthly' },
