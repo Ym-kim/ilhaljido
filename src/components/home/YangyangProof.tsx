@@ -55,7 +55,7 @@ export function YangyangProof() {
           <div className="grid grid-cols-3 gap-3 mb-2">
             {STATS.map((s) => (
               <div key={s.value} className="bg-white/5 border border-sky-400/20 rounded-2xl px-3 py-4 text-center">
-                <p className="text-sky-300 font-black text-xl sm:text-2xl leading-none mb-1.5">{s.value}</p>
+                <span className="block text-sky-300 font-black text-xl sm:text-2xl leading-none mb-1.5">{s.value}</span>
                 <p className="text-white/50 text-[0.65rem] font-semibold leading-tight">{s.label[lang]}</p>
               </div>
             ))}

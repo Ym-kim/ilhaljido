@@ -65,6 +65,8 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_select_activity', href: '/select/activity' },
       { labelKey: 'nav_select_esim', href: '/select/esim' },
       { labelKey: 'nav_select_learn', href: '/select/learn' },
+      { labelKey: 'nav_select_collections', href: '/collections' },
+      { labelKey: 'nav_select_wishlist', href: '/wishlist' },
       { labelKey: 'nav_select_all', href: '/select', hasDivider: true },
     ],
   },
@@ -121,7 +123,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             type="button"
             onClick={annDismiss}
             className="absolute right-3 text-white/70 hover:text-white transition-colors p-1"
-            aria-label="닫기"
+            aria-label={tr('nav_close')}
           >
             <X className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
           </button>
@@ -269,14 +271,14 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                     href="/mypage"
                     className="block px-4 py-2 text-xs font-medium text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-colors"
                   >
-                    마이페이지
+                    {tr('my_mypage')}
                   </Link>
                   <button
                     type="button"
                     onClick={() => signOut()}
                     className="w-full text-left flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-700 hover:text-red-500 hover:bg-red-50 transition-colors"
                   >
-                    <LogOut className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> 로그아웃
+                    <LogOut className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> {tr('my_logout')}
                   </button>
                 </div>
               </div>
@@ -292,7 +294,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             type="button"
             onClick={() => setOpen(!open)}
             className={cn('lg:hidden p-1', isTransparentNow ? 'text-white' : 'text-gray-800')}
-            aria-label="메뉴"
+            aria-label={tr('nav_menu')}
           >
             {open ? (
               <X className="w-6 h-6" strokeWidth={ICON_STROKE} />
@@ -380,14 +382,14 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   onClick={() => setOpen(false)}
                   className="block mt-4 text-center text-[0.9375rem] font-bold py-3 rounded-full border border-gray-200 text-gray-700"
                 >
-                  마이페이지 ({user.user_metadata?.name || user.email?.split('@')[0]})
+                  {tr('my_mypage')} ({user.user_metadata?.name || user.email?.split('@')[0]})
                 </Link>
                 <button
                   type="button"
                   onClick={() => { signOut(); setOpen(false) }}
                   className="block w-full mt-2 text-center text-[0.875rem] font-bold py-2.5 text-red-500"
                 >
-                  로그아웃
+                  {tr('my_logout')}
                 </button>
               </>
             ) : (
@@ -396,7 +398,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 onClick={() => setOpen(false)}
                 className="block mt-4 text-center text-[0.875rem] text-gray-400 hover:text-gray-600 py-2"
               >
-                로그인
+                {tr('nav_login')}
               </Link>
             )}
 
