@@ -6,6 +6,7 @@ import { useHashScroll } from '@/hooks/useHashScroll'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
+import { DestinationSearch } from '@/components/affiliate/DestinationSearch'
 import { HOTEL_DESTINATIONS } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { WishlistRail } from '@/components/affiliate/WishlistRail'
@@ -22,16 +23,16 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
 
 // 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
 const REGIONS = [
-  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
+  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-nagoya', 'japan-hiroshima', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
   { id: 'region-japan-small', labelKey: 'region_japan_small', ids: ['japan-kawaguchiko', 'japan-kanazawa', 'japan-yufuin'], featuredIds: [] },
-  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung'], featuredIds: ['stay-playce-jeju'] },
-  { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok'], featuredIds: ['stay-kantary-chiangmai', 'stay-lyf-sukhumvit-bangkok'] },
+  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-seoul', 'korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung', 'korea-sokcho'], featuredIds: ['stay-playce-jeju'] },
+  { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok', 'thailand-phuket'], featuredIds: ['stay-kantary-chiangmai', 'stay-lyf-sukhumvit-bangkok'] },
   { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang'] },
   { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali', 'indonesia-ubud', 'indonesia-canggu'], featuredIds: ['stay-tribal-bali'] },
   { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: ['stay-nomadshub-cebu', 'stay-citizenm-taipei'] },
   { id: 'region-oceania',   labelKey: 'region_oceania',   ids: ['australia-sydney', 'australia-melbourne', 'australia-goldcoast'], featuredIds: ['stay-adina-sydney'] },
   { id: 'region-china',     labelKey: 'region_china',     ids: ['china-shanghai', 'china-hongkong', 'china-guangzhou'], featuredIds: [] },
-  { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon'], featuredIds: [] },
+  { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon', 'portugal-porto', 'portugal-faro'], featuredIds: [] },
 ]
 
 export default function HotelSelectPage() {
@@ -67,6 +68,11 @@ export default function HotelSelectPage() {
             {tr('selh_desc')}
           </p>
 
+          {/* 도시 검색 → Booking 검색결과 직행 (어필리에이트 추적) */}
+          <div className="mt-6 max-w-2xl">
+            <DestinationSearch mode="hotel" />
+          </div>
+
           {/* 목적지 퀵점프 */}
           <div className="flex gap-2 overflow-x-auto mt-6 pb-1 [&::-webkit-scrollbar]:hidden">
             {REGIONS.map((r) => (
@@ -96,9 +102,9 @@ export default function HotelSelectPage() {
             <div className="max-w-6xl mx-auto pt-10">
               <p className="text-[#111827] font-black text-base mb-5">{tr(region.labelKey)}</p>
 
-              {/* 1) 에디터 추천 개별 숙소 */}
+              {/* 1) 에디터 추천 개별 숙소 — 지역별 1~3장이라 3열 기준(일본 등 3장은 완전 정렬) */}
               {featured.length > 0 && (
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 mb-6">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 mb-6">
                   {featured.map((item) => (
                     <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
                   ))}

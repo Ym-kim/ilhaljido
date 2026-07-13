@@ -10,6 +10,7 @@ import { localizeLearnCategory } from '@/lib/affiliate/localizeDest'
 import { LEARN_CATEGORIES } from '@/lib/affiliate/destinations'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { DestinationSearch } from '@/components/affiliate/DestinationSearch'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
 import { LEARN_ALT_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -48,6 +49,11 @@ export default function LearnSelectPage() {
           <p className="text-amber-600/80 text-xs mt-3 font-medium">
             {tr('sell_note')}
           </p>
+
+          {/* 강의 주제 검색 → 인프런 검색결과 직행 */}
+          <div className="mt-6 max-w-2xl">
+            <DestinationSearch mode="learn" />
+          </div>
         </div>
       </section>
 

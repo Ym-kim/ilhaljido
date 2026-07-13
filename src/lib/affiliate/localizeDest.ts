@@ -23,6 +23,8 @@ const CITY_JP: Record<string, string> = {
   'indonesia-ubud': 'ウブド', 'indonesia-canggu': 'チャングー',
   'australia-sydney': 'シドニー', 'australia-melbourne': 'メルボルン', 'australia-goldcoast': 'ゴールドコースト',
   'china-shanghai': '上海', 'china-hongkong': '香港', 'china-guangzhou': '広州',
+  'korea-seoul': 'ソウル', 'korea-sokcho': '束草', 'thailand-phuket': 'プーケット',
+  'japan-nagoya': '名古屋', 'japan-hiroshima': '広島', 'portugal-porto': 'ポルト', 'portugal-faro': 'ファーロ',
   'esim-japan': '日本', 'esim-vietnam': 'ベトナム', 'esim-indonesia': 'インドネシア・バリ',
   'esim-portugal': 'ポルトガル', 'esim-korea': '韓国', 'esim-global': 'グローバル',
 }

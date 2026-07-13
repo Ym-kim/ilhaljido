@@ -754,6 +754,142 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
       },
     ],
   },
+
+  // ── 2026-07-13 지역 그리드 갭 채움 — 새 도시 7종 ──
+  // Booking ss= 딥링크(어떤 도시든 유효+aid 추적). 사진은 curl 200 + Read 육안 검증 완료.
+  {
+    id: 'korea-seoul',
+    photo: 'https://images.unsplash.com/photo-1546874177-9e664107314e?auto=format&fit=crop&w=700&q=80',
+    flag: '🗼',
+    city: '서울',
+    cityEn: 'Seoul',
+    country: '국내',
+    gradient: 'from-teal-900/25 to-[#1a1a1a]',
+    tags: ['도심 코워킹', '카페 문화'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Seoul',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'korea-sokcho',
+    photo: 'https://images.unsplash.com/photo-1613516392416-1a621fb69004?auto=format&fit=crop&w=700&q=80',
+    flag: '🌊',
+    city: '속초',
+    cityEn: 'Sokcho',
+    country: '국내',
+    gradient: 'from-teal-900/25 to-[#1a1a1a]',
+    tags: ['동해 뷰', '온천 근교'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Sokcho',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'thailand-phuket',
+    photo: 'https://images.unsplash.com/photo-1601225612316-b4733315a717?auto=format&fit=crop&w=700&q=80',
+    flag: '🏝',
+    city: '푸켓',
+    cityEn: 'Phuket',
+    country: '태국',
+    gradient: 'from-cyan-900/25 to-[#1a1a1a]',
+    tags: ['해변 리조트', '휴양 워크'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Phuket',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'japan-nagoya',
+    photo: 'https://images.unsplash.com/photo-1747546314703-6c4fc20c5a37?auto=format&fit=crop&w=700&q=80',
+    flag: '🏯',
+    city: '나고야',
+    cityEn: 'Nagoya',
+    country: '일본',
+    gradient: 'from-red-900/25 to-[#1a1a1a]',
+    tags: ['미식 도시', '교통 편리'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Nagoya',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'japan-hiroshima',
+    photo: 'https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?auto=format&fit=crop&w=700&q=80',
+    flag: '⛩',
+    city: '히로시마',
+    cityEn: 'Hiroshima',
+    country: '일본',
+    gradient: 'from-red-900/25 to-[#1a1a1a]',
+    tags: ['전통 거리', '미식 도시'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Hiroshima',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'portugal-porto',
+    photo: 'https://images.unsplash.com/photo-1591040973846-61888c2de010?auto=format&fit=crop&w=700&q=80',
+    flag: '🍷',
+    city: '포르투',
+    cityEn: 'Porto',
+    country: '포르투갈',
+    gradient: 'from-blue-900/25 to-[#1a1a1a]',
+    tags: ['유럽 게이트웨이', '커피 문화'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Porto',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
+  {
+    id: 'portugal-faro',
+    photo: 'https://images.unsplash.com/photo-1712497867605-cd8d80574245?auto=format&fit=crop&w=700&q=80',
+    flag: '⛵',
+    city: '파루',
+    cityEn: 'Faro',
+    country: '포르투갈',
+    gradient: 'from-blue-900/25 to-[#1a1a1a]',
+    tags: ['해변 뷰', 'D8 비자'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Faro',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+    ],
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
