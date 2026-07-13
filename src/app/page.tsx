@@ -12,6 +12,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { trackAffiliateClick } from '@/lib/track'
 import { MomentRail } from '@/components/home/MomentRail'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
@@ -109,6 +110,15 @@ export default function HomePage() {
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
   const [heroDest, setHeroDest] = useState<(typeof HERO_DESTS)[number] | null>(null)
+  const [heroQuery, setHeroQuery] = useState('')
+
+  // 통합 검색 — 입력 도시로 Booking 검색결과 직행(aid 추적). 하나투어식 상단 검색.
+  const submitHeroSearch = () => {
+    const q = heroQuery.trim()
+    if (!q) return
+    try { trackAffiliateClick({ provider: 'Booking.com', status: 'active_affiliate', id: 'hero-search' }) } catch {}
+    window.open(`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(q)}`, '_blank', 'noopener,noreferrer')
+  }
   const categories = getHomeCategories()
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
@@ -182,6 +192,31 @@ export default function HomePage() {
               <Search className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
               {tr('h3_search_label')}
             </p>
+            {/* 통합 검색창 — 도시 입력 → Booking 검색결과 직행(제휴 추적) */}
+            <form
+              onSubmit={(e) => { e.preventDefault(); submitHeroSearch() }}
+              className="flex gap-2 mb-4"
+            >
+              <div className="flex items-center gap-2 flex-1 bg-white/10 border border-white/20 rounded-2xl px-3.5 focus-within:border-sky-300/60 transition-colors">
+                <Search className="w-4 h-4 text-white/60 shrink-0" strokeWidth={ICON_STROKE} />
+                <input
+                  type="text"
+                  value={heroQuery}
+                  onChange={(e) => setHeroQuery(e.target.value)}
+                  placeholder={tr('h3_search_ph')}
+                  aria-label={tr('h3_search_ph')}
+                  className="flex-1 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
+                />
+              </div>
+              <button
+                type="submit"
+                className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid hover:bg-brand-light text-white font-bold text-sm px-5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.4)]"
+              >
+                <Search className="w-4 h-4 sm:hidden" strokeWidth={ICON_STROKE} />
+                <span className="hidden sm:inline">{tr('h3_search_go')}</span>
+              </button>
+            </form>
+            <p className="text-white/45 text-[0.7rem] font-medium mb-4">{tr('h3_search_or')}</p>
             <div className="flex flex-wrap gap-2 mb-5">
               {HERO_DESTS.map((d) => (
                 <button
