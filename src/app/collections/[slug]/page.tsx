@@ -31,6 +31,21 @@ export default async function CollectionSlugPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  if (!getCollection(slug)) notFound()
-  return <CollectionView slug={slug} />
+  const col = getCollection(slug)
+  if (!col) notFound()
+  const breadcrumb = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.wakation.kr/' },
+      { '@type': 'ListItem', position: 2, name: '기획전', item: 'https://www.wakation.kr/collections' },
+      { '@type': 'ListItem', position: 3, name: col.title.KO, item: `https://www.wakation.kr/collections/${slug}` },
+    ],
+  }
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <CollectionView slug={slug} />
+    </>
+  )
 }

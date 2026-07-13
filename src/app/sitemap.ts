@@ -10,11 +10,9 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   // 커머스·수익 허브 (높은 우선순위)
   { path: '/select',                   priority: 0.9, freq: 'weekly' },
   { path: '/select/hotel',             priority: 0.9, freq: 'weekly' },
-  { path: '/stay',                     priority: 0.9, freq: 'weekly' },
   { path: '/select/activity',          priority: 0.8, freq: 'weekly' },
   { path: '/select/esim',              priority: 0.8, freq: 'weekly' },
   { path: '/select/learn',             priority: 0.8, freq: 'weekly' },
-  { path: '/activities',               priority: 0.7, freq: 'weekly' },
   { path: '/cruise',                   priority: 0.7, freq: 'monthly' },
   { path: '/collections',              priority: 0.8, freq: 'weekly' },
   // 프로그램
@@ -39,7 +37,6 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/tools/diagnosis',          priority: 0.7, freq: 'monthly' },
   { path: '/about',                    priority: 0.7, freq: 'monthly' },
   { path: '/infrastructure',           priority: 0.6, freq: 'monthly' },
-  { path: '/workspace',                priority: 0.6, freq: 'monthly' },
   { path: '/spaces',                   priority: 0.6, freq: 'monthly' },
   { path: '/moments/submit',           priority: 0.5, freq: 'monthly' },
   // 문의·정책
