@@ -75,7 +75,7 @@ const ITEMS: TickerItem[] = [
   },
   {
     id: 'ticker-japan-towns', emoji: '🗻', photo: U('1526481280693-3bfa7568e0f3'),
-    href: '/japan-towns',
+    href: '/programs/onsen',
     label: { KO: '일본 소도시 — 료칸·온천 워케이션', EN: 'Japan small towns — ryokan & onsen', JP: '日本の小都市 — 旅館・温泉' },
     tag: { KO: 'NEW', EN: 'NEW', JP: 'NEW' },
   },

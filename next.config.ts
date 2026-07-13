@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
   async headers() {
     return [{ source: '/:path*', headers: SECURITY_HEADERS }]
   },
+  async redirects() {
+    return [
+      // 료칸·온천 테마를 /programs/* 로 통일 — 구 URL 영구 리다이렉트(SEO·기존 링크 보존)
+      { source: '/japan-towns', destination: '/programs/onsen', permanent: true },
+    ]
+  },
 }
 
 export default nextConfig

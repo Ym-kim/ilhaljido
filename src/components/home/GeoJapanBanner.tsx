@@ -37,7 +37,7 @@ export function GeoJapanBanner() {
           </span>
           <p className="text-white/90 text-sm font-bold flex-1">{COPY.title[lang]}</p>
           <Link
-            href="/japan-towns"
+            href="/programs/onsen"
             onClick={() => { try { track('geo_japan_banner_clicked') } catch {} }}
             className="shrink-0 inline-flex items-center gap-1.5 bg-white/10 hover:bg-white/16 border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full transition-colors"
           >
