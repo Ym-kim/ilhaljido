@@ -180,6 +180,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — ho-chi-minh-city-hotels-list-301 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/ho-chi-minh-city-hotels-list-301/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -521,6 +529,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — sapporo-hotels-list-641 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/sapporo-hotels-list-641/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -733,6 +749,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — hong-kong-hotels-list-58 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/hong-kong-hotels-list-58/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -773,6 +797,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Seoul',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — seoul-hotels-list-274 (2026-07-13 WebFetch 실물검증)
+        href: 'https://kr.trip.com/hotels/seoul-hotels-list-274/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
