@@ -80,6 +80,45 @@ export const COLLECTIONS: Collection[] = [
     },
     itemIds: ['stay-webase-hakata', 'act-fukuoka-bustour', 'esim-klook-japan', 'feat-flight-tripcom'],
   },
+  {
+    slug: 'osaka-foodie',
+    emoji: '🍜',
+    photo: P('1590559899731-a382839e5549'), // 오사카 (검증)
+    title: { KO: '오사카 미식 워케이션', EN: 'Osaka foodie workation', JP: '大阪グルメワーケーション' },
+    tagline: { KO: '먹고 일하고, 주말은 주유패스로', EN: 'Eat, work, and roam with the Amazing Pass', JP: '食べて働き、週末は周遊パスで' },
+    desc: {
+      KO: '시차 0·직항 1시간대의 오사카. 라운지가 넓은 숙소에서 일하고, 주유패스로 40여 곳을 도세요. 일본 eSIM과 항공까지 한 번에.',
+      EN: 'Zero-jetlag Osaka, a short flight away. Work from a lounge-rich stay and roam 40+ spots with the Amazing Pass. Japan eSIM and flights included.',
+      JP: '時差ゼロ·直行1時間台の大阪。ラウンジの広い宿で働き、周遊パスで40カ所以上へ。日本eSIMと航空券も。',
+    },
+    itemIds: ['stay-lively-osaka', 'act-klook-osaka-pass', 'esim-klook-japan', 'feat-flight-tripcom'],
+  },
+  {
+    slug: 'singapore-business',
+    emoji: '🌆',
+    photo: P('1525625293386-3f8f99389edd'), // 싱가포르 (검증)
+    title: { KO: '싱가포르 비즈니스 워케이션', EN: 'Singapore business workation', JP: 'シンガポール ビジネスワーケーション' },
+    tagline: { KO: '코워킹 코리빙 + 도심 인프라', EN: 'Co-living meets a global business hub', JP: 'コリビング＋都市インフラ' },
+    desc: {
+      KO: '아시아 비즈니스 허브 싱가포르. 코워킹 라운지를 갖춘 코리빙에서 일하고, 주말엔 유니버설 스튜디오. 아시아 멀티국 eSIM과 항공으로 준비 끝.',
+      EN: "Singapore, Asia's business hub. Work from a co-living with a coworking lounge, and hit Universal Studios on weekends. A multi-country Asia eSIM and flights round it out.",
+      JP: 'アジアのビジネス拠点シンガポール。コワーキング付きコリビングで働き、週末はユニバーサル・スタジオ。アジアマルチ国eSIMと航空券で準備完了。',
+    },
+    itemIds: ['stay-lyf-funan-singapore', 'act-klook-uss-singapore', 'esim-klook-asia', 'feat-flight-tripcom'],
+  },
+  {
+    slug: 'taipei-workation',
+    emoji: '🏮',
+    photo: P('1470004914212-05527e49370b'), // 타이베이 (검증)
+    title: { KO: '타이베이 워케이션', EN: 'Taipei workation', JP: '台北ワーケーション' },
+    tagline: { KO: '야시장과 코워킹 사이', EN: 'Between night markets and coworking', JP: '夜市とコワーキングの間で' },
+    desc: {
+      KO: '카페·야시장 밀도 높은 타이베이. 스마트 호텔에서 일하고, 예류·지우펀 일일투어로 근교를 도세요. 아시아 eSIM과 항공까지.',
+      EN: 'Taipei, dense with cafés and night markets. Work from a smart hotel and day-trip to Yehliu and Jiufen. Asia eSIM and flights included.',
+      JP: 'カフェ·夜市が密集する台北。スマートホテルで働き、野柳·九份の日帰りツアーへ。アジアeSIMと航空券も。',
+    },
+    itemIds: ['stay-citizenm-taipei', 'act-klook-taipei-tour', 'esim-klook-asia', 'feat-flight-tripcom'],
+  },
 ]
 
 export function getCollection(slug: string): Collection | undefined {
