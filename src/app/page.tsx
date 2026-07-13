@@ -23,6 +23,7 @@ import { ToolsSection } from '@/components/home/ToolsSection'
 import { MediaSection } from '@/components/home/MediaSection'
 import { SponsorSection } from '@/components/home/SponsorSection'
 import { YangyangProof } from '@/components/home/YangyangProof'
+import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -419,6 +420,10 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      {/* ── 확정 모집 회차 (Supabase 라이브) — 활성 프로그램을 메인에 바로 노출 ── */}
+      {/* 데이터 없으면 자동 숨김. 운영자가 HELD에서 회차를 풀면 즉시 메인 노출됨 */}
+      <UpcomingCohorts />
 
       {/* ── 양양 1기 완료 증거 — 실운영 신뢰 + 리드 수집 ── */}
       <YangyangProof />
