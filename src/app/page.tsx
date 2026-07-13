@@ -14,6 +14,7 @@ import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { trackAffiliateClick } from '@/lib/track'
 import { MomentRail } from '@/components/home/MomentRail'
+import { CollectionsSection } from '@/components/home/CollectionsSection'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
@@ -331,6 +332,9 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+
+      {/* ── 테마 기획전 — 목적지별 숙소·체험·eSIM·항공 큐레이션 묶음 ── */}
+      <CollectionsSection />
 
       {/* ── 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 ── */}
       <MomentRail />
