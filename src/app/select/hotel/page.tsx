@@ -12,7 +12,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { WishlistRail } from '@/components/affiliate/WishlistRail'
 import { RecentRail } from '@/components/affiliate/RecentRail'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
-import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
+import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 
@@ -23,14 +23,14 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
 
 // 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
 const REGIONS = [
-  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-nagoya', 'japan-hiroshima', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata'] },
+  { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-nagoya', 'japan-hiroshima', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata', 'stay-mimaru-tokyo'] },
   { id: 'region-japan-small', labelKey: 'region_japan_small', ids: ['japan-kawaguchiko', 'japan-kanazawa', 'japan-yufuin'], featuredIds: [] },
-  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-seoul', 'korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung', 'korea-sokcho'], featuredIds: ['stay-playce-jeju'] },
-  { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok', 'thailand-phuket'], featuredIds: ['stay-kantary-chiangmai', 'stay-lyf-sukhumvit-bangkok'] },
-  { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang'] },
-  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali', 'indonesia-ubud', 'indonesia-canggu'], featuredIds: ['stay-tribal-bali'] },
-  { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: ['stay-nomadshub-cebu', 'stay-citizenm-taipei'] },
-  { id: 'region-oceania',   labelKey: 'region_oceania',   ids: ['australia-sydney', 'australia-melbourne', 'australia-goldcoast'], featuredIds: ['stay-adina-sydney'] },
+  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-seoul', 'korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung', 'korea-sokcho'], featuredIds: ['stay-playce-jeju', 'stay-fraser-seoul', 'stay-uh-busan', 'stay-skybay-gangneung'] },
+  { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok', 'thailand-phuket'], featuredIds: ['stay-kantary-chiangmai', 'stay-lyf-sukhumvit-bangkok', 'stay-shama-bangkok', 'stay-naka-phuket'] },
+  { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang', 'stay-sanouva-danang', 'stay-seaside-nhatrang', 'stay-dhts-hcmc'] },
+  { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali', 'indonesia-ubud', 'indonesia-canggu'], featuredIds: ['stay-tribal-bali', 'stay-thenomad-canggu', 'stay-ubud-village', 'stay-fields-seminyak'] },
+  { id: 'region-asia',      labelKey: 'region_asia',      ids: ['philippines-cebu', 'taiwan-taipei', 'singapore-city'], featuredIds: ['stay-nomadshub-cebu', 'stay-citizenm-taipei', 'stay-lyf-funan-singapore', 'stay-gloria-taipei'] },
+  { id: 'region-oceania',   labelKey: 'region_oceania',   ids: ['australia-sydney', 'australia-melbourne', 'australia-goldcoast'], featuredIds: ['stay-adina-sydney', 'stay-meriton-kent-sydney', 'stay-adina-melbourne', 'stay-meriton-surfers-goldcoast'] },
   { id: 'region-china',     labelKey: 'region_china',     ids: ['china-shanghai', 'china-hongkong', 'china-guangzhou'], featuredIds: [] },
   { id: 'region-portugal',  labelKey: 'region_portugal',  ids: ['portugal-lisbon', 'portugal-porto', 'portugal-faro'], featuredIds: [] },
 ]
@@ -95,16 +95,20 @@ export default function HotelSelectPage() {
       {/* Destination sections — 추천 개별 숙소 먼저, 도시 검색은 폴백 */}
       {REGIONS.map((region) => {
         const destinations = HOTEL_DESTINATIONS.filter((d) => region.ids.includes(d.id))
-        const featured = [...FEATURED_STAYS, ...FEATURED_STAYS_V2].filter((i) => region.featuredIds.includes(i.id))
+        const featuredPool = [...FEATURED_STAYS, ...FEATURED_STAYS_V2, ...FEATURED_STAYS_V3]
+        // featuredIds 순서대로 정렬 (지역별 4장 진열 순서 유지)
+        const featured = region.featuredIds
+          .map((id) => featuredPool.find((i) => i.id === id))
+          .filter((i): i is (typeof featuredPool)[number] => Boolean(i))
         if (destinations.length === 0 && featured.length === 0) return null
         return (
           <section key={region.id} id={region.id} className="px-6 pb-10 border-t border-[#e0f2fe] scroll-mt-24">
             <div className="max-w-6xl mx-auto pt-10">
               <p className="text-[#111827] font-black text-base mb-5">{tr(region.labelKey)}</p>
 
-              {/* 1) 에디터 추천 개별 숙소 — 지역별 1~3장이라 3열 기준(일본 등 3장은 완전 정렬) */}
+              {/* 1) 에디터 추천 개별 숙소 — 지역별 4장 진열: 폰 2열·데스크톱 4열 모두 빈칸 없음 */}
               {featured.length > 0 && (
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 mb-6">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 mb-6">
                   {featured.map((item) => (
                     <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
                   ))}

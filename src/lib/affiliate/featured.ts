@@ -649,6 +649,143 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
   },
 ]
 
+// ── 2026-07-13 featured 그리드 4장 채움 — 지역별 에디터픽 보강 (17종) ──
+// Booking 슬러그 웹검색 실존 확인 + aid=7854081 추적. 사진은 호텔/리조트 검증 팔레트
+// (도시 카드와 구분되게 실내/풀 이미지 — 전부 curl 200 + Read 육안검증)
+const HR1 = 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80' // 모던 객실
+const HR2 = 'https://images.unsplash.com/photo-1590675560125-0d832b9d719e?auto=format&fit=crop&w=700&q=80' // 워케이션 객실
+const RT1 = 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=700&q=80' // 트로피컬 리조트
+const RT2 = 'https://images.unsplash.com/photo-1627448449276-8c139d0790a6?auto=format&fit=crop&w=700&q=80' // 오션 리조트 풀
+
+export const FEATURED_STAYS_V3: AffiliateItem[] = [
+  // 일본 (+1)
+  {
+    id: 'stay-mimaru-tokyo', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '미마루 도쿄 우에노 이스트', destination: '도쿄 · 일본', country: '일본',
+    desc: '주방·업무 데스크 완비 아파트형 객실. 우에노역 도보권, 장기체류 최적.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/jp/mimaru-tokyo-ueno-east.html?aid=7854081',
+    badge: '주방·데스크', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  // 한국 (+3)
+  {
+    id: 'stay-fraser-seoul', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '프레이저 플레이스 센트럴 서울', destination: '서울 · 국내', country: '국내',
+    desc: '주방·세탁 갖춘 서비스드 레지던스. 헬스장·수영장 완비 도심 장기체류.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/fraser-place-central-seoul.html?aid=7854081',
+    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  {
+    id: 'stay-uh-busan', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🌊', productTitle: '유에이치 스위트 더 해운대', destination: '부산 해운대 · 국내', country: '국내',
+    desc: '해운대 해변 도보 2분, 주방·발코니 갖춘 오션뷰 레지던스.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/uh-suite-the-haeundae-busan.html?aid=7854081',
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  {
+    id: 'stay-skybay-gangneung', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏖', productTitle: '스카이베이 호텔 경포', destination: '강릉 경포 · 국내', country: '국내',
+    desc: '경포해변·경포호 인근, 전 객실 발코니 오션·레이크뷰. 20층 인피니티풀.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/golden-tulip-skybay-gyeongpo.html?aid=7854081',
+    badge: '오션뷰 풀', trackingId: 'aid=7854081', coverPhoto: RT2,
+  },
+  // 태국 (+2)
+  {
+    id: 'stay-shama-bangkok', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '샤마 수쿰빗 방콕', destination: '방콕 수쿰빗 · 태국', country: '태국',
+    desc: '주방 완비 서비스드 아파트. 인피니티풀·헬스장, BTS 접근 좋은 장기체류.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/th/shama-sukhumvit-serviced-apartment.html?aid=7854081',
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  {
+    id: 'stay-naka-phuket', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏝', productTitle: '나카 레지던스', destination: '푸켓 타운 · 태국', country: '태국',
+    desc: '푸켓 타운 넓은 아파트형 객실. 무료 와이파이·주차, 장기체류 가성비.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/th/naka-residence.html?aid=7854081',
+    badge: '장기체류', trackingId: 'aid=7854081', coverPhoto: RT1,
+  },
+  // 베트남 (+3)
+  {
+    id: 'stay-sanouva-danang', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '사노우바 다낭 호텔', destination: '다낭 하이쩌우 · 베트남', country: '베트남',
+    desc: '하이쩌우 도심 비즈니스 호텔. 무료 와이파이·피트니스로 업무 여행 편리.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/sanouva-da-nang.html?aid=7854081',
+    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  {
+    id: 'stay-seaside-nhatrang', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🌊', productTitle: '씨사이드 부티크 호텔 나트랑 비치', destination: '나트랑 · 베트남', country: '베트남',
+    desc: '나트랑 해변 앞 부티크 호텔. 루프탑 수영장·오션뷰로 워케이션 무드.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/seaside-nha-trang.html?aid=7854081',
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: RT2,
+  },
+  {
+    id: 'stay-dhts-hcmc', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: 'DHTS 비즈니스 호텔 앤 아파트먼트', destination: '호치민 · 베트남', country: '베트남',
+    desc: '루프탑 수영장 갖춘 아파트형 비즈니스 호텔. 무료 와이파이·피트니스.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/dhts-business-apartment.html?aid=7854081',
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  // 인도네시아 (+3)
+  {
+    id: 'stay-thenomad-canggu', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🌴', productTitle: '더노마드 짱구', destination: '발리 짱구 · 인도네시아', country: '인도네시아',
+    desc: '디지털 노마드 콘셉트 코리빙. 짱구 중심가에서 일과 휴식을 동시에.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/thenomad-canggu.html?aid=7854081',
+    badge: '노마드 코리빙', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  {
+    id: 'stay-ubud-village', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🌾', productTitle: '더 우붓 빌리지 리조트 앤 스파', destination: '발리 우붓 · 인도네시아', country: '인도네시아',
+    desc: '라이스필드에 둘러싸인 프라이빗 풀 빌라. 장기 체류형 힐링 워케이션.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/the-ubud-village-resort.html?aid=7854081',
+    badge: '풀 빌라', trackingId: 'aid=7854081', coverPhoto: RT1,
+  },
+  {
+    id: 'stay-fields-seminyak', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏝', productTitle: '더 필즈 호텔 앤 아파트먼트', destination: '발리 스미냑 · 인도네시아', country: '인도네시아',
+    desc: '주방·데스크 갖춘 아파트형 객실. 조용한 스미냑에서 장기 워케이션.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/the-fields-apartment.html?aid=7854081',
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  // 아시아 (+2)
+  {
+    id: 'stay-lyf-funan-singapore', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '리프 후난 싱가포르', destination: '싱가포르 시티홀', country: '싱가포르',
+    desc: '아시아 최대 코리빙. 코워킹 라운지·공용주방 갖춘 시티홀 도심 입지.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/sg/lyf-funan.html?aid=7854081',
+    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  {
+    id: 'stay-gloria-taipei', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '글로리아 레지던스', destination: '타이베이 · 대만', country: '대만',
+    desc: '키치넷 갖춘 넓은 서비스드 아파트. 실내수영장, 타이베이역 접근 장기체류.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/tw/gloria-residence.html?aid=7854081',
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  // 오세아니아 (+3)
+  {
+    id: 'stay-meriton-kent-sydney', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '메리톤 스위트 켄트 스트리트', destination: '시드니 CBD · 호주', country: '호주',
+    desc: 'CBD 중심 풀키친 서비스드 아파트. 실내수영장·헬스장 갖춘 장기체류.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/meriton-serviced-apartment-kent-street.html?aid=7854081',
+    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: HR1,
+  },
+  {
+    id: 'stay-adina-melbourne', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏙', productTitle: '아디나 아파트먼트 호텔 멜버른', destination: '멜버른 CBD · 호주', country: '호주',
+    desc: 'CBD 자급형 아파트. 주방·세탁·무료 와이파이에 수영장·헬스장 완비.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/medina-grand-melbourne.html?aid=7854081',
+    badge: '아파트 호텔', trackingId: 'aid=7854081', coverPhoto: HR2,
+  },
+  {
+    id: 'stay-meriton-surfers-goldcoast', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
+    emoji: '🏖', productTitle: '메리톤 스위트 서퍼스 파라다이스', destination: '골드코스트 · 호주', country: '호주',
+    desc: '서퍼스 파라다이스 해변 앞 풀키친 스위트. 오션뷰 비치 워케이션.',
+    cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/meriton-suites-surfers-paradise.html?aid=7854081',
+    badge: '오션뷰 스위트', trackingId: 'aid=7854081', coverPhoto: RT2,
+  },
+]
+
 // 테마 페이지용 체험 상품 (2026-07 리서치 검증 — KKday 실상품)
 export const THEME_EXPERIENCES: AffiliateItem[] = [
   {
