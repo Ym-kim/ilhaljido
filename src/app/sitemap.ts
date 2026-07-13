@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { CITY_GUIDES } from '@/lib/guides'
+import { COLLECTIONS } from '@/lib/affiliate/collections'
 
 const BASE = 'https://www.wakation.kr'
 
@@ -15,6 +16,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/select/learn',             priority: 0.8, freq: 'weekly' },
   { path: '/activities',               priority: 0.7, freq: 'weekly' },
   { path: '/cruise',                   priority: 0.7, freq: 'monthly' },
+  { path: '/collections',              priority: 0.8, freq: 'weekly' },
   // 프로그램
   { path: '/programs',                 priority: 0.9, freq: 'weekly' },
   { path: '/programs/domestic',        priority: 0.9, freq: 'weekly' },
@@ -57,6 +59,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: r.freq,
       priority: r.priority,
+    })),
+    // 테마 기획전 상세 (collections.ts에 추가 시 자동 반영)
+    ...COLLECTIONS.map((c) => ({
+      url: `${BASE}/collections/${c.slug}`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
     })),
     // 도시 가이드 (guides.ts에 추가 시 자동 반영)
     { url: `${BASE}/guide`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.85 },
