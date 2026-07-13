@@ -6,6 +6,9 @@ import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { NotifySignup } from '@/components/home/NotifySignup'
+import { FEATURED_COURSES } from '@/lib/affiliate/featured'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -33,7 +36,12 @@ const COPY: Record<string, L> = {
   cta_browse: { KO: '강의·학습 보기', EN: 'Browse courses', JP: '講座・学習を見る' },
   cta_partner: { KO: '교육 파트너 문의', EN: 'Education partner inquiry', JP: '教育パートナーのお問い合わせ' },
   notify_label: { KO: '다음 성장캠프가 열리면 알려드릴게요', EN: "We'll let you know when the next growth camp opens", JP: '次の成長キャンプ開催時にお知らせします' },
+  courses_label: { KO: '지금 바로 들을 수 있는 강의', EN: 'Courses you can start right now', JP: '今すぐ受けられる講座' },
+  courses_more: { KO: '전체 강의 보기', EN: 'See all courses', JP: 'すべての講座を見る' },
 }
+
+// 홈에 노출할 실강의 3선 (인프런 파트너스 실상품 — 가격 검증됨)
+const HOME_COURSES = FEATURED_COURSES.filter((c) => c.status === 'active_affiliate').slice(0, 3)
 
 const TOPICS: L[] = [
   { KO: 'AI 업무 자동화', EN: 'AI work automation', JP: 'AI業務自動化' },
@@ -89,6 +97,41 @@ export function LearningSection() {
           <span className="bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-bold px-3.5 py-1.5 rounded-full">
             {COPY.partner_badge[lang]}
           </span>
+        </div>
+
+        {/* 지금 들을 수 있는 실강의 3선 — 세미나/강의 플랫폼처럼 실콘텐츠 노출 */}
+        <div className="mb-10">
+          <p className="text-white/70 text-[0.8125rem] font-bold mb-3.5">{COPY.courses_label[lang]}</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {HOME_COURSES.map((raw) => {
+              const c = localizeAffiliateItem(raw, lang)
+              return (
+                <a
+                  key={c.id}
+                  href={c.href}
+                  target="_blank"
+                  rel="sponsored noopener noreferrer"
+                  onClick={() => { try { trackAffiliateClick({ id: c.id, provider: '인프런', status: c.status, page: '/' }) } catch {} }}
+                  className="group flex flex-col bg-white/[0.06] hover:bg-white/[0.1] border border-white/12 hover:border-sky-400/40 rounded-2xl p-4 transition-all duration-150"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-lg leading-none">{c.emoji}</span>
+                    <span className="text-[0.6rem] font-black uppercase tracking-wide text-sky-300 bg-sky-400/15 px-2 py-0.5 rounded-full">{c.destination}</span>
+                  </div>
+                  <p className="text-white font-bold text-sm leading-snug mb-2 flex-1">{c.productTitle}</p>
+                  <div className="flex items-center justify-between">
+                    {c.priceFrom && <span className="text-amber-300 font-black text-sm">{c.priceFrom}</span>}
+                    <span className="inline-flex items-center gap-1 text-sky-300 text-xs font-bold group-hover:gap-1.5 transition-all ml-auto">
+                      {c.cta} <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                    </span>
+                  </div>
+                </a>
+              )
+            })}
+          </div>
+          <Link href="/select/learn" className="inline-flex items-center gap-1.5 text-white/55 hover:text-white text-xs font-bold mt-3.5 transition-colors">
+            {COPY.courses_more[lang]} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+          </Link>
         </div>
 
         {/* CTA */}
