@@ -30,7 +30,9 @@ export default function Footer() {
             <ul className="space-y-2.5 text-[0.9375rem] font-medium">
               {[
                 { k: 'nav_programs', h: '/programs' },
+                { k: 'nav_select_collections', h: '/collections' },
                 { k: 'nav_infrastructure', h: '/infrastructure' },
+                { k: 'footer_spaces', h: '/spaces' },
                 { k: 'nav_visa', h: '/visa-ai' },
                 { k: 'nav_growth', h: '/growth' },
                 { k: 'nav_partnership', h: '/partnership' },

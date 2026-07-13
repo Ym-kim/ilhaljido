@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
     return [
       // 료칸·온천 테마를 /programs/* 로 통일 — 구 URL 영구 리다이렉트(SEO·기존 링크 보존)
       { source: '/japan-towns', destination: '/programs/onsen', permanent: true },
+      // 레거시 중복 페이지를 정식 /select·/infrastructure 허브로 통합 (2026-07-14 전체점검)
+      // — 얇은 중복이 검색에서 정식 허브와 카니발라이즈되던 것 해소
+      { source: '/stay', destination: '/select/hotel', permanent: true },
+      { source: '/activities', destination: '/select/activity', permanent: true },
+      { source: '/workspace', destination: '/infrastructure', permanent: true },
     ]
   },
 }
