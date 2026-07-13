@@ -17,6 +17,7 @@ import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
 import { PromoTicker } from '@/components/home/PromoTicker'
+import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
 import { GrowthEngines } from '@/components/home/GrowthEngines'
 import { LearningSection } from '@/components/home/LearningSection'
 import { ToolsSection } from '@/components/home/ToolsSection'
@@ -230,6 +231,9 @@ export default function HomePage() {
 
       {/* ── 프로모 티커 — 제휴 상품 롤링 배너 (호버 시 정지) ── */}
       <PromoTicker />
+
+      {/* ── 국가 지정 노출: 일본 접속자 전용 컨텍스트 배너 (그 외 국가엔 미노출) ── */}
+      <GeoJapanBanner />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
