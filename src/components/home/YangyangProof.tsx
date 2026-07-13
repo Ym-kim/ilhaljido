@@ -1,6 +1,7 @@
 'use client'
 
-import { CheckCircle2, Clock, ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { CheckCircle2, Clock, ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { NotifySignup } from '@/components/home/NotifySignup'
@@ -22,7 +23,7 @@ const COPY: Record<string, L> = {
     JP: '海の前で働き休む2泊3日。初回を実際に運営し、参加者アンケートをそのまま公開しています。',
   },
   stat_note: { KO: '1기 참가자 설문 · 전원 응답', EN: 'Batch 1 participant survey · all responded', JP: '1期参加者アンケート・全員回答' },
-  view_page: { KO: '설문 결과·후기·사진 전체 보기', EN: 'See the full survey, reviews & photos', JP: 'アンケート・レビュー・写真をすべて見る' },
+  view_page: { KO: '양양 1기 결과 리포트 보기', EN: 'View the batch-1 result report', JP: '襄陽1期の結果レポートを見る' },
   notify_label: { KO: '다음 회차가 열리면 가장 먼저 알려드릴게요', EN: "Be the first to know when the next cohort opens", JP: '次回開催を最初にお知らせします' },
 }
 
@@ -74,15 +75,13 @@ export function YangyangProof() {
             ))}
           </ul>
 
-          {/* 1기 실제 모집 페이지 — 설문·후기·사진 원본 */}
-          <a
-            href="https://wakation-yangyang.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* 온사이트 결과 리포트 — 설문·일정·후기 (외부 원본은 리포트 내에서 재링크) */}
+          <Link
+            href="/report/yangyang"
             className="inline-flex items-center gap-1.5 text-sky-300 text-sm font-bold hover:gap-2.5 transition-all"
           >
-            {COPY.view_page[lang]} <ArrowUpRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-          </a>
+            {COPY.view_page[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          </Link>
         </div>
         <div>
           <p className="text-white/45 text-xs font-semibold mb-2.5">{COPY.notify_label[lang]}</p>
