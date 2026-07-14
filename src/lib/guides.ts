@@ -28,6 +28,11 @@ export type CityGuide = {
   flightUrl?: string
   /** IANA 타임존 — 워크타임 오버랩 위젯용 */
   timeZone: string
+  /** 빠른 비교 데이터 (destinations 카드·GuideView 스트립 공용) */
+  internet?: 1 | 2 | 3 | 4 | 5
+  costMonthly?: string   // '월 160만원대'
+  visaFree?: string      // '무비자 90일'
+  esimHref?: string      // Airalo 국가 페이지
 }
 
 const FLIGHT = (slug: string) =>
@@ -87,6 +92,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: ['act-tokyo-disney'],
     flightUrl: FLIGHT('seoul-to-tokyo/airfares-sel-tyo'),
     timeZone: 'Asia/Tokyo',
+    internet: 5,
+    costMonthly: '월 160만원대',
+    visaFree: '무비자 90일',
+    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'fukuoka',
@@ -131,6 +140,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: ['act-fukuoka-bustour'],
     flightUrl: FLIGHT('seoul-to-fukuoka/airfares-sel-fuk'),
     timeZone: 'Asia/Tokyo',
+    internet: 5,
+    costMonthly: '월 120만원대',
+    visaFree: '무비자 90일',
+    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'danang',
@@ -175,6 +188,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: ['act-danang-banahills'],
     flightUrl: FLIGHT('seoul-to-danang/airfares-sel-dad'),
     timeZone: 'Asia/Ho_Chi_Minh',
+    internet: 4,
+    costMonthly: '월 90만원대',
+    visaFree: '무비자 45일',
+    esimHref: 'https://www.airalo.com/vietnam',
   },
   {
     slug: 'bali',
@@ -219,6 +236,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: ['act-bali-ubud'],
     flightUrl: FLIGHT('seoul-to-denpasar/airfares-sel-dps'),
     timeZone: 'Asia/Makassar',
+    internet: 3,
+    costMonthly: '월 100만원대',
+    visaFree: '무비자 30일 → E33G 60일 연장',
+    esimHref: 'https://www.airalo.com/indonesia',
   },
   {
     slug: 'chiangmai',
@@ -263,6 +284,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-chiangmai/airfares-sel-cnx'),
     timeZone: 'Asia/Bangkok',
+    internet: 4,
+    costMonthly: '월 110만원대',
+    visaFree: '무비자 60일',
+    esimHref: 'https://www.airalo.com/thailand',
   },
   {
     slug: 'jeju',
@@ -307,6 +332,9 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-jeju/airfares-sel-cju'),
     timeZone: 'Asia/Seoul',
+    internet: 4,
+    costMonthly: '월 70만원대',
+    visaFree: '국내 (비자 불필요)',
   },
   {
     slug: 'osaka',
@@ -351,6 +379,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: ['act-osaka-usj'],
     flightUrl: FLIGHT('seoul-to-osaka/airfares-sel-osa'),
     timeZone: 'Asia/Tokyo',
+    internet: 5,
+    costMonthly: '월 140만원대',
+    visaFree: '무비자 90일',
+    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'cebu',
@@ -395,6 +427,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-cebu/airfares-sel-ceb'),
     timeZone: 'Asia/Manila',
+    internet: 3,
+    costMonthly: '월 95만원대',
+    visaFree: '무비자 30일 → 최대 1년 연장',
+    esimHref: 'https://www.airalo.com/philippines',
   },
   {
     slug: 'sydney',
@@ -439,6 +475,10 @@ export const CITY_GUIDES: CityGuide[] = [
     activityIds: [],
     flightUrl: FLIGHT('seoul-to-sydney/airfares-sel-syd'),
     timeZone: 'Australia/Sydney',
+    internet: 5,
+    costMonthly: '월 330만원대',
+    visaFree: 'ETA / 워킹홀리데이 비자',
+    esimHref: 'https://www.airalo.com/australia',
   },
 ]
 

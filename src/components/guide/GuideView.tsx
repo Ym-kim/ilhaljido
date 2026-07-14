@@ -91,6 +91,33 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
             </div>
           ))}
         </div>
+        {/* 빠른 비교 (internet/cost/visa) */}
+        {(guide.internet || guide.costMonthly || guide.visaFree) && (
+          <div className="max-w-5xl mx-auto px-6 pb-5 flex flex-wrap gap-4 border-t border-[#dbeafe] pt-4">
+            {guide.internet && (
+              <div>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">인터넷</p>
+                <p className="text-sm font-bold text-[#111827] flex gap-0.5">
+                  {[1,2,3,4,5].map(n => (
+                    <span key={n} className={n <= guide.internet! ? 'text-teal-500' : 'text-[#d1d5db]'}>★</span>
+                  ))}
+                </p>
+              </div>
+            )}
+            {guide.costMonthly && (
+              <div>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">생활비</p>
+                <p className="text-[#111827] text-sm font-bold">{guide.costMonthly}</p>
+              </div>
+            )}
+            {guide.visaFree && (
+              <div>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">비자</p>
+                <p className="text-[#111827] text-sm font-bold">{guide.visaFree}</p>
+              </div>
+            )}
+          </div>
+        )}
       </section>
 
       {/* ── 인트로 + 워크타임 오버랩 ── */}
@@ -175,7 +202,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
           <h2 className="text-lg font-bold text-[#111827] tracking-tight mb-5">
             {GUIDE_UI.otherGuides[lang]}
           </h2>
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-wrap gap-2.5 mb-8">
             {others.map((g) => (
               <Link
                 key={g.slug}
@@ -187,6 +214,13 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
               </Link>
             ))}
           </div>
+          {/* /destinations 크로스링크 (8개 도시만) */}
+          <Link
+            href="/destinations"
+            className="inline-flex items-center gap-2 text-sm text-[#475569] hover:text-brand-mid font-semibold transition-colors"
+          >
+            도시별 인터넷·생활비·비자 빠른 비교 →
+          </Link>
         </div>
       </section>
     </div>

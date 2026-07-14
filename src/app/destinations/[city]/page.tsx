@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen } from 'lucide-react'
 import { CITY_INSIGHTS, getCityById } from '@/lib/cities'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
+import { CITY_GUIDES } from '@/lib/guides'
 
 // ── Static generation ─────────────────────────────────────────────────────────
 export async function generateStaticParams() {
@@ -80,6 +81,7 @@ export default async function CityPage({
   const featuredStay = city.featuredStayId
     ? allStays.find((s) => s.id === city.featuredStayId)
     : undefined
+  const hasGuide = CITY_GUIDES.some((g) => g.slug === cityId)
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
@@ -269,6 +271,26 @@ export default async function CityPage({
             </a>
           )}
         </section>
+
+        {/* 에디터 심층 가이드 크로스링크 */}
+        {hasGuide && (
+          <section className="bg-[#f8f7f4] border border-[#e8e4dc] rounded-2xl p-5 flex items-center gap-4">
+            <div className="w-10 h-10 bg-white rounded-xl border border-[#e8e4dc] flex items-center justify-center shrink-0">
+              <BookOpen className="w-5 h-5 text-[#555]" strokeWidth={2} />
+            </div>
+            <div className="flex-1">
+              <p className="text-xs text-[#888] mb-0.5">에디터 가이드</p>
+              <p className="font-bold text-[#111]">{city.city} 워케이션 심층 가이드</p>
+              <p className="text-xs text-[#888]">동네 소개 · 일하기 좋은 카페 · 워크타임 오버랩 계산기</p>
+            </div>
+            <Link
+              href={`/guide/${cityId}`}
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-[#555] hover:text-teal-600 transition-colors whitespace-nowrap shrink-0"
+            >
+              보러 가기 <ArrowRight className="w-4 h-4" />
+            </Link>
+          </section>
+        )}
 
         {/* Visa quick link */}
         <section className="bg-gradient-to-r from-teal-50 to-blue-50 border border-teal-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
