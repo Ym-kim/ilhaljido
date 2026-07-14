@@ -2,6 +2,7 @@ import type { Lang } from './types'
 
 const KO: Record<string, string> = {
   nav_about: '소개',
+  nav_destinations: '목적지 가이드',
   nav_programs: '프로그램',
   nav_growth: '성장캠프',
   nav_infrastructure: '스테이·워크스페이스',
@@ -762,6 +763,7 @@ const KO: Record<string, string> = {
 
 const EN: Record<string, string> = {
   nav_about: 'About',
+  nav_destinations: 'Destination Guide',
   nav_programs: 'Programs',
   nav_growth: 'Growth Camp',
   nav_infrastructure: 'Stay & Workspace',
@@ -1521,6 +1523,7 @@ const EN: Record<string, string> = {
 
 const JP: Record<string, string> = {
   nav_about: '紹介',
+  nav_destinations: '目的地ガイド',
   nav_programs: 'プログラム',
   nav_growth: '成長キャンプ',
   nav_infrastructure: '滞在・ワーク',
