@@ -16,6 +16,7 @@ type NavItem = { key: string; href?: string; items?: DropItem[] }
 
 const NAV_ITEMS: NavItem[] = [
   { key: 'nav_about', href: '/about' },
+  { key: 'nav_destinations', href: '/destinations' },
   {
     key: 'nav_programs',
     items: [

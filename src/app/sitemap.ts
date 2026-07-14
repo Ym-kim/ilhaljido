@@ -1,13 +1,23 @@
 import { MetadataRoute } from 'next'
+import { CITY_INSIGHTS } from '@/lib/cities'
 
 const BASE = 'https://www.wakation.kr'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
 
+  const cityPages: MetadataRoute.Sitemap = CITY_INSIGHTS.map((c) => ({
+    url: `${BASE}/destinations/${c.id}`,
+    lastModified: now,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
   return [
     { url: BASE,                         lastModified: now, changeFrequency: 'weekly',  priority: 1.0 },
     { url: `${BASE}/select`,             lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    { url: `${BASE}/destinations`,       lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
+    ...cityPages,
     { url: `${BASE}/programs`,           lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     { url: `${BASE}/programs/domestic`,  lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
     { url: `${BASE}/programs/global`,    lastModified: now, changeFrequency: 'weekly',  priority: 0.9 },
