@@ -238,7 +238,7 @@ export default async function CityPage({
           <a
             href={city.esimHref}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="sponsored noopener noreferrer"
             className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-[#c8c4bc] p-5 flex items-center gap-4 transition-all hover:shadow-md"
           >
             <div className="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0">
@@ -256,7 +256,7 @@ export default async function CityPage({
             <a
               href={city.activityHref}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="sponsored noopener noreferrer"
               className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-[#c8c4bc] p-5 flex items-center gap-4 transition-all hover:shadow-md"
             >
               <div className="w-10 h-10 bg-amber-50 rounded-xl flex items-center justify-center shrink-0">
