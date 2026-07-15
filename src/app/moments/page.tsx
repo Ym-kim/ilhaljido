@@ -32,7 +32,8 @@ function MomentCard({ moment }: { moment: (typeof MOMENTS)[number] }) {
         </h3>
         <p className="text-white/70 text-xs leading-relaxed line-clamp-2">{moment.tip[lang]}</p>
         <div className="mt-3 flex items-center gap-1 text-teal-300 text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-          숙소 보기 <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+          {{ KO: '숙소 보기', EN: 'View stays', JP: '宿を見る' }[lang]}{' '}
+          <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
         </div>
       </div>
     </Link>
