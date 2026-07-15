@@ -14,49 +14,23 @@ import { cn } from '@/lib/utils'
 type DropItem = { labelKey: string; href: string; isHighlight?: boolean; hasDivider?: boolean }
 type NavItem = { key: string; href?: string; items?: DropItem[] }
 
+// 최상위 6개로 정리 (2026-07-15) — lg 화면 찌그러짐/중복 해소.
+// 규칙: 최상위 링크 2 + 드롭다운 4. 소개=푸터, 비자=글로벌·비자 안, 테마=프로그램 안으로 통합.
 const NAV_ITEMS: NavItem[] = [
-  { key: 'nav_about', href: '/about' },
   { key: 'nav_destinations', href: '/destinations' },
   {
     key: 'nav_programs',
     items: [
       { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
       { labelKey: 'nav_prog_support', href: '/programs/support' },
-      { labelKey: 'nav_prog_global', href: '/programs/global' },
       { labelKey: 'nav_prog_business', href: '/business' },
-      { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
-    ],
-  },
-  {
-    key: 'nav_theme',
-    items: [
-      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen' },
+      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen', hasDivider: true },
       { labelKey: 'mega_theme_yoga', href: '/programs/healing' },
       { labelKey: 'home_theme_golf_l', href: '/programs/golf' },
       { labelKey: 'mega_theme_local', href: '/programs/local' },
       { labelKey: 'home_theme_sports_l', href: '/programs/sports' },
       { labelKey: 'mega_stay_cruise', href: '/cruise' },
-    ],
-  },
-  {
-    key: 'home_cat_learn_l',
-    items: [
-      { labelKey: 'nav_growth', href: '/growth' },
-      { labelKey: 'nav_learn', href: '/learn' },
-      { labelKey: 'mega_learn_ai', href: '/growth' },
-      { labelKey: 'nav_founder_net', href: '/programs/networking' },
-      { labelKey: 'nav_select_learn', href: '/select/learn', hasDivider: true },
-    ],
-  },
-  {
-    key: 'nav_global_nav',
-    items: [
-      { labelKey: 'nav_global_market', href: '/programs/market' },
-      { labelKey: 'nav_prog_language', href: '/language' },
-      { labelKey: 'nav_prog_globalstay', href: '/programs/global' },
-      { labelKey: 'nav_visa', href: '/visa-ai' },
-      { labelKey: 'nav_select_hotel', href: '/select/hotel', hasDivider: true },
-      { labelKey: 'nav_select_esim', href: '/select/esim' },
+      { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
     ],
   },
   {
@@ -72,7 +46,23 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_select_all', href: '/select', hasDivider: true },
     ],
   },
-  { key: 'nav_visa', href: '/visa-ai' },
+  {
+    key: 'nav_global_nav',
+    items: [
+      { labelKey: 'nav_prog_globalstay', href: '/programs/global' },
+      { labelKey: 'nav_global_market', href: '/programs/market' },
+      { labelKey: 'nav_prog_language', href: '/language' },
+      { labelKey: 'nav_visa', href: '/visa-ai', isHighlight: true, hasDivider: true },
+    ],
+  },
+  {
+    key: 'home_cat_learn_l',
+    items: [
+      { labelKey: 'nav_growth', href: '/growth' },
+      { labelKey: 'nav_learn', href: '/learn' },
+      { labelKey: 'nav_founder_net', href: '/programs/networking' },
+    ],
+  },
   { key: 'nav_partnership', href: '/partnership' },
 ]
 

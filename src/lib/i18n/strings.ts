@@ -2,7 +2,7 @@ import type { Lang } from './types'
 
 const KO: Record<string, string> = {
   nav_about: '소개',
-  nav_destinations: '목적지 가이드',
+  nav_destinations: '목적지',
   nav_programs: '프로그램',
   nav_growth: '성장캠프',
   nav_infrastructure: '스테이·워크스페이스',
@@ -303,7 +303,7 @@ const KO: Record<string, string> = {
   footer_spaces: '코워킹 공간',
   mega_stay_visa: '비자 AI',
   nav_theme: '테마',
-  nav_global_nav: '글로벌',
+  nav_global_nav: '글로벌·비자',
   nav_prog_yangyang: '양양 파일럿',
   nav_prog_all: '전체 프로그램 보기',
   nav_founder_net: '창업자 네트워킹',
@@ -764,7 +764,7 @@ const KO: Record<string, string> = {
 
 const EN: Record<string, string> = {
   nav_about: 'About',
-  nav_destinations: 'Destination Guide',
+  nav_destinations: 'Destinations',
   nav_programs: 'Programs',
   nav_growth: 'Growth Camp',
   nav_infrastructure: 'Stay & Workspace',
@@ -1065,7 +1065,7 @@ const EN: Record<string, string> = {
   footer_spaces: 'Coworking spaces',
   mega_stay_visa: 'Visa AI',
   nav_theme: 'Theme',
-  nav_global_nav: 'Global',
+  nav_global_nav: 'Global & Visa',
   nav_prog_yangyang: 'Yangyang Pilot',
   nav_prog_all: 'All Programs',
   nav_founder_net: 'Founder Networking',
@@ -1525,7 +1525,7 @@ const EN: Record<string, string> = {
 
 const JP: Record<string, string> = {
   nav_about: '紹介',
-  nav_destinations: '目的地ガイド',
+  nav_destinations: '目的地',
   nav_programs: 'プログラム',
   nav_growth: '成長キャンプ',
   nav_infrastructure: '滞在・ワーク',
@@ -1826,7 +1826,7 @@ const JP: Record<string, string> = {
   footer_spaces: 'コワーキングスペース',
   mega_stay_visa: 'ビザAI',
   nav_theme: 'テーマ',
-  nav_global_nav: 'グローバル',
+  nav_global_nav: 'グローバル・ビザ',
   nav_prog_yangyang: '襄陽パイロット',
   nav_prog_all: '全プログラム',
   nav_founder_net: '起業家ネットワーキング',
