@@ -35,6 +35,7 @@ export default function Footer() {
                 { k: 'footer_spaces', h: '/spaces' },
                 { k: 'nav_visa', h: '/visa-ai' },
                 { k: 'nav_growth', h: '/growth' },
+                { k: 'nav_prog_business', h: '/business' },
                 { k: 'nav_partnership', h: '/partnership' },
               ].map((i) => (
                 <li key={i.k}>

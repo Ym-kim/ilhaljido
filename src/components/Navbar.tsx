@@ -23,6 +23,7 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
       { labelKey: 'nav_prog_support', href: '/programs/support' },
       { labelKey: 'nav_prog_global', href: '/programs/global' },
+      { labelKey: 'nav_prog_business', href: '/business' },
       { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
     ],
   },

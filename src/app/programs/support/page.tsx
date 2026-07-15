@@ -1,8 +1,9 @@
 'use client'
 
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowUpRight, BadgeCheck, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, BadgeCheck, Building2, MapPin } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
@@ -19,6 +20,12 @@ const STATUS_STYLE: Record<SupportStatus, string> = {
 export default function SupportProgramsPage() {
   const { lang, tr } = useLang()
   const programs = getSupportPrograms(lang)
+
+  // 지역 필터 — 더휴일(thehyuil) 지역 탭 벤치마크 (2026-07-15)
+  const [regionFilter, setRegionFilter] = useState<string>('all')
+  const regions = useMemo(() => [...new Set(programs.map((p) => p.region))], [programs])
+  const filtered = regionFilter === 'all' ? programs : programs.filter((p) => p.region === regionFilter)
+  const allLabel = { KO: '전체', EN: 'All', JP: 'すべて' }[lang]
 
   return (
     <div className="min-h-screen bg-white">
@@ -52,8 +59,25 @@ export default function SupportProgramsPage() {
       {/* Program cards */}
       <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
         <div className="max-w-6xl mx-auto pt-10">
+          {/* 지역 필터 칩 — 더휴일 지역 탭 벤치마크 */}
+          <div className="flex flex-wrap gap-2 mb-7">
+            {[{ v: 'all', l: allLabel }, ...regions.map((r) => ({ v: r, l: r }))].map(({ v, l }) => (
+              <button
+                key={v}
+                type="button"
+                onClick={() => setRegionFilter(v)}
+                className={`px-4 py-1.5 rounded-full text-xs font-bold border transition-all ${
+                  regionFilter === v
+                    ? 'bg-brand-mid text-white border-brand-mid shadow-sm'
+                    : 'bg-white text-[#64748b] border-[#dbeafe] hover:border-[#7dd3fc] hover:text-[#334155]'
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {programs.map((p) => (
+            {filtered.map((p) => (
               <a
                 key={p.id}
                 href={p.href}
@@ -117,6 +141,29 @@ export default function SupportProgramsPage() {
             <span className="shrink-0 inline-flex items-center gap-1.5 bg-white text-[#0a1e33] font-bold text-sm px-5 py-2.5 rounded-full group-hover:bg-sky-50 transition-colors">
               {tr('preg_banner_cta')}
               <ArrowUpRight className="w-3.5 h-3.5" />
+            </span>
+          </Link>
+
+          {/* 기업·팀 워케이션 크로스링크 — 더휴일 지원금 연계 B2B 훅 벤치마크 */}
+          <Link
+            href="/business"
+            className="group mt-4 flex items-center justify-between gap-4 bg-white border border-[#dbeafe] rounded-2xl p-5 hover:border-[#7dd3fc] hover:shadow-md transition-all"
+          >
+            <div className="flex items-center gap-3.5">
+              <span className="w-10 h-10 rounded-xl bg-[#f0f9ff] flex items-center justify-center shrink-0">
+                <Building2 className="w-5 h-5 text-brand-mid" strokeWidth={ICON_STROKE} />
+              </span>
+              <div>
+                <p className="text-[#111827] font-bold text-sm mb-0.5">
+                  {{ KO: '팀·회사 단위로 검토 중이신가요?', EN: 'Planning for a team or company?', JP: 'チーム・会社単位でご検討中ですか？' }[lang]}
+                </p>
+                <p className="text-[#64748b] text-xs">
+                  {{ KO: '지원사업 연계 정보와 함께 기업 워케이션 도입을 도와드립니다.', EN: 'We help teams adopt workations — with subsidy matching included.', JP: '支援事業の連携情報とともに、企業ワーケーション導入をサポートします。' }[lang]}
+                </p>
+              </div>
+            </div>
+            <span className="shrink-0 inline-flex items-center gap-1 text-brand-mid text-xs font-bold group-hover:gap-1.5 transition-all whitespace-nowrap">
+              {{ KO: '기업 문의', EN: 'Inquire', JP: '問い合わせ' }[lang]} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             </span>
           </Link>
 

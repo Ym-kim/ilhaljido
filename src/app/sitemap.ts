@@ -45,6 +45,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/moments/submit',           priority: 0.5, freq: 'monthly' },
   // 문의·정책
   { path: '/apply',                    priority: 0.8, freq: 'monthly' },
+  { path: '/business',                 priority: 0.8, freq: 'monthly' },
   { path: '/contact',                  priority: 0.7, freq: 'monthly' },
   { path: '/partnership',              priority: 0.7, freq: 'monthly' },
   { path: '/privacy',                  priority: 0.3, freq: 'yearly' },
