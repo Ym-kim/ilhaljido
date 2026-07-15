@@ -96,7 +96,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
           <div className="max-w-5xl mx-auto px-6 pb-5 flex flex-wrap gap-4 border-t border-[#dbeafe] pt-4">
             {guide.internet && (
               <div>
-                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">인터넷</p>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">{{ KO: '인터넷', EN: 'Internet', JP: 'ネット' }[lang]}</p>
                 <p className="text-sm font-bold text-[#111827] flex gap-0.5">
                   {[1,2,3,4,5].map(n => (
                     <span key={n} className={n <= guide.internet! ? 'text-teal-500' : 'text-[#d1d5db]'}>★</span>
@@ -106,14 +106,14 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
             )}
             {guide.costMonthly && (
               <div>
-                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">생활비</p>
-                <p className="text-[#111827] text-sm font-bold">{guide.costMonthly}</p>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">{{ KO: '생활비', EN: 'Cost', JP: '生活費' }[lang]}</p>
+                <p className="text-[#111827] text-sm font-bold">{guide.costMonthly[lang]}</p>
               </div>
             )}
             {guide.visaFree && (
               <div>
-                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">비자</p>
-                <p className="text-[#111827] text-sm font-bold">{guide.visaFree}</p>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">{{ KO: '비자', EN: 'Visa', JP: 'ビザ' }[lang]}</p>
+                <p className="text-[#111827] text-sm font-bold">{guide.visaFree[lang]}</p>
               </div>
             )}
           </div>
@@ -216,10 +216,14 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
           </div>
           {/* /destinations 크로스링크 (8개 도시만) */}
           <Link
-            href="/destinations"
+            href={`${prefix}/destinations`}
             className="inline-flex items-center gap-2 text-sm text-[#475569] hover:text-brand-mid font-semibold transition-colors"
           >
-            도시별 인터넷·생활비·비자 빠른 비교 →
+            {{
+              KO: '도시별 인터넷·생활비·비자 빠른 비교 →',
+              EN: 'Quick compare internet, cost & visa by city →',
+              JP: '都市別のネット・生活費・ビザを比較 →',
+            }[lang]}
           </Link>
         </div>
       </section>

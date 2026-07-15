@@ -68,6 +68,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.85,
     })),
+    // EN·JA 로케일 목적지 (hreflang 상호 연결)
+    ...['en', 'ja'].flatMap((loc) => [
+      { url: `${BASE}/${loc}/destinations`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.75 },
+      ...CITY_INSIGHTS.map((c) => ({
+        url: `${BASE}/${loc}/destinations/${c.id}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      })),
+    ]),
     // 테마 기획전 상세 (collections.ts에 추가 시 자동 반영)
     ...COLLECTIONS.map((c) => ({
       url: `${BASE}/collections/${c.slug}`,

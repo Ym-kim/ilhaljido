@@ -28,11 +28,11 @@ export type CityGuide = {
   flightUrl?: string
   /** IANA 타임존 — 워크타임 오버랩 위젯용 */
   timeZone: string
-  /** 빠른 비교 데이터 (destinations 카드·GuideView 스트립 공용) */
+  /** 빠른 비교 데이터 (GuideView 팩트 스트립용, 3언어) */
   internet?: 1 | 2 | 3 | 4 | 5
-  costMonthly?: string   // '월 160만원대'
-  visaFree?: string      // '무비자 90일'
-  esimHref?: string      // Airalo 국가 페이지
+  costMonthly?: L   // { KO: '월 160만원대', … }
+  visaFree?: L      // { KO: '무비자 90일', … }
+  esimHref?: string      // (미사용 잔재 — 렌더 안 함)
 }
 
 const FLIGHT = (slug: string) =>
@@ -93,8 +93,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-tokyo/airfares-sel-tyo'),
     timeZone: 'Asia/Tokyo',
     internet: 5,
-    costMonthly: '월 160만원대',
-    visaFree: '무비자 90일',
+    costMonthly: { KO: '월 160만원대', EN: '~₩1.6M / month', JP: '月160万ウォン程度' },
+    visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     esimHref: 'https://www.airalo.com/japan',
   },
   {
@@ -141,8 +141,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-fukuoka/airfares-sel-fuk'),
     timeZone: 'Asia/Tokyo',
     internet: 5,
-    costMonthly: '월 120만원대',
-    visaFree: '무비자 90일',
+    costMonthly: { KO: '월 120만원대', EN: '~₩1.2M / month', JP: '月120万ウォン程度' },
+    visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     esimHref: 'https://www.airalo.com/japan',
   },
   {
@@ -189,8 +189,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-danang/airfares-sel-dad'),
     timeZone: 'Asia/Ho_Chi_Minh',
     internet: 4,
-    costMonthly: '월 90만원대',
-    visaFree: '무비자 45일',
+    costMonthly: { KO: '월 90만원대', EN: '~₩900K / month', JP: '月90万ウォン程度' },
+    visaFree: { KO: '무비자 45일', EN: 'Visa-free 45 days', JP: 'ビザなし45日' },
     esimHref: 'https://www.airalo.com/vietnam',
   },
   {
@@ -237,8 +237,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-denpasar/airfares-sel-dps'),
     timeZone: 'Asia/Makassar',
     internet: 3,
-    costMonthly: '월 100만원대',
-    visaFree: '무비자 30일 → E33G 60일 연장',
+    costMonthly: { KO: '월 100만원대', EN: '~₩1.0M / month', JP: '月100万ウォン程度' },
+    visaFree: { KO: '무비자 30일 → E33G 60일 연장', EN: 'Visa-free 30 days → +60 via E33G', JP: 'ビザなし30日 → E33Gで60日延長' },
     esimHref: 'https://www.airalo.com/indonesia',
   },
   {
@@ -285,8 +285,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-chiangmai/airfares-sel-cnx'),
     timeZone: 'Asia/Bangkok',
     internet: 4,
-    costMonthly: '월 110만원대',
-    visaFree: '무비자 60일',
+    costMonthly: { KO: '월 110만원대', EN: '~₩1.1M / month', JP: '月110万ウォン程度' },
+    visaFree: { KO: '무비자 60일', EN: 'Visa-free 60 days', JP: 'ビザなし60日' },
     esimHref: 'https://www.airalo.com/thailand',
   },
   {
@@ -333,8 +333,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-jeju/airfares-sel-cju'),
     timeZone: 'Asia/Seoul',
     internet: 4,
-    costMonthly: '월 70만원대',
-    visaFree: '국내 (비자 불필요)',
+    costMonthly: { KO: '월 70만원대', EN: '~₩700K / month', JP: '月70万ウォン程度' },
+    visaFree: { KO: '국내 (비자 불필요)', EN: 'Domestic (no visa)', JP: '国内（ビザ不要）' },
   },
   {
     slug: 'osaka',
@@ -380,8 +380,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-osaka/airfares-sel-osa'),
     timeZone: 'Asia/Tokyo',
     internet: 5,
-    costMonthly: '월 140만원대',
-    visaFree: '무비자 90일',
+    costMonthly: { KO: '월 140만원대', EN: '~₩1.4M / month', JP: '月140万ウォン程度' },
+    visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     esimHref: 'https://www.airalo.com/japan',
   },
   {
@@ -428,8 +428,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-cebu/airfares-sel-ceb'),
     timeZone: 'Asia/Manila',
     internet: 3,
-    costMonthly: '월 95만원대',
-    visaFree: '무비자 30일 → 최대 1년 연장',
+    costMonthly: { KO: '월 95만원대', EN: '~₩950K / month', JP: '月95万ウォン程度' },
+    visaFree: { KO: '무비자 30일 → 최대 1년 연장', EN: 'Visa-free 30 days → up to 1 year', JP: 'ビザなし30日 → 最長1年' },
     esimHref: 'https://www.airalo.com/philippines',
   },
   {
@@ -476,8 +476,8 @@ export const CITY_GUIDES: CityGuide[] = [
     flightUrl: FLIGHT('seoul-to-sydney/airfares-sel-syd'),
     timeZone: 'Australia/Sydney',
     internet: 5,
-    costMonthly: '월 330만원대',
-    visaFree: 'ETA / 워킹홀리데이 비자',
+    costMonthly: { KO: '월 330만원대', EN: '~₩3.3M / month', JP: '月330万ウォン程度' },
+    visaFree: { KO: 'ETA / 워킹홀리데이 비자', EN: 'ETA / Working Holiday visa', JP: 'ETA / ワーホリビザ' },
     esimHref: 'https://www.airalo.com/australia',
   },
 ]

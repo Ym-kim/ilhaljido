@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { CITY_INSIGHTS, getCityById, cityLanguageAlternates } from '@/lib/cities'
 import { CityInsightView } from '@/components/destinations/CityInsightView'
 
-// /destinations/{city} — 도시 인사이트 (빌드 타임 정적 생성, SEO 메타는 KO 기준)
+// /ja/destinations/{city} — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN와 상호 연결)
 
 export function generateStaticParams() {
   return CITY_INSIGHTS.map((c) => ({ city: c.id }))
@@ -20,23 +20,26 @@ export async function generateMetadata({
   const city = getCityById(cityId)
   if (!city) return {}
   return {
-    title: `${city.name.KO} 워케이션 가이드 — 비자·생활비·인터넷 완전 정리`,
-    description: city.metaDesc.KO,
+    title: `${city.name.JP} ワーケーションガイド — ビザ・生活費・ネット`,
+    description: city.metaDesc.JP,
     alternates: {
-      canonical: `https://www.wakation.kr/destinations/${cityId}`,
+      canonical: `https://www.wakation.kr/ja/destinations/${cityId}`,
       languages: cityLanguageAlternates(`/destinations/${cityId}`),
     },
     openGraph: {
-      title: `${city.name.KO} 워케이션 가이드 | Wakation`,
-      description: city.metaDesc.KO,
-      url: `https://www.wakation.kr/destinations/${cityId}`,
+      title: `${city.name.JP} ワーケーションガイド | Wakation`,
+      description: city.metaDesc.JP,
+      url: `https://www.wakation.kr/ja/destinations/${cityId}`,
       siteName: 'Wakation',
-      images: [{ url: city.photo, width: 1200, height: 630, alt: `${city.name.KO} 워케이션` }],
+      images: [{ url: city.photo, width: 1200, height: 630, alt: `${city.name.JP} ワーケーション` }],
+      locale: 'ja_JP',
+      alternateLocale: ['ko_KR', 'en_US'],
     },
+    robots: { index: true, follow: true },
   }
 }
 
-export default async function CityPage({
+export default async function CityPageJa({
   params,
 }: {
   params: Promise<{ city: string }>
@@ -45,14 +48,13 @@ export default async function CityPage({
   const city = getCityById(cityId)
   if (!city) notFound()
 
-  // 구조화데이터 — TouristDestination (KO 기준, 국내 SEO)
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TouristDestination',
-    name: `${city.name.KO} 워케이션`,
-    description: city.metaDesc.KO,
+    name: `${city.name.JP} ワーケーション`,
+    description: city.metaDesc.JP,
     image: city.photo,
-    url: `https://www.wakation.kr/destinations/${cityId}`,
+    url: `https://www.wakation.kr/ja/destinations/${cityId}`,
   }
 
   return (
@@ -61,7 +63,7 @@ export default async function CityPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
       />
-      <CityInsightView city={city} />
+      <CityInsightView city={city} forceLang="JP" />
     </>
   )
 }
