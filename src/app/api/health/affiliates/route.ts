@@ -36,6 +36,7 @@ const CHECKS: Check[] = [
   { id: 'page:onsen', url: 'https://www.wakation.kr/programs/onsen' },
   { id: 'page:collections', url: 'https://www.wakation.kr/collections' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
+  { id: 'page:business', url: 'https://www.wakation.kr/business' },
 
   // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
   { id: 'booking:searchresults', url: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo', okStatuses: [200, 202, 403] },
