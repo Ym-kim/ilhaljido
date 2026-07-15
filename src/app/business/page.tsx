@@ -107,6 +107,10 @@ const T: Record<string, L> = {
   f_phone: { KO: '연락처', EN: 'Phone', JP: '連絡先' },
   f_email: { KO: '이메일', EN: 'Email', JP: 'メール' },
   f_company: { KO: '회사·팀명', EN: 'Company / team', JP: '会社・チーム名' },
+  f_biztype: { KO: '기업 유형', EN: 'Company type', JP: '企業タイプ' },
+  f_biztype_ph: { KO: '선택해 주세요', EN: 'Please select', JP: '選択してください' },
+  f_location: { KO: '기업 소재지', EN: 'Company location', JP: '企業所在地' },
+  f_location_ph: { KO: '예: 서울 / 경기 성남 (지원사업 매칭용)', EN: 'e.g. Seoul / Gyeonggi (for subsidy matching)', JP: '例: ソウル / 京畿（支援事業マッチ用）' },
   f_size: { KO: '예상 인원', EN: 'Team size', JP: '予定人数' },
   f_size_ph: { KO: '예: 8명', EN: 'e.g. 8', JP: '例: 8名' },
   f_region: { KO: '희망 지역', EN: 'Preferred region', JP: '希望地域' },
@@ -138,11 +142,20 @@ const STATUS_STYLE: Record<string, string> = {
   check: 'bg-gray-100 text-gray-500 border border-gray-200',
 }
 
+// 기업 유형 — 지원사업 자격 판단에 실질적으로 쓰이는 구분 (더휴일 '지원금 연계' 벤치)
+const BIZ_TYPES: { v: string; l: L }[] = [
+  { v: 'startup', l: { KO: '스타트업', EN: 'Startup', JP: 'スタートアップ' } },
+  { v: 'sme', l: { KO: '중소기업', EN: 'SME', JP: '中小企業' } },
+  { v: 'enterprise', l: { KO: '중견·대기업', EN: 'Mid–large enterprise', JP: '中堅・大企業' } },
+  { v: 'public', l: { KO: '공공·비영리', EN: 'Public / non-profit', JP: '公共・非営利' } },
+  { v: 'solo', l: { KO: '개인사업자·프리랜서', EN: 'Solo / freelancer', JP: '個人事業主・フリーランス' } },
+]
+
 type FormState = {
   name: string; phone: string; email: string; company: string
-  size: string; region: string; when: string; message: string
+  bizType: string; location: string; size: string; region: string; when: string; message: string
 }
-const EMPTY: FormState = { name: '', phone: '', email: '', company: '', size: '', region: '', when: '', message: '' }
+const EMPTY: FormState = { name: '', phone: '', email: '', company: '', bizType: '', location: '', size: '', region: '', when: '', message: '' }
 
 export default function BusinessPage() {
   const { lang } = useLang()
@@ -156,8 +169,10 @@ export default function BusinessPage() {
   const [error, setError] = useState('')
   const [consent, setConsent] = useState(false)
 
-  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+  const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((p) => ({ ...p, [k]: e.target.value }))
+
+  const bizTypeLabel = BIZ_TYPES.find((b) => b.v === form.bizType)?.l[lang] ?? form.bizType
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -168,6 +183,8 @@ export default function BusinessPage() {
     const structured = [
       `[기업 워케이션 문의]`,
       `회사·팀: ${form.company}`,
+      form.bizType ? `기업 유형: ${bizTypeLabel}` : '',
+      form.location ? `소재지: ${form.location}` : '',
       form.size ? `인원: ${form.size}` : '',
       form.region ? `희망 지역: ${form.region}` : '',
       form.when ? `희망 일정: ${form.when}` : '',
@@ -394,6 +411,19 @@ export default function BusinessPage() {
                 <div>
                   <label className={labelCls}>{t('f_company')} *</label>
                   <input required value={form.company} onChange={set('company')} className={inputCls} />
+                </div>
+                <div>
+                  <label className={labelCls}>{t('f_biztype')}</label>
+                  <select value={form.bizType} onChange={set('bizType')} className={inputCls}>
+                    <option value="">{t('f_biztype_ph')}</option>
+                    {BIZ_TYPES.map((b) => (
+                      <option key={b.v} value={b.v}>{b.l[lang]}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="sm:col-span-2">
+                  <label className={labelCls}>{t('f_location')}</label>
+                  <input value={form.location} onChange={set('location')} placeholder={t('f_location_ph')} className={inputCls} />
                 </div>
                 <div>
                   <label className={labelCls}>{t('f_size')}</label>

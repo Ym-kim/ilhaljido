@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import type { CityInsight } from '@/lib/cities'
@@ -26,6 +26,7 @@ const UI: Record<string, Record<Lang, string>> = {
   visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
   timezone: { KO: '시간대', EN: 'Time zone', JP: 'タイムゾーン' },
   staysTitle: { KO: '추천 숙소', EN: 'Recommended stay', JP: 'おすすめの宿' },
+  workEnv: { KO: '업무 환경', EN: 'Work setup', JP: '仕事環境' },
   viewAll: { KO: '전체 보기', EN: 'View all', JP: 'すべて見る' },
   reviews: { KO: '리뷰', EN: 'reviews', JP: 'レビュー' },
   tripCompare: {
@@ -251,6 +252,21 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
                     </p>
                   )}
                   <p className="text-[#666] text-sm line-clamp-2">{featuredStay.desc}</p>
+
+                  {/* 업무 환경 스펙 칩 — 더휴일 '오피스 스펙' 벤치, desc 검증 내용만 */}
+                  {city.workTags && (
+                    <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                      <span className="inline-flex items-center gap-1 text-[0.6875rem] font-bold text-teal-700">
+                        <Laptop className="w-3 h-3" strokeWidth={2} />
+                        {UI.workEnv[lang]}
+                      </span>
+                      {city.workTags[lang].map((w) => (
+                        <span key={w} className="text-[0.6875rem] font-medium bg-[#f0fdfa] text-teal-700 border border-teal-100 px-2 py-0.5 rounded-full">
+                          {w}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="mt-4 inline-flex items-center gap-2 bg-teal-600 text-white text-sm font-bold px-4 py-2.5 rounded-xl group-hover:bg-teal-700 transition-colors w-fit">
                   {featuredStay.cta} <ArrowRight className="w-4 h-4" />

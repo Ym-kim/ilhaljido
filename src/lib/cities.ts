@@ -32,6 +32,8 @@ export interface CityInsight {
   activityHref?: string           // KKday destination page (cid=25833)
   // 대표 추천 숙소 id (featured.ts FEATURED_STAYS id)
   featuredStayId?: string
+  // 업무 환경 스펙 칩 — 반드시 featured.ts 해당 숙소 desc의 검증된 내용에서만 도출 (추측 금지)
+  workTags?: LArr
   // SEO
   metaDesc: L
 }
@@ -69,6 +71,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     featuredStayId: 'stay-millennials-shibuya',
+    workTags: {
+      KO: ['코워킹 2개 층', '시부야역 6분', '무료 커피'],
+      EN: ['2 coworking floors', '6 min to Shibuya', 'Free coffee'],
+      JP: ['コワーキング2フロア', '渋谷駅6分', '無料コーヒー'],
+    },
     metaDesc: {
       KO: '도쿄 워케이션 완벽 가이드. 무비자 90일, 인터넷 ★★★★★, 월 생활비 160만원대. 코워킹 내장 숙소·체험·eSIM 한눈에.',
       EN: 'Complete Tokyo workation guide. Visa-free 90 days, internet ★★★★★, ~₩1.6M/month. Coworking-equipped stays, activities & eSIM at a glance.',
@@ -107,6 +114,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     featuredStayId: 'stay-lively-osaka',
+    workTags: {
+      KO: ['공용 라운지 7곳', '혼마치 비즈니스가'],
+      EN: ['7 work lounges', 'Honmachi business district'],
+      JP: ['共用ラウンジ7カ所', '本町ビジネス街'],
+    },
     metaDesc: {
       KO: '오사카 워케이션 완벽 가이드. 도쿄보다 저렴한 월 140만원대, 무비자 90일. 혼마치 코워킹·숙소·eSIM 한눈에.',
       EN: 'Complete Osaka workation guide. ~₩1.4M/month (cheaper than Tokyo), visa-free 90 days. Honmachi coworking, stays & eSIM at a glance.',
@@ -144,6 +156,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     featuredStayId: 'stay-webase-hakata',
+    workTags: {
+      KO: ['전용 코워킹(무료)', '테라스', '역 도보 3분'],
+      EN: ['Free coworking floor', 'Terrace', '3 min to station'],
+      JP: ['専用コワーキング（無料）', 'テラス', '駅徒歩3分'],
+    },
     metaDesc: {
       KO: '후쿠오카 워케이션 완벽 가이드. 월 120만원대, 서울 직항 1시간, 무비자 90일. 하카타 코워킹 숙소·체험·eSIM.',
       EN: 'Complete Fukuoka workation guide. ~₩1.2M/month, 1h direct from Seoul, visa-free 90 days. Hakata coworking stays, activities & eSIM.',
@@ -185,6 +202,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Findonesia-esim',
     activityHref: 'https://www.kkday.com/ko/destination/id-bali?cid=25833',
     featuredStayId: 'stay-tribal-bali',
+    workTags: {
+      KO: ['코워킹 전용 설계', '풀사이드 워크스페이스', '노마드 커뮤니티'],
+      EN: ['Built for coworking', 'Poolside workspace', 'Nomad community'],
+      JP: ['コワーキング特化設計', 'プールサイド作業空間', 'ノマドコミュニティ'],
+    },
     metaDesc: {
       KO: '발리 워케이션 완벽 가이드. 월 100만원대, 노마드 성지 짱구·우붓. 코워킹 숙소·체험·eSIM 한눈에.',
       EN: 'Complete Bali workation guide. ~₩1.0M/month, nomad meccas Canggu & Ubud. Coworking stays, activities & eSIM at a glance.',
@@ -226,6 +248,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fvietnam-esim',
     activityHref: 'https://www.kkday.com/ko/destination/vn-vietnam?cid=25833',
     featuredStayId: 'stay-chicland-danang',
+    workTags: {
+      KO: ['카페형 라운지', '루프탑 풀', '미케비치 2분'],
+      EN: ['Café-style lounge', 'Rooftop pool', '2 min to My Khe'],
+      JP: ['カフェ風ラウンジ', 'ルーフトッププール', 'ミーケー2分'],
+    },
     metaDesc: {
       KO: '다낭 워케이션 완벽 가이드. 월 90만원대, 무비자 45일, 미케 비치 앞 카페 작업. 숙소·체험·eSIM 한눈에.',
       EN: 'Complete Da Nang workation guide. ~₩900K/month, visa-free 45 days, work from cafés by My Khe Beach. Stays, activities & eSIM at a glance.',
@@ -267,6 +294,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fthailand-esim',
     activityHref: 'https://www.kkday.com/ko/destination/th-thailand?cid=25833',
     featuredStayId: 'stay-kantary-chiangmai',
+    workTags: {
+      KO: ['키치넷 객실', '장기체류 특화', '원님만 도보권'],
+      EN: ['Kitchenette rooms', 'Long-stay ready', 'Walk to One Nimman'],
+      JP: ['キチネット付き客室', '長期滞在特化', 'ワンニマン徒歩圏'],
+    },
     metaDesc: {
       KO: '치앙마이 워케이션 완벽 가이드. 월 110만원대, 님만해민 코워킹 밀집, 무비자 60일. 숙소·체험·eSIM 한눈에.',
       EN: 'Complete Chiang Mai workation guide. ~₩1.1M/month, dense Nimman coworking, visa-free 60 days. Stays, activities & eSIM at a glance.',
@@ -308,6 +340,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fphilippines-esim',
     activityHref: 'https://www.kkday.com/ko/destination/ph-philippines?cid=25833',
     featuredStayId: 'stay-nomadshub-cebu',
+    workTags: {
+      KO: ['코워킹+코리빙', '핫데스크 포함', '노마드 커뮤니티'],
+      EN: ['Coworking + coliving', 'Hot desk included', 'Nomad community'],
+      JP: ['コワーキング＋コリビング', 'ホットデスク込み', 'ノマドコミュニティ'],
+    },
     metaDesc: {
       KO: '세부 워케이션 완벽 가이드. 월 95만원대, 어학+워케이션 최적. 코리빙·체험·eSIM 한눈에.',
       EN: 'Complete Cebu workation guide. ~₩950K/month, ideal for study + workation. Coliving, activities & eSIM at a glance.',
@@ -353,6 +390,11 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Faustralia-esim',
     activityHref: 'https://www.kkday.com/ko/destination/au-australia?cid=25833',
     featuredStayId: 'stay-adina-sydney',
+    workTags: {
+      KO: ['풀키친 아파트', 'CBD·Town Hall 2분', '실내 수영장'],
+      EN: ['Full-kitchen apartment', 'CBD · 2 min to Town Hall', 'Indoor pool'],
+      JP: ['フルキッチン', 'CBD・2分', '屋内プール'],
+    },
     metaDesc: {
       KO: '시드니 워케이션 완벽 가이드. 선진국 인프라, 영어 환경, 인터넷 ★★★★★. 숙소·체험·eSIM 한눈에.',
       EN: 'Complete Sydney workation guide. First-world infrastructure, English environment, internet ★★★★★. Stays, activities & eSIM at a glance.',
