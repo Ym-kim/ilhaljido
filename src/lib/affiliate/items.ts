@@ -538,6 +538,30 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   },
 
   // ──────────────────────────────────────────────────────────────────────────
+  // 공항 택시 — Booking.com Taxis (2026-07-16: CJ 공지 '택시 4% CPA 신설' 반영)
+  // ⚠️ CJ 대시보드의 전용 Taxis 트래킹 링크 수령 시 href 교체 검토 (현재는 표준 aid 방식)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-taxi-booking',
+    name: 'Booking.com',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚕',
+    productTitle: '공항 택시 예약',
+    destination: '전 세계 공항 ↔ 시내',
+    desc: '도착 공항에서 숙소까지 사전 확정 요금 택시. 항공편 지연 시 무료 대기.',
+    cta: '공항 택시 예약',
+    href: 'https://www.booking.com/taxi/index.html?aid=7854081',
+    badge: '공항 택시',
+    trackingId: 'aid=7854081',
+    coverGradient: 'from-amber-900 via-yellow-950 to-[#0d0d0d]',
+    priority: 8,
+    showOn: ['select', 'global', 'programs'],
+    sourceNote: 'Booking Taxis — CJ 2026-07-15 공지(택시 4% CPA). booking.com/taxi 202(봇챌린지=생존) 검증. ⚠️CJ 전용 Taxis 트래킹 링크 수령 시 교체 검토',
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
   // 공항 라운지 — Klook 인천공항 라운지(출국 전, 한국인 인기). aid=126848
   // ──────────────────────────────────────────────────────────────────────────
   {

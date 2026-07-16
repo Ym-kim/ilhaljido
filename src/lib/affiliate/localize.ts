@@ -96,6 +96,13 @@ const EN: Record<string, Overlay> = {
     cta: 'See lounge passes',
     badge: 'Lounge',
   },
+  'feat-taxi-booking': {
+    productTitle: 'Airport taxi booking',
+    destination: 'Airports worldwide ↔ city',
+    desc: 'Fixed-price taxi from the airport to your stay. Free waiting if your flight is delayed.',
+    cta: 'Book airport taxi',
+    badge: 'Airport taxi',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -534,6 +541,13 @@ const JP: Record<string, Overlay> = {
     desc: '出国前にラウンジでゆったり。軽食・Wi-Fi・シャワーまで、利用券ですぐ入場。',
     cta: 'ラウンジ利用券を見る',
     badge: '空港ラウンジ',
+  },
+  'feat-taxi-booking': {
+    productTitle: '空港タクシー予約',
+    destination: '世界の空港 ↔ 市内',
+    desc: '空港から宿まで事前確定料金のタクシー。フライト遅延時は無料で待機。',
+    cta: '空港タクシーを予約',
+    badge: '空港タクシー',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',
