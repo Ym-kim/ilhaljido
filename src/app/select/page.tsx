@@ -8,6 +8,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ProductBrowser } from '@/components/affiliate/ProductBrowser'
 import { CoupangGear } from '@/components/affiliate/CoupangGear'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
+import { ALL_AFFILIATE_ITEMS } from '@/lib/affiliate/items'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
@@ -171,8 +172,10 @@ export default function SelectPage() {
   const allHotelItems = HOME_FEATURED_ITEMS.filter((i) =>
     ['feat-tokyo-hotel', 'feat-osaka-hotel', 'feat-fukuoka-hotel', 'feat-bali-hotel'].includes(i.id)
   )
-  const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
-    // 여정 준비 활성 파트너: 항공·렌터카·공항픽업(이동) + 체험 + eSIM — 하우스 배너 '올인원' 약속과 정합
+  // ⚠️ 소스는 전체 카탈로그로 — HOME_FEATURED_ITEMS는 showOn 'home' 아이템만 담아
+  //    홈 미노출 아이템(taxi 등)이 걸러지는 함정이 있음 (2026-07-16 실배포에서 발견)
+  const etcItems = ALL_AFFILIATE_ITEMS.filter((i) =>
+    // 여정 준비 활성 파트너: 항공·렌터카·공항픽업·택시·라운지(이동) + 체험 + eSIM
     [
       'feat-flight-tripcom', 'feat-carhire-tripcom', 'feat-transfer-klook', 'feat-taxi-booking',
       'feat-lounge-klook', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
