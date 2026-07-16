@@ -39,12 +39,12 @@ const COPY: Record<string, L> = {
   f_all: { KO: '전체', EN: 'All', JP: 'すべて' },
   f_japan: { KO: '일본', EN: 'Japan', JP: '日本' },
   f_bali: { KO: '발리', EN: 'Bali', JP: 'バリ' },
-  etc_eyebrow: { KO: '체험 · eSIM', EN: 'EXPERIENCES · eSIM', JP: '体験 · eSIM' },
+  etc_eyebrow: { KO: '이동 · 체험 · eSIM', EN: 'TRANSPORT · EXPERIENCES · eSIM', JP: '移動 · 体験 · eSIM' },
   etc_title: { KO: '도착하기 전 미리 준비하세요', EN: 'Get ready before you land', JP: '到着前に準備しておこう' },
   etc_sub: {
-    KO: '현지 투어·액티비티, 그리고 공항 도착 즉시 연결되는 eSIM',
-    EN: 'Local tours and activities, plus an eSIM that connects the moment you arrive',
-    JP: '現地ツアー·アクティビティと、到着後すぐ繋がるeSIM',
+    KO: '항공·렌터카·공항픽업 등 이동부터, 현지 투어와 공항 도착 즉시 연결되는 eSIM까지',
+    EN: 'From flights, car rental and airport pickup to local tours and an eSIM that connects on arrival',
+    JP: '航空券·レンタカー·空港送迎などの移動から、現地ツアーと到着後すぐ繋がるeSIMまで',
   },
   all_activity: { KO: '현지 체험 전체 보기', EN: 'See all experiences', JP: '現地体験をすべて見る' },
   all_esim: { KO: 'eSIM 전체 보기', EN: 'See all eSIMs', JP: 'eSIMをすべて見る' },
@@ -171,8 +171,11 @@ export default function SelectPage() {
     ['feat-tokyo-hotel', 'feat-osaka-hotel', 'feat-fukuoka-hotel', 'feat-bali-hotel'].includes(i.id)
   )
   const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
-    // 활성 파트너 우선: 항공(Trip)·발리 체험(KKday) 추가 — 대기 카드(Airalo)만 있던 섹션 보강
-    ['feat-flight-tripcom', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim'].includes(i.id)
+    // 여정 준비 활성 파트너: 항공·렌터카·공항픽업(이동) + 체험 + eSIM — 하우스 배너 '올인원' 약속과 정합
+    [
+      'feat-flight-tripcom', 'feat-carhire-tripcom', 'feat-transfer-klook',
+      'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
+    ].includes(i.id)
   )
 
   const hotelItems = activeFilter === 'all'
