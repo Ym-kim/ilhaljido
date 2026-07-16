@@ -174,8 +174,8 @@ export default function SelectPage() {
   const etcItems = HOME_FEATURED_ITEMS.filter((i) =>
     // 여정 준비 활성 파트너: 항공·렌터카·공항픽업(이동) + 체험 + eSIM — 하우스 배너 '올인원' 약속과 정합
     [
-      'feat-flight-tripcom', 'feat-carhire-tripcom', 'feat-transfer-klook', 'feat-lounge-klook',
-      'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
+      'feat-flight-tripcom', 'feat-carhire-tripcom', 'feat-transfer-klook', 'feat-taxi-booking',
+      'feat-lounge-klook', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
     ].includes(i.id)
   )
 
