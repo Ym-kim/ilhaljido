@@ -15,6 +15,7 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { trackAffiliateClick } from '@/lib/track'
 import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
+import { HouseBanner } from '@/components/home/HouseBanner'
 import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
@@ -338,6 +339,9 @@ export default function HomePage() {
 
       {/* ── 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 ── */}
       <MomentRail />
+
+      {/* ── 하우스 배너 — 자사 제휴·기획전 프로모(랜덤 광고 대체) ── */}
+      <HouseBanner />
 
       {/* ── 지금 모집 중 / 다음 라인업 ── */}
       <section className="bg-gradient-to-b from-[#04121f] to-[#0a1e33] border-b border-white/8 py-16 md:py-20 px-6 dark-surface">
