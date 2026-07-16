@@ -6,6 +6,7 @@ import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ProductBrowser } from '@/components/affiliate/ProductBrowser'
+import { CoupangGear } from '@/components/affiliate/CoupangGear'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { useLang } from '@/context/LanguageContext'
@@ -324,6 +325,9 @@ export default function SelectPage() {
           </div>
         </div>
       </section>
+
+      {/* 여행 준비물 — 쿠팡 파트너스 */}
+      <CoupangGear />
 
       {/* 강의 배너 */}
       <section className="px-6 py-12 border-b border-[#e5e1da]">

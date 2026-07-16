@@ -35,9 +35,11 @@ const EN: Record<string, Overlay> = {
     cta: 'Browse courses',
     badge: 'Online courses',
   },
-  'insurance-safetywing': {
-    desc: 'Monthly travel insurance for digital nomads and long-stayers — 188 countries covered.',
-    cta: 'Explore coverage',
+  'insurance-klook': {
+    productTitle: 'Travel insurance',
+    destination: 'Underwritten by AIG·AXA·FWD',
+    desc: 'A must for long workation stays. Cover by the day, underwritten by major insurers.',
+    cta: 'See travel insurance',
     badge: 'Travel insurance',
   },
   'hotel-booking-visa': {
@@ -472,9 +474,11 @@ const JP: Record<string, Overlay> = {
     cta: '講座を見る',
     badge: 'オンライン講座',
   },
-  'insurance-safetywing': {
-    desc: 'ノマド・長期滞在者向けの月単位トラベル保険。188カ国をカバー。',
-    cta: '保険を見る',
+  'insurance-klook': {
+    productTitle: '旅行保険',
+    destination: 'AIG·AXA·FWDが引受',
+    desc: '長期ワーケーションには旅行保険が必須。1日単位で加入、大手保険会社が引受。',
+    cta: '旅行保険を見る',
     badge: '旅行保険',
   },
   'hotel-booking-visa': {

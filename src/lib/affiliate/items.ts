@@ -197,24 +197,27 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   },
 
   // ──────────────────────────────────────────────────────────────────────────
-  // 여행자보험 — SafetyWing (보류)
+  // 여행자보험 — Klook (2026-07-16: 기존 Klook 제휴 재활용, 신규 가입 0. SafetyWing 대체)
+  // Klook 코리아가 AIG·Sompo·AXA·FWD 인수 여행자보험 판매, 제휴 보험 IR 5% 카테고리
   // ──────────────────────────────────────────────────────────────────────────
   {
-    id: 'insurance-safetywing',
+    id: 'insurance-klook',
     coverPhoto: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
-    name: 'SafetyWing',
+    name: 'Klook',
     category: 'insurance',
     productType: 'insurance',
-    status: 'coming_soon',
+    status: 'active_affiliate',
     emoji: '🛡',
-    desc: '디지털 노마드·장기체류 여행자를 위한 월 단위 여행자보험. 188개국 커버.',
-    cta: '보험 알아보기',
-    href: AFFILIATE_BASE.safetywing,
+    productTitle: '여행자보험',
+    destination: 'AIG·AXA·FWD 인수',
+    desc: '워케이션 장기체류엔 여행자보험이 필수. 하루 단위로 가입, 대형 보험사가 인수하는 안심 보장.',
+    cta: '여행자보험 보기',
+    href: 'https://www.klook.com/ko/insurance/products/?aid=126848',
     badge: '여행자보험',
-    trackingId: '',
+    trackingId: 'aid=126848',
     priority: 7,
-    showOn: ['visa'],
-    sourceNote: 'coming_soon — 파트너십 검토 보류',
+    showOn: ['visa', 'home', 'select', 'global', 'programs'],
+    sourceNote: 'affiliate — Klook aid=126848, 제휴 보험 IR 5% 카테고리. klook.com/ko/insurance/products curl 200 검증 2026-07-16. ⚠️부착 후 대시보드에서 보험 결제 IR 집계 1건 확인 필요',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
