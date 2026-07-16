@@ -59,13 +59,24 @@ export async function DELETE(req: NextRequest) {
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
 
   const body = await req.json().catch(() => ({}))
-  const { id } = body as { id?: string }
-  if (!id || typeof id !== 'string') {
-    return NextResponse.json({ error: 'Missing id' }, { status: 400 })
+  const { id, ids } = body as { id?: string; ids?: string[] }
+
+  // 단건(id) 또는 다건(ids 배열) 삭제 지원
+  const targets = Array.isArray(ids)
+    ? ids.filter((v) => typeof v === 'string' && v)
+    : typeof id === 'string' && id
+    ? [id]
+    : []
+
+  if (targets.length === 0) {
+    return NextResponse.json({ error: 'Missing id(s)' }, { status: 400 })
+  }
+  if (targets.length > 200) {
+    return NextResponse.json({ error: 'Too many ids (max 200)' }, { status: 400 })
   }
 
   const admin = createAdminClient()
-  const { error } = await admin.from('applications').delete().eq('id', id)
+  const { error } = await admin.from('applications').delete().in('id', targets)
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ success: true, deleted: targets.length })
 }

@@ -32,6 +32,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false)
   const [forbidden, setForbidden] = useState(false)
   const [memo, setMemo] = useState('')
+  const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set())
 
   const loadApps = useCallback(async () => {
     setLoading(true)
@@ -106,6 +107,41 @@ export default function AdminPage() {
       return
     }
     if (selected?.id === id) setSelected(null)
+    setCheckedIds((prev) => { const n = new Set(prev); n.delete(id); return n })
+    await loadApps()
+  }
+
+  function toggleCheck(id: string) {
+    setCheckedIds((prev) => {
+      const n = new Set(prev)
+      if (n.has(id)) n.delete(id); else n.add(id)
+      return n
+    })
+  }
+
+  function toggleCheckAll() {
+    setCheckedIds((prev) =>
+      prev.size === filtered.length && filtered.length > 0
+        ? new Set()
+        : new Set(filtered.map((a) => a.id))
+    )
+  }
+
+  async function deleteChecked() {
+    const ids = [...checkedIds]
+    if (ids.length === 0) return
+    if (!window.confirm(`선택한 ${ids.length}건을 영구 삭제합니다. 되돌릴 수 없습니다. 삭제할까요?`)) return
+    const res = await fetch('/api/admin/applications', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids }),
+    })
+    if (!res.ok) {
+      window.alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.')
+      return
+    }
+    if (selected && ids.includes(selected.id)) setSelected(null)
+    setCheckedIds(new Set())
     await loadApps()
   }
 
@@ -148,6 +184,14 @@ export default function AdminPage() {
           <span className="font-black text-dark">Wakation 관리자</span>
         </div>
         <div className="flex items-center gap-3">
+          {checkedIds.size > 0 && (
+            <button
+              onClick={deleteChecked}
+              className="flex items-center gap-1.5 text-sm font-bold text-red-500 border border-red-200 rounded-lg px-3 py-1.5 hover:bg-red-50 hover:border-red-300 transition-colors"
+            >
+              <Trash2 size={13} /> 선택 삭제 ({checkedIds.size})
+            </button>
+          )}
           <span className="text-sm text-muted">총 신청 {counts.all}건</span>
           <button
             onClick={loadApps}
@@ -220,6 +264,15 @@ export default function AdminPage() {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border bg-cream">
+                    <th className="px-4 py-3 w-10">
+                      <input
+                        type="checkbox"
+                        aria-label="전체 선택"
+                        checked={filtered.length > 0 && checkedIds.size === filtered.length}
+                        onChange={toggleCheckAll}
+                        className="w-3.5 h-3.5 accent-brand cursor-pointer align-middle"
+                      />
+                    </th>
                     <th className="text-left px-4 py-3 text-xs font-bold text-muted">이름</th>
                     <th className="text-left px-4 py-3 text-xs font-bold text-muted">연락처</th>
                     <th className="text-left px-4 py-3 text-xs font-bold text-muted hidden md:table-cell">프로그램</th>
@@ -240,6 +293,15 @@ export default function AdminPage() {
                         } ${i === filtered.length - 1 ? 'border-b-0' : ''}`}
                         onClick={() => { setSelected(app); setMemo(app.admin_memo || '') }}
                       >
+                        <td className="px-4 py-3 w-10" onClick={(e) => e.stopPropagation()}>
+                          <input
+                            type="checkbox"
+                            aria-label={`${app.name} 선택`}
+                            checked={checkedIds.has(app.id)}
+                            onChange={() => toggleCheck(app.id)}
+                            className="w-3.5 h-3.5 accent-brand cursor-pointer align-middle"
+                          />
+                        </td>
                         <td className="px-4 py-3 font-bold text-dark">{app.name}</td>
                         <td className="px-4 py-3 text-muted">{app.phone}</td>
                         <td className="px-4 py-3 text-muted hidden md:table-cell truncate max-w-[160px]">
