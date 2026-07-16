@@ -55,9 +55,17 @@ export const metadata: Metadata = {
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-    other: process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION
-      ? { 'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION }
-      : undefined,
+    // 네이버 + 아고다 제휴 자동인증 메타태그 병합 (env 설정 시에만 렌더)
+    // 아고다: 파트너센터 사이트 등록 시 표시되는 토큰을 NEXT_PUBLIC_AGODA_SITE_VERIFICATION에 넣으면
+    //         <meta name="agd-partner-manual-verification" content="…"> 자동 렌더 → Verify 클릭 시 자동 인증
+    other: {
+      ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION
+        ? { 'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION }
+        : {}),
+      ...(process.env.NEXT_PUBLIC_AGODA_SITE_VERIFICATION
+        ? { 'agd-partner-manual-verification': process.env.NEXT_PUBLIC_AGODA_SITE_VERIFICATION }
+        : {}),
+    },
   },
 }
 
