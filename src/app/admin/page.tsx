@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext'
 import {
   Users, Clock, CheckCircle2, XCircle,
   PhoneCall, RefreshCw, Search,
-  ChevronRight, Calendar, Briefcase, CreditCard,
+  ChevronRight, Calendar, Briefcase, CreditCard, Trash2,
 } from 'lucide-react'
 import type { Application } from '@/types/database'
 
@@ -91,6 +91,21 @@ export default function AdminPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id, admin_memo: memo }),
     })
+    await loadApps()
+  }
+
+  async function deleteApp(id: string) {
+    if (!window.confirm('이 신청 건을 영구 삭제합니다. 되돌릴 수 없습니다. 삭제할까요?')) return
+    const res = await fetch('/api/admin/applications', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    })
+    if (!res.ok) {
+      window.alert('삭제에 실패했습니다. 잠시 후 다시 시도해주세요.')
+      return
+    }
+    if (selected?.id === id) setSelected(null)
     await loadApps()
   }
 
@@ -326,6 +341,16 @@ export default function AdminPage() {
                   className="w-full mt-1.5 bg-brand text-white rounded-lg py-2 text-xs font-bold hover:bg-brand-dark transition-colors"
                 >
                   메모 저장
+                </button>
+              </div>
+
+              {/* 삭제 — 영구 삭제(확인 프롬프트) */}
+              <div className="mt-5 pt-4 border-t border-border">
+                <button
+                  onClick={() => deleteApp(selected.id)}
+                  className="w-full flex items-center justify-center gap-1.5 border border-red-200 text-red-500 rounded-lg py-2 text-xs font-bold hover:bg-red-50 hover:border-red-300 transition-colors"
+                >
+                  <Trash2 size={12} /> 신청 건 삭제
                 </button>
               </div>
             </div>

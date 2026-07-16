@@ -53,3 +53,19 @@ export async function PATCH(req: NextRequest) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json({ success: true })
 }
+
+export async function DELETE(req: NextRequest) {
+  const user = await checkAdmin()
+  if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 403 })
+
+  const body = await req.json().catch(() => ({}))
+  const { id } = body as { id?: string }
+  if (!id || typeof id !== 'string') {
+    return NextResponse.json({ error: 'Missing id' }, { status: 400 })
+  }
+
+  const admin = createAdminClient()
+  const { error } = await admin.from('applications').delete().eq('id', id)
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ success: true })
+}
