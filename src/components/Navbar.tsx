@@ -132,11 +132,11 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-6 justify-between">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-3 xl:gap-6 justify-between">
           <Logo variant={isTransparentNow ? 'light' : 'dark'} />
 
           {/* Desktop nav — 로고·메뉴·액션 3분할 균형 (메뉴 중앙 정렬) */}
-          <ul className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center">
+          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-2 flex-1 justify-center">
             {NAV_ITEMS.map((item) =>
               item.href ? (
                 <li key={item.key}>
