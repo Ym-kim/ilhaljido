@@ -534,6 +534,29 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: 'affiliate tracking — Klook aid=126848 (airport-transfers 카테고리 실존 검증 2026-07-15, 403=봇차단이라 curl 불가)',
   },
 
+  // ──────────────────────────────────────────────────────────────────────────
+  // 공항 라운지 — Klook 인천공항 라운지(출국 전, 한국인 인기). aid=126848
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-lounge-klook',
+    name: 'Klook',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🛋️',
+    productTitle: '인천공항 라운지 이용권',
+    destination: '출국 전 인천공항',
+    desc: '출국 전 라운지에서 편하게 대기. 식음료·와이파이·샤워까지, 라운지 이용권으로 바로 입장.',
+    cta: '라운지 이용권 보기',
+    href: 'https://www.klook.com/ko/activity/17233-incheon-airport-lounge-incheon/?aid=126848',
+    badge: '공항 라운지',
+    trackingId: 'aid=126848',
+    coverGradient: 'from-rose-900 via-pink-950 to-[#0d0d0d]',
+    priority: 7,
+    showOn: ['home', 'select', 'global', 'programs'],
+    sourceNote: 'affiliate tracking — Klook aid=126848 (인천공항 라운지 activity/17233 실존 검증 2026-07-16, 403=봇차단)',
+  },
+
   {
     id: 'feat-vietnam-hotel',
     name: 'Booking.com',

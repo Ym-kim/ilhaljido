@@ -87,6 +87,13 @@ const EN: Record<string, Overlay> = {
     cta: 'Book airport transfer',
     badge: 'Transfer',
   },
+  'feat-lounge-klook': {
+    productTitle: 'Airport lounge pass',
+    destination: 'Before you fly',
+    desc: 'Wait in comfort before departure — food, Wi-Fi and showers. Walk in with a lounge pass.',
+    cta: 'See lounge passes',
+    badge: 'Lounge',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -516,6 +523,13 @@ const JP: Record<string, Overlay> = {
     desc: '荷物を持って迷わない。到着時にドライバーが待機、定額のプライベート送迎。',
     cta: '空港送迎を予約',
     badge: '空港送迎',
+  },
+  'feat-lounge-klook': {
+    productTitle: '空港ラウンジ利用券',
+    destination: '出国前の仁川空港',
+    desc: '出国前にラウンジでゆったり。軽食・Wi-Fi・シャワーまで、利用券ですぐ入場。',
+    cta: 'ラウンジ利用券を見る',
+    badge: '空港ラウンジ',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',
