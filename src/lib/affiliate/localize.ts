@@ -73,6 +73,20 @@ const EN: Record<string, Overlay> = {
     cta: 'Compare flights',
     badge: 'Flights',
   },
+  'feat-carhire-tripcom': {
+    productTitle: 'Compare & book car rental',
+    destination: 'Self-drive on the ground',
+    desc: 'Get around your workation base by car. Airport pickup, real-time rates across suppliers.',
+    cta: 'Compare car rental',
+    badge: 'Car rental',
+  },
+  'feat-transfer-klook': {
+    productTitle: 'Airport transfer booking',
+    destination: 'Airport ↔ your stay',
+    desc: 'No hauling bags through transit. A driver waiting on arrival, fixed-price private transfer.',
+    cta: 'Book airport transfer',
+    badge: 'Transfer',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -488,6 +502,20 @@ const JP: Record<string, Overlay> = {
     desc: 'ワーケーション目的地行きの航空券を航空会社別に比較。片道・往復・周遊に対応。',
     cta: '航空券を比較',
     badge: '航空券',
+  },
+  'feat-carhire-tripcom': {
+    productTitle: 'レンタカーの料金比較・予約',
+    destination: '現地セルフドライブ',
+    desc: '現地の移動はレンタカーで。空港受取・業者別のリアルタイム料金比較。',
+    cta: 'レンタカーを比較',
+    badge: 'レンタカー',
+  },
+  'feat-transfer-klook': {
+    productTitle: '空港送迎の予約',
+    destination: '空港 ↔ 宿泊先',
+    desc: '荷物を持って迷わない。到着時にドライバーが待機、定額のプライベート送迎。',
+    cta: '空港送迎を予約',
+    badge: '空港送迎',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',

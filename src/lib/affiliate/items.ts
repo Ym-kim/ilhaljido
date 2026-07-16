@@ -488,6 +488,52 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: 'affiliate tracking active — Allianceid=9024807 (flights 랜딩 실물 검증 2026-07-09)',
   },
 
+  // ──────────────────────────────────────────────────────────────────────────
+  // 렌터카 — Trip.com (2026-07-15: 현지 이동 지출 채널. carhire 랜딩 curl 200 검증)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-carhire-tripcom',
+    name: 'Trip.com',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚗',
+    productTitle: '렌터카 요금 비교·예약',
+    destination: '현지 셀프드라이브',
+    desc: '워케이션 현지 이동은 렌터카로. 공항 수령·업체별 실시간 요금 비교.',
+    cta: '렌터카 요금 비교',
+    href: 'https://kr.trip.com/carhire/?Allianceid=9024807',
+    badge: '렌터카',
+    trackingId: 'Allianceid=9024807',
+    coverGradient: 'from-emerald-900 via-teal-950 to-[#0d0d0d]',
+    priority: 5,
+    showOn: ['home', 'select', 'global', 'programs', 'domestic'],
+    sourceNote: 'affiliate tracking active — Allianceid=9024807 (carhire 랜딩 curl 200 검증 2026-07-15)',
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 공항 픽업·샌딩 — Klook (2026-07-15: airport-transfers 카테고리 실존 검증, aid=126848)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-transfer-klook',
+    name: 'Klook',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚐',
+    productTitle: '공항 픽업·샌딩 예약',
+    destination: '공항 ↔ 숙소 프라이빗 이동',
+    desc: '짐 들고 헤매지 않게. 도착 즉시 기사 대기, 도시별 정찰가 프라이빗 픽업.',
+    cta: '공항 픽업 예약',
+    href: 'https://www.klook.com/ko/airport-transfers/?aid=126848',
+    badge: '공항 이동',
+    trackingId: 'aid=126848',
+    coverGradient: 'from-indigo-900 via-violet-950 to-[#0d0d0d]',
+    priority: 6,
+    showOn: ['home', 'select', 'global', 'programs'],
+    sourceNote: 'affiliate tracking — Klook aid=126848 (airport-transfers 카테고리 실존 검증 2026-07-15, 403=봇차단이라 curl 불가)',
+  },
+
   {
     id: 'feat-vietnam-hotel',
     name: 'Booking.com',
