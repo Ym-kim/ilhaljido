@@ -135,14 +135,14 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-6 justify-between">
           <Logo variant={isTransparentNow ? 'light' : 'dark'} />
 
-          {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-0.5 flex-1">
+          {/* Desktop nav — 로고·메뉴·액션 3분할 균형 (메뉴 중앙 정렬) */}
+          <ul className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center">
             {NAV_ITEMS.map((item) =>
               item.href ? (
                 <li key={item.key}>
                   <Link
                     href={item.href}
-                    className={cn(linkCls, 'block px-3 py-2 rounded-lg hover:bg-black/5')}
+                    className={cn(linkCls, 'block px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap')}
                   >
                     {tr(item.key)}
                   </Link>
@@ -152,7 +152,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   <button
                     type="button"
                     className={cn(
-                      'flex items-center gap-0.5 px-3 py-2 rounded-lg hover:bg-black/5',
+                      'flex items-center gap-0.5 px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
                       linkCls
                     )}
                   >
