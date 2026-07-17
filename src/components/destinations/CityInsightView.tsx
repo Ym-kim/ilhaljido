@@ -8,6 +8,7 @@ import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, buildCityFaq, type CityInsight } from '@/lib/cities'
 import { CITY_CLIMATE, CLIMATE_UI, MONTH_LABELS } from '@/lib/cityClimate'
+import { WEEKLY_PLANS, PLAN_UI } from '@/lib/weeklyPlans'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { CITY_GUIDES } from '@/lib/guides'
@@ -322,6 +323,40 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
               </div>
             </div>
             <p className="text-[#a8a29e] text-[0.6875rem] mt-2">{CLIMATE_UI.note[lang]}</p>
+          </section>
+        )}
+
+        {/* 1주 워케이션 플랜 — 트리플 '일정→커머스' 에디토리얼 번안 (파일럿 4도시) */}
+        {WEEKLY_PLANS[city.id] && (
+          <section>
+            <h2 className="text-xl font-black text-[#111] mb-1">{PLAN_UI.title[lang]}</h2>
+            <p className="text-[#888] text-sm mb-4">{PLAN_UI.sub[lang]}</p>
+            <div className="space-y-2">
+              {WEEKLY_PLANS[city.id].map((p) => {
+                const href = p.linkKey ? (city[p.linkKey] as string | undefined) : undefined
+                return (
+                  <div key={p.day.KO} className="flex gap-4 bg-white rounded-2xl border border-[#e8e4dc] p-4">
+                    <span className="w-9 h-9 rounded-xl bg-teal-50 text-teal-700 font-black text-sm flex items-center justify-center shrink-0">
+                      {p.day[lang]}
+                    </span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-[#111] text-sm leading-tight">{p.title[lang]}</p>
+                      <p className="text-[#666] text-sm leading-relaxed mt-0.5">{p.desc[lang]}</p>
+                      {href && p.linkLabel && (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="sponsored noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-teal-600 text-xs font-bold mt-1.5 hover:text-teal-700"
+                        >
+                          {p.linkLabel[lang]} <ArrowRight className="w-3 h-3" strokeWidth={2} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </section>
         )}
 
