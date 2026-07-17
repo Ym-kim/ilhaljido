@@ -21,6 +21,7 @@ export function CollectionsHub() {
           </p>
           <h1 className="text-3xl md:text-4xl font-black text-[#111827] mb-3">{COLLECTIONS_UI.hub_title[lang]}</h1>
           <p className="text-[#64748b] text-sm md:text-base max-w-2xl leading-relaxed">{COLLECTIONS_UI.hub_sub[lang]}</p>
+          <SelectionCriteria className="mt-4" />
         </div>
       </section>
 
