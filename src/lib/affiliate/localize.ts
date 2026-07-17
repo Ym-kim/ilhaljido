@@ -90,10 +90,10 @@ const EN: Record<string, Overlay> = {
     badge: 'Transfer',
   },
   'feat-lounge-klook': {
-    productTitle: 'Airport lounge pass',
-    destination: 'Before you fly',
-    desc: 'Wait in comfort before departure — food, Wi-Fi and showers. Walk in with a lounge pass.',
-    cta: 'See lounge passes',
+    productTitle: 'Incheon T1 lounge pass',
+    destination: 'Sky Hub Lounge · west wing 24h',
+    desc: 'Terminal 1 Sky Hub Lounge entry — west wing open 24h, food and Wi-Fi before departure.',
+    cta: 'See lounge pass',
     badge: 'Lounge',
   },
   'feat-taxi-booking': {
@@ -536,10 +536,10 @@ const JP: Record<string, Overlay> = {
     badge: '空港送迎',
   },
   'feat-lounge-klook': {
-    productTitle: '空港ラウンジ利用券',
-    destination: '出国前の仁川空港',
-    desc: '出国前にラウンジでゆったり。軽食・Wi-Fi・シャワーまで、利用券ですぐ入場。',
-    cta: 'ラウンジ利用券を見る',
+    productTitle: '仁川空港T1ラウンジパス',
+    destination: 'スカイハブラウンジ・西側24h',
+    desc: '第1ターミナルのスカイハブラウンジ入場券。西側は24時間営業、軽食・Wi-Fi完備。',
+    cta: 'ラウンジパスを見る',
     badge: '空港ラウンジ',
   },
   'feat-taxi-booking': {
