@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics as GtagConsent } from '@/components/analytics/Analytics'
+import { WishlistToast } from '@/components/affiliate/WishlistToast'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
@@ -118,6 +119,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SpeedInsights />
               {/* GA4 + 쿠키 동의 (NEXT_PUBLIC_GA_ID 설정 시에만 작동) */}
               <GtagConsent />
+              {/* 위시리스트 하트 토스트 (Airbnb 벤치) */}
+              <WishlistToast />
             </AnnounceProvider>
           </AuthProvider>
         </LanguageProvider>

@@ -1017,6 +1017,8 @@ type SupportProgram = {
   deadline: Loc<string>      // 마감/모집 상태 설명
   conditions: Loc<string[]>  // 조건 태그 (최대 3)
   href: string               // 공식 공고/신청 링크
+  // 워크스펙 — 공고에 명시된 업무공간 정보만(추측 금지). 장기: Mbps·좌석 등 표준 필드 확장
+  workSpec?: Loc<string>
 }
 
 const SUPPORT_STATUS_LABEL: Record<SupportStatus, Loc<string>> = {
@@ -1037,6 +1039,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('예산 소진 시까지', 'Until budget runs out', '予算消化まで'),
     conditions: loc(['도외 재직자·사업자', '3박 4일 이상'], ['Non-Jeju workers', '3+ nights'], ['道外の在職者', '3泊以上']),
+    workSpec: loc('파트너 오피스 17곳', '17 partner offices', '提携オフィス17カ所'),
     href: 'https://www.jeju.go.kr/workation/Supportproject/list.htm',
   },
   {
@@ -1049,6 +1052,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('상시 (기업등록 후 신청)', 'Rolling (register first)', '随時（企業登録後）'),
     conditions: loc(['부산 외 재직자·대표', '재직증명 필요'], ['Non-Busan workers', 'Proof of work'], ['釜山外の在職者', '在職証明']),
+    workSpec: loc('업무공간 무료', 'Free workspace', 'ワークスペース無料'),
     href: 'https://www.busaness.com/',
   },
   {
@@ -1061,6 +1065,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'check',
     deadline: loc('회차별 모집 — 공고 확인', 'Batch-based — check notice', '回次別募集'),
     conditions: loc(['재직자·프리랜서·특고', '4대보험 또는 증빙'], ['Workers & freelancers', 'Proof required'], ['在職者・フリーランス']),
+    workSpec: loc('공유오피스 포함', 'Coworking included', 'コワーキング込み'),
     href: 'https://worcation.co.kr/gw/enroll',
   },
   {
@@ -1121,6 +1126,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('연중 상품 운영 (호텔별 예약)', 'Year-round (book per hotel)', '通年運営（ホテル別予約）'),
     conditions: loc(['개인 신청 가능', '평일 2박 이상'], ['Individuals OK', 'Weekday 2+ nights'], ['個人申請可', '平日2泊以上']),
+    workSpec: loc('미팅룸 결합 상품', 'Meeting-room packages', 'ミーティングルーム付き'),
     href: 'https://www.ito.or.kr/main/',
   },
   {
@@ -1133,6 +1139,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'open',
     deadline: loc('연중 모집 (2026.4~)', 'Open year-round', '通年募集'),
     conditions: loc(['개인 신청 가능', '원격근무 가능자'], ['Individuals OK', 'Remote-workable'], ['個人申請可', 'リモート可']),
+    workSpec: loc('공유오피스 포함', 'Coworking included', 'コワーキング込み'),
     href: 'https://www.seantour.kr',
   },
   {
@@ -1145,6 +1152,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('연중 운영 (최소 1주 전 대기예약)', 'Year-round (reserve 1+ week ahead)', '通年運営（1週間前まで予約）'),
     conditions: loc(['국민 누구나 (재직 증빙)', '2박 3일 단위'], ['Anyone w/ work proof', '2N3D units'], ['在職証明で誰でも', '2泊3日単位']),
+    workSpec: loc('오피스 공간 제공', 'Office space provided', 'オフィス提供'),
     href: 'https://jb-worcation.com/',
   },
   {
@@ -1157,6 +1165,7 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'open',
     deadline: loc('2026 모집중 (시군별 순차)', 'Recruiting 2026 (by city/county)', '2026募集中（市郡別）'),
     conditions: loc(['전남 외 임직원·프리랜서·사업자', '재직·사업자 증빙'], ['Non-Jeonnam workers/freelancers', 'Proof required'], ['全南外の勤労者・個人事業主', '在職・事業証明']),
+    workSpec: loc('오피스 제공', 'Office provided', 'オフィス提供'),
     href: 'https://worcation.ijnto.or.kr/',
   },
   {
@@ -1185,6 +1194,7 @@ export function getSupportPrograms(lang: Lang) {
     statusLabel: tloc(lang, SUPPORT_STATUS_LABEL[p.status]),
     deadline: tloc(lang, p.deadline),
     conditions: tloc(lang, p.conditions),
+    workSpec: p.workSpec ? tloc(lang, p.workSpec) : undefined,
     href: p.href,
   }))
 }
