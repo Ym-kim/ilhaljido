@@ -7,6 +7,7 @@ import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { COLLECTIONS, COLLECTIONS_UI } from '@/lib/affiliate/collections'
 import { getCatalogItems } from '@/lib/affiliate/catalog'
+import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 
 // 기획전 허브 — 전체 컬렉션 카드 그리드
 export function CollectionsHub() {
