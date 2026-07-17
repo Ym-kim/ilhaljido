@@ -30,6 +30,7 @@ export interface CityInsight {
   hotelTripHref?: string          // Trip.com URL (Allianceid=9024807)
   esimHref: string                // Airalo 추적 링크 (airalo.pxf.io)
   activityHref?: string           // KKday destination page (cid=25833)
+  transferHref?: string           // Klook 도시별 공항픽업 — 공식 리다이렉트(aid=126848&k_site=) 형식
   // 대표 추천 숙소 id (featured.ts FEATURED_STAYS id)
   featuredStayId?: string
   // 업무 환경 스펙 칩 — 반드시 featured.ts 해당 숙소 desc의 검증된 내용에서만 도출 (추측 금지)
@@ -70,6 +71,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelTripHref: 'https://kr.trip.com/hotels/tokyo-hotels-list-228/?Allianceid=9024807',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2892-narita-airport-tokyo-transfer%2F',
     featuredStayId: 'stay-millennials-shibuya',
     workTags: {
       KO: ['코워킹 2개 층', '시부야역 6분', '무료 커피'],
@@ -113,6 +115,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelTripHref: 'https://kr.trip.com/hotels/osaka-hotels-list-219/?Allianceid=9024807',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2797-kansai-airport-transfers-osaka%2F',
     featuredStayId: 'stay-lively-osaka',
     workTags: {
       KO: ['공용 라운지 7곳', '혼마치 비즈니스가'],
@@ -155,6 +158,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Fukuoka',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F11232-airport-transfer-fukuoka%2F',
     featuredStayId: 'stay-webase-hakata',
     workTags: {
       KO: ['전용 코워킹(무료)', '테라스', '역 도보 3분'],
@@ -201,6 +205,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Bali',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Findonesia-esim',
     activityHref: 'https://www.kkday.com/ko/destination/id-bali?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F30245-premium-private-ngurah-rai-airport-transfers-bali%2F',
     featuredStayId: 'stay-tribal-bali',
     workTags: {
       KO: ['코워킹 전용 설계', '풀사이드 워크스페이스', '노마드 커뮤니티'],
@@ -247,6 +252,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Da+Nang',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fvietnam-esim',
     activityHref: 'https://www.kkday.com/ko/destination/vn-vietnam?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F17015-dad-private-airport-transfers-da-nang%2F',
     featuredStayId: 'stay-chicland-danang',
     workTags: {
       KO: ['카페형 라운지', '루프탑 풀', '미케비치 2분'],
@@ -293,6 +299,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Chiang+Mai',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fthailand-esim',
     activityHref: 'https://www.kkday.com/ko/destination/th-thailand?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F15841-airport-transfers-chiang-mai%2F',
     featuredStayId: 'stay-kantary-chiangmai',
     workTags: {
       KO: ['키치넷 객실', '장기체류 특화', '원님만 도보권'],
@@ -339,6 +346,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Cebu',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fphilippines-esim',
     activityHref: 'https://www.kkday.com/ko/destination/ph-philippines?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F111444-private-airport-transfer-to-cebu-city-mandaue-city-mactan%2F',
     featuredStayId: 'stay-nomadshub-cebu',
     workTags: {
       KO: ['코워킹+코리빙', '핫데스크 포함', '노마드 커뮤니티'],
@@ -389,6 +397,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     hotelBookingHref: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Sydney',
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Faustralia-esim',
     activityHref: 'https://www.kkday.com/ko/destination/au-australia?cid=25833',
+    transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F1865-airport-transfers-australia-sydney%2F',
     featuredStayId: 'stay-adina-sydney',
     workTags: {
       KO: ['풀키친 아파트', 'CBD·Town Hall 2분', '실내 수영장'],
