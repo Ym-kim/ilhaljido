@@ -7,6 +7,7 @@ import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ProductBrowser } from '@/components/affiliate/ProductBrowser'
 import { CoupangGear } from '@/components/affiliate/CoupangGear'
+import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { ALL_AFFILIATE_ITEMS } from '@/lib/affiliate/items'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -205,6 +206,7 @@ export default function SelectPage() {
             {COPY.sub[lang]}
           </p>
           <p className="text-[#a0a0a0] text-xs">{COPY.note[lang]}</p>
+          <SelectionCriteria className="mt-4" />
         </div>
       </section>
 

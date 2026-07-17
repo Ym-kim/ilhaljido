@@ -6,6 +6,7 @@ import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { CITY_INSIGHTS, INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE } from '@/lib/cities'
+import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /destinations 허브 — 워케이션 도시 인사이트 그리드 (3언어, 라이트 톤)
@@ -56,6 +57,7 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
             {UI.title[lang]}
           </h1>
           <p className="text-[#666] text-lg max-w-xl">{UI.sub[lang]}</p>
+          <SelectionCriteria className="mt-4" />
         </div>
       </section>
 
