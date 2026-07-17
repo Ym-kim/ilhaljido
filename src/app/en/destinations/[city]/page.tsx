@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CITY_INSIGHTS, getCityById, cityLanguageAlternates } from '@/lib/cities'
+import { CITY_INSIGHTS, getCityById, cityLanguageAlternates, buildCityFaq } from '@/lib/cities'
 import { CityInsightView } from '@/components/destinations/CityInsightView'
 
 // /en/destinations/{city} — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
@@ -50,11 +50,23 @@ export default async function CityPageEn({
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'TouristDestination',
-    name: `${city.name.EN} Workation`,
-    description: city.metaDesc.EN,
-    image: city.photo,
-    url: `https://www.wakation.kr/en/destinations/${cityId}`,
+    '@graph': [
+      {
+        '@type': 'TouristDestination',
+        name: `${city.name.EN} Workation`,
+        description: city.metaDesc.EN,
+        image: city.photo,
+        url: `https://www.wakation.kr/en/destinations/${cityId}`,
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: buildCityFaq(city, 'EN').map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+    ],
   }
 
   return (
