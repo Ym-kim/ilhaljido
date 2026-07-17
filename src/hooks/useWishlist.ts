@@ -37,11 +37,13 @@ export function useWishlist() {
 
   const toggle = useCallback((id: string) => {
     const cur = read()
-    const next = cur.includes(id) ? cur.filter((v) => v !== id) : [...cur, id]
+    const added = !cur.includes(id)
+    const next = added ? [...cur, id] : cur.filter((v) => v !== id)
     try {
       localStorage.setItem(KEY, JSON.stringify(next))
     } catch {}
-    window.dispatchEvent(new Event('wakation-wishlist'))
+    // CustomEvent detail로 토스트(WishlistToast)가 추가/제거를 구분 — 기존 리스너와 호환
+    window.dispatchEvent(new CustomEvent('wakation-wishlist', { detail: { id, added } }))
   }, [])
 
   const has = useCallback((id: string) => ids.includes(id), [ids])

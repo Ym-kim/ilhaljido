@@ -2,10 +2,12 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart } from 'lucide-react'
+import { useWishlist } from '@/hooks/useWishlist'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, type CityInsight } from '@/lib/cities'
+import { CITY_CLIMATE, CLIMATE_UI, MONTH_LABELS } from '@/lib/cityClimate'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { CITY_GUIDES } from '@/lib/guides'
@@ -134,6 +136,7 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
   const cityName = city.name[lang]
   const t = (key: string) => UI[key][lang].replace('{city}', cityName)
+  const { has, toggle } = useWishlist()
 
   const rawStay = city.featuredStayId ? ALL_STAYS.find((s) => s.id === city.featuredStayId) : undefined
   const featuredStay = rawStay ? localizeAffiliateItem(rawStay, lang) : undefined
@@ -259,6 +262,44 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
           <p className="text-[#a8a29e] text-[0.6875rem] mt-2">{UI.prosConsNote[lang]}</p>
         </section>
 
+        {/* 월별 시즌 스트립 — "언제 갈까" (NomadList Weather 벤치, 근사치·3단계 강수) */}
+        {CITY_CLIMATE[city.id] && (
+          <section>
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+              <h2 className="text-xl font-black text-[#111]">{CLIMATE_UI.title[lang]}</h2>
+              <div className="flex items-center gap-3 text-[0.6875rem] text-[#888]">
+                <span className="inline-flex items-center gap-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-teal-500 inline-block" /> {CLIMATE_UI.bestLegend[lang]}
+                </span>
+                <span className="inline-flex items-center gap-1">💧 {CLIMATE_UI.rainLegend[lang]}</span>
+              </div>
+            </div>
+            <div className="overflow-x-auto -mx-1 px-1 pb-1">
+              <div className="grid grid-cols-12 gap-1.5 min-w-[640px]">
+                {CITY_CLIMATE[city.id].map((m, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-xl border p-2 text-center ${
+                      m.best
+                        ? 'bg-teal-50 border-teal-200'
+                        : 'bg-white border-[#e8e4dc]'
+                    }`}
+                  >
+                    <div className={`text-[0.625rem] font-bold mb-1 ${m.best ? 'text-teal-700' : 'text-[#888]'}`}>
+                      {MONTH_LABELS[lang][i]}
+                    </div>
+                    <div className="text-sm font-black text-[#111]">{m.t}°</div>
+                    <div className="text-[0.625rem] h-3.5 leading-3.5">
+                      {m.rain === 2 ? '💧💧' : m.rain === 1 ? '💧' : ''}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="text-[#a8a29e] text-[0.6875rem] mt-2">{CLIMATE_UI.note[lang]}</p>
+          </section>
+        )}
+
         {/* Featured stay */}
         {featuredStay && (
           <section>
@@ -280,12 +321,21 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
               rel="sponsored noopener noreferrer"
               className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-teal-300 hover:shadow-lg overflow-hidden flex flex-col sm:flex-row transition-all"
             >
-              <div className="sm:w-56 h-48 sm:h-auto shrink-0 overflow-hidden">
+              <div className="relative sm:w-56 h-48 sm:h-auto shrink-0 overflow-hidden">
                 <img
                   src={featuredStay.coverPhoto}
                   alt={featuredStay.productTitle ?? featuredStay.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
+                {/* 위시리스트 하트 (Airbnb 벤치) */}
+                <button
+                  type="button"
+                  aria-label={has(featuredStay.id) ? 'remove from wishlist' : 'add to wishlist'}
+                  onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggle(featuredStay.id) }}
+                  className="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center hover:bg-black/65 transition-colors"
+                >
+                  <Heart className={`w-4 h-4 ${has(featuredStay.id) ? 'fill-rose-500 text-rose-500' : 'text-white'}`} strokeWidth={2} />
+                </button>
               </div>
               <div className="p-5 flex flex-col justify-between flex-1">
                 <div>

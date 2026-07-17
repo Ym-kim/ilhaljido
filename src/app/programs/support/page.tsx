@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowLeft, ArrowRight, ArrowUpRight, BadgeCheck, Building2, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, BadgeCheck, Building2, Laptop, MapPin } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
@@ -106,6 +106,16 @@ export default function SupportProgramsPage() {
                 {/* 최대지원 환산 배지 — monthler 핵심 패턴 */}
                 {p.maxBenefit && (
                   <p className="text-brand-mid font-black text-lg mb-3">{p.maxBenefit}</p>
+                )}
+
+                {/* 워크스펙 칩 — 공고에 명시된 업무공간 정보만 (더휴일 오피스 스펙 벤치) */}
+                {p.workSpec && (
+                  <p className="mb-2">
+                    <span className="inline-flex items-center gap-1 text-[0.65rem] font-bold px-2 py-0.5 rounded-full bg-teal-50 text-teal-700 border border-teal-100">
+                      <Laptop className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                      {p.workSpec}
+                    </span>
+                  </p>
                 )}
 
                 {/* 조건 태그 */}
