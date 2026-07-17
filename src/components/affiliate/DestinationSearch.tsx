@@ -76,14 +76,14 @@ export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
         }}
         className="flex flex-col sm:flex-row gap-2.5"
       >
-        <div className="flex items-center gap-2.5 flex-1 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl px-3.5 focus-within:border-[#7dd3fc] transition-colors">
+        <div className="flex items-center gap-2.5 flex-1 min-w-0 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl px-3.5 focus-within:border-[#7dd3fc] transition-colors">
           <Search className="w-4 h-4 text-[#94a3b8] shrink-0" strokeWidth={ICON_STROKE} />
           <input
             type="text"
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={placeholder}
-            className="flex-1 bg-transparent py-3 text-sm text-[#111827] placeholder:text-[#94a3b8] focus:outline-none"
+            className="flex-1 min-w-0 bg-transparent py-3 text-sm text-[#111827] placeholder:text-[#94a3b8] focus:outline-none"
           />
         </div>
         <button

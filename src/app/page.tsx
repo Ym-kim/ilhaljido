@@ -24,7 +24,6 @@ import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
 import { GrowthEngines } from '@/components/home/GrowthEngines'
 import { LearningSection } from '@/components/home/LearningSection'
 import { ToolsSection } from '@/components/home/ToolsSection'
-import { MediaSection } from '@/components/home/MediaSection'
 import { SponsorSection } from '@/components/home/SponsorSection'
 import { YangyangProof } from '@/components/home/YangyangProof'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
@@ -199,7 +198,9 @@ export default function HomePage() {
               onSubmit={(e) => { e.preventDefault(); submitHeroSearch() }}
               className="flex gap-2 mb-4"
             >
-              <div className="flex items-center gap-2 flex-1 bg-white/10 border border-white/20 rounded-2xl px-3.5 focus-within:border-sky-300/60 transition-colors">
+              {/* min-w-0: input의 flex 기본 min-width:auto가 긴 placeholder 폭만큼 버텨
+                  모바일에서 버튼이 카드 밖으로 밀려 짤리던 버그 수정 (375px 실측) */}
+              <div className="flex items-center gap-2 flex-1 min-w-0 bg-white/10 border border-white/20 rounded-2xl px-3.5 focus-within:border-sky-300/60 transition-colors">
                 <Search className="w-4 h-4 text-white/60 shrink-0" strokeWidth={ICON_STROKE} />
                 <input
                   type="text"
@@ -207,7 +208,7 @@ export default function HomePage() {
                   onChange={(e) => setHeroQuery(e.target.value)}
                   placeholder={tr('h3_search_ph')}
                   aria-label={tr('h3_search_ph')}
-                  className="flex-1 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
+                  className="flex-1 min-w-0 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
                 />
               </div>
               <button
@@ -587,8 +588,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Wakation Media — 콘텐츠 축 (준비 중 표기) ── */}
-      <MediaSection />
+      {/* ── Wakation Media 섹션은 홈에서 제외 (2026-07-18 홈 다이어트) ──
+          '콘텐츠 준비 중' 플레이스홀더뿐이라 전환 가치 0·스크롤만 증가 (Airbnb 2025 단순화 벤치).
+          실콘텐츠(유튜브 등) 확보 시 <MediaSection /> 복귀 — 컴포넌트 파일은 보존됨 */}
 
       {/* ── Wakation Experience Partner — 체험형 스폰서십 ── */}
       <SponsorSection />
