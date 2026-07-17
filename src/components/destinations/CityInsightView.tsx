@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import type { CityInsight } from '@/lib/cities'
@@ -47,6 +47,13 @@ const UI: Record<string, Record<Lang, string>> = {
     KO: '투어·입장권·교통패스',
     EN: 'Tours, tickets & transit passes',
     JP: 'ツアー・チケット・交通パス',
+  },
+  transferLabel: { KO: '공항 픽업 · Klook', EN: 'Airport pickup · Klook', JP: '空港送迎 · Klook' },
+  transferTitle: { KO: '{city} 공항 픽업', EN: '{city} airport pickup', JP: '{city}空港送迎' },
+  transferSub: {
+    KO: '도착 즉시 기사 대기, 프라이빗 이동',
+    EN: 'Driver waiting on arrival, private ride',
+    JP: '到着時にドライバー待機、プライベート送迎',
   },
   guideLabel: { KO: '에디터 가이드', EN: 'Editor guide', JP: 'エディターガイド' },
   guideTitle: {
@@ -290,8 +297,8 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
           </section>
         )}
 
-        {/* eSIM + Activity CTAs */}
-        <section className="grid sm:grid-cols-2 gap-4">
+        {/* eSIM + 공항픽업 + Activity CTAs */}
+        <section className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           <a
             href={city.esimHref}
             target="_blank"
@@ -308,6 +315,25 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
             </div>
             <ArrowRight className="w-4 h-4 text-[#aaa] group-hover:translate-x-1 transition-transform shrink-0" />
           </a>
+
+          {city.transferHref && (
+            <a
+              href={city.transferHref}
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-[#c8c4bc] p-5 flex items-center gap-4 transition-all hover:shadow-md"
+            >
+              <div className="w-10 h-10 bg-violet-50 rounded-xl flex items-center justify-center shrink-0">
+                <Car className="w-5 h-5 text-violet-600" strokeWidth={2} />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-[#888] mb-0.5">{UI.transferLabel[lang]}</p>
+                <p className="font-bold text-[#111]">{t('transferTitle')}</p>
+                <p className="text-xs text-[#888]">{UI.transferSub[lang]}</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-[#aaa] group-hover:translate-x-1 transition-transform shrink-0" />
+            </a>
+          )}
 
           {city.activityHref && (
             <a
