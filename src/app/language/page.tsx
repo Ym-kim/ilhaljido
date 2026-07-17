@@ -39,19 +39,22 @@ const TUTOR_COPY: Record<string, Record<Lang, string>> = {
 }
 
 // 언어별 트랙 — 실존 확인된 경로만 (중국어·스페인어 등은 전체 페이지에서 선택)
+// 어필리에이트 추적: 운영자 프로모션 링크 파라미터(aff_c/aff_p, 2026-07-16 수령·202 검증) 부착.
+// ⚠️ 서브페이지 파라미터 집계 여부는 AT 파트너 대시보드 '프로모션' 통계에서 확인 권장
+const AT_AFF = 'aff_c_code=aff_c-bXzneJ&aff_p_code=aff_p-bXRhXL'
 const TUTOR_TRACKS: { id: string; emoji: string; href: string; name: Record<Lang, string>; desc: Record<Lang, string> }[] = [
   {
-    id: 'at-english', emoji: '🇺🇸', href: 'https://www.amazingtalker.co.kr/tutors/english',
+    id: 'at-english', emoji: '🇺🇸', href: `https://www.amazingtalker.co.kr/tutors/english?${AT_AFF}`,
     name: { KO: '영어 회화', EN: 'English', JP: '英会話' },
     desc: { KO: '비즈니스 회화·TESOL 자격 원어민 튜터', EN: 'Business conversation, TESOL-certified natives', JP: 'ビジネス会話・TESOL資格ネイティブ' },
   },
   {
-    id: 'at-japanese', emoji: '🇯🇵', href: 'https://www.amazingtalker.co.kr/tutors/japanese',
+    id: 'at-japanese', emoji: '🇯🇵', href: `https://www.amazingtalker.co.kr/tutors/japanese?${AT_AFF}`,
     name: { KO: '일본어', EN: 'Japanese', JP: '日本語' },
     desc: { KO: '일본 진출·워케이션 준비 회화, JLPT 대비', EN: 'Conversation for Japan trips, JLPT prep', JP: '日本滞在向け会話・JLPT対策' },
   },
   {
-    id: 'at-all', emoji: '🌍', href: 'https://www.amazingtalker.co.kr/tutors',
+    id: 'at-all', emoji: '🌍', href: `https://www.amazingtalker.co.kr/tutors?${AT_AFF}`,
     name: { KO: '40+개 언어 전체', EN: 'All 40+ languages', JP: '40+言語すべて' },
     desc: { KO: '중국어·스페인어·베트남어 등 전체 튜터 탐색', EN: 'Chinese, Spanish, Vietnamese and more', JP: '中国語・スペイン語・ベトナム語ほか' },
   },
@@ -147,7 +150,7 @@ export default function LanguagePage() {
                 key={t.id}
                 href={t.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="sponsored noopener noreferrer"
                 onClick={() => trackAffiliateClick({ id: t.id, provider: 'AmazingTalker', status: 'public_external_link' })}
                 className="group bg-rose-50/60 border border-rose-100 rounded-3xl p-6 hover:border-rose-300 hover:shadow-md transition-all"
               >
