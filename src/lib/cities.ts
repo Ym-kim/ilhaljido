@@ -32,6 +32,8 @@ export interface CityInsight {
   esimHref: string                // Airalo 추적 링크 (airalo.pxf.io)
   activityHref?: string           // KKday destination page (cid=25833)
   transferHref?: string           // Klook 도시별 공항픽업 — 공식 리다이렉트(aid=126848&k_site=) 형식
+  railPassHref?: string           // 도시 연관 철도패스 (Klook 공식 리다이렉트)
+  railPassName?: L                // 패스 이름 (예: 'JR 큐슈 패스')
   // 대표 추천 숙소 id (featured.ts FEATURED_STAYS id)
   featuredStayId?: string
   // 업무 환경 스펙 칩 — 반드시 featured.ts 해당 숙소 desc의 검증된 내용에서만 도출 (추측 금지)
@@ -108,6 +110,8 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2892-narita-airport-tokyo-transfer%2F',
+    railPassHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F1552-subway-ticket-tokyo%2F',
+    railPassName: { KO: '도쿄 지하철 티켓 24~72h', EN: 'Tokyo Subway Ticket 24–72h', JP: '東京メトロパス24〜72h' },
     featuredStayId: 'stay-millennials-shibuya',
     workTags: {
       KO: ['코워킹 2개 층', '시부야역 6분', '무료 커피'],
@@ -163,6 +167,8 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2797-kansai-airport-transfers-osaka%2F',
+    railPassHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F3276-4-day-jr-west-kansai-rail-pass-jr-pass%2F',
+    railPassName: { KO: 'JR 간사이 패스', EN: 'JR Kansai Pass', JP: 'JR関西パス' },
     featuredStayId: 'stay-lively-osaka',
     workTags: {
       KO: ['공용 라운지 7곳', '혼마치 비즈니스가'],
@@ -217,6 +223,8 @@ export const CITY_INSIGHTS: CityInsight[] = [
     esimHref: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     activityHref: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F11232-airport-transfer-fukuoka%2F',
+    railPassHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F2371-jr-kyushu-jr-pass%2F',
+    railPassName: { KO: 'JR 큐슈 레일 패스', EN: 'JR Kyushu Rail Pass', JP: 'JR九州レールパス' },
     featuredStayId: 'stay-webase-hakata',
     workTags: {
       KO: ['전용 코워킹(무료)', '테라스', '역 도보 3분'],

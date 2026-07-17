@@ -588,6 +588,52 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: '공식 어필리에이트 리다이렉트(운영자 Product Explorer 생성, aff_adid=1342451, 2026-07-16). activity/128530 T1 라운지 패스 — 스카이허브(서편24h·동편·탑승동) 운영자 확인 정보',
   },
 
+  // ──────────────────────────────────────────────────────────────────────────
+  // 철도패스 — 일본 전역 JR 패스 (2026-07-18: 장기체류 다도시 이동, 고단가 커미션)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-jrpass-klook',
+    name: 'Klook',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚄',
+    productTitle: '일본 전역 JR 패스 7·14·21일',
+    destination: '신칸센 포함 무제한',
+    desc: '2주+ 일본 워케이션의 다도시 이동은 JR 패스가 정답. 신칸센 포함 전국 무제한.',
+    cta: 'JR 패스 보기',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F1420-7-day-whole-japan-rail-pass-jr-pass%2F',
+    badge: '철도패스',
+    trackingId: 'aid=126848',
+    coverGradient: 'from-green-900 via-emerald-950 to-[#0d0d0d]',
+    priority: 9,
+    showOn: ['global', 'programs', 'select'],
+    sourceNote: 'Klook activity/1420 (WebSearch KO확정·403=생존 검증 2026-07-18). 간사이 3276·큐슈 2371·도쿄지하철 1552은 도시 상세(cities.ts railPassHref) 연동',
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 포켓와이파이 — 일본 무제한 (eSIM 보완: 노트북 다중기기 워케이셔너)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-wifi-kkday',
+    name: 'KKday',
+    category: 'esim',
+    productType: 'esim',
+    status: 'active_affiliate',
+    emoji: '📶',
+    productTitle: '일본 포켓와이파이 무제한 4G',
+    destination: '일본 공항 수령',
+    desc: '노트북·폰 여러 대를 하나로. 무제한 데이터 포켓와이파이, 일본 공항에서 바로 수령.',
+    cta: '포켓와이파이 보기',
+    href: 'https://www.kkday.com/ko/product/146171-unlimited-4g-pocket-wifi-airport-pick-up-japan?cid=25833',
+    badge: '포켓와이파이',
+    trackingId: 'cid=25833',
+    coverGradient: 'from-cyan-900 via-sky-950 to-[#0d0d0d]',
+    priority: 10,
+    showOn: ['esim', 'global'],
+    sourceNote: 'KKday product/146171 (WebSearch KO확정·403=봇챌린지 생존 2026-07-18). eSIM 보완재 — 다중기기·장기체류용',
+  },
+
   {
     id: 'feat-vietnam-hotel',
     name: 'Booking.com',

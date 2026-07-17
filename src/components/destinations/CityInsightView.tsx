@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart, TrainFront } from 'lucide-react'
 import { useWishlist } from '@/hooks/useWishlist'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
@@ -56,6 +56,12 @@ const UI: Record<string, Record<Lang, string>> = {
     KO: '투어·입장권·교통패스',
     EN: 'Tours, tickets & transit passes',
     JP: 'ツアー・チケット・交通パス',
+  },
+  railLabel: { KO: '교통 패스 · Klook', EN: 'Transit pass · Klook', JP: '交通パス · Klook' },
+  railSub: {
+    KO: '체류 중 이동을 정액으로, 창구 대기 없이',
+    EN: 'Flat-rate transit for your stay, skip the ticket lines',
+    JP: '滞在中の移動を定額で、窓口に並ばず',
   },
   transferLabel: { KO: '공항 픽업 · Klook', EN: 'Airport pickup · Klook', JP: '空港送迎 · Klook' },
   transferTitle: { KO: '{city} 공항 픽업', EN: '{city} airport pickup', JP: '{city}空港送迎' },
@@ -430,6 +436,25 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
                 <p className="text-xs text-[#888] mb-0.5">{UI.transferLabel[lang]}</p>
                 <p className="font-bold text-[#111]">{t('transferTitle')}</p>
                 <p className="text-xs text-[#888]">{UI.transferSub[lang]}</p>
+              </div>
+              <ArrowRight className="w-4 h-4 text-[#aaa] group-hover:translate-x-1 transition-transform shrink-0" />
+            </a>
+          )}
+
+          {city.railPassHref && city.railPassName && (
+            <a
+              href={city.railPassHref}
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-[#c8c4bc] p-5 flex items-center gap-4 transition-all hover:shadow-md"
+            >
+              <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0">
+                <TrainFront className="w-5 h-5 text-emerald-600" strokeWidth={2} />
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-[#888] mb-0.5">{UI.railLabel[lang]}</p>
+                <p className="font-bold text-[#111]">{city.railPassName[lang]}</p>
+                <p className="text-xs text-[#888]">{UI.railSub[lang]}</p>
               </div>
               <ArrowRight className="w-4 h-4 text-[#aaa] group-hover:translate-x-1 transition-transform shrink-0" />
             </a>

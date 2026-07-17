@@ -103,6 +103,20 @@ const EN: Record<string, Overlay> = {
     cta: 'Book airport taxi',
     badge: 'Airport taxi',
   },
+  'feat-jrpass-klook': {
+    productTitle: 'Whole Japan JR Pass 7/14/21d',
+    destination: 'Unlimited incl. shinkansen',
+    desc: 'For 2-week+ Japan workations across cities, the JR Pass wins. Nationwide, shinkansen included.',
+    cta: 'See JR Pass',
+    badge: 'Rail pass',
+  },
+  'feat-wifi-kkday': {
+    productTitle: 'Japan unlimited pocket Wi-Fi',
+    destination: 'Airport pickup in Japan',
+    desc: 'One hotspot for laptop and phones. Unlimited data, pick up at the airport on arrival.',
+    cta: 'See pocket Wi-Fi',
+    badge: 'Pocket Wi-Fi',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -548,6 +562,20 @@ const JP: Record<string, Overlay> = {
     desc: '空港から宿まで事前確定料金のタクシー。フライト遅延時は無料で待機。',
     cta: '空港タクシーを予約',
     badge: '空港タクシー',
+  },
+  'feat-jrpass-klook': {
+    productTitle: '日本全国JRパス 7・14・21日',
+    destination: '新幹線含む乗り放題',
+    desc: '2週間以上の日本ワーケーションで複数都市を回るならJRパス。新幹線含む全国乗り放題。',
+    cta: 'JRパスを見る',
+    badge: '鉄道パス',
+  },
+  'feat-wifi-kkday': {
+    productTitle: '日本ポケットWi-Fi 無制限4G',
+    destination: '日本の空港で受取',
+    desc: 'PCもスマホもこれ1台。無制限データのポケットWi-Fi、到着後すぐ空港で受取。',
+    cta: 'ポケットWi-Fiを見る',
+    badge: 'ポケットWi-Fi',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',
