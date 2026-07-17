@@ -2,11 +2,11 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart, TrainFront } from 'lucide-react'
+import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart, TrainFront, Plane, Plug, CreditCard, ChevronDown } from 'lucide-react'
 import { useWishlist } from '@/hooks/useWishlist'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
-import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, type CityInsight } from '@/lib/cities'
+import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, buildCityFaq, type CityInsight } from '@/lib/cities'
 import { CITY_CLIMATE, CLIMATE_UI, MONTH_LABELS } from '@/lib/cityClimate'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
@@ -34,6 +34,10 @@ const UI: Record<string, Record<Lang, string>> = {
   season: { KO: '베스트 시즌', EN: 'Best season', JP: 'ベストシーズン' },
   visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
   timezone: { KO: '시간대', EN: 'Time zone', JP: 'タイムゾーン' },
+  flight: { KO: '직항 소요', EN: 'Direct flight', JP: '直行便' },
+  plug: { KO: '콘센트·전압', EN: 'Plug & voltage', JP: 'コンセント・電圧' },
+  payment: { KO: '결제 환경', EN: 'Payments', JP: '決済環境' },
+  faqTitle: { KO: '자주 묻는 질문', EN: 'FAQ', JP: 'よくある質問' },
   staysTitle: { KO: '추천 숙소', EN: 'Recommended stay', JP: 'おすすめの宿' },
   workEnv: { KO: '업무 환경', EN: 'Work setup', JP: '仕事環境' },
   viewAll: { KO: '전체 보기', EN: 'View all', JP: 'すべて見る' },
@@ -236,6 +240,21 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
               label={UI.timezone[lang]}
               value={city.timezone[lang]}
             />
+            <StatCard
+              icon={Plane}
+              label={UI.flight[lang]}
+              value={city.flightTime[lang]}
+            />
+            <StatCard
+              icon={Plug}
+              label={UI.plug[lang]}
+              value={city.plug[lang]}
+            />
+            <StatCard
+              icon={CreditCard}
+              label={UI.payment[lang]}
+              value={city.payment[lang]}
+            />
           </div>
         </section>
 
@@ -305,6 +324,25 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
             <p className="text-[#a8a29e] text-[0.6875rem] mt-2">{CLIMATE_UI.note[lang]}</p>
           </section>
         )}
+
+        {/* FAQ — 트리플 벤치. 답변은 검증 필드 자동 조립(buildCityFaq), JSON-LD와 동일 소스 */}
+        <section>
+          <h2 className="text-xl font-black text-[#111] mb-4">{UI.faqTitle[lang]}</h2>
+          <div className="space-y-2">
+            {buildCityFaq(city, lang).map((f) => (
+              <details
+                key={f.q}
+                className="group bg-white rounded-2xl border border-[#e8e4dc] open:border-teal-200 transition-colors"
+              >
+                <summary className="flex items-center justify-between gap-3 cursor-pointer list-none px-5 py-4 font-bold text-sm text-[#111]">
+                  {f.q}
+                  <ChevronDown className="w-4 h-4 text-[#aaa] shrink-0 transition-transform group-open:rotate-180" strokeWidth={2} />
+                </summary>
+                <p className="px-5 pb-4 text-sm text-[#555] leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
 
         {/* Featured stay */}
         {featuredStay && (

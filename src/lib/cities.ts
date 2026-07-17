@@ -25,6 +25,10 @@ export interface CityInsight {
   visaFree: L                // '무비자 90일'
   visaCountryKey: string     // visa-ai 쿼리 키
   timezone: L                // 'UTC+9 (한국과 동일)'
+  // 기초 정보 (트리플 벤치) — flightTime은 guides.ts 검증값 재사용, plug/payment는 표준 사실
+  flightTime: L              // '약 2시간 20분 (인천 직항)'
+  plug: L                    // '100V · A형 (어댑터 필요)'
+  payment: L                 // '카드 확산 중, 현금 병행'
   tags: LArr
   // 수익화 링크
   hotelBookingHref: string        // Booking.com search/hotel URL (aid=7854081)
@@ -100,6 +104,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     visaCountryKey: 'japan',
     timezone: { KO: 'UTC+9 (한국과 동일)', EN: 'UTC+9 (same as Korea)', JP: 'UTC+9（韓国と同じ）' },
+    flightTime: { KO: '약 2시간 20분 (인천 직항)', EN: '~2h 20m direct from Seoul', JP: '仁川から直行 約2時間20分' },
+    plug: { KO: '100V · A형 — 어댑터 필요', EN: '100V · Type A — adapter needed', JP: '100V・Aタイプ' },
+    payment: { KO: '카드 보급 확대 중, 소규모 식당은 현금 병행', EN: 'Cards widely spreading; carry cash for small eateries', JP: 'カード普及中、小さな店は現金も' },
     tags: {
       KO: ['코워킹 밀집', '장기체류 특화', '비자 간편'],
       EN: ['Coworking hub', 'Long-stay ready', 'Easy visa'],
@@ -157,6 +164,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     visaCountryKey: 'japan',
     timezone: { KO: 'UTC+9 (한국과 동일)', EN: 'UTC+9 (same as Korea)', JP: 'UTC+9（韓国と同じ）' },
+    flightTime: { KO: '약 1시간 40분 (인천 직항)', EN: '~1h 40m direct from Seoul', JP: '仁川から直行 約1時間40分' },
+    plug: { KO: '100V · A형 — 어댑터 필요', EN: '100V · Type A — adapter needed', JP: '100V・Aタイプ' },
+    payment: { KO: '카드 보급 확대 중, 소규모 식당은 현금 병행', EN: 'Cards widely spreading; carry cash for small eateries', JP: 'カード普及中、小さな店は現金も' },
     tags: {
       KO: ['도쿄보다 저렴', '음식 천국', '오사카 성'],
       EN: ['Cheaper than Tokyo', 'Food paradise', 'Osaka Castle'],
@@ -214,6 +224,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
     visaCountryKey: 'japan',
     timezone: { KO: 'UTC+9 (한국과 동일)', EN: 'UTC+9 (same as Korea)', JP: 'UTC+9（韓国と同じ）' },
+    flightTime: { KO: '약 1시간 20분 (인천 직항)', EN: '~1h 20m direct from Seoul', JP: '仁川から直行 約1時間20分' },
+    plug: { KO: '100V · A형 — 어댑터 필요', EN: '100V · Type A — adapter needed', JP: '100V・Aタイプ' },
+    payment: { KO: '카드 보급 확대 중, 소규모 식당은 현금 병행', EN: 'Cards widely spreading; carry cash for small eateries', JP: 'カード普及中、小さな店は現金も' },
     tags: {
       KO: ['일본 최저비용', '서울 직항 1h', '소도시 감성'],
       EN: ['Cheapest in Japan', '1h from Seoul', 'Small-city charm'],
@@ -274,6 +287,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     visaCountryKey: 'indonesia',
     timezone: { KO: 'UTC+8 (한국 -1시간)', EN: 'UTC+8 (Korea −1h)', JP: 'UTC+8（韓国−1時間）' },
+    flightTime: { KO: '약 7시간 (인천 직항)', EN: '~7h direct from Seoul', JP: '仁川から直行 約7時間' },
+    plug: { KO: '230V · C/F형 — 한국 플러그 대부분 사용 가능', EN: '230V · Type C/F — Korean plugs mostly fit', JP: '230V・C/Fタイプ' },
+    payment: { KO: '카드·현금 병행, 소액 결제는 현금 준비', EN: 'Cards + cash; keep cash for small payments', JP: 'カードと現金併用、少額は現金' },
     tags: {
       KO: ['노마드 성지', '코워킹 허브', '자연+작업'],
       EN: ['Nomad mecca', 'Coworking hub', 'Nature + work'],
@@ -332,6 +348,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     visaCountryKey: 'vietnam',
     timezone: { KO: 'UTC+7 (한국 -2시간)', EN: 'UTC+7 (Korea −2h)', JP: 'UTC+7（韓国−2時間）' },
+    flightTime: { KO: '약 4시간 30분 (인천 직항)', EN: '~4h 30m direct from Seoul', JP: '仁川から直行 約4時間30分' },
+    plug: { KO: '220V · A/C형 겸용 — 한국 플러그 대부분 사용 가능', EN: '220V · Type A/C — Korean plugs mostly fit', JP: '220V・A/Cタイプ' },
+    payment: { KO: '현금 위주 + 카드 확산 중', EN: 'Cash-first; cards spreading', JP: '現金中心、カードは拡大中' },
     tags: {
       KO: ['해변 뷰', '동남아 최저비용', '한인 커뮤니티'],
       EN: ['Beach views', 'Lowest cost in SE Asia', 'Korean community'],
@@ -390,6 +409,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     visaCountryKey: 'thailand',
     timezone: { KO: 'UTC+7 (한국 -2시간)', EN: 'UTC+7 (Korea −2h)', JP: 'UTC+7（韓国−2時間）' },
+    flightTime: { KO: '약 5시간 30분 (인천 직항)', EN: '~5h 30m direct from Seoul', JP: '仁川から直行 約5時間30分' },
+    plug: { KO: '220V · A/C 겸용 콘센트 많음 — 한국 플러그 대체로 사용 가능', EN: '220V · A/C combo sockets common — Korean plugs mostly fit', JP: '220V・A/C兼用が多い' },
+    payment: { KO: '카드 확산, 야시장·로컬 상점은 현금', EN: 'Cards spreading; cash for night markets & local shops', JP: 'カード拡大中、ナイトマーケットは現金' },
     tags: {
       KO: ['님만 핫플', '저비용 고품질', '디지털 노마드 1번지'],
       EN: ['Nimman hotspot', 'Low cost, high quality', 'Nomad capital'],
@@ -448,6 +470,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     visaCountryKey: 'philippines',
     timezone: { KO: 'UTC+8 (한국 -1시간)', EN: 'UTC+8 (Korea −1h)', JP: 'UTC+8（韓国−1時間）' },
+    flightTime: { KO: '약 4시간 30분 (인천 직항)', EN: '~4h 30m direct from Seoul', JP: '仁川から直行 約4時間30分' },
+    plug: { KO: '220V · A형 위주 — 어댑터 필요', EN: '220V · mostly Type A — adapter needed', JP: '220V・Aタイプ中心' },
+    payment: { KO: '카드 가능 상점 많음, 현금 병행 권장', EN: 'Cards accepted widely; carry some cash', JP: 'カード可の店が多いが現金も' },
     tags: {
       KO: ['어학+워케이션', '코리빙 특화', '다이빙 성지'],
       EN: ['Study + workation', 'Coliving-friendly', 'Diving mecca'],
@@ -510,6 +535,9 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     visaCountryKey: 'australia',
     timezone: { KO: 'UTC+10 (한국 +1시간)', EN: 'UTC+10 (Korea +1h)', JP: 'UTC+10（韓国+1時間）' },
+    flightTime: { KO: '약 10시간 30분 (인천 직항)', EN: '~10h 30m direct from Seoul', JP: '仁川から直行 約10時間30分' },
+    plug: { KO: '230V · I형 — 어댑터 필요', EN: '230V · Type I — adapter needed', JP: '230V・Iタイプ' },
+    payment: { KO: '컨택리스 카드 보편 — 현금 거의 불필요', EN: 'Contactless everywhere — cash rarely needed', JP: 'タッチ決済が標準、現金ほぼ不要' },
     tags: {
       KO: ['선진국 인프라', '영어 환경', '글로벌 네트워킹'],
       EN: ['First-world infra', 'English-speaking', 'Global networking'],
@@ -535,6 +563,58 @@ export const CITY_INSIGHTS: CityInsight[] = [
 
 export function getCityById(id: string): CityInsight | undefined {
   return CITY_INSIGHTS.find((c) => c.id === id)
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 도시 FAQ — 트리플 벤치. 질문은 템플릿 4종, 답변은 기존 검증 필드에서 자동 조립
+// (신규 추정치 0 — visaFree·costMonthly·internetNote·bestSeason 재사용).
+// 화면(FAQ 섹션)과 FAQPage JSON-LD 리치결과가 같은 소스를 공유.
+// ─────────────────────────────────────────────────────────────────────────────
+
+const FAQ_Q: Record<'visa' | 'cost' | 'internet' | 'season', L> = {
+  visa: {
+    KO: '한국 여권으로 {city} 무비자 체류가 가능한가요?',
+    EN: 'Can Koreans stay in {city} visa-free?',
+    JP: '韓国のパスポートで{city}にビザなし滞在できますか？',
+  },
+  cost: {
+    KO: '{city} 워케이션 한 달 예산은 얼마나 잡아야 하나요?',
+    EN: 'What monthly budget should I plan for a {city} workation?',
+    JP: '{city}ワーケーションの1ヶ月予算はどのくらいですか？',
+  },
+  internet: {
+    KO: '{city}의 인터넷은 원격 근무에 충분한가요?',
+    EN: 'Is the internet in {city} good enough for remote work?',
+    JP: '{city}のネット環境はリモートワークに十分ですか？',
+  },
+  season: {
+    KO: '{city} 워케이션은 언제 가는 게 좋나요?',
+    EN: 'When is the best time for a {city} workation?',
+    JP: '{city}ワーケーションのベストシーズンはいつですか？',
+  },
+}
+
+export function buildCityFaq(city: CityInsight, lang: Lang): { q: string; a: string }[] {
+  const name = city.name[lang]
+  const fill = (t: string) => t.replace('{city}', name)
+  const suffix = {
+    visa: {
+      KO: ' 최신 조건은 출발 전 공식 공지에서 확인하세요.',
+      EN: ' Always check the latest official notice before departure.',
+      JP: ' 最新条件は出発前に公式情報でご確認ください。',
+    },
+    cost: {
+      KO: ' 체류 스타일에 따라 달라질 수 있습니다.',
+      EN: ' Actual costs vary by lifestyle.',
+      JP: ' 滞在スタイルにより変動します。',
+    },
+  }
+  return [
+    { q: fill(FAQ_Q.visa[lang]), a: `${city.visaFree[lang]}.${suffix.visa[lang]}` },
+    { q: fill(FAQ_Q.cost[lang]), a: `${city.costMonthly[lang]} — ${city.costBreakdown[lang]}.${suffix.cost[lang]}` },
+    { q: fill(FAQ_Q.internet[lang]), a: `${INTERNET_LABEL[city.internet][lang]} (★${city.internet}/5). ${city.internetNote[lang]}.` },
+    { q: fill(FAQ_Q.season[lang]), a: `${city.bestSeason[lang]}.` },
+  ]
 }
 
 // hreflang alternates — KO(기본)·EN·JA 로케일 URL 상호 연결 (path 예: '/destinations/tokyo')
