@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
-import { CITY_INSIGHTS } from '@/lib/cities'
+import { CITY_INSIGHTS, INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE } from '@/lib/cities'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /destinations 허브 — 워케이션 도시 인사이트 그리드 (3언어, 라이트 톤)
@@ -94,15 +94,23 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
                   ))}
                 </div>
 
-                {/* Stats */}
+                {/* Stats — 숫자+정성 라벨 병기 (NomadList 벤치) */}
                 <div className="space-y-1.5 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#888]">{UI.internet[lang]}</span>
-                    <InternetStars score={city.internet} />
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[#888] shrink-0">{UI.internet[lang]}</span>
+                    <span className="flex items-center gap-1.5 min-w-0">
+                      <InternetStars score={city.internet} />
+                      <span className="text-[0.6875rem] text-[#666] font-medium truncate">{INTERNET_LABEL[city.internet][lang]}</span>
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#888]">{UI.cost[lang]}</span>
-                    <span className="font-bold text-[#111]">{city.costMonthly[lang]}</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[#888] shrink-0">{UI.cost[lang]}</span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="font-bold text-[#111]">{city.costMonthly[lang]}</span>
+                      <span className={`text-[0.625rem] font-bold px-1.5 py-0.5 rounded-full ${COST_TIER_STYLE[city.costTier]}`}>
+                        {COST_TIER_LABEL[city.costTier][lang]}
+                      </span>
+                    </span>
                   </div>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-[#888] shrink-0">{UI.visa[lang]}</span>

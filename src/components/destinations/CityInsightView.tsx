@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
-import type { CityInsight } from '@/lib/cities'
+import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, type CityInsight } from '@/lib/cities'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { CITY_GUIDES } from '@/lib/guides'
@@ -20,6 +20,13 @@ const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
 const UI: Record<string, Record<Lang, string>> = {
   breadcrumb: { KO: '목적지', EN: 'Destinations', JP: '目的地' },
   glance: { KO: '한눈에 보기', EN: 'At a glance', JP: 'ひと目で' },
+  prosTitle: { KO: '좋은 점', EN: 'The good', JP: '良い点' },
+  consTitle: { KO: '아쉬운 점', EN: 'The trade-offs', JP: '惜しい点' },
+  prosConsNote: {
+    KO: '에디터 관점의 정리입니다 — 단점도 솔직하게 적었습니다.',
+    EN: "Editor's honest take — trade-offs included.",
+    JP: 'エディターの率直なまとめ — 惜しい点も正直に。',
+  },
   internet: { KO: '인터넷 속도', EN: 'Internet speed', JP: 'ネット速度' },
   cost: { KO: '월 생활비', EN: 'Monthly cost', JP: '月の生活費' },
   season: { KO: '베스트 시즌', EN: 'Best season', JP: 'ベストシーズン' },
@@ -182,13 +189,27 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
             <StatCard
               icon={Wifi}
               label={UI.internet[lang]}
-              value={<Stars score={city.internet} />}
+              value={
+                <span className="flex items-center gap-2 flex-wrap">
+                  <Stars score={city.internet} />
+                  <span className="text-[0.75rem] font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">
+                    {INTERNET_LABEL[city.internet][lang]}
+                  </span>
+                </span>
+              }
               sub={city.internetNote[lang]}
             />
             <StatCard
               icon={Wallet}
               label={UI.cost[lang]}
-              value={city.costMonthly[lang]}
+              value={
+                <span className="flex items-center gap-2 flex-wrap">
+                  {city.costMonthly[lang]}
+                  <span className={`text-[0.6875rem] font-bold px-2 py-0.5 rounded-full ${COST_TIER_STYLE[city.costTier]}`}>
+                    {COST_TIER_LABEL[city.costTier][lang]}
+                  </span>
+                </span>
+              }
               sub={city.costBreakdown[lang]}
             />
             <StatCard
@@ -207,6 +228,35 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
               value={city.timezone[lang]}
             />
           </div>
+        </section>
+
+        {/* Pros / Cons — 에디터 관점, 단점도 솔직하게 (NomadList 벤치·정직성 원칙) */}
+        <section>
+          <div className="grid sm:grid-cols-2 gap-3">
+            <div className="bg-white rounded-2xl border border-[#e8e4dc] p-5">
+              <h3 className="text-sm font-black text-emerald-700 mb-3">{UI.prosTitle[lang]}</h3>
+              <ul className="space-y-2">
+                {city.pros[lang].map((p) => (
+                  <li key={p} className="flex items-start gap-2 text-sm text-[#444] leading-snug">
+                    <span className="text-emerald-500 font-bold shrink-0 mt-px">✓</span>
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white rounded-2xl border border-[#e8e4dc] p-5">
+              <h3 className="text-sm font-black text-rose-600 mb-3">{UI.consTitle[lang]}</h3>
+              <ul className="space-y-2">
+                {city.cons[lang].map((c) => (
+                  <li key={c} className="flex items-start gap-2 text-sm text-[#444] leading-snug">
+                    <span className="text-rose-400 font-bold shrink-0 mt-px">✕</span>
+                    {c}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-[#a8a29e] text-[0.6875rem] mt-2">{UI.prosConsNote[lang]}</p>
         </section>
 
         {/* Featured stay */}
