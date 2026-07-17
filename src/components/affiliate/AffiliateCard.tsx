@@ -103,6 +103,9 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {/* 사진 하단 그라디언트 — 목적지 텍스트 가독성 */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
+          {/* 호버 광택(sheen) — 프리미엄 마이크로 인터랙션 */}
+          <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/[0.07] to-white/20" />
+
           {/* 목적지 — 사진 하단 크고 선명하게 */}
           {item.destination && (
             <div className="absolute bottom-0 left-0 right-0 px-3 pb-3">

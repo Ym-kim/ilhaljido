@@ -142,7 +142,11 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 <li key={item.key}>
                   <Link
                     href={item.href}
-                    className={cn(linkCls, 'block px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap')}
+                    className={cn(
+                      linkCls,
+                      'relative block px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
+                      'after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px] after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-brand-mid after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100'
+                    )}
                   >
                     {tr(item.key)}
                   </Link>
@@ -152,7 +156,8 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   <button
                     type="button"
                     className={cn(
-                      'flex items-center gap-0.5 px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
+                      'relative flex items-center gap-0.5 px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
+                      'after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px] after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-brand-mid after:scale-x-0 after:origin-left after:transition-transform after:duration-200 group-hover:after:scale-x-100',
                       linkCls
                     )}
                   >
@@ -164,8 +169,10 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   </button>
 
                   {/* Dropdown panel */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 min-w-[13rem] overflow-hidden">
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible translate-y-1 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 pb-2 min-w-[13rem] overflow-hidden">
+                      {/* 브랜드 액센트 라인 */}
+                      <div className="h-[3px] bg-gradient-to-r from-sky-400 via-brand-mid to-sky-600 mb-2" />
                       {item.items!.map((d) => (
                         <div key={d.labelKey}>
                           {d.hasDivider && <div className="my-1.5 mx-3 border-t border-gray-100" />}
