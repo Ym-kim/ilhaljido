@@ -81,7 +81,7 @@ const ITEMS: TickerItem[] = [
   },
   // ── 2026-07-19 추가분: 신규 수익 채널·시즌 (가격은 실측 없어 미표기 — 규칙 준수) ──
   {
-    id: 'ticker-miracle', emoji: '⛴',
+    id: 'ticker-miracle', emoji: '⛴', price: '₩120,000~', /* KKday 리스팅 실브라우저 실측 2026-07-19 */
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     external: true, sponsored: true,
     label: { KO: '부산—오사카 미라클호 — 뷔페 2식 포함', EN: 'Busan–Osaka ferry — 2 buffet meals in', JP: '釜山—大阪ミラクル号 — ビュッフェ2食付き' },
@@ -94,7 +94,7 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '추석', EN: 'Chuseok', JP: '秋夕' },
   },
   {
-    id: 'ticker-eurail', emoji: '🚆',
+    id: 'ticker-eurail', emoji: '🚆', price: '₩477,300~', /* Klook 검색 리스팅 실브라우저 실측 2026-07-19 */
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     external: true, sponsored: true,
     label: { KO: '유레일 글로벌 패스 — 유럽 33개국', EN: 'Eurail Global Pass — 33 countries', JP: 'ユーレイル グローバルパス — 33カ国' },
