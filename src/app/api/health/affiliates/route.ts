@@ -83,6 +83,7 @@ const CHECKS: Check[] = [
 
   // Klook/KKday — 봇 차단 403이 정상. 404/5xx만 이상
   { id: 'klook:teamlab', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', okStatuses: [200, 403] },
+  { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
   { id: 'kkday:oasis-spa', url: 'https://www.kkday.com/ko/product/123986?cid=25833', okStatuses: [200, 403] },
 ]
 

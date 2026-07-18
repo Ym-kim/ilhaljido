@@ -179,7 +179,7 @@ export default function SelectPage() {
     // 여정 준비 활성 파트너: 항공·렌터카·공항픽업·택시·라운지(이동) + 체험 + eSIM
     [
       'feat-flight-tripcom', 'feat-carhire-tripcom', 'feat-transfer-klook', 'feat-taxi-booking',
-      'feat-lounge-klook', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
+      'feat-lounge-klook', 'feat-eurail-klook', 'feat-japan-activity', 'feat-bali-activity', 'feat-japan-esim',
     ].includes(i.id)
   )
 

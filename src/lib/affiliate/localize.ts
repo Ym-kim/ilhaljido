@@ -117,6 +117,13 @@ const EN: Record<string, Overlay> = {
     cta: 'See pocket Wi-Fi',
     badge: 'Pocket Wi-Fi',
   },
+  'feat-eurail-klook': {
+    productTitle: 'Eurail Global Pass (33 countries)',
+    destination: 'Unlimited across Europe',
+    desc: 'Working across several European cities? One pass, unlimited trains in 33 countries — Lisbon and Porto included.',
+    cta: 'See Eurail Pass',
+    badge: 'Rail pass',
+  },
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
@@ -576,6 +583,13 @@ const JP: Record<string, Overlay> = {
     desc: 'PCもスマホもこれ1台。無制限データのポケットWi-Fi、到着後すぐ空港で受取。',
     cta: 'ポケットWi-Fiを見る',
     badge: 'ポケットWi-Fi',
+  },
+  'feat-eurail-klook': {
+    productTitle: 'ユーレイル グローバルパス（欧州33カ国）',
+    destination: 'ヨーロッパ全域 乗り放題',
+    desc: '欧州の複数都市を回るワーケーションならパス1枚で33カ国の列車乗り放題。リスボン・ポルトの移動にも。',
+    cta: 'ユーレイルパスを見る',
+    badge: '鉄道パス',
   },
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',
