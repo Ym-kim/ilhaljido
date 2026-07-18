@@ -211,7 +211,8 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
             {COPY.title1[lang]}<br />
             <span className="text-brand-mid">{COPY.title2a[lang]}</span>{COPY.title2b[lang]}
           </h1>
-          <p className="text-[#5c5c5c] text-base md:text-lg leading-relaxed max-w-xl mb-3">
+          {/* 2026-07-19 가독성: #5c5c5c/base → #3f3f46/lg 상향 (운영자 지적) */}
+          <p className="text-[#3f3f46] text-lg md:text-xl leading-relaxed max-w-xl mb-3">
             {COPY.sub[lang]}
           </p>
           <p className="text-[#a0a0a0] text-xs">{COPY.note[lang]}</p>
@@ -222,7 +223,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
       {/* Category navigation */}
       <section className="px-6 py-10 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
-          <p className="text-[#a0a0a0] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-4">
+          <p className="text-[#64748b] text-[0.7rem] font-bold tracking-[0.18em] uppercase mb-4">
             {COPY.cat_label[lang]}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -242,9 +243,9 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
                       {cat.badge[lang]}
                     </span>
                   </div>
-                  <p className="text-[#141414] font-black text-sm mb-1">{cat.label[lang]}</p>
-                  <p className="text-[#7a7a7a] text-[0.7rem] leading-relaxed line-clamp-2">{cat.title[lang]}</p>
-                  <div className={`mt-4 flex items-center gap-1 text-[0.65rem] font-semibold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
+                  <p className="text-[#141414] font-black text-[0.9375rem] mb-1">{cat.label[lang]}</p>
+                  <p className="text-[#52525b] text-[0.8125rem] leading-relaxed line-clamp-2">{cat.title[lang]}</p>
+                  <div className={`mt-4 flex items-center gap-1 text-xs font-bold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
                     {COPY.browse[lang]}
                     <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                   </div>
@@ -314,7 +315,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
             <h2 className="text-[#141414] font-black text-xl md:text-2xl">
               {COPY.etc_title[lang]}
             </h2>
-            <p className="text-[#7a7a7a] text-sm mt-1.5">{COPY.etc_sub[lang]}</p>
+            <p className="text-[#475569] text-sm mt-1.5">{COPY.etc_sub[lang]}</p>
           </div>
           <div className="grid sm:grid-cols-2 gap-4">
             {etcItems.map((item) => (

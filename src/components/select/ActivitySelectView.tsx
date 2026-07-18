@@ -11,7 +11,7 @@ import type { Lang } from '@/lib/i18n/types'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
-import { FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
+import { FEATURED_ACTIVITIES, THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { ACTIVITY_DESTINATIONS } from '@/lib/affiliate/destinations'
 
@@ -35,7 +35,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto">
           <Link
             href={`${prefix}/select`}
-            className="inline-flex items-center gap-1.5 text-[#94a3b8] text-xs font-medium hover:text-brand-mid transition-colors"
+            className="inline-flex items-center gap-1.5 text-[#64748b] text-xs font-medium hover:text-brand-mid transition-colors"
           >
             <ArrowLeft className="w-3 h-3" strokeWidth={ICON_STROKE} />
             Wakation Select
@@ -77,10 +77,31 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
+      {/* 테마 체험 — 골프·힐링·로컬·스포츠 (2026-07-19 확충: KKday 검증 실상품 16종 재노출) */}
+      <section className="px-6 pb-12 border-t border-[#e0f2fe]">
+        <div className="max-w-6xl mx-auto pt-10">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1.5">
+            {lang === 'EN' ? 'THEMED EXPERIENCES' : lang === 'JP' ? 'テーマ別体験' : '테마별 체험'}
+          </p>
+          <p className="text-[#475569] text-sm mb-6">
+            {lang === 'EN'
+              ? 'Golf, healing, local culture and sports — verified KKday experiences by theme.'
+              : lang === 'JP'
+              ? 'ゴルフ·ヒーリング·ローカル·スポーツ — テーマ別の検証済みKKday体験。'
+              : '골프·힐링·로컬·스포츠 — 테마별로 고른 검증 KKday 체험.'}
+          </p>
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {THEME_EXPERIENCES.map((item) => (
+              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Destination grid */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-[#94a3b8] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
             {tr('sela_label')}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

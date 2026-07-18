@@ -21,7 +21,7 @@ export function CoupangGear() {
             {COUPANG_UI.eyebrow[lang]}
           </p>
           <h2 className="text-[#141414] font-black text-xl md:text-2xl">{COUPANG_UI.title[lang]}</h2>
-          <p className="text-[#7a7a7a] text-sm mt-1.5">{COUPANG_UI.sub[lang]}</p>
+          <p className="text-[#475569] text-sm mt-1.5">{COUPANG_UI.sub[lang]}</p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
@@ -43,7 +43,7 @@ export function CoupangGear() {
               <span className="text-2xl shrink-0">{g.emoji}</span>
               <span className="flex-1 min-w-0">
                 <span className="block font-bold text-[#141414] text-sm leading-tight truncate">{g.name[lang]}</span>
-                <span className="text-[#94a3b8] text-xs">{COUPANG_UI.cta[lang]}</span>
+                <span className="text-[#475569] text-xs font-semibold">{COUPANG_UI.cta[lang]}</span>
               </span>
               <ArrowUpRight className="w-4 h-4 text-[#c0bdb8] group-hover:text-[#f43f5e] transition-colors shrink-0" strokeWidth={ICON_STROKE} />
             </a>

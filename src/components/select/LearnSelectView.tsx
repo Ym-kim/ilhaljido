@@ -38,7 +38,7 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto">
           <Link
             href={`${prefix}/select`}
-            className="inline-flex items-center gap-1.5 text-[#94a3b8] text-xs font-medium hover:text-brand-mid transition-colors"
+            className="inline-flex items-center gap-1.5 text-[#64748b] text-xs font-medium hover:text-brand-mid transition-colors"
           >
             <ArrowLeft className="w-3 h-3" strokeWidth={ICON_STROKE} />
             Wakation Select
@@ -85,10 +85,48 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
+      {/* 언어 튜터링 — AmazingTalker 3트랙 (2026-07-19 확충: /language 활성 링크 재사용, 202 검증) */}
+      <section className="px-6 pb-12 border-t border-[#e0f2fe]">
+        <div className="max-w-6xl mx-auto pt-10">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-1.5">
+            {lang === 'EN' ? 'LANGUAGE TUTORING' : lang === 'JP' ? '言語チュータリング' : '언어 튜터링'}
+          </p>
+          <p className="text-[#475569] text-sm mb-6">
+            {lang === 'EN'
+              ? '1:1 online tutoring on AmazingTalker — prep the local language before you go.'
+              : lang === 'JP'
+              ? 'AmazingTalkerの1:1オンラインチュータリング — 出発前に現地語を準備。'
+              : 'AmazingTalker 1:1 온라인 튜터링 — 떠나기 전 현지어를 준비하세요.'}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+            {[
+              { id: 'at-english', emoji: '🇺🇸', slug: 'tutors/english', t: { KO: '영어 튜터 찾기', EN: 'Find English tutors', JP: '英語チューターを探す' } },
+              { id: 'at-japanese', emoji: '🇯🇵', slug: 'tutors/japanese', t: { KO: '일본어 튜터 찾기', EN: 'Find Japanese tutors', JP: '日本語チューターを探す' } },
+              { id: 'at-all', emoji: '🌍', slug: 'tutors', t: { KO: '전체 언어 둘러보기', EN: 'Browse all languages', JP: '全言語を見る' } },
+            ].map((at) => (
+              <a
+                key={at.id}
+                href={`https://www.amazingtalker.co.kr/${at.slug}?aff_c_code=aff_c-bXzneJ&aff_p_code=aff_p-bXRhXL`}
+                target="_blank"
+                rel="sponsored noopener noreferrer"
+                className="group flex items-center gap-4 bg-white border border-[#e0f2fe] rounded-2xl p-5 hover:border-[#7dd3fc] hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+              >
+                <span className="text-3xl">{at.emoji}</span>
+                <span className="flex-1 min-w-0">
+                  <span className="block text-[#111827] font-black text-[0.9375rem]">{at.t[lang]}</span>
+                  <span className="block text-[#64748b] text-xs mt-0.5">AmazingTalker</span>
+                </span>
+                <ArrowUpRight className="w-4 h-4 text-[#64748b] group-hover:text-brand-mid transition-colors shrink-0" strokeWidth={ICON_STROKE} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Category grid */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-[#94a3b8] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
             {tr('sell_label')}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">

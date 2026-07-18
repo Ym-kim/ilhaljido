@@ -198,13 +198,13 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {/* 가격 + CTA */}
           <div className="mt-3 flex items-center justify-between">
             <span className={`font-bold text-[0.9375rem] sm:text-base ${
-              meta.isAffiliate ? 'text-brand-mid' : 'text-[#9a9793]'
+              meta.isAffiliate ? 'text-sky-700' : 'text-[#9a9793]'
             }`}>
               {item.priceFrom ?? item.cta}
             </span>
             <span className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-colors duration-150 ${
               meta.isAffiliate
-                ? 'bg-brand-mid/10 group-hover:bg-brand-mid text-brand-mid group-hover:text-white'
+                ? 'bg-brand-mid/10 group-hover:bg-brand-mid text-sky-700 group-hover:text-white'
                 : 'bg-[#eff6ff] group-hover:bg-[#dbeafe] text-[#9a9793]'
             }`}>
               <ArrowUpRight className="w-3 h-3" />

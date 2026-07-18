@@ -47,7 +47,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto">
           <Link
             href={`${prefix}/select`}
-            className="inline-flex items-center gap-1.5 text-[#94a3b8] text-xs font-medium hover:text-brand-mid transition-colors"
+            className="inline-flex items-center gap-1.5 text-[#64748b] text-xs font-medium hover:text-brand-mid transition-colors"
           >
             <ArrowLeft className="w-3 h-3" strokeWidth={ICON_STROKE} />
             Wakation Select
@@ -76,7 +76,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* How it works */}
       <section className="px-6 pb-10 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-[#94a3b8] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
             {tr('sele_how')}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -111,7 +111,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Destination grid */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-[#94a3b8] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
+          <p className="text-[#64748b] text-[0.65rem] font-black tracking-[0.18em] uppercase mb-6">
             {tr('sele_label')}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
