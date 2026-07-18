@@ -38,7 +38,7 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '지원사업', EN: 'Support', JP: '支援事業' },
   },
   {
-    id: 'ticker-teamlab', emoji: '🪐', photo: U('1540959733332-eab4deabeeaf'), price: '¥3,600~',
+    id: 'ticker-teamlab', emoji: '🪐', photo: U('1540959733332-eab4deabeeaf'), price: '₩32,900~', /* Klook 리스팅 실측 2026-07-19 */
     href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', external: true, sponsored: true,
     label: { KO: '팀랩 플래닛 도쿄 티켓', EN: 'teamLab Planets TOKYO ticket', JP: 'チームラボプラネッツTOKYO' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
@@ -56,7 +56,7 @@ const ITEMS: TickerItem[] = [
     tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
   },
   {
-    id: 'ticker-osaka-pass', emoji: '🎫', photo: U('1590559899731-a382839e5549'), price: '¥3,500~',
+    id: 'ticker-osaka-pass', emoji: '🎫', photo: U('1590559899731-a382839e5549'), price: '₩32,100~', /* Klook 리스팅 실측 2026-07-19 */
     href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848', external: true, sponsored: true,
     label: { KO: '오사카 주유패스 — 교통+40곳 입장', EN: 'Osaka Amazing Pass — transit + 40 spots', JP: '大阪周遊パス — 交通＋40カ所' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },

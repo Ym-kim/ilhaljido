@@ -648,6 +648,8 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     destination: '유럽 전역 무제한',
     desc: '유럽 여러 도시를 도는 워케이션이라면 패스 하나로 33개국 열차 무제한. 리스본·포르투 거점 이동에도.',
     cta: '유레일 패스 보기',
+    rating: '4.6',
+    reviews: '2,533',
     priceFrom: '₩477,300~',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     badge: '철도패스',
