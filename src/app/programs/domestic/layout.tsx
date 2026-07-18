@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cityLanguageAlternates } from '@/lib/cities'
 
 export const metadata: Metadata = {
   title: '국내 워케이션',
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
     description: '양양 파일럿을 시작으로 국내 지역에서 일과 휴식, 네트워킹, 성장을 연결하는 워케이션 프로그램.',
     url: 'https://www.wakation.kr/programs/domestic',
   },
-  alternates: { canonical: 'https://www.wakation.kr/programs/domestic' },
+  alternates: {
+    canonical: 'https://www.wakation.kr/programs/domestic',
+    languages: cityLanguageAlternates('/programs/domestic'),
+  },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

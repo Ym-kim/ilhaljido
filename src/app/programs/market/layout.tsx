@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cityLanguageAlternates } from '@/lib/cities'
 
 export const metadata: Metadata = {
   title: '시장조사단',
@@ -9,7 +10,10 @@ export const metadata: Metadata = {
     description: '해외 박람회·시장 현장에서 직접 조사하고 네트워킹하는 시장조사단 프로그램.',
     url: 'https://www.wakation.kr/programs/market',
   },
-  alternates: { canonical: 'https://www.wakation.kr/programs/market' },
+  alternates: {
+    canonical: 'https://www.wakation.kr/programs/market',
+    languages: cityLanguageAlternates('/programs/market'),
+  },
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {

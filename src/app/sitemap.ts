@@ -80,6 +80,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
       })),
     ]),
+    // EN·JA 로케일 select·programs (forceLang 2차, hreflang 상호 연결)
+    ...['en', 'ja'].flatMap((loc) =>
+      ['/select', '/select/hotel', '/select/activity', '/select/esim', '/select/learn', '/programs', '/programs/global', '/programs/domestic', '/programs/market'].map((p) => ({
+        url: `${BASE}/${loc}${p}`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      })),
+    ),
     // 테마 기획전 상세 (collections.ts에 추가 시 자동 반영)
     ...COLLECTIONS.map((c) => ({
       url: `${BASE}/collections/${c.slug}`,
