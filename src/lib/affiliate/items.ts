@@ -634,6 +634,29 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: 'KKday product/146171 (WebSearch KO확정·403=봇챌린지 생존 2026-07-18). eSIM 보완재 — 다중기기·장기체류용',
   },
 
+  // ──────────────────────────────────────────────────────────────────────────
+  // 철도패스 — 유레일 글로벌 (유럽 33개국, 고단가. 포르투갈 목적지 크로스셀)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'feat-eurail-klook',
+    name: 'Klook',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚆',
+    productTitle: '유레일 글로벌 패스 (유럽 33개국)',
+    destination: '유럽 전역 무제한',
+    desc: '유럽 여러 도시를 도는 워케이션이라면 패스 하나로 33개국 열차 무제한. 리스본·포르투 거점 이동에도.',
+    cta: '유레일 패스 보기',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
+    badge: '철도패스',
+    trackingId: 'aid=126848',
+    coverGradient: 'from-indigo-900 via-blue-950 to-[#0d0d0d]',
+    priority: 11,
+    showOn: ['global', 'select'],
+    sourceNote: 'Klook activity/9868-eurail-global-rail-pass (WebSearch KO확정·403=생존 검증 2026-07-18). 유럽 33개국 — 포르투갈(포르투·파루·리스본) 목적지 크로스셀',
+  },
+
   {
     id: 'feat-vietnam-hotel',
     name: 'Booking.com',

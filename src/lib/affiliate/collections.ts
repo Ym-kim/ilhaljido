@@ -28,6 +28,21 @@ const P = (id: string) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1600&q=80`
 
 export const COLLECTIONS: Collection[] = [
+  // 시즌 기획전 — 2026 추석 연휴(9/24 목~9/27 일, 대체공휴일 없음). 배열 선두 = 홈 상위3 노출.
+  // ⚠️ 시즌 종료(9/27) 후 배열 뒤로 이동하거나 제거할 것
+  {
+    slug: 'chuseok-short-haul',
+    emoji: '🌕',
+    photo: P('1533050487297-09b450131914'), // 일본 골목 야경 (검증 2026-07-18, curl 200+육안)
+    title: { KO: '추석 연휴 단거리 워케이션', EN: 'Chuseok long-weekend workation', JP: '秋夕連休 近場ワーケーション' },
+    tagline: { KO: '나흘이면 충분한 일본 3거점', EN: 'Four days, three easy bases in Japan', JP: '4日で行ける日本の3拠点' },
+    desc: {
+      KO: '2026 추석 연휴(9/24 목~9/27 일)는 나흘 — 시차 0시간, 직항 1~2시간대 일본이 정답입니다. 가까운 순서로 후쿠오카·오사카·도쿄의 검증 숙소를 골라, eSIM과 항공까지 한 번에 준비하세요. 9월 하순은 세 도시 모두 베스트 시즌입니다.',
+      EN: "Chuseok 2026 gives you four days (Sep 24–27) — zero jet lag and 1–2h flights make Japan the move. Pick a verified stay in Fukuoka, Osaka or Tokyo, then sort your eSIM and flights in one go. Late September is prime season in all three.",
+      JP: '2026年の秋夕連休は4日間（9/24木〜9/27日）。時差ゼロ・直行1〜2時間の日本が正解です。福岡・大阪・東京の検証済みの宿を選び、eSIMと航空券まで一度に準備。9月下旬は3都市ともベストシーズン。',
+    },
+    itemIds: ['stay-webase-hakata', 'stay-lively-osaka', 'stay-millennials-shibuya', 'esim-klook-japan', 'feat-flight-tripcom'],
+  },
   {
     slug: 'tokyo-allinone',
     emoji: '🗼',
