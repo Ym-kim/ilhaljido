@@ -4,6 +4,14 @@ import Image from 'next/image'
 import { ArrowUpRight, Clock } from 'lucide-react'
 import type { DestinationEntry, ServiceLink } from '@/lib/affiliate/destinations'
 import { trackAffiliateClick } from '@/lib/track'
+import { useLang } from '@/context/LanguageContext'
+import type { Lang } from '@/lib/i18n/types'
+
+const IMAGE_LABEL: Record<Lang, string> = {
+  KO: '편집 이미지',
+  EN: 'Editorial image',
+  JP: 'イメージ画像',
+}
 
 // active_affiliate/api_ready → 브랜드 블루 filled CTA, 실제 수익 추적
 // approved_needs_link/needs_referral_link/approved_needs_course_links → 회색 outline, 링크 대기
@@ -48,6 +56,7 @@ interface DestinationCardProps {
 }
 
 export function DestinationCard({ entry, className = '' }: DestinationCardProps) {
+  const { lang } = useLang()
   const hasActive = entry.links.some(
     (l) => l.status === 'active_affiliate' || l.status === 'api_ready'
   )
@@ -65,7 +74,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
         {entry.photo ? (
           <Image
             src={entry.photo}
-            alt={entry.city}
+            alt=""
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
             className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -76,6 +85,12 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
+
+        {entry.photo && (
+          <span className="absolute top-3 left-3 rounded-full border border-white/20 bg-black/35 px-2 py-1 text-[0.55rem] font-semibold text-white/80 backdrop-blur-sm">
+            {IMAGE_LABEL[lang]}
+          </span>
+        )}
 
         {/* 도시명 — 사진 위 오버레이 */}
         <div className="absolute bottom-0 left-0 right-0 px-4 pb-3 flex items-end justify-between gap-2">

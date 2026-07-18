@@ -240,7 +240,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-jeju',
-    photo: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-jeju-ai.jpeg',
     flag: '🍊',
     city: '제주',
     cityEn: 'Jeju',
@@ -532,7 +532,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-sapporo',
-    photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-sapporo-ai.jpeg',
     flag: '❄️',
     city: '삿포로',
     cityEn: 'Sapporo',
@@ -657,7 +657,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'indonesia-canggu',
-    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-canggu-ai.jpeg',
     flag: '🏄',
     city: '짱구',
     cityEn: 'Canggu',
@@ -714,7 +714,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'australia-goldcoast',
-    photo: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-goldcoast-ai.jpeg',
     flag: '🌊',
     city: '골드코스트',
     cityEn: 'Gold Coast',
@@ -786,7 +786,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'china-guangzhou',
-    photo: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-guangzhou-ai.jpeg',
     flag: '🏮',
     city: '광저우',
     cityEn: 'Guangzhou',

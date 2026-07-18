@@ -84,7 +84,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('id/tribal-bali-mengwi.html'),
     badge: '노마드 성지',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-tribal-bali-ai.jpeg',
   },
   {
     id: 'stay-chicland-danang',
@@ -102,7 +102,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('vn/chicland-da-nang.html'),
     badge: '비치 워크',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-chicland-danang-ai.jpeg',
   },
   {
     id: 'stay-playce-jeju',
@@ -121,7 +121,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('kr/playce-camp-jeju.html'),
     badge: '워케이션 특화',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-playce-jeju-ai.jpeg',
   },
   {
     id: 'stay-kantary-chiangmai',
@@ -140,7 +140,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('th/kantary-hills-chiang-mai.html'),
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-kantary-chiangmai-ai.jpeg',
   },
 ]
 
@@ -160,7 +160,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/19252?cid=25833',
     badge: '인기 체험',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-tokyo-disney-ai.jpeg',
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -178,7 +178,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/20944?cid=25833',
     badge: '익스프레스',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-osaka-usj-ai.jpeg',
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -196,7 +196,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/134297?cid=25833',
     badge: '한국어 가이드',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-fukuoka-bustour-ai.jpeg',
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -214,7 +214,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/141520?cid=25833',
     badge: '프라이빗',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-bali-ubud-ai.jpeg',
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -232,7 +232,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/129472?cid=25833',
     badge: '올인클루시브',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-danang-banahills-ai.jpeg',
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
 
@@ -256,7 +256,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848',
     badge: '인기 체험',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-klook-teamlab-tokyo-ai.jpeg',
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
   },
   {
@@ -275,7 +275,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848',
     badge: '교통+입장',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-klook-osaka-pass-ai.jpeg',
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
   },
   {
@@ -311,7 +311,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/117-universal-studios-singapore/?aid=126848',
     badge: '인기 체험',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-klook-uss-singapore-ai.jpeg',
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
   },
   {
@@ -329,7 +329,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/15758-nusa-penida-full-day-trip-bali/?aid=126848',
     badge: '베스트 투어',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-klook-nusapenida-bali-ai.jpeg',
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
   },
   {
@@ -347,7 +347,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/3631-elephant-jungle-sanctuary-chiang-mai/?aid=126848',
     badge: '동물복지 인증',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/act-klook-elephant-chiangmai-ai.jpeg',
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
   },
 ]
@@ -687,7 +687,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/au/adina-sydney.html?aid=7854081',
     badge: '풀키친',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-adina-sydney-ai.jpeg',
   },
   {
     id: 'stay-nomadshub-cebu',
@@ -704,7 +704,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/ph/nomad-39-s-hub.html?aid=7854081',
     badge: '코리빙',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-nomadshub-cebu-ai.jpeg',
   },
   // ── 2026-07-15 MD 확충 — 웹검색으로 Booking 슬러그 실존 검증 완료 ──
   {
@@ -722,7 +722,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081',
     badge: '코리빙',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-lyf-sukhumvit-bangkok-ai.jpeg',
   },
   {
     id: 'stay-citizenm-taipei',
@@ -739,17 +739,13 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/tw/citizenm-taipei-north-gate.html?aid=7854081',
     badge: '스마트 호텔',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-citizenm-taipei-ai.jpeg',
   },
 ]
 
-// ── 2026-07-13 featured 그리드 4장 채움 — 지역별 에디터픽 보강 (17종) ──
-// Booking 슬러그 웹검색 실존 확인 + aid=7854081 추적. 사진은 호텔/리조트 검증 팔레트
-// (도시 카드와 구분되게 실내/풀 이미지 — 전부 curl 200 + Read 육안검증)
-const HR1 = 'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=700&q=80' // 모던 객실
-const HR2 = 'https://images.unsplash.com/photo-1590675560125-0d832b9d719e?auto=format&fit=crop&w=700&q=80' // 워케이션 객실
-const RT1 = 'https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&w=700&q=80' // 트로피컬 리조트
-const RT2 = 'https://images.unsplash.com/photo-1627448449276-8c139d0790a6?auto=format&fit=crop&w=700&q=80' // 오션 리조트 풀
+// ── 지역별 에디터픽 보강 (17종) ──
+// Booking 슬러그 실존 확인 + aid=7854081 추적. 커버는 상품 설명에 맞춘 편집 이미지이며
+// 실제 숙소 사진으로 오인되지 않도록 AffiliateCard에서 편집 이미지 라벨을 함께 노출한다.
 
 export const FEATURED_STAYS_V3: AffiliateItem[] = [
   // 일본 (+1)
@@ -758,7 +754,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '미마루 도쿄 우에노 이스트', destination: '도쿄 · 일본', country: '일본',
     desc: '주방·업무 데스크 완비 아파트형 객실. 우에노역 도보권, 장기체류 최적.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/jp/mimaru-tokyo-ueno-east.html?aid=7854081',
-    badge: '주방·데스크', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '주방·데스크', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-mimaru-tokyo-ai.jpeg',
   },
   // 한국 (+3)
   {
@@ -766,21 +762,21 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '프레이저 플레이스 센트럴 서울', destination: '서울 · 국내', country: '국내',
     desc: '주방·세탁 갖춘 서비스드 레지던스. 헬스장·수영장 완비 도심 장기체류.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/fraser-place-central-seoul.html?aid=7854081',
-    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-fraser-seoul-ai.jpeg',
   },
   {
     id: 'stay-uh-busan', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🌊', productTitle: '유에이치 스위트 더 해운대', destination: '부산 해운대 · 국내', country: '국내',
     desc: '해운대 해변 도보 2분, 주방·발코니 갖춘 오션뷰 레지던스.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/uh-suite-the-haeundae-busan.html?aid=7854081',
-    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-uh-busan-ai.jpeg',
   },
   {
     id: 'stay-skybay-gangneung', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏖', productTitle: '스카이베이 호텔 경포', destination: '강릉 경포 · 국내', country: '국내',
     desc: '경포해변·경포호 인근, 전 객실 발코니 오션·레이크뷰. 20층 인피니티풀.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/kr/golden-tulip-skybay-gyeongpo.html?aid=7854081',
-    badge: '오션뷰 풀', trackingId: 'aid=7854081', coverPhoto: RT2,
+    badge: '오션뷰 풀', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-skybay-gangneung-ai.jpeg',
   },
   // 태국 (+2)
   {
@@ -788,14 +784,14 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '샤마 수쿰빗 방콕', destination: '방콕 수쿰빗 · 태국', country: '태국',
     desc: '주방 완비 서비스드 아파트. 인피니티풀·헬스장, BTS 접근 좋은 장기체류.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/th/shama-sukhumvit-serviced-apartment.html?aid=7854081',
-    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-shama-bangkok-ai.jpeg',
   },
   {
     id: 'stay-naka-phuket', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏝', productTitle: '나카 레지던스', destination: '푸켓 타운 · 태국', country: '태국',
     desc: '푸켓 타운 넓은 아파트형 객실. 무료 와이파이·주차, 장기체류 가성비.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/th/naka-residence.html?aid=7854081',
-    badge: '장기체류', trackingId: 'aid=7854081', coverPhoto: RT1,
+    badge: '장기체류', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-naka-phuket-ai.jpeg',
   },
   // 베트남 (+3)
   {
@@ -803,21 +799,21 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '사노우바 다낭 호텔', destination: '다낭 하이쩌우 · 베트남', country: '베트남',
     desc: '하이쩌우 도심 비즈니스 호텔. 무료 와이파이·피트니스로 업무 여행 편리.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/sanouva-da-nang.html?aid=7854081',
-    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-sanouva-danang-ai.jpeg',
   },
   {
     id: 'stay-seaside-nhatrang', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🌊', productTitle: '씨사이드 부티크 호텔 나트랑 비치', destination: '나트랑 · 베트남', country: '베트남',
     desc: '나트랑 해변 앞 부티크 호텔. 루프탑 수영장·오션뷰로 워케이션 무드.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/seaside-nha-trang.html?aid=7854081',
-    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: RT2,
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-seaside-nhatrang-ai.jpeg',
   },
   {
     id: 'stay-dhts-hcmc', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏙', productTitle: 'DHTS 비즈니스 호텔 앤 아파트먼트', destination: '호치민 · 베트남', country: '베트남',
     desc: '루프탑 수영장 갖춘 아파트형 비즈니스 호텔. 무료 와이파이·피트니스.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/vn/dhts-business-apartment.html?aid=7854081',
-    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-dhts-hcmc-ai.jpeg',
   },
   // 인도네시아 (+3)
   {
@@ -825,21 +821,21 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🌴', productTitle: '더노마드 짱구', destination: '발리 짱구 · 인도네시아', country: '인도네시아',
     desc: '디지털 노마드 콘셉트 코리빙. 짱구 중심가에서 일과 휴식을 동시에.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/thenomad-canggu.html?aid=7854081',
-    badge: '노마드 코리빙', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '노마드 코리빙', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-thenomad-canggu-ai.jpeg',
   },
   {
     id: 'stay-ubud-village', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🌾', productTitle: '더 우붓 빌리지 리조트 앤 스파', destination: '발리 우붓 · 인도네시아', country: '인도네시아',
     desc: '라이스필드에 둘러싸인 프라이빗 풀 빌라. 장기 체류형 힐링 워케이션.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/the-ubud-village-resort.html?aid=7854081',
-    badge: '풀 빌라', trackingId: 'aid=7854081', coverPhoto: RT1,
+    badge: '풀 빌라', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-ubud-village-ai.jpeg',
   },
   {
     id: 'stay-fields-seminyak', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏝', productTitle: '더 필즈 호텔 앤 아파트먼트', destination: '발리 스미냑 · 인도네시아', country: '인도네시아',
     desc: '주방·데스크 갖춘 아파트형 객실. 조용한 스미냑에서 장기 워케이션.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/id/the-fields-apartment.html?aid=7854081',
-    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-fields-seminyak-ai.jpeg',
   },
   // 아시아 (+2)
   {
@@ -847,14 +843,14 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '리프 후난 싱가포르', destination: '싱가포르 시티홀', country: '싱가포르',
     desc: '아시아 최대 코리빙. 코워킹 라운지·공용주방 갖춘 시티홀 도심 입지.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/sg/lyf-funan.html?aid=7854081',
-    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-lyf-funan-singapore-ai.jpeg',
   },
   {
     id: 'stay-gloria-taipei', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏙', productTitle: '글로리아 레지던스', destination: '타이베이 · 대만', country: '대만',
     desc: '키치넷 갖춘 넓은 서비스드 아파트. 실내수영장, 타이베이역 접근 장기체류.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/tw/gloria-residence.html?aid=7854081',
-    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-gloria-taipei-ai.jpeg',
   },
   // 오세아니아 (+3)
   {
@@ -862,21 +858,21 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     emoji: '🏙', productTitle: '메리톤 스위트 켄트 스트리트', destination: '시드니 CBD · 호주', country: '호주',
     desc: 'CBD 중심 풀키친 서비스드 아파트. 실내수영장·헬스장 갖춘 장기체류.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/meriton-serviced-apartment-kent-street.html?aid=7854081',
-    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: HR1,
+    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-meriton-kent-sydney-ai.jpeg',
   },
   {
     id: 'stay-adina-melbourne', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏙', productTitle: '아디나 아파트먼트 호텔 멜버른', destination: '멜버른 CBD · 호주', country: '호주',
     desc: 'CBD 자급형 아파트. 주방·세탁·무료 와이파이에 수영장·헬스장 완비.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/medina-grand-melbourne.html?aid=7854081',
-    badge: '아파트 호텔', trackingId: 'aid=7854081', coverPhoto: HR2,
+    badge: '아파트 호텔', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-adina-melbourne-ai.jpeg',
   },
   {
     id: 'stay-meriton-surfers-goldcoast', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
     emoji: '🏖', productTitle: '메리톤 스위트 서퍼스 파라다이스', destination: '골드코스트 · 호주', country: '호주',
     desc: '서퍼스 파라다이스 해변 앞 풀키친 스위트. 오션뷰 비치 워케이션.',
     cta: '실시간 요금 확인', href: 'https://www.booking.com/hotel/au/meriton-suites-surfers-paradise.html?aid=7854081',
-    badge: '오션뷰 스위트', trackingId: 'aid=7854081', coverPhoto: RT2,
+    badge: '오션뷰 스위트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-meriton-goldcoast-ai.jpeg',
   },
 ]
 
