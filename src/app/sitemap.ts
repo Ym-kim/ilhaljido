@@ -18,6 +18,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/collections',              priority: 0.8, freq: 'weekly' },
   // 목적지 가이드
   { path: '/destinations',             priority: 0.9, freq: 'weekly' },
+  { path: '/destinations/compare',     priority: 0.7, freq: 'monthly' },
   // 프로그램
   { path: '/programs',                 priority: 0.9, freq: 'weekly' },
   { path: '/programs/domestic',        priority: 0.9, freq: 'weekly' },
