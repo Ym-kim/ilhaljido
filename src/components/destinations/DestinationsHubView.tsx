@@ -24,6 +24,13 @@ const UI: Record<string, Record<Lang, string>> = {
   cost: { KO: '생활비', EN: 'Cost', JP: '生活費' },
   visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
   more: { KO: '자세히 보기', EN: 'View details', JP: '詳しく見る' },
+  compareTitle: { KO: '어디로 갈지 고민된다면', EN: 'Torn between cities?', JP: 'どこへ行くか迷ったら' },
+  compareSub: {
+    KO: '2~3개 도시를 나란히 놓고 인터넷·생활비·비자·시차를 비교해 보세요.',
+    EN: 'Put 2–3 cities side by side — internet, cost, visa and time zone.',
+    JP: '2〜3都市を並べてネット・生活費・ビザ・時差を比較。',
+  },
+  compareCta: { KO: '도시 비교하기', EN: 'Compare cities', JP: '都市を比較' },
 }
 
 function InternetStars({ score }: { score: number }) {
@@ -59,6 +66,23 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#666] text-lg max-w-xl">{UI.sub[lang]}</p>
           <SelectionCriteria className="mt-4" />
         </div>
+      </section>
+
+      {/* Compare tool entry */}
+      <section className="max-w-5xl mx-auto px-6 pt-8">
+        <Link
+          href="/destinations/compare"
+          className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 bg-white rounded-2xl border border-[#e8e4dc] hover:border-teal-300 hover:shadow-lg transition-all duration-300 px-6 py-5"
+        >
+          <div className="flex-1 min-w-0">
+            <p className="font-black text-[#111]">{UI.compareTitle[lang]}</p>
+            <p className="text-sm text-[#666] mt-0.5">{UI.compareSub[lang]}</p>
+          </div>
+          <span className="inline-flex items-center gap-1.5 shrink-0 text-sm font-bold text-teal-600">
+            {UI.compareCta[lang]}
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </span>
+        </Link>
       </section>
 
       {/* City grid */}
