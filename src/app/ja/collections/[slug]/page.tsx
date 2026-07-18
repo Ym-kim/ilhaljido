@@ -4,7 +4,8 @@ import { CollectionView } from '@/components/affiliate/CollectionView'
 import { COLLECTIONS, getCollection } from '@/lib/affiliate/collections'
 import { cityLanguageAlternates } from '@/lib/cities'
 
-// 정적 생성 — 컬렉션 슬러그만 (미확정 슬러그는 404)
+// /ja/collections/{slug} — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN와 상호 연결)
+
 export const dynamicParams = false
 
 export function generateStaticParams() {
@@ -18,19 +19,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   const col = getCollection(slug)
-  if (!col) return { title: '기획전' }
+  if (!col) return {}
   return {
-    title: `${col.title.KO} — 워케이션 기획전`,
-    description: col.desc.KO,
+    title: `${col.title.JP} — ワーケーション特集`,
+    description: col.desc.JP,
     alternates: {
-      canonical: `https://www.wakation.kr/collections/${slug}`,
+      canonical: `https://www.wakation.kr/ja/collections/${slug}`,
       languages: cityLanguageAlternates(`/collections/${slug}`),
+    },
+    openGraph: {
+      title: `${col.title.JP} | Wakation`,
+      description: col.desc.JP,
+      url: `https://www.wakation.kr/ja/collections/${slug}`,
+      siteName: 'Wakation',
+      locale: 'ja_JP',
+      alternateLocale: ['ko_KR', 'en_US'],
     },
     robots: { index: true, follow: true },
   }
 }
 
-export default async function CollectionSlugPage({
+export default async function CollectionSlugPageJa({
   params,
 }: {
   params: Promise<{ slug: string }>
@@ -42,15 +51,15 @@ export default async function CollectionSlugPage({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '홈', item: 'https://www.wakation.kr/' },
-      { '@type': 'ListItem', position: 2, name: '기획전', item: 'https://www.wakation.kr/collections' },
-      { '@type': 'ListItem', position: 3, name: col.title.KO, item: `https://www.wakation.kr/collections/${slug}` },
+      { '@type': 'ListItem', position: 1, name: 'ホーム', item: 'https://www.wakation.kr/ja' },
+      { '@type': 'ListItem', position: 2, name: '特集', item: 'https://www.wakation.kr/ja/collections' },
+      { '@type': 'ListItem', position: 3, name: col.title.JP, item: `https://www.wakation.kr/ja/collections/${slug}` },
     ],
   }
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <CollectionView slug={slug} />
+      <CollectionView slug={slug} forceLang="JP" />
     </>
   )
 }

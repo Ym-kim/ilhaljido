@@ -1,9 +1,11 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
+import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { getCollection, COLLECTIONS_UI } from '@/lib/affiliate/collections'
 import { getCatalogItems } from '@/lib/affiliate/catalog'
@@ -12,14 +14,22 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { NotifySignup } from '@/components/home/NotifySignup'
 
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
-export function CollectionView({ slug }: { slug: string }) {
-  const { lang } = useLang()
+export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
   const col = getCollection(slug)
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+
+  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
   if (!col) {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center px-6">
-        <Link href="/collections" className="text-brand-mid font-bold inline-flex items-center gap-2">
+        <Link href={`${prefix}/collections`} className="text-brand-mid font-bold inline-flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" strokeWidth={ICON_STROKE} /> {COLLECTIONS_UI.back[lang]}
         </Link>
       </div>
@@ -36,7 +46,7 @@ export function CollectionView({ slug }: { slug: string }) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/45 to-[#04121f]/10" />
         <div className="relative w-full max-w-5xl mx-auto px-6 pb-12">
           <Link
-            href="/collections"
+            href={`${prefix}/collections`}
             className="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-xs font-bold mb-4 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> {COLLECTIONS_UI.back[lang]}

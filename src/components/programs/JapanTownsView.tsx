@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { ArrowRight, MapPin } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
@@ -40,8 +41,15 @@ const COPY: Record<string, L> = {
   preregister: { KO: '사전 신청 문의', EN: 'Pre-register inquiry', JP: '事前申込のお問い合わせ' },
 }
 
-export function JapanTownsView() {
-  const { lang } = useLang()
+export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+
   const towns = HOTEL_DESTINATIONS.filter((d) => TOWN_IDS.includes(d.id))
   const flight = ALL_AFFILIATE_ITEMS.find((i) => i.id === 'feat-flight-tripcom')
   const esimJapan = FEATURED_ESIM.find((i) => i.id === 'esim-klook-japan')
