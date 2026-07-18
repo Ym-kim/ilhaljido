@@ -9,6 +9,7 @@ import { useLang } from '@/context/LanguageContext'
 import { getGlobalDestinations, translate } from '@/lib/i18n'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { EditorialBanner } from '@/components/editorial/EditorialBanner'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import type { Lang } from '@/lib/i18n/types'
@@ -43,28 +44,16 @@ export function GlobalProgramsView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
-      {/* 마나도 워케이션 아티클 배너 (2026-07-18) */}
+      {/* 마나도 워케이션 아티클 배너 — 공용 EditorialBanner (2026-07-19 통일) */}
       <section className="px-6 pt-10">
         <div className="max-w-6xl mx-auto">
-          <Link
+          <EditorialBanner
             href="/programs/global/manado"
-            className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-3xl bg-gradient-to-r from-cyan-950 via-sky-950 to-[#111] border border-sky-500/20 px-7 py-6 hover:border-sky-400/40 transition-colors"
-          >
-            <div className="flex-1 min-w-0">
-              <span className="block text-sky-300 text-[0.6875rem] font-bold tracking-widest uppercase mb-1">
-                {lang === 'EN' ? 'Editorial · Hidden base' : lang === 'JP' ? '特集 · 秘密の拠点' : '에디토리얼 · 비밀의 체류지'}
-              </span>
-              <span className="block text-white font-black text-lg leading-tight">
-                {lang === 'EN' ? 'After Bali, a sea nobody knows — Manado workation' : lang === 'JP' ? 'バリの次は、誰も知らない海 — マナド' : '발리 다음은, 아무도 모르는 이 바다 — 마나도'}
-              </span>
-              <span className="block text-white/55 text-sm mt-1">
-                {lang === 'EN' ? "Divers' mecca Bunaken, pork & beer freely, direct charter flights from Seoul." : lang === 'JP' ? 'ダイバーの聖地ブナケン、豚肉もビールも自由、仁川直行チャーター。' : '다이버 성지 부나켄 — 돼지고기·주류 자유, 인천 직항 전세기.'}
-              </span>
-            </div>
-            <span className="inline-flex items-center gap-1.5 shrink-0 text-sm font-bold text-sky-300 group-hover:text-sky-200">
-              {lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
-            </span>
-          </Link>
+            eyebrow={lang === 'EN' ? 'Editorial · Hidden base' : lang === 'JP' ? '特集 · 秘密の拠点' : '에디토리얼 · 비밀의 체류지'}
+            title={lang === 'EN' ? 'After Bali, a sea nobody knows — Manado workation' : lang === 'JP' ? 'バリの次は、誰も知らない海 — マナド' : '발리 다음은, 아무도 모르는 이 바다 — 마나도'}
+            sub={lang === 'EN' ? "Divers' mecca Bunaken, pork & beer freely, direct charter flights from Seoul." : lang === 'JP' ? 'ダイバーの聖地ブナケン、豚肉もビールも自由、仁川直行チャーター。' : '다이버 성지 부나켄 — 돼지고기·주류 자유, 인천 직항 전세기.'}
+            cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
+          />
         </div>
       </section>
 

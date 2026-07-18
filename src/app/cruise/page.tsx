@@ -10,6 +10,7 @@ import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getCruiseFeatures, getCruiseRoutes } from '@/lib/i18n'
 import { Anchor, Wifi, Globe } from 'lucide-react'
+import { EditorialBanner } from '@/components/editorial/EditorialBanner'
 
 const FEAT_ICONS = { wifi: Wifi, ports: Globe, all: Anchor } as const
 
@@ -88,28 +89,16 @@ export default function CruisePage() {
         </div>
       </section>
 
-      {/* 미라클호 크루즈 워케이션 아티클 배너 (2026-07-18) */}
+      {/* 미라클호 크루즈 워케이션 아티클 배너 — 공용 EditorialBanner (2026-07-19 통일) */}
       <section className="px-6 py-10 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
-          <a
+          <EditorialBanner
             href="/cruise/miracle"
-            className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-3xl bg-gradient-to-r from-sky-950 via-blue-950 to-slate-950 px-7 py-6 hover:shadow-xl transition-shadow"
-          >
-            <div className="flex-1 min-w-0">
-              <span className="block text-sky-300 text-[0.6875rem] font-bold tracking-widest uppercase mb-1">
-                {lang === 'EN' ? 'Editorial · Transit Workation' : lang === 'JP' ? '特集 · 移動型ワーケーション' : '에디토리얼 · 이동형 워케이션'}
-              </span>
-              <span className="block text-white font-black text-lg leading-tight">
-                {lang === 'EN' ? 'Deep work at sea — 17 hours from Busan to Osaka' : lang === 'JP' ? '海の上の17時間 — 釜山発大阪行きディープワーク' : '바다 위 17시간, 부산—오사카 크루즈 워케이션'}
-              </span>
-              <span className="block text-white/60 text-sm mt-1">
-                {lang === 'EN' ? 'PanStar Miracle: two buffet meals, satellite Wi-Fi, no baggage limits.' : lang === 'JP' ? 'パンスター·ミラクル：ビュッフェ2食·衛星Wi-Fi·手荷物制限なし。' : '팬스타 미라클호 — 뷔페 2식·위성 와이파이·수하물 걱정 제로.'}
-              </span>
-            </div>
-            <span className="inline-flex items-center gap-1.5 shrink-0 text-sm font-bold text-sky-300 group-hover:text-sky-200">
-              {lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
-            </span>
-          </a>
+            eyebrow={lang === 'EN' ? 'Editorial · Transit Workation' : lang === 'JP' ? '特集 · 移動型ワーケーション' : '에디토리얼 · 이동형 워케이션'}
+            title={lang === 'EN' ? 'Deep work at sea — 17 hours from Busan to Osaka' : lang === 'JP' ? '海の上の17時間 — 釜山発大阪行きディープワーク' : '바다 위 17시간, 부산—오사카 크루즈 워케이션'}
+            sub={lang === 'EN' ? 'PanStar Miracle: two buffet meals, satellite Wi-Fi, no baggage limits.' : lang === 'JP' ? 'パンスター·ミラクル：ビュッフェ2食·衛星Wi-Fi·手荷物制限なし。' : '팬스타 미라클호 — 뷔페 2식·위성 와이파이·수하물 걱정 제로.'}
+            cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
+          />
         </div>
       </section>
 
@@ -121,7 +110,8 @@ export default function CruisePage() {
             {tr('cruise_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('cruise_featured_d')}</p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          {/* 5장 기준: lg 3열(3+2)·xl 5열 한 줄 — 4열 고아 카드 방지 (2026-07-19) */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
             {FEATURED_CRUISES.map((item) => (
               <AffiliateCard
                 key={item.id}
