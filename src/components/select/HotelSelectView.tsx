@@ -61,7 +61,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto">
           <Link
             href={`${prefix}/select`}
-            className="inline-flex items-center gap-1.5 text-[#94a3b8] text-xs font-medium hover:text-brand-mid transition-colors"
+            className="inline-flex items-center gap-1.5 text-[#64748b] text-xs font-medium hover:text-brand-mid transition-colors"
           >
             <ArrowLeft className="w-3 h-3" strokeWidth={ICON_STROKE} />
             Wakation Select
@@ -131,7 +131,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
               )}
 
               {/* 2) 도시별 전체 검색 (폴백) */}
-              <p className="text-[#94a3b8] text-[0.65rem] font-bold tracking-[0.14em] uppercase mb-3">
+              <p className="text-[#64748b] text-[0.65rem] font-bold tracking-[0.14em] uppercase mb-3">
                 {tr('selh_region_search')}
               </p>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -147,7 +147,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Partner overview — 원하는 도시가 없을 때 최종 폴백 */}
       <section className="px-6 pb-10 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
         <div className="max-w-6xl mx-auto pt-10">
-          <p className="text-[#94a3b8] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
+          <p className="text-[#64748b] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
             {tr('selh_partners')}
           </p>
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
