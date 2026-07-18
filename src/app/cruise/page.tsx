@@ -88,6 +88,31 @@ export default function CruisePage() {
         </div>
       </section>
 
+      {/* 미라클호 크루즈 워케이션 아티클 배너 (2026-07-18) */}
+      <section className="px-6 py-10 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto">
+          <a
+            href="/cruise/miracle"
+            className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-3xl bg-gradient-to-r from-sky-950 via-blue-950 to-slate-950 px-7 py-6 hover:shadow-xl transition-shadow"
+          >
+            <div className="flex-1 min-w-0">
+              <span className="block text-sky-300 text-[0.6875rem] font-bold tracking-widest uppercase mb-1">
+                {lang === 'EN' ? 'Editorial · Transit Workation' : lang === 'JP' ? '特集 · 移動型ワーケーション' : '에디토리얼 · 이동형 워케이션'}
+              </span>
+              <span className="block text-white font-black text-lg leading-tight">
+                {lang === 'EN' ? 'Deep work at sea — 17 hours from Busan to Osaka' : lang === 'JP' ? '海の上の17時間 — 釜山発大阪行きディープワーク' : '바다 위 17시간, 부산—오사카 크루즈 워케이션'}
+              </span>
+              <span className="block text-white/60 text-sm mt-1">
+                {lang === 'EN' ? 'PanStar Miracle: two buffet meals, satellite Wi-Fi, no baggage limits.' : lang === 'JP' ? 'パンスター·ミラクル：ビュッフェ2食·衛星Wi-Fi·手荷物制限なし。' : '팬스타 미라클호 — 뷔페 2식·위성 와이파이·수하물 걱정 제로.'}
+              </span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 shrink-0 text-sm font-bold text-sky-300 group-hover:text-sky-200">
+              {lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
+            </span>
+          </a>
+        </div>
+      </section>
+
       {/* 지금 예약 가능한 크루즈 — 실존 상품 */}
       <section className="px-6 py-14 bg-[#f0f9ff] border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto">

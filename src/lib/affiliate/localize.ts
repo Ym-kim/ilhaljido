@@ -309,6 +309,12 @@ const EN: Record<string, Overlay> = {
     desc: 'Japan, Thailand, Vietnam and Taiwan on one eSIM — for multi-stop workation routes.',
     cta: 'View eSIM', badge: 'Multi-country',
   },
+  'cruise-panstar-miracle': {
+    productTitle: 'PanStar Miracle · Busan–Osaka ferry',
+    destination: 'Busan ↔ Osaka · 17 hours',
+    desc: 'Overnight to Osaka with two buffet meals included. Satellite Wi-Fi and a sauna on Korea’s first luxury cruise ferry.',
+    cta: 'See tickets', badge: '2 buffet meals',
+  },
   'cruise-rci-singapore': {
     productTitle: 'Royal Caribbean Navigator · Singapore 4D',
     destination: 'Singapore → Penang',
@@ -775,6 +781,12 @@ const JP: Record<string, Overlay> = {
     destination: 'アジア・マルチ国',
     desc: '日本・タイ・ベトナム・台湾をeSIM 1枚で。周遊ワーケーションに。',
     cta: 'eSIMを見る', badge: 'マルチ国',
+  },
+  'cruise-panstar-miracle': {
+    productTitle: 'パンスター·ミラクル · 釜山-大阪フェリー',
+    destination: '釜山 ↔ 大阪 · 17時間',
+    desc: 'ビュッフェ2食付きで一晩で大阪へ。衛星Wi-Fiとサウナを備えた韓国初のラグジュアリークルーズフェリー。',
+    cta: '乗船券を見る', badge: 'ビュッフェ2食付き',
   },
   'cruise-rci-singapore': {
     productTitle: 'ロイヤルカリビアン ナビゲーター · シンガポール4日',
