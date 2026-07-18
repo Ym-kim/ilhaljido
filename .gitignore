@@ -51,6 +51,7 @@ next-env.d.ts
 
 # app icons are source assets
 !src/app/*.png
+!public/icons/*.png
 
 # AI 생성 카드 커버는 배포 자산
 !public/covers/*.jpeg

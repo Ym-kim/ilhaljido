@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     // 기본 공유 썸네일 (1200×630) — 카톡·페북·슬랙 링크 미리보기
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&h=630&q=80',
+        url: 'https://www.wakation.kr/og-wakation-ai.jpeg',
         width: 1200,
         height: 630,
         alt: 'Wakation — 일하는 곳이 휴가지가 되는 순간',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: 'Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
     description: '국내외 워케이션, 성장캠프, 시장조사단, 어학·유학, 비자·체류 정보까지 일하는 사람을 위한 새로운 체류 플랫폼.',
     creator: '@wakation_kr',
-    images: ['https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&h=630&q=80'],
+    images: ['https://www.wakation.kr/og-wakation-ai.jpeg'],
   },
   robots: {
     index: true,

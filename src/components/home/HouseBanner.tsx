@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
@@ -31,12 +32,22 @@ export function HouseBanner() {
               /* 계측 실패 무시 */
             }
           }}
-          className={`group relative block overflow-hidden rounded-3xl bg-gradient-to-r ${c.gradient} px-7 py-8 md:px-10 md:py-9 shadow-sm hover:shadow-lg transition-shadow`}
+          className={`group relative block overflow-hidden rounded-3xl bg-gradient-to-r ${c.gradient} px-7 py-8 md:px-10 md:py-9 shadow-sm hover:shadow-xl transition-all`}
         >
-          {/* 장식 글로우 */}
-          <div className="pointer-events-none absolute -right-10 -top-10 w-44 h-44 rounded-full bg-white/10 blur-2xl" />
+          {c.image && (
+            <Image
+              src={c.image}
+              alt=""
+              fill
+              sizes="(max-width: 768px) 100vw, 1152px"
+              className="object-cover object-[62%_center] md:object-center transition-transform duration-700 group-hover:scale-[1.02]"
+            />
+          )}
+          {/* 왼쪽 카피 대비 + 오른쪽 사진 디테일을 함께 살리는 브랜드 오버레이 */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#04121f]/98 via-[#075985]/92 to-[#075985]/35" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#04121f]/35 via-transparent to-white/5" />
           <div className="relative flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 md:max-w-3xl">
               <span className="inline-flex items-center gap-1.5 text-white/80 text-[0.6875rem] font-bold uppercase tracking-widest mb-2">
                 <Sparkles className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
                 {c.eyebrow[lang]}
@@ -44,11 +55,11 @@ export function HouseBanner() {
               <h2 className="text-white font-black text-xl md:text-2xl leading-tight mb-1.5">
                 {c.title[lang]}
               </h2>
-              <p className="text-white/75 text-sm md:text-[0.9375rem] leading-relaxed">
+              <span className="block text-white/78 text-sm md:text-[0.9375rem] leading-relaxed">
                 {c.sub[lang]}
-              </p>
+              </span>
             </div>
-            <span className="shrink-0 inline-flex items-center gap-2 bg-white text-[#0c4a6e] font-bold text-sm px-6 py-3 rounded-full group-hover:gap-2.5 transition-all whitespace-nowrap">
+            <span className="shrink-0 inline-flex items-center gap-2 bg-white text-[#0c4a6e] font-bold text-sm px-6 py-3 rounded-full shadow-[0_8px_30px_rgba(4,18,31,0.18)] group-hover:gap-2.5 group-hover:bg-sky-50 transition-all whitespace-nowrap">
               {c.cta[lang]}
               <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </span>

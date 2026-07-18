@@ -21,7 +21,10 @@ export default function manifest(): MetadataRoute.Manifest {
     categories: ['travel', 'business', 'lifestyle'],
     icons: [
       { src: '/icon.svg', type: 'image/svg+xml', sizes: 'any', purpose: 'any' },
-      { src: '/apple-icon.png', type: 'image/png', sizes: '180x180', purpose: 'maskable' },
+      { src: '/apple-icon.png', type: 'image/png', sizes: '180x180', purpose: 'any' },
+      { src: '/icons/wakation-192.png', type: 'image/png', sizes: '192x192', purpose: 'any' },
+      { src: '/icons/wakation-512.png', type: 'image/png', sizes: '512x512', purpose: 'any' },
+      { src: '/icons/wakation-maskable-512.png', type: 'image/png', sizes: '512x512', purpose: 'maskable' },
     ],
   }
 }
