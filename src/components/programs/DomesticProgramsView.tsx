@@ -44,6 +44,31 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
+      {/* 정선 아리랑열차 워케이션 아티클 배너 (2026-07-18) */}
+      <section className="px-6 pt-10">
+        <div className="max-w-6xl mx-auto">
+          <Link
+            href="/programs/domestic/jeongseon-train"
+            className="group flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-3xl bg-gradient-to-r from-emerald-950 via-teal-950 to-[#111] border border-teal-500/20 px-7 py-6 hover:border-teal-400/40 transition-colors"
+          >
+            <div className="flex-1 min-w-0">
+              <span className="block text-teal-300 text-[0.6875rem] font-bold tracking-widest uppercase mb-1">
+                {lang === 'EN' ? 'Editorial · Slow-train workation' : lang === 'JP' ? '特集 · スロートレイン' : '에디토리얼 · 슬로우 트레인 워케이션'}
+              </span>
+              <span className="block text-white font-black text-lg leading-tight">
+                {lang === 'EN' ? 'The slower the train, the deeper the work — Jeongseon A-train' : lang === 'JP' ? '遅い列車ほど、仕事は深くなる — 旌善アリラン列車' : '느리게 달릴수록, 일은 깊어진다 — 정선 아리랑 열차'}
+              </span>
+              <span className="block text-white/55 text-sm mt-1">
+                {lang === 'EN' ? 'Back after 2 years 3 months. A rolling office through the Taebaek range.' : lang === 'JP' ? '2年3カ月ぶりに復活。太白山脈を走るオフィス。' : '2년 3개월 만에 돌아온 산악열차 — 태백산맥을 통과하는 달리는 오피스.'}
+              </span>
+            </div>
+            <span className="inline-flex items-center gap-1.5 shrink-0 text-sm font-bold text-teal-300 group-hover:text-teal-200">
+              {lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
+            </span>
+          </Link>
+        </div>
+      </section>
+
       <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-6">
