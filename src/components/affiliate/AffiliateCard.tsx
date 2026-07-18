@@ -27,10 +27,10 @@ const STATUS_META: Record<
 }
 
 // 배지 문구 — 3개 언어
-const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'available', string>> = {
-  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', available: '제휴사 예약' },
-  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', available: 'Book via partner' },
-  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', available: '提携先で予約' },
+const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'available' | 'editorial', string>> = {
+  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', available: '제휴사 예약', editorial: '편집 이미지' },
+  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', available: 'Book via partner', editorial: 'Editorial image' },
+  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', available: '提携先で予約', editorial: 'イメージ画像' },
 }
 
 const PENDING_STATUSES = new Set([
@@ -185,7 +185,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </span>
             {/* 판매처 · 유형 — 무슨 상품인지 한눈에 (2026-07-15 MD 피드백) */}
             <span className="block text-[#94a3b8] text-[0.65rem] font-semibold mt-0.5">
-              {item.name}{item.badge ? ` · ${item.badge}` : ''}
+              {item.name}{item.badge ? ` · ${item.badge}` : ''}{hasPhoto ? ` · ${badgeText.editorial}` : ''}
             </span>
             {/* 상품 설명 — 폰에서도 상품 정체가 보이게 항상 노출 (2026-07-16 모바일 패스) */}
             {item.desc && (
