@@ -88,6 +88,7 @@ const CHECKS: Check[] = [
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },
   { id: 'page:jeongseon-train', url: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },
   { id: 'page:manado', url: 'https://www.wakation.kr/programs/global/manado' },
+  { id: 'page:stories', url: 'https://www.wakation.kr/stories' },
   { id: 'kkday:oasis-spa', url: 'https://www.kkday.com/ko/product/123986?cid=25833', okStatuses: [200, 403] },
 ]
 

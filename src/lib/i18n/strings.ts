@@ -684,6 +684,7 @@ const KO: Record<string, string> = {
 
   nav_select: '예약',
   nav_select_guide: '도시 가이드',
+  nav_select_stories: '워케이션 스토리',
   nav_select_hotel: '숙소 예약',
   nav_select_activity: '현지 체험',
   nav_select_esim: 'eSIM',
@@ -1445,6 +1446,7 @@ const EN: Record<string, string> = {
 
   nav_select: 'Book',
   nav_select_guide: 'City Guides',
+  nav_select_stories: 'Workation Stories',
   nav_select_hotel: 'Hotel Booking',
   nav_select_activity: 'Activities',
   nav_select_esim: 'eSIM',
@@ -2206,6 +2208,7 @@ const JP: Record<string, string> = {
 
   nav_select: '予約',
   nav_select_guide: '都市ガイド',
+  nav_select_stories: 'ワーケーションストーリー',
   nav_select_hotel: '宿泊予約',
   nav_select_activity: '現地体験',
   nav_select_esim: 'eSIM',
