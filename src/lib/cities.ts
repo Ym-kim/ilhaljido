@@ -121,9 +121,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     railPassName: { KO: '도쿄 지하철 티켓 24~72h', EN: 'Tokyo Subway Ticket 24–72h', JP: '東京メトロパス24〜72h' },
     featuredStayId: 'stay-millennials-shibuya',
     workTags: {
-      KO: ['코워킹 2개 층', '시부야역 6분', '무료 커피'],
-      EN: ['2 coworking floors', '6 min to Shibuya', 'Free coffee'],
-      JP: ['コワーキング2フロア', '渋谷駅6分', '無料コーヒー'],
+      // 2026-07-18 리서치: .andwork 공식 100Mbps+(상·하향)·무료 폰부스 — xandwork.com/livelyhotels.com
+      KO: ['코워킹 100Mbps+', '무료 폰부스', '시부야역 6분'],
+      EN: ['Coworking at 100Mbps+', 'Free phone booths', '6 min to Shibuya'],
+      JP: ['コワーキング100Mbps+', '無料フォンブース', '渋谷駅6分'],
     },
     metaDesc: {
       KO: '도쿄 워케이션 완벽 가이드. 무비자 90일, 인터넷 ★★★★★, 월 생활비 160만원대. 코워킹 내장 숙소·체험·eSIM 한눈에.',
@@ -181,9 +182,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     railPassName: { KO: 'JR 간사이 패스', EN: 'JR Kansai Pass', JP: 'JR関西パス' },
     featuredStayId: 'stay-lively-osaka',
     workTags: {
-      KO: ['공용 라운지 7곳', '혼마치 비즈니스가'],
-      EN: ['7 work lounges', 'Honmachi business district'],
-      JP: ['共用ラウンジ7カ所', '本町ビジネス街'],
+      // 2026-07-18 리서치: 공용 7곳·코워킹 THE LIVERALLY 투숙객 무료·사카이스지혼마치역 1분 — livelyhotels.com
+      KO: ['공용 라운지 7곳', '코워킹 투숙객 무료', '사카이스지혼마치역 1분'],
+      EN: ['7 work lounges', 'Free guest coworking', '1 min to Sakaisuji-Honmachi'],
+      JP: ['共用ラウンジ7カ所', 'コワーキング無料', '堺筋本町駅1分'],
     },
     metaDesc: {
       KO: '오사카 워케이션 완벽 가이드. 도쿄보다 저렴한 월 140만원대, 무비자 90일. 혼마치 코워킹·숙소·eSIM 한눈에.',
@@ -240,9 +242,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     railPassName: { KO: 'JR 큐슈 레일 패스', EN: 'JR Kyushu Rail Pass', JP: 'JR九州レールパス' },
     featuredStayId: 'stay-webase-hakata',
     workTags: {
-      KO: ['전용 코워킹(무료)', '테라스', '역 도보 3분'],
-      EN: ['Free coworking floor', 'Terrace', '3 min to station'],
-      JP: ['専用コワーキング（無料）', 'テラス', '駅徒歩3分'],
+      // 2026-07-18 리서치: Wi-Fi 하향 최대 150Mbps(공식 FAQ)·9층 라운지 투숙객 무료(비투숙 유료 개방형) — we-base.jp
+      KO: ['Wi-Fi 최대 150Mbps', '9층 라운지 무료', '역 도보 3분'],
+      EN: ['Wi-Fi up to 150Mbps', 'Free 9F lounge', '3 min to station'],
+      JP: ['Wi-Fi最大150Mbps', '9階ラウンジ無料', '駅徒歩3分'],
     },
     metaDesc: {
       KO: '후쿠오카 워케이션 완벽 가이드. 월 120만원대, 서울 직항 1시간, 무비자 90일. 하카타 코워킹 숙소·체험·eSIM.',
@@ -301,9 +304,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F30245-premium-private-ngurah-rai-airport-transfers-bali%2F',
     featuredStayId: 'stay-tribal-bali',
     workTags: {
-      KO: ['코워킹 전용 설계', '풀사이드 워크스페이스', '노마드 커뮤니티'],
-      EN: ['Built for coworking', 'Poolside workspace', 'Nomad community'],
-      JP: ['コワーキング特化設計', 'プールサイド作業空間', 'ノマドコミュニティ'],
+      // 2026-07-18 리서치: '풀사이드 워크스페이스' 공식 근거 없음→제거. 부스·스탠딩 데스크·투숙객 무료 — tribalbali.com/bali.com
+      KO: ['코워킹 전용 설계', '스탠딩 데스크·부스', '투숙객 무료'],
+      EN: ['Built for coworking', 'Standing desks & booths', 'Free for guests'],
+      JP: ['コワーキング特化設計', 'スタンディングデスク·ブース', '宿泊者無料'],
     },
     metaDesc: {
       KO: '발리 워케이션 완벽 가이드. 월 100만원대, 노마드 성지 짱구·우붓. 코워킹 숙소·체험·eSIM 한눈에.',
@@ -362,9 +366,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F17015-dad-private-airport-transfers-da-nang%2F',
     featuredStayId: 'stay-chicland-danang',
     workTags: {
-      KO: ['카페형 라운지', '루프탑 풀', '미케비치 2분'],
-      EN: ['Café-style lounge', 'Rooftop pool', '2 min to My Khe'],
-      JP: ['カフェ風ラウンジ', 'ルーフトッププール', 'ミーケー2分'],
+      // 2026-07-18 리서치: 전 객실 워크데스크(공식 rooms 페이지)·풀은 고층(루프탑은 라운지) — chiclandhotel.com
+      KO: ['전 객실 워크데스크', '카페형 라운지', '미케비치 앞'],
+      EN: ['Work desk in every room', 'Café-style lounge', 'Right by My Khe'],
+      JP: ['全室ワークデスク', 'カフェ風ラウンジ', 'ミーケー目の前'],
     },
     metaDesc: {
       KO: '다낭 워케이션 완벽 가이드. 월 90만원대, 무비자 45일, 미케 비치 앞 카페 작업. 숙소·체험·eSIM 한눈에.',
@@ -423,9 +428,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F15841-airport-transfers-chiang-mai%2F',
     featuredStayId: 'stay-kantary-chiangmai',
     workTags: {
-      KO: ['키치넷 객실', '장기체류 특화', '원님만 도보권'],
-      EN: ['Kitchenette rooms', 'Long-stay ready', 'Walk to One Nimman'],
-      JP: ['キチネット付き客室', '長期滞在特化', 'ワンニマン徒歩圏'],
+      // 2026-07-18 리서치: 전 유닛 키치넷 스위트 46㎡+·님만해민 소이12 소재 — Cape&Kantary 공식 팩트시트
+      KO: ['키치넷 스위트 46㎡+', '장기체류 특화', '님만 소이12'],
+      EN: ['Kitchenette suites 46㎡+', 'Long-stay ready', 'On Nimman Soi 12'],
+      JP: ['キッチン付き46㎡+', '長期滞在特化', 'ニマン·ソイ12'],
     },
     metaDesc: {
       KO: '치앙마이 워케이션 완벽 가이드. 월 110만원대, 님만해민 코워킹 밀집, 무비자 60일. 숙소·체험·eSIM 한눈에.',
@@ -484,9 +490,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F111444-private-airport-transfer-to-cebu-city-mandaue-city-mactan%2F',
     featuredStayId: 'stay-nomadshub-cebu',
     workTags: {
-      KO: ['코워킹+코리빙', '핫데스크 포함', '노마드 커뮤니티'],
-      EN: ['Coworking + coliving', 'Hot desk included', 'Nomad community'],
-      JP: ['コワーキング＋コリビング', 'ホットデスク込み', 'ノマドコミュニティ'],
+      // 2026-07-18 리서치: '핫데스크 포함' 원문 미확인→교체. 폰부스·컨퍼런스룸(운영사 설명) — hostelworld/coworker 리스팅
+      KO: ['코워킹+코리빙', '폰부스·컨퍼런스룸', '노마드 커뮤니티'],
+      EN: ['Coworking + coliving', 'Phone booth & meeting room', 'Nomad community'],
+      JP: ['コワーキング＋コリビング', 'フォンブース·会議室', 'ノマドコミュニティ'],
     },
     metaDesc: {
       KO: '세부 워케이션 완벽 가이드. 월 95만원대, 어학+워케이션 최적. 코리빙·체험·eSIM 한눈에.',
@@ -549,9 +556,10 @@ export const CITY_INSIGHTS: CityInsight[] = [
     transferHref: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F1865-airport-transfers-australia-sydney%2F',
     featuredStayId: 'stay-adina-sydney',
     workTags: {
-      KO: ['풀키친 아파트', 'CBD·Town Hall 2분', '실내 수영장'],
-      EN: ['Full-kitchen apartment', 'CBD · 2 min to Town Hall', 'Indoor pool'],
-      JP: ['フルキッチン', 'CBD・2分', '屋内プール'],
+      // 2026-07-18 리서치: '실내 수영장' 오류(공식=heated semi-outdoor)→회의실 5개(최대 100명, 공식)로 교체 — adinahotels.com
+      KO: ['풀키친 아파트', '회의실 5개', 'Town Hall역 2분'],
+      EN: ['Full-kitchen apartment', '5 meeting rooms', '2 min to Town Hall'],
+      JP: ['フルキッチン', '会議室5室', 'タウンホール駅2分'],
     },
     metaDesc: {
       KO: '시드니 워케이션 완벽 가이드. 선진국 인프라, 영어 환경, 인터넷 ★★★★★. 숙소·체험·eSIM 한눈에.',

@@ -127,31 +127,31 @@ const EN: Record<string, Overlay> = {
   'stay-millennials-shibuya': {
     productTitle: 'The Millennials Shibuya',
     destination: 'Tokyo · Japan',
-    desc: 'Two floors of .andwork coworking inside the hotel. 6 min from Shibuya station, free coffee and happy hour.',
+    desc: '.andwork coworking (100Mbps+, free phone booths) on 3F plus a 4F lounge. 6 min from Shibuya station, free coffee and happy hour.',
     cta: 'See rooms', badge: 'Built-in coworking',
   },
   'stay-lively-osaka': {
     productTitle: 'The Lively Osaka Honmachi',
     destination: 'Osaka · Japan',
-    desc: 'Seven work-friendly lounges in the Honmachi business district. Rated 8.7 by 2,600+ guests.',
+    desc: 'Seven work-friendly lounges, coworking free for guests. 1 min from Sakaisuji-Honmachi station, rated 8.7 by 2,600+ guests.',
     cta: 'See rooms', badge: 'Lounge work',
   },
   'stay-webase-hakata': {
     productTitle: 'WeBase Hakata',
     destination: 'Fukuoka · Japan',
-    desc: 'Free 9th-floor coworking space with terrace. 3 min from Nakasu-Kawabata station, rated 8.6.',
+    desc: 'Free 9th-floor lounge coworking for guests, Wi-Fi up to 150Mbps. 3 min from Nakasu-Kawabata station, rated 8.6.',
     cta: 'See rooms', badge: 'Free coworking',
   },
   'stay-tribal-bali': {
     productTitle: 'TRIBAL Coworking Bali',
     destination: 'Canggu, Bali · Indonesia',
-    desc: "Bali's first purpose-built coworking stay. Poolside workspace and a real nomad community.",
+    desc: "Bali's first purpose-built coworking stay — standing desks and booths, free for guests, and a real nomad community.",
     cta: 'See rooms', badge: 'Nomad favorite',
   },
   'stay-chicland-danang': {
     productTitle: 'Chicland Danang Beach Hotel',
     destination: 'Da Nang · Vietnam',
-    desc: '2 min to My Khe beach, café-style lounge and rooftop pool. Near the An Thuong nomad area, rated 8.6.',
+    desc: 'Right by My Khe beach — work desk in every room, café-style lounge and a high-floor infinity pool. Near An Thuong, rated 8.6.',
     cta: 'See rooms', badge: 'Beach work',
   },
   'stay-playce-jeju': {
@@ -163,7 +163,7 @@ const EN: Record<string, Overlay> = {
   'stay-kantary-chiangmai': {
     productTitle: 'Kantary Hills Chiang Mai',
     destination: 'Nimman, Chiang Mai · Thailand',
-    desc: 'Serviced apartments with kitchenettes, built for long stays. Walk to Maya Mall and One Nimman.',
+    desc: 'Kitchenette suites (46㎡+) built for long stays, right on Nimman Soi 12. Walk to Maya Mall and One Nimman.',
     cta: 'See rooms', badge: 'Long stay',
   },
   'stay-lyf-sukhumvit-bangkok': {
@@ -354,13 +354,13 @@ const EN: Record<string, Overlay> = {
   'stay-adina-sydney': {
     productTitle: 'Adina Apartment Hotel Sydney Town Hall',
     destination: 'Sydney · Australia',
-    desc: 'Full-kitchen aparthotel in the CBD. 2 min from Town Hall station, indoor pool.',
+    desc: 'Full-kitchen aparthotel in the CBD. 2 min from Town Hall station, 5 meeting rooms and a heated pool.',
     cta: 'See rooms', badge: 'Full kitchen',
   },
   'stay-nomadshub-cebu': {
     productTitle: "Nomad's Hub Co-living Cebu",
     destination: 'Cebu · Philippines',
-    desc: 'Coworking + co-living in central Cebu City. Hot desks included — a real nomad base.',
+    desc: 'Coworking + co-living in central Cebu City. Phone booth and meeting room — a real nomad base.',
     cta: 'See rooms', badge: 'Co-living',
   },
   // ── featured 4장 채움 신규 17종 (2026-07-13) ──
@@ -594,31 +594,31 @@ const JP: Record<string, Overlay> = {
   'stay-millennials-shibuya': {
     productTitle: 'ザ・ミレニアルズ渋谷',
     destination: '東京 · 日本',
-    desc: 'ホテル内にコワーキング「.andwork」2フロア。渋谷駅徒歩6分、無料コーヒーとハッピーアワーも。',
+    desc: '3階にコワーキング「.andwork」（100Mbps+·無料フォンブース）、4階にラウンジ。渋谷駅徒歩6分、無料コーヒーも。',
     cta: '客室を見る', badge: 'コワーキング内蔵',
   },
   'stay-lively-osaka': {
     productTitle: 'ザ・ライブリー大阪本町',
     destination: '大阪 · 日本',
-    desc: '作業できる共用ラウンジが7カ所。本町ビジネス地区、評価8.7（2,600件以上）。',
+    desc: '作業できる共用ラウンジが7カ所、コワーキングは宿泊者無料。堺筋本町駅徒歩1分、評価8.7（2,600件以上）。',
     cta: '客室を見る', badge: 'ラウンジワーク',
   },
   'stay-webase-hakata': {
     productTitle: 'WeBase 博多',
     destination: '福岡 · 日本',
-    desc: '9階の宿泊者無料コワーキング＋テラス。中洲川端駅徒歩3分、評価8.6。',
+    desc: '9階ラウンジコワーキング（宿泊者無料）、Wi-Fi最大150Mbps。中洲川端駅徒歩3分、評価8.6。',
     cta: '客室を見る', badge: '無料コワーキング',
   },
   'stay-tribal-bali': {
     productTitle: 'トライバル・コワーキング・バリ',
     destination: 'チャングー、バリ · インドネシア',
-    desc: 'バリ初のコワーキング特化型ステイ。プールサイドのワークスペースとノマドコミュニティ。',
+    desc: 'バリ初のコワーキング特化型ステイ。スタンディングデスク·ブース完備（宿泊者無料）、ノマドコミュニティも。',
     cta: '客室を見る', badge: 'ノマドの聖地',
   },
   'stay-chicland-danang': {
     productTitle: 'チックランド・ダナン・ビーチホテル',
     destination: 'ダナン · ベトナム',
-    desc: 'ミーケビーチ徒歩2分、カフェ風ラウンジとルーフトッププール。評価8.6。',
+    desc: 'ミーケビーチ目の前、全室ワークデスクと高層インフィニティプール。評価8.6。',
     cta: '客室を見る', badge: 'ビーチワーク',
   },
   'stay-playce-jeju': {
@@ -642,7 +642,7 @@ const JP: Record<string, Overlay> = {
   'stay-kantary-chiangmai': {
     productTitle: 'カンタリーヒルズ・チェンマイ',
     destination: 'ニマン、チェンマイ · タイ',
-    desc: 'キッチネット付きサービスアパート。長期滞在向け、マヤモール徒歩圏。',
+    desc: 'キッチン付きスイート（46㎡+）のサービスアパート。ニマン·ソイ12に立地、マヤモール徒歩圏。',
     cta: '客室を見る', badge: '長期滞在',
   },
   'act-tokyo-disney': {
@@ -821,13 +821,13 @@ const JP: Record<string, Overlay> = {
   'stay-adina-sydney': {
     productTitle: 'アディナ・アパートメントホテル・シドニー・タウンホール',
     destination: 'シドニー · オーストラリア',
-    desc: 'CBD中心のフルキッチン付きアパートホテル。タウンホール駅徒歩2分、室内プールも。',
+    desc: 'CBD中心のフルキッチン付きアパートホテル。タウンホール駅徒歩2分、会議室5室と温水プールも。',
     cta: '客室を見る', badge: 'フルキッチン',
   },
   'stay-nomadshub-cebu': {
     productTitle: 'ノマズハブ・コリビング・セブ',
     destination: 'セブ · フィリピン',
-    desc: 'セブ市中心のコワーキング＋コリビング。ホットデスク込み、ノマドの拠点。',
+    desc: 'セブ市中心のコワーキング＋コリビング。フォンブース·会議室あり、ノマドの拠点。',
     cta: '客室を見る', badge: 'コリビング',
   },
   // ── featured 4枚充填の新規17件 (2026-07-13) ──

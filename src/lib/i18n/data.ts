@@ -1039,7 +1039,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('예산 소진 시까지', 'Until budget runs out', '予算消化まで'),
     conditions: loc(['도외 재직자·사업자', '3박 4일 이상'], ['Non-Jeju workers', '3+ nights'], ['道外の在職者', '3泊以上']),
-    workSpec: loc('파트너 오피스 17곳', '17 partner offices', '提携オフィス17カ所'),
+    // 2026-07-18 재검증: 오피스 17곳 유효(공식 목록), 오피스별 좌석·운영시간은 상세 페이지에 명시
+    workSpec: loc('오피스 17곳·24h 거점 포함', '17 offices, some 24h', 'オフィス17カ所·24h拠点あり'),
     href: 'https://www.jeju.go.kr/workation/Supportproject/list.htm',
   },
   {
@@ -1052,7 +1053,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('상시 (기업등록 후 신청)', 'Rolling (register first)', '随時（企業登録後）'),
     conditions: loc(['부산 외 재직자·대표', '재직증명 필요'], ['Non-Busan workers', 'Proof of work'], ['釜山外の在職者', '在職証明']),
-    workSpec: loc('업무공간 무료', 'Free workspace', 'ワークスペース無料'),
+    // 2026-07-18 정밀화: 부산역 거점센터 708.5㎡·50석·폰부스 4실·평일 08~20시 (부산시 공식 보도자료)
+    workSpec: loc('거점 50석·폰부스 4실', '50 seats & 4 phone booths', '拠点50席·ブース4室'),
     href: 'https://www.busaness.com/',
   },
   {
@@ -1065,7 +1067,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'check',
     deadline: loc('회차별 모집 — 공고 확인', 'Batch-based — check notice', '回次別募集'),
     conditions: loc(['재직자·프리랜서·특고', '4대보험 또는 증빙'], ['Workers & freelancers', 'Proof required'], ['在職者・フリーランス']),
-    workSpec: loc('공유오피스 포함', 'Coworking included', 'コワーキング込み'),
+    // 2026-07-18 정밀화: 얼라이언스 9개 운영사(데스커·MGRV·디어먼데이·웨이브웍스 등, 공식 사이트)
+    workSpec: loc('공유오피스 9개 운영사', '9 coworking operators', 'コワーキング9運営社'),
     href: 'https://worcation.co.kr/gw/enroll',
   },
   {
@@ -1126,7 +1129,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('연중 상품 운영 (호텔별 예약)', 'Year-round (book per hotel)', '通年運営（ホテル別予約）'),
     conditions: loc(['개인 신청 가능', '평일 2박 이상'], ['Individuals OK', 'Weekday 2+ nights'], ['個人申請可', '平日2泊以上']),
-    workSpec: loc('미팅룸 결합 상품', 'Meeting-room packages', 'ミーティングルーム付き'),
+    // 2026-07-18 정밀화: 워케이션 호텔 5곳(하버파크·오라카이 송도·오크우드·더위크앤·그랜드하얏트, ITO 보도자료)
+    workSpec: loc('호텔 5곳·미팅룸 결합', '5 hotels w/ meeting rooms', 'ホテル5カ所·会議室付き'),
     href: 'https://www.ito.or.kr/main/',
   },
   {
@@ -1139,7 +1143,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'open',
     deadline: loc('연중 모집 (2026.4~)', 'Open year-round', '通年募集'),
     conditions: loc(['개인 신청 가능', '원격근무 가능자'], ['Individuals OK', 'Remote-workable'], ['個人申請可', 'リモート可']),
-    workSpec: loc('공유오피스 포함', 'Coworking included', 'コワーキング込み'),
+    // 2026-07-18 정밀화: 2026년 13개 마을 확정(공단 공지)
+    workSpec: loc('13개 마을 공유오피스', 'Coworking in 13 villages', '13漁村コワーキング'),
     href: 'https://www.seantour.kr',
   },
   {
@@ -1152,7 +1157,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'always',
     deadline: loc('연중 운영 (최소 1주 전 대기예약)', 'Year-round (reserve 1+ week ahead)', '通年運営（1週間前まで予約）'),
     conditions: loc(['국민 누구나 (재직 증빙)', '2박 3일 단위'], ['Anyone w/ work proof', '2N3D units'], ['在職証明で誰でも', '2泊3日単位']),
-    workSpec: loc('오피스 공간 제공', 'Office space provided', 'オフィス提供'),
+    // 2026-07-18 정밀화: 워케이션 센터 4곳(부안·순창·남원·장수, 전북도 공식 보도자료)
+    workSpec: loc('전용 센터 4곳+오피스', '4 centers + offices', '専用センター4カ所'),
     href: 'https://jb-worcation.com/',
   },
   {
@@ -1165,7 +1171,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'open',
     deadline: loc('2026 모집중 (시군별 순차)', 'Recruiting 2026 (by city/county)', '2026募集中（市郡別）'),
     conditions: loc(['전남 외 임직원·프리랜서·사업자', '재직·사업자 증빙'], ['Non-Jeonnam workers/freelancers', 'Proof required'], ['全南外の勤労者・個人事業主', '在職・事業証明']),
-    workSpec: loc('오피스 제공', 'Office provided', 'オフィス提供'),
+    // 2026-07-18 정밀화: 오피스 12곳·7개 시군(공식몰 목록)
+    workSpec: loc('7개 시군 오피스 12곳', '12 offices in 7 districts', '7市郡·オフィス12カ所'),
     href: 'https://worcation.ijnto.or.kr/',
   },
   {
