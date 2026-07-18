@@ -37,6 +37,7 @@ const NAV_ITEMS: NavItem[] = [
     key: 'nav_select',
     items: [
       { labelKey: 'nav_select_guide', href: '/guide' },
+      { labelKey: 'nav_select_stories', href: '/stories' },
       { labelKey: 'nav_select_hotel', href: '/select/hotel' },
       { labelKey: 'nav_select_activity', href: '/select/activity' },
       { labelKey: 'nav_select_esim', href: '/select/esim' },
