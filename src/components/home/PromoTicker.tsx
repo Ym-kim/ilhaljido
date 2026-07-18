@@ -79,11 +79,33 @@ const ITEMS: TickerItem[] = [
     label: { KO: '일본 소도시 — 료칸·온천 워케이션', EN: 'Japan small towns — ryokan & onsen', JP: '日本の小都市 — 旅館・温泉' },
     tag: { KO: 'NEW', EN: 'NEW', JP: 'NEW' },
   },
+  // ── 2026-07-19 추가분: 신규 수익 채널·시즌 (가격은 실측 없어 미표기 — 규칙 준수) ──
+  {
+    id: 'ticker-miracle', emoji: '⛴',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+    external: true, sponsored: true,
+    label: { KO: '부산—오사카 미라클호 — 뷔페 2식 포함', EN: 'Busan–Osaka ferry — 2 buffet meals in', JP: '釜山—大阪ミラクル号 — ビュッフェ2食付き' },
+    tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
+  },
+  {
+    id: 'ticker-chuseok', emoji: '🌕',
+    href: '/collections/chuseok-short-haul',
+    label: { KO: '추석 연휴 단거리 워케이션 기획전', EN: 'Chuseok long-weekend collection', JP: '秋夕連休の近場特集' },
+    tag: { KO: '추석', EN: 'Chuseok', JP: '秋夕' },
+  },
+  {
+    id: 'ticker-eurail', emoji: '🚆',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
+    external: true, sponsored: true,
+    label: { KO: '유레일 글로벌 패스 — 유럽 33개국', EN: 'Eurail Global Pass — 33 countries', JP: 'ユーレイル グローバルパス — 33カ国' },
+    tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
+  },
 ]
 
 function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
+  // 2026-07-19: 카드 폭 고정(모바일 272px·데스크톱 304px) — 텍스트 길이에 따라 제각각이던 사이즈 일괄 통일
   const cls =
-    'shrink-0 flex items-center gap-3 bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-white/25 rounded-2xl p-2.5 pr-5 transition-colors'
+    'shrink-0 flex items-center gap-3 w-[272px] md:w-[304px] bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 hover:border-white/25 rounded-2xl p-2.5 pr-4 transition-colors'
   const inner = (
     <>
       {item.photo ? (
@@ -108,7 +130,7 @@ function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
             <span className="text-amber-300 text-xs font-black whitespace-nowrap">{item.price}</span>
           )}
         </span>
-        <span className="text-white/90 text-[0.8125rem] font-bold whitespace-nowrap">{item.label[lang]}</span>
+        <span className="text-white/90 text-[0.8125rem] font-bold truncate">{item.label[lang]}</span>
       </span>
     </>
   )
@@ -135,7 +157,7 @@ export function PromoTicker() {
       {/* duration은 inline으로 — globals.css .animate-ticker(뒤에 로드)가 Tailwind 유틸을 덮는 함정 회피 */}
       <div
         className="flex w-max gap-3 animate-ticker group-hover/ticker:[animation-play-state:paused] motion-reduce:animate-none"
-        style={{ animationDuration: '55s' }}
+        style={{ animationDuration: '70s' }} /* 11개 항목 기준 체감 속도 유지 (8개·55s 대비) */
       >
         <div className="flex gap-3 pr-3">
           {ITEMS.map((i) => <TickerCard key={i.id} item={i} lang={lang} />)}
