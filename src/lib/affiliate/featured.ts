@@ -407,12 +407,13 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     country: '한국 출발',
     desc: '뷔페 2식 포함 승선권으로 하룻밤 만에 오사카. 위성 와이파이·사우나를 갖춘 국내 첫 럭셔리 크루즈페리.',
     cta: '승선권 보기',
+    priceFrom: '₩120,000~',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     badge: '뷔페 2식 포함',
     trackingId: 'aid=126848',
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     sourceNote:
-      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격은 실측 불가라 미표기',
+      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-19, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
   },
   {
     id: 'cruise-rci-singapore',
