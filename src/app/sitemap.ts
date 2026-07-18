@@ -23,6 +23,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   // 프로그램
   { path: '/programs',                 priority: 0.9, freq: 'weekly' },
   { path: '/programs/domestic',        priority: 0.9, freq: 'weekly' },
+  { path: '/programs/domestic/jeongseon-train', priority: 0.7, freq: 'monthly' },
   { path: '/programs/global',          priority: 0.9, freq: 'weekly' },
   { path: '/programs/market',          priority: 0.8, freq: 'weekly' },
   { path: '/programs/golf',            priority: 0.7, freq: 'monthly' },
