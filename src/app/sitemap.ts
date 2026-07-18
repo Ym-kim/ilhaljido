@@ -89,6 +89,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
       })),
     ),
+    // EN·JA 로케일 테마·컬렉션·비교·지원사업 (forceLang 3차)
+    ...['en', 'ja'].flatMap((loc) => [
+      ...['/programs/golf', '/programs/healing', '/programs/local', '/programs/networking', '/programs/sports', '/programs/onsen', '/programs/support', '/collections', '/destinations/compare'].map((p) => ({
+        url: `${BASE}/${loc}${p}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+      ...COLLECTIONS.map((c) => ({
+        url: `${BASE}/${loc}/collections/${c.slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.6,
+      })),
+    ]),
     // 테마 기획전 상세 (collections.ts에 추가 시 자동 반영)
     ...COLLECTIONS.map((c) => ({
       url: `${BASE}/collections/${c.slug}`,

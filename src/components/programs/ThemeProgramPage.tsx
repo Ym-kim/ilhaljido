@@ -1,30 +1,44 @@
 'use client'
 
+import { useEffect } from 'react'
 import { MapPin, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
-import { getDomesticThemedUpcoming } from '@/lib/i18n'
+import { getDomesticThemedUpcoming, translate } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import type { Lang } from '@/lib/i18n/types'
 
 type Props = {
   heroImage: string
-  eyebrow: string
+  /** 로케일별 eyebrow — KO 값은 기존 카피 그대로, EN/JP는 /en·/ja 라우트에서 사용 */
+  eyebrow: Record<Lang, string>
   titleKey: string
   descKey: string
   themeIds: string[]
   featuredExperienceIds?: string[]
   emailSubject: string
+  forceLang?: Lang
 }
 
-export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [] }: Props) {
+export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], forceLang }: Props) {
   const themeProducts = THEME_EXPERIENCES.filter((i) => featuredExperienceIds.includes(i.id))
-  const { lang, tr } = useLang()
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+
+  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
+  // SSG 첫 렌더가 컨텍스트(KO)로 나오지 않도록 tr을 해석된 lang에 바인딩
+  const tr = (key: string) => translate(lang, key)
   const programs = getDomesticThemedUpcoming(lang).filter((p) => themeIds.includes(p.id))
 
   const mailto = `mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(emailSubject)}`
@@ -36,7 +50,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
         <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
-          <SectionEyebrow onDark>{eyebrow}</SectionEyebrow>
+          <SectionEyebrow onDark>{eyebrow[lang]}</SectionEyebrow>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight whitespace-pre-line">
             {tr(titleKey)}
           </h1>
@@ -118,7 +132,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
             <a href={mailto} className="bg-brand-mid text-white font-black px-8 py-3.5 rounded-full hover:bg-sky-500 transition-all text-sm">
               {tr('pre_register')}
             </a>
-            <Link href="/programs/domestic" className="bg-white/10 text-white font-bold px-8 py-3.5 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
+            <Link href={`${prefix}/programs/domestic`} className="bg-white/10 text-white font-bold px-8 py-3.5 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">
               {tr('view_all')}
             </Link>
           </div>

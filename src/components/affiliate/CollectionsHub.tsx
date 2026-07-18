@@ -1,17 +1,27 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
+import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { COLLECTIONS, COLLECTIONS_UI } from '@/lib/affiliate/collections'
 import { getCatalogItems } from '@/lib/affiliate/catalog'
 import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 
 // 기획전 허브 — 전체 컬렉션 카드 그리드
-export function CollectionsHub() {
-  const { lang } = useLang()
+export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+
+  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
   return (
     <div className="min-h-screen bg-white">
@@ -33,7 +43,7 @@ export function CollectionsHub() {
             return (
               <Link
                 key={col.slug}
-                href={`/collections/${col.slug}`}
+                href={`${prefix}/collections/${col.slug}`}
                 className="group relative rounded-3xl overflow-hidden block h-64 border border-[#e2e8f0] hover:border-brand-mid transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
                 <Image
