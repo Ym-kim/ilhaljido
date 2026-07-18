@@ -135,14 +135,16 @@ export default function HomePage() {
   )
     .map((i, idx) => ({ i, idx }))
     .sort((a, b) => (ACTIVE.has(b.i.status) ? 1 : 0) - (ACTIVE.has(a.i.status) ? 1 : 0) || a.idx - b.idx)
+    // 홈은 탐색의 시작점: 전 카탈로그를 늘어놓지 않고 에디터 픽 6개만 보여준다.
+    // 전체 상품은 /select에서 필터·비교하도록 연결해 모바일 스크롤과 선택 피로를 줄인다.
+    .slice(0, 6)
     .map(({ i }) => localizeAffiliateItem(i, lang))
 
   return (
     <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
-      {/* ── 히어로 — 예약 의도형 ── */}
-      {/* pt-24: 콘텐츠가 items-end로 하단 정렬될 때 고정 navbar(65px) 뒤로 숨지 않도록 상단 여백 보장 (모바일) */}
-      <section className="relative min-h-[94vh] flex items-end overflow-hidden dark-surface pt-24 md:pt-0">
+      {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
+      <section className="relative min-h-[100svh] flex items-center overflow-hidden dark-surface pt-24 pb-8 md:pt-28 md:pb-12">
         <div className="absolute inset-0">
           {/* LCP 이미지 — next/image 반응형 srcset·priority (모바일 대역폭·속도 개선) */}
           <Image
@@ -153,50 +155,67 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover animate-kenburns"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/40 to-[#04121f]/15" />
+          <div className="absolute inset-0 bg-[#04121f]/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/45 to-[#04121f]/20 lg:bg-gradient-to-r lg:from-[#04121f]/95 lg:via-[#04121f]/65 lg:to-[#04121f]/20" />
         </div>
-        <div className="relative w-full max-w-6xl mx-auto px-6 pb-16 md:pb-20">
-          {/* 신뢰 배지 라인 */}
-          <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
-            <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-300 animate-pulse inline-block" />
-              {tr('h3_badge_pilot')}
-            </span>
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1.5 rounded-full bg-white/8 text-white/90 border border-white/15 backdrop-blur-md">
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-300" strokeWidth={ICON_STROKE} />
-              {tr('h3_badge_partner')}
-            </span>
-          </div>
+        <div className="relative w-full max-w-6xl mx-auto px-5 sm:px-6">
+          <div className="grid min-w-0 items-end gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(24rem,0.82fr)] lg:gap-12 xl:gap-20">
+            <div className="min-w-0 lg:pb-2">
+              {/* 실제 운영·제휴 신뢰 신호 */}
+              <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
+                <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-300 animate-pulse inline-block" />
+                  {tr('h3_badge_pilot')}
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1.5 rounded-full bg-white/8 text-white/90 border border-white/15 backdrop-blur-md">
+                  <ShieldCheck className="w-3.5 h-3.5 text-sky-300" strokeWidth={ICON_STROKE} />
+                  {tr('h3_badge_partner')}
+                </span>
+              </div>
 
-          <h1
-            className="animate-rise text-[2.6rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-5 tracking-tight"
-            style={{ animationDelay: '0.15s' }}
-          >
-            {tr('h3_title_pre')}
-            <br />
-            <span className="text-gradient-ocean">{tr('h3_title_accent')}</span>
-            {tr('h3_title_post')}
-          </h1>
-          <p
-            className="animate-rise text-white/90 text-base sm:text-lg font-medium max-w-xl mb-8"
-            style={{ animationDelay: '0.25s' }}
-          >
-            {tr('h3_sub')}
-          </p>
+              <h1
+                className="animate-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
+                style={{ animationDelay: '0.15s' }}
+              >
+                {tr('h3_title_pre')}
+                <br />
+                <span className="text-gradient-ocean">{tr('h3_title_accent')}</span>
+                {tr('h3_title_post')}
+              </h1>
+              <span
+                className="animate-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
+                style={{ animationDelay: '0.25s' }}
+              >
+                {tr('h3_sub')}
+              </span>
 
-          {/* 목적지 퀵서치 카드 */}
-          <div
-            className="animate-rise max-w-3xl rounded-3xl bg-black/40 border border-white/15 backdrop-blur-xl p-5 sm:p-6 mb-6"
-            style={{ animationDelay: '0.35s' }}
-          >
-            <p className="text-white/80 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
-              <Search className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
-              {tr('h3_search_label')}
-            </p>
+              {/* 수치 신뢰 스트립 — 데스크톱에서만 보조 정보로 노출 */}
+              <div
+                className="animate-rise hidden lg:grid grid-cols-4 gap-2 mt-8"
+                style={{ animationDelay: '0.4s' }}
+              >
+                {STAT_KEYS.map(([v, l]) => (
+                  <span key={l} className="rounded-2xl border border-white/12 bg-black/20 px-3 py-3 backdrop-blur-md">
+                    <strong className="block text-white text-base font-black leading-none mb-1.5">{tr(v)}</strong>
+                    <span className="block text-white/60 text-[0.6875rem] font-medium leading-tight">{tr(l)}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* 목적지 퀵서치 카드 */}
+            <div
+              className="animate-rise w-full min-w-0 rounded-[1.75rem] bg-[#061927]/80 border border-white/20 backdrop-blur-2xl p-4 sm:p-6 shadow-[0_24px_80px_rgba(1,12,22,0.45)]"
+              style={{ animationDelay: '0.32s' }}
+            >
+              <span className="text-white/85 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
+                <Search className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                {tr('h3_search_label')}
+              </span>
             {/* 통합 검색창 — 도시 입력 → Booking 검색결과 직행(제휴 추적) */}
             <form
               onSubmit={(e) => { e.preventDefault(); submitHeroSearch() }}
-              className="flex gap-2 mb-4"
+              className="flex gap-2 mb-3"
             >
               {/* min-w-0: input의 flex 기본 min-width:auto가 긴 placeholder 폭만큼 버텨
                   모바일에서 버튼이 카드 밖으로 밀려 짤리던 버그 수정 (375px 실측) */}
@@ -213,30 +232,30 @@ export default function HomePage() {
               </div>
               <button
                 type="submit"
-                className="shrink-0 inline-flex items-center gap-1.5 bg-brand-mid hover:bg-brand-light text-white font-bold text-sm px-5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.4)]"
+                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-brand-mid hover:bg-brand-light text-white font-bold text-sm min-w-12 px-4 sm:px-5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 <Search className="w-4 h-4 sm:hidden" strokeWidth={ICON_STROKE} />
                 <span className="hidden sm:inline">{tr('h3_search_go')}</span>
               </button>
             </form>
-            <p className="text-white/45 text-[0.7rem] font-medium mb-4">{tr('h3_search_or')}</p>
-            <div className="flex flex-wrap gap-2 mb-5">
+            <span className="block text-white/50 text-[0.7rem] font-medium mb-3">{tr('h3_search_or')}</span>
+            <div className="flex flex-nowrap lg:flex-wrap gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden">
               {HERO_DESTS.map((d) => (
                 <button
                   key={d.labelKey}
                   type="button"
                   onClick={() => setHeroDest(heroDest?.anchor === d.anchor ? null : d)}
-                  className={`chip-dest ${heroDest?.anchor === d.anchor ? 'chip-dest-active' : ''}`}
+                  className={`chip-dest shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 ${heroDest?.anchor === d.anchor ? 'chip-dest-active' : ''}`}
                 >
                   {tr(d.labelKey)}
                 </button>
               ))}
             </div>
-            <div className="h-px bg-white/10 mb-5" />
-            <div className="flex flex-col sm:flex-row gap-2.5">
+            <div className="h-px bg-white/10 my-4" />
+            <div className="flex flex-col gap-2.5">
               <Link
                 href={heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel'}
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)]"
+                className="inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
                 {tr('h3_cta_stay')}
@@ -244,25 +263,13 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/programs"
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl border border-white/25 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {tr('h3_cta_programs')}
                 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
-          </div>
-
-          {/* 통계 인라인 스트립 */}
-          <div
-            className="animate-rise flex flex-wrap items-center gap-x-6 gap-y-2"
-            style={{ animationDelay: '0.45s' }}
-          >
-            {STAT_KEYS.map(([v, l]) => (
-              <p key={l} className="text-white/75 text-[0.8125rem] font-medium">
-                <span className="text-white font-black text-base mr-1.5">{tr(v)}</span>
-                {tr(l)}
-              </p>
-            ))}
+            </div>
           </div>
         </div>
       </section>

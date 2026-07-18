@@ -22,9 +22,9 @@ const CONSENT_KEY = 'wakation_consent' // 'granted' | 'denied'
 type L = Record<Lang, string>
 const COPY: Record<string, L> = {
   msg: {
-    KO: '서비스 개선을 위해 방문 통계(Google Analytics) 쿠키를 사용합니다. 동의하시겠어요?',
-    EN: 'We use analytics cookies (Google Analytics) to improve the service. Is that okay?',
-    JP: 'サービス改善のため訪問統計（Google Analytics）Cookieを使用します。よろしいですか？',
+    KO: '서비스 개선을 위해 분석 쿠키를 사용합니다.',
+    EN: 'We use analytics cookies to improve Wakation.',
+    JP: 'サービス改善のため分析Cookieを使用します。',
   },
   accept: { KO: '동의', EN: 'Accept', JP: '同意する' },
   decline: { KO: '거부', EN: 'Decline', JP: '拒否' },
@@ -61,24 +61,28 @@ export function Analytics() {
       )}
 
       {ready && consent === null && (
-        <div className="fixed inset-x-0 bottom-0 z-[60] px-4 pb-4 pointer-events-none">
-          <div className="max-w-3xl mx-auto pointer-events-auto bg-[#0f2231] text-white border border-white/12 rounded-2xl shadow-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-3">
-            <p className="text-sm text-white/85 flex-1 leading-relaxed">
+        <div className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-3 sm:px-4 sm:pb-4 pointer-events-none">
+          <div
+            role="region"
+            aria-label={COPY.msg[lang]}
+            className="max-w-2xl mx-auto pointer-events-auto bg-[#0b1d2b]/95 text-white border border-white/12 rounded-2xl shadow-[0_18px_60px_rgba(2,12,22,0.45)] px-4 py-3 flex items-center gap-3 backdrop-blur-xl"
+          >
+            <p className="text-[0.75rem] sm:text-sm text-white/82 flex-1 leading-relaxed">
               {COPY.msg[lang]}{' '}
-              <a href="/privacy" className="underline text-sky-300 hover:text-sky-200 whitespace-nowrap">
+              <a href="/privacy" className="underline underline-offset-2 text-sky-300 hover:text-sky-200 whitespace-nowrap">
                 {COPY.privacy[lang]}
               </a>
             </p>
-            <div className="flex gap-2 shrink-0">
+            <div className="flex gap-1.5 shrink-0">
               <button
                 onClick={() => decide('denied')}
-                className="text-xs font-bold px-4 py-2 rounded-full border border-white/20 text-white/80 hover:bg-white/8 transition-colors"
+                className="min-h-10 text-xs font-bold px-3 rounded-full border border-white/20 text-white/80 hover:bg-white/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {COPY.decline[lang]}
               </button>
               <button
                 onClick={() => decide('granted')}
-                className="text-xs font-bold px-5 py-2 rounded-full bg-brand-mid text-white hover:bg-brand-light transition-colors"
+                className="min-h-10 text-xs font-bold px-3.5 sm:px-4 rounded-full bg-brand-mid text-white hover:bg-brand-light transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {COPY.accept[lang]}
               </button>
