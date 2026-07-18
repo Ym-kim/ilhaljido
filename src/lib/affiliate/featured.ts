@@ -395,6 +395,26 @@ export const FEATURED_ESIM: AffiliateItem[] = [
 
 export const FEATURED_CRUISES: AffiliateItem[] = [
   {
+    // 2026-07-18 신설 — 크루즈 카테고리 첫 Klook 제휴 (기존 팬스타 직링크는 제휴 불가였음)
+    id: 'cruise-panstar-miracle',
+    name: 'Klook',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '⛴',
+    productTitle: '팬스타 미라클호 · 부산-오사카 크루즈페리',
+    destination: '부산 ↔ 오사카 · 17시간',
+    country: '한국 출발',
+    desc: '뷔페 2식 포함 승선권으로 하룻밤 만에 오사카. 위성 와이파이·사우나를 갖춘 국내 첫 럭셔리 크루즈페리.',
+    cta: '승선권 보기',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+    badge: '뷔페 2식 포함',
+    trackingId: 'aid=126848',
+    coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
+    sourceNote:
+      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격은 실측 불가라 미표기',
+  },
+  {
     id: 'cruise-rci-singapore',
     name: 'Trip.com',
     category: 'transport',
