@@ -29,7 +29,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('jp/the-millennials-shibuya-shibuya-ku.html'),
     badge: '코워킹 내장',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/covers/stay-tokyo-city-real.jpeg',
   },
   {
     id: 'stay-lively-osaka',

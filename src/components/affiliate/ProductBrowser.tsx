@@ -63,7 +63,7 @@ const COPY: Record<string, L> = {
 
 function ItemGrid({ items, lang }: { items: AffiliateItem[]; lang: Lang }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+    <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
       {items.map((item) => (
         <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
       ))}
@@ -131,7 +131,7 @@ export function ProductBrowser() {
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-4">
                     <h3 className="text-white font-black text-base leading-snug mb-0.5">
-                      <span className="mr-1.5" aria-hidden>{col.emoji}</span>{col.title[lang]}
+                      {col.title[lang]}
                     </h3>
                     <p className="text-white/70 text-xs mb-2">{col.tagline[lang]}</p>
                     <span className="inline-flex items-center gap-1 text-sky-300 text-xs font-bold group-hover:gap-2 transition-all">

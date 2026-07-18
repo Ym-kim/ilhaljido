@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
@@ -49,7 +49,7 @@ export function HouseBanner() {
           <div className="relative flex flex-col md:flex-row md:items-center gap-5 md:gap-8">
             <div className="flex-1 min-w-0 md:max-w-3xl">
               <span className="inline-flex items-center gap-1.5 text-white/80 text-[0.6875rem] font-bold uppercase tracking-widest mb-2">
-                <Sparkles className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                <span aria-hidden="true" className="h-px w-5 bg-sky-300/80" />
                 {c.eyebrow[lang]}
               </span>
               <h2 className="text-white font-black text-xl md:text-2xl leading-tight mb-1.5">

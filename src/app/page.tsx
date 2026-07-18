@@ -83,14 +83,14 @@ const CATEGORY_PHOTOS: Record<string, string> = {
 }
 
 const THEME_ITEMS = [
-  { labelKey: 'home_theme_healing_l',  descKey: 'home_theme_healing_d',  href: '/programs/healing',    emoji: '🧘', photo: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_network_l',  descKey: 'home_theme_network_d',  href: '/programs/networking', emoji: '🤝', photo: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_local_l',    descKey: 'home_theme_local_d',    href: '/programs/local',      emoji: '🗺️', photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_growth_l',   descKey: 'home_theme_growth_d',   href: '/growth',               emoji: '🚀', photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_healing_l',  descKey: 'home_theme_healing_d',  href: '/programs/healing',    photo: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_network_l',  descKey: 'home_theme_network_d',  href: '/programs/networking', photo: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_local_l',    descKey: 'home_theme_local_d',    href: '/programs/local',      photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_growth_l',   descKey: 'home_theme_growth_d',   href: '/growth',               photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80' },
   // 일본 소도시 — 전용 테마 페이지(료칸·온천, /programs/onsen)로 직결
-  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/programs/onsen', emoji: '🗻', photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_golf_l',     descKey: 'home_theme_golf_d',     href: '/programs/golf',       emoji: '⛳', photo: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_sports_l',   descKey: 'home_theme_sports_d',   href: '/programs/sports',     emoji: '🏟️', photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/programs/onsen', photo: '/covers/onsen-hero-real.jpeg' },
+  { labelKey: 'home_theme_golf_l',     descKey: 'home_theme_golf_d',     href: '/programs/golf',       photo: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=600&q=80' },
+  { labelKey: 'home_theme_sports_l',   descKey: 'home_theme_sports_d',   href: '/programs/sports',     photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' },
 ]
 
 const SPACE_KEYS = [
@@ -108,6 +108,7 @@ const STAT_KEYS = [
 
 export default function HomePage() {
   const { lang, tr } = useLang()
+  const bookingNote = ({ KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' } as const)[lang]
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
   const [heroDest, setHeroDest] = useState<(typeof HERO_DESTS)[number] | null>(null)
@@ -148,7 +149,7 @@ export default function HomePage() {
         <div className="absolute inset-0">
           {/* LCP 이미지 — next/image 반응형 srcset·priority (모바일 대역폭·속도 개선) */}
           <Image
-            src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1800&q=85"
+            src="/covers/home-hero-real.jpeg"
             alt=""
             fill
             priority
@@ -323,23 +324,25 @@ export default function HomePage() {
         </div>
 
         {/* 카드 — 모바일: 2열 그리드 / lg+: 3열 그리드 */}
-        <div className="grid grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
+        <div className="grid grid-cols-1 gap-3 px-4 min-[520px]:grid-cols-2 sm:gap-4 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
           {featuredItems.map((item) => (
             <AffiliateCard key={item.id} item={item} visual />
           ))}
           {featuredItems.length === 0 && (
-            <div className="col-span-2 lg:col-span-3 flex items-center justify-center h-40 rounded-2xl bg-[#f0f9ff] border border-[#dbeafe]">
+            <div className="col-span-1 flex h-40 items-center justify-center rounded-2xl border border-[#dbeafe] bg-[#f0f9ff] min-[520px]:col-span-2 lg:col-span-3">
               <p className="text-[#94a3b8] text-sm">{tr('h3_sel_empty')}</p>
             </div>
           )}
         </div>
 
         {/* 디스클로저 */}
-        <div className="mt-6 px-6 max-w-6xl mx-auto space-y-1">
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
-            {tr('h3_disclosure')}
-          </p>
-        </div>
+        <details className="group mx-auto mt-6 max-w-6xl border-t border-[#e8e4dd] px-6 pt-4">
+          <summary className="w-fit cursor-pointer list-none text-[0.7rem] font-bold text-[#77716a] underline-offset-4 hover:underline [&::-webkit-details-marker]:hidden">
+            {bookingNote}
+            <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <span className="mt-3 block max-w-2xl text-[0.65rem] leading-relaxed text-[#918b83]">{tr('h3_disclosure')}</span>
+        </details>
       </section>
 
       {/* ── 테마 기획전 — 목적지별 숙소·체험·eSIM·항공 큐레이션 묶음 ── */}

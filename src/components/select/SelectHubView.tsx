@@ -30,9 +30,9 @@ const COPY: Record<string, L> = {
     JP: '宿の予約から現地体験、eSIM、オンライン講座まで。ワーケーションに合う提携サービスを目的地別にキュレーション。',
   },
   note: {
-    KO: '외부 제휴 서비스이며 Wakation이 직접 운영하는 상품과 구분됩니다. 요금과 상품 조건은 제휴사 사이트에서 최종 확인됩니다.',
-    EN: 'These are external partner services, separate from programs run by Wakation. Final prices and terms are confirmed on each partner site.',
-    JP: '外部提携サービスであり、Wakation直営プログラムとは区別されます。料金·条件は提携先サイトでご確認ください。',
+    KO: '목적지와 체류 방식에 맞춰 비교하기 좋은 상품만 모았습니다.',
+    EN: 'A focused edit of products worth comparing for each destination and stay style.',
+    JP: '目的地と滞在スタイルに合わせて、比較しやすい商品を厳選しました。',
   },
   cat_label: { KO: '카테고리', EN: 'CATEGORIES', JP: 'カテゴリー' },
   browse: { KO: '둘러보기', EN: 'Browse', JP: '見てみる' },
@@ -52,7 +52,7 @@ const COPY: Record<string, L> = {
   all_activity: { KO: '현지 체험 전체 보기', EN: 'See all experiences', JP: '現地体験をすべて見る' },
   all_esim: { KO: 'eSIM 전체 보기', EN: 'See all eSIMs', JP: 'eSIMをすべて見る' },
   learn_eyebrow: { KO: '강의 · 학습', EN: 'COURSES · LEARNING', JP: '講座 · 学習' },
-  learn_title: { KO: '🎓 워케이션 중 성장하는 강의', EN: '🎓 Courses that grow with your workation', JP: '🎓 ワーケーション中に成長する講座' },
+  learn_title: { KO: '워케이션 중 성장하는 강의', EN: 'Courses that grow with your workation', JP: 'ワーケーション中に成長する講座' },
   learn_desc: {
     KO: 'AI 자동화, 마케팅, 생산성. 인프런 파트너 강의 큐레이션.',
     EN: 'AI automation, marketing and productivity — curated Inflearn partner courses.',
@@ -73,13 +73,14 @@ const COPY: Record<string, L> = {
     EN: 'Final prices and product terms are confirmed on partner sites.',
     JP: '料金·商品条件は提携先サイトで最終確認されます。',
   },
+  booking_note: { KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' },
 }
 
 // 목적지 필터 (에어비앤비 스타일)
 const DEST_FILTERS = [
-  { id: 'all',   labelKey: 'f_all',   flag: '🌏' },
-  { id: 'japan', labelKey: 'f_japan', flag: '🇯🇵' },
-  { id: 'bali',  labelKey: 'f_bali',  flag: '🇮🇩' },
+  { id: 'all', labelKey: 'f_all' },
+  { id: 'japan', labelKey: 'f_japan' },
+  { id: 'bali', labelKey: 'f_bali' },
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
@@ -288,14 +289,14 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
                     : 'bg-white border-[#e5e1da] text-[#7a7a7a] hover:border-[#c8c4be] hover:text-[#4a4a4a]'
                 }`}
               >
-                <span>{f.flag}</span> {COPY[f.labelKey][lang]}
+                {COPY[f.labelKey][lang]}
               </button>
             ))}
           </div>
         </div>
 
         {/* 모바일: 2열 그리드 / lg+: 4열 */}
-        <div className="grid grid-cols-2 gap-3 px-4 sm:gap-4 sm:px-6 lg:grid-cols-4 max-w-6xl sm:mx-auto">
+        <div className="grid grid-cols-1 gap-3 px-4 min-[520px]:grid-cols-2 sm:gap-4 sm:px-6 lg:grid-cols-4 max-w-6xl sm:mx-auto">
           {hotelItems.map((item) => (
             <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
           ))}
@@ -368,11 +369,17 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
 
       {/* Disclosure */}
       <section className="px-6 pb-16 pt-8">
-        <div className="max-w-6xl mx-auto space-y-1">
-          <p className="text-[#b8b4ae] text-[0.65rem] leading-relaxed max-w-2xl">{COPY.disc1[lang]}</p>
-          <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">{COPY.disc2[lang]}</p>
-          <p className="text-[#c8c4be] text-[0.65rem] leading-relaxed max-w-2xl">{COPY.disc3[lang]}</p>
-        </div>
+        <details className="group mx-auto max-w-6xl border-t border-[#e8e4dd] pt-4">
+          <summary className="w-fit cursor-pointer list-none text-[0.7rem] font-bold text-[#77716a] underline-offset-4 hover:underline [&::-webkit-details-marker]:hidden">
+            {COPY.booking_note[lang]}
+            <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="mt-3 max-w-2xl space-y-1 text-[0.65rem] leading-relaxed text-[#918b83]">
+            <span className="block">{COPY.disc1[lang]}</span>
+            <span className="block">{COPY.disc2[lang]}</span>
+            <span className="block">{COPY.disc3[lang]}</span>
+          </div>
+        </details>
       </section>
     </div>
   )

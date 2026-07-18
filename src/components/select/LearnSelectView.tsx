@@ -77,7 +77,7 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
             {tr('learn_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('learn_featured_d')}</p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
             {FEATURED_COURSES.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}

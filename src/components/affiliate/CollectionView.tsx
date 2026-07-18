@@ -56,7 +56,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
             {COLLECTIONS_UI.eyebrow[lang]}
           </span>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-3">
-            <span className="mr-2" aria-hidden>{col.emoji}</span>{col.title[lang]}
+            {col.title[lang]}
           </h1>
           <span className="block text-sky-200 text-sm font-bold mb-2">{col.tagline[lang]}</span>
           <p className="text-white/75 text-sm md:text-base max-w-2xl leading-relaxed">{col.desc[lang]}</p>
@@ -70,7 +70,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
           <p className="text-[#94a3b8] text-xs mb-7">
             {items.length}{COLLECTIONS_UI.count_label[lang]}
           </p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {items.map((item) => (
               <AffiliateCard key={item.id} item={item} visual />
             ))}

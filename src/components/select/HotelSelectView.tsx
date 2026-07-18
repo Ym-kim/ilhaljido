@@ -123,7 +123,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
 
               {/* 1) 에디터 추천 개별 숙소 — 지역별 4장 진열: 폰 2열·데스크톱 4열 모두 빈칸 없음 */}
               {featured.length > 0 && (
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4 mb-6">
+                <div className="mb-6 grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
                   {featured.map((item) => (
                     <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
                   ))}
@@ -150,7 +150,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#64748b] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
             {tr('selh_partners')}
           </p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4">
             {HOTEL_PARTNERS.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}

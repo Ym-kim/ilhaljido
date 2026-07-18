@@ -582,7 +582,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   //       유후인=적합 사진 미확보 → gradient 폴백 (추측 배정 금지 원칙)
   {
     id: 'japan-kawaguchiko',
-    photo: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-kawaguchiko-real.jpeg',
     flag: '🗻',
     city: '가와구치코',
     cityEn: 'Kawaguchiko',
@@ -601,7 +601,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-kanazawa',
-    photo: 'https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?auto=format&fit=crop&w=700&q=80',
+    photo: '/covers/dest-kanazawa-real.jpeg',
     flag: '🏮',
     city: '가나자와',
     cityEn: 'Kanazawa',
@@ -620,6 +620,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'japan-yufuin',
+    photo: '/covers/dest-yufuin-real.jpeg',
     flag: '♨️',
     city: '유후인',
     cityEn: 'Yufuin',
