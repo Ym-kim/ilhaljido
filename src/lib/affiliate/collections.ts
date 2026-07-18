@@ -33,7 +33,7 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'chuseok-short-haul',
     emoji: '🌕',
-    photo: P('1533050487297-09b450131914'), // 일본 골목 야경 (검증 2026-07-18, curl 200+육안)
+    photo: '/covers/stay-fukuoka-city-real.jpeg', // 일본 골목 야경 (검증 2026-07-19, curl 200+육안)
     title: { KO: '추석 연휴 단거리 워케이션', EN: 'Chuseok long-weekend workation', JP: '秋夕連休 近場ワーケーション' },
     tagline: { KO: '나흘이면 충분한 일본 3거점', EN: 'Four days, three easy bases in Japan', JP: '4日で行ける日本の3拠点' },
     desc: {
@@ -46,7 +46,7 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'tokyo-allinone',
     emoji: '🗼',
-    photo: P('1540959733332-eab4deabeeaf'), // 도쿄 (검증)
+    photo: '/covers/stay-tokyo-city-real.jpeg', // 도쿄 (검증 2026-07-19, curl 200+육안)
     title: { KO: '도쿄 워케이션 올인원', EN: 'Tokyo workation, all in one', JP: '東京ワーケーション オールインワン' },
     tagline: { KO: '숙소부터 eSIM까지 한 번에', EN: 'Stay, experiences and eSIM in one go', JP: '宿からeSIMまで一度に' },
     desc: {
@@ -59,7 +59,7 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'bali-monthstay',
     emoji: '🌴',
-    photo: P('1537996194471-e657df975ab4'), // 발리 (검증)
+    photo: '/covers/stay-bali-city-real.jpeg', // 발리 (검증 2026-07-19, curl 200+육안)
     title: { KO: '발리 한 달 살기 세트', EN: 'Bali month-stay set', JP: 'バリ1カ月滞在セット' },
     tagline: { KO: '노마드 성지에서 길게 머물기', EN: 'Settle in at the nomad capital', JP: 'ノマドの聖地で長く滞在' },
     desc: {

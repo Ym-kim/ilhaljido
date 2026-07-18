@@ -55,7 +55,7 @@ export function CollectionsSection() {
                 </span>
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <h3 className="text-white font-black text-lg leading-snug mb-1">
-                    <span className="mr-1.5" aria-hidden>{col.emoji}</span>{col.title[lang]}
+                    {col.title[lang]}
                   </h3>
                   <p className="text-white/70 text-xs mb-2.5">{col.tagline[lang]}</p>
                   <span className="inline-flex items-center gap-1 text-sky-300 text-xs font-bold group-hover:gap-2 transition-all">

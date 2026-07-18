@@ -69,7 +69,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
             {tr('sela_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('sela_featured_d')}</p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
             {FEATURED_ACTIVITIES.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
@@ -90,7 +90,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
               ? 'ゴルフ·ヒーリング·ローカル·スポーツ — テーマ別の検証済みKKday体験。'
               : '골프·힐링·로컬·스포츠 — 테마별로 고른 검증 KKday 체험.'}
           </p>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {THEME_EXPERIENCES.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}

@@ -59,7 +59,7 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
                 </span>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h2 className="text-white font-black text-xl leading-snug mb-1.5">
-                    <span className="mr-2" aria-hidden>{col.emoji}</span>{col.title[lang]}
+                    {col.title[lang]}
                   </h2>
                   <p className="text-white/70 text-sm mb-3">{col.tagline[lang]}</p>
                   <span className="inline-flex items-center gap-1.5 text-sky-300 text-sm font-bold group-hover:gap-2.5 transition-all">

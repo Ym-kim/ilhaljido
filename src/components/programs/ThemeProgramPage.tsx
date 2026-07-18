@@ -67,7 +67,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
               {tr('theme_featured')}
             </p>
             <p className="text-white/60 text-sm mb-6">{tr('theme_featured_d')}</p>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
               {themeProducts.map((item) => (
                 <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
               ))}

@@ -8,9 +8,9 @@ import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 
 const IMAGE_LABEL: Record<Lang, string> = {
-  KO: '편집 이미지',
-  EN: 'Editorial image',
-  JP: 'イメージ画像',
+  KO: '지역 무드',
+  EN: 'Destination mood',
+  JP: '旅先のイメージ',
 }
 
 // active_affiliate/api_ready → 브랜드 블루 filled CTA, 실제 수익 추적
@@ -29,7 +29,7 @@ function PrimaryButton({ link }: { link: ServiceLink }) {
       target="_blank"
       rel={rel}
       onClick={() => trackAffiliateClick({ provider: link.provider, status: link.status })}
-      className={`flex w-full items-center justify-center gap-1.5 text-[0.8125rem] font-bold px-4 py-2.5 rounded-xl transition-all duration-150 ${
+      className={`flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-[0.8125rem] font-bold transition-all duration-200 ${
         isActive
           ? 'bg-brand-mid text-white shadow-sm hover:bg-brand-light hover:shadow-md'
           : 'border border-[#e2e8f0] text-[#94a3b8] hover:border-[#cbd5e1] hover:text-[#64748b]'
@@ -65,12 +65,12 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
   return (
     <div
       id={entry.id}
-      className={`group relative flex flex-col bg-white border rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg scroll-mt-28 ${
+      className={`group relative flex scroll-mt-28 flex-col overflow-hidden rounded-[1.35rem] border bg-white shadow-[0_10px_35px_rgba(8,47,73,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(8,47,73,0.12)] ${
         hasActive ? 'border-[#bae6fd] hover:border-[#7dd3fc]' : 'border-[#e2e8f0] hover:border-[#cbd5e1]'
       } ${className}`}
     >
       {/* 목적지 사진 헤더 */}
-      <div className="relative h-36 overflow-hidden bg-[#eff6ff]">
+      <div className="relative h-48 overflow-hidden bg-[#e9f0f2]">
         {entry.photo ? (
           <Image
             src={entry.photo}
@@ -80,8 +80,9 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
             className="object-cover group-hover:scale-105 transition-transform duration-700"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[#e0f2fe] to-[#f0f9ff] flex items-center justify-center">
-            <span className="text-5xl opacity-40 select-none">{entry.flag}</span>
+          <div className={`relative flex h-full w-full items-end bg-gradient-to-br ${entry.gradient} p-4`}>
+            <div className="absolute inset-x-4 top-4 h-px bg-white/25" />
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.18em] text-white/65">Wakation city guide</span>
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
@@ -97,7 +98,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
           <div>
             <p className="text-white/75 text-[0.7rem] font-medium drop-shadow">{entry.country}</p>
             <p className="text-white font-black text-xl leading-tight drop-shadow-lg">
-              {entry.flag} {entry.city}
+              {entry.city}
             </p>
           </div>
         </div>

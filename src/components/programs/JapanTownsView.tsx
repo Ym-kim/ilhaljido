@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
-import { ArrowRight, MapPin } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { DestinationCard } from '@/components/affiliate/DestinationCard'
@@ -58,14 +58,14 @@ export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero — 후지산 (검증 풀) */}
-      <section className="relative h-[55vh] flex items-end overflow-hidden dark-surface">
+      <section className="dark-surface relative flex min-h-[560px] items-end overflow-hidden sm:h-[64vh]">
         <Image
-          src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=1800&q=85"
+          src="/covers/onsen-hero-real.jpeg"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-[56%_center]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
         <div className="relative w-full max-w-6xl mx-auto px-6 pb-16">
@@ -80,10 +80,8 @@ export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
       {/* 소도시 숙소 */}
       <section className="px-6 py-14">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-[#111827] font-black text-xl mb-1.5 flex items-center gap-2">
-            <MapPin className="w-5 h-5 text-brand-mid" strokeWidth={ICON_STROKE} />
-            {COPY.stays_label[lang]}
-          </h2>
+          <span className="mb-2 block text-[0.65rem] font-black uppercase tracking-[0.2em] text-brand-mid">WAKATION SMALL TOWNS</span>
+          <h2 className="mb-1.5 text-xl font-black text-[#111827]">{COPY.stays_label[lang]}</h2>
           <p className="text-[#64748b] text-sm mb-7">{COPY.stays_sub[lang]}</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {towns.map((entry) => (
