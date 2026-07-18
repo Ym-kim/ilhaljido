@@ -20,6 +20,7 @@ export type HouseCampaign = {
   cta: L
   href: string
   gradient: string // tailwind gradient (from-… via-… to-…)
+  image?: string   // 배경 이미지. 카피는 HTML로 유지해 3언어·접근성 보장
   event: string    // Vercel Analytics 이벤트명
 }
 
@@ -41,6 +42,7 @@ export const HOUSE_CAMPAIGNS: HouseCampaign[] = [
     cta: { KO: '예약 허브 보기', EN: 'Open the booking hub', JP: '予約ハブを見る' },
     href: '/select',
     gradient: 'from-[#0284c7] via-[#0369a1] to-[#075985]',
+    image: '/covers/trip-prep-allinone-ai.jpeg',
     event: 'house_banner_clicked',
   },
   {

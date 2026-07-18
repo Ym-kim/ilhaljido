@@ -84,10 +84,10 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {hasPhoto ? (
             <Image
               src={item.coverPhoto!}
-              alt={title}
+              alt=""
               fill
               sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 384px"
-              className="object-cover group-hover:scale-105 transition-transform duration-700"
+              className="object-cover saturate-[0.94] contrast-[1.03] group-hover:scale-105 group-hover:saturate-100 transition-all duration-700"
             />
           ) : (
             /* 사진 없는 카드 — 흐릿한 이모지 대신 의도된 커버 디자인 (도트 패턴 + 큰 아이콘) */
@@ -237,7 +237,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {item.coverPhoto ? (
             <Image
               src={item.coverPhoto}
-              alt={title}
+              alt=""
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
               className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
