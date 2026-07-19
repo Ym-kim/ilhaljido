@@ -1180,12 +1180,13 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     photo: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
     region: loc('경북', 'Gyeongbuk', '慶北'),
     name: loc('경북형 워케이션', 'Gyeongbuk Workation', '慶北ワーケーション'),
-    benefit: loc('안동·경주 등 워케이션 상품 할인 + 교통비 최대 3만원 환급 + 여행자보험 + 웰컴키트, 2박3일~', 'Discounted packages (Andong·Gyeongju) + up to ₩30,000 transit refund + insurance + welcome kit', '安東・慶州などの割引商品＋交通費最大3万W還付＋保険'),
+    // 2026-07-19 재검증: 공식몰(tour054) 상품 24개 정상 판매 중 확인 — '1차 소진' 표기 stale라 open 전환
+    benefit: loc('안동·의성·봉화·울진 등 워케이션 상품 24종 판매 중 + 교통비 최대 3만원 환급 + 여행자보험 + 웰컴키트, 2박3일~', '24 packages on sale (Andong·Uiseong·Bonghwa·Uljin) + up to ₩30,000 transit refund + insurance + welcome kit', '安東・義城・奉化・蔚珍など24商品販売中＋交通費最大3万W還付＋保険'),
     maxBenefit: loc('교통비 최대 ₩30,000 환급', 'Up to ₩30,000 transit refund', '交通費最大₩30,000還付'),
-    status: 'check',
-    deadline: loc('하반기 2차 공고 확인 (투어054)', 'Check 2nd-half notice (Tour054)', '下半期2次公告を確認'),
+    status: 'open',
+    deadline: loc('공식몰 상품 판매 중 (2026-07 확인)', 'On sale now (checked Jul 2026)', '公式モールで販売中'),
     conditions: loc(['재직 증빙 가능자', '직장 소재 시군 예약 불가'], ['Work-provable', 'Not your home city/county'], ['在職証明可', '勤務地の市郡は不可']),
-    href: 'https://www.tour054.co.kr/',
+    href: 'https://www.tour054.co.kr/goods/goods_list.php?cateCd=023',
   },
 ]
 
