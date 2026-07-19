@@ -40,6 +40,27 @@ const PENDING_STATUSES = new Set([
   'needs_referral_link',
 ])
 
+const CATEGORY_COVER: Record<AffiliateItem['category'], string> = {
+  hotel: '/covers/home-hero-real.jpeg',
+  activity: '/covers/activity-curated-real-v2.jpeg',
+  transport: '/covers/flight-global-real-v2.jpeg',
+  esim: '/covers/wifi-japan-real-v2.jpeg',
+  insurance: '/covers/trip-prep-allinone-ai.jpeg',
+  education: '/covers/course-notion-ai.jpeg',
+  visa: '/covers/flight-global-real-v2.jpeg',
+}
+
+const PRODUCT_TYPE_COVER: Partial<Record<NonNullable<AffiliateItem['productType']>, string>> = {
+  stay: '/covers/home-hero-real.jpeg',
+  activity: '/covers/activity-curated-real-v2.jpeg',
+  transport: '/covers/flight-global-real-v2.jpeg',
+  esim: '/covers/wifi-japan-real-v2.jpeg',
+  insurance: '/covers/trip-prep-allinone-ai.jpeg',
+  education: '/covers/course-notion-ai.jpeg',
+  visa: '/covers/flight-global-real-v2.jpeg',
+  workspace: '/covers/home-hero-real.jpeg',
+}
+
 interface AffiliateCardProps {
   item: AffiliateItem
   className?: string
@@ -54,7 +75,10 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   const badgeText = BADGE_TEXT[lang] ?? BADGE_TEXT.KO
   const meta = STATUS_META[item.status] ?? STATUS_META.placeholder
   const title = item.productTitle ?? item.displayTitle ?? item.name
-  const hasPhoto = visual && !!item.coverPhoto
+  const coverPhoto = item.coverPhoto
+    ?? (item.productType ? PRODUCT_TYPE_COVER[item.productType] : undefined)
+    ?? CATEGORY_COVER[item.category]
+  const hasPhoto = visual && !!coverPhoto
   // ── visual 모드: 사진 카드 (2열 모바일 가독성 최적화) ────────────────────────
   if (visual) {
     return (
@@ -69,21 +93,13 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         className={`group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#dfe6e9] bg-white shadow-[0_10px_35px_rgba(8,47,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_20px_55px_rgba(8,47,73,0.13)] ${className}`}
       >
         <div className="relative h-52 shrink-0 overflow-hidden bg-[#e9f0f2] sm:h-48">
-          {hasPhoto ? (
-            <Image
-              src={item.coverPhoto!}
-              alt=""
-              fill
-              sizes="(max-width: 519px) 100vw, (max-width: 1024px) 50vw, 384px"
-              className="object-cover saturate-[0.9] contrast-[1.04] transition-all duration-700 group-hover:scale-[1.035] group-hover:saturate-100"
-            />
-          ) : (
-            <div className={`relative flex h-full w-full items-end bg-gradient-to-br ${item.coverGradient ?? 'from-[#12344a] via-[#0b2639] to-[#061925]'} p-4`}>
-              <div className="absolute inset-x-4 top-4 h-px bg-white/25" />
-              <div className="absolute right-5 top-5 h-20 w-20 rounded-full border border-white/10" />
-              <span className="relative text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/65">Wakation Select</span>
-            </div>
-          )}
+          <Image
+            src={coverPhoto}
+            alt=""
+            fill
+            sizes="(max-width: 519px) 100vw, (max-width: 1024px) 50vw, 384px"
+            className="object-cover saturate-[0.9] contrast-[1.04] transition-all duration-700 group-hover:scale-[1.035] group-hover:saturate-100"
+          />
 
           {/* 사진 하단 그라디언트 — 목적지 텍스트 가독성 */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
@@ -177,7 +193,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   }
 
   // ── 기본 모드: 다크 카드 (어두운 배경 페이지용) ─────────────────────────────
-  const showCover = !!(item.coverPhoto || item.coverGradient || item.destination)
+  const showCover = !!coverPhoto
   return (
     <a
       href={item.href}
@@ -195,21 +211,13 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
     >
       {showCover && (
         <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${item.coverGradient ?? 'from-white/8 to-white/3'}`}>
-          {item.coverPhoto ? (
-            <Image
-              src={item.coverPhoto}
-              alt=""
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
-              className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
-            />
-          ) : (
-            <div className="absolute inset-0">
-              <div className="absolute inset-x-5 top-5 h-px bg-white/20" />
-              <div className="absolute right-6 top-7 h-24 w-24 rounded-full border border-white/10" />
-              <span className="absolute bottom-5 left-5 text-[0.62rem] font-bold uppercase tracking-[0.2em] text-white/45">Wakation Select</span>
-            </div>
-          )}
+          <Image
+            src={coverPhoto}
+            alt=""
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+            className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"
+          />
           {meta.isAffiliate && (
             <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/40 to-transparent" />
           )}

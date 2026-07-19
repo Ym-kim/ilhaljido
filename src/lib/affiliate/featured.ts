@@ -433,6 +433,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     badge: '뷔페 2식 포함',
     trackingId: 'aid=126848',
+    coverPhoto: '/covers/cruise-panstar-real-v2.jpeg',
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     sourceNote:
       'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-19, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
@@ -1024,6 +1025,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/155844?cid=25833',
     badge: '골프',
     trackingId: 'cid=25833',
+    coverPhoto: '/covers/golf-pattaya-real-v2.jpeg',
     coverGradient: 'from-emerald-900 via-green-950 to-[#0d0d0d]',
   },
   {
@@ -1092,6 +1094,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/81238-tottenham-hotspur-premier-league-football-ticket-london/?aid=126848',
     badge: '축구 직관',
     trackingId: 'aid=126848',
+    coverPhoto: '/covers/sports-tottenham-real-v2.jpeg',
     coverGradient: 'from-indigo-900 via-blue-950 to-[#0d0d0d]',
   },
   {
@@ -1109,6 +1112,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/45658-kyoto-eat-drink-like-a-local-izakaya-experience/?aid=126848',
     badge: '미식',
     trackingId: 'aid=126848',
+    coverPhoto: '/covers/local-izakaya-kyoto-real-v2.jpeg',
     coverGradient: 'from-amber-900 via-orange-950 to-[#0d0d0d]',
   },
 
