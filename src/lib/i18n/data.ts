@@ -1188,6 +1188,30 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     conditions: loc(['재직 증빙 가능자', '직장 소재 시군 예약 불가'], ['Work-provable', 'Not your home city/county'], ['在職証明可', '勤務地の市郡は不可']),
     href: 'https://www.tour054.co.kr/goods/goods_list.php?cateCd=023',
   },
+  {
+    // 2026-07-19 신규: 경기도·경기관광공사. 2026-06 전역 확대(언론 보도 2026-06-05·07-01) 확인 후 추가.
+    // 기존 제외 사유(민간 더휴일 채널만)는 ggtour.or.kr 공식 사업 페이지 확보로 해소 — href는 공식만(소싱 룰),
+    // 신청 실동선(공식 지정 운영사 더휴일)은 conditions에 명시
+    id: 'gyeonggi-healing-worcation',
+    photo: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80',
+    region: loc('경기', 'Gyeonggi', '京畿'),
+    name: loc('경기 힐링 워케이션 (경기관광공사)', 'Gyeonggi Healing Workation', '京畿ヒーリングワーケーション'),
+    benefit: loc(
+      '도내 거점 11곳(파주·포천·연천·가평·동두천 + 양평·이천·수원 등) — 2박 이상 시 1박당 3만원 숙박 지원 (최대 4박)',
+      '11 venues across Gyeonggi — ₩30,000/night lodging support for 2+ night stays (up to 4 nights)',
+      '道内拠点11カ所 — 2泊以上で1泊3万W宿泊支援（最大4泊）',
+    ),
+    maxBenefit: loc('1박 ₩30,000 × 최대 4박', '₩30,000/night × up to 4', '1泊₩30,000×最大4泊'),
+    status: 'open',
+    deadline: loc('2026 운영 중 (2026-06 전역 확대)', 'Running in 2026 (expanded Jun 2026)', '2026年運営中'),
+    conditions: loc(
+      ['재직·사업자 증빙 (프리랜서 명함 가능)', '주중 2박 이상', '공식 운영사(더휴일) 통해 예약'],
+      ['Proof of work/business (freelancer card OK)', 'Weekday 2+ nights', 'Book via official operator'],
+      ['在職・事業証明', '平日2泊以上', '公式運営社経由で予約'],
+    ),
+    workSpec: loc('거점 11곳 (워케이션센터·호텔)', '11 venues (centers & hotels)', '拠点11カ所'),
+    href: 'https://www.ggtour.or.kr/information/tourism/workation',
+  },
 ]
 
 export function getSupportPrograms(lang: Lang) {
