@@ -34,7 +34,6 @@ export default function Footer() {
                 { k: 'nav_destinations', h: '/destinations' },
                 { k: 'nav_select_collections', h: '/collections' },
                 { k: 'nav_infrastructure', h: '/infrastructure' },
-                { k: 'footer_spaces', h: '/spaces' },
                 { k: 'nav_visa', h: '/visa-ai' },
                 { k: 'nav_growth', h: '/growth' },
                 { k: 'nav_prog_business', h: '/business' },

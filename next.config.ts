@@ -33,6 +33,9 @@ const nextConfig: NextConfig = {
       { source: '/stay', destination: '/select/hotel', permanent: true },
       { source: '/activities', destination: '/select/activity', permanent: true },
       { source: '/workspace', destination: '/infrastructure', permanent: true },
+      // /spaces 통폐합 (2026-07-21): mock 데이터·AI 토큰 비용·죽은 카드(링크 0)의 레거시.
+      // 워크스페이스 검증 컨셉은 /infrastructure가 정식 커버 → /workspace와 동일 목적지로 통합
+      { source: '/spaces', destination: '/infrastructure', permanent: true },
     ]
   },
 }

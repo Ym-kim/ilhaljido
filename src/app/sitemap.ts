@@ -45,7 +45,6 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/tools/diagnosis',          priority: 0.7, freq: 'monthly' },
   { path: '/about',                    priority: 0.7, freq: 'monthly' },
   { path: '/infrastructure',           priority: 0.6, freq: 'monthly' },
-  { path: '/spaces',                   priority: 0.6, freq: 'monthly' },
   { path: '/moments',                   priority: 0.7, freq: 'weekly' },
   { path: '/moments/submit',           priority: 0.5, freq: 'monthly' },
   // 문의·정책
