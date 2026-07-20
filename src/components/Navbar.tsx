@@ -38,6 +38,7 @@ const NAV_ITEMS: NavItem[] = [
     items: [
       { labelKey: 'nav_select_guide', href: '/guide' },
       { labelKey: 'nav_select_stories', href: '/stories' },
+      { labelKey: 'nav_select_compare', href: '/destinations/compare' },
       { labelKey: 'nav_select_hotel', href: '/select/hotel' },
       { labelKey: 'nav_select_activity', href: '/select/activity' },
       { labelKey: 'nav_select_esim', href: '/select/esim' },
@@ -62,6 +63,7 @@ const NAV_ITEMS: NavItem[] = [
       { labelKey: 'nav_growth', href: '/growth' },
       { labelKey: 'nav_learn', href: '/learn' },
       { labelKey: 'nav_founder_net', href: '/programs/networking' },
+      { labelKey: 'nav_tools_diagnosis', href: '/tools/diagnosis', hasDivider: true },
     ],
   },
   { key: 'nav_partnership', href: '/partnership' },
