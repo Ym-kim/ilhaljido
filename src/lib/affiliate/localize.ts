@@ -241,8 +241,8 @@ const EN: Record<string, Overlay> = {
   'act-klook-elephant-chiangmai': {
     productTitle: 'Elephant Jungle Sanctuary Chiang Mai',
     destination: 'Chiang Mai · Thailand',
-    desc: 'Ethical, no-riding elephant care — passed Klook’s animal-welfare assessment.',
-    cta: 'View experience', badge: 'Welfare assessed',
+    desc: 'A no-riding, feed-and-care sanctuary experience. Half-day morning course.',
+    cta: 'View experience', badge: 'Ethical',
   },
   'theme-golf-alpine-chiangmai': {
     productTitle: 'Alpine Golf Resort Chiang Mai tee time', destination: 'Chiang Mai · Thailand',
@@ -714,8 +714,8 @@ const JP: Record<string, Overlay> = {
   'act-klook-elephant-chiangmai': {
     productTitle: 'チェンマイ エレファント・ジャングル・サンクチュアリ',
     destination: 'チェンマイ · タイ',
-    desc: '乗らずに世話をする倫理的な象体験 — Klook動物福祉審査通過。',
-    cta: '体験を見る', badge: '動物福祉認証',
+    desc: '乗らずに餌やり・世話をするサンクチュアリ型の象体験。午前半日コース。',
+    cta: '体験を見る', badge: '倫理的な体験',
   },
   'theme-golf-alpine-chiangmai': {
     productTitle: 'アルパインGCチェンマイ ティータイム', destination: 'チェンマイ · タイ',

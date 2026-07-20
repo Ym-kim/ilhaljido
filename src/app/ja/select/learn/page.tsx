@@ -5,7 +5,7 @@ import { cityLanguageAlternates } from '@/lib/cities'
 // /ja/select/learn — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
 export const metadata: Metadata = {
-  title: '講座・学習 | Wakation Select',
+  title: '講座・学習 — Wakation Select',
   description:
     'AI自動化、マーケティング、生産性、開発、言語。ワーケーション中に成長するInflearnパートナー講座カテゴリー。',
   keywords: ['Inflearn', 'オンライン講座', 'AI 講座', 'マーケティング 講座', 'ワーケーション 勉強', '開発 講座'],
