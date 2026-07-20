@@ -1243,6 +1243,8 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     country: '일본',
     desc: '기온의 식당 4곳을 돌며 13가지 요리를 맛보는 저녁 미식 투어. 퇴근 후 로컬의 밤 — Klook 예약.',
     cta: '투어 보기',
+    priceFrom: '₩91,200~',
+    sourceNote: 'Klook 상품 페이지 meta(product:price) 실측 (기준 2026-07-21) — 리뷰 없어 평점 미표기',
     href: 'https://www.klook.com/ko/activity/159777-kyoto-gion-food-tour-with-13-dishes-at-4-eateries/?aid=126848',
     badge: '미식',
     trackingId: 'aid=126848',
