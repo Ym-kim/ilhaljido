@@ -30,8 +30,9 @@ export function MomentRail() {
             </h2>
             <p className="text-[#64748b] text-sm mt-2.5">{tr('home_moments_sub')}</p>
           </div>
+          {/* 2026-07-19: 전체보기를 /moments 피드로 연결 — 기존 /select/hotel은 오연결, /moments는 메뉴 없는 고아였음 */}
           <Link
-            href="/select/hotel"
+            href="/moments"
             className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
           >
             {tr('view_all')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
