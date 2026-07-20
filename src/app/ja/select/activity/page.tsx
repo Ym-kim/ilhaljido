@@ -5,7 +5,7 @@ import { cityLanguageAlternates } from '@/lib/cities'
 // /ja/select/activity — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
 export const metadata: Metadata = {
-  title: '現地体験・ツアー | Wakation Select',
+  title: '現地体験・ツアー — Wakation Select',
   description:
     '日本・ベトナム・バリの現地ツアー、交通パス、入場券。KKdayパートナー商品でワーケーション体験を豊かに。',
   keywords: ['ワーケーション 体験', 'KKday', '日本 ツアー', 'ベトナム アクティビティ', 'バリ 体験', '交通パス'],

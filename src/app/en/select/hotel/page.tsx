@@ -5,7 +5,7 @@ import { cityLanguageAlternates } from '@/lib/cities'
 // /en/select/hotel — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
 
 export const metadata: Metadata = {
-  title: 'Stays | Wakation Select',
+  title: 'Stays — Wakation Select',
   description:
     'Tokyo, Osaka, Fukuoka, Da Nang, Bali, Lisbon and Jeju — search workation stays by destination on Booking.com and Trip.com.',
   alternates: {
