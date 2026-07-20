@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Wifi, Wallet, Calendar, IdCard, Clock, MapPin, BookOpen, Laptop, Car, Heart, TrainFront, Plane, Plug, CreditCard, ChevronDown } from 'lucide-react'
 import { useWishlist } from '@/hooks/useWishlist'
 import { useLang } from '@/context/LanguageContext'
@@ -157,10 +158,14 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
     <div className="min-h-screen bg-[#fafaf8]">
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[340px] flex items-end overflow-hidden">
-        <img
+        {/* 2026-07-21 성능: 히어로 raw img → next/image (LCP·포맷 최적화) */}
+        <Image
           src={city.photo}
           alt={`${cityName} workation`}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
@@ -401,10 +406,13 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
               className="group bg-white rounded-2xl border border-[#e8e4dc] hover:border-teal-300 hover:shadow-lg overflow-hidden flex flex-col sm:flex-row transition-all"
             >
               <div className="relative sm:w-56 h-48 sm:h-auto shrink-0 overflow-hidden">
-                <img
-                  src={featuredStay.coverPhoto}
+                {/* 2026-07-21 성능: raw img → next/image */}
+                <Image
+                  src={featuredStay.coverPhoto ?? ''}
                   alt={featuredStay.productTitle ?? featuredStay.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="224px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* 위시리스트 하트 (Airbnb 벤치) */}
                 <button

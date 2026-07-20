@@ -1,14 +1,13 @@
 'use client'
 
-import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Camera } from 'lucide-react'
 import { MOMENTS } from '@/lib/moments'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 
-// Metadata export works in client components only as a workaround via a wrapper,
-// but for client pages we skip it here and rely on layout.tsx title template.
+// 메타데이터는 moments/layout.tsx에서 지정 (클라이언트 페이지)
 
 function MomentCard({ moment }: { moment: (typeof MOMENTS)[number] }) {
   const { lang } = useLang()
@@ -17,10 +16,13 @@ function MomentCard({ moment }: { moment: (typeof MOMENTS)[number] }) {
       href={`/select/hotel#${moment.anchor}`}
       className="group relative block rounded-3xl overflow-hidden aspect-[9/16] bg-[#1a1a1a]"
     >
-      <img
+      {/* 2026-07-21 성능: raw img → next/image (원본 풀사이즈 서빙 회피) */}
+      <Image
         src={moment.photo}
         alt={moment.title[lang]}
-        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+        fill
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        className="object-cover group-hover:scale-105 transition-transform duration-700"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 p-4">

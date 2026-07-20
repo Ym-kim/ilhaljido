@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Check } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
@@ -166,11 +167,13 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
                   <th key={c.id} scope="col" className="align-top px-3 pt-4 pb-3 min-w-52 text-left">
                     <Link href={`${prefix}/destinations/${c.id}`} className="group block">
                       <div className="relative h-24 rounded-xl overflow-hidden mb-2">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                        {/* 2026-07-21 성능: raw img(w=1200 원본을 h-24에 서빙) → next/image */}
+                        <Image
                           src={c.photo}
                           alt={`${c.name[lang]} workation`}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          fill
+                          sizes="208px"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                         <div className="absolute bottom-2 left-3 text-white">
