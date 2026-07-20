@@ -113,20 +113,20 @@ export default function ProgramRegisterPage() {
             <form onSubmit={submit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelCls}>{tr('preg_org')} *</label>
-                  <input required value={form.org} onChange={set('org')} className={inputCls} />
+                  <label htmlFor="preg-org" className={labelCls}>{tr('preg_org')} *</label>
+                  <input id="preg-org" required value={form.org} onChange={set('org')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{tr('preg_contact')} *</label>
-                  <input required autoComplete="name" value={form.contact} onChange={set('contact')} className={inputCls} />
+                  <label htmlFor="preg-contact" className={labelCls}>{tr('preg_contact')} *</label>
+                  <input id="preg-contact" required autoComplete="name" value={form.contact} onChange={set('contact')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{tr('preg_email')} *</label>
-                  <input required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <label htmlFor="preg-email" className={labelCls}>{tr('preg_email')} *</label>
+                  <input id="preg-email" required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{tr('preg_phone')} *</label>
-                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
+                  <label htmlFor="preg-phone" className={labelCls}>{tr('preg_phone')} *</label>
+                  <input id="preg-phone" required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
               </div>
 
@@ -134,39 +134,39 @@ export default function ProgramRegisterPage() {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelCls}>{tr('preg_pname')} *</label>
-                  <input required value={form.pname} onChange={set('pname')} className={inputCls} />
+                  <label htmlFor="preg-pname" className={labelCls}>{tr('preg_pname')} *</label>
+                  <input id="preg-pname" required value={form.pname} onChange={set('pname')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{tr('preg_region')} *</label>
-                  <input required value={form.region} onChange={set('region')} className={inputCls} />
+                  <label htmlFor="preg-region" className={labelCls}>{tr('preg_region')} *</label>
+                  <input id="preg-region" required value={form.region} onChange={set('region')} className={inputCls} />
                 </div>
               </div>
               <div>
-                <label className={labelCls}>{tr('preg_type')} *</label>
-                <select value={form.ptype} onChange={set('ptype')} className={inputCls}>
+                <label htmlFor="preg-type" className={labelCls}>{tr('preg_type')} *</label>
+                <select id="preg-type" value={form.ptype} onChange={set('ptype')} className={inputCls}>
                   <option value="gov">{tr('preg_type_gov')}</option>
                   <option value="private">{tr('preg_type_private')}</option>
                   <option value="space">{tr('preg_type_space')}</option>
                 </select>
               </div>
               <div>
-                <label className={labelCls}>{tr('preg_benefit')} *</label>
-                <input required value={form.benefit} onChange={set('benefit')} className={inputCls} placeholder="예: 숙박 1박 5만원 지원, 총 30만원" />
+                <label htmlFor="preg-benefit" className={labelCls}>{tr('preg_benefit')} *</label>
+                <input id="preg-benefit" required value={form.benefit} onChange={set('benefit')} className={inputCls} placeholder="예: 숙박 1박 5만원 지원, 총 30만원" />
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelCls}>{tr('preg_period')} *</label>
-                  <input required value={form.period} onChange={set('period')} className={inputCls} placeholder="예: 상시 / 2026.8.1~8.31" />
+                  <label htmlFor="preg-period" className={labelCls}>{tr('preg_period')} *</label>
+                  <input id="preg-period" required value={form.period} onChange={set('period')} className={inputCls} placeholder="예: 상시 / 2026.8.1~8.31" />
                 </div>
                 <div>
-                  <label className={labelCls}>{tr('preg_link')}</label>
-                  <input value={form.link} onChange={set('link')} className={inputCls} placeholder="https://" />
+                  <label htmlFor="preg-link" className={labelCls}>{tr('preg_link')}</label>
+                  <input id="preg-link" value={form.link} onChange={set('link')} className={inputCls} placeholder="https://" />
                 </div>
               </div>
               <div>
-                <label className={labelCls}>{tr('preg_message')}</label>
-                <textarea value={form.message} onChange={set('message')} rows={4} className={inputCls} />
+                <label htmlFor="preg-message" className={labelCls}>{tr('preg_message')}</label>
+                <textarea id="preg-message" value={form.message} onChange={set('message')} rows={4} className={inputCls} />
               </div>
 
               <ConsentCheckbox checked={consent} onChange={setConsent} />

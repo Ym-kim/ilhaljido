@@ -1,7 +1,5 @@
 import type { Lang } from './types'
 import { loc, tloc, type Loc } from './locale'
-import { MOCK_SPACES } from '@/lib/mock-data'
-import type { Space } from '@/types'
 
 type StayItem = {
   id: string
@@ -791,114 +789,6 @@ export function getBudgetOptions(lang: Lang) {
     ['Under ₩500k', '₩500k–1M', '₩1M–1.5M', '₩1.5M+', 'Undecided'],
     ['50万ウォン以下', '50〜100万', '100〜150万', '150万以上', '未定']
   ))
-}
-
-export function getRegionLabel(lang: Lang, region: string): string {
-  const map: Record<string, Loc<string>> = {
-    jeju: loc('제주', 'Jeju', '済州'),
-    gangwon: loc('강원', 'Gangwon', '江原'),
-    jeonnam: loc('전남', 'South Jeolla', '全南'),
-    busan: loc('부산', 'Busan', '釜山'),
-  }
-  return map[region] ? tloc(lang, map[region]) : region
-}
-
-export function getSpaceTypeLabel(lang: Lang, type: string): string {
-  const map: Record<string, Loc<string>> = {
-    coworking: loc('코워킹', 'Coworking', 'コワーキング'),
-    cafe: loc('카페', 'Café', 'カフェ'),
-    villa: loc('빌라', 'Villa', 'ヴィラ'),
-    pension: loc('펜션', 'Pension', 'ペンション'),
-  }
-  return map[type] ? tloc(lang, map[type]) : type
-}
-
-export function getNoiseLevelLabel(lang: Lang, level: number): string {
-  const map: Record<number, Loc<string>> = {
-    1: loc('매우 조용', 'Very quiet', 'とても静か'),
-    2: loc('조용', 'Quiet', '静か'),
-    3: loc('보통', 'Moderate', '普通'),
-    4: loc('약간 시끄러움', 'Slightly noisy', 'やや騒がしい'),
-    5: loc('시끄러움', 'Noisy', '騒がしい'),
-  }
-  return map[level] ? tloc(lang, map[level]) : tloc(lang, loc('보통', 'Moderate', '普通'))
-}
-
-const SPACE_I18N: Record<
-  string,
-  { name: Loc<string>; description: Loc<string>; tags: Loc<string[]> }
-> = {
-  'space-001': {
-    name: loc('애월 오션뷰 코워킹', 'Aewol ocean-view coworking', 'アウル・オーシャンビュー'),
-    description: loc(
-      '제주 애월 해안도로에 위치한 오션뷰 코워킹 공간. 넓은 창문으로 바다를 바라보며 집중할 수 있어요.',
-      'Ocean-view coworking on Jeju’s Aewol coastal road — focus with wide windows facing the sea.',
-      '済州アウル海岸沿い。海を見ながら集中できるコワーキング。'
-    ),
-    tags: loc(
-      ['오션뷰', '조용함', '집중', '모니터 제공'],
-      ['Ocean view', 'Quiet', 'Focus', 'Monitor'],
-      ['オーシャンビュー', '静か', '集中', 'モニター']
-    ),
-  },
-  'space-002': {
-    name: loc('한림 감성 카페 스테이', 'Hallim café stay', 'ハンリム・カフェステイ'),
-    description: loc(
-      '제주 한림의 작은 감성 카페. 오전은 코워킹으로 오후는 카페로 운영돼 시간대별 분위기가 달라요.',
-      'A cozy Hallim café — coworking in the morning, café vibe in the afternoon.',
-      '済州ハンリムの小さなカフェ。午前はコワーキング、午後はカフェ。'
-    ),
-    tags: loc(['감성', '카페', '자연', '여유'], ['Cozy', 'Café', 'Nature', 'Relaxed'], ['雰囲気', 'カフェ', '自然', '余裕']),
-  },
-  'space-003': {
-    name: loc('속초 산속 워케이션 빌라', 'Sokcho mountain villa', '束草・山のヴィラ'),
-    description: loc(
-      '설악산이 보이는 산속 빌라. 완전한 고독과 자연 속에서 깊은 집중을 원하는 분께 추천해요.',
-      'Mountain villa with Seoraksan views — for deep focus in nature and solitude.',
-      '雪岳山が見える山のヴィラ。自然の中で深く集中したい方に。'
-    ),
-    tags: loc(['산속', '고독', '집중', '자연', '프리미엄'], ['Mountain', 'Solitude', 'Focus', 'Nature', 'Premium'], ['山', '孤独', '集中', '自然', 'プレミアム']),
-  },
-  'space-004': {
-    name: loc('강릉 바다 앞 코워킹', 'Gangneung beach coworking', '江陵・海辺コワーキング'),
-    description: loc(
-      '강릉 경포 해수욕장 앞에 위치한 코워킹 공간. 파도 소리를 들으며 작업할 수 있어요.',
-      'Coworking in front of Gangneung’s Gyeongpo Beach — work with the sound of waves.',
-      '江陵・경포海水浴場前。波の音を聞きながら仕事できる。'
-    ),
-    tags: loc(['바다뷰', '기가인터넷', '핫플', '코워킹'], ['Beach view', 'Gigabit', 'Trendy', 'Coworking'], ['海ビュー', 'ギガ回線', 'ホット', 'コワーキング']),
-  },
-  'space-005': {
-    name: loc('여수 낭만항구 펜션 오피스', 'Yeosu harbor pension office', '麗水・ロマンチック港'),
-    description: loc(
-      '여수 돌산도의 낭만적인 항구 뷰 펜션. 별채 작업실이 있어 독립적인 업무 환경을 제공해요.',
-      'Romantic harbor-view pension in Yeosu with a separate work annex.',
-      '麗水・浪漫な港ビュー。別棟の作業室で独立した環境。'
-    ),
-    tags: loc(['낭만', '항구뷰', '독립작업실', '프라이빗'], ['Romantic', 'Harbor view', 'Private office', 'Private'], ['ロマン', '港', '独立作業室', 'プライベート']),
-  },
-  'space-006': {
-    name: loc('부산 해운대 도심 코워킹', 'Busan Haeundae coworking', '釜山・海雲台'),
-    description: loc(
-      '해운대 번화가에 위치한 세련된 코워킹 공간. 네트워킹과 미팅에 최적화된 환경이에요.',
-      'Stylish coworking in Haeundae — great for networking and meetings.',
-      '海雲台の洗練されたコワーキング。ネットワーキングとミーティングに最適。'
-    ),
-    tags: loc(['도심', '네트워킹', '미팅룸', '세련됨'], ['Urban', 'Networking', 'Meeting room', 'Stylish'], ['都心', 'ネットワーク', '会議室', '洗練']),
-  },
-}
-
-export function getLocalizedSpaces(lang: Lang): Space[] {
-  return MOCK_SPACES.map((s) => {
-    const i18n = SPACE_I18N[s.id]
-    if (!i18n) return s
-    return {
-      ...s,
-      name: tloc(lang, i18n.name),
-      description: tloc(lang, i18n.description),
-      tags: tloc(lang, i18n.tags),
-    }
-  })
 }
 
 export function translatePriceInclude(lang: Lang, item: string): string {

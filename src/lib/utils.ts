@@ -21,27 +21,7 @@ export function getRemainingSlots(max: number, current: number): number {
   return Math.max(0, max - current)
 }
 
-export function getRegionLabel(region: string): string {
-  const map: Record<string, string> = {
-    jeju: '제주', gangwon: '강원', jeonnam: '전남',
-    gyeongnam: '경남', busan: '부산', other: '기타',
-  }
-  return map[region] ?? region
-}
-
-export function getSpaceTypeLabel(type: string): string {
-  const map: Record<string, string> = {
-    cafe: '카페', coworking: '코워킹', pension: '펜션', hotel: '호텔', villa: '빌라',
-  }
-  return map[type] ?? type
-}
-
-export function getNoiseLevelLabel(level: number): string {
-  const map: Record<number, string> = {
-    1: '매우 조용', 2: '조용', 3: '보통', 4: '약간 시끄러움', 5: '시끄러움',
-  }
-  return map[level] ?? '보통'
-}
+// /spaces·ai-recommend 삭제(2026-07)로 getRegionLabel/getSpaceTypeLabel/getNoiseLevelLabel 제거(소비처 0)
 
 export const CATEGORY_LABELS: Record<string, string> = {
   growth: '성장 캠프', healing: '힐링·휴식', network: '네트워킹', global: '해외 연계',

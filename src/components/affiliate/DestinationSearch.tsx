@@ -83,6 +83,7 @@ export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={placeholder}
+            aria-label={placeholder}
             className="flex-1 min-w-0 bg-transparent py-3 text-sm text-[#111827] placeholder:text-[#94a3b8] focus:outline-none"
           />
         </div>

@@ -397,24 +397,24 @@ export default function BusinessPage() {
             <form onSubmit={submit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelCls}>{t('f_name')} *</label>
-                  <input required value={form.name} onChange={set('name')} className={inputCls} />
+                  <label htmlFor="business-name" className={labelCls}>{t('f_name')} *</label>
+                  <input id="business-name" required value={form.name} onChange={set('name')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_phone')} *</label>
-                  <input required type="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
+                  <label htmlFor="business-phone" className={labelCls}>{t('f_phone')} *</label>
+                  <input id="business-phone" required type="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_email')} *</label>
-                  <input required type="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <label htmlFor="business-email" className={labelCls}>{t('f_email')} *</label>
+                  <input id="business-email" required type="email" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_company')} *</label>
-                  <input required value={form.company} onChange={set('company')} className={inputCls} />
+                  <label htmlFor="business-company" className={labelCls}>{t('f_company')} *</label>
+                  <input id="business-company" required value={form.company} onChange={set('company')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_biztype')}</label>
-                  <select value={form.bizType} onChange={set('bizType')} className={inputCls}>
+                  <label htmlFor="business-biztype" className={labelCls}>{t('f_biztype')}</label>
+                  <select id="business-biztype" value={form.bizType} onChange={set('bizType')} className={inputCls}>
                     <option value="">{t('f_biztype_ph')}</option>
                     {BIZ_TYPES.map((b) => (
                       <option key={b.v} value={b.v}>{b.l[lang]}</option>
@@ -422,25 +422,26 @@ export default function BusinessPage() {
                   </select>
                 </div>
                 <div className="sm:col-span-2">
-                  <label className={labelCls}>{t('f_location')}</label>
-                  <input value={form.location} onChange={set('location')} placeholder={t('f_location_ph')} className={inputCls} />
+                  <label htmlFor="business-location" className={labelCls}>{t('f_location')}</label>
+                  <input id="business-location" value={form.location} onChange={set('location')} placeholder={t('f_location_ph')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_size')}</label>
-                  <input value={form.size} onChange={set('size')} placeholder={t('f_size_ph')} className={inputCls} />
+                  <label htmlFor="business-size" className={labelCls}>{t('f_size')}</label>
+                  <input id="business-size" value={form.size} onChange={set('size')} placeholder={t('f_size_ph')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{t('f_region')}</label>
-                  <input value={form.region} onChange={set('region')} placeholder={t('f_region_ph')} className={inputCls} />
+                  <label htmlFor="business-region" className={labelCls}>{t('f_region')}</label>
+                  <input id="business-region" value={form.region} onChange={set('region')} placeholder={t('f_region_ph')} className={inputCls} />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className={labelCls}>{t('f_when')}</label>
-                  <input value={form.when} onChange={set('when')} placeholder={t('f_when_ph')} className={inputCls} />
+                  <label htmlFor="business-when" className={labelCls}>{t('f_when')}</label>
+                  <input id="business-when" value={form.when} onChange={set('when')} placeholder={t('f_when_ph')} className={inputCls} />
                 </div>
               </div>
               <div>
-                <label className={labelCls}>{t('f_msg')}</label>
+                <label htmlFor="business-message" className={labelCls}>{t('f_msg')}</label>
                 <textarea
+                  id="business-message"
                   rows={5}
                   value={form.message}
                   onChange={set('message')}
