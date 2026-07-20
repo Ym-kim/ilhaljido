@@ -95,10 +95,11 @@ function ApplyForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label className="block text-sm font-bold text-dark mb-1.5">
+        <label htmlFor="apply-name" className="block text-sm font-bold text-dark mb-1.5">
           {tr('apply_name')} <span className="text-red-500">*</span>
         </label>
         <input
+          id="apply-name"
           required
           autoComplete="name"
           value={form.name}
@@ -109,10 +110,11 @@ function ApplyForm() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-bold text-dark mb-1.5">
+          <label htmlFor="apply-phone" className="block text-sm font-bold text-dark mb-1.5">
             {tr('apply_phone')} <span className="text-red-500">*</span>
           </label>
           <input
+            id="apply-phone"
             required
             type="tel"
             inputMode="tel"
@@ -123,10 +125,11 @@ function ApplyForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-bold text-dark mb-1.5">
+          <label htmlFor="apply-email" className="block text-sm font-bold text-dark mb-1.5">
             {tr('apply_email')} <span className="text-red-500">*</span>
           </label>
           <input
+            id="apply-email"
             required
             type="email"
             inputMode="email"
@@ -139,10 +142,11 @@ function ApplyForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-dark mb-1.5">
+        <label htmlFor="apply-job" className="block text-sm font-bold text-dark mb-1.5">
           {tr('apply_job')} <span className="text-red-500">*</span>
         </label>
         <select
+          id="apply-job"
           required
           value={form.job_type}
           onChange={(e) => setForm((f) => ({ ...f, job_type: e.target.value }))}
@@ -158,10 +162,11 @@ function ApplyForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-dark mb-1.5">
+        <label htmlFor="apply-program" className="block text-sm font-bold text-dark mb-1.5">
           {tr('apply_program')} <span className="text-red-500">*</span>
         </label>
         <select
+          id="apply-program"
           required
           value={form.program_id}
           onChange={(e) => setForm((f) => ({ ...f, program_id: e.target.value }))}
@@ -263,6 +268,7 @@ function ApplyForm() {
             value={form.companion_names}
             onChange={(e) => setForm((f) => ({ ...f, companion_names: e.target.value }))}
             placeholder={tr('apply_companion_names_placeholder')}
+            aria-label={tr('apply_companion_names_placeholder')}
             className="w-full border border-border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-brand-mid transition-colors"
           />
         )}
@@ -270,8 +276,9 @@ function ApplyForm() {
 
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <label className="block text-sm font-bold text-dark mb-1.5">{tr('apply_duration')}</label>
+          <label htmlFor="apply-duration" className="block text-sm font-bold text-dark mb-1.5">{tr('apply_duration')}</label>
           <select
+            id="apply-duration"
             value={form.duration_preference}
             onChange={(e) => setForm((f) => ({ ...f, duration_preference: e.target.value }))}
             className="w-full border border-border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-brand-mid bg-white"
@@ -285,8 +292,9 @@ function ApplyForm() {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-bold text-dark mb-1.5">{tr('apply_budget')}</label>
+          <label htmlFor="apply-budget" className="block text-sm font-bold text-dark mb-1.5">{tr('apply_budget')}</label>
           <select
+            id="apply-budget"
             value={form.budget_range}
             onChange={(e) => setForm((f) => ({ ...f, budget_range: e.target.value }))}
             className="w-full border border-border rounded-lg px-3.5 py-2.5 text-sm outline-none focus:border-brand-mid bg-white"
@@ -302,8 +310,9 @@ function ApplyForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-bold text-dark mb-1.5">{tr('apply_message')}</label>
+        <label htmlFor="apply-message" className="block text-sm font-bold text-dark mb-1.5">{tr('apply_message')}</label>
         <textarea
+          id="apply-message"
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
           rows={3}

@@ -41,10 +41,6 @@ export {
   getDurationOptions,
   getBudgetOptions,
   getCompanionOptions,
-  getRegionLabel,
-  getSpaceTypeLabel,
-  getNoiseLevelLabel,
-  getLocalizedSpaces,
 } from './i18n/data'
 export type { HomeCategory, PartnerType, ProgramCard } from './i18n/content'
 

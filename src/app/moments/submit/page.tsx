@@ -160,40 +160,40 @@ export default function MomentSubmitPage() {
             <form onSubmit={submit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className={labelCls}>{T.name[lang]} *</label>
-                  <input required autoComplete="name" value={form.name} onChange={set('name')} className={inputCls} />
+                  <label htmlFor="moment-name" className={labelCls}>{T.name[lang]} *</label>
+                  <input id="moment-name" required autoComplete="name" value={form.name} onChange={set('name')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{T.email[lang]} *</label>
-                  <input required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <label htmlFor="moment-email" className={labelCls}>{T.email[lang]} *</label>
+                  <input id="moment-email" required type="email" inputMode="email" autoComplete="email" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{T.phone[lang]} *</label>
-                  <input required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
+                  <label htmlFor="moment-phone" className={labelCls}>{T.phone[lang]} *</label>
+                  <input id="moment-phone" required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
                 <div>
-                  <label className={labelCls}>{T.insta[lang]}</label>
-                  <input value={form.insta} onChange={set('insta')} className={inputCls} placeholder="@" />
+                  <label htmlFor="moment-insta" className={labelCls}>{T.insta[lang]}</label>
+                  <input id="moment-insta" value={form.insta} onChange={set('insta')} className={inputCls} placeholder="@" />
                 </div>
               </div>
 
               <div className="h-px bg-[#e0f2fe]" />
 
               <div>
-                <label className={labelCls}>{T.city[lang]} *</label>
-                <input required value={form.city} onChange={set('city')} className={inputCls} placeholder={T.cityPh[lang]} />
+                <label htmlFor="moment-city" className={labelCls}>{T.city[lang]} *</label>
+                <input id="moment-city" required value={form.city} onChange={set('city')} className={inputCls} placeholder={T.cityPh[lang]} />
               </div>
               <div>
-                <label className={labelCls}>{T.photoLink[lang]} *</label>
-                <input required type="url" value={form.photoLink} onChange={set('photoLink')} className={inputCls} placeholder={T.photoPh[lang]} />
+                <label htmlFor="moment-photolink" className={labelCls}>{T.photoLink[lang]} *</label>
+                <input id="moment-photolink" required type="url" value={form.photoLink} onChange={set('photoLink')} className={inputCls} placeholder={T.photoPh[lang]} />
               </div>
               <div>
-                <label className={labelCls}>{T.caption[lang]} *</label>
-                <input required value={form.caption} onChange={set('caption')} className={inputCls} placeholder={T.captionPh[lang]} maxLength={60} />
+                <label htmlFor="moment-caption" className={labelCls}>{T.caption[lang]} *</label>
+                <input id="moment-caption" required value={form.caption} onChange={set('caption')} className={inputCls} placeholder={T.captionPh[lang]} maxLength={60} />
               </div>
               <div>
-                <label className={labelCls}>{T.story[lang]}</label>
-                <textarea value={form.story} onChange={set('story')} rows={3} className={inputCls} />
+                <label htmlFor="moment-story" className={labelCls}>{T.story[lang]}</label>
+                <textarea id="moment-story" value={form.story} onChange={set('story')} rows={3} className={inputCls} />
               </div>
 
               <p className="text-[#94a3b8] text-[0.6875rem] leading-relaxed">{T.consent[lang]}</p>
