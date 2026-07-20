@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
     ],
+    // AVIF 우선(미지원 브라우저는 WebP 폴백) — 2026-07-21 성능 감사: 외부 머지가 추가한
+    // real.jpeg 커버(일부 500~780KB)의 옵티마이저 출력을 30~50% 추가 절감. 전 이미지 전역 적용
+    formats: ['image/avif', 'image/webp'],
+    // 최적화 이미지 캐시 31일 — 기존 max-age=0(매 요청 재검증) → 재방문·CDN 히트 개선
+    minimumCacheTTL: 2678400,
     // 자체 제작 SVG 커버(/public/covers) 서빙용 — 스크립트 실행 차단 CSP로 안전
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
