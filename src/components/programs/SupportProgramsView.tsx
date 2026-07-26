@@ -97,7 +97,7 @@ export function SupportProgramsView({ forceLang }: { forceLang?: Lang }) {
               >
                 {/* 지역 사진 헤더 — 상태칩·지역 오버레이 */}
                 <div className="relative h-36 overflow-hidden bg-[#eff6ff]">
-                  <Image src={p.photo} alt={p.region} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <Image src={p.photo} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/5 to-transparent" />
                   <span className={`absolute top-3 right-3 text-[0.65rem] font-bold px-2.5 py-1 rounded-full shadow-sm ${STATUS_STYLE[p.status]}`}>
                     {p.statusLabel}

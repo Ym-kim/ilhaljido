@@ -1,6 +1,7 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
 import Image from 'next/image'
+import Link from 'next/link'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { FEATURED_CRUISES } from '@/lib/affiliate/featured'
@@ -100,9 +101,9 @@ export default function CruisePage() {
             cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
           />
           <div className="mt-3 text-right">
-            <a href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+            <Link href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
               {lang === 'EN' ? 'Previous story: 17 hours at sea, Busan–Osaka →' : lang === 'JP' ? '前の特集：海の上の17時間 釜山—大阪 →' : '이전 스토리: 바다 위 17시간, 부산—오사카 미라클호 →'}
-            </a>
+            </Link>
           </div>
         </div>
       </section>
