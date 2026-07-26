@@ -79,13 +79,15 @@ const CHECKS: Check[] = [
   },
 
   // 대표 숙소 상세 (Booking) — 봇 챌린지 202도 생존으로 간주
-  { id: 'booking:lyf-bangkok', url: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html', okStatuses: [200, 202, 403] },
+  { id: 'booking:lyf-bangkok', url: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081', okStatuses: [200, 202, 403] },
 
   // Klook/KKday — 봇 차단 403이 정상. 404/5xx만 이상
   { id: 'klook:teamlab', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:miracle-ferry', url: 'https://www.klook.com/ko/activity/150798-busan-osaka-ferry-ticket/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:wifi-japan', url: 'https://www.klook.com/ko/activity/16399-unlimited-4g-lte-wifi-japan-airport-pickup-ninja-wifi/?aid=126848', okStatuses: [200, 403] },
+  { id: 'klook:wifi-taiwan', url: 'https://www.klook.com/ko/activity/16960-4g-wifi-taiwan/?aid=126848', okStatuses: [200, 403] },
+  { id: 'klook:wifi-thailand', url: 'https://www.klook.com/ko/activity/81348-thailand-4g-unlimited-pocket-wifi/?aid=126848', okStatuses: [200, 403] },
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },
   { id: 'page:cruise-bellissima', url: 'https://www.wakation.kr/cruise/bellissima' },
   { id: 'page:jeongseon-train', url: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },

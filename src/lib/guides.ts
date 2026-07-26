@@ -32,7 +32,6 @@ export type CityGuide = {
   internet?: 1 | 2 | 3 | 4 | 5
   costMonthly?: L   // { KO: '월 160만원대', … }
   visaFree?: L      // { KO: '무비자 90일', … }
-  esimHref?: string      // (미사용 잔재 — 렌더 안 함)
 }
 
 const FLIGHT = (slug: string) =>
@@ -95,7 +94,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 5,
     costMonthly: { KO: '월 160만원대', EN: '~₩1.6M / month', JP: '月160万ウォン程度' },
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
-    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'fukuoka',
@@ -143,7 +141,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 5,
     costMonthly: { KO: '월 120만원대', EN: '~₩1.2M / month', JP: '月120万ウォン程度' },
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
-    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'danang',
@@ -191,7 +188,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 4,
     costMonthly: { KO: '월 90만원대', EN: '~₩900K / month', JP: '月90万ウォン程度' },
     visaFree: { KO: '무비자 45일', EN: 'Visa-free 45 days', JP: 'ビザなし45日' },
-    esimHref: 'https://www.airalo.com/vietnam',
   },
   {
     slug: 'bali',
@@ -239,7 +235,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 3,
     costMonthly: { KO: '월 100만원대', EN: '~₩1.0M / month', JP: '月100万ウォン程度' },
     visaFree: { KO: '무비자 30일 → E33G 60일 연장', EN: 'Visa-free 30 days → +60 via E33G', JP: 'ビザなし30日 → E33Gで60日延長' },
-    esimHref: 'https://www.airalo.com/indonesia',
   },
   {
     slug: 'chiangmai',
@@ -287,7 +282,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 4,
     costMonthly: { KO: '월 110만원대', EN: '~₩1.1M / month', JP: '月110万ウォン程度' },
     visaFree: { KO: '무비자 60일', EN: 'Visa-free 60 days', JP: 'ビザなし60日' },
-    esimHref: 'https://www.airalo.com/thailand',
   },
   {
     slug: 'jeju',
@@ -382,7 +376,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 5,
     costMonthly: { KO: '월 140만원대', EN: '~₩1.4M / month', JP: '月140万ウォン程度' },
     visaFree: { KO: '무비자 90일', EN: 'Visa-free 90 days', JP: 'ビザなし90日' },
-    esimHref: 'https://www.airalo.com/japan',
   },
   {
     slug: 'cebu',
@@ -430,7 +423,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 3,
     costMonthly: { KO: '월 95만원대', EN: '~₩950K / month', JP: '月95万ウォン程度' },
     visaFree: { KO: '무비자 30일 → 최대 1년 연장', EN: 'Visa-free 30 days → up to 1 year', JP: 'ビザなし30日 → 最長1年' },
-    esimHref: 'https://www.airalo.com/philippines',
   },
   {
     slug: 'sydney',
@@ -478,7 +470,6 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 5,
     costMonthly: { KO: '월 330만원대', EN: '~₩3.3M / month', JP: '月330万ウォン程度' },
     visaFree: { KO: 'ETA / 워킹홀리데이 비자', EN: 'ETA / Working Holiday visa', JP: 'ETA / ワーホリビザ' },
-    esimHref: 'https://www.airalo.com/australia',
   },
 ]
 

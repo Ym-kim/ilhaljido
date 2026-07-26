@@ -1114,8 +1114,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     name: loc('국민쉼터 남해에서 한 달 살기', 'Namhae Month-Stay', '南海1カ月暮らし'),
     benefit: loc(
       '숙박비 팀당 1일 7만원 실비 + 체험비 1인 7~10만원(청년 10~12만원) + 여행자보험 — 4박~29박, 체류 9.1~10.31',
-      'Lodging ₩70,000/day per team + activities ₩70–120,000/person + insurance — 4–29 nights, stay Sep 1–Oct 31',
-      '宿泊費1日7万W＋体験費7〜12万W＋保険 — 4〜29泊、滞在9/1〜10/31',
+      'Lodging ₩70,000/day per team + activities ₩70–100,000/person (youth up to ₩120,000) + insurance — 4–29 nights, stay Sep 1–Oct 31',
+      '宿泊費1日7万W＋体験費7〜10万W（青年は最大12万W）＋保険 — 4〜29泊、滞在9/1〜10/31',
     ),
     maxBenefit: loc('숙박 1일 ₩70,000', '₩70,000/day lodging', '宿泊1日₩70,000'),
     status: 'open',
@@ -1154,8 +1154,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     name: loc('통영애(愛)온나', 'Tongyeong Ae-Onna', '統営エオンナ'),
     benefit: loc(
       '숙박비 팀당 1박 5만원(최대 35만원) + 체험비 1인 5~15만원(숙박일수 차등) + 여행자보험 — 팀당 최대 69만원, 연 2차 각 40팀',
-      'Lodging ₩50,000/night (max ₩350,000) + activities ₩50–150,000/person + insurance — up to ₩690,000/team',
-      '宿泊費1泊5万W（最大35万W）＋体験費5〜15万W＋保険 — チーム最大69万W',
+      'Lodging ₩50,000/night (max ₩350,000) + activities ₩50–150,000/person + insurance — up to ₩690,000/team, 2 batches/year (40 teams each)',
+      '宿泊費1泊5万W（最大35万W）＋体験費5〜15万W＋保険 — チーム最大69万W、年2回·各40チーム',
     ),
     maxBenefit: loc('팀 최대 ₩690,000', 'Up to ₩690,000/team', 'チーム最大₩690,000'),
     status: 'upcoming',
