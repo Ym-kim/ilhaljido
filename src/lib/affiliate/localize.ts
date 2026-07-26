@@ -309,6 +309,24 @@ const EN: Record<string, Overlay> = {
     desc: 'Japan, Thailand, Vietnam and Taiwan on one eSIM — for multi-stop workation routes.',
     cta: 'View eSIM', badge: 'Multi-country',
   },
+  'wifi-klook-japan': {
+    productTitle: 'Japan unlimited pocket Wi-Fi (NINJA WiFi)',
+    destination: 'Airport pickup in Japan',
+    desc: 'Unlimited data for laptop and phones, power bank included. Pick up and return at the airport.',
+    cta: 'View Wi-Fi', badge: 'Pocket Wi-Fi',
+  },
+  'wifi-klook-taiwan': {
+    productTitle: 'Taiwan 4G portable Wi-Fi',
+    destination: 'Airport pickup in Taiwan',
+    desc: 'A stable line for Taipei workations — airport pickup, multiple devices at once.',
+    cta: 'View Wi-Fi', badge: 'Pocket Wi-Fi',
+  },
+  'wifi-klook-thailand': {
+    productTitle: 'Thailand unlimited pocket Wi-Fi',
+    destination: 'Klook counter pickup, Thailand',
+    desc: 'Backup connectivity for Bangkok and Chiang Mai stays — unlimited data, counter pickup.',
+    cta: 'View Wi-Fi', badge: 'Pocket Wi-Fi',
+  },
   'cruise-panstar-miracle': {
     productTitle: 'PanStar Miracle · Busan–Osaka ferry',
     destination: 'Busan ↔ Osaka · 17 hours',
@@ -781,6 +799,24 @@ const JP: Record<string, Overlay> = {
     destination: 'アジア・マルチ国',
     desc: '日本・タイ・ベトナム・台湾をeSIM 1枚で。周遊ワーケーションに。',
     cta: 'eSIMを見る', badge: 'マルチ国',
+  },
+  'wifi-klook-japan': {
+    productTitle: '日本 無制限ポケットWi-Fi（NINJA WiFi）',
+    destination: '日本の空港で受取',
+    desc: 'PCもスマホも無制限データ、モバイルバッテリー付き。空港で受取・返却。',
+    cta: 'Wi-Fiを見る', badge: 'ポケットWi-Fi',
+  },
+  'wifi-klook-taiwan': {
+    productTitle: '台湾 4GポータブルWi-Fi',
+    destination: '台湾の空港で受取',
+    desc: '台北ワーケーションの安定回線。空港受取・複数端末同時接続。',
+    cta: 'Wi-Fiを見る', badge: 'ポケットWi-Fi',
+  },
+  'wifi-klook-thailand': {
+    productTitle: 'タイ 無制限ポケットWi-Fi',
+    destination: 'タイ · Klookカウンター受取',
+    desc: 'バンコク・チェンマイ長期滞在のバックアップ回線。無制限データ。',
+    cta: 'Wi-Fiを見る', badge: 'ポケットWi-Fi',
   },
   'cruise-panstar-miracle': {
     productTitle: 'パンスター·ミラクル · 釜山-大阪フェリー',
