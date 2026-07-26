@@ -207,9 +207,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
-      // ⚠️ Trip bali-hotels-list-723 제거 (2026-07-13) — kr.trip.com에서 723=카메룬의 Bali(북서주)
-      //    호텔을 표시하는 오적용이었음(슬러그는 bali지만 ID가 인니 아님). Booking 단독 유지.
-      //    인니 Bali의 올바른 Trip city ID 확인 전까지 재추가 금지.
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — bali-hotels-list-723 (2026-07-26 kr.trip.com 재실물검증: 제목 '발리 호텔 추천',
+        // 안다즈 발리 사누르·파드마 리조트 우붓 등 인니 발리 확정. 2026-07-13 '카메룬 Bali' 판정은 현재와 불일치 — 뒤집힘)
+        href: 'https://kr.trip.com/hotels/bali-hotels-list-723/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -306,6 +312,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Gangneung',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — gangneung-si-hotels-list-61325 (2026-07-26 kr.trip.com 실물검증)
+        // ⚠️ kr 로케일은 '-si' 접미 슬러그 필수 — gangneung-hotels-list-61325는 404 실측
+        href: 'https://kr.trip.com/hotels/gangneung-si-hotels-list-61325/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -431,6 +446,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — nha-trang-hotels-list-1777 (2026-07-26 kr.trip.com 실물검증)
+        // ⚠️ 슬러그는 하이픈 포함 'nha-trang' — 구 nhatrang-…-476은 404 확정(재시도 금지)
+        href: 'https://kr.trip.com/hotels/nha-trang-hotels-list-1777/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -449,6 +473,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Cebu',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — cebu-hotels-list-1239 (2026-07-26 kr.trip.com 실물검증, 세부시티 434개)
+        // 구 cebu-…-785는 404 확정(재시도 금지)
+        href: 'https://kr.trip.com/hotels/cebu-hotels-list-1239/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -574,6 +607,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — kobe-hotels-list-423 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/kobe-hotels-list-423/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
 
@@ -597,6 +638,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — fujikawaguchiko-hotels-list-50160 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/fujikawaguchiko-hotels-list-50160/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -615,6 +664,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Kanazawa',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — kanazawa-hotels-list-3663 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/kanazawa-hotels-list-3663/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -635,6 +692,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — yufu-hotels-list-62275 (2026-07-26 kr.trip.com 실물검증)
+        // ⚠️ Trip은 유후인을 상위 행정구 '유후(yufu)' 시티로 관리 — 슬러그 yufuin 아님
+        href: 'https://kr.trip.com/hotels/yufu-hotels-list-62275/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -653,6 +719,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Ubud',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 존 딥링크 — kr에서 우붓은 독립 시티 아님(ubud-…-36227 kr 404), 발리 723의 zone424
+        // (2026-07-26 kr.trip.com 실물검증: '인기 발리 우붓 호텔', 브레드크럼 인니>발리>우붓)
+        href: 'https://kr.trip.com/hotels/bali-hotels-list-723/zone424/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -673,6 +748,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 존 딥링크 — kr에서 짱구는 독립 시티 없음, 발리 723의 zone954
+        // (2026-07-26 kr.trip.com 실물검증: '인기 발리 창구 호텔', 브레드크럼 인니>발리>창구)
+        href: 'https://kr.trip.com/hotels/bali-hotels-list-723/zone954/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -691,6 +775,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Sydney',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — sydney-hotels-list-501 (2026-07-26 kr.trip.com 재실물검증: 샹그릴라·포시즌스,
+        // 오페라하우스 — 호주 시드니 확정. 2026-07 초 '오하이오 Sidney' 판정은 5경로 교차검증으로 뒤집힘)
+        href: 'https://kr.trip.com/hotels/sydney-hotels-list-501/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -711,6 +804,15 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — melbourne-hotels-list-358 (2026-07-26 kr.trip.com 실물검증, AUD 표기.
+        // 미국 플로리다 멜버른은 별도 ID melbourne-1-…-4168이라 혼동 없음)
+        href: 'https://kr.trip.com/hotels/melbourne-hotels-list-358/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -729,6 +831,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Gold+Coast',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — gold-coast-hotels-list-1210 (2026-07-26 kr.trip.com 실물검증, 서퍼스 파라다이스)
+        href: 'https://kr.trip.com/hotels/gold-coast-hotels-list-1210/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -802,6 +912,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — guangzhou-hotels-list-32 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/guangzhou-hotels-list-32/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
 
@@ -850,6 +968,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Sokcho',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — sokcho-si-hotels-list-35793 (2026-07-26 kr.trip.com 실물검증, -si 슬러그)
+        href: 'https://kr.trip.com/hotels/sokcho-si-hotels-list-35793/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
@@ -923,6 +1049,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — hiroshima-hotels-list-262 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/hiroshima-hotels-list-262/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -942,6 +1076,14 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         label: '숙소 예약',
         emoji: '🛎',
       },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — porto-hotels-list-826 (2026-07-26 kr.trip.com 실물검증)
+        href: 'https://kr.trip.com/hotels/porto-hotels-list-826/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
     ],
   },
   {
@@ -960,6 +1102,16 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
         href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Faro',
         label: '숙소 예약',
         emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 쿼리 딥링크 — ⚠️ kr의 faro-hotels-list-840 SEO 페이지는 부탄 파로를 렌더하는 함정(실측).
+        // ID 840 자체는 포르투갈 파루가 맞아 list?city=840 형태 사용 (2026-07-26 kr.trip.com 실물검증:
+        // Stay Hotel Faro Centro·파루 공항 FAO). searchWord 방식 아님 — city ID 쿼리라 soft-404 무관
+        href: 'https://kr.trip.com/hotels/list?city=840&Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
       },
     ],
   },
