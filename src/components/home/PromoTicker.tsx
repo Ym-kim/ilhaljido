@@ -45,9 +45,9 @@ const ITEMS: TickerItem[] = [
     tag: { KO: 'Airalo', EN: 'Airalo', JP: 'Airalo' },
   },
   {
-    id: 'ticker-bellissima', price: '₩365,766~',
+    id: 'ticker-bellissima', price: '₩341,523~',
     href: 'https://kr.trip.com/cruises/ship-msc-mscbellissima-496?curr=KRW&Allianceid=9024807', external: true, sponsored: true,
-    label: { KO: 'MSC 벨리시마 — 인천 출발 크루즈', EN: 'MSC Bellissima — cruises from Incheon', JP: 'MSCベリッシマ — 仁川発クルーズ' },
+    label: { KO: 'MSC 벨리시마 — 한국 출발 크루즈', EN: 'MSC Bellissima — cruises from Korea', JP: 'MSCベリッシマ — 韓国発クルーズ' },
     tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
   },
   {

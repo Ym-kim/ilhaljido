@@ -89,16 +89,21 @@ export default function CruisePage() {
         </div>
       </section>
 
-      {/* 미라클호 크루즈 워케이션 아티클 배너 — 공용 EditorialBanner (2026-07-19 통일) */}
+      {/* 크루즈 에디토리얼 배너 — 최신 아티클 1개 + 이전 스토리 텍스트 링크 (배너 증식 금지 룰) */}
       <section className="px-6 py-10 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
           <EditorialBanner
-            href="/cruise/miracle"
-            eyebrow={lang === 'EN' ? 'Editorial · Transit Workation' : lang === 'JP' ? '特集 · 移動型ワーケーション' : '에디토리얼 · 이동형 워케이션'}
-            title={lang === 'EN' ? 'Deep work at sea — 17 hours from Busan to Osaka' : lang === 'JP' ? '海の上の17時間 — 釜山発大阪行きディープワーク' : '바다 위 17시간, 부산—오사카 크루즈 워케이션'}
-            sub={lang === 'EN' ? 'PanStar Miracle: two buffet meals, satellite Wi-Fi, no baggage limits.' : lang === 'JP' ? 'パンスター·ミラクル：ビュッフェ2食·衛星Wi-Fi·手荷物制限なし。' : '팬스타 미라클호 — 뷔페 2식·위성 와이파이·수하물 걱정 제로.'}
+            href="/cruise/bellissima"
+            eyebrow={lang === 'EN' ? 'Editorial · Office at Sea' : lang === 'JP' ? '特集 · 船上オフィス' : '에디토리얼 · 선상 오피스'}
+            title={lang === 'EN' ? 'A 171,000-ton Starlink office — MSC Bellissima' : lang === 'JP' ? '17万トンのスターリンク·オフィス — MSCベリッシマ' : '17만 톤의 스타링크 오피스 — MSC 벨리시마'}
+            sub={lang === 'EN' ? 'Starlink Wi-Fi, 12 dining venues — Incheon home port from June 2027.' : lang === 'JP' ? 'スターリンクWi-Fi·ダイニング12カ所 — 2027年6月から仁川母港。' : '스타링크 와이파이·다이닝 12곳 — 2027년 6월부터 인천 연중 모항.'}
             cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
           />
+          <div className="mt-3 text-right">
+            <a href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+              {lang === 'EN' ? 'Previous story: 17 hours at sea, Busan–Osaka →' : lang === 'JP' ? '前の特集：海の上の17時間 釜山—大阪 →' : '이전 스토리: 바다 위 17시간, 부산—오사카 미라클호 →'}
+            </a>
+          </div>
         </div>
       </section>
 

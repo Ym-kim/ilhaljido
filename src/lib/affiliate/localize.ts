@@ -328,9 +328,9 @@ const EN: Record<string, Overlay> = {
     cta: 'See fares', badge: 'Caribbean loop',
   },
   'cruise-msc-bellissima': {
-    productTitle: 'MSC Bellissima · Incheon & Jeju calls',
-    destination: 'Incheon · Tokyo → Jeju · Kyushu',
-    desc: 'Incheon departures and Tokyo–Seogwipo (Jeju) itineraries — the closest MSC mega-ship to Korea.',
+    productTitle: 'MSC Bellissima · From Korea (Busan · Incheon)',
+    destination: 'Busan · Incheon → Jeju · Kyushu · Keelung',
+    desc: 'Busan boarding in 2026, Incheon home port from June 2027 — MSC mega-ship with Starlink Wi-Fi.',
     cta: 'See fares', badge: 'From Korea',
   },
   'cruise-costa-serena': {
@@ -801,9 +801,9 @@ const JP: Record<string, Overlay> = {
     cta: '料金を見る', badge: 'カリブ周遊',
   },
   'cruise-msc-bellissima': {
-    productTitle: 'MSCベリッシマ · 仁川発·済州寄港',
-    destination: '仁川·東京発 → 済州·九州',
-    desc: '仁川発と東京-西帰浦（済州）寄港の日程。韓国から最も近いMSC超大型船。',
+    productTitle: 'MSCベリッシマ · 韓国発（釜山·仁川）',
+    destination: '釜山·仁川発 → 済州·九州·基隆',
+    desc: '2026年は釜山乗船、2027年6月から仁川通年母港。スターリンクWi-FiのMSC超大型船。',
     cta: '料金を見る', badge: '韓国発',
   },
   'cruise-costa-serena': {
