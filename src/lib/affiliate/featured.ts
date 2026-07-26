@@ -446,7 +446,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     coverPhoto: '/covers/cruise-panstar-real-v2.jpeg',
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     sourceNote:
-      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-19, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
+      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-26 재검, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
   },
   {
     id: 'cruise-rci-singapore',
