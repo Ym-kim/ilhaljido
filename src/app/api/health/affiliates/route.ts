@@ -86,6 +86,7 @@ const CHECKS: Check[] = [
   { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:miracle-ferry', url: 'https://www.klook.com/ko/activity/150798-busan-osaka-ferry-ticket/?aid=126848', okStatuses: [200, 403] },
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },
+  { id: 'page:cruise-bellissima', url: 'https://www.wakation.kr/cruise/bellissima' },
   { id: 'page:jeongseon-train', url: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },
   { id: 'page:manado', url: 'https://www.wakation.kr/programs/global/manado' },
   { id: 'page:stories', url: 'https://www.wakation.kr/stories' },

@@ -24,6 +24,23 @@ export type Story = {
 
 export const STORIES: Story[] = [
   {
+    slug: 'bellissima',
+    href: '/cruise/bellissima',
+    published: '2026-07-26',
+    emoji: '🛳',
+    category: { KO: '크루즈 · 선상 오피스', EN: 'Cruise · Office at sea', JP: 'クルーズ · 船上オフィス' },
+    title: {
+      KO: '17만 톤의 스타링크 오피스 — MSC 벨리시마',
+      EN: 'A 171,000-ton Starlink office — MSC Bellissima',
+      JP: '17万トンのスターリンク·オフィス — MSCベリッシマ',
+    },
+    sub: {
+      KO: '스타링크 와이파이·다이닝 12곳 — 2027년 6월부터 인천 연중 모항.',
+      EN: 'Starlink Wi-Fi, 12 dining venues — Incheon home port from June 2027.',
+      JP: 'スターリンクWi-Fi·ダイニング12カ所 — 2027年6月から仁川母港。',
+    },
+  },
+  {
     slug: 'manado',
     href: '/programs/global/manado',
     published: '2026-07-18',
