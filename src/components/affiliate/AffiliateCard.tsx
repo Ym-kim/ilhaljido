@@ -95,7 +95,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         <div className="relative h-52 shrink-0 overflow-hidden bg-[#e9f0f2] sm:h-48">
           <Image
             src={coverPhoto}
-            alt=""
+            alt={title}
             fill
             sizes="(max-width: 519px) 100vw, (max-width: 1024px) 50vw, 384px"
             className="object-cover saturate-[0.9] contrast-[1.04] transition-all duration-700 group-hover:scale-[1.035] group-hover:saturate-100"
@@ -213,7 +213,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${item.coverGradient ?? 'from-white/8 to-white/3'}`}>
           <Image
             src={coverPhoto}
-            alt=""
+            alt={title}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
             className="object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-700"

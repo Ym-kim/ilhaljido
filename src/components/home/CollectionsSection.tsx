@@ -44,7 +44,7 @@ export function CollectionsSection() {
               >
                 <Image
                   src={col.photo}
-                  alt=""
+                  alt={col.title[lang]}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"

@@ -48,7 +48,7 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
               >
                 <Image
                   src={col.photo}
-                  alt=""
+                  alt={col.title[lang]}
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
