@@ -124,7 +124,7 @@ export function ProductBrowser() {
                   href={`/collections/${col.slug}`}
                   className="group relative rounded-2xl overflow-hidden block h-52 border border-[#e2e8f0] hover:border-brand-mid transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <Image src={col.photo} alt="" fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  <Image src={col.photo} alt={col.title[lang]} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/30 to-transparent" />
                   <span className="absolute top-3 left-3 text-[0.65rem] font-black px-2 py-0.5 rounded-full bg-white/15 text-white border border-white/25 backdrop-blur-sm">
                     {count}{lang === 'KO' ? '개' : lang === 'JP' ? '点' : ''}

@@ -13,6 +13,12 @@ const IMAGE_LABEL: Record<Lang, string> = {
   JP: '旅先のイメージ',
 }
 
+const ALT_SUFFIX: Record<Lang, string> = {
+  KO: '워케이션',
+  EN: 'workation',
+  JP: 'ワーケーション',
+}
+
 // active_affiliate/api_ready → 브랜드 블루 filled CTA, 실제 수익 추적
 // approved_needs_link/needs_referral_link/approved_needs_course_links → 회색 outline, 링크 대기
 // placeholder/manual_link/pending_approval → 연회색 외부 링크
@@ -74,7 +80,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
         {entry.photo ? (
           <Image
             src={entry.photo}
-            alt=""
+            alt={`${entry.city} ${ALT_SUFFIX[lang]}`}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
             className="object-cover group-hover:scale-105 transition-transform duration-700"
