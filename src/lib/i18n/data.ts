@@ -931,7 +931,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     conditions: loc(['도외 재직자·사업자', '3박 4일 이상'], ['Non-Jeju workers', '3+ nights'], ['道外の在職者', '3泊以上']),
     // 2026-07-18 재검증: 오피스 17곳 유효(공식 목록), 오피스별 좌석·운영시간은 상세 페이지에 명시
     workSpec: loc('오피스 17곳·24h 거점 포함', '17 offices, some 24h', 'オフィス17カ所·24h拠点あり'),
-    href: 'https://www.jeju.go.kr/workation/Supportproject/list.htm',
+    // 2026-07-26 URL 교체: list.htm이 로그인 필요 오류 페이지化 → 사업안내 info.htm(WebFetch 200·내용 확인)
+    href: 'https://www.jeju.go.kr/workation/Supportproject/info.htm',
   },
   {
     id: 'busan-workation',
@@ -992,8 +993,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     name: loc('충남 한달살기', 'Chungnam Month-Stay', '忠南1カ月暮らし'),
     benefit: loc('6~29박 숙박비 + 식비·교통비 일부 + 체험활동비 + 여행자보험 (시군별 상이)', '6–29 nights lodging + meals/transport aid + activities + insurance', '6〜29泊宿泊費＋食費・交通一部＋体験費＋保険'),
     maxBenefit: loc('최대 29박 지원', 'Up to 29 nights', '最大29泊支援'),
-    status: 'check',
-    deadline: loc('시군별 순차 모집 — 공고 확인', 'By city/county — check notices', '市郡別に順次募集'),
+    // 2026-07-26 점검: 상반기 ~6/30 종료, 하반기 9/1~12/12 운영(참여 시군 확대) — 현재 공백기라 upcoming
+    status: 'upcoming',
+    deadline: loc('하반기 9.1~12.12 운영 — 모집 공고 확인', '2nd half Sep 1–Dec 12 — check notices', '下半期9/1〜12/12 — 公告確認'),
     conditions: loc(['충남 외 거주 성인', '시군별 정원제'], ['Non-Chungnam adults', 'Quota per county'], ['忠南外居住の成人']),
     href: 'https://tour.chungnam.go.kr',
   },
@@ -1101,6 +1103,89 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     ),
     workSpec: loc('거점 11곳 (워케이션센터·호텔)', '11 venues (centers & hotels)', '拠点11カ所'),
     href: 'https://www.ggtour.or.kr/information/tourism/workation',
+  },
+  // ── 2026-07-26 신규: 경남 4개 시군 — '2026 경남에서 한 달 여행하기' 도 공모 계열.
+  //    과거(07-15) 제외 사유(공식 URL 미확보)가 시군 공식 페이지 확보로 해소. 전부 WebFetch 실물검증.
+  //    공통 구조: 숙박 실비 + 체험비 + 보험, 경남 외 거주 만 19세+, SNS 홍보 미션. 사진=AI 커버(seed 5201~5204)
+  {
+    id: 'gyeongnam-namhae',
+    photo: '/covers/support-namhae-ai.jpeg',
+    region: loc('경남', 'Gyeongnam', '慶南'),
+    name: loc('국민쉼터 남해에서 한 달 살기', 'Namhae Month-Stay', '南海1カ月暮らし'),
+    benefit: loc(
+      '숙박비 팀당 1일 7만원 실비 + 체험비 1인 7~10만원(청년 10~12만원) + 여행자보험 — 4박~29박, 체류 9.1~10.31',
+      'Lodging ₩70,000/day per team + activities ₩70–120,000/person + insurance — 4–29 nights, stay Sep 1–Oct 31',
+      '宿泊費1日7万W＋体験費7〜12万W＋保険 — 4〜29泊、滞在9/1〜10/31',
+    ),
+    maxBenefit: loc('숙박 1일 ₩70,000', '₩70,000/day lodging', '宿泊1日₩70,000'),
+    status: 'open',
+    deadline: loc('2차 접수 7.27~8.8 (15팀)', '2nd batch Jul 27–Aug 8 (15 teams)', '2次受付7/27〜8/8'),
+    conditions: loc(
+      ['경남 외 거주 만 19세 이상', '팀당 1~2명', 'SNS 홍보 미션(1일 2건)'],
+      ['Non-Gyeongnam, age 19+', '1–2 per team', 'SNS posting mission'],
+      ['慶南外居住・満19歳以上', 'チーム1〜2名', 'SNS投稿ミッション'],
+    ),
+    href: 'https://www.namhae.go.kr/tour/01015/01078.web',
+  },
+  {
+    id: 'gyeongnam-hamyang',
+    photo: '/covers/support-hamyang-ai.jpeg',
+    region: loc('경남', 'Gyeongnam', '慶南'),
+    name: loc('내가 그린 함양에서 한 달 여행하기', 'Hamyang Month-Stay', '咸陽1カ月旅'),
+    benefit: loc(
+      '숙박비 팀당 1일 7만원 실비(최대 29박) + 체험비 1인 7~10만원(숙박일수 차등) + 여행자보험 — 연 3차수 운영',
+      'Lodging ₩70,000/day per team (up to 29 nights) + activities ₩70–100,000/person + insurance — 3 batches/year',
+      '宿泊費1日7万W（最大29泊）＋体験費7〜10万W＋保険 — 年3回募集',
+    ),
+    maxBenefit: loc('숙박 1일 ₩70,000', '₩70,000/day lodging', '宿泊1日₩70,000'),
+    status: 'upcoming',
+    deadline: loc('3차 모집 8월 초 예정', '3rd batch early August', '3次募集8月初旬予定'),
+    conditions: loc(
+      ['경남 외 거주 만 19세 이상', '팀당 1~2명', 'SNS 홍보 미션(1일 2건)'],
+      ['Non-Gyeongnam, age 19+', '1–2 per team', 'SNS posting mission'],
+      ['慶南外居住・満19歳以上', 'チーム1〜2名', 'SNS投稿ミッション'],
+    ),
+    href: 'https://www.hygn.go.kr/01211/01231/01232.web',
+  },
+  {
+    id: 'gyeongnam-tongyeong',
+    photo: '/covers/support-tongyeong-ai.jpeg',
+    region: loc('경남', 'Gyeongnam', '慶南'),
+    name: loc('통영애(愛)온나', 'Tongyeong Ae-Onna', '統営エオンナ'),
+    benefit: loc(
+      '숙박비 팀당 1박 5만원(최대 35만원) + 체험비 1인 5~15만원(숙박일수 차등) + 여행자보험 — 팀당 최대 69만원, 연 2차 각 40팀',
+      'Lodging ₩50,000/night (max ₩350,000) + activities ₩50–150,000/person + insurance — up to ₩690,000/team',
+      '宿泊費1泊5万W（最大35万W）＋体験費5〜15万W＋保険 — チーム最大69万W',
+    ),
+    maxBenefit: loc('팀 최대 ₩690,000', 'Up to ₩690,000/team', 'チーム最大₩690,000'),
+    status: 'upcoming',
+    deadline: loc('2차 모집 예정 — 공고 확인', '2nd batch planned — check notice', '2次募集予定 — 公告確認'),
+    conditions: loc(
+      ['경남 외 거주 만 19세 이상', '3박 이상 자유여행', '공개 SNS 홍보 가능자'],
+      ['Non-Gyeongnam, age 19+', '3+ nights free travel', 'Public SNS promotion'],
+      ['慶南外居住・満19歳以上', '3泊以上', '公開SNSで発信可能'],
+    ),
+    href: 'https://www.tongyeong.go.kr/00852/00853/00858.web?amode=view&not_ancmt_mgt_no=50268',
+  },
+  {
+    id: 'gyeongnam-gimhae',
+    photo: '/covers/support-gimhae-ai.jpeg',
+    region: loc('경남', 'Gyeongnam', '慶南'),
+    name: loc('김해에 스밈애(愛)', 'Gimhae Seumim-ae', '金海スミメ'),
+    benefit: loc(
+      '숙박비 팀당 1박 7만원 + 체험비 1인 7~10만원 + 여행자보험 — 3박4일~29박, 봄·여름·가을 연 3차 (외국인·재외동포 공항 교통비 추가)',
+      'Lodging ₩70,000/night per team + activities ₩70–100,000/person + insurance — 3–29 nights, 3 batches/year',
+      '宿泊費1泊7万W＋体験費7〜10万W＋保険 — 3〜29泊、年3回',
+    ),
+    maxBenefit: loc('숙박 1박 ₩70,000', '₩70,000/night lodging', '宿泊1泊₩70,000'),
+    status: 'upcoming',
+    deadline: loc('3차(가을) 모집 예정', '3rd batch (autumn) planned', '3次（秋）募集予定'),
+    conditions: loc(
+      ['경남 외 거주 만 19세 이상', '3박~29박', 'SNS 홍보 미션(1일 2건)'],
+      ['Non-Gyeongnam, age 19+', '3–29 nights', 'SNS posting mission'],
+      ['慶南外居住・満19歳以上', '3〜29泊', 'SNS投稿ミッション'],
+    ),
+    href: 'https://www.gimhae.go.kr/00548/00549/00577.web',
   },
 ]
 
