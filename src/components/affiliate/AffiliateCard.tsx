@@ -33,6 +33,16 @@ const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'editorial', string>> = {
   JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', editorial: '旅のイメージ' },
 }
 
+// 실측 기준일 마이크로카피 — '2026-07-26' → '7.26 기준' (PRICE_POLICY 2026-07-27)
+function formatAsOf(asOf: string, lang: Lang): string {
+  const [, m, d] = asOf.split('-')
+  const mm = Number(m)
+  const dd = Number(d)
+  if (lang === 'EN') return `as of ${mm}/${dd}`
+  if (lang === 'JP') return `${mm}.${dd}基準`
+  return `${mm}.${dd} 기준`
+}
+
 const PENDING_STATUSES = new Set([
   'pending_approval',
   'approved_needs_link',
@@ -176,12 +186,17 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             )}
           </div>
 
-          {/* 가격 + CTA */}
+          {/* 가격 + CTA — 가격엔 실측 기준일 병기 (PRICE_POLICY 2026-07-27) */}
           <div className="mt-4 flex items-center justify-between border-t border-[#edf1f2] pt-3.5">
-            <span className={`text-[0.92rem] font-extrabold ${
+            <span className={`min-w-0 text-[0.92rem] font-extrabold ${
               meta.isAffiliate ? 'text-[#0369a1]' : 'text-[#8a969e]'
             }`}>
               {item.priceFrom ?? item.cta}
+              {item.priceFrom && item.priceAsOf && (
+                <span className="ml-1.5 align-middle text-[0.6rem] font-semibold text-[#94a3b8]">
+                  {formatAsOf(item.priceAsOf, lang)}
+                </span>
+              )}
             </span>
             <span className={meta.isAffiliate ? 'text-[#0369a1]' : 'text-[#8a969e]'}>
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
