@@ -75,8 +75,16 @@ export interface AffiliateDeepLinks {
   [destination: string]: string
 }
 
+// ─── 가격 표시 정책 (docs/PRICE_POLICY.md, 2026-07-27) ────────────────────────
+// priceFrom을 표시하려면 실측 기준일(priceAsOf, YYYY-MM-DD)이 반드시 함께 있어야
+// 한다 — 아래 유니온이 컴파일 타임에 강제한다. 기준일은 카드에 사용자 노출된다.
+// 미충족 상품은 가격 없이 CTA 폴백('실시간 요금 확인' 계열)으로 표시.
+export type PricedFields =
+  | { priceFrom: string; priceAsOf: string }
+  | { priceFrom?: undefined; priceAsOf?: undefined }
+
 // ─── 아이템 인터페이스 ─────────────────────────────────────────────────────────
-export interface AffiliateItem {
+interface AffiliateItemBase {
   id: string
   name: string
   category: AffiliateCategory
@@ -101,8 +109,10 @@ export interface AffiliateItem {
   country?: string                // 국가 (e.g. "일본")
   coverGradient?: string          // 카드 헤더 Tailwind 그라디언트 (사진 없을 때 fallback)
   coverPhoto?: string             // 실제 목적지 사진 URL (visual 모드)
-  priceFrom?: string              // 시작 가격 표시 (e.g. "₩79,000~")
   rating?: string                 // 실제 평점 표시 (e.g. "8.7" — 리서치로 확인된 값만)
   reviews?: string                // 리뷰 수 표시 (e.g. "2,005")
   operatorAction?: string         // 다음 운영자 액션 요약
 }
+
+// priceFrom("₩79,000~")은 PricedFields로 결합 — 기준일 없는 가격은 타입 에러
+export type AffiliateItem = AffiliateItemBase & PricedFields

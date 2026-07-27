@@ -122,7 +122,10 @@ export default function CruisePage() {
               <AffiliateCard
                 key={item.id}
                 item={localizeAffiliateItem(
-                  livePrices[item.id] ? { ...item, priceFrom: livePrices[item.id] } : item,
+                  // 라이브가 갱신 시 기준일도 오늘로 — priceWatch가 일 1회 실조회한 값 (PRICE_POLICY)
+                  livePrices[item.id]
+                    ? { ...item, priceFrom: livePrices[item.id], priceAsOf: new Date().toISOString().slice(0, 10) }
+                    : item,
                   lang
                 )}
                 visual

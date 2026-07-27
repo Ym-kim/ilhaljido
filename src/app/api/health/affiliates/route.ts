@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { FULL_CATALOG } from '@/lib/affiliate/catalog'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 제휴 링크·페이지 일일 헬스체크 — Vercel Cron (매일 06:00 UTC = 15:00 KST)
@@ -132,6 +133,20 @@ export async function GET(req: Request) {
   }
 
   const results = await Promise.all(CHECKS.map(runCheck))
+
+  // 가격 기준일 STALE 감시 (PRICE_POLICY 2026-07-27) — 수동 실측군 방치 방지.
+  // priceAsOf가 30일 초과된 표시 가격을 경고 (priceWatch 자동군도 정적 폴백 기준일이 대상)
+  const STALE_DAYS = 30
+  const now = Date.now()
+  const stale = FULL_CATALOG.filter(
+    (i) => i.priceFrom && i.priceAsOf && now - Date.parse(i.priceAsOf) > STALE_DAYS * 86_400_000,
+  ).map((i) => `${i.id}(${i.priceAsOf})`)
+  results.push({
+    id: 'policy:price-stale',
+    ok: stale.length === 0,
+    detail: stale.length === 0 ? `0 stale (기준 ${STALE_DAYS}일)` : `재실측 필요 ${stale.length}건: ${stale.slice(0, 8).join(', ')}`,
+  })
+
   const failures = results.filter((r) => !r.ok)
 
   // 실패 있을 때만 admin에서 보이도록 applications에 경고 기록

@@ -655,6 +655,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     rating: '4.6',
     reviews: '2,533',
     priceFrom: '₩477,300~',
+    priceAsOf: '2026-07-19',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     badge: '철도패스',
     trackingId: 'aid=126848',
