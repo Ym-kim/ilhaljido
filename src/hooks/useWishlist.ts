@@ -1,42 +1,56 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useSyncExternalStore } from 'react'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 위시리스트 — localStorage 기반 (로그인·백엔드 불필요, 비용 0)
 // 재방문 시 고전환 제휴 카드로의 재클릭 동선 확보
+// useSyncExternalStore: 서버 [] → 하이드레이션 후 실값. 기존 계약 유지 —
+// API(ids/has/toggle) 동일, CustomEvent 'wakation-wishlist' detail{id,added}는
+// WishlistToast가 그대로 소비, storage 이벤트로 타 탭 동기화
 // ─────────────────────────────────────────────────────────────────────────────
 
 const KEY = 'wakation_wishlist'
 
-function read(): string[] {
-  if (typeof window === 'undefined') return []
+const EMPTY: string[] = []
+// getSnapshot 참조 안정성(무한 재렌더 방지) — raw 문자열 기준 캐시
+let cacheRaw: string | null = null
+let cache: string[] = EMPTY
+
+function parse(raw: string): string[] {
   try {
-    const raw = localStorage.getItem(KEY)
-    const arr = raw ? JSON.parse(raw) : []
+    const arr = JSON.parse(raw)
     return Array.isArray(arr) ? arr.filter((v) => typeof v === 'string') : []
   } catch {
     return []
   }
 }
 
+function getSnapshot(): string[] {
+  const raw = localStorage.getItem(KEY) ?? '[]'
+  if (raw !== cacheRaw) {
+    cacheRaw = raw
+    cache = parse(raw)
+  }
+  return cache
+}
+
+const getServerSnapshot = () => EMPTY
+
+function subscribe(onChange: () => void) {
+  window.addEventListener('storage', onChange)
+  window.addEventListener('wakation-wishlist', onChange)
+  return () => {
+    window.removeEventListener('storage', onChange)
+    window.removeEventListener('wakation-wishlist', onChange)
+  }
+}
+
 export function useWishlist() {
-  // SSR/hydration 불일치 방지 — 마운트 후 로드
-  const [ids, setIds] = useState<string[]>([])
-  useEffect(() => {
-    setIds(read())
-    // 다른 탭/컴포넌트와 동기화
-    const onChange = () => setIds(read())
-    window.addEventListener('storage', onChange)
-    window.addEventListener('wakation-wishlist', onChange)
-    return () => {
-      window.removeEventListener('storage', onChange)
-      window.removeEventListener('wakation-wishlist', onChange)
-    }
-  }, [])
+  const ids = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
   const toggle = useCallback((id: string) => {
-    const cur = read()
+    const cur = getSnapshot()
     const added = !cur.includes(id)
     const next = added ? [...cur, id] : cur.filter((v) => v !== id)
     try {

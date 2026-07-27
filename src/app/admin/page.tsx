@@ -55,6 +55,7 @@ export default function AdminPage() {
       router.replace('/login?redirect=/admin')
       return
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 인증 확정 후 1회 목록 로드(가드 패턴) — 동작 불변
     loadApps()
   }, [authLoading, user, router, loadApps])
 
@@ -69,6 +70,7 @@ export default function AdminPage() {
           a.email.includes(search)
       )
     }
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 파생 필터 목록 동기화(기존 동작 유지) — 리팩터는 admin 접촉 금지 원칙상 보류
     setFiltered(result)
   }, [filter, search, apps])
 

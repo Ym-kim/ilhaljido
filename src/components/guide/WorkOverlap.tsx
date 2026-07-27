@@ -40,6 +40,7 @@ export function WorkOverlap({ timeZone, cityName, lang }: { timeZone: string; ci
   const [now, setNow] = useState<Date | null>(null)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 실시간 시계 초기값(클라이언트 전용) — SSR 불일치 방지
     setNow(new Date())
     const id = setInterval(() => setNow(new Date()), 60_000)
     return () => clearInterval(id)

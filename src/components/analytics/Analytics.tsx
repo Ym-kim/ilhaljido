@@ -37,6 +37,7 @@ export function Analytics() {
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 동의 상태는 localStorage에서 mount 후 1회 복원(SSR 불일치 방지)
     setConsent(localStorage.getItem(CONSENT_KEY))
     setReady(true)
   }, [])

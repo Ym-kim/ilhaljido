@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { CITY_GUIDES, guideLanguageAlternates } from '@/lib/guides'
+import { CITY_GUIDES } from '@/lib/guides'
 import { COLLECTIONS } from '@/lib/affiliate/collections'
 import { CITY_INSIGHTS } from '@/lib/cities'
 

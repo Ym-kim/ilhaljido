@@ -663,7 +663,7 @@ export function getDomesticThemedUpcoming(lang: Lang) {
   }))
 }
 
-export function getSampleSchedule(lang: Lang, _durationNights: number) {
+export function getSampleSchedule(lang: Lang) {
   const days = [
     {
       day: loc('DAY 1 · 6월 17일(수)', 'DAY 1 · Jun 17 (Wed)', 'DAY 1 · 6月17日(水)'),

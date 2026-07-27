@@ -65,6 +65,7 @@ export function DiagnosisView() {
   useEffect(() => {
     const stored = loadStored()
     if (stored) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 저장 결과 복원은 mount 후 1회(하이드레이션 가드) 의도 패턴
       setAnswers(stored.answers)
       setChecked(new Set(stored.checked))
       setDone(true)

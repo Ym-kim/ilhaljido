@@ -18,6 +18,7 @@ export function AnnounceProvider({ children }: { children: React.ReactNode }) {
       DOMESTIC_CURRENT.find(
         (p) => today <= p.recruitEnd && !localStorage.getItem(`wb_ann_${p.id}`)
       ) ?? null
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage 확인 후 배너 노출 결정(mount 1회) — SSR 불일치 방지
     setActiveProgram(active)
     setVisible(active !== null)
   }, [])

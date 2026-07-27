@@ -159,7 +159,6 @@ export function getVisaMockResult(
   duration: string
 ): { visaType: string; requirement: string; program: string; official: string } {
   const countryLabel = VISA_COUNTRIES.find((c) => c.value === country)?.label[lang] ?? country
-  const purposeLabel = VISA_PURPOSES.find((p) => p.value === purpose)?.label[lang] ?? purpose
 
   // 2026-07 리서치 검증 — 한국 여권 기준. 분기별 갱신 권장 (memory: 비자 데이터 갱신 룰)
   const visaByCountry: Record<string, Record<Lang, string>> = {

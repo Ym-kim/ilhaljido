@@ -5,7 +5,6 @@ import { ProgramDetailClient } from '@/components/programs/ProgramDetailClient'
 import { withEffectiveStatus, programPhoto } from '@/lib/programs'
 import type { Program } from '@/types/database'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function getProgram(id: string): Promise<Program | null> {
   const supabase = await createClient()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -28,6 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     })
 
     return () => sub.subscription.unsubscribe()
+    // supabase 클라이언트는 마운트 간 안정 인스턴스 — deps 추가는 재구독만 유발.
+    // 인증 코어라 동작 불변 원칙(눈속임 아닌 근거): 구독은 1회가 의도.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const signOut = async () => {

@@ -27,6 +27,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     // 1) 사용자가 직접 고른 언어가 있으면 항상 우선
     const saved = localStorage.getItem('wakation_lang') as Lang
     if (saved && ['KO', 'EN', 'JP'].includes(saved)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- i18n 코어: 저장 언어 복원은 mount 1회(정적 렌더 유지 설계) — 리팩터 금지
       setLangState(saved)
       return
     }
