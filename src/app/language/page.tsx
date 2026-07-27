@@ -2,6 +2,7 @@
 import { useLang } from '@/context/LanguageContext'
 import Image from 'next/image'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { HostedLeadSection } from '@/components/programs/HostedLeadSection'
 import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
@@ -170,6 +171,9 @@ export default function LanguagePage() {
           <p className="text-gray-400 text-[0.6875rem] mt-3">{TUTOR_COPY.note[lang]}</p>
         </div>
       </section>
+
+      {/* Hosted 리드 — 어학·유학 체류 수요 검증 (feat/hosted-lead-v1) */}
+      <HostedLeadSection variant="language" tone="light" />
 
       {/* 여행 준비 크로스셀 — Wakation Select */}
       <AffiliateSection

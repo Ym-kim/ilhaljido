@@ -10,6 +10,7 @@ import { getDomesticCurrent, getDomesticCompleted, getDomesticUpcoming, getDomes
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { EditorialBanner } from '@/components/editorial/EditorialBanner'
+import { HostedLeadSection } from '@/components/programs/HostedLeadSection'
 import { DOMESTIC_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import type { Lang } from '@/lib/i18n/types'
@@ -211,6 +212,9 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
           </div>
         </div>
       </section>
+
+      {/* Hosted 리드 — 국내 회차 오픈 알림 (feat/hosted-lead-v1) */}
+      <HostedLeadSection variant="domestic" tone="dark" lang={lang} />
 
       {/* 국내 워케이션 준비 — 숙소·체험 크로스셀 */}
       <AffiliateSection

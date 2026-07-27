@@ -6,6 +6,7 @@ import { ArrowUpRight, CheckCircle2, MapPin, Quote, CalendarDays } from 'lucide-
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { NotifySignup } from '@/components/home/NotifySignup'
+import { HostedBadge } from '@/components/programs/HostedLeadSection'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -199,6 +200,9 @@ export function YangyangReportView() {
       {/* 다음 회차 알림 */}
       <section className="dark-surface bg-gradient-to-b from-[#04121f] to-[#0a1e33] py-16 px-6">
         <div className="max-w-3xl mx-auto">
+          <div className="mb-3">
+            <HostedBadge tone="dark" />
+          </div>
           <p className="text-white/60 text-sm font-semibold mb-3">{COPY.notify_title[lang]}</p>
           <NotifySignup source="양양 다음 회차 알림 (리포트)" event="program_alert_submitted" />
           <Link href="/programs" className="inline-flex items-center gap-1.5 text-white/50 hover:text-white text-xs font-bold mt-5 transition-colors">

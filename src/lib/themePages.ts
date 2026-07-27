@@ -18,6 +18,8 @@ export type ThemePageConfig = {
   themeIds: string[]
   featuredExperienceIds?: string[]
   emailSubject: string
+  /** Hosted 관심 등록 섹션 — 지정한 테마에만 노출 (feat/hosted-lead-v1) */
+  leadVariant?: 'networking'
 }
 
 export const THEME_PAGE_CONFIGS: Record<ThemePageKey, ThemePageConfig> = {
@@ -55,6 +57,7 @@ export const THEME_PAGE_CONFIGS: Record<ThemePageKey, ThemePageConfig> = {
     descKey: 'networking_hero_desc',
     themeIds: ['network-chuncheon'],
     emailSubject: '네트워킹 캠프 사전 신청',
+    leadVariant: 'networking',
   },
   sports: {
     heroImage: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=1800&q=85',

@@ -12,6 +12,7 @@ import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { HostedLeadSection, type HostedLeadVariant } from '@/components/programs/HostedLeadSection'
 import type { Lang } from '@/lib/i18n/types'
 
 type Props = {
@@ -23,10 +24,12 @@ type Props = {
   themeIds: string[]
   featuredExperienceIds?: string[]
   emailSubject: string
+  /** Hosted 관심 등록 섹션 — 지정 테마만 (feat/hosted-lead-v1) */
+  leadVariant?: HostedLeadVariant
   forceLang?: Lang
 }
 
-export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], forceLang }: Props) {
+export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], leadVariant, forceLang }: Props) {
   const themeProducts = THEME_EXPERIENCES.filter((i) => featuredExperienceIds.includes(i.id))
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
@@ -138,6 +141,9 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
           </div>
         </div>
       </section>
+
+      {/* Hosted 관심 등록 — leadVariant 지정 테마만 (feat/hosted-lead-v1) */}
+      {leadVariant && <HostedLeadSection variant={leadVariant} tone="dark" lang={lang} />}
     </div>
   )
 }

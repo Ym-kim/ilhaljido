@@ -10,6 +10,7 @@ import { getMarketFeatures, getMarketUnits, translate } from '@/lib/i18n'
 import { loc, tloc } from '@/lib/i18n/locale'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { HostedLeadSection } from '@/components/programs/HostedLeadSection'
 import { MARKET_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import type { Lang } from '@/lib/i18n/types'
@@ -214,6 +215,9 @@ export function MarketProgramsView({ forceLang }: { forceLang?: Lang }) {
           </div>
         </div>
       </section>
+
+      {/* Hosted 리드 — 시장조사단 수요 검증 (feat/hosted-lead-v1) */}
+      <HostedLeadSection variant="market" tone="dark" lang={lang} />
     </div>
   )
 }
