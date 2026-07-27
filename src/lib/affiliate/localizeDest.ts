@@ -68,7 +68,6 @@ const TAG: Record<string, { EN: string; JP: string }> = {
   '디지털 비자': { EN: 'Digital visa', JP: 'デジタルビザ' },
   'D8 비자': { EN: 'D8 visa', JP: 'D8ビザ' },
   '유럽 게이트웨이': { EN: 'Gateway to Europe', JP: '欧州ゲートウェイ' },
-  '국내 1위 워케이션': { EN: '#1 in Korea', JP: '韓国No.1' },
   '국내 워케이션 추천': { EN: 'Top Korea workation', JP: '国内ワーケーション推薦' },
   '자연+카페': { EN: 'Nature + cafés', JP: '自然＋カフェ' },
   '서퍼 성지': { EN: 'Surf town', JP: 'サーフィンの聖地' },
