@@ -15,9 +15,9 @@ type L = Record<Lang, string>
 const T: Record<string, L> = {
   q: { KO: 'Wakation 검증 노트', EN: 'Wakation verification notes', JP: 'Wakationの検証ノート' },
   c1: {
-    KO: '지금 예약 가능한 링크인지 직접 확인했습니다.',
-    EN: 'We check that every booking link is live before publishing.',
-    JP: '今すぐ予約できるリンクかを掲載前に確認しています。',
+    KO: '판매 중인 상품 링크인지 게재 전 직접 확인합니다.',
+    EN: 'We check that every product link is live before publishing.',
+    JP: '販売中の商品リンクかを掲載前に確認しています。',
   },
   c2: {
     KO: '지원사업·비자 정보는 정부와 운영사 공식 출처만 사용합니다.',

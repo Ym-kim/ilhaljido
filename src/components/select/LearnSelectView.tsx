@@ -220,6 +220,9 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
             {tr('sel_disc_2')}
           </p>
+          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+            {tr('sel_disc_3')}
+          </p>
         </div>
       </section>
     </div>

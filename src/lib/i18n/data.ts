@@ -328,9 +328,9 @@ const LANG_PROGRAMS: LangProgram[] = [
 ]
 
 const CRUISE_FEATURES: FeatureItem[] = [
-  { id: 'wifi', title: loc('선상 WiFi 보장', 'Ship WiFi guaranteed', '船上WiFi保証'), desc: loc('크루즈 전용 위성 인터넷, 업무 가능한 속도 확인', 'Satellite internet verified for work', '業務可能な速度を確認') },
+  { id: 'wifi', title: loc('선상 WiFi 체크', 'Ship Wi-Fi check', '船上WiFiチェック'), desc: loc('위성 인터넷 제공 여부·속도는 선박별로 달라 상품 페이지에서 확인', 'Satellite internet varies by ship — check each product page', '衛星ネットの有無・速度は船ごとに異なるため商品ページで確認') },
   { id: 'ports', title: loc('항구마다 새 영감', 'Fresh inspiration each port', '寄港地ごとにインスピレーション'), desc: loc('기항지에서 현지 문화 체험과 네트워킹', 'Local culture & networking at each port', '寄港地で文化体験とネットワーク') },
-  { id: 'all', title: loc('올인클루시브', 'All-inclusive', 'オールインクルーシブ'), desc: loc('숙박·식사·액티비티 모두 포함', 'Stay, meals & activities included', '宿泊・食事・アクティビティ込') },
+  { id: 'all', title: loc('요금 하나로 숙박+식사', 'Stay & dining in one fare', '一つの料金で宿泊＋食事'), desc: loc('숙박과 기본 다이닝 포함 — 포함 범위는 상품별로 예약 페이지에서 확인', 'Stay and main dining included — coverage varies, confirm per product', '宿泊と基本ダイニング込み — 範囲は商品ごとに要確認') },
 ]
 
 const CRUISE_ROUTES: CruiseRoute[] = [

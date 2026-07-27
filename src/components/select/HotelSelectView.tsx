@@ -163,6 +163,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
           <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_1')}</p>
           <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_2')}</p>
+          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_3')}</p>
         </div>
       </section>
     </div>

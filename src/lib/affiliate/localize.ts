@@ -182,7 +182,7 @@ const EN: Record<string, Overlay> = {
     productTitle: 'Tokyo Disneyland · DisneySea ticket',
     destination: 'Tokyo · Japan',
     desc: '1-day pass with instant mobile QR entry. Make a workation weekend special.',
-    cta: 'View product', badge: 'Best seller',
+    cta: 'View product', badge: 'Theme park',
   },
   'act-osaka-usj': {
     productTitle: 'Universal Studios Japan ticket',
@@ -212,7 +212,7 @@ const EN: Record<string, Overlay> = {
     productTitle: 'teamLab Planets TOKYO ticket',
     destination: 'Tokyo · Japan',
     desc: 'Immersive digital art in Toyosu — walk barefoot through water. Best in the evening.',
-    cta: 'View product', badge: 'Top pick',
+    cta: 'View product', badge: 'Immersive art',
   },
   'act-klook-osaka-pass': {
     productTitle: 'Osaka Amazing Pass',
@@ -230,13 +230,13 @@ const EN: Record<string, Overlay> = {
     productTitle: 'Universal Studios Singapore ticket',
     destination: 'Singapore',
     desc: 'Seven themed zones on Sentosa — the classic Singapore workation weekend.',
-    cta: 'View ticket', badge: 'Top pick',
+    cta: 'View ticket', badge: 'Theme park',
   },
   'act-klook-nusapenida-bali': {
     productTitle: 'Nusa Penida day tour from Bali',
     destination: 'Bali · Indonesia',
     desc: 'Kelingking cliff, Broken Beach and Crystal Bay — the island everyone goes for.',
-    cta: 'View tour', badge: 'Best tour',
+    cta: 'View tour', badge: 'Day tour',
   },
   'act-klook-elephant-chiangmai': {
     productTitle: 'Elephant Jungle Sanctuary Chiang Mai',
@@ -367,7 +367,7 @@ const EN: Record<string, Overlay> = {
     productTitle: 'ChatGPT for real work',
     destination: 'AI · Productivity',
     desc: '10x your work speed with ChatGPT. Great listening for transit time.',
-    cta: 'View course', badge: 'Best seller',
+    cta: 'View course', badge: 'AI productivity',
   },
   'course-instagram-marketing': {
     productTitle: 'Instagram marketing that sells',
@@ -673,7 +673,7 @@ const JP: Record<string, Overlay> = {
     productTitle: '東京ディズニーランド・シー チケット',
     destination: '東京 · 日本',
     desc: 'モバイルQRで即入場の1日券。ワーケーションの週末を特別に。',
-    cta: '商品を見る', badge: '人気No.1',
+    cta: '商品を見る', badge: 'テーマパーク',
   },
   'act-osaka-usj': {
     productTitle: 'USJ入場券',
@@ -703,7 +703,7 @@ const JP: Record<string, Overlay> = {
     productTitle: 'チームラボプラネッツ TOKYO チケット',
     destination: '東京 · 日本',
     desc: '豊洲の没入型デジタルアート。水の中を裸足で歩く展示 — 夜がおすすめ。',
-    cta: '商品を見る', badge: '人気体験',
+    cta: '商品を見る', badge: '没入型アート',
   },
   'act-klook-osaka-pass': {
     productTitle: '大阪周遊パス',
@@ -721,13 +721,13 @@ const JP: Record<string, Overlay> = {
     productTitle: 'ユニバーサル・スタジオ・シンガポール チケット',
     destination: 'シンガポール',
     desc: 'セントーサの7テーマゾーン。シンガポール週末の定番コース。',
-    cta: 'チケットを見る', badge: '人気体験',
+    cta: 'チケットを見る', badge: 'テーマパーク',
   },
   'act-klook-nusapenida-bali': {
     productTitle: 'ヌサペニダ島 日帰りツアー',
     destination: 'バリ · インドネシア',
     desc: 'ケリンキン断崖・ブロークンビーチ・クリスタルベイ。バリの定番離島。',
-    cta: 'ツアーを見る', badge: 'ベストツアー',
+    cta: 'ツアーを見る', badge: '日帰りツアー',
   },
   'act-klook-elephant-chiangmai': {
     productTitle: 'チェンマイ エレファント・ジャングル・サンクチュアリ',
@@ -858,7 +858,7 @@ const JP: Record<string, Overlay> = {
     productTitle: 'ChatGPT実務活用',
     destination: 'AI · 生産性',
     desc: '仕事の速度を10倍にするChatGPT活用法。移動中の受講にも。',
-    cta: '講座を見る', badge: 'ベスト',
+    cta: '講座を見る', badge: 'AI生産性',
   },
   'course-instagram-marketing': {
     productTitle: '売上を伸ばすInstagramマーケ',
