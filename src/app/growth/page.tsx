@@ -3,7 +3,7 @@
 import { useLang } from '@/context/LanguageContext'
 import Image from 'next/image'
 
-import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
+import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 
 import { getGrowthCamps } from '@/lib/i18n'
 

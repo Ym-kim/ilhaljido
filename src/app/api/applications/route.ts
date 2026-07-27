@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const insertPayload: any = user?.id
       ? applicationData
-      : (({ user_id: _uid, ...rest }) => rest)(applicationData)
+      : (({ user_id, ...rest }) => (void user_id, rest))(applicationData)
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const { data: application, error: appError } = await (admin as any)

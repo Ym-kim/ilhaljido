@@ -37,6 +37,7 @@ export function WishlistView() {
   // 위시리스트는 mount 후에야 localStorage에서 채워짐 → 그 전엔 빈 상태 대신 대기
   // (복귀 사용자가 '없음' 화면을 깜빡 보는 문제 방지)
   const [hydrated, setHydrated] = useState(false)
+  // eslint-disable-next-line react-hooks/set-state-in-effect -- 하이드레이션 가드(복귀 사용자 '없음' 깜빡 방지) 의도 패턴
   useEffect(() => setHydrated(true), [])
   const items = getCatalogItems(ids).map((i) => localizeAffiliateItem(i, lang))
 

@@ -95,6 +95,7 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
     const q = new URLSearchParams(window.location.search).get('cities')
     if (!q) return
     const valid = q.split(',').filter((id) => CITY_INSIGHTS.some((c) => c.id === id))
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- URL 쿼리 복원은 mount 후 1회(공유 링크 진입) — 의도 패턴
     if (valid.length >= MIN && valid.length <= MAX) setIds(valid)
   }, [])
 

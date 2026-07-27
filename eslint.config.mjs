@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // 일회성 Node 유틸 (앱 번들 무관, require 스타일 허용)
+    "scripts/**",
   ]),
 ]);
 

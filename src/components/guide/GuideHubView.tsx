@@ -46,6 +46,7 @@ export function GuideHubView({ forceLang }: { forceLang?: Lang } = {}) {
   useEffect(() => {
     const m: Record<string, number> = {}
     CITY_GUIDES.forEach((g) => { m[g.slug] = overlapWithSeoul(g.timeZone).overlapH })
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 타임존 계산은 클라이언트 전용(mount 후 1회) — SSR 불일치 방지
     setOverlaps(m)
   }, [])
 

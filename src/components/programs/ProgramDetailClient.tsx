@@ -47,7 +47,7 @@ export function ProgramDetailClient({ program }: { program: Program }) {
   const { lang, tr } = useLang()
   const categoryLabels = getCategoryLabels(lang)
   const statusLabels = getStatusLabels(lang)
-  const schedule = getSampleSchedule(lang, program.duration_nights)
+  const schedule = getSampleSchedule(lang)
   const remaining = getRemainingSlots(program.max_participants, program.current_participants)
   const durationText = tr('prog_nights_days')
     .replace('{n}', String(program.duration_nights))
