@@ -94,18 +94,18 @@ export default function CruisePage() {
       <section className="px-6 py-10 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
           <EditorialBanner
-            href="/cruise/serena"
-            eyebrow={lang === 'EN' ? 'Editorial · Grand Voyage' : lang === 'JP' ? '特集 · グランドボヤージュ' : '에디토리얼 · 그랜드 보야지'}
-            title={lang === 'EN' ? 'A month at sea — Costa Serena grand voyage' : lang === 'JP' ? '海の上でひと月暮らす — コスタ·セレーナ' : '바다 위에서 한 달 살기 — 코스타 세레나 그랜드 보야지'}
-            sub={lang === 'EN' ? '19–23 days from South America to Europe — a month at sea on a repositioning voyage.' : lang === 'JP' ? '南米からヨーロッパへ19〜23日 — リポジショニングで海上のひと月。' : '남미에서 유럽까지 19~23일 — 배가 이사할 때 열리는 바다 위 한 달.'}
+            href="/cruise/world-europa"
+            eyebrow={lang === 'EN' ? 'Editorial · Winter Caribbean' : lang === 'JP' ? '特集 · 冬のカリブ' : '에디토리얼 · 겨울 카리브'}
+            title={lang === 'EN' ? 'A 215,000-ton winter escape — MSC World Europa' : lang === 'JP' ? '21万トン、冬の反対側 — MSCワールドエウローパ' : '21만 톤, 겨울의 반대편 — MSC 월드 유로파'}
+            sub={lang === 'EN' ? 'Eight Caribbean days in Korean winter — Martinique home port, Starlink Wi-Fi.' : lang === 'JP' ? '韓国の冬にカリブ8日 — マルティニーク母港、スターリンクWi-Fi。' : '한국의 겨울에 카리브 8일 — 마르티니크 모항, 스타링크 와이파이.'}
             cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
           />
           <div className="mt-3 flex flex-wrap justify-end gap-x-5 gap-y-1">
-            <Link href="/cruise/bellissima" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
-              {lang === 'EN' ? 'Previous story: MSC Bellissima, a Starlink office at sea →' : lang === 'JP' ? '前の特集：MSCベリッシマ →' : '이전 스토리: 17만 톤의 스타링크 오피스, MSC 벨리시마 →'}
+            <Link href="/cruise/serena" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+              {lang === 'EN' ? 'Previous story: a month at sea, Costa Serena →' : lang === 'JP' ? '前の特集：コスタ·セレーナ →' : '이전 스토리: 바다 위에서 한 달 살기, 코스타 세레나 →'}
             </Link>
-            <Link href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
-              {lang === 'EN' ? 'Busan–Osaka Miracle →' : lang === 'JP' ? '釜山—大阪ミラクル →' : '부산—오사카 미라클호 →'}
+            <Link href="/cruise/bellissima" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+              {lang === 'EN' ? 'MSC Bellissima →' : lang === 'JP' ? 'MSCベリッシマ →' : 'MSC 벨리시마 →'}
             </Link>
           </div>
         </div>

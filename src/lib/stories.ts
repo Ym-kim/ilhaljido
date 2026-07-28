@@ -24,6 +24,23 @@ export type Story = {
 
 export const STORIES: Story[] = [
   {
+    slug: 'world-europa',
+    href: '/cruise/world-europa',
+    published: '2026-07-28',
+    emoji: '🏝',
+    category: { KO: '크루즈 · 겨울 카리브', EN: 'Cruise · Winter Caribbean', JP: 'クルーズ · 冬のカリブ' },
+    title: {
+      KO: '21만 톤, 겨울의 반대편 — MSC 월드 유로파',
+      EN: 'A 215,000-ton winter escape — MSC World Europa',
+      JP: '21万トン、冬の反対側 — MSCワールドエウローパ',
+    },
+    sub: {
+      KO: '한국의 겨울에 카리브 8일 — 마르티니크 모항, 스타링크 와이파이.',
+      EN: 'Eight Caribbean days in Korean winter — Martinique home port, Starlink Wi-Fi.',
+      JP: '韓国の冬にカリブ8日 — マルティニーク母港、スターリンクWi-Fi。',
+    },
+  },
+  {
     slug: 'serena',
     href: '/cruise/serena',
     published: '2026-07-28',

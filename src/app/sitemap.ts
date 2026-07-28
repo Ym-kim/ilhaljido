@@ -18,6 +18,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/cruise/miracle',           priority: 0.7, freq: 'monthly' },
   { path: '/cruise/bellissima',        priority: 0.7, freq: 'monthly' },
   { path: '/cruise/serena',            priority: 0.7, freq: 'monthly' },
+  { path: '/cruise/world-europa',      priority: 0.7, freq: 'monthly' },
   { path: '/stories',                  priority: 0.7, freq: 'weekly' },
   { path: '/collections',              priority: 0.8, freq: 'weekly' },
   // 목적지 가이드
