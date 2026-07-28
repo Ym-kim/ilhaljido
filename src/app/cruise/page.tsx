@@ -94,15 +94,18 @@ export default function CruisePage() {
       <section className="px-6 py-10 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
           <EditorialBanner
-            href="/cruise/bellissima"
-            eyebrow={lang === 'EN' ? 'Editorial · Office at Sea' : lang === 'JP' ? '特集 · 船上オフィス' : '에디토리얼 · 선상 오피스'}
-            title={lang === 'EN' ? 'A 171,000-ton Starlink office — MSC Bellissima' : lang === 'JP' ? '17万トンのスターリンク·オフィス — MSCベリッシマ' : '17만 톤의 스타링크 오피스 — MSC 벨리시마'}
-            sub={lang === 'EN' ? 'Starlink Wi-Fi, 12 dining venues — Incheon home port from June 2027.' : lang === 'JP' ? 'スターリンクWi-Fi·ダイニング12カ所 — 2027年6月から仁川母港。' : '스타링크 와이파이·다이닝 12곳 — 2027년 6월부터 인천 연중 모항.'}
+            href="/cruise/serena"
+            eyebrow={lang === 'EN' ? 'Editorial · Grand Voyage' : lang === 'JP' ? '特集 · グランドボヤージュ' : '에디토리얼 · 그랜드 보야지'}
+            title={lang === 'EN' ? 'A month at sea — Costa Serena grand voyage' : lang === 'JP' ? '海の上でひと月暮らす — コスタ·セレーナ' : '바다 위에서 한 달 살기 — 코스타 세레나 그랜드 보야지'}
+            sub={lang === 'EN' ? '19–23 days from South America to Europe — a month at sea on a repositioning voyage.' : lang === 'JP' ? '南米からヨーロッパへ19〜23日 — リポジショニングで海上のひと月。' : '남미에서 유럽까지 19~23일 — 배가 이사할 때 열리는 바다 위 한 달.'}
             cta={lang === 'EN' ? 'Read the guide →' : lang === 'JP' ? 'ガイドを読む →' : '가이드 읽기 →'}
           />
-          <div className="mt-3 text-right">
+          <div className="mt-3 flex flex-wrap justify-end gap-x-5 gap-y-1">
+            <Link href="/cruise/bellissima" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+              {lang === 'EN' ? 'Previous story: MSC Bellissima, a Starlink office at sea →' : lang === 'JP' ? '前の特集：MSCベリッシマ →' : '이전 스토리: 17만 톤의 스타링크 오피스, MSC 벨리시마 →'}
+            </Link>
             <Link href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
-              {lang === 'EN' ? 'Previous story: 17 hours at sea, Busan–Osaka →' : lang === 'JP' ? '前の特集：海の上の17時間 釜山—大阪 →' : '이전 스토리: 바다 위 17시간, 부산—오사카 미라클호 →'}
+              {lang === 'EN' ? 'Busan–Osaka Miracle →' : lang === 'JP' ? '釜山—大阪ミラクル →' : '부산—오사카 미라클호 →'}
             </Link>
           </div>
         </div>

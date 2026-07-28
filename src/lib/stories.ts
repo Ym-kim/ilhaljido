@@ -24,6 +24,23 @@ export type Story = {
 
 export const STORIES: Story[] = [
   {
+    slug: 'serena',
+    href: '/cruise/serena',
+    published: '2026-07-28',
+    emoji: '🧭',
+    category: { KO: '크루즈 · 그랜드 보야지', EN: 'Cruise · Grand voyage', JP: 'クルーズ · グランドボヤージュ' },
+    title: {
+      KO: '바다 위에서 한 달 살기 — 코스타 세레나 그랜드 보야지',
+      EN: 'A month at sea — Costa Serena grand voyage',
+      JP: '海の上でひと月暮らす — コスタ·セレーナ',
+    },
+    sub: {
+      KO: '남미에서 유럽까지 19~23일 — 배가 이사할 때 열리는 바다 위 한 달.',
+      EN: '19–23 days from South America to Europe — a month at sea on a repositioning voyage.',
+      JP: '南米からヨーロッパへ19〜23日 — リポジショニングで海上のひと月。',
+    },
+  },
+  {
     slug: 'bellissima',
     href: '/cruise/bellissima',
     published: '2026-07-26',
