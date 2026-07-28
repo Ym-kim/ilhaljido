@@ -41,6 +41,10 @@ const nextConfig: NextConfig = {
       // /spaces 통폐합 (2026-07-21): mock 데이터·AI 토큰 비용·죽은 카드(링크 0)의 레거시.
       // 워크스페이스 검증 컨셉은 /infrastructure가 정식 커버 → /workspace와 동일 목적지로 통합
       { source: '/spaces', destination: '/infrastructure', permanent: true },
+      // 로케일 루트 인덱스 부재 해소 (2026-07-27, GSC 404 적발): /en·/ja 하위 44라우트는
+      // 있으나 루트 자체는 미존재 — EN/JA 콘텐츠 허브(destinations)로 영구 리다이렉트
+      { source: '/en', destination: '/en/destinations', permanent: true },
+      { source: '/ja', destination: '/ja/destinations', permanent: true },
     ]
   },
 }
