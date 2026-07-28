@@ -1187,6 +1187,77 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     ),
     href: 'https://www.gimhae.go.kr/00548/00549/00577.web',
   },
+  // ── 2026-07-28 신규 3건: 영덕·강진·청주 — 에이전트 리서치 + 공식 URL 실물 재검증(WebFetch/curl).
+  //    스킵 사유 기록: 해남 반값여행(단기 환급형—성격 불일치) / 영월 살아보기(전국 농촌살아보기와
+  //    중복 계열) / 예산군 한달살기(공고문 원문 미확인—보류) / 대전 대덕(공식 신청 URL 여전히 부재,
+  //    네이버폼만) / 거제·합천·보은·홍성·서산(상반기 차수 마감—8월 말 차수 재탐색 가치).
+  //    사진 = AI 커버(seed 영덕5205·강진5216·청주5207, 텍스트 없음 육안 확인)
+  {
+    id: 'yeongdeok-worcation',
+    photo: '/covers/support-yeongdeok-ai.jpeg',
+    region: loc('경북 영덕', 'Yeongdeok', '盈徳'),
+    name: loc('영덕형 워케이션 — 동해의 ON, 여명의 OFF', 'Yeongdeok Workation', '盈徳型ワーケーション'),
+    // 2026-07-28 검증: ydct.org 공고 663(재단 공식) — 숙박비·체험비 일부 지원 명시. 운영 ~11/27·
+    // 개인형/기업형·2박 이상은 공고+언론(메트로서울 2026-06-10) 교차. 세부 금액은 첨부 공고문이라 미표기
+    benefit: loc(
+      '협약 숙소 숙박비 + 체험비 일부 지원, 로컬 콘텐츠 연계 — 개인형(직장인·프리랜서·창작자·사업자)·기업형 운영',
+      'Partner-stay lodging + activity subsidies with local programs — individual & corporate tracks',
+      '提携宿の宿泊費＋体験費一部支援 — 個人型・企業型',
+    ),
+    status: 'open',
+    deadline: loc('2026.11.27까지 운영 — 접수 중', 'Running until Nov 27, 2026', '2026.11.27まで運営'),
+    conditions: loc(
+      ['개인·팀·기업 신청 가능', '2박 이상', '재단 공고 내 온라인폼 신청'],
+      ['Individuals, teams & companies', '2+ nights', 'Apply via foundation notice'],
+      ['個人・チーム・企業可', '2泊以上', '財団公告のフォームから申請'],
+    ),
+    href: 'https://ydct.org/board/notice/read/663',
+  },
+  {
+    id: 'gangjin-fuso',
+    photo: '/covers/support-gangjin-ai.jpeg',
+    region: loc('전남 강진', 'Gangjin', '康津'),
+    name: loc('강진 촌캉스 푸소(FU-SO)', 'Gangjin FU-SO Farmstay', '康津チョンカンスFU-SO'),
+    // 2026-07-28 검증: fuso.or.kr(군 운영) 실물 — 1박2일·2박3일·일주일살기(6박7일) 구조 확인.
+    // 여름 촌캉스 참가비(2박3일 3만·6박7일 8만, ~80% 지원)·모집 7/10~8/24는 언론(아시아경제 07-03) 교차
+    benefit: loc(
+      '농촌체험민박 — 여름 촌캉스 2박3일 3만원·일주일살기(6박7일) 8만원(약 80% 지원) + 조식 매일·석식 2회',
+      'Farmstay — summer deal: 2N3D ₩30,000 · week stay ₩80,000 (~80% subsidized) + daily breakfast',
+      '農村体験民泊 — 夏は2泊3日3万W・1週間8万W（約80%支援）＋朝食毎日',
+    ),
+    maxBenefit: loc('약 80% 지원', '~80% subsidized', '約80%支援'),
+    status: 'open',
+    deadline: loc('여름 촌캉스 7.10~8.24 접수 (예산 소진 시 조기 마감)', 'Summer batch Jul 10–Aug 24', '夏の受付7/10〜8/24'),
+    conditions: loc(
+      ['2인 이상 팀', '온라인 신청(fuso.or.kr)', '촌캉스 온라인 홍보 이행'],
+      ['Teams of 2+', 'Apply online (fuso.or.kr)', 'Online promotion task'],
+      ['2名以上', 'オンライン申請', 'SNS発信ミッション'],
+    ),
+    href: 'http://www.fuso.or.kr',
+  },
+  {
+    id: 'cheongju-miwon-forest',
+    photo: '/covers/support-cheongju-ai.jpeg',
+    region: loc('충북 청주', 'Cheongju', '清州'),
+    name: loc('미원별빛자연휴양림 워케이션센터', 'Miwon Starlight Forest Workation Center', 'ミウォン星光自然休養林'),
+    // 2026-07-28 검증: 숲나들e(산림청 .go.kr) 예약정책 페이지 실물 — 매월 5일 10시 선착순·최대 3박4일.
+    // 2026-07-15 개장(청주도시공사 운영, 행안부 고향올래 공모)·센터 스펙은 언론(뉴스핌·충청도민일보) 교차.
+    // ⚠️ 지원금형 아님 — 유료 공공시설(충북 첫 등재라 정직 표기로 편입)
+    benefit: loc(
+      '2026년 7월 개장 공공 워케이션센터 — 세미나실·미팅룸·오픈라운지 + 휴양림 숙박 20동 (유료 공공시설, 보조금 아님)',
+      'Public workation center opened Jul 2026 — seminar & meeting rooms, lounge + 20 forest cabins (paid public facility, not a subsidy)',
+      '2026年7月開場の公共ワーケーションセンター＋休養林宿泊20棟（有料公共施設）',
+    ),
+    status: 'always',
+    deadline: loc('연중 운영 — 매월 5일 10시 숲나들e 선착순 예약', 'Year-round — book on foresttrip.go.kr from the 5th monthly', '通年運営 — 毎月5日10時から予約'),
+    conditions: loc(
+      ['개인 신청 가능', '최대 3박 4일', '유료 시설(요금은 숲나들e 확인)'],
+      ['Individuals OK', 'Up to 3 nights', 'Paid facility (rates on site)'],
+      ['個人申請可', '最大3泊4日', '有料施設'],
+    ),
+    workSpec: loc('세미나실·미팅룸·오픈라운지', 'Seminar & meeting rooms, open lounge', 'セミナー室・会議室・ラウンジ'),
+    href: 'https://www.foresttrip.go.kr/pot/rm/ug/selectRsrvtGdncView.do?hmpgId=ID02030132&menuId=004001001&ruleId=101',
+  },
 ]
 
 export function getSupportPrograms(lang: Lang) {
