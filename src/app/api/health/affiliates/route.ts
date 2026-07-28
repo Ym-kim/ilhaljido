@@ -92,6 +92,7 @@ const CHECKS: Check[] = [
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },
   { id: 'page:cruise-bellissima', url: 'https://www.wakation.kr/cruise/bellissima' },
   { id: 'page:cruise-serena', url: 'https://www.wakation.kr/cruise/serena' },
+  { id: 'page:cruise-world-europa', url: 'https://www.wakation.kr/cruise/world-europa' },
   { id: 'page:jeongseon-train', url: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },
   { id: 'page:manado', url: 'https://www.wakation.kr/programs/global/manado' },
   { id: 'page:stories', url: 'https://www.wakation.kr/stories' },
