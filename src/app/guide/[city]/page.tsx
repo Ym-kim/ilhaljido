@@ -28,10 +28,11 @@ export async function generateMetadata({
       canonical: `https://www.wakation.kr/guide/${guide.slug}`,
       languages: guideLanguageAlternates(`/guide/${guide.slug}`),
     },
+    // og:image는 라우트 opengraph-image.tsx(1200×630 브랜드 카드)가 공급 (2026-07-28 v2)
+    // — 명시 images가 파일 컨벤션을 덮어써 unsplash 핫링크가 노출되던 것 제거
     openGraph: {
       title: `${guide.name.KO} 워케이션 가이드`,
       description: guide.tagline.KO,
-      images: [guide.heroPhoto],
     },
   }
 }
