@@ -6,13 +6,16 @@ import Image from 'next/image'
 import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
-import { getHomeCategories, getDomesticCurrent, getDomesticThemedUpcoming } from '@/lib/i18n'
+import { getDomesticCurrent, getDomesticThemedUpcoming } from '@/lib/i18n'
 import { AiIcon, ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
-import { trackAffiliateClick } from '@/lib/track'
+import { trackAffiliateClick, trackEvent } from '@/lib/track'
+import { MoodExplorer } from '@/components/home/MoodExplorer'
+import { DurationExplorer } from '@/components/home/DurationExplorer'
+import { CityShowcase } from '@/components/home/CityShowcase'
 import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
 import { HouseBanner } from '@/components/home/HouseBanner'
@@ -74,36 +77,14 @@ const HERO_DESTS = [
   { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
 ] as const
 
-const CATEGORY_PHOTOS: Record<string, string> = {
-  teal:   'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-  blue:   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80',
-  green:  'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=80',
-  orange: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
-  cyan:   'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80',
-}
-
-const THEME_ITEMS = [
-  { labelKey: 'home_theme_healing_l',  descKey: 'home_theme_healing_d',  href: '/programs/healing',    photo: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_network_l',  descKey: 'home_theme_network_d',  href: '/programs/networking', photo: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_local_l',    descKey: 'home_theme_local_d',    href: '/programs/local',      photo: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_growth_l',   descKey: 'home_theme_growth_d',   href: '/growth',               photo: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80' },
-  // 일본 소도시 — 전용 테마 페이지(료칸·온천, /programs/onsen)로 직결
-  { labelKey: 'home_theme_japan_l',    descKey: 'home_theme_japan_d',    href: '/programs/onsen', photo: '/covers/onsen-hero-real.jpeg' },
-  { labelKey: 'home_theme_golf_l',     descKey: 'home_theme_golf_d',     href: '/programs/golf',       photo: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=600&q=80' },
-  { labelKey: 'home_theme_sports_l',   descKey: 'home_theme_sports_d',   href: '/programs/sports',     photo: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80' },
-]
+// CATEGORY_PHOTOS·THEME_ITEMS 제거(2026-07-28 라이프스타일 홈 개편):
+// 플랫폼 카테고리 섹션은 GrowthEngines·About과 중복이라 홈에서 내림(페이지들은 네비로 접근 유지),
+// 테마 섹션은 MoodExplorer가 흡수(healing·networking·onsen·domestic 직결. golf·sports·local은 /programs 허브에서 접근)
 
 const SPACE_KEYS = [
   { titleKey: 'home_space_domestic_t', descKey: 'home_space_domestic_d', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80' },
   { titleKey: 'home_space_global_t', descKey: 'home_space_global_d', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80' },
   { titleKey: 'home_space_cowork_t', descKey: 'home_space_cowork_d', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-] as const
-
-const STAT_KEYS = [
-  ['home_stat_1_v', 'home_stat_1_l'],
-  ['home_stat_2_v', 'home_stat_2_l'],
-  ['home_stat_3_v', 'home_stat_3_l'],
-  ['home_stat_4_v', 'home_stat_4_l'],
 ] as const
 
 export default function HomePage() {
@@ -121,7 +102,6 @@ export default function HomePage() {
     try { trackAffiliateClick({ provider: 'Booking.com', status: 'active_affiliate', id: 'hero-search' }) } catch {}
     window.open(`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(q)}`, '_blank', 'noopener,noreferrer')
   }
-  const categories = getHomeCategories()
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
 
@@ -190,18 +170,7 @@ export default function HomePage() {
                 {tr('h3_sub')}
               </span>
 
-              {/* 수치 신뢰 스트립 — 데스크톱에서만 보조 정보로 노출 */}
-              <div
-                className="animate-rise hidden lg:grid grid-cols-4 gap-2 mt-8"
-                style={{ animationDelay: '0.4s' }}
-              >
-                {STAT_KEYS.map(([v, l]) => (
-                  <span key={l} className="rounded-2xl border border-white/12 bg-black/20 px-3 py-3 backdrop-blur-md">
-                    <strong className="block text-white text-base font-black leading-none mb-1.5">{tr(v)}</strong>
-                    <span className="block text-white/60 text-[0.6875rem] font-medium leading-tight">{tr(l)}</span>
-                  </span>
-                ))}
-              </div>
+              {/* 수치 스트립 제거(2026-07-28) — 첫 화면은 감정·행동 전달에 집중, 실적은 YangyangProof 섹션이 담당 */}
             </div>
 
             {/* 목적지 퀵서치 카드 */}
@@ -256,6 +225,7 @@ export default function HomePage() {
             <div className="flex flex-col gap-2.5">
               <Link
                 href={heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel'}
+                onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none' })}
                 className="inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -264,6 +234,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/programs"
+                onClick={() => trackEvent('hero_cta_click', { cta: 'programs' })}
                 className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {tr('h3_cta_programs')}
@@ -280,6 +251,15 @@ export default function HomePage() {
 
       {/* ── 국가 지정 노출: 일본 접속자 전용 컨텍스트 배너 (그 외 국가엔 미노출) ── */}
       <GeoJapanBanner />
+
+      {/* ── 무드 탐색 — 감정·상황으로 먼저 (2026-07-28 라이프스타일 개편, 탐색 1축) ── */}
+      <MoodExplorer />
+
+      {/* ── 기간 탐색 — 쓸 수 있는 날짜로 고르기 (탐색 2축) ── */}
+      <DurationExplorer />
+
+      {/* ── 지금 떠나기 좋은 도시 — locale별 순서 분기(KO=일본 단기 / JP=제주 우선) ── */}
+      <CityShowcase />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
@@ -489,47 +469,9 @@ export default function HomePage() {
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
       <SupportPromoBanner />
 
-      {/* ── 플랫폼 카테고리 ── */}
-      <section className="bg-[#f0f9ff] py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8 md:mb-10">
-            <SectionEyebrow>{tr('home_platform_eyebrow')}</SectionEyebrow>
-            <SectionTitle className="mb-2">
-              {tr('home_platform_title')}
-            </SectionTitle>
-            <p className="text-[#475569] text-sm leading-relaxed max-w-lg">{tr('home_platform_desc')}</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-            {categories.map((cat) => {
-              const photo = CATEGORY_PHOTOS[cat.id]
-              return (
-                <Link
-                  key={cat.href}
-                  href={cat.href}
-                  className="group relative rounded-2xl overflow-hidden h-44 sm:h-52 block border border-[#dbeafe] hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
-                >
-                  {photo && (
-                    <Image
-                      src={photo}
-                      alt={tr(cat.labelKey)}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 384px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h3 className="text-white font-black text-[0.9375rem] sm:text-lg leading-snug">{tr(cat.labelKey)}</h3>
-                    <p className="text-white/60 text-[0.65rem] sm:text-xs mt-0.5 flex items-center gap-1">
-                      {tr('learn_more')} <ArrowRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    </p>
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+      {/* ── 플랫폼 카테고리 섹션은 홈에서 제외 (2026-07-28 라이프스타일 개편) ──
+          GrowthEngines·About(Hosted/Select/Partner)와 3중 중복이라 홈 노출을 내림.
+          각 카테고리 페이지는 네비·GrowthEngines 링크로 접근 유지 — 기능 삭제 아님 */}
 
       {/* ── 6대 성장 엔진 — Hosted·Select·Learning·Tools·Media·Sponsor ── */}
       <GrowthEngines />
@@ -540,39 +482,9 @@ export default function HomePage() {
       {/* ── Wakation Tools — 참가자 진단·리포트 (Beta 준비 중) ── */}
       <ToolsSection />
 
-      {/* ── 테마별 워케이션 ── */}
-      <section className="bg-white py-14 md:py-20 px-4 sm:px-6 border-b border-[#dbeafe]">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-8 md:mb-10">
-            <SectionEyebrow>{tr('home_theme_eyebrow')}</SectionEyebrow>
-            <SectionTitle className="mb-2">
-              {tr('home_theme_title')}
-            </SectionTitle>
-            <p className="text-[#475569] text-sm leading-relaxed max-w-lg">{tr('home_theme_desc')}</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {THEME_ITEMS.map((t) => (
-              <Link
-                key={t.labelKey}
-                href={t.href}
-                className="group relative rounded-2xl overflow-hidden h-36 sm:h-44 block border border-[#dbeafe] hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <Image
-                  src={t.photo}
-                  alt={tr(t.labelKey)}
-                  fill
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px"
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 px-3.5 pb-3.5">
-                  <p className="text-white font-bold text-sm sm:text-[0.9375rem] leading-snug">{tr(t.labelKey)}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── 테마별 워케이션 섹션은 MoodExplorer(상단 무드 탐색)가 흡수 (2026-07-28) ──
+          healing·networking·onsen·domestic은 무드 카드로 직결. golf·sports·local·growth는
+          /programs 허브·네비에서 접근 유지 — 기능 삭제 아님 */}
 
       {/* ── 목적지 추천 위저드 (룰베이스, API 0원) ── */}
       <DestinationFinder />
