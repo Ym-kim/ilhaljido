@@ -17,32 +17,33 @@ export const metadata: Metadata = {
     default: 'Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
     template: '%s | Wakation',
   },
-  description: '국내외 워케이션, 성장캠프, 시장조사단, 어학·유학, 비자·체류 정보까지 일하는 사람을 위한 새로운 체류 플랫폼.',
-  keywords: ['워케이션', '국내 워케이션', '글로벌 워케이션', '디지털 노마드', '리모트워크', '프리랜서 워케이션', '시장조사단', '어학연수', '비자 정보', '장기체류', '코워킹', '성장캠프', '네트워킹'],
+  // 2026-07-28 라이프스타일 개편: 사업 나열형 → 브랜드 카피 정렬 (공유 미리보기가 첫인상)
+  description: '일도 여행도, 내 방식대로 — 이번 주말의 제주부터 한 달의 치앙마이까지, 일하는 사람의 여행을 검증한 것만 골라 큐레이션합니다.',
+  keywords: ['워케이션', '국내 워케이션', '글로벌 워케이션', '디지털 노마드', '리모트워크', '프리랜서 워케이션', '한달살기', '어학연수', '비자 정보', '장기체류', '코워킹', '성장캠프', '네트워킹'],
   authors: [{ name: 'Wakation', url: 'https://www.wakation.kr' }],
   creator: 'Wakation',
   publisher: 'Wakation',
   openGraph: {
-    title: 'Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
-    description: '국내외 워케이션, 성장캠프, 시장조사단, 어학·유학, 비자·체류 정보까지 일하는 사람을 위한 새로운 체류 플랫폼.',
+    title: 'Wakation | 일도 여행도, 내 방식대로',
+    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 일하는 사람의 여행을, 검증한 것만 골라 큐레이션합니다.',
     url: 'https://www.wakation.kr',
     siteName: 'Wakation',
     locale: 'ko_KR',
     type: 'website',
-    // 기본 공유 썸네일 (1200×630) — 카톡·페북·슬랙 링크 미리보기
+    // 기본 공유 썸네일 (1200×630) — 카톡·라인·페북·슬랙 링크 미리보기
     images: [
       {
         url: 'https://www.wakation.kr/og-wakation-ai.jpeg',
         width: 1200,
         height: 630,
-        alt: 'Wakation — 일하는 곳이 휴가지가 되는 순간',
+        alt: 'Wakation — 일도 여행도, 내 방식대로',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
-    description: '국내외 워케이션, 성장캠프, 시장조사단, 어학·유학, 비자·체류 정보까지 일하는 사람을 위한 새로운 체류 플랫폼.',
+    title: 'Wakation | 일도 여행도, 내 방식대로',
+    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 일하는 사람의 여행을, 검증한 것만 골라 큐레이션합니다.',
     creator: '@wakation_kr',
     images: ['https://www.wakation.kr/og-wakation-ai.jpeg'],
   },
