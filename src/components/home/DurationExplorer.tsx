@@ -26,6 +26,7 @@ const ROWS: DurationRow[] = [
     hint: { KO: '주말만으로 충분한', EN: 'A weekend is enough', JP: '週末だけで十分' },
     chips: [
       { href: '/guide/jeju', label: { KO: '제주', EN: 'Jeju', JP: '済州' } },
+      { href: '/guide/busan', label: { KO: '부산', EN: 'Busan', JP: '釜山' } },
       { href: '/guide/fukuoka', label: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' } },
       { href: '/programs/domestic', label: { KO: '국내 워케이션', EN: 'Korea programs', JP: '韓国国内' } },
     ],
