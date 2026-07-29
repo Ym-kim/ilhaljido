@@ -8,6 +8,7 @@ const BASE = 'https://www.wakation.kr'
 // 라우트를 우선순위별로 관리 — 신규 공개 페이지 추가 시 여기에 등록
 const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[number]['changeFrequency'] }[] = [
   { path: '',                          priority: 1.0, freq: 'weekly' },
+  { path: '/ja',                       priority: 0.9, freq: 'weekly' },
   // 커머스·수익 허브 (높은 우선순위)
   { path: '/select',                   priority: 0.9, freq: 'weekly' },
   { path: '/select/hotel',             priority: 0.9, freq: 'weekly' },

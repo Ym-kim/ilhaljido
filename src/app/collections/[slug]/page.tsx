@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { CollectionView } from '@/components/affiliate/CollectionView'
 import { COLLECTIONS, getCollection } from '@/lib/affiliate/collections'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { getTripSetSocialAsset } from '@/lib/tripSetCampaign'
 
 // 정적 생성 — 컬렉션 슬러그만 (미확정 슬러그는 404)
 export const dynamicParams = false
@@ -19,6 +20,7 @@ export async function generateMetadata({
   const { slug } = await params
   const col = getCollection(slug)
   if (!col) return { title: '기획전' }
+  const socialOg = getTripSetSocialAsset(slug, 'og', 'KO')
   return {
     title: `${col.title.KO} — 워케이션 기획전`,
     description: col.desc.KO,
@@ -30,7 +32,14 @@ export async function generateMetadata({
     openGraph: {
       title: `${col.title.KO} — 워케이션 기획전`,
       description: col.desc.KO,
+      images: socialOg ? [{ url: socialOg, width: 1200, height: 630, alt: col.photoAlt?.KO ?? col.title.KO }] : undefined,
     },
+    twitter: socialOg ? {
+      card: 'summary_large_image',
+      title: col.title.KO,
+      description: col.tagline.KO,
+      images: [socialOg],
+    } : undefined,
     robots: { index: true, follow: true },
   }
 }

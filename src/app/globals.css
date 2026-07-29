@@ -21,6 +21,18 @@
   --color-border: #dbeafe;
 }
 
+:root {
+  --wak-ocean: #0b4b69;
+  --wak-sky: #3ba6c9;
+  --wak-ivory: #fbf8f2;
+  --wak-sand: #e8dccb;
+  --wak-coral: #d77b68;
+  --wak-apricot: #e7a77b;
+  --wak-sage: #9aaa86;
+  --wak-ink: #142431;
+  --wak-muted: #66747d;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -47,6 +59,25 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   word-break: keep-all;
   overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+html[lang='ja'] body,
+.font-jp {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'YuGothic', 'Meiryo', var(--font-sans);
+  letter-spacing: 0;
+  line-break: strict;
+}
+
+html[lang='ja'] h1,
+html[lang='ja'] h2,
+html[lang='ja'] h3,
+.font-jp h1,
+.font-jp h2,
+.font-jp h3 {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'YuGothic', 'Meiryo', var(--font-sans);
+  letter-spacing: -0.015em;
+  line-break: strict;
 }
 
 /* 본문 텍스트 유형에 display 폰트가 새지 않도록 버튼·입력은 본문 폰트 유지 */
@@ -236,6 +267,16 @@ nav ul { list-style: none; }
 .animate-kenburns {
   animation: kenburns 26s ease-in-out infinite alternate;
   will-change: transform;
+}
+
+.home-editorial-hero {
+  object-position: 62% center;
+}
+
+@media (min-width: 1024px) {
+  .home-editorial-hero {
+    object-position: center;
+  }
 }
 
 /* 프로모 티커 — 어필리에이트 상품 무한 롤링 (호버 시 일시정지는 컴포넌트에서) */

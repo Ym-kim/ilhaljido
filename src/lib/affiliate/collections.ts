@@ -1,4 +1,5 @@
 import type { Lang } from '@/lib/i18n/types'
+import { TRIP_SET_CAMPAIGNS } from '@/lib/tripSetCampaign'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 테마 기획전 (큐레이션 컬렉션) — 하나투어 '기획전' 벤치마크
@@ -38,6 +39,9 @@ export type Collection = {
   slug: string
   emoji: string
   photo: string
+  photoAlt?: L
+  photoPosition?: string
+  illustrative?: boolean
   title: L
   tagline: L
   desc: L
@@ -85,7 +89,10 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'fukuoka-3n4d',
     emoji: '☕',
-    photo: '/covers/stay-fukuoka-city-real.jpeg', // 검증 2026-07-19
+    photo: TRIP_SET_CAMPAIGNS['fukuoka-3n4d'].image,
+    photoAlt: TRIP_SET_CAMPAIGNS['fukuoka-3n4d'].alt,
+    photoPosition: '48% 48%',
+    illustrative: true,
     title: { KO: '후쿠오카 3박 4일', EN: 'Fukuoka, 3 nights 4 days', JP: '福岡 3泊4日' },
     tagline: {
       KO: '카페에서 일하고, 온천에서 하루를 마무리하는 짧은 일본 체류',
@@ -135,7 +142,10 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'osaka-friends',
     emoji: '🎡',
-    photo: P('1590559899731-a382839e5549'), // 오사카 (검증)
+    photo: TRIP_SET_CAMPAIGNS['osaka-friends'].image,
+    photoAlt: TRIP_SET_CAMPAIGNS['osaka-friends'].alt,
+    photoPosition: '58% 49%',
+    illustrative: true,
     title: { KO: '오사카 친구 여행 3박 4일', EN: 'Osaka with friends, 3N4D', JP: '大阪 友達旅 3泊4日' },
     tagline: {
       KO: '맛있는 것과 새로운 장면을 함께 모으는 3박 4일',
@@ -183,7 +193,10 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'seoul-3n4d',
     emoji: '🏙',
-    photo: P('1517154421773-0529f29ea451'), // 서울 (검증 풀)
+    photo: TRIP_SET_CAMPAIGNS['seoul-3n4d'].image,
+    photoAlt: TRIP_SET_CAMPAIGNS['seoul-3n4d'].alt,
+    photoPosition: '60% 52%',
+    illustrative: true,
     title: { KO: '서울 3박 4일', EN: 'Seoul, 3 nights 4 days', JP: 'ソウル 3泊4日' },
     tagline: {
       KO: '카페와 거리를 걸으며 서울의 일상에 다가가는 여행',
@@ -232,7 +245,10 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'busan-weekend',
     emoji: '🌊',
-    photo: P('1638591751482-1a7d27fcea15'), // 부산 해운대 (검증 2026-07-28)
+    photo: TRIP_SET_CAMPAIGNS['busan-weekend'].image,
+    photoAlt: TRIP_SET_CAMPAIGNS['busan-weekend'].alt,
+    photoPosition: '54% 54%',
+    illustrative: true,
     title: { KO: '부산 주말 2박 3일', EN: 'Busan weekend, 2N3D', JP: '釜山 週末 2泊3日' },
     tagline: {
       KO: '바다를 보고, 먹고, 걷는 — 가볍게 즐기는 주말',
@@ -410,6 +426,7 @@ export const COLLECTIONS_UI: Record<string, L> = {
     EN: 'Each item is booked and paid separately at the partner. This is not a package sale.',
     JP: '各商品は提携先で個別に予約・決済されます。パッケージ販売ではありません。',
   },
+  ts_disclosure_label: { KO: '예약 전에 확인하세요', EN: 'Before you book', JP: '予約前にご確認ください' },
   ts_guide_cta: { KO: '도시 가이드 보기', EN: 'Open the city guide', JP: '都市ガイドを見る' },
   ts_day: { KO: 'Day', EN: 'Day', JP: 'Day' },
   ts_card_cta: { KO: '구성 보기', EN: 'See the set', JP: '構成を見る' },

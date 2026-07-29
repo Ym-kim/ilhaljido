@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { CollectionView } from '@/components/affiliate/CollectionView'
 import { COLLECTIONS, getCollection } from '@/lib/affiliate/collections'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { getTripSetSocialAsset } from '@/lib/tripSetCampaign'
 
 // /ja/collections/{slug} — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN와 상호 연결)
 
@@ -20,6 +21,7 @@ export async function generateMetadata({
   const { slug } = await params
   const col = getCollection(slug)
   if (!col) return {}
+  const socialOg = getTripSetSocialAsset(slug, 'og', 'JP')
   return {
     title: `${col.title.JP} — ワーケーション特集`,
     description: col.desc.JP,
@@ -34,7 +36,14 @@ export async function generateMetadata({
       siteName: 'Wakation',
       locale: 'ja_JP',
       alternateLocale: ['ko_KR', 'en_US'],
+      images: socialOg ? [{ url: socialOg, width: 1200, height: 630, alt: col.photoAlt?.JP ?? col.title.JP }] : undefined,
     },
+    twitter: socialOg ? {
+      card: 'summary_large_image',
+      title: col.title.JP,
+      description: col.tagline.JP,
+      images: [socialOg],
+    } : undefined,
     robots: { index: true, follow: true },
   }
 }

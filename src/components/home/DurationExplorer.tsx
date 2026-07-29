@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEvent } from '@/lib/track'
@@ -16,12 +17,14 @@ type DurationRow = {
   key: string
   label: L
   hint: L
+  photo: string
   chips: { href: string; label: L }[]
 }
 
 const ROWS: DurationRow[] = [
   {
     key: '2n3d',
+    photo: '/campaign/trip-sets/busan-weekend-editorial-v1.webp',
     label: { KO: '2박 3일', EN: '2–3 days', JP: '2泊3日' },
     hint: { KO: '주말만으로 충분한', EN: 'A weekend is enough', JP: '週末だけで十分' },
     chips: [
@@ -32,6 +35,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '3n4d',
+    photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
     label: { KO: '3박 4일', EN: '3–4 days', JP: '3泊4日' },
     hint: { KO: '연차 하루면 되는', EN: 'One day off is all it takes', JP: '有休1日あれば' },
     chips: [
@@ -43,6 +47,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '1w',
+    photo: '/covers/stay-chicland-danang-ai.jpeg',
     label: { KO: '일주일', EN: 'One week', JP: '1週間' },
     hint: { KO: '일과 여행이 섞이기 시작하는', EN: 'Where work starts blending in', JP: '仕事と旅が混ざり始める' },
     chips: [
@@ -53,6 +58,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '2w',
+    photo: '/covers/stay-bali-city-real.jpeg',
     label: { KO: '2주', EN: 'Two weeks', JP: '2週間' },
     hint: { KO: '현지 리듬이 생기는', EN: 'Long enough to find a rhythm', JP: '現地のリズムが生まれる' },
     chips: [
@@ -62,6 +68,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '1m',
+    photo: '/covers/cruise-msc-world-europa-ai.jpeg',
     label: { KO: '한 달', EN: 'A month', JP: 'ひと月' },
     hint: { KO: '살아보기가 되는', EN: 'When a trip becomes living', JP: '暮らすような旅になる' },
     chips: [
@@ -82,10 +89,11 @@ const UI: Record<string, L> = {
   },
 }
 
-export function DurationExplorer() {
-  const { lang } = useLang()
+export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang } = useLang()
+  const lang = forceLang ?? ctxLang
   return (
-    <section className="bg-[#f0f9ff] border-b border-[#dbeafe] py-14 md:py-20 px-4 sm:px-6">
+    <section className="bg-[#eef6f7] border-b border-[#d9e8ea] py-14 md:py-20 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8 md:mb-10">
           <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5">{UI.eyebrow[lang]}</p>
@@ -96,23 +104,34 @@ export function DurationExplorer() {
           {ROWS.map((row) => (
             <div
               key={row.key}
-              className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 rounded-2xl bg-white border border-[#dbeafe] px-5 py-4"
+              className="group flex gap-4 overflow-hidden rounded-[1.35rem] border border-[#d9e5e5] bg-white p-3 shadow-[0_5px_18px_rgba(16,55,70,0.04)] transition-shadow hover:shadow-[0_12px_28px_rgba(16,55,70,0.09)] sm:items-center sm:gap-6 sm:p-4"
             >
-              <div className="sm:w-44 shrink-0">
-                <span className="block font-black text-[#111827] text-lg leading-none">{row.label[lang]}</span>
-                <span className="block text-[#94a3b8] text-xs mt-1">{row.hint[lang]}</span>
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl sm:h-28 sm:w-36">
+                <Image
+                  src={row.photo}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 96px, 144px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-6">
+                <div className="mb-3 shrink-0 sm:mb-0 sm:w-40">
+                <span className="block font-black text-[#111827] text-lg leading-none">{row.label[lang]}</span>
+                  <span className="block text-[#7c8d94] text-xs mt-1 leading-relaxed">{row.hint[lang]}</span>
+                </div>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {row.chips.map((c) => (
                   <Link
                     key={c.href}
                     href={c.href}
                     onClick={() => trackEvent('duration_select', { duration: row.key, dest: c.label.KO })}
-                    className="inline-flex items-center text-sm font-semibold px-4 py-2 rounded-full border border-[#dbeafe] bg-white text-[#475569] hover:border-brand-mid hover:text-brand-mid transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    className="inline-flex items-center rounded-full border border-[#d6e2e3] bg-[#f9fbfb] px-3 py-1.5 text-xs font-semibold text-[#475d66] transition-colors hover:border-brand-mid hover:bg-white hover:text-brand-mid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     {c.label[lang]}
                   </Link>
                 ))}
+                </div>
               </div>
             </div>
           ))}

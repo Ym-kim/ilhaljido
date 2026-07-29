@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Feather, Users, Laptop, Flame, Coffee, HeartHandshake, GraduationCap, CalendarDays } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
@@ -15,44 +16,44 @@ import { trackEvent } from '@/lib/track'
 
 type L = Record<Lang, string>
 
-const MOODS: { icon: typeof Feather; href: string; label: L; desc: L }[] = [
+const MOODS: { icon: typeof Feather; href: string; photo: string; label: L; desc: L }[] = [
   {
-    icon: Feather, href: '/programs/healing',
+    icon: Feather, href: '/programs/healing', photo: '/covers/dest-yufuin-real.jpeg',
     label: { KO: '혼자 조용히', EN: 'Solo & quiet', JP: 'ひとり静かに' },
     desc: { KO: '아무에게도 방해받지 않는 회복', EN: 'Recovery, uninterrupted', JP: '誰にも邪魔されない回復' },
   },
   {
-    icon: Users, href: '/collections/osaka-friends?src=mood',
+    icon: Users, href: '/collections/osaka-friends?src=mood', photo: '/campaign/trip-sets/osaka-friends-editorial-v1.webp',
     label: { KO: '친구와 가볍게', EN: 'With a friend', JP: '友達と気軽に' },
     desc: { KO: '오사카 친구 여행 3박 4일', EN: 'Osaka with friends, 3N4D', JP: '大阪友達旅 3泊4日' },
   },
   {
-    icon: Laptop, href: '/collections/bali-monthstay',
+    icon: Laptop, href: '/collections/bali-monthstay', photo: '/covers/stay-bali-city-real.jpeg',
     label: { KO: '일하면서 오래', EN: 'Work & stay long', JP: '働きながら長く' },
     desc: { KO: '발리 한 달 머물기 세트', EN: 'A month in Bali, prepared', JP: 'バリひと月セット' },
   },
   {
-    icon: Flame, href: '/programs/onsen',
+    icon: Flame, href: '/programs/onsen', photo: '/covers/onsen-hero-real.jpeg',
     label: { KO: '온천에서 회복', EN: 'Onsen reset', JP: '温泉でリセット' },
     desc: { KO: '료칸과 노트북의 밸런스', EN: 'Ryokan-and-laptop balance', JP: '旅館とノートPCのバランス' },
   },
   {
-    icon: Coffee, href: '/collections/fukuoka-3n4d?src=mood',
+    icon: Coffee, href: '/collections/fukuoka-3n4d?src=mood', photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
     label: { KO: '카페와 미식', EN: 'Cafés & food', JP: 'カフェとグルメ' },
     desc: { KO: '후쿠오카 3박 4일 — 카페와 온천', EN: 'Fukuoka 3N4D — cafés & onsen', JP: '福岡3泊4日 — カフェと温泉' },
   },
   {
-    icon: HeartHandshake, href: '/programs/networking',
+    icon: HeartHandshake, href: '/programs/networking', photo: '/covers/activity-curated-real-v2.jpeg',
     label: { KO: '새로운 사람과', EN: 'Meet new people', JP: '新しい出会いを' },
     desc: { KO: '창업가·1인 워커 네트워킹', EN: 'Founders & solo workers', JP: '起業家・ソロワーカー交流' },
   },
   {
-    icon: GraduationCap, href: '/select/learn',
+    icon: GraduationCap, href: '/select/learn', photo: '/covers/course-notion-ai.jpeg',
     label: { KO: '배우며 성장', EN: 'Learn & grow', JP: '学びながら成長' },
     desc: { KO: '여행에 얹는 온라인 강의', EN: 'Courses that travel with you', JP: '旅に載せるオンライン講座' },
   },
   {
-    icon: CalendarDays, href: '/collections/busan-weekend?src=mood',
+    icon: CalendarDays, href: '/collections/busan-weekend?src=mood', photo: '/campaign/trip-sets/busan-weekend-editorial-v1.webp',
     label: { KO: '주말에 짧게', EN: 'Just a weekend', JP: '週末にさくっと' },
     desc: { KO: '부산 주말 2박 3일', EN: 'Busan weekend, 2N3D', JP: '釜山週末 2泊3日' },
   },
@@ -68,8 +69,9 @@ const UI: Record<string, L> = {
   },
 }
 
-export function MoodExplorer() {
-  const { lang } = useLang()
+export function MoodExplorer({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang } = useLang()
+  const lang = forceLang ?? ctxLang
   return (
     <section className="bg-white border-b border-[#dbeafe] py-14 md:py-20 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
@@ -78,7 +80,7 @@ export function MoodExplorer() {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight mb-2">{UI.title[lang]}</h2>
           <p className="text-[#64748b] text-sm leading-relaxed max-w-lg">{UI.sub[lang]}</p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {MOODS.map((m) => {
             const Icon = m.icon
             return (
@@ -86,13 +88,23 @@ export function MoodExplorer() {
                 key={m.href + m.label.KO}
                 href={m.href}
                 onClick={() => trackEvent('travel_mood_select', { mood: m.label.KO })}
-                className="group rounded-2xl border border-[#dbeafe] bg-white p-4 sm:p-5 hover:border-[#93c5fd] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                className="group relative min-h-44 overflow-hidden rounded-[1.35rem] border border-black/5 bg-[#0b1b25] shadow-[0_8px_24px_rgba(8,32,48,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(8,32,48,0.16)] active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:min-h-52"
               >
-                <span className="inline-flex w-9 h-9 items-center justify-center rounded-xl bg-[#f0f9ff] text-brand-mid mb-3 group-hover:bg-brand-mid group-hover:text-white transition-colors">
-                  <Icon className="w-4.5 h-4.5" strokeWidth={ICON_STROKE} />
+                <Image
+                  src={m.photo}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 280px"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <span className="absolute inset-0 bg-gradient-to-t from-[#061722]/95 via-[#061722]/18 to-black/5" />
+                <span className="absolute left-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-black/25 text-white backdrop-blur-sm sm:left-4 sm:top-4">
+                  <Icon className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
                 </span>
-                <span className="block font-black text-[#111827] text-[0.9375rem] leading-snug">{m.label[lang]}</span>
-                <span className="block text-[#64748b] text-xs mt-1 leading-relaxed">{m.desc[lang]}</span>
+                <span className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <span className="block text-[0.95rem] font-black leading-snug text-white sm:text-base">{m.label[lang]}</span>
+                  <span className="mt-1 block text-[0.68rem] leading-relaxed text-white/72 sm:text-xs">{m.desc[lang]}</span>
+                </span>
               </Link>
             )
           })}

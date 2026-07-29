@@ -10,6 +10,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics as GtagConsent } from '@/components/analytics/Analytics'
 import { WishlistToast } from '@/components/affiliate/WishlistToast'
+import { LocaleHtmlLang } from '@/components/layout/LocaleHtmlLang'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-full bg-[#0f0f0f] text-[#141414] antialiased flex flex-col">
         <LanguageProvider>
+          <LocaleHtmlLang />
           <AuthProvider>
             <AnnounceProvider>
               <SiteNavbar />
