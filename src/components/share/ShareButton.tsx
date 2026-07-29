@@ -23,32 +23,44 @@ const UI: Record<string, L> = {
 export function ShareButton({
   title,
   text,
-  /** 지정 없으면 현재 페이지 URL */
+  /** 지정 없으면 현재 페이지 URL (canonical 공유는 url prop으로 전달) */
   url,
   tone = 'dark',
+  /** share_click 계측 필드 — v2 (2026-07-28): content_type·slug·method */
+  contentType = 'page',
+  slug,
 }: {
   title: string
   text?: string
   url?: string
   tone?: 'dark' | 'light'
+  contentType?: 'guide' | 'collection' | 'moment' | 'hosted' | 'result' | 'story' | 'page'
+  slug?: string
 }) {
   const { lang } = useLang()
   const [copied, setCopied] = useState(false)
+  const [busy, setBusy] = useState(false)
 
   const handleShare = async () => {
+    if (busy) return // 중복 클릭 방지
+    setBusy(true)
     const shareUrl = url ?? (typeof window !== 'undefined' ? window.location.href : '')
-    trackEvent('share_click', { title })
+    const eventSlug = slug ?? (typeof window !== 'undefined' ? window.location.pathname : 'unknown')
     try {
       if (typeof navigator !== 'undefined' && navigator.share) {
         await navigator.share({ title, text: text ?? title, url: shareUrl })
+        trackEvent('share_click', { content_type: contentType, slug: eventSlug, locale: lang, method: 'native' })
         return
       }
     } catch {
-      // 사용자가 공유 시트를 닫은 경우 등 — 폴백으로 진행하지 않고 종료
+      // 사용자가 공유 시트를 닫은 경우 등 — 폴백으로 진행하지 않고 종료 (이벤트 미발생)
       return
+    } finally {
+      setBusy(false)
     }
     try {
       await navigator.clipboard.writeText(shareUrl)
+      trackEvent('share_click', { content_type: contentType, slug: eventSlug, locale: lang, method: 'clipboard' })
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {

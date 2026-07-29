@@ -4,10 +4,9 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
-import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticCurrent, getDomesticThemedUpcoming } from '@/lib/i18n'
-import { AiIcon, ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
+import { ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
@@ -19,15 +18,11 @@ import { CityShowcase } from '@/components/home/CityShowcase'
 import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
 import { HouseBanner } from '@/components/home/HouseBanner'
-import { DestinationFinder } from '@/components/home/DestinationFinder'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
 import { PromoTicker } from '@/components/home/PromoTicker'
 import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
-import { GrowthEngines } from '@/components/home/GrowthEngines'
-import { LearningSection } from '@/components/home/LearningSection'
-import { ToolsSection } from '@/components/home/ToolsSection'
-import { SponsorSection } from '@/components/home/SponsorSection'
+import { MoreExplore } from '@/components/home/MoreExplore'
 import { YangyangProof } from '@/components/home/YangyangProof'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 
@@ -80,12 +75,6 @@ const HERO_DESTS = [
 // CATEGORY_PHOTOS·THEME_ITEMS 제거(2026-07-28 라이프스타일 홈 개편):
 // 플랫폼 카테고리 섹션은 GrowthEngines·About과 중복이라 홈에서 내림(페이지들은 네비로 접근 유지),
 // 테마 섹션은 MoodExplorer가 흡수(healing·networking·onsen·domestic 직결. golf·sports·local은 /programs 허브에서 접근)
-
-const SPACE_KEYS = [
-  { titleKey: 'home_space_domestic_t', descKey: 'home_space_domestic_d', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80' },
-  { titleKey: 'home_space_global_t', descKey: 'home_space_global_d', img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80' },
-  { titleKey: 'home_space_cowork_t', descKey: 'home_space_cowork_d', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80' },
-] as const
 
 export default function HomePage() {
   const { lang, tr } = useLang()
@@ -469,90 +458,12 @@ export default function HomePage() {
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
       <SupportPromoBanner />
 
-      {/* ── 플랫폼 카테고리 섹션은 홈에서 제외 (2026-07-28 라이프스타일 개편) ──
-          GrowthEngines·About(Hosted/Select/Partner)와 3중 중복이라 홈 노출을 내림.
-          각 카테고리 페이지는 네비·GrowthEngines 링크로 접근 유지 — 기능 삭제 아님 */}
+      {/* ── 홈 다이어트 v2 (2026-07-28): GrowthEngines·Learning·Tools·DestinationFinder·
+          비자AI·Sponsor·인프라 7개 무거운 섹션 → MoreExplore 컴팩트 링크 그리드 1개로 압축.
+          컴포넌트·페이지·URL 전부 보존(전용 페이지에서 계속 서비스) — 홈 노출만 축소 */}
+      <MoreExplore />
 
-      {/* ── 6대 성장 엔진 — Hosted·Select·Learning·Tools·Media·Sponsor ── */}
-      <GrowthEngines />
-
-      {/* ── Wakation Learning — VOD·현장 실습·사후 학습 ── */}
-      <LearningSection />
-
-      {/* ── Wakation Tools — 참가자 진단·리포트 (Beta 준비 중) ── */}
-      <ToolsSection />
-
-      {/* ── 테마별 워케이션 섹션은 MoodExplorer(상단 무드 탐색)가 흡수 (2026-07-28) ──
-          healing·networking·onsen·domestic은 무드 카드로 직결. golf·sports·local·growth는
-          /programs 허브·네비에서 접근 유지 — 기능 삭제 아님 */}
-
-      {/* ── 목적지 추천 위저드 (룰베이스, API 0원) ── */}
-      <DestinationFinder />
-
-      {/* ── AI 비자·체류 ── */}
-      <section className="dark-surface py-20 md:py-28 px-6 bg-gradient-to-br from-[#0a1628] via-[#0f1f3d] to-[#0f0f0f] border-y border-white/5">
-        <div className="max-w-3xl mx-auto text-center">
-          <SectionEyebrow onDark>{tr('home_ai_eyebrow')}</SectionEyebrow>
-          <div className="flex justify-center mb-6">
-            <span className="icon-tile icon-tile-lg icon-tile-on-dark">
-              <AiIcon className="w-6 h-6" strokeWidth={ICON_STROKE} />
-            </span>
-          </div>
-          <SectionTitle onDark className="mb-5 text-center">
-            {tr('home_ai_title')}
-          </SectionTitle>
-          <p className="text-lead-on-dark mb-4">{tr('home_ai_desc')}</p>
-          <p className="text-caption-on-dark mb-10 max-w-xl mx-auto">{tr('home_ai_desc2')}</p>
-          <Link href="/visa-ai" className="btn-primary">
-            {tr('home_ai_cta')}
-            <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── Wakation Media 섹션은 홈에서 제외 (2026-07-18 홈 다이어트) ──
-          '콘텐츠 준비 중' 플레이스홀더뿐이라 전환 가치 0·스크롤만 증가 (Airbnb 2025 단순화 벤치).
-          실콘텐츠(유튜브 등) 확보 시 <MediaSection /> 복귀 — 컴포넌트 파일은 보존됨 */}
-
-      {/* ── Wakation Experience Partner — 체험형 스폰서십 ── */}
-      <SponsorSection />
-
-      {/* ── 공간 인프라 ── */}
-      <section className="dark-surface py-20 md:py-28 px-6 bg-[#111]">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
-            <div>
-              <SectionEyebrow onDark>{tr('home_infra_eyebrow')}</SectionEyebrow>
-              <SectionTitle onDark className="leading-tight whitespace-pre-line">
-                {tr('home_infra_title')}
-              </SectionTitle>
-            </div>
-            <Link
-              href="/infrastructure"
-              className="text-emerald-400 text-[0.9375rem] font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all shrink-0"
-            >
-              {tr('view_all')}
-              <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {SPACE_KEYS.map((s) => (
-              <Link
-                key={s.titleKey}
-                href="/infrastructure"
-                className="group rounded-2xl overflow-hidden relative block h-72 border border-white/8"
-              >
-                <Image src={s.img} alt={tr(s.titleKey)} fill sizes="(max-width: 768px) 100vw, 384px" className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                <div className="absolute bottom-0 p-6">
-                  <h3 className="text-white font-black text-lg mb-2">{tr(s.titleKey)}</h3>
-                  <p className="text-caption-on-dark">{tr(s.descKey)}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── 비자AI·Media·Sponsor·인프라 섹션은 MoreExplore로 이관 (2026-07-28 v2) — 전용 페이지 유지 ── */}
 
       {/* ── Wakation 소개 (GEO 대응) ── */}
       <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-20 md:py-28 px-6">
