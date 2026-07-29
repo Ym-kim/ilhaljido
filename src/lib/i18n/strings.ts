@@ -2,8 +2,8 @@ import type { Lang } from './types'
 
 const KO: Record<string, string> = {
   nav_about: '소개',
-  nav_destinations: '목적지',
-  nav_discover: '발견하기',
+  nav_destinations: '여행지',
+  nav_discover: '여행 찾기',
   nav_plan: '여행 준비',
   nav_saved: '저장',
   nav_more: '더보기',
@@ -54,10 +54,10 @@ const KO: Record<string, string> = {
   visa_login_btn: '로그인하고 AI 분석 받기',
   visa_beta_notice: '베타 기간 무료 · 정식 오픈 시 연간 멤버십으로 제공될 예정입니다',
   visa_ai_fail: 'AI 분석 연결에 실패해 기본 가이드를 표시합니다.',
-  nav_cta: '프로그램 보기',
+  nav_cta: '30초 여행 찾기',
   nav_prog_domestic: '국내 워케이션',
-  nav_prog_global: '글로벌 워케이션',
-  nav_prog_market: '시장조사단·박람회',
+  nav_prog_global: '해외 워케이션·체류',
+  nav_prog_market: '시장조사·박람회',
   nav_prog_language: '어학·유학',
   nav_prog_cruise: '크루즈 워케이션',
 
@@ -679,14 +679,14 @@ const KO: Record<string, string> = {
   apply_companion_names_placeholder: '동반 참가자 이름 (예: 김영희, 박철수)',
 
   nav_select: '예약',
-  nav_select_guide: '도시 가이드',
-  nav_select_stories: '워케이션 스토리',
+  nav_select_guide: '여행지 가이드',
+  nav_select_stories: '여행 이야기',
   nav_select_compare: '도시 비교',
-  nav_select_hotel: '숙소 예약',
+  nav_select_hotel: '숙소 찾기',
   nav_select_activity: '현지 체험',
   nav_select_esim: 'eSIM',
   nav_select_learn: '강의·학습',
-  nav_select_all: '전체 보기',
+  nav_select_all: '전체 여행 준비',
 
   // ── 지원사업 프로모 배너 ──
   home_gov_eyebrow: '정부·지자체 지원',
@@ -763,7 +763,7 @@ const KO: Record<string, string> = {
 const EN: Record<string, string> = {
   nav_about: 'About',
   nav_destinations: 'Destinations',
-  nav_discover: 'Discover',
+  nav_discover: 'Find a Trip',
   nav_plan: 'Plan',
   nav_saved: 'Saved',
   nav_more: 'More',
@@ -814,10 +814,10 @@ const EN: Record<string, string> = {
   visa_login_btn: 'Log in for AI analysis',
   visa_beta_notice: 'Free during beta · will be offered as an annual membership at launch',
   visa_ai_fail: 'AI analysis failed — showing the basic guide instead.',
-  nav_cta: 'View Programs',
+  nav_cta: 'Find my trip',
   nav_prog_domestic: 'Domestic Workation',
-  nav_prog_global: 'Global Workation',
-  nav_prog_market: 'Market Research',
+  nav_prog_global: 'Overseas Workations & Stays',
+  nav_prog_market: 'Market Visits & Trade Shows',
   nav_prog_language: 'Language Study',
   nav_prog_cruise: 'Cruise Workation',
 
@@ -1438,14 +1438,14 @@ const EN: Record<string, string> = {
   apply_companion_names_placeholder: 'Companion names (e.g. Jane Doe, John Smith)',
 
   nav_select: 'Book',
-  nav_select_guide: 'City Guides',
-  nav_select_stories: 'Workation Stories',
+  nav_select_guide: 'Destination Guides',
+  nav_select_stories: 'Travel Stories',
   nav_select_compare: 'Compare cities',
-  nav_select_hotel: 'Hotel Booking',
+  nav_select_hotel: 'Find Stays',
   nav_select_activity: 'Activities',
   nav_select_esim: 'eSIM',
   nav_select_learn: 'Courses',
-  nav_select_all: 'View all',
+  nav_select_all: 'All Trip Essentials',
 
   // ── Gov support promo banner ──
   home_gov_eyebrow: 'Public support',
@@ -1522,7 +1522,7 @@ const EN: Record<string, string> = {
 const JP: Record<string, string> = {
   nav_about: '紹介',
   nav_destinations: '行き先',
-  nav_discover: '見つける',
+  nav_discover: '旅を探す',
   nav_plan: '旅の準備',
   nav_saved: '保存',
   nav_more: 'その他',
@@ -1573,10 +1573,10 @@ const JP: Record<string, string> = {
   visa_login_btn: 'ログインしてAI分析',
   visa_beta_notice: 'ベータ期間は無料 · 正式オープン時に年間メンバーシップで提供予定',
   visa_ai_fail: 'AI分析に失敗したため基本ガイドを表示します。',
-  nav_cta: 'プログラムを見る',
+  nav_cta: '30秒で旅を探す',
   nav_prog_domestic: '国内ワーケーション',
-  nav_prog_global: 'グローバルワーケーション',
-  nav_prog_market: '市場調査団',
+  nav_prog_global: '海外ワーケーション・滞在',
+  nav_prog_market: '市場調査・展示会',
   nav_prog_language: '語学・留学',
   nav_prog_cruise: 'クルーズワーケーション',
 
@@ -2197,14 +2197,14 @@ const JP: Record<string, string> = {
   apply_companion_names_placeholder: '同伴者のお名前（例：山田花子、佐藤太郎）',
 
   nav_select: '予約',
-  nav_select_guide: '都市ガイド',
-  nav_select_stories: 'ワーケーションストーリー',
+  nav_select_guide: '旅先ガイド',
+  nav_select_stories: '旅のストーリー',
   nav_select_compare: '都市を比較',
-  nav_select_hotel: '宿泊予約',
+  nav_select_hotel: '宿泊先を探す',
   nav_select_activity: '現地体験',
   nav_select_esim: 'eSIM',
   nav_select_learn: '講座・学習',
-  nav_select_all: 'すべて見る',
+  nav_select_all: '旅の準備をすべて見る',
 
   // ── 支援事業プロモバナー ──
   home_gov_eyebrow: '政府・自治体支援',

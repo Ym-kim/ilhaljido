@@ -12,6 +12,9 @@ const SECURITY_HEADERS = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  // Windows/CI에서 200개가 넘는 정적 경로를 CPU 수만큼 동시에 생성하면
+  // build worker가 비정상 종료될 수 있어 안정적인 병렬도만 사용한다.
+  experimental: { cpus: 4 },
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },

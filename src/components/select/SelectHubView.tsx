@@ -25,7 +25,7 @@ const COPY: Record<string, L> = {
   title2a: { KO: '한 곳에서', EN: 'all in one place', JP: 'ここひとつで' },
   title2b: { KO: ' 끝내세요', EN: '', JP: '完結' },
   sub: {
-    KO: '숙소 예약부터 현지 체험, eSIM, 온라인 강의까지. 워케이션에 맞는 외부 제휴 서비스를 목적지별로 큐레이션합니다.',
+    KO: '숙소부터 현지 체험, eSIM, 항공·교통까지. 워케이션에 필요한 외부 제휴 서비스를 여행지별로 큐레이션합니다.',
     EN: 'Stays, local experiences, eSIMs and online courses — partner services curated by destination for your workation.',
     JP: '宿の予約から現地体験、eSIM、オンライン講座まで。ワーケーションに合う提携サービスを目的地別にキュレーション。',
   },
@@ -101,7 +101,7 @@ const CATEGORIES: {
     id: 'hotel',
     href: '/select/hotel',
     icon: BedDouble,
-    label: { KO: '숙소 예약', EN: 'Stays', JP: '宿の予約' },
+    label: { KO: '숙소 찾기', EN: 'Find stays', JP: '宿泊先を探す' },
     title: {
       KO: '목적지별 숙소 큐레이션',
       EN: 'Stays curated by destination',
@@ -307,7 +307,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
       <ProductBrowser />
 
       {/* 체험·eSIM */}
-      <section className="px-6 py-14 border-b border-[#e5e1da] bg-[#f9f7f3]">
+      <section id="transport" className="scroll-mt-24 px-6 py-14 border-b border-[#e5e1da] bg-[#f9f7f3]">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">
             <p className="text-[#a0a0a0] text-xs font-bold tracking-widest uppercase mb-2">

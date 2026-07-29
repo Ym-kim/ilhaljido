@@ -15,7 +15,7 @@ import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 
 const UI: Record<string, Record<Lang, string>> = {
   eyebrow: { KO: 'Destinations', EN: 'Destinations', JP: 'Destinations' },
-  title: { KO: '워케이션 도시 가이드', EN: 'Workation City Guides', JP: 'ワーケーション都市ガイド' },
+  title: { KO: '워케이션 여행지 가이드', EN: 'Workation Destination Guides', JP: 'ワーケーション旅先ガイド' },
   sub: {
     KO: '인터넷·생활비·비자·시즌까지 핵심만 정리. 다음 워케이션 목적지를 정해보세요.',
     EN: 'Internet, cost of living, visa and seasons — the essentials. Pick your next workation base.',
@@ -24,7 +24,7 @@ const UI: Record<string, Record<Lang, string>> = {
   internet: { KO: '인터넷', EN: 'Internet', JP: 'ネット' },
   cost: { KO: '생활비', EN: 'Cost', JP: '生活費' },
   visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
-  more: { KO: '자세히 보기', EN: 'View details', JP: '詳しく見る' },
+  more: { KO: '여행지 살펴보기', EN: 'Explore destination', JP: '行き先を見る' },
   compareTitle: { KO: '어디로 갈지 고민된다면', EN: 'Torn between cities?', JP: 'どこへ行くか迷ったら' },
   compareSub: {
     KO: '2~3개 도시를 나란히 놓고 인터넷·생활비·비자·시차를 비교해 보세요.',

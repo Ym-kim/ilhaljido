@@ -16,11 +16,11 @@ import { SavedTripMatchesSection } from '@/components/trip-match/SavedTripMatche
 type L = Record<Lang, string>
 const COPY: Record<string, L> = {
   eyebrow: { KO: 'MY WAKATION', EN: 'MY WAKATION', JP: 'MY WAKATION' },
-  title: { KO: '찜한 상품', EN: 'Saved items', JP: '保存したアイテム' },
+  title: { KO: '저장한 여행', EN: 'Saved trips', JP: '保存した旅' },
   sub: {
-    KO: '하트를 누른 숙소·체험·강의를 한곳에 모았습니다. 이 브라우저에 저장돼요.',
-    EN: 'Every stay, experience and course you hearted, in one place — saved in this browser.',
-    JP: 'ハートを付けた宿·体験·講座を一箇所に。このブラウザに保存されます。',
+    KO: '여행 찾기 결과와 하트를 누른 상품을 한곳에 모았습니다. 이 브라우저에 저장돼요.',
+    EN: 'Your trip matches and hearted items, together in one place — saved in this browser.',
+    JP: '旅探しの結果とハートを付けた商品をひとつに。このブラウザに保存されます。',
   },
   empty_title: { KO: '아직 찜한 상품이 없어요', EN: 'No saved items yet', JP: 'まだ保存したアイテムがありません' },
   empty_sub: {
@@ -50,7 +50,6 @@ export function WishlistView() {
           <h1 className="text-3xl md:text-4xl font-black text-[#111827] mb-3 flex items-center gap-2.5">
             <Heart className="w-7 h-7 text-rose-500 fill-rose-500" />
             {COPY.title[lang]}
-            {items.length > 0 && <span className="text-[#94a3b8] text-xl font-bold">{items.length}{COPY.count[lang]}</span>}
           </h1>
           <p className="text-[#64748b] text-sm md:text-base max-w-2xl leading-relaxed">{COPY.sub[lang]}</p>
         </div>

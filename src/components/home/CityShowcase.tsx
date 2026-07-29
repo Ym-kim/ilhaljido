@@ -33,7 +33,7 @@ const UI: Record<string, L> = {
     JP: '時差・ネット環境・1カ月の費用まで。検証済みガイドのある都市だけを選びました。',
   },
   cta: { KO: '가이드 보기', EN: 'Open guide', JP: 'ガイドを見る' },
-  all: { KO: '모든 목적지 보기', EN: 'All destinations', JP: 'すべての目的地' },
+  all: { KO: '모든 여행지 보기', EN: 'All destinations', JP: '行き先をすべて見る' },
 }
 
 export function CityShowcase({ forceLang }: { forceLang?: Lang } = {}) {

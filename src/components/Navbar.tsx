@@ -1,413 +1,603 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { Menu, X, ChevronDown, User, LogOut } from 'lucide-react'
+import { usePathname } from 'next/navigation'
+import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from 'react'
+import { ArrowRight, Bookmark, ChevronDown, LogOut, Menu, User, X } from 'lucide-react'
 import { Logo } from '@/components/brand/Logo'
-import { useLang } from '@/context/LanguageContext'
-import { useAuth } from '@/context/AuthContext'
 import { useAnnounce } from '@/context/AnnounceContext'
+import { useAuth } from '@/context/AuthContext'
+import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
-import type { Lang } from '@/lib/i18n'
+import type { Lang } from '@/lib/i18n/types'
+import {
+  getCampaignAlt,
+  getCampaignHref,
+  getCampaignImage,
+  getNavigationGroups,
+  getNavigationHref,
+  NAVIGATION_COPY,
+  NAVIGATION_MENUS,
+  type NavigationLink,
+  type NavigationMenu,
+} from '@/lib/navigation'
+import { trackEvent } from '@/lib/track'
 import { cn } from '@/lib/utils'
 
-type DropItem = { labelKey: string; href: string; isHighlight?: boolean; hasDivider?: boolean }
-type NavItem = { key: string; href?: string; items?: DropItem[] }
-
-// 고객 언어 5+더보기로 재정리 (2026-07-28 라이프스타일 v2) — 이전: 사업 분류 6개(예약·글로벌·성장 등).
-// 발견하기(콘텐츠)·목적지·여행 준비(=구 예약, Select)·프로그램(Hosted+글로벌 통합)·저장 + 더보기(비자·성장·파트너·B2B).
-// 기존 URL·페이지 전부 유지 — 노출 위치만 재배치. 모바일 아코디언은 이 배열을 그대로 미러링해 자동 단축.
-const NAV_ITEMS: NavItem[] = [
-  {
-    key: 'nav_discover',
-    items: [
-      { labelKey: 'nav_select_guide', href: '/guide' },
-      { labelKey: 'nav_select_stories', href: '/stories' },
-      { labelKey: 'nav_select_collections', href: '/collections' },
-      { labelKey: 'nav_select_compare', href: '/destinations/compare' },
-    ],
-  },
-  { key: 'nav_destinations', href: '/destinations' },
-  {
-    key: 'nav_plan',
-    items: [
-      { labelKey: 'nav_select_hotel', href: '/select/hotel' },
-      { labelKey: 'nav_select_activity', href: '/select/activity' },
-      { labelKey: 'nav_select_esim', href: '/select/esim' },
-      { labelKey: 'nav_select_learn', href: '/select/learn' },
-      { labelKey: 'nav_select_all', href: '/select', hasDivider: true },
-    ],
-  },
-  {
-    key: 'nav_programs',
-    items: [
-      { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
-      { labelKey: 'nav_prog_globalstay', href: '/programs/global' },
-      { labelKey: 'nav_prog_support', href: '/programs/support' },
-      { labelKey: 'nav_global_market', href: '/programs/market' },
-      { labelKey: 'nav_prog_language', href: '/language' },
-      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen', hasDivider: true },
-      { labelKey: 'nav_founder_net', href: '/programs/networking' },
-      { labelKey: 'mega_stay_cruise', href: '/cruise' },
-      { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
-    ],
-  },
-  { key: 'nav_saved', href: '/wishlist' },
-  {
-    key: 'nav_more',
-    items: [
-      { labelKey: 'nav_visa', href: '/visa-ai', isHighlight: true },
-      { labelKey: 'nav_growth', href: '/growth' },
-      { labelKey: 'nav_learn', href: '/learn' },
-      { labelKey: 'nav_tools_diagnosis', href: '/tools/diagnosis' },
-      { labelKey: 'nav_prog_business', href: '/business', hasDivider: true },
-      { labelKey: 'nav_partnership', href: '/partnership' },
-    ],
-  },
+const DESKTOP_MENUS = [
+  ...NAVIGATION_MENUS.filter((menu) => menu.id !== 'more'),
+  NAVIGATION_MENUS.find((menu) => menu.id === 'more')!,
 ]
 
+function stripLocale(pathname: string) {
+  const stripped = pathname.replace(/^\/(en|ja)(?=\/|$)/, '')
+  return stripped || '/'
+}
+
+function isPathActive(pathname: string, href: string) {
+  const current = stripLocale(pathname)
+  const target = stripLocale(href.split(/[?#]/)[0] || '/')
+  if (target === '/') return current === '/'
+  return current === target || current.startsWith(`${target}/`)
+}
+
+function menuIsActive(menu: NavigationMenu, pathname: string, lang: Lang) {
+  if (menu.id === 'destinations' && stripLocale(pathname).startsWith('/guide/')) return true
+  if (menu.id === 'programs' && stripLocale(pathname).startsWith('/hosted')) return true
+  return getNavigationGroups(menu, lang).some((group) =>
+    group.links.some((item) => isPathActive(pathname, getNavigationHref(item, lang))),
+  ) || Boolean(menu.allLink && isPathActive(pathname, getNavigationHref(menu.allLink, lang)))
+}
+
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {
+  const pathname = usePathname()
   const { lang, setLang, tr } = useLang()
   const { user, signOut } = useAuth()
   const { visible: annVisible, dismiss: annDismiss } = useAnnounce()
   const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState<Set<string>>(new Set())
+  const [desktopOpen, setDesktopOpen] = useState<string | null>(null)
+  const [languageOpen, setLanguageOpen] = useState(false)
+  const [accountOpen, setAccountOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileSection, setMobileSection] = useState<string | null>(null)
+  const navRef = useRef<HTMLElement>(null)
+  const mobileDialogRef = useRef<HTMLDivElement>(null)
+  const desktopButtonsRef = useRef<Record<string, HTMLButtonElement | null>>({})
+  const hoverTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 48)
-    fn()
-    window.addEventListener('scroll', fn)
-    return () => window.removeEventListener('scroll', fn)
+    const updateScrolled = () => setScrolled(window.scrollY > 48)
+    updateScrolled()
+    window.addEventListener('scroll', updateScrolled, { passive: true })
+    return () => window.removeEventListener('scroll', updateScrolled)
   }, [])
 
-  const isTransparentNow = transparent && !scrolled
+  useEffect(() => {
+    const onPointerDown = (event: PointerEvent) => {
+      if (!navRef.current?.contains(event.target as Node)) {
+        setDesktopOpen(null)
+        setLanguageOpen(false)
+        setAccountOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => document.removeEventListener('pointerdown', onPointerDown)
+  }, [])
 
-  const toggleMobile = (key: string) => {
-    setMobileOpen((prev) => {
-      const next = new Set(prev)
-      if (next.has(key)) next.delete(key)
-      else next.add(key)
-      return next
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape' || mobileMenuOpen) return
+      if (desktopOpen) {
+        event.preventDefault()
+        const activeMenu = desktopOpen
+        setDesktopOpen(null)
+        desktopButtonsRef.current[activeMenu]?.focus()
+      }
+      setLanguageOpen(false)
+      setAccountOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [desktopOpen, mobileMenuOpen])
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const focusTimer = window.setTimeout(() => mobileDialogRef.current?.focus(), 0)
+    return () => {
+      window.clearTimeout(focusTimer)
+      document.body.style.overflow = previousOverflow
+    }
+  }, [mobileMenuOpen])
+
+  const isTransparentNow = transparent && !scrolled && !desktopOpen && !mobileMenuOpen
+
+  const trackNavigation = (
+    event: 'navigation_open' | 'navigation_item_click' | 'navigation_campaign_click' | 'mobile_menu_open' | 'mobile_menu_close',
+    menu: string,
+    device: 'desktop' | 'mobile',
+    item?: string,
+    destinationUrl?: string,
+  ) => {
+    trackEvent(event, {
+      locale: lang,
+      menu,
+      device,
+      ...(item ? { item } : {}),
+      ...(destinationUrl ? { destination_url: destinationUrl } : {}),
     })
   }
 
-  const linkCls = cn(
-    'text-[0.9375rem] font-semibold transition-colors',
-    isTransparentNow ? 'text-white/90 hover:text-white' : 'text-gray-700 hover:text-brand-mid'
+  const openDesktopMenu = (menuId: string) => {
+    if (desktopOpen !== menuId) trackNavigation('navigation_open', menuId, 'desktop')
+    setDesktopOpen(menuId)
+    setLanguageOpen(false)
+    setAccountOpen(false)
+  }
+
+  const clearHoverTimer = () => {
+    if (hoverTimerRef.current) clearTimeout(hoverTimerRef.current)
+    hoverTimerRef.current = null
+  }
+
+  const scheduleOpen = (menuId: string) => {
+    clearHoverTimer()
+    hoverTimerRef.current = setTimeout(() => openDesktopMenu(menuId), 90)
+  }
+
+  const scheduleClose = () => {
+    clearHoverTimer()
+    hoverTimerRef.current = setTimeout(() => setDesktopOpen(null), 170)
+  }
+
+  const closeDesktopMenu = (returnFocus = false) => {
+    const activeMenu = desktopOpen
+    setDesktopOpen(null)
+    if (returnFocus && activeMenu) desktopButtonsRef.current[activeMenu]?.focus()
+  }
+
+  const openMobileMenu = (section?: string) => {
+    setMobileMenuOpen(true)
+    setMobileSection(section ?? null)
+    trackNavigation('mobile_menu_open', section ?? 'global', 'mobile')
+  }
+
+  const closeMobileMenu = (menu = 'global') => {
+    if (mobileMenuOpen) trackNavigation('mobile_menu_close', menu, 'mobile')
+    setMobileMenuOpen(false)
+    setMobileSection(null)
+  }
+
+  const onMobileDialogKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      closeMobileMenu(mobileSection ?? 'global')
+      return
+    }
+    if (event.key !== 'Tab') return
+    const focusable = Array.from(
+      mobileDialogRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ) ?? [],
+    ).filter((element) => !element.hasAttribute('hidden'))
+    if (focusable.length === 0) return
+    const first = focusable[0]
+    const last = focusable[focusable.length - 1]
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault()
+      last.focus()
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault()
+      first.focus()
+    }
+  }
+
+  const handleMenuButtonKeyDown = (event: ReactKeyboardEvent<HTMLButtonElement>, menuId: string) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      openDesktopMenu(menuId)
+      window.setTimeout(() => {
+        navRef.current?.querySelector<HTMLElement>(`#desktop-menu-${menuId} a[href]`)?.focus()
+      }, 0)
+    }
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      closeDesktopMenu(true)
+    }
+  }
+
+  const onNavigationClick = (
+    menu: string,
+    item: NavigationLink,
+    device: 'desktop' | 'mobile',
+  ) => {
+    const href = getNavigationHref(item, lang)
+    trackNavigation('navigation_item_click', menu, device, item.id, href)
+    if (device === 'mobile') closeMobileMenu(menu)
+    else closeDesktopMenu()
+  }
+
+  const onCampaignClick = (device: 'desktop' | 'mobile') => {
+    const href = getCampaignHref(lang)
+    trackNavigation('navigation_campaign_click', 'find', device, 'featured-campaign', href)
+    if (device === 'mobile') closeMobileMenu('find')
+    else closeDesktopMenu()
+  }
+
+  const renderCampaignCard = (device: 'desktop' | 'mobile') => (
+    <Link
+      href={getCampaignHref(lang)}
+      prefetch={false}
+      onClick={() => onCampaignClick(device)}
+      className={cn(
+        'group/campaign relative isolate overflow-hidden bg-[#0b2437] text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
+        device === 'desktop' ? 'min-h-[15.5rem] w-[18.5rem] rounded-[1.65rem]' : 'mt-3 min-h-[10.5rem] rounded-[1.35rem]',
+      )}
+    >
+      <Image
+        src={getCampaignImage(lang)}
+        alt={getCampaignAlt(lang)}
+        fill
+        sizes={device === 'desktop' ? '296px' : '(max-width: 640px) 88vw, 420px'}
+        className="object-cover transition duration-700 ease-out group-hover/campaign:scale-[1.025] motion-reduce:transition-none"
+      />
+      <span className="absolute inset-0 bg-gradient-to-t from-[#071723] via-[#071723]/45 to-transparent" />
+      <span className="absolute inset-x-0 bottom-0 flex flex-col p-5">
+        <span className="text-[0.62rem] font-black uppercase tracking-[0.18em] text-sky-200">
+          {NAVIGATION_COPY.currentCampaign[lang]}
+        </span>
+        <span className="mt-1.5 text-lg font-black tracking-[-0.03em]">
+          {NAVIGATION_COPY.campaignTitle[lang]}
+        </span>
+        <span className="mt-1 line-clamp-2 text-xs font-medium leading-5 text-white/75">
+          {NAVIGATION_COPY.campaignDescription[lang]}
+        </span>
+        <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-black text-white">
+          {NAVIGATION_COPY.campaignCta[lang]}
+          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/campaign:translate-x-0.5" strokeWidth={ICON_STROKE} />
+        </span>
+      </span>
+    </Link>
+  )
+
+  const renderDesktopMenu = (menu: NavigationMenu) => {
+    const groups = getNavigationGroups(menu, lang)
+    return (
+      <div
+        id={`desktop-menu-${menu.id}`}
+        role="region"
+        aria-label={menu.label[lang]}
+        className="absolute left-1/2 top-[calc(100%+0.55rem)] z-50 w-[min(62rem,calc(100vw-3rem))] -translate-x-1/2"
+      >
+        <div className="grid overflow-hidden rounded-[1.75rem] border border-[#dfe6e8] bg-white shadow-[0_28px_80px_rgba(4,27,40,.18)] grid-cols-[14rem_1fr]">
+          <div className="flex min-h-[17.5rem] flex-col bg-[#0d2638] p-6 text-white">
+            <span className="text-[0.63rem] font-black uppercase tracking-[0.18em] text-sky-300">
+              {menu.eyebrow[lang]}
+            </span>
+            <span className="mt-3 text-[1.35rem] font-black leading-tight tracking-[-0.04em]">
+              {menu.title[lang]}
+            </span>
+            <span className="mt-auto text-[0.69rem] font-bold uppercase tracking-[0.18em] text-white/40">
+              Stay · Work · Grow
+            </span>
+          </div>
+
+          <div className={cn('grid min-w-0 gap-6 p-6', menu.campaign ? 'grid-cols-[1fr_auto]' : 'grid-cols-1')}>
+            <div className={cn('grid min-w-0 gap-7', groups.length > 1 ? 'grid-cols-2' : 'grid-cols-1')}>
+              {groups.map((group) => (
+                <div key={group.id} className="min-w-0">
+                  {group.label && (
+                    <span className="mb-2 block text-[0.64rem] font-black uppercase tracking-[0.16em] text-[#78909c]">
+                      {group.label[lang]}
+                    </span>
+                  )}
+                  <div className="space-y-1">
+                    {group.links.map((item) => {
+                      const href = getNavigationHref(item, lang)
+                      const active = isPathActive(pathname, href)
+                      return (
+                        <Link
+                          key={item.id}
+                          href={href}
+                          aria-current={active ? 'page' : undefined}
+                          onClick={() => onNavigationClick(menu.id, item, 'desktop')}
+                          className={cn(
+                            'group/link flex min-h-12 min-w-0 items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition-colors focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-sky-500',
+                            active ? 'bg-[#eaf6fb] text-[#08668b]' : 'text-[#203441] hover:bg-[#f2f6f6] hover:text-[#08668b]',
+                          )}
+                        >
+                          <span className="min-w-0">
+                            <span className="block text-sm font-extrabold tracking-[-0.015em]">{item.label[lang]}</span>
+                            {item.description && (
+                              <span className="mt-0.5 block truncate text-[0.69rem] font-medium text-[#7b8b92]">
+                                {item.description[lang]}
+                              </span>
+                            )}
+                          </span>
+                          <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#9fb0b7] transition-transform group-hover/link:translate-x-0.5" strokeWidth={ICON_STROKE} />
+                        </Link>
+                      )
+                    })}
+                  </div>
+                  {menu.allLink && group === groups[groups.length - 1] && (
+                    <Link
+                      href={getNavigationHref(menu.allLink, lang)}
+                      onClick={() => onNavigationClick(menu.id, menu.allLink!, 'desktop')}
+                      className="mt-3 inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-black text-[#08719b] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                    >
+                      {menu.allLink.label[lang]} <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
+                    </Link>
+                  )}
+                </div>
+              ))}
+            </div>
+            {menu.campaign && renderCampaignCard('desktop')}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  const renderMobileSection = (menu: NavigationMenu) => {
+    const open = mobileSection === menu.id
+    const groups = getNavigationGroups(menu, lang)
+    return (
+      <div key={menu.id} className="border-b border-[#e5ebec]">
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={`mobile-menu-${menu.id}`}
+          onClick={() => {
+            const next = open ? null : menu.id
+            setMobileSection(next)
+            if (next) trackNavigation('navigation_open', menu.id, 'mobile')
+          }}
+          className="flex min-h-14 w-full items-center justify-between gap-4 py-3 text-left text-[1.02rem] font-black tracking-[-0.02em] text-[#142b39] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-sky-500"
+        >
+          <span>{menu.label[lang]}</span>
+          <ChevronDown className={cn('h-4 w-4 transition-transform motion-reduce:transition-none', open && 'rotate-180')} strokeWidth={ICON_STROKE} />
+        </button>
+        {open && (
+          <div id={`mobile-menu-${menu.id}`} className="pb-4">
+            <span className="mb-2 block text-[0.67rem] font-bold leading-5 text-[#71828a]">{menu.title[lang]}</span>
+            <div className={cn('grid gap-1', groups.length > 1 && 'min-[390px]:grid-cols-2')}>
+              {groups.flatMap((group) => group.links).slice(0, 6).map((item) => {
+                const href = getNavigationHref(item, lang)
+                const active = isPathActive(pathname, href)
+                return (
+                  <Link
+                    key={item.id}
+                    href={href}
+                    aria-current={active ? 'page' : undefined}
+                    onClick={() => onNavigationClick(menu.id, item, 'mobile')}
+                    className={cn(
+                      'flex min-h-12 min-w-0 items-center justify-between gap-2 rounded-xl px-3 py-2 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-sky-500',
+                      active ? 'bg-[#eaf6fb] text-[#08719b]' : 'text-[#425660] hover:bg-[#f2f6f6]',
+                    )}
+                  >
+                    <span className="min-w-0 break-keep">{item.label[lang]}</span>
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0 text-[#9aabb2]" strokeWidth={ICON_STROKE} />
+                  </Link>
+                )
+              })}
+            </div>
+            {menu.allLink && (
+              <Link
+                href={getNavigationHref(menu.allLink, lang)}
+                onClick={() => onNavigationClick(menu.id, menu.allLink!, 'mobile')}
+                className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-black text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+              >
+                {menu.allLink.label[lang]} <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
+              </Link>
+            )}
+            {menu.campaign && renderCampaignCard('mobile')}
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  const topLinkClass = (active: boolean) => cn(
+    'relative flex min-h-11 items-center rounded-lg px-2.5 text-[0.88rem] font-bold tracking-[-0.02em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400 xl:px-3',
+    isTransparentNow ? 'text-white/90 hover:bg-white/10 hover:text-white' : 'text-[#344b58] hover:bg-[#eef5f6] hover:text-[#08719b]',
+    active && (isTransparentNow ? 'bg-white/10 text-white' : 'bg-[#eaf6fb] text-[#075f81]'),
+    'after:absolute after:inset-x-3 after:bottom-1 after:h-0.5 after:rounded-full after:bg-sky-400 after:transition-transform',
+    active ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100',
   )
 
   return (
     <>
-      {/* Announcement bar */}
       {annVisible && (
-        <div className="fixed top-0 inset-x-0 z-[51] h-9 bg-brand-mid flex items-center justify-center px-10">
-          <Link
-            href="/programs/domestic"
-            className="flex items-center gap-2 text-white text-[0.8125rem] font-semibold hover:opacity-90 transition-opacity min-w-0"
-          >
-            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0" />
-            <span className="hidden sm:inline truncate">{tr('ann_bar_text')}</span>
-            <span className="sm:hidden truncate">{tr('ann_bar_short')}</span>
-            <span className="shrink-0 text-white/75 font-bold ml-1">{tr('ann_bar_cta')}</span>
+        <div className="fixed inset-x-0 top-0 z-[52] flex h-9 items-center justify-center bg-[#08719b] px-10">
+          <Link href="/programs/domestic" className="flex min-w-0 items-center gap-2 text-[0.78rem] font-semibold text-white hover:text-sky-100">
+            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-sky-200" />
+            <span className="hidden truncate sm:inline">{tr('ann_bar_text')}</span>
+            <span className="truncate sm:hidden">{tr('ann_bar_short')}</span>
+            <span className="ml-1 shrink-0 font-black text-white/75">{tr('ann_bar_cta')}</span>
           </Link>
-          <button
-            type="button"
-            onClick={annDismiss}
-            className="absolute right-3 text-white/70 hover:text-white transition-colors p-1"
-            aria-label={tr('nav_close')}
-          >
-            <X className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+          <button type="button" onClick={annDismiss} className="absolute right-3 flex h-9 w-9 items-center justify-center text-white/70 hover:text-white" aria-label={tr('nav_close')}>
+            <X className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
           </button>
         </div>
       )}
 
-      {/* Main nav */}
       <nav
+        ref={navRef}
+        aria-label="Primary navigation"
         className={cn(
-          'fixed inset-x-0 z-50 transition-all duration-300',
+          'fixed inset-x-0 z-[51] border-b transition-[background-color,border-color,box-shadow] duration-300',
           annVisible ? 'top-9' : 'top-0',
           isTransparentNow
-            ? 'bg-black/50 backdrop-blur-md border-b border-white/5'
-            : 'bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100'
+            ? 'border-white/10 bg-[#071723]/58 backdrop-blur-xl'
+            : 'border-[#e5eaeb] bg-white/96 shadow-[0_7px_30px_rgba(8,38,52,.07)] backdrop-blur-xl',
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center gap-3 xl:gap-6 justify-between">
+        <div className="mx-auto flex h-16 max-w-[86rem] items-center justify-between gap-2 px-4 sm:px-6">
           <Logo variant={isTransparentNow ? 'light' : 'dark'} />
 
-          {/* Desktop nav — 로고·메뉴·액션 3분할 균형 (메뉴 중앙 정렬) */}
-          <ul className="hidden lg:flex items-center gap-0.5 xl:gap-2 flex-1 justify-center">
-            {NAV_ITEMS.map((item) =>
-              item.href ? (
-                <li key={item.key}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      linkCls,
-                      'relative block px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
-                      'after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px] after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-brand-mid after:scale-x-0 after:origin-left after:transition-transform after:duration-200 hover:after:scale-x-100'
-                    )}
-                  >
-                    {tr(item.key)}
-                  </Link>
-                </li>
-              ) : (
-                <li key={item.key} className="group relative">
+          <ul className="relative hidden h-full flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
+            {DESKTOP_MENUS.slice(0, 4).map((menu) => {
+              const active = menuIsActive(menu, pathname, lang)
+              const open = desktopOpen === menu.id
+              return (
+                <li key={menu.id} className="static" onMouseEnter={() => scheduleOpen(menu.id)} onMouseLeave={scheduleClose}>
                   <button
+                    ref={(element) => { desktopButtonsRef.current[menu.id] = element }}
                     type="button"
-                    className={cn(
-                      'relative flex items-center gap-0.5 px-3 py-2 rounded-lg hover:bg-black/5 whitespace-nowrap',
-                      'after:absolute after:left-3 after:right-3 after:bottom-0.5 after:h-[2px] after:rounded-full after:bg-gradient-to-r after:from-sky-400 after:to-brand-mid after:scale-x-0 after:origin-left after:transition-transform after:duration-200 group-hover:after:scale-x-100',
-                      linkCls
-                    )}
+                    aria-expanded={open}
+                    aria-controls={`desktop-menu-${menu.id}`}
+                    onClick={() => open ? closeDesktopMenu() : openDesktopMenu(menu.id)}
+                    onKeyDown={(event) => handleMenuButtonKeyDown(event, menu.id)}
+                    className={topLinkClass(active)}
                   >
-                    {tr(item.key)}
-                    <ChevronDown
-                      className="w-3.5 h-3.5 opacity-50 mt-px shrink-0"
-                      strokeWidth={ICON_STROKE}
-                    />
+                    {menu.label[lang]}
+                    <ChevronDown className={cn('ml-1 h-3.5 w-3.5 opacity-55 transition-transform', open && 'rotate-180')} strokeWidth={ICON_STROKE} />
                   </button>
-
-                  {/* Dropdown panel */}
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 invisible translate-y-1 group-hover:translate-y-0 group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 pb-2 min-w-[13rem] overflow-hidden">
-                      {/* 브랜드 액센트 라인 */}
-                      <div className="h-[3px] bg-gradient-to-r from-sky-400 via-brand-mid to-sky-600 mb-2" />
-                      {item.items!.map((d) => (
-                        <div key={d.labelKey}>
-                          {d.hasDivider && <div className="my-1.5 mx-3 border-t border-gray-100" />}
-                          <Link
-                            href={d.href}
-                            className={cn(
-                              'flex items-center gap-2 mx-1 px-3 py-2 text-[0.875rem] rounded-xl transition-colors',
-                              d.isHighlight
-                                ? 'font-bold text-brand-mid hover:bg-brand-pale'
-                                : 'font-medium text-gray-700 hover:text-brand-mid hover:bg-brand-pale'
-                            )}
-                          >
-                            {tr(d.labelKey)}
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                  {open && renderDesktopMenu(menu)}
                 </li>
               )
-            )}
+            })}
+
+            <li>
+              <Link
+                href="/wishlist"
+                aria-current={isPathActive(pathname, '/wishlist') ? 'page' : undefined}
+                onClick={() => trackNavigation('navigation_item_click', 'saved', 'desktop', 'saved', '/wishlist')}
+                className={topLinkClass(isPathActive(pathname, '/wishlist'))}
+              >
+                {NAVIGATION_COPY.labels.saved[lang]}
+              </Link>
+            </li>
+
+            {DESKTOP_MENUS.slice(4).map((menu) => {
+              const active = menuIsActive(menu, pathname, lang)
+              const open = desktopOpen === menu.id
+              return (
+                <li key={menu.id} className="static" onMouseEnter={() => scheduleOpen(menu.id)} onMouseLeave={scheduleClose}>
+                  <button
+                    ref={(element) => { desktopButtonsRef.current[menu.id] = element }}
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={`desktop-menu-${menu.id}`}
+                    onClick={() => open ? closeDesktopMenu() : openDesktopMenu(menu.id)}
+                    onKeyDown={(event) => handleMenuButtonKeyDown(event, menu.id)}
+                    className={topLinkClass(active)}
+                  >
+                    {menu.label[lang]}
+                    <ChevronDown className={cn('ml-1 h-3.5 w-3.5 opacity-55 transition-transform', open && 'rotate-180')} strokeWidth={ICON_STROKE} />
+                  </button>
+                  {open && renderDesktopMenu(menu)}
+                </li>
+              )
+            })}
           </ul>
 
-          {/* Desktop right */}
-          <div className="hidden lg:flex items-center gap-2 shrink-0">
-            {/* Language dropdown */}
-            <div className="group relative">
+          <div className="hidden items-center gap-2 lg:flex">
+            <div className="relative">
               <button
                 type="button"
+                aria-expanded={languageOpen}
+                aria-controls="desktop-language-menu"
+                onClick={() => { setLanguageOpen((value) => !value); setDesktopOpen(null); setAccountOpen(false) }}
                 className={cn(
-                  'flex items-center gap-1 text-[0.8125rem] font-bold px-3 py-1.5 rounded-full border transition-colors',
-                  isTransparentNow
-                    ? 'border-white/25 text-white/90 hover:bg-white/10'
-                    : 'border-gray-200 text-gray-600 hover:bg-gray-50'
+                  'flex min-h-10 items-center gap-1 rounded-full border px-3 text-xs font-black transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400',
+                  isTransparentNow ? 'border-white/25 text-white hover:bg-white/10' : 'border-[#dce4e6] text-[#51656f] hover:bg-[#f2f6f6]',
                 )}
               >
-                {lang}
-                <ChevronDown className="w-3 h-3 opacity-60" strokeWidth={ICON_STROKE} />
+                {lang}<ChevronDown className="h-3 w-3 opacity-60" strokeWidth={ICON_STROKE} />
               </button>
-              <div className="absolute top-full right-0 mt-1.5 w-20 bg-white rounded-xl shadow-xl border border-gray-100 py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
-                {(['KO', 'EN', 'JP'] as Lang[]).map((l) => (
-                  <button
-                    key={l}
-                    type="button"
-                    onClick={() => setLang(l)}
-                    className={cn(
-                      'w-full px-4 py-2 text-left text-[0.8125rem] font-bold transition-colors',
-                      lang === l
-                        ? 'text-brand-mid bg-brand-pale'
-                        : 'text-gray-600 hover:text-brand-mid hover:bg-brand-pale'
-                    )}
-                  >
-                    {l}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* 로그인 버튼 — 비로그인 시 */}
-            {!user && (
-              <Link
-                href="/login"
-                className={cn(
-                  'flex items-center gap-1.5 text-[0.8125rem] font-bold px-3.5 py-1.5 rounded-full border transition-colors',
-                  isTransparentNow
-                    ? 'border-white/25 text-white hover:bg-white/10'
-                    : 'border-gray-200 text-gray-700 hover:bg-gray-50'
-                )}
-              >
-                <User className="w-4 h-4" strokeWidth={ICON_STROKE} />
-                {tr('nav_login')}
-              </Link>
-            )}
-
-            {/* User menu — logged-in only */}
-            {user && (
-              <div className="group relative">
-                <button
-                  type="button"
-                  className={cn(
-                    'flex items-center gap-1.5 text-[0.8125rem] font-bold px-3 py-1.5 rounded-full border transition-colors',
-                    isTransparentNow
-                      ? 'border-white/25 text-white hover:bg-white/10'
-                      : 'border-gray-200 text-gray-700 hover:bg-gray-50'
-                  )}
-                >
-                  <User className="w-4 h-4" strokeWidth={ICON_STROKE} />
-                  <span className="max-w-[80px] truncate">
-                    {user.user_metadata?.name || user.email?.split('@')[0]}
-                  </span>
-                  <ChevronDown className="w-3 h-3" strokeWidth={ICON_STROKE} />
-                </button>
-                <div className="absolute top-full right-0 mt-1 w-44 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
-                  <Link
-                    href="/mypage"
-                    className="block px-4 py-2 text-xs font-medium text-gray-700 hover:text-teal-600 hover:bg-teal-50 transition-colors"
-                  >
-                    {tr('my_mypage')}
-                  </Link>
-                  <button
-                    type="button"
-                    onClick={() => signOut()}
-                    className="w-full text-left flex items-center gap-1.5 px-4 py-2 text-xs font-medium text-gray-700 hover:text-red-500 hover:bg-red-50 transition-colors"
-                  >
-                    <LogOut className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} /> {tr('my_logout')}
-                  </button>
+              {languageOpen && (
+                <div id="desktop-language-menu" className="absolute right-0 top-[calc(100%+0.5rem)] w-24 rounded-xl border border-[#e2e8e9] bg-white p-1.5 shadow-xl">
+                  {(['KO', 'EN', 'JP'] as Lang[]).map((locale) => (
+                    <button key={locale} type="button" onClick={() => { setLang(locale); setLanguageOpen(false) }} className={cn('flex min-h-10 w-full items-center rounded-lg px-3 text-left text-xs font-black', lang === locale ? 'bg-[#eaf6fb] text-[#08719b]' : 'text-[#536770] hover:bg-[#f2f6f6]')}>
+                      {locale}
+                    </button>
+                  ))}
                 </div>
-              </div>
-            )}
-
-            <Link href="/programs" className="btn-primary !px-5 !py-2 !text-[0.875rem] !shadow-md">
-              {tr('nav_cta')}
-            </Link>
-          </div>
-
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            className={cn('lg:hidden p-1', isTransparentNow ? 'text-white' : 'text-gray-800')}
-            aria-label={tr('nav_menu')}
-          >
-            {open ? (
-              <X className="w-6 h-6" strokeWidth={ICON_STROKE} />
-            ) : (
-              <Menu className="w-6 h-6" strokeWidth={ICON_STROKE} />
-            )}
-          </button>
-        </div>
-
-        {/* Mobile menu */}
-        {open && (
-          <div className="lg:hidden bg-white border-t border-gray-100 px-5 py-4 max-h-[82vh] overflow-y-auto">
-            {NAV_ITEMS.map((item) =>
-              item.href ? (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block text-gray-800 text-[0.9375rem] font-semibold py-3 border-b border-gray-50"
-                >
-                  {tr(item.key)}
-                </Link>
-              ) : (
-                <div key={item.key} className="border-b border-gray-50">
-                  <button
-                    type="button"
-                    onClick={() => toggleMobile(item.key)}
-                    className="w-full flex justify-between items-center text-gray-800 text-[0.9375rem] font-semibold py-3"
-                  >
-                    {tr(item.key)}
-                    <ChevronDown
-                      className={cn(
-                        'w-4 h-4 transition-transform',
-                        mobileOpen.has(item.key) && 'rotate-180'
-                      )}
-                      strokeWidth={ICON_STROKE}
-                    />
-                  </button>
-                  {mobileOpen.has(item.key) && (
-                    <div className="pb-3 space-y-0.5">
-                      {item.items!.map((d) => (
-                        <div key={d.labelKey}>
-                          {d.hasDivider && <div className="my-1.5 border-t border-gray-100" />}
-                          <Link
-                            href={d.href}
-                            onClick={() => setOpen(false)}
-                            className={cn(
-                              'flex items-center gap-2 px-3 py-2 text-[0.875rem] rounded-xl transition-colors',
-                              d.isHighlight
-                                ? 'font-bold text-brand-mid bg-brand-pale'
-                                : 'font-medium text-gray-600 hover:text-brand-mid hover:bg-brand-pale'
-                            )}
-                          >
-                            {tr(d.labelKey)}
-                          </Link>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              )
-            )}
-
-            {/* Language selector */}
-            <div className="flex gap-2 pt-4">
-              {(['KO', 'EN', 'JP'] as Lang[]).map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  onClick={() => setLang(l)}
-                  className={cn(
-                    'flex-1 py-2.5 rounded-xl text-[0.875rem] font-bold transition-colors',
-                    lang === l ? 'bg-brand-mid text-white' : 'bg-gray-100 text-gray-600'
-                  )}
-                >
-                  {l}
-                </button>
-              ))}
+              )}
             </div>
 
             {user ? (
-              <>
-                <Link
-                  href="/mypage"
-                  onClick={() => setOpen(false)}
-                  className="block mt-4 text-center text-[0.9375rem] font-bold py-3 rounded-full border border-gray-200 text-gray-700"
-                >
-                  {tr('my_mypage')} ({user.user_metadata?.name || user.email?.split('@')[0]})
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => { signOut(); setOpen(false) }}
-                  className="block w-full mt-2 text-center text-[0.875rem] font-bold py-2.5 text-red-500"
-                >
-                  {tr('my_logout')}
+              <div className="relative">
+                <button type="button" aria-expanded={accountOpen} aria-controls="desktop-account-menu" onClick={() => { setAccountOpen((value) => !value); setLanguageOpen(false); setDesktopOpen(null) }} className={cn('flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-xs font-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400', isTransparentNow ? 'border-white/25 text-white hover:bg-white/10' : 'border-[#dce4e6] text-[#455a64] hover:bg-[#f2f6f6]')}>
+                  <User className="h-4 w-4" strokeWidth={ICON_STROKE} />
+                  <span className="max-w-20 truncate">{user.user_metadata?.name || user.email?.split('@')[0]}</span>
                 </button>
-              </>
+                {accountOpen && (
+                  <div id="desktop-account-menu" className="absolute right-0 top-[calc(100%+0.5rem)] w-44 rounded-xl border border-[#e2e8e9] bg-white p-1.5 shadow-xl">
+                    <Link href="/mypage" onClick={() => setAccountOpen(false)} className="flex min-h-10 items-center rounded-lg px-3 text-xs font-bold text-[#455a64] hover:bg-[#f2f6f6]">{tr('my_mypage')}</Link>
+                    <button type="button" onClick={() => { signOut(); setAccountOpen(false) }} className="flex min-h-10 w-full items-center gap-2 rounded-lg px-3 text-left text-xs font-bold text-rose-600 hover:bg-rose-50"><LogOut className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />{tr('my_logout')}</button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <Link
-                href="/login"
-                onClick={() => setOpen(false)}
-                className="block mt-4 text-center text-[0.875rem] text-gray-400 hover:text-gray-600 py-2"
-              >
-                {tr('nav_login')}
+              <Link href="/login" className={cn('flex min-h-10 items-center gap-1.5 rounded-full border px-3 text-xs font-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400', isTransparentNow ? 'border-white/25 text-white hover:bg-white/10' : 'border-[#dce4e6] text-[#455a64] hover:bg-[#f2f6f6]')}>
+                <User className="h-4 w-4" strokeWidth={ICON_STROKE} />{tr('nav_login')}
               </Link>
             )}
 
             <Link
-              href="/programs"
-              onClick={() => setOpen(false)}
-              className="btn-primary w-full mt-3 !py-3.5"
+              href={getNavigationHref(getNavigationGroups(NAVIGATION_MENUS[0], lang)[0].links[0], lang)}
+              onClick={() => onNavigationClick('find', getNavigationGroups(NAVIGATION_MENUS[0], lang)[0].links[0], 'desktop')}
+              className="inline-flex min-h-10 items-center rounded-full bg-[#0b8fc4] px-4 text-xs font-black text-white shadow-[0_8px_22px_rgba(11,143,196,.24)] transition hover:bg-[#087aa7] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
             >
-              {tr('nav_cta')}
+              {NAVIGATION_COPY.tripMatch[lang]}
             </Link>
+          </div>
+
+          <div className="flex items-center lg:hidden">
+            <button type="button" onClick={() => openMobileMenu('language')} aria-label={NAVIGATION_COPY.languageLabel[lang]} className={cn('flex h-11 min-w-11 items-center justify-center rounded-full text-[0.7rem] font-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400', isTransparentNow ? 'text-white hover:bg-white/10' : 'text-[#425660] hover:bg-[#eef4f5]')}>{lang}</button>
+            <Link href="/wishlist" aria-label={NAVIGATION_COPY.savedLabel[lang]} className={cn('flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400', isTransparentNow ? 'text-white hover:bg-white/10' : 'text-[#425660] hover:bg-[#eef4f5]')}>
+              <Bookmark className="h-5 w-5" strokeWidth={ICON_STROKE} />
+            </Link>
+            <button type="button" aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation-dialog" onClick={() => mobileMenuOpen ? closeMobileMenu(mobileSection ?? 'global') : openMobileMenu()} aria-label={mobileMenuOpen ? NAVIGATION_COPY.closeMenu[lang] : NAVIGATION_COPY.openMenu[lang]} className={cn('flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400', isTransparentNow ? 'text-white hover:bg-white/10' : 'text-[#253c49] hover:bg-[#eef4f5]')}>
+              {mobileMenuOpen ? <X className="h-5.5 w-5.5" strokeWidth={ICON_STROKE} /> : <Menu className="h-5.5 w-5.5" strokeWidth={ICON_STROKE} />}
+            </button>
+          </div>
+        </div>
+
+        {mobileMenuOpen && (
+          <div id="mobile-navigation-dialog" ref={mobileDialogRef} role="dialog" aria-modal="true" aria-label={NAVIGATION_COPY.openMenu[lang]} tabIndex={-1} onKeyDown={onMobileDialogKeyDown} className={cn('absolute inset-x-0 top-full z-[60] overflow-y-auto bg-white outline-none lg:hidden', annVisible ? 'h-[calc(100dvh-6.25rem)]' : 'h-[calc(100dvh-4rem)]')}>
+            <div className="mx-auto min-h-full max-w-xl px-5 pb-8 pt-5">
+              <Link
+                href={getNavigationHref(getNavigationGroups(NAVIGATION_MENUS[0], lang)[0].links[0], lang)}
+                onClick={() => onNavigationClick('find', getNavigationGroups(NAVIGATION_MENUS[0], lang)[0].links[0], 'mobile')}
+                className="group flex min-h-[4.5rem] items-center justify-between gap-4 rounded-2xl bg-[#0d2b3d] px-5 py-4 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+              >
+                <span>
+                  <span className="block text-[0.62rem] font-black uppercase tracking-[0.16em] text-sky-300">A TRIP THAT FITS</span>
+                  <span className="mt-1 block text-base font-black tracking-[-0.025em]">{NAVIGATION_COPY.tripMatch[lang]}</span>
+                  <span className="mt-0.5 block text-[0.7rem] font-medium text-white/65">{NAVIGATION_COPY.tripMatchShort[lang]}</span>
+                </span>
+                <ArrowRight className="h-5 w-5 shrink-0 transition-transform group-hover:translate-x-0.5" strokeWidth={ICON_STROKE} />
+              </Link>
+
+              <div className="mt-4 rounded-2xl border border-[#e2e8e9] px-4">
+                {NAVIGATION_MENUS.filter((menu) => menu.id !== 'more').map(renderMobileSection)}
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                <Link href="/wishlist" onClick={() => { trackNavigation('navigation_item_click', 'saved', 'mobile', 'saved', '/wishlist'); closeMobileMenu('saved') }} className="flex min-h-12 items-center gap-2 rounded-xl border border-[#dfe7e9] px-4 text-sm font-black text-[#29414e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"><Bookmark className="h-4 w-4" strokeWidth={ICON_STROKE} />{NAVIGATION_COPY.labels.saved[lang]}</Link>
+                <Link href={user ? '/mypage' : '/login'} onClick={() => closeMobileMenu('account')} className="flex min-h-12 items-center gap-2 rounded-xl border border-[#dfe7e9] px-4 text-sm font-black text-[#29414e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"><User className="h-4 w-4" strokeWidth={ICON_STROKE} />{user ? tr('my_mypage') : tr('nav_login')}</Link>
+              </div>
+
+              <div className="mt-2 rounded-2xl border border-[#e2e8e9] px-4">
+                {renderMobileSection(NAVIGATION_MENUS.find((menu) => menu.id === 'more')!)}
+              </div>
+
+              <div className="mt-5">
+                <span className="mb-2 block text-[0.65rem] font-black uppercase tracking-[0.16em] text-[#819198]">{NAVIGATION_COPY.languageLabel[lang]}</span>
+                <div className="grid grid-cols-3 gap-2">
+                  {(['KO', 'EN', 'JP'] as Lang[]).map((locale) => (
+                    <button key={locale} type="button" onClick={() => setLang(locale)} className={cn('min-h-11 rounded-xl text-xs font-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500', lang === locale ? 'bg-[#e5f4fa] text-[#08719b]' : 'bg-[#f2f5f5] text-[#687b83]')}>{locale}</button>
+                  ))}
+                </div>
+              </div>
+
+              <Link href="/contact" onClick={() => closeMobileMenu('contact')} className="mt-5 flex min-h-11 items-center justify-center text-sm font-bold text-[#5a6d76] hover:text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">{NAVIGATION_COPY.contact[lang]}</Link>
+            </div>
           </div>
         )}
       </nav>

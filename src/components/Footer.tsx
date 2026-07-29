@@ -29,14 +29,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-[0.9375rem] font-medium">
               {[
-                { k: 'nav_about', h: '/about' },
-                { k: 'nav_programs', h: '/programs' },
+                { k: 'nav_discover', h: '/trip-match' },
                 { k: 'nav_destinations', h: '/destinations' },
-                { k: 'nav_select_collections', h: '/collections' },
-                { k: 'nav_infrastructure', h: '/infrastructure' },
-                { k: 'nav_visa', h: '/visa-ai' },
-                { k: 'nav_growth', h: '/growth' },
-                { k: 'nav_prog_business', h: '/business' },
+                { k: 'nav_plan', h: '/select' },
+                { k: 'nav_programs', h: '/programs' },
+                { k: 'nav_saved', h: '/wishlist' },
+                { k: 'nav_about', h: '/about' },
                 { k: 'nav_partnership', h: '/partnership' },
               ].map((i) => (
                 <li key={i.k}>
