@@ -130,9 +130,9 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
             <h2 className="mb-7 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">{COLLECTIONS_UI.ts_audience[lang]}</h2>
             <div className="grid gap-4 sm:grid-cols-3">
               {col.audience.map((a, i) => (
-                <div key={i} className="border-l-2 py-2 pl-4" style={{ borderColor: accent }}>
+                <div key={i} className="min-w-0 border-l-2 py-2 pl-4" style={{ borderColor: accent }}>
                   <span className="mb-2 block text-[0.68rem] font-black tracking-[0.16em] text-[#91a0a7]">0{i + 1}</span>
-                  <span className="text-sm font-semibold leading-relaxed text-[#33444f]">{a[lang]}</span>
+                  <span className="break-words text-sm font-semibold leading-relaxed text-[#33444f]">{a[lang]}</span>
                 </div>
               ))}
             </div>

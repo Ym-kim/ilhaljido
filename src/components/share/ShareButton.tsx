@@ -29,6 +29,7 @@ export function ShareButton({
   /** share_click 계측 필드 — v2 (2026-07-28): content_type·slug·method */
   contentType = 'page',
   slug,
+  label,
 }: {
   title: string
   text?: string
@@ -36,6 +37,7 @@ export function ShareButton({
   tone?: 'dark' | 'light'
   contentType?: 'guide' | 'collection' | 'moment' | 'hosted' | 'result' | 'story' | 'page'
   slug?: string
+  label?: string
 }) {
   const { lang } = useLang()
   const [copied, setCopied] = useState(false)
@@ -87,7 +89,7 @@ export function ShareButton({
       ) : (
         <>
           <Share2 className="w-4 h-4" strokeWidth={ICON_STROKE} />
-          {UI.share[lang]}
+          {label ?? UI.share[lang]}
         </>
       )}
     </button>
