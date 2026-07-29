@@ -14,59 +14,56 @@ import { cn } from '@/lib/utils'
 type DropItem = { labelKey: string; href: string; isHighlight?: boolean; hasDivider?: boolean }
 type NavItem = { key: string; href?: string; items?: DropItem[] }
 
-// 최상위 6개로 정리 (2026-07-15) — lg 화면 찌그러짐/중복 해소.
-// 규칙: 최상위 링크 2 + 드롭다운 4. 소개=푸터, 비자=글로벌·비자 안, 테마=프로그램 안으로 통합.
+// 고객 언어 5+더보기로 재정리 (2026-07-28 라이프스타일 v2) — 이전: 사업 분류 6개(예약·글로벌·성장 등).
+// 발견하기(콘텐츠)·목적지·여행 준비(=구 예약, Select)·프로그램(Hosted+글로벌 통합)·저장 + 더보기(비자·성장·파트너·B2B).
+// 기존 URL·페이지 전부 유지 — 노출 위치만 재배치. 모바일 아코디언은 이 배열을 그대로 미러링해 자동 단축.
 const NAV_ITEMS: NavItem[] = [
-  { key: 'nav_destinations', href: '/destinations' },
   {
-    key: 'nav_programs',
-    items: [
-      { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
-      { labelKey: 'nav_prog_support', href: '/programs/support' },
-      { labelKey: 'nav_prog_business', href: '/business' },
-      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen', hasDivider: true },
-      { labelKey: 'mega_theme_yoga', href: '/programs/healing' },
-      { labelKey: 'home_theme_golf_l', href: '/programs/golf' },
-      { labelKey: 'mega_theme_local', href: '/programs/local' },
-      { labelKey: 'home_theme_sports_l', href: '/programs/sports' },
-      { labelKey: 'mega_stay_cruise', href: '/cruise' },
-      { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
-    ],
-  },
-  {
-    key: 'nav_select',
+    key: 'nav_discover',
     items: [
       { labelKey: 'nav_select_guide', href: '/guide' },
       { labelKey: 'nav_select_stories', href: '/stories' },
+      { labelKey: 'nav_select_collections', href: '/collections' },
       { labelKey: 'nav_select_compare', href: '/destinations/compare' },
+    ],
+  },
+  { key: 'nav_destinations', href: '/destinations' },
+  {
+    key: 'nav_plan',
+    items: [
       { labelKey: 'nav_select_hotel', href: '/select/hotel' },
       { labelKey: 'nav_select_activity', href: '/select/activity' },
       { labelKey: 'nav_select_esim', href: '/select/esim' },
       { labelKey: 'nav_select_learn', href: '/select/learn' },
-      { labelKey: 'nav_select_collections', href: '/collections' },
-      { labelKey: 'nav_select_wishlist', href: '/wishlist' },
       { labelKey: 'nav_select_all', href: '/select', hasDivider: true },
     ],
   },
   {
-    key: 'nav_global_nav',
+    key: 'nav_programs',
     items: [
+      { labelKey: 'nav_prog_domestic', href: '/programs/domestic' },
       { labelKey: 'nav_prog_globalstay', href: '/programs/global' },
+      { labelKey: 'nav_prog_support', href: '/programs/support' },
       { labelKey: 'nav_global_market', href: '/programs/market' },
       { labelKey: 'nav_prog_language', href: '/language' },
-      { labelKey: 'nav_visa', href: '/visa-ai', isHighlight: true, hasDivider: true },
+      { labelKey: 'mega_theme_ryokan', href: '/programs/onsen', hasDivider: true },
+      { labelKey: 'nav_founder_net', href: '/programs/networking' },
+      { labelKey: 'mega_stay_cruise', href: '/cruise' },
+      { labelKey: 'nav_prog_all', href: '/programs', hasDivider: true },
     ],
   },
+  { key: 'nav_saved', href: '/wishlist' },
   {
-    key: 'home_cat_learn_l',
+    key: 'nav_more',
     items: [
+      { labelKey: 'nav_visa', href: '/visa-ai', isHighlight: true },
       { labelKey: 'nav_growth', href: '/growth' },
       { labelKey: 'nav_learn', href: '/learn' },
-      { labelKey: 'nav_founder_net', href: '/programs/networking' },
-      { labelKey: 'nav_tools_diagnosis', href: '/tools/diagnosis', hasDivider: true },
+      { labelKey: 'nav_tools_diagnosis', href: '/tools/diagnosis' },
+      { labelKey: 'nav_prog_business', href: '/business', hasDivider: true },
+      { labelKey: 'nav_partnership', href: '/partnership' },
     ],
   },
-  { key: 'nav_partnership', href: '/partnership' },
 ]
 
 export default function Navbar({ transparent = false }: { transparent?: boolean }) {

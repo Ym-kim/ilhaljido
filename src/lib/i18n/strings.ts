@@ -3,6 +3,10 @@ import type { Lang } from './types'
 const KO: Record<string, string> = {
   nav_about: '소개',
   nav_destinations: '목적지',
+  nav_discover: '발견하기',
+  nav_plan: '여행 준비',
+  nav_saved: '저장',
+  nav_more: '더보기',
   nav_programs: '프로그램',
   nav_growth: '성장캠프',
   nav_infrastructure: '스테이·워크스페이스',
@@ -759,6 +763,10 @@ const KO: Record<string, string> = {
 const EN: Record<string, string> = {
   nav_about: 'About',
   nav_destinations: 'Destinations',
+  nav_discover: 'Discover',
+  nav_plan: 'Plan',
+  nav_saved: 'Saved',
+  nav_more: 'More',
   nav_programs: 'Programs',
   nav_growth: 'Growth Camp',
   nav_infrastructure: 'Stay & Workspace',
@@ -1513,7 +1521,11 @@ const EN: Record<string, string> = {
 
 const JP: Record<string, string> = {
   nav_about: '紹介',
-  nav_destinations: '目的地',
+  nav_destinations: '行き先',
+  nav_discover: '見つける',
+  nav_plan: '旅の準備',
+  nav_saved: '保存',
+  nav_more: 'その他',
   nav_programs: 'プログラム',
   nav_growth: '成長キャンプ',
   nav_infrastructure: '滞在・ワーク',

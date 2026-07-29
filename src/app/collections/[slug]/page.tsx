@@ -26,6 +26,11 @@ export async function generateMetadata({
       canonical: `https://www.wakation.kr/collections/${slug}`,
       languages: cityLanguageAlternates(`/collections/${slug}`),
     },
+    // og:image는 라우트 opengraph-image.tsx(1200×630 동적 카드)가 자동 공급 (2026-07-28 v2)
+    openGraph: {
+      title: `${col.title.KO} — 워케이션 기획전`,
+      description: col.desc.KO,
+    },
     robots: { index: true, follow: true },
   }
 }

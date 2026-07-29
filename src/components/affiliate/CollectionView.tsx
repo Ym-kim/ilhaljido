@@ -12,6 +12,7 @@ import { getCatalogItems } from '@/lib/affiliate/catalog'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { NotifySignup } from '@/components/home/NotifySignup'
+import { ShareButton } from '@/components/share/ShareButton'
 
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
 export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
@@ -60,6 +61,15 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
           </h1>
           <span className="block text-sky-200 text-sm font-bold mb-2">{col.tagline[lang]}</span>
           <p className="text-white/75 text-sm md:text-base max-w-2xl leading-relaxed">{col.desc[lang]}</p>
+          <div className="mt-4">
+            <ShareButton
+              title={`${col.title[lang]} — Wakation`}
+              text={col.desc[lang]}
+              url={`https://www.wakation.kr/collections/${col.slug}`}
+              contentType="collection"
+              slug={col.slug}
+            />
+          </div>
         </div>
       </section>
 

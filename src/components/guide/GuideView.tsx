@@ -13,6 +13,7 @@ import { WorkOverlap } from '@/components/guide/WorkOverlap'
 import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3, FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { ShareButton } from '@/components/share/ShareButton'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 목적지 가이드 뷰 — 라이트 커머스 톤, 3언어
@@ -76,6 +77,15 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
               {guide.name[lang]}
             </h1>
             <p className="text-white/80 text-sm md:text-base max-w-2xl">{guide.tagline[lang]}</p>
+            <div className="mt-4">
+              <ShareButton
+                title={`${guide.name[lang]} — Wakation`}
+                text={guide.tagline[lang]}
+                url={`https://www.wakation.kr/guide/${guide.slug}`}
+                contentType="guide"
+                slug={guide.slug}
+              />
+            </div>
           </div>
         </div>
       </section>
