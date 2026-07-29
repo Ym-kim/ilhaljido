@@ -108,8 +108,9 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       </section>
 
       <section className="border-b border-[#e8e0d4] bg-[var(--wak-ivory)] px-5 py-8 sm:px-6 sm:py-10">
-        <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <p className="max-w-3xl text-[0.95rem] leading-7 text-[#45545e] sm:text-base">{col.desc[lang]}</p>
+        <div className="mx-auto grid min-w-0 max-w-5xl gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
+          <p className="min-w-0 max-w-3xl break-words text-[0.95rem] leading-7 text-[#45545e] sm:text-base">{col.desc[lang]}</p>
+          <div className="w-fit max-w-full justify-self-start md:justify-self-end">
           <ShareButton
             title={socialCopy?.shareTitle ?? `${col.title[lang]} — Wakation`}
             text={socialCopy?.shareDescription ?? col.desc[lang]}
@@ -118,6 +119,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
             slug={col.slug}
             tone="light"
           />
+          </div>
         </div>
       </section>
 
