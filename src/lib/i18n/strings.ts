@@ -688,9 +688,9 @@ const KO: Record<string, string> = {
   home_gov_eyebrow: '정부·지자체 지원',
   home_gov_title: '지원사업으로 떠나는 국내 워케이션',
   home_gov_sub: '숙박·오피스 비용을 지원하는 지자체 프로그램을 한곳에 모았습니다. 어촌마을·울산·인천은 지금도 신청할 수 있어요.',
-  home_gov_chip1: '상시·연중 모집 6곳',
+  home_gov_chip1: '상시·연중 모집 7곳',
   home_gov_chip2: '최대 29박 지원',
-  home_gov_chip3: '전국 17개 프로그램',
+  home_gov_chip3: '전국 20개 프로그램',
   home_gov_cta: '지원사업 모아보기',
 
   // ── 모집 캘린더 (DB 프로그램) ──
@@ -1443,9 +1443,9 @@ const EN: Record<string, string> = {
   home_gov_eyebrow: 'Public support',
   home_gov_title: 'Workation in Korea, backed by public programs',
   home_gov_sub: 'Regional programs that subsidize stays and workspaces, gathered in one place. Fishing villages, Ulsan and Incheon accept applications right now.',
-  home_gov_chip1: '6 rolling programs',
+  home_gov_chip1: '7 rolling programs',
   home_gov_chip2: 'Up to 29 nights supported',
-  home_gov_chip3: '17 programs nationwide',
+  home_gov_chip3: '20 programs nationwide',
   home_gov_cta: 'Browse support programs',
 
   // ── Cohort calendar (DB programs) ──
@@ -2198,9 +2198,9 @@ const JP: Record<string, string> = {
   home_gov_eyebrow: '政府・自治体支援',
   home_gov_title: '支援事業で行く韓国国内ワーケーション',
   home_gov_sub: '宿泊・オフィス費用を支援する自治体プログラムを一カ所に。漁村・蔚山・仁川は今も申請できます。',
-  home_gov_chip1: '随時・通年募集 6件',
+  home_gov_chip1: '随時・通年募集 7件',
   home_gov_chip2: '最大29泊支援',
-  home_gov_chip3: '全国17プログラム',
+  home_gov_chip3: '全国20プログラム',
   home_gov_cta: '支援事業を見る',
 
   // ── 募集カレンダー (DBプログラム) ──
