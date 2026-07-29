@@ -22,9 +22,9 @@ const MOODS: { icon: typeof Feather; href: string; label: L; desc: L }[] = [
     desc: { KO: '아무에게도 방해받지 않는 회복', EN: 'Recovery, uninterrupted', JP: '誰にも邪魔されない回復' },
   },
   {
-    icon: Users, href: '/collections/tokyo-allinone',
+    icon: Users, href: '/collections/osaka-friends?src=mood',
     label: { KO: '친구와 가볍게', EN: 'With a friend', JP: '友達と気軽に' },
-    desc: { KO: '주말+α 도쿄 올인원', EN: 'Tokyo, all set for a short trip', JP: '週末＋αの東京オールインワン' },
+    desc: { KO: '오사카 친구 여행 3박 4일', EN: 'Osaka with friends, 3N4D', JP: '大阪友達旅 3泊4日' },
   },
   {
     icon: Laptop, href: '/collections/bali-monthstay',
@@ -37,9 +37,9 @@ const MOODS: { icon: typeof Feather; href: string; label: L; desc: L }[] = [
     desc: { KO: '료칸과 노트북의 밸런스', EN: 'Ryokan-and-laptop balance', JP: '旅館とノートPCのバランス' },
   },
   {
-    icon: Coffee, href: '/collections/osaka-foodie',
+    icon: Coffee, href: '/collections/fukuoka-3n4d?src=mood',
     label: { KO: '카페와 미식', EN: 'Cafés & food', JP: 'カフェとグルメ' },
-    desc: { KO: '오사카 먹는 워케이션', EN: 'Osaka, eating well while working', JP: '食べる大阪ワーケーション' },
+    desc: { KO: '후쿠오카 3박 4일 — 카페와 온천', EN: 'Fukuoka 3N4D — cafés & onsen', JP: '福岡3泊4日 — カフェと温泉' },
   },
   {
     icon: HeartHandshake, href: '/programs/networking',
@@ -52,9 +52,9 @@ const MOODS: { icon: typeof Feather; href: string; label: L; desc: L }[] = [
     desc: { KO: '여행에 얹는 온라인 강의', EN: 'Courses that travel with you', JP: '旅に載せるオンライン講座' },
   },
   {
-    icon: CalendarDays, href: '/programs/domestic',
+    icon: CalendarDays, href: '/collections/busan-weekend?src=mood',
     label: { KO: '주말에 짧게', EN: 'Just a weekend', JP: '週末にさくっと' },
-    desc: { KO: '국내에서 시작하는 워케이션', EN: 'Start with a weekend in Korea', JP: '国内で始めるワーケーション' },
+    desc: { KO: '부산 주말 2박 3일', EN: 'Busan weekend, 2N3D', JP: '釜山週末 2泊3日' },
   },
 ]
 
