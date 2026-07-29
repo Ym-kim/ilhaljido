@@ -17,10 +17,11 @@ import { trackEvent } from '@/lib/track'
 
 type L = Record<Lang, string>
 
+// 2026-07-28 서울·부산 가이드 신설 반영 — JP는 한국 우선(방한 일본인 여성 65% 리서치 근거)
 const ORDER: Record<Lang, string[]> = {
-  KO: ['tokyo', 'fukuoka', 'osaka', 'jeju', 'danang', 'bali', 'chiangmai', 'cebu'],
-  JP: ['jeju', 'fukuoka', 'bali', 'chiangmai', 'osaka', 'danang', 'tokyo', 'cebu'],
-  EN: ['bali', 'chiangmai', 'tokyo', 'danang', 'jeju', 'osaka', 'fukuoka', 'cebu'],
+  KO: ['tokyo', 'fukuoka', 'osaka', 'busan', 'jeju', 'danang', 'bali', 'chiangmai'],
+  JP: ['seoul', 'busan', 'jeju', 'fukuoka', 'bali', 'chiangmai', 'osaka', 'danang'],
+  EN: ['seoul', 'bali', 'chiangmai', 'tokyo', 'busan', 'danang', 'jeju', 'osaka'],
 }
 
 const UI: Record<string, L> = {

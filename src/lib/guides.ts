@@ -471,6 +471,107 @@ export const CITY_GUIDES: CityGuide[] = [
     costMonthly: { KO: '월 330만원대', EN: '~₩3.3M / month', JP: '月330万ウォン程度' },
     visaFree: { KO: 'ETA / 워킹홀리데이 비자', EN: 'ETA / Working Holiday visa', JP: 'ETA / ワーホリビザ' },
   },
+  // ── 2026-07-28 신설: 서울·부산 — JP 타깃 최대 공백 해소 (방한 일본인 365만·여성 65% 리서치 근거)
+  //    팩트 전량 검증: 하네다-김포 약 2h25m·후쿠오카-부산 약 55분·KTX-청룡 2h17m(MBC·한경) /
+  //    일본 국적 무비자 90일 + K-ETA 한시 면제 2026-12-31까지(외교부 공지 — 연말 갱신 트리거) /
+  //    성수 팝업 성동구 상반기 468건·외국인 +110%(한국경제 2026-07) / 패스트파이브 홍대 1·2·3호점(공식) /
+  //    부산 워케이션 거점센터 50석·폰부스 4실(부산시 보도자료)·2026 관광공사 우수모델 전국 대표(서울경제)·
+  //    5박 이상 1박 5만원 바우처(workationbusan.co.kr) / 전포카페거리=NYT 2017 '가봐야 할 52곳' 부산 선정의
+  //    대표 명소(부산일보) / 서울 단기체류 월 150만~200만(데일리팝·통용 시세) — 부산 시세는 근거 부족으로 미표기 /
+  //    모바일 인터넷 세계 2위(Ookla·Statista) / ⚠️ 부산-후쿠오카 고속선(비틀)은 2026 운항 없음 — 표기 금지,
+  //    해상은 뉴카멜리아 야간페리뿐 / 사진: 서울=검증 풀 1517154421773, 부산=1638591751482(해운대, 07-28 육안)
+  {
+    slug: 'seoul',
+    anchor: 'korea-seoul',
+    heroPhoto: HERO('1517154421773-0529f29ea451'),
+    name: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
+    tagline: {
+      KO: '성수의 팝업, 연남의 카페 — 도시 전체가 워크스페이스',
+      EN: 'Pop-ups in Seongsu, cafés in Yeonnam — a whole city that works as an office',
+      JP: '聖水のポップアップ、延南のカフェ — 街全体がワークスペース',
+    },
+    intro: {
+      KO: '모바일 인터넷 세계 2위(Ookla 기준)의 도시에서는 어느 카페에 앉아도 오피스가 됩니다. 성수동은 올해 상반기에만 팝업 468건이 열린 트렌드의 진앙이고, 홍대·연남에는 대형 코워킹 지점과 심야 카페가 이어집니다. 지방 거주자의 도시 워케이션부터 해외 팀 동료의 첫 서울까지 — 짧게 머물러도 밀도가 다릅니다.',
+      EN: 'In a city ranked #2 worldwide for mobile internet (Ookla), any café becomes your office. Seongsu hosted 468 pop-ups in the first half of this year alone; Hongdae–Yeonnam runs on coworking hubs and late-night cafés. Even a short stay is dense with things to see, taste and finish.',
+      JP: 'モバイル通信世界2位（Ookla基準）の都市では、どのカフェもオフィスになります。聖水洞は今年上半期だけでポップアップ468件が開かれたトレンドの震源地。いつもの韓国旅に、はたらく1日をプラスするのにいちばん近い街です。羽田から約2時間25分。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: 'KST (도쿄와 0시간)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
+      { label: F.flight, value: { KO: '하네다발 약 2시간 25분', EN: 'Haneda ~2h 25m', JP: '羽田から約2時間25分' } },
+      { label: F.currency, value: { KO: '원 (KRW)', EN: 'KRW', JP: 'ウォン (KRW)' } },
+      { label: F.season, value: { KO: '4~6월 · 9~11월', EN: 'Apr–Jun · Sep–Nov', JP: '4〜6月 · 9〜11月' } },
+    ],
+    areas: [
+      {
+        name: { KO: '성수', EN: 'Seongsu', JP: '聖水（ソンス）' },
+        desc: {
+          KO: '올해 상반기 팝업 468건, 외국인 방문 전년 대비 2배 — 공장을 개조한 카페와 쇼룸 사이에서 일하고, 퇴근처럼 팝업을 돕니다.',
+          EN: '468 pop-ups in H1 this year and double the foreign visitors — work between converted-factory cafés, then make the pop-up rounds after log-off.',
+          JP: '今年上半期のポップアップ468件、外国人来訪は前年比2倍。工場リノベのカフェで働いて、仕事終わりにポップアップ巡りを。',
+        },
+      },
+      {
+        name: { KO: '홍대 · 연남', EN: 'Hongdae · Yeonnam', JP: 'ホンデ · 延南洞' },
+        desc: {
+          KO: '홍대입구역 직결 지점을 포함해 대형 코워킹(패스트파이브 3개 지점·스파크플러스)이 밀집, 골목엔 늦게까지 여는 카페가 이어집니다.',
+          EN: 'Dense with major coworking branches (three Fastfive locations, Sparkplus) including one connected to Hongik Univ. station, plus late-open cafés down every alley.',
+          JP: '弘大入口駅直結を含む大型コワーキング（Fastfive3拠点・Sparkplus）が密集。路地には夜遅くまで開くカフェが続きます。',
+        },
+      },
+    ],
+    stayIds: ['stay-fraser-seoul'],
+    activityIds: [],
+    timeZone: 'Asia/Seoul',
+    internet: 5,
+    costMonthly: { KO: '단기체류 월 150만~200만원', EN: '~₩1.5–2M / month (short-stay)', JP: '月150万〜200万ウォン（短期）' },
+    visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+  },
+  {
+    slug: 'busan',
+    anchor: 'korea-busan',
+    heroPhoto: HERO('1638591751482-1a7d27fcea15'),
+    name: { KO: '부산', EN: 'Busan', JP: '釜山' },
+    tagline: {
+      KO: '바다 앞 거점센터가 있는 도시 — 전국 대표 워케이션',
+      EN: "A seaside workation base — Korea's flagship workation city",
+      JP: '福岡から約55分 — 海の前にワークベースがある街',
+    },
+    intro: {
+      KO: '부산은 2026년 한국관광공사 워케이션 우수모델에 전국 대표로 선정된 도시입니다. 부산역 옆 거점센터(업무석 50석·폰부스 4실)는 무료로 열려 있고, 부산 외 재직자는 5박 이상 체류 시 1박당 5만원 숙박 바우처도 받습니다. KTX-청룡으로 서울에서 2시간 17분 — 해운대 오션뷰와 전포 카페거리가 퇴근 후를 채웁니다.',
+      EN: "Korea's official flagship workation city for 2026 (Korea Tourism Organization). The free base center by Busan Station runs 50 desks and 4 phone booths, and non-Busan workers staying 5+ nights get a ₩50,000-per-night lodging voucher. Seoul is 2h 17m away by KTX; Haeundae's ocean views and Jeonpo's café streets fill the evenings.",
+      JP: '釜山は2026年、韓国観光公社のワーケーション優秀モデルに全国代表として選ばれた街。釜山駅横の拠点センター（50席・ブース4室）は無料で、福岡から直行便で約55分です。海雲台のオーシャンビューと田浦カフェ通り（NYT「行くべき52カ所」で釜山を代表する名所）が仕事の後を満たします。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
+      { label: F.flight, value: { KO: 'KTX-청룡 2시간 17분', EN: 'KTX 2h 17m · Fukuoka 55m', JP: '福岡から約55分（直行便）' } },
+      { label: F.currency, value: { KO: '원 (KRW)', EN: 'KRW', JP: 'ウォン (KRW)' } },
+      { label: F.season, value: { KO: '사계절 (여름 해변 · 가을 쾌적)', EN: 'Year-round (beach summers)', JP: '通年（夏はビーチ・秋が快適）' } },
+    ],
+    areas: [
+      {
+        name: { KO: '부산역 · 원도심', EN: 'Busan Station area', JP: '釜山駅 · 旧都心' },
+        desc: {
+          KO: '아스티호텔 24층의 워케이션 거점센터 — 업무석 50석, 화상·폰부스 4실, 부산항이 내려다보이는 무료 업무 공간입니다(부산 외 재직자 등록제).',
+          EN: 'The workation base on the 24th floor of Asti Hotel — 50 desks, 4 call booths, harbor views, free for registered non-Busan workers.',
+          JP: 'アスティホテル24階のワーケーション拠点センター。50席と通話ブース4室、釜山港を見下ろす無料ワークスペース（登録制）。',
+        },
+      },
+      {
+        name: { KO: '해운대 · 송정', EN: 'Haeundae · Songjeong', JP: '海雲台 · 松亭' },
+        desc: {
+          KO: '해변을 낀 위성 오피스(WAVE 송정·청사포)가 있는 라인 — 오전엔 바다 앞 데스크, 오후엔 전포 카페거리로 넘어가는 동선이 자연스럽습니다.',
+          EN: 'The beach line with seaside satellite offices (WAVE Songjeong & Cheongsapo) — morning desk by the water, afternoon in Jeonpo café street.',
+          JP: 'ビーチ沿いのサテライトオフィス（WAVE松亭・青沙浦）があるライン。午前は海の前のデスク、午後は田浦カフェ通りへ。',
+        },
+      },
+    ],
+    stayIds: ['stay-uh-busan'],
+    activityIds: [],
+    flightUrl: FLIGHT('seoul-to-busan/airfares-sel-pus'),
+    timeZone: 'Asia/Seoul',
+    internet: 5,
+    visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+  },
 ]
 
 export function getGuide(slug: string): CityGuide | undefined {

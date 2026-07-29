@@ -10,7 +10,7 @@ import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import { CITY_GUIDES, GUIDE_UI, type CityGuide } from '@/lib/guides'
 import { WorkOverlap } from '@/components/guide/WorkOverlap'
-import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
+import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3, FEATURED_ACTIVITIES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 
@@ -19,7 +19,8 @@ import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 // 팩트(시차·직항·통화·시즌) → 동네 → 추천 숙소/체험(제휴) → 도시 검색 폴백
 // ─────────────────────────────────────────────────────────────────────────────
 
-const ALL_ITEMS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2, ...FEATURED_ACTIVITIES]
+// V3 추가(2026-07-28): 서울·부산 가이드의 stayIds(stay-fraser-seoul·stay-uh-busan)가 V3 소속
+const ALL_ITEMS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2, ...FEATURED_STAYS_V3, ...FEATURED_ACTIVITIES]
 
 export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: Lang }) {
   // forceLang: /en·/ja 로케일 라우트용 — 정적 생성 시 해당 언어로 렌더 (SEO)
