@@ -15,6 +15,7 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { trackAffiliateClick, trackEvent } from '@/lib/track'
 import { MoodExplorer } from '@/components/home/MoodExplorer'
 import { DurationExplorer } from '@/components/home/DurationExplorer'
+import { TripMatchHomeCta } from '@/components/trip-match/TripMatchHomeCta'
 import { CityShowcase } from '@/components/home/CityShowcase'
 import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
@@ -254,6 +255,9 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
       {/* ── 국가 지정 노출: 일본 접속자 전용 컨텍스트 배너 (그 외 국가엔 미노출) ── */}
       <GeoJapanBanner />
+
+      {/* 한 번의 명확한 진입점 — 기존 Mood·Duration을 뒤집지 않고 매칭 경험으로 연결 */}
+      <TripMatchHomeCta forceLang={forceLang} />
 
       {/* ── 무드 탐색 — 감정·상황으로 먼저 (2026-07-28 라이프스타일 개편, 탐색 1축) ── */}
       <MoodExplorer forceLang={forceLang} />

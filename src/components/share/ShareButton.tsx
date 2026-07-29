@@ -30,6 +30,7 @@ export function ShareButton({
   contentType = 'page',
   slug,
   label,
+  onShared,
 }: {
   title: string
   text?: string
@@ -38,6 +39,8 @@ export function ShareButton({
   contentType?: 'guide' | 'collection' | 'moment' | 'hosted' | 'result' | 'story' | 'page'
   slug?: string
   label?: string
+  /** 기존 share_click을 유지하면서 상위 퍼널 이벤트를 추가할 때 사용 */
+  onShared?: (method: 'native' | 'clipboard') => void
 }) {
   const { lang } = useLang()
   const [copied, setCopied] = useState(false)
@@ -52,6 +55,7 @@ export function ShareButton({
       if (typeof navigator !== 'undefined' && navigator.share) {
         await navigator.share({ title, text: text ?? title, url: shareUrl })
         trackEvent('share_click', { content_type: contentType, slug: eventSlug, locale: lang, method: 'native' })
+        onShared?.('native')
         return
       }
     } catch {
@@ -63,6 +67,7 @@ export function ShareButton({
     try {
       await navigator.clipboard.writeText(shareUrl)
       trackEvent('share_click', { content_type: contentType, slug: eventSlug, locale: lang, method: 'clipboard' })
+      onShared?.('clipboard')
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
     } catch {

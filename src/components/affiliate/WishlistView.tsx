@@ -10,6 +10,7 @@ import { getCatalogItems } from '@/lib/affiliate/catalog'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import type { Lang } from '@/lib/i18n/types'
+import { SavedTripMatchesSection } from '@/components/trip-match/SavedTripMatchesSection'
 
 // 찜한 상품 모아보기 — localStorage 기반(로그인 불필요). 개인 페이지라 noindex.
 type L = Record<Lang, string>
@@ -57,6 +58,7 @@ export function WishlistView() {
 
       <section className="px-6 py-12">
         <div className="max-w-6xl mx-auto">
+          <SavedTripMatchesSection />
           {!hydrated ? (
             <div className="min-h-[30vh]" aria-hidden />
           ) : items.length === 0 ? (
