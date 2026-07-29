@@ -15,15 +15,15 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] text-white/70 py-16 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-10 mb-12">
-          <div className="md:col-span-2">
+        <div className="grid min-w-0 gap-10 mb-12 md:grid-cols-4">
+          <div className="min-w-0 md:col-span-2">
             <Logo variant="light" className="mb-5" />
             <p className="text-[0.9375rem] leading-relaxed text-white/55 max-w-sm font-medium">
               Stay. Work. Grow.
             </p>
-            <p className="text-caption-on-dark mt-2">{tr('footer_tagline')}</p>
+            <p className="text-caption-on-dark mt-2 max-w-full break-words">{tr('footer_tagline')}</p>
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">
               {tr('footer_service')}
             </h4>
@@ -47,12 +47,12 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">
               {tr('footer_contact')}
             </h4>
             <ul className="space-y-2.5 text-[0.9375rem] font-medium">
-              <li className="text-white/55">wakation.sf@gmail.com</li>
+              <li className="break-all text-white/55">wakation.sf@gmail.com</li>
               <li>
                 <Link href="/contact" className="hover:text-white transition-colors">
                   {tr('nav_contact')}

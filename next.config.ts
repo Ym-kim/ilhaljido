@@ -44,7 +44,6 @@ const nextConfig: NextConfig = {
       // 로케일 루트 인덱스 부재 해소 (2026-07-27, GSC 404 적발): /en·/ja 하위 44라우트는
       // 있으나 루트 자체는 미존재 — EN/JA 콘텐츠 허브(destinations)로 영구 리다이렉트
       { source: '/en', destination: '/en/destinations', permanent: true },
-      { source: '/ja', destination: '/ja/destinations', permanent: true },
     ]
   },
 }

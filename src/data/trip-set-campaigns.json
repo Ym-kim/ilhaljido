@@ -1,0 +1,126 @@
+{
+  "fukuoka-3n4d": {
+    "image": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+    "accent": "#9AAA86",
+    "alt": {
+      "KO": "아침 햇살이 드는 일본 카페에서 커피를 마시며 잠시 쉬는 여행자",
+      "EN": "A traveler taking a quiet coffee break in a sunlit Japanese cafe",
+      "JP": "朝の光が差し込む日本のカフェで、コーヒーを飲みながらひと休みする旅人"
+    },
+    "focalPoint": { "x": 48, "y": 48 },
+    "illustrative": true,
+    "source": "OpenAI ImageGen editorial asset, 2026-07-30",
+    "license": "Project-owned generated editorial asset; not evidence of an actual Wakation stay or participant",
+    "copy": {
+      "KO": {
+        "feedHeadline": "일과 온천 사이, 후쿠오카 3박 4일",
+        "feedCaption": "가까운 도시에서 오전은 천천히 일하고, 오후는 걷고, 하루는 온천으로 비워두는 여행.",
+        "storyHeadline": "일하고, 온천으로",
+        "storySubline": "후쿠오카 3박 4일",
+        "shareTitle": "후쿠오카 3박 4일 Trip Set",
+        "shareDescription": "카페에서 일하고 온천에서 하루를 마무리하는 짧은 일본 체류"
+      },
+      "JP": {
+        "feedHeadline": "働いて、温泉へ。福岡3泊4日",
+        "feedCaption": "朝は少しだけ仕事をして、午後は街へ。一日は温泉のために空けておく福岡旅。",
+        "storyHeadline": "働いて、温泉へ。",
+        "storySubline": "福岡で過ごす3泊4日",
+        "shareTitle": "福岡3泊4日 Trip Set",
+        "shareDescription": "カフェで働き、温泉で一日を締める短い福岡ステイ"
+      }
+    }
+  },
+  "osaka-friends": {
+    "image": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+    "accent": "#D77B68",
+    "alt": {
+      "KO": "해 질 무렵 일본 골목을 걸으며 길거리 음식을 나누는 두 친구",
+      "EN": "Two friends sharing street food on a Japanese side street at dusk",
+      "JP": "夕暮れの日本の路地で、食べ歩きを楽しみながら歩く二人の友人"
+    },
+    "focalPoint": { "x": 58, "y": 49 },
+    "illustrative": true,
+    "source": "OpenAI ImageGen editorial asset, 2026-07-30",
+    "license": "Project-owned generated editorial asset; not evidence of an actual Wakation stay or participant",
+    "copy": {
+      "KO": {
+        "feedHeadline": "맛있는 장면을 함께, 오사카 3박 4일",
+        "feedCaption": "낮에는 새로운 장면을 보고, 저녁에는 맛있는 것을 나누는 친구와의 오사카.",
+        "storyHeadline": "맛있는 장면을 함께",
+        "storySubline": "오사카 친구 여행 3박 4일",
+        "shareTitle": "오사카 친구 여행 3박 4일",
+        "shareDescription": "음식과 전시, 테마파크와 도시의 밤을 균형 있게 담은 Trip Set"
+      },
+      "JP": {
+        "feedHeadline": "友達と集める、おいしい大阪3泊4日",
+        "feedCaption": "昼は新しい景色へ。夜はおいしいものを分け合う、友達との大阪旅。",
+        "storyHeadline": "おいしい大阪を、友達と。",
+        "storySubline": "大阪 友達旅 3泊4日",
+        "shareTitle": "大阪 友達旅 3泊4日",
+        "shareDescription": "グルメ、展示、テーマパークと街の夜を楽しむTrip Set"
+      }
+    }
+  },
+  "seoul-3n4d": {
+    "image": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+    "accent": "#E7A77B",
+    "alt": {
+      "KO": "서울의 조용한 카페와 벽돌 골목에서 만나는 두 친구",
+      "EN": "Two friends meeting between a quiet Seoul cafe and a brick neighborhood alley",
+      "JP": "ソウルの静かなカフェとレンガの路地で待ち合わせる二人の友人"
+    },
+    "focalPoint": { "x": 60, "y": 52 },
+    "illustrative": true,
+    "source": "OpenAI ImageGen editorial asset, 2026-07-30",
+    "license": "Project-owned generated editorial asset; not evidence of an actual Wakation stay or participant",
+    "copy": {
+      "KO": {
+        "feedHeadline": "서울의 일상에 가까워지는 3박 4일",
+        "feedCaption": "카페에서 잠시 일하고, 성수와 연남의 골목을 걸으며 지금의 서울을 만나는 여행.",
+        "storyHeadline": "관광과 일상 사이",
+        "storySubline": "서울 3박 4일",
+        "shareTitle": "서울 3박 4일 Trip Set",
+        "shareDescription": "카페와 골목, 도시의 일상을 천천히 걷는 서울 여행"
+      },
+      "JP": {
+        "feedHeadline": "ソウルの日常に、少し近づく3泊4日",
+        "feedCaption": "カフェで少し仕事をして、聖水と延南の路地を歩く。いまのソウルに出会う旅。",
+        "storyHeadline": "観光と日常のあいだへ",
+        "storySubline": "ソウル 3泊4日",
+        "shareTitle": "ソウル 3泊4日 Trip Set",
+        "shareDescription": "カフェと街歩きで、いまのソウルの日常に近づく旅"
+      }
+    }
+  },
+  "busan-weekend": {
+    "image": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+    "accent": "#5FA8BE",
+    "alt": {
+      "KO": "늦은 오후 부산의 바닷가 산책로를 커피와 함께 걷는 두 친구",
+      "EN": "Two friends walking with coffee along a Busan seaside path in late afternoon",
+      "JP": "午後の光のなか、釜山の海辺をコーヒー片手に歩く二人の友人"
+    },
+    "focalPoint": { "x": 54, "y": 54 },
+    "illustrative": true,
+    "source": "OpenAI ImageGen editorial asset, 2026-07-30",
+    "license": "Project-owned generated editorial asset; not evidence of an actual Wakation stay or participant",
+    "copy": {
+      "KO": {
+        "feedHeadline": "바다를 보고, 먹고, 걷는 부산 2박 3일",
+        "feedCaption": "바다로 시작해 골목과 카페로 이어지는, 짧아서 더 가벼운 부산의 주말.",
+        "storyHeadline": "바다가 있는 주말",
+        "storySubline": "부산 2박 3일",
+        "shareTitle": "부산 주말 2박 3일 Trip Set",
+        "shareDescription": "바다를 보고, 먹고, 걸으며 보내는 가벼운 부산 주말"
+      },
+      "JP": {
+        "feedHeadline": "海を見て、食べて、歩く。釜山2泊3日",
+        "feedCaption": "海から始まり、路地とカフェへ。短いからこそ気軽に楽しめる釜山の週末。",
+        "storyHeadline": "海のある週末へ",
+        "storySubline": "釜山 2泊3日",
+        "shareTitle": "釜山 週末2泊3日 Trip Set",
+        "shareDescription": "海を眺めて、食べて、歩く。気軽な韓国の週末旅"
+      }
+    }
+  }
+}

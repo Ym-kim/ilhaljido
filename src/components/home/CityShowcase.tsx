@@ -36,8 +36,9 @@ const UI: Record<string, L> = {
   all: { KO: '모든 목적지 보기', EN: 'All destinations', JP: 'すべての目的地' },
 }
 
-export function CityShowcase() {
-  const { lang } = useLang()
+export function CityShowcase({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang } = useLang()
+  const lang = forceLang ?? ctxLang
   const cities = ORDER[lang]
     .map((slug) => CITY_GUIDES.find((g) => g.slug === slug))
     .filter((g): g is NonNullable<typeof g> => Boolean(g))

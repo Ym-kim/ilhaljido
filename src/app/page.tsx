@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
-import { getDomesticCurrent, getDomesticThemedUpcoming } from '@/lib/i18n'
+import { getDomesticCurrent, getDomesticThemedUpcoming, t } from '@/lib/i18n'
+import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
@@ -76,8 +77,21 @@ const HERO_DESTS = [
 // 플랫폼 카테고리 섹션은 GrowthEngines·About과 중복이라 홈에서 내림(페이지들은 네비로 접근 유지),
 // 테마 섹션은 MoodExplorer가 흡수(healing·networking·onsen·domestic 직결. golf·sports·local은 /programs 허브에서 접근)
 
-export default function HomePage() {
-  const { lang, tr } = useLang()
+const HOME_HERO_ALT: Record<Lang, string> = {
+  KO: '바다가 보이는 라운지에서 노트북으로 일하는 여행자',
+  EN: 'A traveler working on a laptop in a lounge overlooking the sea',
+  JP: '海を望むラウンジでノートPCを開いて働く旅人',
+}
+
+export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
+  const lang = forceLang ?? ctxLang
+  const tr = (key: string) => forceLang ? (t[forceLang][key] ?? t.KO[key] ?? key) : ctxTr(key)
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
   const bookingNote = ({ KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' } as const)[lang]
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
@@ -114,22 +128,22 @@ export default function HomePage() {
     <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
       {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
-      <section className="relative min-h-[100svh] flex items-center overflow-hidden dark-surface pt-24 pb-8 md:pt-28 md:pb-12">
+      <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14">
         <div className="absolute inset-0">
           {/* LCP 이미지 — next/image 반응형 srcset·priority (모바일 대역폭·속도 개선) */}
           <Image
-            src="/covers/home-hero-real.jpeg"
-            alt=""
+            src="/campaign/home-workation-editorial-v1.webp"
+            alt={HOME_HERO_ALT[lang]}
             fill
             priority
             sizes="100vw"
-            className="object-cover animate-kenburns"
+            className="home-editorial-hero object-cover animate-kenburns"
           />
           <div className="absolute inset-0 bg-[#04121f]/15" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/45 to-[#04121f]/20 lg:bg-gradient-to-r lg:from-[#04121f]/95 lg:via-[#04121f]/65 lg:to-[#04121f]/20" />
         </div>
         <div className="relative w-full max-w-6xl mx-auto px-5 sm:px-6">
-          <div className="grid min-w-0 items-end gap-7 lg:grid-cols-[minmax(0,1.05fr)_minmax(24rem,0.82fr)] lg:gap-12 xl:gap-20">
+          <div className="flex max-w-xl min-w-0 flex-col gap-7">
             <div className="min-w-0 lg:pb-2">
               {/* 실제 운영·제휴 신뢰 신호 */}
               <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
@@ -164,7 +178,7 @@ export default function HomePage() {
 
             {/* 목적지 퀵서치 카드 */}
             <div
-              className="animate-rise w-full min-w-0 rounded-[1.75rem] bg-[#061927]/80 border border-white/20 backdrop-blur-2xl p-4 sm:p-6 shadow-[0_24px_80px_rgba(1,12,22,0.45)]"
+              className="animate-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
               style={{ animationDelay: '0.32s' }}
             >
               <span className="text-white/85 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
@@ -224,7 +238,7 @@ export default function HomePage() {
               <Link
                 href="/programs"
                 onClick={() => trackEvent('hero_cta_click', { cta: 'programs' })}
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                className="hidden sm:inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {tr('h3_cta_programs')}
                 <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -242,13 +256,13 @@ export default function HomePage() {
       <GeoJapanBanner />
 
       {/* ── 무드 탐색 — 감정·상황으로 먼저 (2026-07-28 라이프스타일 개편, 탐색 1축) ── */}
-      <MoodExplorer />
+      <MoodExplorer forceLang={forceLang} />
 
       {/* ── 기간 탐색 — 쓸 수 있는 날짜로 고르기 (탐색 2축) ── */}
-      <DurationExplorer />
+      <DurationExplorer forceLang={forceLang} />
 
       {/* ── 지금 떠나기 좋은 도시 — locale별 순서 분기(KO=일본 단기 / JP=제주 우선) ── */}
-      <CityShowcase />
+      <CityShowcase forceLang={forceLang} />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
@@ -315,7 +329,7 @@ export default function HomePage() {
       </section>
 
       {/* ── 테마 기획전 — 목적지별 숙소·체험·eSIM·항공 큐레이션 묶음 ── */}
-      <CollectionsSection />
+      <CollectionsSection forceLang={forceLang} />
 
       {/* ── 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 ── */}
       <MomentRail />

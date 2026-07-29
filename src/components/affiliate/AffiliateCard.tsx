@@ -27,10 +27,10 @@ const STATUS_META: Record<
 }
 
 // 배지 문구 — 3개 언어
-const BADGE_TEXT: Record<Lang, Record<BadgeKey | 'editorial', string>> = {
-  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크', editorial: '여행 이미지' },
-  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link', editorial: 'Travel image' },
-  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク', editorial: '旅のイメージ' },
+const BADGE_TEXT: Record<Lang, Record<BadgeKey, string>> = {
+  KO: { affiliate: '제휴', api: '제휴 API', link_prep: '링크 준비중', ref_prep: '추천 준비중', review: '승인 확인중', external: '외부 링크' },
+  EN: { affiliate: 'Partner', api: 'Partner API', link_prep: 'Link coming', ref_prep: 'Coming soon', review: 'In review', external: 'External link' },
+  JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク' },
 }
 
 // 실측 기준일 마이크로카피 — '2026-07-26' → '7.26 기준' (PRICE_POLICY 2026-07-27)
@@ -88,7 +88,6 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   const coverPhoto = item.coverPhoto
     ?? (item.productType ? PRODUCT_TYPE_COVER[item.productType] : undefined)
     ?? CATEGORY_COVER[item.category]
-  const hasPhoto = visual && !!coverPhoto
   // ── visual 모드: 사진 카드 (2열 모바일 가독성 최적화) ────────────────────────
   if (visual) {
     return (
@@ -100,7 +99,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
           recordRecentlyViewed(item.id)
         }}
-        className={`group flex flex-col overflow-hidden rounded-[1.35rem] border border-[#dfe6e9] bg-white shadow-[0_10px_35px_rgba(8,47,73,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_20px_55px_rgba(8,47,73,0.13)] ${className}`}
+        className={`group flex flex-col overflow-hidden rounded-[1.25rem] border border-[#dfe6e9] bg-white shadow-[0_7px_24px_rgba(8,47,73,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)] ${className}`}
       >
         <div className="relative h-52 shrink-0 overflow-hidden bg-[#e9f0f2] sm:h-48">
           <Image
@@ -176,7 +175,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </span>
             {/* 판매처 · 유형 — 무슨 상품인지 한눈에 (2026-07-15 MD 피드백) */}
             <span className="mt-1 block text-[0.68rem] font-semibold text-[#8493a0]">
-              {item.name}{item.badge ? ` · ${item.badge}` : ''}{hasPhoto ? ` · ${badgeText.editorial}` : ''}
+              {item.name}{item.badge ? ` · ${item.badge}` : ''}
             </span>
             {/* 상품 설명 — 폰에서도 상품 정체가 보이게 항상 노출 (2026-07-16 모바일 패스) */}
             {item.desc && (
