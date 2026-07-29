@@ -28,6 +28,23 @@ export type TripMatchTripContent = {
 
 const ACTIVE_STATUSES = new Set(['active_affiliate', 'api_ready'])
 const PRODUCT_ORDER = ['stay', 'esim', 'activity', 'transport'] as const
+const KLOOK_REDIRECT = 'https://affiliate.klook.com/redirect?aid=126848&k_site='
+const AIRALO_KOREA_DEEP_LINK =
+  'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fsouth-korea-esim'
+
+function withTripMatchTracking(item: AffiliateItem, slug: TripMatchSlug): AffiliateItem {
+  if (item.id === 'esim-airalo' && (slug === 'seoul-3n4d' || slug === 'busan-weekend')) {
+    return { ...item, href: AIRALO_KOREA_DEEP_LINK }
+  }
+
+  if (item.href.startsWith('https://www.klook.com/')) {
+    const destination = new URL(item.href)
+    destination.searchParams.delete('aid')
+    return { ...item, href: `${KLOOK_REDIRECT}${encodeURIComponent(destination.toString())}` }
+  }
+
+  return item
+}
 
 function selectPreparationItems(items: AffiliateItem[]) {
   const active = items.filter((item) => ACTIVE_STATUSES.has(item.status))
@@ -54,7 +71,9 @@ export function getTripMatchTripContent(lang: Lang): TripMatchTripContent[] {
       throw new Error(`Trip Match collection is incomplete: ${slug}`)
     }
 
-    const items = getCatalogItems(collection.itemIds).map((item) => localizeAffiliateItem(item, lang))
+    const items = getCatalogItems(collection.itemIds).map((item) =>
+      withTripMatchTracking(localizeAffiliateItem(item, lang), slug),
+    )
 
     return {
       slug,
