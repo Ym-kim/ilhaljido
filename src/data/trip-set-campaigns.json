@@ -1,5 +1,9 @@
 {
   "fukuoka-3n4d": {
+    "id": "fukuoka-3n4d",
+    "sourceType": "generated",
+    "usage": "editorial",
+    "createdAt": "2026-07-30",
     "image": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
     "accent": "#9AAA86",
     "alt": {
@@ -31,6 +35,10 @@
     }
   },
   "osaka-friends": {
+    "id": "osaka-friends",
+    "sourceType": "generated",
+    "usage": "editorial",
+    "createdAt": "2026-07-30",
     "image": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
     "accent": "#D77B68",
     "alt": {
@@ -62,6 +70,10 @@
     }
   },
   "seoul-3n4d": {
+    "id": "seoul-3n4d",
+    "sourceType": "generated",
+    "usage": "editorial",
+    "createdAt": "2026-07-30",
     "image": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
     "accent": "#E7A77B",
     "alt": {
@@ -93,6 +105,10 @@
     }
   },
   "busan-weekend": {
+    "id": "busan-weekend",
+    "sourceType": "generated",
+    "usage": "editorial",
+    "createdAt": "2026-07-30",
     "image": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
     "accent": "#5FA8BE",
     "alt": {

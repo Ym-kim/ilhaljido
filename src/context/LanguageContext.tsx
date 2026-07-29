@@ -54,7 +54,19 @@ export function LanguageProvider({ children, forceLang }: { children: ReactNode;
   }, [forceLang])
 
   useEffect(() => {
-    const htmlLang = lang === 'KO' ? 'ko' : lang === 'EN' ? 'en' : 'ja'
+    // Root and nested locale providers mount together on static /en and /ja
+    // routes. Always let the URL locale win so a parent provider cannot
+    // overwrite the nested route's document language during hydration.
+    const pathname = window.location.pathname
+    const htmlLang = pathname === '/ja' || pathname.startsWith('/ja/')
+      ? 'ja'
+      : pathname === '/en' || pathname.startsWith('/en/')
+        ? 'en'
+        : lang === 'KO'
+          ? 'ko'
+          : lang === 'EN'
+            ? 'en'
+            : 'ja'
     document.documentElement.lang = htmlLang
   }, [lang])
 

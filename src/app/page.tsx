@@ -483,7 +483,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-20 md:py-28 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
+            <div className="min-w-0">
               <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">ABOUT WAKATION</p>
               <h2 className="text-3xl md:text-4xl font-black text-[#111827] mb-6 leading-tight">
                 {tr('h3_about_title')}
@@ -498,7 +498,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
-            <div className="space-y-3">
+            <div className="min-w-0 space-y-3">
               {([
                 { label: 'Wakation Hosted', descKey: 'h3_about_hosted_d', color: 'border-brand-mid/20 bg-white' },
                 { label: 'Wakation Select', descKey: 'h3_about_select_d', color: 'border-blue-200 bg-white' },
@@ -572,8 +572,8 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* ── 파트너십 신뢰 배너 ── */}
       <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-7 px-6">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex -space-x-1">
+          <div className="flex w-full min-w-0 items-center gap-3 sm:w-auto">
+            <div className="flex shrink-0 -space-x-1">
               {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
                 const Icon = PARTNER_ICON_MAP[k]
                 return (
@@ -583,7 +583,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 )
               })}
             </div>
-            <p className="text-[#7a7a7a] text-sm font-medium">{tr('home_partner_banner_text')}</p>
+            <p className="min-w-0 text-[#7a7a7a] text-sm font-medium">{tr('home_partner_banner_text')}</p>
           </div>
           <Link href="/partnership" className="shrink-0 text-brand-mid text-sm font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all">
             {tr('home_partner_banner_cta')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />

@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "social:trip-sets": "node scripts/generate-trip-set-social.mjs"
+    "social:trip-sets": "node scripts/generate-trip-set-social.mjs",
+    "social:trip-sets:validate": "node scripts/validate-trip-set-social.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

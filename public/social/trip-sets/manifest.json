@@ -1,0 +1,2613 @@
+{
+  "version": 2,
+  "generatedAt": "2026-07-30",
+  "count": 32,
+  "assets": [
+    {
+      "slug": "busan-weekend",
+      "locale": "ja",
+      "format": "feed",
+      "path": "busan-weekend/feed-ja.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 152972,
+      "sha256": "df4feda17d3714a7a05fa16aeb458e6bdae535ff4732a8970bba036ff9ae7ee8",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "海を見て、食べて、歩く。釜山",
+            "2泊3日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 856,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "海を眺めて、食べて、歩く。気軽な韓国の週末旅"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 564,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1282,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ko",
+      "format": "feed",
+      "path": "busan-weekend/feed-ko.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 145628,
+      "sha256": "e7460e99467bdc2eddd45a7ac203ec840786a9cffc5e60ff8a1b969bc07db8f8",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "바다를 보고, 먹고, 걷는 부산",
+            "2박 3일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 883,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "바다를 보고, 먹고, 걸으며 보내는 가벼운 부산 주말"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 628,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1282,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ja",
+      "format": "og",
+      "path": "busan-weekend/og-ja.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 143166,
+      "sha256": "53ef90e4aa8533e30ab3050455b523fe94fb1cecc8235ac09c5517776166be83",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "海を見て、食べて、歩く。釜山2泊3日"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 883,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "海を眺めて、食べて、歩く。気軽な韓国の週末旅"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 461,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 891,
+            "y": 577,
+            "width": 245,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ko",
+      "format": "og",
+      "path": "busan-weekend/og-ko.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 138780,
+      "sha256": "107bd436b29ca31debb9dca59869bf7ce3b171052ddd090d2a581f875c2681bb",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "바다를 보고, 먹고, 걷는 부산 2박 3일"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 939,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "바다를 보고, 먹고, 걸으며 보내는 가벼운 부산 주말"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 513,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 922,
+            "y": 577,
+            "width": 214,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ja",
+      "format": "square",
+      "path": "busan-weekend/square-ja.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 145382,
+      "sha256": "cc598af7a591c3cc5b9f5df7170db7863ab2d4c689554a1adca755135aba6ced",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "海を見て、食べて、歩く。釜山",
+            "2泊3日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 806,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "海を眺めて、食べて、歩く。気軽な韓国の週末旅"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 564,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1012,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ko",
+      "format": "square",
+      "path": "busan-weekend/square-ko.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 139572,
+      "sha256": "4fdf40f1de9716682b5f0e96ff25723dba77641bf3d944104baa27a363448b0c",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "바다를 보고, 먹고, 걷는 부산",
+            "2박 3일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 831,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "바다를 보고, 먹고, 걸으며 보내는 가벼운 부산 주말"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 628,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1012,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ja",
+      "format": "story",
+      "path": "busan-weekend/story-ja.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 135922,
+      "sha256": "bb156ada255b478c77a19a1ab6ed64dac8eaed3b9ecfc3dfbdc73c0c6a175b3a",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "海のある週末へ"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 537,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "釜山 2泊3日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 150,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1648,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "busan-weekend",
+      "locale": "ko",
+      "format": "story",
+      "path": "busan-weekend/story-ko.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 135346,
+      "sha256": "e82788037cdc8c7cce1294b5c366d9ae85d1011e4760ee051c16452ea99e3cf6",
+      "source": "/campaign/trip-sets/busan-weekend-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "바다가 있는 주말"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 584,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "부산 2박 3일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 159,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1648,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ja",
+      "format": "feed",
+      "path": "fukuoka-3n4d/feed-ja.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 98702,
+      "sha256": "119295bbdca0915dc6329e78200310b4e14031de9b26e41261c8db7c407a8b59",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1030,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1154,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "働いて、温泉へ。福岡3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1084,
+            "width": 832,
+            "height": 78
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェで働き、温泉で一日を締める短い福岡ステイ"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1282,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ko",
+      "format": "feed",
+      "path": "fukuoka-3n4d/feed-ko.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 100032,
+      "sha256": "d6f81ddc7601dec969b3dee9c6d8e78e9742dc20f4b807e1f23282d04cf3a632",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "일과 온천 사이, 후쿠오카",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 772,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페에서 일하고 온천에서 하루를 마무리하는 짧은 일본 체류"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 747,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1282,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ja",
+      "format": "og",
+      "path": "fukuoka-3n4d/og-ja.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 72946,
+      "sha256": "def8f4fc1ee4456105f0c2380bf419d7865c32285792ba700d2ec19675fa81bc",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "働いて、温泉へ。福岡3泊4日"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 686,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェで働き、温泉で一日を締める短い福岡ステイ"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 507,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 891,
+            "y": 577,
+            "width": 245,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ko",
+      "format": "og",
+      "path": "fukuoka-3n4d/og-ko.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 70184,
+      "sha256": "af267c1fff0bf0e8d2a673e6c3f42f7aa1b4c5dbbd76aa01eee9d88ab00eb128",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "일과 온천 사이, 후쿠오카 3박 4일"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 847,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페에서 일하고 온천에서 하루를 마무리하는 짧은 일본 체류"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 611,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 922,
+            "y": 577,
+            "width": 214,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ja",
+      "format": "square",
+      "path": "fukuoka-3n4d/square-ja.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 93768,
+      "sha256": "80abecba76bd9025db535be1bdea1164ed8fba637dfa66a292f3ab61f79b45ef",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 764,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 884,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "働いて、温泉へ。福岡3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 818,
+            "width": 783,
+            "height": 74
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェで働き、温泉で一日を締める短い福岡ステイ"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1012,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ko",
+      "format": "square",
+      "path": "fukuoka-3n4d/square-ko.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 93374,
+      "sha256": "d6c66e8895565def7926b7e6f433aa82e14ee7504a3d832cc5ddf6ef6f0754a2",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "일과 온천 사이, 후쿠오카",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 726,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페에서 일하고 온천에서 하루를 마무리하는 짧은 일본 체류"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 747,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1012,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ja",
+      "format": "story",
+      "path": "fukuoka-3n4d/story-ja.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 100476,
+      "sha256": "49ec4353a21474b7f68d21eef905d288bfe01918d30f5be6480a85a448b0600a",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "働いて、温泉へ。"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 536,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "福岡で過ごす3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 252,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1648,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "fukuoka-3n4d",
+      "locale": "ko",
+      "format": "story",
+      "path": "fukuoka-3n4d/story-ko.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 98450,
+      "sha256": "1c43af7db21a514ec0df5e89e74e0aaacad28067cbf99a200e7e91091ec46909",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "일하고, 온천으로"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 585,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "후쿠오카 3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 214,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1648,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ja",
+      "format": "feed",
+      "path": "osaka-friends/feed-ja.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 111602,
+      "sha256": "c7fb69d74839620db587e5158eedffea5f4bee40e544d15db59ffea188965170",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "友達と集める、おいしい大阪",
+            "3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 857,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "グルメ、展示、テーマパークと街の夜を楽しむTrip Set"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 669,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1282,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ko",
+      "format": "feed",
+      "path": "osaka-friends/feed-ko.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 109986,
+      "sha256": "3114b2cc0e237ebbe17fe485c34c1794df0dac47cc6eff05329bbf1e4e425a0f",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "맛있는 장면을 함께, 오사카",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 840,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "음식과 전시, 테마파크와 도시의 밤을 균형 있게 담은 Trip Set"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 773,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1282,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ja",
+      "format": "og",
+      "path": "osaka-friends/og-ja.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 84100,
+      "sha256": "9711665ce1b43562e9bf97acf5a431d3e29562518638f77184304f1b3d5a0d2d",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "友達と集める、おいしい大阪3泊4日"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 884,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "グルメ、展示、テーマパークと街の夜を楽しむTrip Set"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 547,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 891,
+            "y": 577,
+            "width": 245,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ko",
+      "format": "og",
+      "path": "osaka-friends/og-ko.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 83074,
+      "sha256": "e6c93822641a1d275a85bd6459208cc384795960db4c9bc6a48fdea37c93d10c",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "맛있는 장면을 함께, 오사카 3박 4일"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 904,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "음식과 전시, 테마파크와 도시의 밤을 균형 있게 담은 Trip Set"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 632,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 922,
+            "y": 577,
+            "width": 214,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ja",
+      "format": "square",
+      "path": "osaka-friends/square-ja.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 99940,
+      "sha256": "16932a138e3f84a8d8038863cebf025ebe00936c00b54553080ca3605fb80d10",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "友達と集める、おいしい大阪",
+            "3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 807,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "グルメ、展示、テーマパークと街の夜を楽しむTrip Set"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 669,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1012,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ko",
+      "format": "square",
+      "path": "osaka-friends/square-ko.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 101422,
+      "sha256": "e35eb2fc720572cf3b14efdc1fedc80ba5d33e4a55d61738f66a92e5c350f0e2",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "맛있는 장면을 함께, 오사카",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 791,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "음식과 전시, 테마파크와 도시의 밤을 균형 있게 담은 Trip Set"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 773,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1012,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ja",
+      "format": "story",
+      "path": "osaka-friends/story-ja.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 113984,
+      "sha256": "27fd1a97f5708a3b7dfd66796efdf4724d6956924ec50f037941c9a6c18dfc31",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "おいしい大阪を、友達と。"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 842,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "大阪 友達旅 3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 241,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1648,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "osaka-friends",
+      "locale": "ko",
+      "format": "story",
+      "path": "osaka-friends/story-ko.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 111400,
+      "sha256": "53659e701d557622c5417e117c3e347faa6898925a6184cf7f449b095451c8f2",
+      "source": "/campaign/trip-sets/osaka-friends-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "맛있는 장면을 함께"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 660,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "오사카 친구 여행 3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 313,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1648,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ja",
+      "format": "feed",
+      "path": "seoul-3n4d/feed-ja.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 92730,
+      "sha256": "9f88ae41034ae01fd66054b90a78ab5c099daa6ab453f7c6eee9e9c07a6c106c",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "ソウルの日常に、少し近づく",
+            "3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 857,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェと街歩きで、いまのソウルの日常に近づく旅"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1282,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ko",
+      "format": "feed",
+      "path": "seoul-3n4d/feed-ko.webp",
+      "width": 1080,
+      "height": 1350,
+      "mimeType": "image/webp",
+      "bytes": 92118,
+      "sha256": "b99aaf6aeff4215cee091bc8d8e0883a496ecbb48fadd257eda210857cc9a391",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1350
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 1260
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 947,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1071,
+          "lineHeight": 83,
+          "fontSize": 70,
+          "letterSpacing": -1.5,
+          "lines": [
+            "서울의 일상에 가까워지는",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1001,
+            "width": 797,
+            "height": 161
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1236,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페와 골목, 도시의 일상을 천천히 걷는 서울 여행"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1208,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1304,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1282,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ja",
+      "format": "og",
+      "path": "seoul-3n4d/og-ja.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 76208,
+      "sha256": "3726c5658d1900823f425afea56a7a390a7e05e567a92500811acb0ba32b867d",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "ソウルの日常に、少し近づく3泊4日"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 884,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェと街歩きで、いまのソウルの日常に近づく旅"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 507,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 891,
+            "y": 577,
+            "width": 245,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ko",
+      "format": "og",
+      "path": "seoul-3n4d/og-ko.webp",
+      "width": 1200,
+      "height": 630,
+      "mimeType": "image/webp",
+      "bytes": 75718,
+      "sha256": "9f4490b86099c470649aa5c7f1b2d817bc81eb60e8245acc644980ded858f23d",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1200,
+          "height": 630
+        },
+        "safeArea": {
+          "x": 64,
+          "y": 48,
+          "width": 1072,
+          "height": 558
+        },
+        "logo": {
+          "x": 64,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 64,
+          "y": 334,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 64,
+          "firstBaseline": 446,
+          "lineHeight": 68,
+          "fontSize": 58,
+          "letterSpacing": -1.5,
+          "lines": [
+            "서울의 일상에 가까워지는 3박 4일"
+          ],
+          "box": {
+            "x": 64,
+            "y": 388,
+            "width": 869,
+            "height": 66
+          }
+        },
+        "subline": {
+          "x": 64,
+          "firstBaseline": 528,
+          "lineHeight": 30,
+          "fontSize": 23,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페와 골목, 도시의 일상을 천천히 걷는 서울 여행"
+          ],
+          "box": {
+            "x": 64,
+            "y": 505,
+            "width": 506,
+            "height": 30
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1136,
+          "baseline": 596,
+          "fontSize": 19,
+          "box": {
+            "x": 922,
+            "y": 577,
+            "width": 214,
+            "height": 25
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ja",
+      "format": "square",
+      "path": "seoul-3n4d/square-ja.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 88624,
+      "sha256": "acc627d583eeac8069aa24f72a4ed35a84e022479cab22ba3d58ba13980fd427",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "ソウルの日常に、少し近づく",
+            "3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 807,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "カフェと街歩きで、いまのソウルの日常に近づく旅"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1012,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ko",
+      "format": "square",
+      "path": "seoul-3n4d/square-ko.webp",
+      "width": 1080,
+      "height": 1080,
+      "mimeType": "image/webp",
+      "bytes": 87636,
+      "sha256": "b18cebcffd8843af6941e8bc695f2c226b8a2a7bf8561577f27e6d31a77098e9",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1080
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 54,
+          "width": 940,
+          "height": 990
+        },
+        "logo": {
+          "x": 70,
+          "y": 70,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 686,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 806,
+          "lineHeight": 78,
+          "fontSize": 66,
+          "letterSpacing": -1.5,
+          "lines": [
+            "서울의 일상에 가까워지는",
+            "3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 740,
+            "width": 750,
+            "height": 152
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 966,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "카페와 골목, 도시의 일상을 천천히 걷는 서울 여행"
+          ],
+          "box": {
+            "x": 70,
+            "y": 938,
+            "width": 619,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1034,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1012,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ja",
+      "format": "story",
+      "path": "seoul-3n4d/story-ja.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 94522,
+      "sha256": "d34959d8a8fdbdd94cc9f4918307df680bf7ced9f16378cc645d6fa0c4b3d11c",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "観光と日常のあいだへ"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 767,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "ソウル 3泊4日"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 178,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "セットを見る · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 725,
+            "y": 1648,
+            "width": 285,
+            "height": 28
+          }
+        }
+      }
+    },
+    {
+      "slug": "seoul-3n4d",
+      "locale": "ko",
+      "format": "story",
+      "path": "seoul-3n4d/story-ko.webp",
+      "width": 1080,
+      "height": 1920,
+      "mimeType": "image/webp",
+      "bytes": 91266,
+      "sha256": "8fb21f2b0dd6f985cdf61def5d07d3fc68feb9e0b2bbf7eec44dcb7e3a014204",
+      "source": "/campaign/trip-sets/seoul-3n4d-editorial-v1.webp",
+      "layout": {
+        "version": 2,
+        "canvas": {
+          "width": 1080,
+          "height": 1920
+        },
+        "safeArea": {
+          "x": 70,
+          "y": 80,
+          "width": 940,
+          "height": 1610
+        },
+        "logo": {
+          "x": 70,
+          "y": 96,
+          "width": 220,
+          "height": 34
+        },
+        "badge": {
+          "x": 70,
+          "y": 1318,
+          "width": 108,
+          "height": 32
+        },
+        "headline": {
+          "x": 70,
+          "firstBaseline": 1450,
+          "lineHeight": 92,
+          "fontSize": 78,
+          "letterSpacing": -1.5,
+          "lines": [
+            "관광과 일상 사이"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1372,
+            "width": 584,
+            "height": 86
+          }
+        },
+        "subline": {
+          "x": 70,
+          "firstBaseline": 1550,
+          "lineHeight": 37,
+          "fontSize": 28,
+          "letterSpacing": -0.5,
+          "lines": [
+            "서울 3박 4일"
+          ],
+          "box": {
+            "x": 70,
+            "y": 1522,
+            "width": 159,
+            "height": 35
+          }
+        },
+        "cta": {
+          "text": "구성 보기 · wakation.kr",
+          "x": 1010,
+          "baseline": 1670,
+          "fontSize": 22,
+          "box": {
+            "x": 762,
+            "y": 1648,
+            "width": 248,
+            "height": 28
+          }
+        }
+      }
+    }
+  ]
+}
