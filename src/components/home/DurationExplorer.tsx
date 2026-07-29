@@ -25,9 +25,8 @@ const ROWS: DurationRow[] = [
     label: { KO: '2박 3일', EN: '2–3 days', JP: '2泊3日' },
     hint: { KO: '주말만으로 충분한', EN: 'A weekend is enough', JP: '週末だけで十分' },
     chips: [
+      { href: '/collections/busan-weekend?src=duration', label: { KO: '부산 주말 세트', EN: 'Busan weekend set', JP: '釜山週末セット' } },
       { href: '/guide/jeju', label: { KO: '제주', EN: 'Jeju', JP: '済州' } },
-      { href: '/guide/busan', label: { KO: '부산', EN: 'Busan', JP: '釜山' } },
-      { href: '/guide/fukuoka', label: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' } },
       { href: '/programs/domestic', label: { KO: '국내 워케이션', EN: 'Korea programs', JP: '韓国国内' } },
     ],
   },
@@ -36,9 +35,10 @@ const ROWS: DurationRow[] = [
     label: { KO: '3박 4일', EN: '3–4 days', JP: '3泊4日' },
     hint: { KO: '연차 하루면 되는', EN: 'One day off is all it takes', JP: '有休1日あれば' },
     chips: [
+      { href: '/collections/fukuoka-3n4d?src=duration', label: { KO: '후쿠오카 세트', EN: 'Fukuoka set', JP: '福岡セット' } },
+      { href: '/collections/osaka-friends?src=duration', label: { KO: '오사카 친구 세트', EN: 'Osaka friends set', JP: '大阪友達セット' } },
+      { href: '/collections/seoul-3n4d?src=duration', label: { KO: '서울 세트', EN: 'Seoul set', JP: 'ソウルセット' } },
       { href: '/guide/tokyo', label: { KO: '도쿄', EN: 'Tokyo', JP: '東京' } },
-      { href: '/guide/osaka', label: { KO: '오사카', EN: 'Osaka', JP: '大阪' } },
-      { href: '/collections/japan-onsen-reset', label: { KO: '온천 리셋', EN: 'Onsen reset', JP: '温泉リセット' } },
     ],
   },
   {

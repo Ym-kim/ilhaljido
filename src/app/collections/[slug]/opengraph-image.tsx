@@ -53,8 +53,25 @@ export default async function OgImage({ params }: { params: Promise<{ slug: stri
           </div>
           <div style={{ fontSize: 30, fontWeight: 800, letterSpacing: -0.5 }}>Wakation</div>
         </div>
-        <div style={{ fontSize: 26, fontWeight: 800, color: '#7dd3fc', marginBottom: 18, letterSpacing: 2 }}>
-          COLLECTION
+        <div style={{ display: 'flex', gap: 14, alignItems: 'center', marginBottom: 18 }}>
+          <div style={{ fontSize: 26, fontWeight: 800, color: '#7dd3fc', letterSpacing: 2 }}>
+            {col?.duration ? 'TRIP SET' : 'COLLECTION'}
+          </div>
+          {col?.durationLabel && (
+            <div
+              style={{
+                fontSize: 24,
+                fontWeight: 800,
+                color: 'white',
+                background: 'rgba(255,255,255,0.14)',
+                border: '1px solid rgba(255,255,255,0.3)',
+                borderRadius: 999,
+                padding: '4px 18px',
+              }}
+            >
+              {col.durationLabel.KO}
+            </div>
+          )}
         </div>
         <div style={{ fontSize: 84, fontWeight: 900, letterSpacing: -2, lineHeight: 1.08, maxWidth: 1050 }}>{title}</div>
         <div style={{ marginTop: 22, fontSize: 32, fontWeight: 500, color: 'rgba(255,255,255,0.8)', maxWidth: 1000 }}>
