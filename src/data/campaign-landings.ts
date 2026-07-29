@@ -31,6 +31,7 @@ export type CampaignLandingConfig = {
   heroAlt: string
   heroPosition: string
   choicePrompt: string
+  matchCta: string
   compareTitle: string
   compareLabels: string[]
   choices: [CampaignChoice, CampaignChoice]
@@ -61,6 +62,7 @@ export const CAMPAIGN_LANDINGS: Record<CampaignLandingConfig['id'], CampaignLand
     heroAlt: '창가에서 차를 마시며 쉬는 여행자의 에디토리얼 이미지',
     heroPosition: '48% 48%',
     choicePrompt: '이번 여행은 어떤 쪽인가요?',
+    matchCta: '아직 고민된다면, 내 여행 추천받기',
     compareTitle: '20초 비교',
     compareLabels: ['분위기', '기간', '동행', '업무 병행', '대표 경험', '추천 이동'],
     choices: [
@@ -132,6 +134,7 @@ export const CAMPAIGN_LANDINGS: Record<CampaignLandingConfig['id'], CampaignLand
     heroAlt: 'ソウルの街を眺めながら過ごす旅を表現したエディトリアルイメージ',
     heroPosition: '60% 52%',
     choicePrompt: '今回の韓国旅、どちらから見る？',
+    matchCta: '迷ったら、3つ選んで旅を見つける',
     compareTitle: '20秒で比べる',
     compareLabels: ['空気感', '日数', '誰と', '仕事時間', '過ごし方', '移動の軸'],
     choices: [

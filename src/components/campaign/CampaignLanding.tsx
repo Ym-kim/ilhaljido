@@ -71,6 +71,14 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
     [config.choices, config.locale, utm],
   )
 
+  const tripMatchLink = useMemo(
+    () => withCampaignUtm(
+      `${config.locale === 'ja' ? '/ja' : ''}/trip-match?campaign=${config.id}`,
+      utm,
+    ),
+    [config.id, config.locale, utm],
+  )
+
   const handleChoice = (destination: string) => {
     const fields = {
       campaign: config.id,
@@ -81,6 +89,16 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
     rememberCampaignContext(fields)
     trackEvent('campaign_choice_click', fields)
     trackEvent('campaign_trip_set_open', fields)
+  }
+
+  const handleTripMatch = () => {
+    const fields = {
+      campaign: config.id,
+      locale: config.locale,
+      ...campaignEventFields(utm),
+    }
+    rememberCampaignContext(fields)
+    trackEvent('campaign_trip_match_click', fields)
   }
 
   return (
@@ -126,6 +144,14 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
                 </Link>
               ))}
             </div>
+            <Link
+              href={tripMatchLink}
+              onClick={handleTripMatch}
+              className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/22 bg-black/15 px-5 text-xs font-extrabold text-white/86 transition hover:border-white/45 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+            >
+              {config.matchCta}
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
+            </Link>
           </div>
         </div>
       </section>
