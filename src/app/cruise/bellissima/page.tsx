@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Ship, Wifi, Utensils, Anchor, Clock, AlertCircle, Users } from 'lucide-react'
+import { ShareButton } from '@/components/share/ShareButton'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /cruise/bellissima — MSC 벨리시마 크루즈 워케이션 에디토리얼 (2026-07-26)
@@ -242,6 +243,9 @@ export default function BellissimaCruisePage() {
           </span>
           <div className="mt-8">
             <BookingCtas />
+          </div>
+          <div className="mt-4 flex justify-center">
+            <ShareButton title="바다 위 스타링크 오피스 — MSC 벨리시마" />
           </div>
           <span className="block text-white/40 text-xs mt-6 leading-relaxed">
             위 버튼은 제휴 링크이며, Wakation은 예약 주체가 아닙니다. 요금·운항 일정·환불 조건은 예약

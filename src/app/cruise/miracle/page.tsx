@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Ship, Wifi, Luggage, Utensils, Clock, AlertCircle } from 'lucide-react'
+import { ShareButton } from '@/components/share/ShareButton'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /cruise/miracle — 팬스타 미라클호 크루즈 워케이션 에디토리얼 (2026-07-18)
@@ -226,6 +227,9 @@ export default function MiracleCruisePage() {
           </span>
           <div className="mt-8">
             <BookingCtas />
+          </div>
+          <div className="mt-4 flex justify-center">
+            <ShareButton title="바다 위 17시간, 부산—오사카 크루즈 워케이션" />
           </div>
           <span className="block text-white/40 text-xs mt-6 leading-relaxed">
             위 버튼은 제휴 링크이며, Wakation은 예약 주체가 아닙니다. 요금·운항 일정·환불 조건은 각 예약

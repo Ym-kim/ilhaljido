@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Ship, Wifi, Sun, Leaf, Clock, AlertCircle, Plane } from 'lucide-react'
+import { ShareButton } from '@/components/share/ShareButton'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /cruise/world-europa — MSC 월드 유로파 카리브 워케이션 에디토리얼 (2026-07-28)
@@ -261,6 +262,9 @@ export default function WorldEuropaCruisePage() {
           </span>
           <div className="mt-8">
             <BookingCtas />
+          </div>
+          <div className="mt-4 flex justify-center">
+            <ShareButton title="한겨울의 카리브 워케이션 — MSC 월드 유로파" />
           </div>
           <span className="block text-white/40 text-xs mt-6 leading-relaxed">
             위 버튼은 제휴 링크이며, Wakation은 예약 주체가 아닙니다. 요금·운항 일정·환불 조건은 예약
