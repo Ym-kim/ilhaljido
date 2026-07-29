@@ -27,6 +27,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/destinations/compare',     priority: 0.7, freq: 'monthly' },
   // 프로그램
   { path: '/programs',                 priority: 0.9, freq: 'weekly' },
+  { path: '/hosted',                   priority: 0.9, freq: 'weekly' },
   { path: '/programs/domestic',        priority: 0.9, freq: 'weekly' },
   { path: '/programs/domestic/jeongseon-train', priority: 0.7, freq: 'monthly' },
   { path: '/programs/global',          priority: 0.9, freq: 'weekly' },
@@ -89,7 +90,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
     // EN·JA 로케일 select·programs (forceLang 2차, hreflang 상호 연결)
     ...['en', 'ja'].flatMap((loc) =>
-      ['/select', '/select/hotel', '/select/activity', '/select/esim', '/select/learn', '/programs', '/programs/global', '/programs/domestic', '/programs/market'].map((p) => ({
+      ['/select', '/select/hotel', '/select/activity', '/select/esim', '/select/learn', '/programs', '/hosted', '/programs/global', '/programs/domestic', '/programs/market'].map((p) => ({
         url: `${BASE}/${loc}${p}`,
         lastModified: now,
         changeFrequency: 'weekly' as const,

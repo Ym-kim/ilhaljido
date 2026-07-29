@@ -121,7 +121,7 @@ export function HostedLeadSection({
         <span className={`mb-6 block text-sm leading-relaxed ${light ? 'text-[#64748b]' : 'text-white/60'}`}>
           {c.sub[lang]}
         </span>
-        <NotifySignup source={c.source} tone={tone} ctaLabel={CTA} />
+        <NotifySignup source={c.source} tone={tone} ctaLabel={CTA} lang={lang} />
       </div>
     </section>
   )

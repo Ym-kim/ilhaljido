@@ -88,6 +88,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
   const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
   const lang = forceLang ?? ctxLang
   const tr = (key: string) => forceLang ? (t[forceLang][key] ?? t.KO[key] ?? key) : ctxTr(key)
+  const hostedHref = lang === 'JP' ? '/ja/hosted' : lang === 'EN' ? '/en/hosted' : '/hosted'
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -414,7 +415,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   </p>
                 </div>
                 <Link
-                  href="/apply"
+                  href={hostedHref}
                   className="shrink-0 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(14,165,233,0.4)]"
                 >
                   <Bell className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -425,7 +426,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {upcomingPrograms.map((p) => (
                   <Link
                     key={p.id}
-                    href="/apply"
+                    href={hostedHref}
                     className="group relative rounded-3xl overflow-hidden block h-64 sm:h-72 border border-white/10 hover:border-sky-400/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)]"
                   >
                     <Image
@@ -459,7 +460,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
               {/* 오픈 알림 이메일 수집 — 신청 전 단계 트래픽을 리드로 전환 */}
               <div className="mt-8 max-w-xl">
-                <NotifySignup />
+                <NotifySignup source="홈 Hosted 다음 회차 알림" event="hosted_alert_submitted" lang={lang} />
               </div>
             </>
           )}
