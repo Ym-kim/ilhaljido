@@ -525,7 +525,7 @@ export function TripMatchExperience({
             <span className="mt-3 block text-2xl font-black tracking-[-0.035em] text-white sm:text-3xl">{COPY.hostedTitle[lang]}</span>
             <span className="mt-3 block max-w-2xl text-sm font-medium leading-7 text-white/62">{COPY.hostedLead[lang]}</span>
             <Link
-              href={`${prefix}/programs`}
+              href={`${prefix}/hosted`}
               onClick={() => trackEvent('trip_match_hosted_click', commonFields)}
               className="mt-6 inline-flex min-h-12 items-center gap-2 rounded-full border border-white/24 px-6 text-sm font-black text-white transition hover:border-white/50 hover:bg-white/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8fd3e9]"
             >

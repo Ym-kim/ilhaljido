@@ -42,10 +42,13 @@ type NotifySignupProps = {
   tone?: 'dark' | 'light'
   /** CTA 라벨 오버라이드 (3언어) */
   ctaLabel?: Record<Lang, string>
+  /** forceLang 정적 라우트에서 사용할 언어 */
+  lang?: Lang
 }
 
-export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', event = 'program_alert_submitted', tone = 'dark', ctaLabel }: NotifySignupProps = {}) {
-  const { lang } = useLang()
+export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', event = 'program_alert_submitted', tone = 'dark', ctaLabel, lang: langProp }: NotifySignupProps = {}) {
+  const { lang: ctxLang } = useLang()
+  const lang = langProp ?? ctxLang
   const [email, setEmail] = useState('')
   const [state, setState] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
   const light = tone === 'light'
@@ -82,7 +85,7 @@ export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', ev
     return (
       <div className={`flex items-center gap-2.5 rounded-2xl px-5 py-4 ${light ? 'bg-sky-50 border border-sky-200' : 'bg-sky-400/10 border border-sky-400/25'}`}>
         <CheckCircle2 className={`w-5 h-5 shrink-0 ${light ? 'text-brand-mid' : 'text-sky-300'}`} strokeWidth={ICON_STROKE} />
-        <p className={`text-sm font-semibold ${light ? 'text-[#0369a1]' : 'text-sky-200'}`}>{T.done[lang]}</p>
+        <span className={`text-sm font-semibold ${light ? 'text-[#0369a1]' : 'text-sky-200'}`}>{T.done[lang]}</span>
       </div>
     )
   }
@@ -99,7 +102,7 @@ export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', ev
           onChange={(e) => setEmail(e.target.value)}
           placeholder={T.placeholder[lang]}
           aria-label={T.placeholder[lang]}
-          className={`flex-1 rounded-2xl px-5 py-3.5 text-sm focus:outline-none transition-colors ${
+          className={`min-w-0 flex-1 rounded-2xl px-5 py-3.5 text-sm focus:outline-none transition-colors ${
             light
               ? 'bg-white border border-[#dbeafe] text-[#111827] placeholder-[#94a3b8] focus:border-brand-mid'
               : 'bg-white/[0.06] border border-white/15 text-white placeholder-white/40 focus:border-sky-400/60'
@@ -114,13 +117,13 @@ export function NotifySignup({ source = '홈 라인업 오픈 알림 신청', ev
           {state === 'sending' ? T.sending[lang] : (ctaLabel?.[lang] ?? T.cta[lang])}
         </button>
       </form>
-      {state === 'error' && <p className="text-red-400 text-xs mt-2">{T.fail[lang]}</p>}
-      <p className={`text-[0.6875rem] mt-2.5 ${light ? 'text-[#94a3b8]' : 'text-white/40'}`}>
+      {state === 'error' && <span className="mt-2 block text-xs text-red-400">{T.fail[lang]}</span>}
+      <span className={`mt-2.5 block text-[0.6875rem] ${light ? 'text-[#94a3b8]' : 'text-white/40'}`}>
         {T.privacy[lang]}{' '}
-        <Link href="/privacy" target="_blank" className={`underline ${light ? 'text-[#64748b] hover:text-[#111827]' : 'text-white/55 hover:text-white/80'}`}>
+        <Link href="/privacy" target="_blank" rel="noopener noreferrer" className={`underline ${light ? 'text-[#64748b] hover:text-[#111827]' : 'text-white/55 hover:text-white/80'}`}>
           {T.policy[lang]}
         </Link>
-      </p>
+      </span>
     </div>
   )
 }

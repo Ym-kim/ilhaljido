@@ -38,6 +38,7 @@ const CHECKS: Check[] = [
   { id: 'page:collections', url: 'https://www.wakation.kr/collections' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
   { id: 'page:business', url: 'https://www.wakation.kr/business' },
+  { id: 'page:hosted', url: 'https://www.wakation.kr/hosted' },
   { id: 'page:compare', url: 'https://www.wakation.kr/destinations/compare' },
 
   // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
