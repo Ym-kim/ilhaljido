@@ -51,7 +51,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'tokyo',
     anchor: 'japan-tokyo',
-    heroPhoto: HERO('1526481280693-3bfa7568e0f3'),
+    heroPhoto: '/media/destinations/tokyo-editorial-v1.webp',
     name: { KO: '도쿄', EN: 'Tokyo', JP: '東京' },
     tagline: {
       KO: '시차 0시간, 업무 리듬 그대로 즐기는 대도시 워케이션',
@@ -98,7 +98,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'fukuoka',
     anchor: 'japan-fukuoka',
-    heroPhoto: HERO('1533050487297-09b450131914'),
+    heroPhoto: '/media/destinations/fukuoka-editorial-v1.webp',
     name: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' },
     tagline: {
       KO: '비행 1시간대 — 금요일 반차로 시작하는 가장 가까운 해외 워케이션',
@@ -145,7 +145,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'danang',
     anchor: 'vietnam-danang',
-    heroPhoto: HERO('1559592413-7cec4d0cae2b'),
+    heroPhoto: '/media/destinations/danang-editorial-v1.webp',
     name: { KO: '다낭', EN: 'Da Nang', JP: 'ダナン' },
     tagline: {
       KO: '오전은 느긋하게, 오후는 비치 앞 데스크 — 시차 2시간의 여유',
@@ -192,7 +192,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'bali',
     anchor: 'indonesia-bali',
-    heroPhoto: HERO('1537996194471-e657df975ab4'),
+    heroPhoto: '/media/destinations/bali-editorial-v1.webp',
     name: { KO: '발리', EN: 'Bali', JP: 'バリ' },
     tagline: {
       KO: '노마드 인프라의 교과서 — 한 달 살기의 세계적 기준점',
@@ -239,7 +239,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'chiangmai',
     anchor: 'thailand-chiangmai',
-    heroPhoto: HERO('1512553353614-82a7370096dc'),
+    heroPhoto: '/media/destinations/chiangmai-editorial-v1.webp',
     name: { KO: '치앙마이', EN: 'Chiang Mai', JP: 'チェンマイ' },
     tagline: {
       KO: '장기 체류의 수도 — 키치넷 딸린 서비스드 아파트에서 한 달',
@@ -333,7 +333,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'osaka',
     anchor: 'japan-osaka',
-    heroPhoto: HERO('1590559899731-a382839e5549'),
+    heroPhoto: '/media/destinations/osaka-editorial-v1.webp',
     name: { KO: '오사카', EN: 'Osaka', JP: '大阪' },
     tagline: {
       KO: '시차 0 · 직항 1시간대 — 주말을 붙이기 가장 쉬운 워케이션',
@@ -380,7 +380,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'cebu',
     anchor: 'philippines-cebu',
-    heroPhoto: HERO('1573790387438-4da905039392'),
+    heroPhoto: '/media/destinations/cebu-editorial-v1.webp',
     name: { KO: '세부', EN: 'Cebu', JP: 'セブ' },
     tagline: {
       KO: '시차 1시간 — 회의는 그대로, 주말엔 아일랜드 호핑',
@@ -427,7 +427,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'sydney',
     anchor: 'australia-sydney',
-    heroPhoto: HERO('1506973035872-a4ec16b8e8d9'),
+    heroPhoto: '/media/destinations/sydney-editorial-v1.webp',
     name: { KO: '시드니', EN: 'Sydney', JP: 'シドニー' },
     tagline: {
       KO: '시차 1~2시간 — 계절을 뒤집는 실시간 협업 워케이션',
