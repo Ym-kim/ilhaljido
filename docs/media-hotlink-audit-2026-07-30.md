@@ -46,7 +46,7 @@ One unrelated remote affiliate hotel thumbnail did not load inside the network-r
 Residual remote images are classified for later work:
 
 1. Affiliate products and hotels: verify against the live partner listing before any replacement.
-2. Korean destination guides (Jeju, Seoul, Busan): source actual place photography and add the same manifest fields.
+2. Korean destination guides (Jeju, Seoul, Busan): completed in `feat/korea-destination-media-v1`; see `docs/korea-destination-media-audit-2026-07-30.md`.
 3. Generic editorial pages and programs: localize verified existing photographs or generate only clearly illustrative, non-documentary imagery.
 4. Long-tail topic cards: remove duplicate sources and consolidate by a defined editorial/product/story variant.
 

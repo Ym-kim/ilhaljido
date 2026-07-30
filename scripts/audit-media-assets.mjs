@@ -8,7 +8,8 @@ const cityDataPath = path.join(root, 'src', 'lib', 'cities.ts')
 const guideDataPath = path.join(root, 'src', 'lib', 'guides.ts')
 const manifestPath = path.join(root, 'src', 'lib', 'media', 'assets.ts')
 const destinationDirectory = path.join(root, 'public', 'media', 'destinations')
-const expectedIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
+const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
+const expectedIds = [...cityIds, 'jeju', 'seoul', 'busan']
 const errors = []
 
 const [cityData, guideData, manifest] = await Promise.all([
@@ -19,6 +20,9 @@ const [cityData, guideData, manifest] = await Promise.all([
 
 if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) {
   errors.push('src/lib/cities.ts still contains an Unsplash hotlink')
+}
+if (/https?:\/\/images\.unsplash\.com/i.test(guideData)) {
+  errors.push('src/lib/guides.ts still contains an Unsplash hotlink')
 }
 
 const hashes = new Map()
@@ -39,7 +43,7 @@ for (const id of expectedIds) {
   totalBytes += buffer.byteLength
   if (buffer.byteLength === 0) errors.push(`Zero-byte asset: ${relativePath}`)
   if (buffer.byteLength > 500_000) errors.push(`Asset exceeds 500 KB: ${relativePath}`)
-  if (!cityData.includes(`photo: '${relativePath}'`)) errors.push(`City data does not use ${relativePath}`)
+  if (cityIds.includes(id) && !cityData.includes(`photo: '${relativePath}'`)) errors.push(`City data does not use ${relativePath}`)
   if (!guideData.includes(`heroPhoto: '${relativePath}'`)) errors.push(`Guide data does not use ${relativePath}`)
   if (!manifest.includes(`id: 'destination-${id}-editorial-v1'`)) errors.push(`Manifest entry missing for ${id}`)
 

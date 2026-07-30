@@ -37,9 +37,6 @@ export type CityGuide = {
 const FLIGHT = (slug: string) =>
   `https://kr.trip.com/flights/${slug}/?Allianceid=9024807`
 
-const HERO = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1600&h=700&q=80`
-
 const F = {
   tz: { KO: '시차', EN: 'Time difference', JP: '時差' },
   flight: { KO: '직항 소요', EN: 'Direct flight', JP: '直行便' },
@@ -286,7 +283,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'jeju',
     anchor: 'korea-jeju',
-    heroPhoto: HERO('1507525428034-b723cf961d3e'),
+    heroPhoto: '/media/destinations/jeju-editorial-v1.webp',
     name: { KO: '제주', EN: 'Jeju', JP: '済州' },
     tagline: {
       KO: '여권 없이 만나는 바다 앞 데스크 — 가장 빠른 워케이션',
@@ -483,7 +480,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'seoul',
     anchor: 'korea-seoul',
-    heroPhoto: HERO('1517154421773-0529f29ea451'),
+    heroPhoto: '/media/destinations/seoul-editorial-v1.webp',
     name: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
     tagline: {
       KO: '성수의 팝업, 연남의 카페 — 도시 전체가 워크스페이스',
@@ -529,7 +526,7 @@ export const CITY_GUIDES: CityGuide[] = [
   {
     slug: 'busan',
     anchor: 'korea-busan',
-    heroPhoto: HERO('1638591751482-1a7d27fcea15'),
+    heroPhoto: '/media/destinations/busan-editorial-v1.webp',
     name: { KO: '부산', EN: 'Busan', JP: '釜山' },
     tagline: {
       KO: '바다 앞 거점센터가 있는 도시 — 전국 대표 워케이션',

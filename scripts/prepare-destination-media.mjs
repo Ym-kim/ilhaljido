@@ -4,9 +4,10 @@ import process from 'node:process'
 import sharp from 'sharp'
 
 const inputDirectory = process.argv[2]
+const selectedIds = process.argv[3]?.split(',').filter(Boolean)
 
 if (!inputDirectory) {
-  console.error('Usage: node scripts/prepare-destination-media.mjs <input-directory>')
+  console.error('Usage: node scripts/prepare-destination-media.mjs <input-directory> [comma-separated-ids]')
   process.exit(1)
 }
 
@@ -21,11 +22,14 @@ const assets = [
   { id: 'chiangmai', position: 'centre', quality: 76 },
   { id: 'cebu', position: 'centre' },
   { id: 'sydney', position: 'centre' },
+  { id: 'jeju', position: 'centre' },
+  { id: 'seoul', position: 'centre' },
+  { id: 'busan', position: 'centre' },
 ]
 
 await fs.mkdir(outputDirectory, { recursive: true })
 
-for (const asset of assets) {
+for (const asset of assets.filter(({ id }) => !selectedIds || selectedIds.includes(id))) {
   const input = path.resolve(inputDirectory, `${asset.id}.jpg`)
   const output = path.join(outputDirectory, `${asset.id}-editorial-v1.webp`)
 
