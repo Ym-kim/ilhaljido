@@ -109,6 +109,7 @@ interface AffiliateItemBase {
   country?: string                // 국가 (e.g. "일본")
   coverGradient?: string          // 카드 헤더 Tailwind 그라디언트 (사진 없을 때 fallback)
   coverPhoto?: string             // 실제 목적지 사진 URL (visual 모드)
+  illustrative?: boolean          // 실제 상품 사진이 아닌 편집·생성 이미지 여부
   rating?: string                 // 실제 평점 표시 (e.g. "8.7" — 리서치로 확인된 값만)
   reviews?: string                // 리뷰 수 표시 (e.g. "2,005")
   operatorAction?: string         // 다음 운영자 액션 요약

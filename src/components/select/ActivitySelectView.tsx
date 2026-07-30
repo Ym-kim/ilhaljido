@@ -14,6 +14,8 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { FEATURED_ACTIVITIES, THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { ACTIVITY_DESTINATIONS } from '@/lib/affiliate/destinations'
+import { getExperienceEditorial } from '@/lib/experiences/editorials'
+import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 
 export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
@@ -27,6 +29,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
   }, [forceLang])
 
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
+  const flagship = getExperienceEditorial('itoshima-photo-bus-tour')
 
   return (
     <div className="min-h-screen bg-white">
@@ -60,6 +63,20 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
           </p>
         </div>
       </section>
+
+      {flagship && (
+        <section className="border-t border-[#dce6e7] bg-[#f7f5ef] px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-6xl">
+            <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#5d8290]">
+              {lang === 'KO' ? '에디터가 고른 반나절' : lang === 'JP' ? '編集部が選んだ半日体験' : 'EDITOR’S HALF-DAY PICK'}
+            </span>
+            <h2 className="mb-6 mt-2 text-2xl font-black text-[#172a36] sm:text-3xl">
+              {lang === 'KO' ? '상품보다 먼저, 이 체험이 내 일정에 맞는지 확인하세요' : lang === 'JP' ? '商品を見る前に、自分の旅程に合うかを確認' : 'See how it fits your trip before opening the product page'}
+            </h2>
+            <ExperienceEditorialCard experience={flagship} lang={lang} source="activity" />
+          </div>
+        </section>
+      )}
 
       {/* 대표 체험 상품 — 실존 검증 개별 상품 */}
       <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">

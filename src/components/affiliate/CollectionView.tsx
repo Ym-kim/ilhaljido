@@ -15,6 +15,8 @@ import { NotifySignup } from '@/components/home/NotifySignup'
 import { ShareButton } from '@/components/share/ShareButton'
 import { trackEvent } from '@/lib/track'
 import { getTripSetCampaign } from '@/lib/tripSetCampaign'
+import { getExperienceEditorial } from '@/lib/experiences/editorials'
+import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
 export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
@@ -58,6 +60,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
   const campaign = getTripSetCampaign(col.slug)
   const socialCopy = (lang === 'KO' || lang === 'JP') ? campaign?.copy[lang] : undefined
   const accent = campaign?.accent ?? '#38bdf8'
+  const flagshipExperience = col.slug === 'fukuoka-3n4d' ? getExperienceEditorial('itoshima-photo-bus-tour') : undefined
   const categoryOrder = ['hotel', 'activity', 'transport', 'esim', 'insurance', 'education', 'visa'] as const
   const categorySummary = categoryOrder
     .map((category) => ({ category, count: items.filter((item) => item.category === category).length }))
@@ -247,6 +250,20 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
                 </div>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {flagshipExperience && (
+        <section className="border-b border-[#e4e9e7] bg-[#f7f5ef] px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-6xl">
+            <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#5d8290]">
+              {lang === 'KO' ? 'DAY 3 대안' : lang === 'JP' ? 'DAY 3 の選択肢' : 'DAY 3 OPTION'}
+            </span>
+            <h2 className="mb-6 mt-2 text-2xl font-black text-[#172a36] sm:text-3xl">
+              {lang === 'KO' ? '하루를 비우기 어렵다면, 이토시마 반나절' : lang === 'JP' ? '一日を空けにくいなら、糸島を半日で' : 'If a full day is too much, take half a day for Itoshima'}
+            </h2>
+            <ExperienceEditorialCard experience={flagshipExperience} lang={lang} source="trip_set" />
           </div>
         </section>
       )}

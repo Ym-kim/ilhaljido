@@ -45,6 +45,7 @@ const CHECKS: Check[] = [
   { id: 'page:hosted', url: 'https://www.wakation.kr/hosted' },
   { id: 'page:compare', url: 'https://www.wakation.kr/destinations/compare' },
   { id: 'page:campaign-korea-weekend', url: 'https://www.wakation.kr/ja/campaign/korea-weekend' },
+  { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
 
   // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
   { id: 'booking:searchresults', url: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo', okStatuses: [200, 202, 403] },
@@ -95,6 +96,12 @@ const CHECKS: Check[] = [
   { id: 'klook:wifi-japan', url: 'https://www.klook.com/ko/activity/16399-unlimited-4g-lte-wifi-japan-airport-pickup-ninja-wifi/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:wifi-taiwan', url: 'https://www.klook.com/ko/activity/16960-4g-wifi-taiwan/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:wifi-thailand', url: 'https://www.klook.com/ko/activity/81348-thailand-4g-unlimited-pocket-wifi/?aid=126848', okStatuses: [200, 403] },
+  {
+    id: 'klook:itoshima-photo-bus',
+    url: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F115689-fukuoka-itoshima-half-day-bus-tour%2F',
+    finalMustInclude: 'klook.com',
+    okStatuses: [200, 403],
+  },
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },
   { id: 'page:cruise-bellissima', url: 'https://www.wakation.kr/cruise/bellissima' },
   { id: 'page:cruise-serena', url: 'https://www.wakation.kr/cruise/serena' },
