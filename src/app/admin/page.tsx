@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { useAuth } from '@/context/AuthContext'
 import {
   Users, Clock, CheckCircle2, XCircle,
@@ -186,6 +187,9 @@ export default function AdminPage() {
           <span className="font-black text-dark">Wakation 관리자</span>
         </div>
         <div className="flex items-center gap-3">
+          <Link href="/admin/support" className="flex min-h-11 items-center rounded-lg border border-border px-3 text-sm font-bold text-muted transition-colors hover:border-brand hover:text-brand">
+            지원사업 검증
+          </Link>
           {checkedIds.size > 0 && (
             <button
               onClick={deleteChecked}

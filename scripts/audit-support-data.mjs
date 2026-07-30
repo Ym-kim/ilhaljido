@@ -53,6 +53,9 @@ if (!catalog.includes("foreignerEligibility: 'unknown'")) errors.push('unknown f
 if (!catalog.includes("'closing_soon'")) errors.push('closing-soon status is missing')
 if (!catalog.includes('14 * 86_400_000')) errors.push('closing-soon calculation is missing')
 if (!catalog.includes('getSupportCalendarEvents')) errors.push('support calendar event builder is missing')
+if (!catalog.includes('SUPPORT_VERIFICATION_WARN_DAYS = 30')) errors.push('support verification warning threshold is missing')
+if (!catalog.includes('SUPPORT_VERIFICATION_STALE_DAYS = 45')) errors.push('support verification stale threshold is missing')
+if (!catalog.includes("return 'needs_review'")) errors.push('stale support fallback status is missing')
 
 const requiredPages = [
   'src/app/programs/support/[slug]/page.tsx',
@@ -64,6 +67,7 @@ const requiredPages = [
   'src/app/programs/support/calendar/page.tsx',
   'src/app/en/programs/support/calendar/page.tsx',
   'src/app/ja/programs/support/calendar/page.tsx',
+  'src/app/admin/support/page.tsx',
 ]
 for (const relative of requiredPages) {
   if (!fs.existsSync(path.join(root, relative))) errors.push(`missing public route: ${relative}`)

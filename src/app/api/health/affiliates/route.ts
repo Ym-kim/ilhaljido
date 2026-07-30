@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { FULL_CATALOG } from '@/lib/affiliate/catalog'
+import { getSupportFreshnessSummary } from '@/lib/support/freshness'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 제휴 링크·페이지 일일 헬스체크 — Vercel Cron (매일 06:00 UTC = 15:00 KST)
@@ -151,6 +152,16 @@ export async function GET(req: Request) {
     id: 'policy:price-stale',
     ok: stale.length === 0,
     detail: stale.length === 0 ? `0 stale (기준 ${STALE_DAYS}일)` : `재실측 필요 ${stale.length}건: ${stale.slice(0, 8).join(', ')}`,
+  })
+
+  const supportFreshness = getSupportFreshnessSummary('KO')
+  const staleSupport = supportFreshness.items.filter((item) => item.freshness === 'stale')
+  results.push({
+    id: 'policy:support-source-stale',
+    ok: staleSupport.length === 0,
+    detail: staleSupport.length === 0
+      ? `${supportFreshness.total}건 검증일 정상`
+      : `재검증 필요 ${staleSupport.length}건: ${staleSupport.slice(0, 8).map((item) => `${item.id}(${item.verifiedAt})`).join(', ')}`,
   })
 
   const failures = results.filter((r) => !r.ok)
