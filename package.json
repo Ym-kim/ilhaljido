@@ -9,7 +9,8 @@
     "lint": "eslint",
     "social:trip-sets": "node scripts/generate-trip-set-social.mjs",
     "social:trip-sets:validate": "node scripts/validate-trip-set-social.mjs",
-    "audit:ui": "node scripts/audit-ui-consistency.mjs"
+    "audit:ui": "node scripts/audit-ui-consistency.mjs",
+    "audit:media": "node scripts/audit-media-assets.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

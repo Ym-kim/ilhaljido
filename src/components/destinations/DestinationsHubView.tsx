@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { CITY_INSIGHTS, INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE } from '@/lib/cities'
+import { getMediaAssetBySrc } from '@/lib/media/assets'
 import { SelectionCriteria } from '@/components/affiliate/SelectionCriteria'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -100,10 +101,15 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
               <div className="relative h-44 overflow-hidden">
                 <Image
                   src={city.photo}
-                  alt={`${city.name[lang]} workation`}
+                  alt={getMediaAssetBySrc(city.photo)?.alt[lang] ?? `${city.name[lang]} workation`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  style={{
+                    objectPosition: getMediaAssetBySrc(city.photo)?.focalPoint
+                      ? `${getMediaAssetBySrc(city.photo)!.focalPoint!.x * 100}% ${getMediaAssetBySrc(city.photo)!.focalPoint!.y * 100}%`
+                      : undefined,
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-3 left-4 text-white">

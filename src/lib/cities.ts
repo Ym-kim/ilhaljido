@@ -76,7 +76,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '도쿄', EN: 'Tokyo', JP: '東京' },
     country: { KO: '일본', EN: 'Japan', JP: '日本' },
     flag: '🗼',
-    photo: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/tokyo-editorial-v1.webp',
     internet: 5,
     internetNote: {
       KO: '카페·코워킹 100Mbps+ 보편화, 포켓와이파이 불필요',
@@ -137,7 +137,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '오사카', EN: 'Osaka', JP: '大阪' },
     country: { KO: '일본', EN: 'Japan', JP: '日本' },
     flag: '🏯',
-    photo: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/osaka-editorial-v1.webp',
     internet: 5,
     internetNote: {
       KO: '혼마치·난바에 카페·코워킹 밀집, 광랜 보편화',
@@ -198,7 +198,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' },
     country: { KO: '일본', EN: 'Japan', JP: '日本' },
     flag: '⛩',
-    photo: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/fukuoka-editorial-v1.webp',
     internet: 5,
     internetNote: {
       KO: '하카타·텐진 스타트업 허브, 코워킹 성장 중',
@@ -258,7 +258,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '발리', EN: 'Bali', JP: 'バリ' },
     country: { KO: '인도네시아', EN: 'Indonesia', JP: 'インドネシア' },
     flag: '🌴',
-    photo: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/bali-editorial-v1.webp',
     internet: 3,
     internetNote: {
       KO: '짱구·우붓 코워킹 30~50Mbps, 카페 편차 큼',
@@ -320,7 +320,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '다낭', EN: 'Da Nang', JP: 'ダナン' },
     country: { KO: '베트남', EN: 'Vietnam', JP: 'ベトナム' },
     flag: '🏖',
-    photo: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/danang-editorial-v1.webp',
     internet: 4,
     internetNote: {
       KO: '안트엉 카페 거리 50~80Mbps, 안정적',
@@ -382,7 +382,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '치앙마이', EN: 'Chiang Mai', JP: 'チェンマイ' },
     country: { KO: '태국', EN: 'Thailand', JP: 'タイ' },
     flag: '🐘',
-    photo: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/chiangmai-editorial-v1.webp',
     internet: 4,
     internetNote: {
       KO: '님만해민 카페·코워킹 50~100Mbps',
@@ -444,7 +444,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '세부', EN: 'Cebu', JP: 'セブ' },
     country: { KO: '필리핀', EN: 'Philippines', JP: 'フィリピン' },
     flag: '🏝',
-    photo: 'https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/cebu-editorial-v1.webp',
     internet: 3,
     internetNote: {
       KO: '코워킹·코리빙 30~60Mbps, 전용회선 추천',
@@ -506,7 +506,7 @@ export const CITY_INSIGHTS: CityInsight[] = [
     name: { KO: '시드니', EN: 'Sydney', JP: 'シドニー' },
     country: { KO: '호주', EN: 'Australia', JP: 'オーストラリア' },
     flag: '🦘',
-    photo: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=1200&q=80',
+    photo: '/media/destinations/sydney-editorial-v1.webp',
     internet: 5,
     internetNote: {
       KO: 'CBD 코워킹·카페 100Mbps+ 보편화',

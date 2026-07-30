@@ -8,6 +8,7 @@ import { useWishlist } from '@/hooks/useWishlist'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { INTERNET_LABEL, COST_TIER_LABEL, COST_TIER_STYLE, buildCityFaq, type CityInsight } from '@/lib/cities'
+import { getMediaAssetBySrc } from '@/lib/media/assets'
 import { CITY_CLIMATE, CLIMATE_UI, MONTH_LABELS } from '@/lib/cityClimate'
 import { WEEKLY_PLANS, PLAN_UI } from '@/lib/weeklyPlans'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
@@ -153,6 +154,7 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
   const rawStay = city.featuredStayId ? ALL_STAYS.find((s) => s.id === city.featuredStayId) : undefined
   const featuredStay = rawStay ? localizeAffiliateItem(rawStay, lang) : undefined
   const hasGuide = CITY_GUIDES.some((g) => g.slug === city.id)
+  const heroAsset = getMediaAssetBySrc(city.photo)
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
@@ -161,11 +163,14 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
         {/* 2026-07-21 성능: 히어로 raw img → next/image (LCP·포맷 최적화) */}
         <Image
           src={city.photo}
-          alt={`${cityName} workation`}
+          alt={heroAsset?.alt[lang] ?? `${cityName} workation`}
           fill
           priority
           sizes="100vw"
           className="object-cover"
+          style={heroAsset?.focalPoint ? {
+            objectPosition: `${heroAsset.focalPoint.x * 100}% ${heroAsset.focalPoint.y * 100}%`,
+          } : undefined}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 

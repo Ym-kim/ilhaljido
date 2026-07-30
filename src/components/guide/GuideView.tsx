@@ -14,6 +14,7 @@ import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3, FEATURED_ACTIVITI
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { ShareButton } from '@/components/share/ShareButton'
+import { getMediaAssetBySrc } from '@/lib/media/assets'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 목적지 가이드 뷰 — 라이트 커머스 톤, 3언어
@@ -47,6 +48,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
   const others = CITY_GUIDES.filter((g) => g.slug !== guide.slug)
   // 로케일 라우트에서는 가이드 간 링크도 같은 로케일 유지 (크롤러가 EN/JA 그래프 순회)
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
+  const heroAsset = getMediaAssetBySrc(guide.heroPhoto)
 
   return (
     <div className="min-h-screen bg-white">
@@ -54,11 +56,14 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
       <section className="relative h-[300px] md:h-[380px] overflow-hidden dark-surface">
         <Image
           src={guide.heroPhoto}
-          alt={guide.name[lang]}
+          alt={heroAsset?.alt[lang] ?? guide.name[lang]}
           fill
           priority
           sizes="100vw"
           className="object-cover"
+          style={heroAsset?.focalPoint ? {
+            objectPosition: `${heroAsset.focalPoint.x * 100}% ${heroAsset.focalPoint.y * 100}%`,
+          } : undefined}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/30" />
         <div className="absolute inset-0 flex items-end">
