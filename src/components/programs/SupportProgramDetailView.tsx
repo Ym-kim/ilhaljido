@@ -89,7 +89,7 @@ export function SupportProgramDetailView({ program, lang }: { program: SupportCa
   const sourceHost = new URL(program.officialSourceUrl).hostname.replace(/^www\./, '')
 
   return (
-    <main className="min-h-screen bg-[#fafaf7]">
+    <main className={`min-h-screen bg-[#fafaf7] ${lang === 'JP' ? '[word-break:normal]' : ''}`}>
       <div className="px-5 pb-3 pt-8 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <Link href={`${prefix}/programs/support`} className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[#74858d] hover:text-[#17647f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]"><ArrowLeft className="h-3.5 w-3.5" />{COPY.back[lang]}</Link>
@@ -97,7 +97,7 @@ export function SupportProgramDetailView({ program, lang }: { program: SupportCa
       </div>
 
       <section className="px-5 pb-10 sm:px-6 md:pb-14">
-        <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[1.75rem] border border-[#dbe5e6] bg-white shadow-[0_18px_65px_rgba(13,48,63,.09)] lg:grid-cols-[1.05fr_.95fr]">
+        <div className="mx-auto grid min-w-0 max-w-6xl overflow-hidden rounded-[1.75rem] border border-[#dbe5e6] bg-white shadow-[0_18px_65px_rgba(13,48,63,.09)] lg:grid-cols-[1.05fr_.95fr]">
           <div className="relative min-h-[19rem] bg-[#e4ecee] sm:min-h-[28rem]">
             <Image src={program.photo} alt={`${program.region} — ${program.name}`} fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
             <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" aria-hidden />
@@ -117,7 +117,7 @@ export function SupportProgramDetailView({ program, lang }: { program: SupportCa
       </section>
 
       <section className="px-5 pb-12 sm:px-6 md:pb-16">
-        <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
+        <div className="mx-auto grid min-w-0 max-w-6xl gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
           <div className="space-y-6">
             <InfoSection title={COPY.benefit[lang]}>
               <div className="flex flex-wrap gap-2">
