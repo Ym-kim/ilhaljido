@@ -1,59 +1,49 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Landmark } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
-import { ICON_STROKE } from '@/lib/icons'
+import { getSupportCatalog, SUPPORT_STATUS_ORDER } from '@/lib/support/catalog'
+import { SupportProgramCard } from '@/components/programs/SupportProgramCard'
+import type { Lang } from '@/lib/i18n/types'
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 지원사업 프로모 배너 — 정부·지자체 지원(실데이터 9건)을 홈에서 훅으로 노출
-// 수치는 /programs/support(SUPPORT_PROGRAMS)와 동기 유지: 갱신 시 함께 확인
-// ─────────────────────────────────────────────────────────────────────────────
+const COPY = {
+  eyebrow: { KO: 'LOCAL STAY SUPPORT', EN: 'LOCAL STAY SUPPORT', JP: 'LOCAL STAY SUPPORT' },
+  title: { KO: '지원받고 떠나는 여행', EN: 'Travel further with local support', JP: '地域の支援で、もう少し長く滞在' },
+  desc: { KO: '최근 확인한 체류·워케이션 프로그램입니다. 조건을 비교한 뒤 공식 공고에서 최종 모집 상태를 확인하세요.', EN: 'Recently checked stay and workation programs. Compare the basics, then confirm the final status in the official notice.', JP: '最近確認した滞在・ワーケーションプログラムです。条件を比較し、最終状況は公式公告で確認してください。' },
+  all: { KO: '모든 지원 프로그램', EN: 'All support programs', JP: '支援プログラムをすべて見る' },
+  guide: { KO: '반값여행 알아보기', EN: 'Regional travel support guide', JP: '地域旅行支援ガイド' },
+} satisfies Record<string, Record<Lang, string>>
+
+function prefixFor(lang: Lang) {
+  return lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : ''
+}
 
 export function SupportPromoBanner() {
-  const { tr } = useLang()
+  const { lang } = useLang()
+  const prefix = prefixFor(lang)
+  const programs = getSupportCatalog(lang)
+    .filter((program) => !['closed', 'ended', 'needs_review'].includes(program.status))
+    .sort((a, b) => SUPPORT_STATUS_ORDER[a.status] - SUPPORT_STATUS_ORDER[b.status] || b.verifiedAt.localeCompare(a.verifiedAt))
+    .slice(0, 3)
 
   return (
-    <section className="bg-white py-14 md:py-16 px-4 sm:px-6">
-      <div className="max-w-6xl mx-auto">
-        <Link
-          href="/programs/support"
-          className="group relative block overflow-hidden rounded-3xl bg-gradient-to-br from-[#0a1e33] to-[#04121f] border border-sky-500/20 p-8 md:p-12 transition-all hover:border-amber-400/40 hover:shadow-2xl"
-        >
-          {/* 웜 글로우 데코 */}
-          <div className="pointer-events-none absolute -top-24 -right-24 w-72 h-72 rounded-full bg-amber-400/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-32 -left-16 w-80 h-80 rounded-full bg-sky-500/10 blur-3xl" />
-
-          <div className="relative flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
-            <div className="flex-1">
-              <p className="flex items-center gap-1.5 text-amber-400 text-xs font-black tracking-widest uppercase mb-3">
-                <Landmark className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
-                {tr('home_gov_eyebrow')}
-              </p>
-              <h2 className="text-2xl md:text-3xl font-black text-white leading-tight mb-3">
-                {tr('home_gov_title')}
-              </h2>
-              <p className="text-white/60 text-sm leading-relaxed max-w-xl mb-6">
-                {tr('home_gov_sub')}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {(['home_gov_chip1', 'home_gov_chip2', 'home_gov_chip3'] as const).map((k) => (
-                  <span
-                    key={k}
-                    className="inline-flex items-center bg-white/8 border border-amber-400/25 text-amber-200 text-xs font-bold px-3.5 py-1.5 rounded-full"
-                  >
-                    {tr(k)}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="shrink-0">
-              <span className="inline-flex items-center gap-2 bg-amber-400 text-[#0a1e33] font-black px-7 py-3.5 rounded-full text-sm transition-all group-hover:bg-amber-300 group-hover:gap-3">
-                {tr('home_gov_cta')} <ArrowRight className="w-4 h-4" strokeWidth={2.5} />
-              </span>
-            </div>
+    <section className="bg-[#f5f3ed] px-4 py-14 sm:px-6 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid items-end gap-5 md:grid-cols-[1fr_auto]">
+          <div>
+            <p className="text-[0.6875rem] font-semibold tracking-[0.13em] text-[#317b98]">{COPY.eyebrow[lang]}</p>
+            <h2 className="mt-3 text-[clamp(2rem,5vw,3.35rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#18313b]">{COPY.title[lang]}</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#62757d]">{COPY.desc[lang]}</p>
           </div>
-        </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link href={`${prefix}/programs/support/half-price-travel`} className="inline-flex min-h-11 items-center rounded-full border border-[#b8c9cd] bg-white px-4 text-xs font-bold text-[#31515d] hover:border-[#789faa]">{COPY.guide[lang]}</Link>
+            <Link href={`${prefix}/programs/support`} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#153a49] px-5 text-xs font-bold text-white hover:bg-[#0e4d67]">{COPY.all[lang]} <ArrowRight className="h-4 w-4" /></Link>
+          </div>
+        </div>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {programs.map((program) => <SupportProgramCard key={program.id} program={program} lang={lang} />)}
+        </div>
       </div>
     </section>
   )

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { CITY_GUIDES } from '@/lib/guides'
 import { COLLECTIONS } from '@/lib/affiliate/collections'
 import { CITY_INSIGHTS } from '@/lib/cities'
+import { getSupportCatalog } from '@/lib/support/catalog'
 
 const BASE = 'https://www.wakation.kr'
 
@@ -40,6 +41,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/programs/networking',      priority: 0.7, freq: 'monthly' },
   { path: '/programs/sports',          priority: 0.7, freq: 'monthly' },
   { path: '/programs/support',         priority: 0.8, freq: 'weekly' },
+  { path: '/programs/support/half-price-travel', priority: 0.75, freq: 'weekly' },
   { path: '/programs/support/register', priority: 0.5, freq: 'monthly' },
   { path: '/report/yangyang',          priority: 0.7, freq: 'monthly' },
   { path: '/language',                 priority: 0.7, freq: 'monthly' },
@@ -63,6 +65,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date()
+  const supportPrograms = getSupportCatalog('KO', now).filter((program) => program.status !== 'ended')
 
   return [
     ...ROUTES.map((r) => ({
@@ -86,6 +89,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: now,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
+      })),
+    ]),
+    // 지원 프로그램 상세 — 검증일을 lastModified로 사용하고 운영 종료 항목은 제외
+    ...['', '/en', '/ja'].flatMap((localePrefix) => [
+      ...(localePrefix ? [{
+        url: `${BASE}${localePrefix}/programs/support/half-price-travel`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.65,
+      }] : []),
+      ...supportPrograms.map((program) => ({
+        url: `${BASE}${localePrefix}/programs/support/${program.slug}`,
+        lastModified: new Date(`${program.verifiedAt}T00:00:00+09:00`),
+        changeFrequency: 'weekly' as const,
+        priority: localePrefix ? 0.55 : 0.7,
       })),
     ]),
     // EN·JA 로케일 select·programs (forceLang 2차, hreflang 상호 연결)

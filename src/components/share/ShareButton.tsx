@@ -36,7 +36,7 @@ export function ShareButton({
   text?: string
   url?: string
   tone?: 'dark' | 'light'
-  contentType?: 'guide' | 'collection' | 'moment' | 'hosted' | 'result' | 'story' | 'page'
+  contentType?: 'guide' | 'collection' | 'moment' | 'hosted' | 'result' | 'story' | 'support' | 'page'
   slug?: string
   label?: string
   /** 기존 share_click을 유지하면서 상위 퍼널 이벤트를 추가할 때 사용 */

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import { SupportProgramsView } from '@/components/programs/SupportProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
 
@@ -25,5 +26,5 @@ export const metadata: Metadata = {
 }
 
 export default function SupportPageEn() {
-  return <SupportProgramsView forceLang="EN" />
+  return <Suspense fallback={<div className="min-h-screen bg-[#fafaf7]" aria-hidden />}><SupportProgramsView forceLang="EN" /></Suspense>
 }
