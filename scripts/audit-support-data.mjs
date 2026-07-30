@@ -14,6 +14,7 @@ const profileIds = [...profileSection.matchAll(/\bid:\s*'([^']+)'/g)].map((match
 const sourceIds = [...dataSection.matchAll(/\bid:\s*'([^']+)'/g)].map((match) => match[1])
 const verifiedDates = [...profileSection.matchAll(/\bverifiedAt:\s*'(\d{4}-\d{2}-\d{2})'/g)].map((match) => match[1])
 const applicationDates = [...profileSection.matchAll(/\bapplication(?:Start|End):\s*'([^']+)'/g)].map((match) => match[1])
+const travelDates = [...profileSection.matchAll(/\btravel(?:Start|End):\s*'([^']+)'/g)].map((match) => match[1])
 const sourceUrls = [...dataSection.matchAll(/\bhref:\s*'([^']+)'/g)].map((match) => match[1])
 
 const errors = []
@@ -32,7 +33,7 @@ if (verifiedDates.length !== profileIds.length) {
   errors.push(`verifiedAt count ${verifiedDates.length} does not match profile count ${profileIds.length}`)
 }
 
-for (const date of [...verifiedDates, ...applicationDates]) {
+for (const date of [...verifiedDates, ...applicationDates, ...travelDates]) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || Number.isNaN(Date.parse(`${date}T00:00:00Z`))) errors.push(`invalid ISO date: ${date}`)
 }
 
@@ -51,6 +52,7 @@ if (/foreignerEligibility:\s*'eligible'/.test(profileSection)) warnings.push('fo
 if (!catalog.includes("foreignerEligibility: 'unknown'")) errors.push('unknown foreigner eligibility fallback is missing')
 if (!catalog.includes("'closing_soon'")) errors.push('closing-soon status is missing')
 if (!catalog.includes('14 * 86_400_000')) errors.push('closing-soon calculation is missing')
+if (!catalog.includes('getSupportCalendarEvents')) errors.push('support calendar event builder is missing')
 
 const requiredPages = [
   'src/app/programs/support/[slug]/page.tsx',
@@ -59,6 +61,9 @@ const requiredPages = [
   'src/app/programs/support/half-price-travel/page.tsx',
   'src/app/en/programs/support/half-price-travel/page.tsx',
   'src/app/ja/programs/support/half-price-travel/page.tsx',
+  'src/app/programs/support/calendar/page.tsx',
+  'src/app/en/programs/support/calendar/page.tsx',
+  'src/app/ja/programs/support/calendar/page.tsx',
 ]
 for (const relative of requiredPages) {
   if (!fs.existsSync(path.join(root, relative))) errors.push(`missing public route: ${relative}`)

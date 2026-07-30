@@ -41,6 +41,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/programs/networking',      priority: 0.7, freq: 'monthly' },
   { path: '/programs/sports',          priority: 0.7, freq: 'monthly' },
   { path: '/programs/support',         priority: 0.8, freq: 'weekly' },
+  { path: '/programs/support/calendar', priority: 0.75, freq: 'weekly' },
   { path: '/programs/support/half-price-travel', priority: 0.75, freq: 'weekly' },
   { path: '/programs/support/register', priority: 0.5, freq: 'monthly' },
   { path: '/report/yangyang',          priority: 0.7, freq: 'monthly' },
@@ -95,6 +96,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...['', '/en', '/ja'].flatMap((localePrefix) => [
       ...(localePrefix ? [{
         url: `${BASE}${localePrefix}/programs/support/half-price-travel`,
+        lastModified: now,
+        changeFrequency: 'weekly' as const,
+        priority: 0.65,
+      }, {
+        url: `${BASE}${localePrefix}/programs/support/calendar`,
         lastModified: now,
         changeFrequency: 'weekly' as const,
         priority: 0.65,

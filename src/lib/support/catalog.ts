@@ -64,7 +64,7 @@ export const SUPPORT_PROFILES: SupportProfile[] = [
   { ...PROFILE_DEFAULTS, id: 'gangwon-workation', category: 'workation', duration: 'short', regionGroup: 'gangwon', supportTypes: ['accommodation', 'workspace', 'activity'], verifiedAt: '2026-07-18', stayNightsMin: 3, stayNightsMax: 3 },
   { ...PROFILE_DEFAULTS, id: 'muan-jeonnam', category: 'long_stay', duration: 'long', regionGroup: 'jeolla', supportTypes: ['accommodation'], verifiedAt: '2026-07-18', stayNightsMax: 90 },
   { ...PROFILE_DEFAULTS, id: 'rural-living', category: 'long_stay', duration: 'long', regionGroup: 'nationwide', supportTypes: ['accommodation', 'cash_reimbursement'], verifiedAt: '2026-07-18', snsRequired: true },
-  { ...PROFILE_DEFAULTS, id: 'chungnam-month', category: 'long_stay', duration: 'long', regionGroup: 'chungcheong', supportTypes: ['accommodation', 'transport', 'meal', 'activity'], verifiedAt: '2026-07-26', stayNightsMin: 6, stayNightsMax: 29 },
+  { ...PROFILE_DEFAULTS, id: 'chungnam-month', category: 'long_stay', duration: 'long', regionGroup: 'chungcheong', supportTypes: ['accommodation', 'transport', 'meal', 'activity'], verifiedAt: '2026-07-26', travelStart: '2026-09-01', travelEnd: '2026-12-12', stayNightsMin: 6, stayNightsMax: 29 },
   { ...PROFILE_DEFAULTS, id: 'ulsan-ucation', category: 'workation', duration: 'short', regionGroup: 'gyeongsang', supportTypes: ['accommodation', 'activity', 'workspace'], verifiedAt: '2026-07-18' },
   { ...PROFILE_DEFAULTS, id: 'incheon-workation', category: 'workation', duration: 'short', regionGroup: 'seoul_incheon_gyeonggi', supportTypes: ['accommodation', 'workspace', 'activity'], verifiedAt: '2026-07-18', stayNightsMin: 2, soloEligible: true },
   { ...PROFILE_DEFAULTS, id: 'eochon-workation', category: 'workation', duration: 'flexible', regionGroup: 'nationwide', supportTypes: ['accommodation', 'workspace', 'meal', 'activity'], verifiedAt: '2026-07-18', soloEligible: true },
@@ -127,6 +127,59 @@ export type SupportCatalogItem = ReturnType<typeof getSupportCatalog>[number]
 
 export function getSupportProgram(slug: string, lang: Lang, now = new Date()) {
   return getSupportCatalog(lang, now).find((program) => program.slug === slug)
+}
+
+export type SupportCalendarEventKind = 'application_open' | 'application_close' | 'stay_start' | 'stay_end'
+
+export type SupportCalendarEvent = {
+  id: string
+  date: string
+  kind: SupportCalendarEventKind
+  label: string
+  programSlug: string
+  programName: string
+  region: string
+  status: SupportDiscoveryStatus
+  verifiedAt: string
+  officialSourceUrl: string
+}
+
+export const SUPPORT_CALENDAR_LABELS: Record<SupportCalendarEventKind, Record<Lang, string>> = {
+  application_open: { KO: '접수 시작', EN: 'Applications open', JP: '受付開始' },
+  application_close: { KO: '접수 마감', EN: 'Applications close', JP: '受付締切' },
+  stay_start: { KO: '여행·운영 시작', EN: 'Stay or program starts', JP: '旅行・運営開始' },
+  stay_end: { KO: '여행·운영 종료', EN: 'Stay or program ends', JP: '旅行・運営終了' },
+}
+
+export function getSupportCalendarEvents(lang: Lang, now = new Date()): SupportCalendarEvent[] {
+  const events: SupportCalendarEvent[] = []
+
+  for (const program of getSupportCatalog(lang, now)) {
+    const dates: Array<[SupportCalendarEventKind, string | undefined]> = [
+      ['application_open', program.applicationStart],
+      ['application_close', program.applicationEnd],
+      ['stay_start', program.travelStart],
+      ['stay_end', program.travelEnd],
+    ]
+
+    for (const [kind, date] of dates) {
+      if (!date) continue
+      events.push({
+        id: `${program.slug}-${kind}`,
+        date,
+        kind,
+        label: SUPPORT_CALENDAR_LABELS[kind][lang],
+        programSlug: program.slug,
+        programName: program.name,
+        region: program.region,
+        status: program.status,
+        verifiedAt: program.verifiedAt,
+        officialSourceUrl: program.officialSourceUrl,
+      })
+    }
+  }
+
+  return events.sort((a, b) => a.date.localeCompare(b.date) || a.programName.localeCompare(b.programName))
 }
 
 export const SUPPORT_STATUS_ORDER: Record<SupportDiscoveryStatus, number> = {

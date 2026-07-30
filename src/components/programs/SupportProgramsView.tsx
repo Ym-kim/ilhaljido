@@ -45,6 +45,7 @@ const COPY = {
   halfTitle: { KO: '반값여행, 무엇을 먼저 확인해야 할까요?', EN: 'How regional half-price travel works', JP: '地域の旅行費支援、申請前に確認すること' },
   halfDesc: { KO: '사전신청부터 영수증 증빙, 지역화폐 환급까지 제도의 흐름을 한 번에 정리했습니다.', EN: 'A clear guide to advance applications, receipts and local-currency reimbursement.', JP: '事前申請、領収書の証明、地域通貨での還付までを整理しました。' },
   halfCta: { KO: '반값여행 가이드', EN: 'Read the guide', JP: 'ガイドを見る' },
+  calendarCta: { KO: '모집 일정 캘린더', EN: 'View the calendar', JP: '募集カレンダー' },
   reportTitle: { KO: '새로운 지역 프로그램을 알고 계신가요?', EN: 'Know a local program we should review?', JP: '新しい地域プログラムをご存じですか？' },
   reportDesc: { KO: '공식 공고 URL을 보내주시면 운영자 확인 후 반영합니다. 제출 즉시 공개되지 않습니다.', EN: 'Send the official notice URL. We review it before anything is published.', JP: '公式公告のURLをお送りください。運営者の確認後に掲載します。' },
   reportCta: { KO: '프로그램 제보', EN: 'Suggest a program', JP: 'プログラムを提案' },
@@ -221,8 +222,8 @@ export function SupportProgramsView({ forceLang }: { forceLang?: Lang }) {
               <h1 className="max-w-3xl text-[clamp(2rem,5vw,3.75rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[#132832] text-balance">{COPY.title[lang]}</h1>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-[#63757d] sm:text-base">{COPY.desc[lang]}</p>
             </div>
-            <Link href={`${prefix}/programs/support/half-price-travel`} onClick={() => trackEvent('half_price_guide_open', { locale: lang.toLowerCase(), source: 'support_hero' })} className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-[#cbdadd] bg-white px-5 text-sm font-bold text-[#17647f] transition hover:border-[#78a8b8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
-              {COPY.halfCta[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+            <Link href={`${prefix}/programs/support/calendar`} onClick={() => trackEvent('support_calendar_open', { locale: lang.toLowerCase(), source: 'support_hero' })} className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-[#cbdadd] bg-white px-5 text-sm font-bold text-[#17647f] transition hover:border-[#78a8b8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
+              {COPY.calendarCta[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
 

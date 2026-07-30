@@ -196,6 +196,7 @@ const PROGRAM_LINKS: NavigationGroup[] = [
     label: { KO: '참여·지원', EN: 'Join & support', JP: '参加・支援' },
     links: [
       link('support', { KO: '지역 지원 프로그램', EN: 'Local support programs', JP: '地域支援プログラム' }, { KO: '/programs/support', EN: '/en/programs/support', JP: '/ja/programs/support' }),
+      link('support-calendar', { KO: '지원사업 일정', EN: 'Support calendar', JP: '支援カレンダー' }, { KO: '/programs/support/calendar', EN: '/en/programs/support/calendar', JP: '/ja/programs/support/calendar' }),
       link('half-price-travel', { KO: '반값여행 가이드', EN: 'Regional travel support guide', JP: '地域旅行支援ガイド' }, { KO: '/programs/support/half-price-travel', EN: '/en/programs/support/half-price-travel', JP: '/ja/programs/support/half-price-travel' }),
       link('business', { KO: '기업·팀 프로그램', EN: 'Company & team programs', JP: '企業・チーム向け' }, '/business'),
     ],
