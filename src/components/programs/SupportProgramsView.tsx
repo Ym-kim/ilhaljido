@@ -203,7 +203,7 @@ export function SupportProgramsView({ forceLang }: { forceLang?: Lang }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#fafaf7]">
+    <main className={`min-h-screen bg-[#fafaf7] ${lang === 'JP' ? '[word-break:normal]' : ''}`}>
       <div className="px-5 pb-2 pt-8 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <Link href={`${prefix}/programs`} className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[#74858d] hover:text-[#17647f] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
@@ -292,12 +292,12 @@ export function SupportProgramsView({ forceLang }: { forceLang?: Lang }) {
 
       <section className="px-5 pb-12 sm:px-6 md:pb-16">
         <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-2">
-          <Link href={`${prefix}/programs/support/half-price-travel`} onClick={() => trackEvent('half_price_guide_open', { locale: lang.toLowerCase(), source: 'support_footer' })} className="group rounded-[1.35rem] bg-[#163a49] p-6 text-white transition hover:bg-[#0e4d67] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
+          <Link href={`${prefix}/programs/support/half-price-travel`} onClick={() => trackEvent('half_price_guide_open', { locale: lang.toLowerCase(), source: 'support_footer' })} className="group min-w-0 rounded-[1.35rem] bg-[#163a49] p-6 text-white transition hover:bg-[#0e4d67] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
             <p className="text-lg font-bold">{COPY.halfTitle[lang]}</p>
             <p className="mt-2 text-sm leading-6 text-white/70">{COPY.halfDesc[lang]}</p>
             <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[#bde7f4]">{COPY.halfCta[lang]} <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" /></span>
           </Link>
-          <Link href={lang === 'KO' ? '/programs/support/register' : '/contact'} className="group rounded-[1.35rem] border border-[#dce5e7] bg-white p-6 transition hover:border-[#9fc2ce] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
+          <Link href={lang === 'KO' ? '/programs/support/register' : '/contact'} className="group min-w-0 rounded-[1.35rem] border border-[#dce5e7] bg-white p-6 transition hover:border-[#9fc2ce] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">
             <p className="text-lg font-bold text-[#243f49]">{COPY.reportTitle[lang]}</p>
             <p className="mt-2 text-sm leading-6 text-[#6b7d84]">{COPY.reportDesc[lang]}</p>
             <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[#17647f]">{COPY.reportCta[lang]} <ArrowUpRight className="h-4 w-4" /></span>
