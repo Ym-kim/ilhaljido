@@ -17,7 +17,7 @@ import type { Lang } from '@/lib/i18n/types'
 type L = Record<Lang, string>
 const T: Record<string, L> = {
   eyebrow: { KO: 'City Guides', EN: 'City Guides', JP: 'City Guides' },
-  title: { KO: '워케이션 도시 가이드', EN: 'Workation City Guides', JP: 'ワーケーション都市ガイド' },
+  title: { KO: '워케이션 여행지 가이드', EN: 'Workation Destination Guides', JP: 'ワーケーション旅先ガイド' },
   sub: {
     KO: '시차·비행·시즌·동네까지 — 에디터가 정리한 도시별 워케이션 가이드. 숙소와 항공권으로 바로 이어집니다.',
     EN: 'Time zones, flights, seasons and neighborhoods — editor-curated guides that lead straight to stays and flights.',

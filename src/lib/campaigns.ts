@@ -39,7 +39,7 @@ export const HOUSE_CAMPAIGNS: HouseCampaign[] = [
       EN: 'Prep your whole workation through vetted partners.',
       JP: '信頼できるパートナーでワーケーション準備を一度に。',
     },
-    cta: { KO: '예약 허브 보기', EN: 'Open the booking hub', JP: '予約ハブを見る' },
+    cta: { KO: '여행 준비 보기', EN: 'View trip essentials', JP: '旅の準備を見る' },
     href: '/select',
     gradient: 'from-[#0284c7] via-[#0369a1] to-[#075985]',
     image: '/covers/trip-prep-allinone-ai.jpeg',
