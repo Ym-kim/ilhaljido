@@ -104,15 +104,26 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
   return (
     <main className="overflow-hidden bg-[#fbf8f2] text-[#142431]">
       <section className="dark-surface relative min-h-[calc(100svh-4rem)] overflow-hidden bg-[#071824]">
-        <Image
-          src={config.heroImage}
-          alt={config.heroAlt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: config.heroPosition }}
-        />
+        {config.heroSecondaryImage ? (
+          <div className="absolute inset-0 grid grid-cols-2">
+            <div className="relative min-w-0">
+              <Image src={config.heroImage} alt={config.heroAlt} fill priority sizes="50vw" className="object-cover" style={{ objectPosition: config.heroPosition }} />
+            </div>
+            <div className="relative min-w-0">
+              <Image src={config.heroSecondaryImage} alt={config.heroSecondaryAlt ?? ''} fill sizes="50vw" className="object-cover" style={{ objectPosition: config.heroSecondaryPosition }} />
+            </div>
+          </div>
+        ) : (
+          <Image
+            src={config.heroImage}
+            alt={config.heroAlt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+            style={{ objectPosition: config.heroPosition }}
+          />
+        )}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.91)_0%,rgba(4,20,31,.68)_46%,rgba(4,20,31,.18)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.90)_0%,rgba(4,20,31,.62)_48%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824] to-transparent" />
 
@@ -214,6 +225,54 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
         </div>
       </section>
 
+      {config.stayLinks?.length ? (
+        <section className="border-y border-[#dce5e3] bg-white px-5 py-16 sm:px-8 md:py-24">
+          <div className="mx-auto max-w-7xl">
+            <span className="text-[0.68rem] font-extrabold tracking-[0.19em] text-[#317b98]">{config.stayEyebrow}</span>
+            <div className="mt-3 grid gap-5 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+              <h2 className="text-3xl font-black leading-tight tracking-[-0.04em] text-[#142431] sm:text-4xl">{config.stayTitle}</h2>
+              <p className="max-w-2xl text-sm font-medium leading-7 text-[#65747d] md:justify-self-end">{config.stayLead}</p>
+            </div>
+            <div className="mt-9 grid gap-4 md:grid-cols-2">
+              {config.stayLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={withCampaignUtm(item.href, utm)}
+                  onClick={() => trackEvent('campaign_local_guide_click', { campaign: config.id, locale: config.locale, destination: item.city.toLowerCase(), ...campaignEventFields(utm) })}
+                  className="group flex min-h-64 flex-col rounded-[1.5rem] border border-[#d7e2e2] bg-[#f7f8f4] p-6 transition hover:-translate-y-0.5 hover:border-[#8eb2bd] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b4b69] sm:p-8"
+                >
+                  <span className="text-[0.65rem] font-extrabold tracking-[0.2em] text-[#317b98]">{item.city}</span>
+                  <h3 className="mt-4 text-2xl font-black tracking-[-0.035em] text-[#142431]">{item.title}</h3>
+                  <p className="mt-3 max-w-xl text-sm leading-7 text-[#61737b]">{item.detail}</p>
+                  <span className="mt-auto block pt-7 text-xs font-bold text-[#7a878c]">{item.note}</span>
+                  <span className="mt-3 inline-flex items-center gap-2 text-sm font-extrabold text-[#0b4b69]">{item.label}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {config.practicalItems?.length ? (
+        <section className="bg-[#fbf8f2] px-5 py-16 sm:px-8 md:py-20">
+          <div className="mx-auto max-w-7xl">
+            <div className="max-w-3xl">
+              <h2 className="text-3xl font-black tracking-[-0.04em] text-[#142431] sm:text-4xl">{config.practicalTitle}</h2>
+              <p className="mt-4 text-sm font-medium leading-7 text-[#65747d]">{config.practicalLead}</p>
+            </div>
+            <div className="mt-8 grid gap-px overflow-hidden rounded-[1.25rem] border border-[#dce3df] bg-[#dce3df] md:grid-cols-3">
+              {config.practicalItems.map((item) => (
+                <article key={item.label} className="bg-white p-6 sm:p-7">
+                  <span className="text-[0.65rem] font-extrabold tracking-[0.18em] text-[#317b98]">{item.label}</span>
+                  <h3 className="mt-3 text-lg font-black text-[#142431]">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-[#68777e]">{item.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-y border-[#d8e5e7] bg-[#edf5f4]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-[0.85fr_1.15fr] lg:px-10">
           <div>
@@ -226,6 +285,7 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
               <Link
                 key={item.href}
                 href={withCampaignUtm(item.href, utm)}
+                onClick={() => trackEvent('campaign_prepare_click', { campaign: config.id, locale: config.locale, item: item.label, destination_url: item.href, ...campaignEventFields(utm) })}
                 className="group flex min-w-0 items-center gap-4 rounded-2xl border border-[#d5e0e1] bg-white px-5 py-4 shadow-[0_6px_18px_rgba(12,55,72,.04)] transition hover:-translate-y-0.5 hover:border-[#91b7c2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0b4b69]"
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e5f1f4] text-xs font-black text-[#0b4b69]">0{index + 1}</span>

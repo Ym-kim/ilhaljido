@@ -30,6 +30,9 @@ export type CampaignLandingConfig = {
   heroImage: string
   heroAlt: string
   heroPosition: string
+  heroSecondaryImage?: string
+  heroSecondaryAlt?: string
+  heroSecondaryPosition?: string
   choicePrompt: string
   matchCta: string
   compareTitle: string
@@ -39,6 +42,13 @@ export type CampaignLandingConfig = {
   prepareTitle: string
   prepareLead: string
   prepareLinks: { label: string; detail: string; href: string }[]
+  stayEyebrow?: string
+  stayTitle?: string
+  stayLead?: string
+  stayLinks?: { city: string; label: string; title: string; detail: string; note: string; href: string }[]
+  practicalTitle?: string
+  practicalLead?: string
+  practicalItems?: { label: string; title: string; detail: string }[]
   shareTitle: string
   shareLead: string
   shareCta: string
@@ -130,9 +140,12 @@ export const CAMPAIGN_LANDINGS: Record<CampaignLandingConfig['id'], CampaignLand
     eyebrow: 'KOREA · A SHORT ESCAPE',
     title: 'ソウルと釜山、今の気分はどちら？',
     lead: '街の日常に近づくソウル。海のそばで余白を取り戻す釜山。まずは、今回ほしい時間から選んでみてください。',
-    heroImage: '/campaign/trip-sets/seoul-3n4d-editorial-v1.webp',
-    heroAlt: 'ソウルの街を眺めながら過ごす旅を表現したエディトリアルイメージ',
-    heroPosition: '60% 52%',
+    heroImage: '/media/destinations/seoul-editorial-v1.webp',
+    heroAlt: '灯りとハングルの看板が連なるソウルの夕暮れの路地',
+    heroPosition: '50% 54%',
+    heroSecondaryImage: '/media/destinations/busan-editorial-v1.webp',
+    heroSecondaryAlt: '海雲台ビーチとマリンシティを望む釜山の風景',
+    heroSecondaryPosition: '47% 50%',
     choicePrompt: '今回の韓国旅、どちらから見る？',
     matchCta: '迷ったら、3つ選んで旅を見つける',
     compareTitle: '20秒で比べる',
@@ -180,6 +193,34 @@ export const CAMPAIGN_LANDINGS: Record<CampaignLandingConfig['id'], CampaignLand
       { label: '韓国の宿を見る', detail: '滞在エリアとワーク環境を確認', href: '/ja/select/hotel' },
       { label: '現地体験を見る', detail: '街歩きから週末のアクティビティまで', href: '/ja/select/activity' },
       { label: 'eSIMと移動を準備', detail: '到着後すぐ動けるように', href: '/ja/select/esim' },
+    ],
+    stayEyebrow: 'STAY A LITTLE CLOSER',
+    stayTitle: '観光だけで終わらせない、韓国での過ごし方',
+    stayLead: '日本との時差はありません。朝に短く仕事をして、午後は街へ。週末旅行にも、少し長い滞在にもつながる入口をまとめました。',
+    stayLinks: [
+      {
+        city: 'SEOUL',
+        label: 'ソウル滞在ガイド',
+        title: '街のリズムに近づく',
+        detail: '聖水・延南を歩き、カフェやコワーキングを使いながら、観光と日常の間で過ごす。',
+        note: '3泊4日から、仕事を挟む滞在へ',
+        href: '/ja/guide/seoul',
+      },
+      {
+        city: 'BUSAN',
+        label: '釜山滞在ガイド',
+        title: '海のそばで余白をつくる',
+        detail: '海雲台の朝、田浦のカフェ、必要なら釜山駅のワーケーション拠点へ。',
+        note: '2泊3日の週末から、海辺のワークステイへ',
+        href: '/ja/guide/busan',
+      },
+    ],
+    practicalTitle: '出発前に、これだけ確認',
+    practicalLead: 'Wakationは旅行商品を一括販売しません。自分の予定に合わせ、必要な項目だけを各提携先で確認します。',
+    practicalItems: [
+      { label: 'TIME', title: '日本との時差なし', detail: '普段の連絡時間を変えず、朝の短い仕事時間も組みやすい環境です。' },
+      { label: 'STAY', title: '宿はエリアから選ぶ', detail: 'ソウルは街歩きの動線、釜山は海と駅へのアクセスを先に確認します。' },
+      { label: 'BOOKING', title: '予約・変更は各提携先で', detail: '宿、体験、eSIMは個別商品です。料金と条件は移動先のページで確定します。' },
     ],
     shareTitle: '迷ったら、一緒に行く人へ',
     shareLead: 'ソウルと釜山を同じ画面で比べられるよう、このページをLINEやOSの共有機能で送れます。',
