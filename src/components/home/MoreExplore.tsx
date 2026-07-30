@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link'
-import { ArrowRight, Compass, GraduationCap, ClipboardCheck, Building2, Handshake, Globe2 } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
-import { AiIcon, ICON_STROKE } from '@/lib/icons'
+import { ICON_STROKE } from '@/lib/icons'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 더 알아보기 — 홈 다이어트 v2 (2026-07-28)
@@ -14,39 +14,39 @@ import { AiIcon, ICON_STROKE } from '@/lib/icons'
 
 type L = Record<Lang, string>
 
-const LINKS: { icon: typeof Compass; href: string; label: L; desc: L }[] = [
+const LINKS: { href: string; label: L; desc: L }[] = [
   {
-    icon: Compass, href: '/tools/diagnosis',
+    href: '/tools/diagnosis',
     label: { KO: '나에게 맞는 워케이션 진단', EN: 'Workation self-check', JP: '自分に合う旅を診断' },
     desc: { KO: '3분 진단으로 목적지 추천', EN: '3-minute destination match', JP: '3分でおすすめ行き先' },
   },
   {
-    icon: AiIcon as unknown as typeof Compass, href: '/visa-ai',
+    href: '/visa-ai',
     label: { KO: '비자·체류 AI', EN: 'Visa & stay AI', JP: 'ビザ・滞在AI' },
     desc: { KO: '국가별 비자·체류 조건 안내', EN: 'Visa rules by country', JP: '国別のビザ・滞在条件' },
   },
   {
-    icon: GraduationCap, href: '/growth',
+    href: '/growth',
     label: { KO: '성장 캠프 · Learning', EN: 'Growth camp & learning', JP: '成長キャンプ · 学習' },
     desc: { KO: 'VOD·현장 실습·네트워킹', EN: 'VOD, workshops, networking', JP: 'VOD・実習・交流' },
   },
   {
-    icon: ClipboardCheck, href: '/programs/support',
+    href: '/programs/support',
     label: { KO: '지자체 지원사업 20곳', EN: '20 gov-support programs', JP: '自治体支援20件' },
     desc: { KO: '숙박비 지원 한달살기까지', EN: 'Subsidized month-stays', JP: '宿泊費支援の1カ月暮らしも' },
   },
   {
-    icon: Building2, href: '/infrastructure',
+    href: '/infrastructure',
     label: { KO: '공간 인프라', EN: 'Spaces & infrastructure', JP: '空間インフラ' },
     desc: { KO: '국내외 거점·코워킹 공간', EN: 'Bases and coworking spaces', JP: '国内外の拠点・コワーキング' },
   },
   {
-    icon: Handshake, href: '/partnership',
+    href: '/partnership',
     label: { KO: '파트너십 · 스폰서', EN: 'Partnership & sponsors', JP: 'パートナー · スポンサー' },
     desc: { KO: '지자체·공간·기업 제휴', EN: 'Gov, space & corporate ties', JP: '自治体・空間・企業提携' },
   },
   {
-    icon: Globe2, href: '/business',
+    href: '/business',
     label: { KO: '기업 워케이션 (B2B)', EN: 'Corporate workation (B2B)', JP: '企業ワーケーション' },
     desc: { KO: '팀 단위 프로그램 문의', EN: 'Team program inquiries', JP: 'チーム向けプログラム' },
   },
@@ -64,21 +64,18 @@ export function MoreExplore() {
       <div className="max-w-6xl mx-auto">
         <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2">{UI.eyebrow[lang]}</p>
         <h2 className="text-xl md:text-2xl font-bold text-[#111827] leading-snug tracking-tight mb-6">{UI.title[lang]}</h2>
-        <div className="grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4 gap-2.5">
+        <div data-ui-grid="compact" className="wak-card-grid grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4">
           {LINKS.map((l) => {
-            const Icon = l.icon
             return (
               <Link
                 key={l.href}
                 href={l.href}
-                className="group flex items-center gap-3 rounded-xl bg-white border border-[#dbeafe] px-4 py-3.5 hover:border-[#93c5fd] hover:shadow-md transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                data-ui-card="compact"
+                className="wak-card-compact group flex min-h-20 items-center gap-3 border border-[#dbeafe] bg-white px-4 py-4 transition-all hover:border-[#93c5fd] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
-                <span className="shrink-0 inline-flex w-8 h-8 items-center justify-center rounded-lg bg-[#f0f9ff] text-brand-mid">
-                  <Icon className="w-4 h-4" strokeWidth={ICON_STROKE} />
-                </span>
                 <span className="min-w-0">
-                  <span className="block text-[#111827] font-bold text-[0.8125rem] leading-snug truncate">{l.label[lang]}</span>
-                  <span className="block text-[#94a3b8] text-[0.7rem] leading-snug truncate">{l.desc[lang]}</span>
+                  <span className="wak-card-title block truncate text-[#111827]">{l.label[lang]}</span>
+                  <span className="wak-caption mt-0.5 block truncate text-[#71818d]">{l.desc[lang]}</span>
                 </span>
                 <ArrowRight className="ml-auto w-3.5 h-3.5 text-[#cbd5e1] group-hover:text-brand-mid shrink-0 transition-colors" strokeWidth={ICON_STROKE} />
               </Link>

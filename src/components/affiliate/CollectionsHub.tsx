@@ -30,20 +30,21 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
           <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-3">
             {COLLECTIONS_UI.eyebrow[lang]}
           </p>
-          <h1 className="text-3xl md:text-4xl font-black text-[#111827] mb-3">{COLLECTIONS_UI.hub_title[lang]}</h1>
+          <h1 className="wak-page-title mb-3 text-[#111827]">{COLLECTIONS_UI.hub_title[lang]}</h1>
           <p className="text-[#64748b] text-sm md:text-base max-w-2xl leading-relaxed">{COLLECTIONS_UI.hub_sub[lang]}</p>
         </div>
       </section>
 
       <section className="px-4 py-12 sm:px-6 sm:py-16">
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 gap-4 sm:gap-5">
+        <div data-ui-grid="editorial" className="wak-card-grid mx-auto grid max-w-6xl sm:grid-cols-2">
           {COLLECTIONS.map((col) => {
             const count = getCatalogItems(col.itemIds).length
             return (
               <Link
                 key={col.slug}
                 href={`${prefix}/collections/${col.slug}`}
-                className={`group relative overflow-hidden block border border-black/5 bg-[#0b1b25] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${col.duration ? 'aspect-[4/3] rounded-[1.75rem] sm:aspect-[16/10]' : 'h-64 rounded-3xl'}`}
+                data-ui-card="editorial"
+                className="wak-card-editorial group relative block aspect-[16/10] overflow-hidden border border-black/5 bg-[#0b1b25] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 <Image
                   src={col.photo}
@@ -58,7 +59,7 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
                   {col.durationLabel ? col.durationLabel[lang] : `${count}${COLLECTIONS_UI.count_label[lang]}`}
                 </span>
                 <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h2 className="text-white font-black text-xl leading-snug mb-1.5">
+                  <h2 className="wak-card-title mb-1.5 text-lg text-white">
                     {col.title[lang]}
                   </h2>
                   <p className="text-white/70 text-sm mb-3">{col.tagline[lang]}</p>

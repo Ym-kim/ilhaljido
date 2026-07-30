@@ -92,6 +92,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   if (visual) {
     return (
       <a
+        data-ui-card="product"
         href={item.href}
         target="_blank"
         rel={meta.rel}
@@ -99,9 +100,9 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
           recordRecentlyViewed(item.id)
         }}
-        className={`group flex flex-col overflow-hidden rounded-[1.25rem] border border-[#dfe6e9] bg-white shadow-[0_7px_24px_rgba(8,47,73,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)] ${className}`}
+        className={`wak-card-product group flex h-full min-h-[24rem] flex-col overflow-hidden border border-[#dfe6e9] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)] ${className}`}
       >
-        <div className="relative h-52 shrink-0 overflow-hidden bg-[#e9f0f2] sm:h-48">
+        <div className="relative aspect-[4/3] max-h-60 min-h-48 shrink-0 overflow-hidden bg-[#e9f0f2]">
           <Image
             src={coverPhoto}
             alt={title}
@@ -119,7 +120,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {/* 목적지 — 사진 하단 크고 선명하게 */}
           {item.destination && (
             <div className="absolute bottom-0 left-0 right-0 px-3 pb-3">
-              <span className="block truncate text-[0.78rem] font-bold leading-tight text-white drop-shadow-lg sm:text-sm">
+              <span className="wak-meta block truncate font-bold text-white drop-shadow-lg">
                 {item.destination}
               </span>
             </div>
@@ -128,7 +129,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {/* 실제 평점 — 좌상단 픽토그램 옆 (리서치 확인 값만) */}
           {item.rating && (
             <div className="absolute left-3 top-3">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[0.65rem] font-black text-[#111827] shadow-sm">
+              <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[0.7rem] font-bold text-[#111827] shadow-sm">
                 <span className="text-amber-500">★</span>
                 {item.rating}
                 {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
@@ -139,7 +140,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
           {/* 준비중 */}
           {!meta.isAffiliate && (
             <div className="absolute top-2.5 right-2.5">
-              <span className="inline-flex items-center gap-1 text-[0.6rem] font-bold px-2 py-0.5 rounded-full bg-black/60 text-white/90">
+              <span className="inline-flex items-center gap-1 px-2 py-1 text-[0.7rem] font-bold rounded-full bg-black/60 text-white/90">
                 {PENDING_STATUSES.has(item.status) && <Clock className="w-2 h-2" />}
                 {badgeText[meta.badgeKey]}
               </span>
@@ -166,20 +167,20 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
         {/* 콘텐츠 */}
         <div className="flex flex-1 flex-col px-4 pb-4 pt-4 sm:px-5 sm:pb-5">
-          {/* ⚠️ visual 카드는 다크 페이지(.dark-surface)에도 놓임 — `.dark-surface p`가
+          {/* 주의: visual 카드는 다크 페이지(.dark-surface)에도 놓임 — `.dark-surface p`가
               p 색을 흰색으로 덮어써 흰 카드에서 안 보이는 버그가 있어 p 대신 span 사용 */}
           <div className="flex-1">
             {/* 상품명 */}
-            <span className="block line-clamp-2 text-base font-extrabold leading-snug tracking-[-0.015em] text-[#14202b]">
+            <span className="wak-card-title block min-h-[2.85rem] line-clamp-2 text-[#14202b]">
               {title}
             </span>
             {/* 판매처 · 유형 — 무슨 상품인지 한눈에 (2026-07-15 MD 피드백) */}
-            <span className="mt-1 block text-[0.68rem] font-semibold text-[#8493a0]">
+            <span className="wak-meta mt-1 block font-semibold text-[#71818d]">
               {item.name}{item.badge ? ` · ${item.badge}` : ''}
             </span>
             {/* 상품 설명 — 폰에서도 상품 정체가 보이게 항상 노출 (2026-07-16 모바일 패스) */}
             {item.desc && (
-              <span className="mt-2 block line-clamp-2 text-[0.78rem] leading-relaxed text-[#5e6e7a]">
+              <span className="wak-caption mt-2 block min-h-[2.35rem] line-clamp-2 text-[#5e6e7a]">
                 {item.desc}
               </span>
             )}
@@ -187,12 +188,12 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
 
           {/* 가격 + CTA — 가격엔 실측 기준일 병기 (PRICE_POLICY 2026-07-27) */}
           <div className="mt-4 flex items-center justify-between border-t border-[#edf1f2] pt-3.5">
-            <span className={`min-w-0 text-[0.92rem] font-extrabold ${
+            <span className={`min-w-0 text-[0.9375rem] font-bold ${
               meta.isAffiliate ? 'text-[#0369a1]' : 'text-[#8a969e]'
             }`}>
               {item.priceFrom ?? item.cta}
               {item.priceFrom && item.priceAsOf && (
-                <span className="ml-1.5 align-middle text-[0.6rem] font-semibold text-[#94a3b8]">
+                <span className="ml-1.5 align-middle text-[0.7rem] font-semibold text-[#7c8b96]">
                   {formatAsOf(item.priceAsOf, lang)}
                 </span>
               )}
@@ -210,6 +211,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
   const showCover = !!coverPhoto
   return (
     <a
+      data-ui-card="product"
       href={item.href}
       target="_blank"
       rel={meta.rel}
@@ -217,7 +219,7 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
         recordRecentlyViewed(item.id)
       }}
-      className={`group relative flex flex-col overflow-hidden rounded-[1.35rem] bg-[#17212a] transition-all duration-300 hover:-translate-y-1 ${
+      className={`wak-card-product group relative flex h-full flex-col overflow-hidden bg-[#17212a] transition-all duration-300 hover:-translate-y-1 ${
         meta.isAffiliate
           ? 'border border-emerald-500/18 hover:border-emerald-500/38 hover:shadow-lg'
           : 'border border-white/8 hover:border-white/20 hover:shadow-md'
@@ -269,11 +271,11 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </span>
           </div>
         </div>
-        <p className="text-white/92 font-bold text-[0.9375rem] leading-snug mb-1.5">{title}</p>
+        <p className="wak-card-title mb-1.5 line-clamp-2 text-white/92">{title}</p>
         {item.productTitle && item.productTitle !== item.name && (
-          <p className="text-white/28 text-[0.65rem] font-medium -mt-0.5 mb-1.5">via {item.name}</p>
+          <p className="wak-meta -mt-0.5 mb-1.5 font-medium text-white/45">via {item.name}</p>
         )}
-        <p className="text-white/38 text-xs leading-relaxed mb-4 flex-1">{item.desc}</p>
+        <p className="wak-caption mb-4 flex-1 line-clamp-3 text-white/62">{item.desc}</p>
         <div className={`self-start inline-flex items-center gap-1.5 text-xs font-semibold px-3.5 py-2 rounded-full border transition-all duration-150 ${
           meta.isAffiliate
             ? 'border-emerald-500/25 text-emerald-400/85 group-hover:border-emerald-500/50 group-hover:text-emerald-300'

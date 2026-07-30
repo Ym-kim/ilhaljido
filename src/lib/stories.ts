@@ -18,8 +18,6 @@ export type Story = {
   category: L
   title: L
   sub: L
-  /** 카드 좌측 아이콘 이모지 */
-  emoji: string
 }
 
 export const STORIES: Story[] = [
@@ -27,7 +25,6 @@ export const STORIES: Story[] = [
     slug: 'world-europa',
     href: '/cruise/world-europa',
     published: '2026-07-28',
-    emoji: '🏝',
     category: { KO: '크루즈 · 겨울 카리브', EN: 'Cruise · Winter Caribbean', JP: 'クルーズ · 冬のカリブ' },
     title: {
       KO: '21만 톤, 겨울의 반대편 — MSC 월드 유로파',
@@ -44,7 +41,6 @@ export const STORIES: Story[] = [
     slug: 'serena',
     href: '/cruise/serena',
     published: '2026-07-28',
-    emoji: '🧭',
     category: { KO: '크루즈 · 그랜드 보야지', EN: 'Cruise · Grand voyage', JP: 'クルーズ · グランドボヤージュ' },
     title: {
       KO: '바다 위에서 한 달 살기 — 코스타 세레나 그랜드 보야지',
@@ -61,7 +57,6 @@ export const STORIES: Story[] = [
     slug: 'bellissima',
     href: '/cruise/bellissima',
     published: '2026-07-26',
-    emoji: '🛳',
     category: { KO: '크루즈 · 선상 오피스', EN: 'Cruise · Office at sea', JP: 'クルーズ · 船上オフィス' },
     title: {
       KO: '17만 톤의 스타링크 오피스 — MSC 벨리시마',
@@ -78,7 +73,6 @@ export const STORIES: Story[] = [
     slug: 'manado',
     href: '/programs/global/manado',
     published: '2026-07-18',
-    emoji: '🤿',
     category: { KO: '글로벌 · 비밀의 체류지', EN: 'Global · Hidden base', JP: 'グローバル · 秘密の拠点' },
     title: {
       KO: '발리 다음은, 아무도 모르는 이 바다 — 마나도',
@@ -95,7 +89,6 @@ export const STORIES: Story[] = [
     slug: 'jeongseon-train',
     href: '/programs/domestic/jeongseon-train',
     published: '2026-07-18',
-    emoji: '🚞',
     category: { KO: '국내 · 슬로우 트레인', EN: 'Korea · Slow train', JP: '国内 · スロートレイン' },
     title: {
       KO: '느리게 달릴수록, 일은 깊어진다 — 정선 아리랑 열차',
@@ -112,7 +105,6 @@ export const STORIES: Story[] = [
     slug: 'miracle',
     href: '/cruise/miracle',
     published: '2026-07-18',
-    emoji: '⛴',
     category: { KO: '크루즈 · 이동형 워케이션', EN: 'Cruise · Transit workation', JP: 'クルーズ · 移動型' },
     title: {
       KO: '바다 위 17시간, 부산—오사카 크루즈 워케이션',

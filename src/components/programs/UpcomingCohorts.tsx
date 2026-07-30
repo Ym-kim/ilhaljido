@@ -45,7 +45,7 @@ export function UpcomingCohorts() {
           <h2 className="text-2xl md:text-3xl font-black text-[#111827] mb-2">{tr('prog_cohort_title')}</h2>
           <p className="text-[#64748b] text-sm">{tr('prog_cohort_sub')}</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div data-ui-grid="editorial" className="wak-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {programs.map((p) => (
             <ProgramCard key={p.id} program={p} />
           ))}

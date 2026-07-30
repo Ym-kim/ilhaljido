@@ -38,7 +38,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
 
   return (
     <Link href={`/programs/${program.id}`} className="group block">
-      <article className="relative flex flex-col h-full bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+      <article data-ui-card="editorial" className="wak-card-editorial relative flex h-full flex-col overflow-hidden border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
         {/* Image */}
         <div className="relative h-52 overflow-hidden">
           {photo ? (
@@ -80,7 +80,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
             {durationText}
           </div>
 
-          <h3 className="text-[15px] font-black text-[#111827] leading-snug mb-3 line-clamp-2 tracking-tight">
+          <h3 className="wak-card-title mb-3 min-h-[2.85rem] line-clamp-2 text-[#111827]">
             {program.title}
           </h3>
 
@@ -109,7 +109,7 @@ export function ProgramCard({ program }: ProgramCardProps) {
               <div className="text-[18px] font-black text-[#111827] tracking-tight">
                 {formatPrice(program.price)}
               </div>
-              <div className="text-[11px] text-[#94a3b8] mt-0.5">
+              <div className="wak-caption mt-0.5 text-[#71818d]">
                 {program.status === 'open'
                   ? tr('prog_card_left').replace('{n}', String(remaining))
                   : program.status === 'soon' ? tr('prog_card_preorder')

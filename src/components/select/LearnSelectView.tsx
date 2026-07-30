@@ -214,13 +214,13 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#66747d]">
             {tr('sel_disc_1')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_2')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_3')}
           </p>
         </div>

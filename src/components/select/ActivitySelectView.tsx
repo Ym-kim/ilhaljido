@@ -69,7 +69,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
             {tr('sela_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('sela_featured_d')}</p>
-          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+          <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-3">
             {FEATURED_ACTIVITIES.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
@@ -90,7 +90,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
               ? 'ゴルフ·ヒーリング·ローカル·スポーツ — テーマ別の検証済みKKday体験。'
               : '골프·힐링·로컬·스포츠 — 테마별로 고른 검증 KKday 체험.'}
           </p>
-          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+          <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4">
             {THEME_EXPERIENCES.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
@@ -117,7 +117,6 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto pt-10">
           <div className="bg-white border border-[#e0f2fe] rounded-2xl p-6">
             <div className="flex items-start gap-4">
-              <span className="text-3xl">🎌</span>
               <div>
                 <p className="text-[#111827] font-black mb-1">{tr('sela_kkday_t')}</p>
                 <p className="text-[#64748b] text-sm leading-relaxed">
@@ -132,13 +131,13 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#66747d]">
             {tr('sel_disc_1')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_2')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_3')}
           </p>
         </div>

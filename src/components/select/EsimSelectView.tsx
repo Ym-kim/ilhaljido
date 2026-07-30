@@ -100,7 +100,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
             {tr('sele_klook_title')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('sele_klook_sub')}</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+          <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 sm:grid-cols-2">
             {FEATURED_ESIM.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
@@ -156,13 +156,13 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#66747d]">
             {tr('sel_disc_1')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_2')}
           </p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">
+          <p className="wak-caption max-w-2xl text-[#74818a]">
             {tr('sel_disc_3')}
           </p>
         </div>
