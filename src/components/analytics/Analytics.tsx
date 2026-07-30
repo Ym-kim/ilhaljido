@@ -66,15 +66,15 @@ export function Analytics() {
           <div
             role="region"
             aria-label={COPY.msg[lang]}
-            className="max-w-2xl mx-auto pointer-events-auto bg-[#0b1d2b]/95 text-white border border-white/12 rounded-2xl shadow-[0_18px_60px_rgba(2,12,22,0.45)] px-4 py-3 flex items-center gap-3 backdrop-blur-xl"
+            className="max-w-2xl mx-auto pointer-events-auto bg-[#0b1d2b]/95 text-white border border-white/12 rounded-2xl shadow-[0_18px_60px_rgba(2,12,22,0.45)] px-4 py-3 flex min-w-0 flex-col items-stretch gap-3 backdrop-blur-xl sm:flex-row sm:items-center"
           >
-            <p className="text-[0.75rem] sm:text-sm text-white/82 flex-1 leading-relaxed">
+            <p className="min-w-0 text-[0.75rem] sm:text-sm text-white/82 flex-1 leading-relaxed">
               {COPY.msg[lang]}{' '}
               <a href="/privacy" className="underline underline-offset-2 text-sky-300 hover:text-sky-200 whitespace-nowrap">
                 {COPY.privacy[lang]}
               </a>
             </p>
-            <div className="flex gap-1.5 shrink-0">
+            <div className="flex shrink-0 justify-end gap-1.5">
               <button
                 onClick={() => decide('denied')}
                 className="min-h-10 text-xs font-bold px-3 rounded-full border border-white/20 text-white/80 hover:bg-white/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"

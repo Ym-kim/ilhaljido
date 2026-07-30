@@ -37,6 +37,8 @@ const CHECKS: Check[] = [
   { id: 'page:onsen', url: 'https://www.wakation.kr/programs/onsen' },
   { id: 'page:collections', url: 'https://www.wakation.kr/collections' },
   { id: 'page:support', url: 'https://www.wakation.kr/programs/support' },
+  { id: 'page:support-half-price', url: 'https://www.wakation.kr/programs/support/half-price-travel' },
+  { id: 'page:support-detail', url: 'https://www.wakation.kr/programs/support/gyeongnam-namhae' },
   { id: 'page:business', url: 'https://www.wakation.kr/business' },
   { id: 'page:hosted', url: 'https://www.wakation.kr/hosted' },
   { id: 'page:compare', url: 'https://www.wakation.kr/destinations/compare' },
