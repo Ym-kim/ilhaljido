@@ -12,7 +12,8 @@
     "audit:ui": "node scripts/audit-ui-consistency.mjs",
     "audit:media": "node scripts/audit-media-assets.mjs",
     "audit:support-data": "node scripts/audit-support-data.mjs",
-    "audit:support-freshness": "node scripts/audit-support-freshness.mjs"
+    "audit:support-freshness": "node scripts/audit-support-freshness.mjs",
+    "audit:experience-data": "node scripts/audit-experience-data.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

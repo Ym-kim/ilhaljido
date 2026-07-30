@@ -33,6 +33,12 @@ const BADGE_TEXT: Record<Lang, Record<BadgeKey, string>> = {
   JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク' },
 }
 
+const ILLUSTRATIVE_TEXT: Record<Lang, string> = {
+  KO: '편집 이미지',
+  EN: 'Editorial image',
+  JP: '編集イメージ',
+}
+
 // 실측 기준일 마이크로카피 — '2026-07-26' → '7.26 기준' (PRICE_POLICY 2026-07-27)
 function formatAsOf(asOf: string, lang: Lang): string {
   const [, m, d] = asOf.split('-')
@@ -135,6 +141,12 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
                 {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
               </span>
             </div>
+          )}
+
+          {item.illustrative && (
+            <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/45 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm">
+              {ILLUSTRATIVE_TEXT[lang]}
+            </span>
           )}
 
           {/* 준비중 */}

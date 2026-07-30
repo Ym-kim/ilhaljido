@@ -15,6 +15,22 @@ export type MediaAsset = {
 
 export const MEDIA_ASSETS: MediaAsset[] = [
   {
+    id: 'itoshima-coast-editorial-v1',
+    src: '/campaign/itoshima-coast-editorial-v1.webp',
+    alt: {
+      KO: '바다를 바라보며 카메라를 든 여행자의 이토시마 분위기 편집 이미지',
+      EN: 'Editorial image of a traveler with a camera overlooking a coast inspired by Itoshima',
+      JP: '海を眺めながらカメラを持つ旅人を描いた、糸島をイメージした編集写真',
+    },
+    sourceType: 'generated',
+    usage: 'editorial',
+    illustrative: true,
+    focalPoint: { x: 0.68, y: 0.5 },
+    source: 'OpenAI image generation; Wakation editorial direction',
+    license: 'Wakation-owned generated editorial asset',
+    createdAt: '2026-07-30',
+  },
+  {
     id: 'programs-editorial-coastal-work-v1',
     src: '/campaign/programs-editorial-coastal-work-v1.webp',
     alt: {

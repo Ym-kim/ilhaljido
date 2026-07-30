@@ -196,6 +196,12 @@ const EN: Record<string, Overlay> = {
     desc: 'Dazaifu, Yufuin and Beppu in one day. Departs Hakata station with a Korean-speaking guide.',
     cta: 'View product', badge: 'Guided',
   },
+  'act-klook-itoshima-photo-bus': {
+    productTitle: 'Itoshima half-day photo bus experience',
+    destination: 'Fukuoka · Itoshima',
+    desc: 'A roughly five-hour morning or afternoon coastal route with Korean guidance and a photo service.',
+    cta: 'Check current details with Klook', badge: 'Half-day experience',
+  },
   'act-bali-ubud': {
     productTitle: 'Bali Ubud private tour (KR guide)',
     destination: 'Bali · Indonesia',
@@ -686,6 +692,12 @@ const JP: Record<string, Overlay> = {
     destination: '福岡 · 日本',
     desc: '太宰府・湯布院・別府を1日で。博多駅発。',
     cta: '商品を見る', badge: 'ガイド付き',
+  },
+  'act-klook-itoshima-photo-bus': {
+    productTitle: '糸島 半日フォトバス体験',
+    destination: '福岡 · 糸島',
+    desc: '午前または午後の約5時間。韓国語案内と写真撮影サービスを含む海辺の半日コース。',
+    cta: 'Klookで最新条件を確認', badge: '半日体験',
   },
   'act-bali-ubud': {
     productTitle: 'バリ ウブド プライベートツアー',

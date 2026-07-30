@@ -330,6 +330,27 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: 'KKpartners cid=25833 tracking active — 한국 목적지 페이지 WebFetch 실물검증 (2026-07-11)',
   },
 
+  {
+    id: 'act-klook-itoshima-photo-bus',
+    name: 'Klook',
+    category: 'activity',
+    productType: 'activity',
+    status: 'active_affiliate',
+    emoji: 'camera',
+    productTitle: '후쿠오카 이토시마 반나절 사진 버스투어',
+    destination: '후쿠오카 · 이토시마',
+    country: '일본',
+    desc: '오전 또는 오후 약 5시간. 한국어 안내와 사진 촬영이 포함된 이토시마 해안 반나절 일정.',
+    cta: '제휴사에서 현재 조건 확인',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F115689-fukuoka-itoshima-half-day-bus-tour%2F',
+    badge: '반나절 체험',
+    trackingId: 'aid=126848',
+    coverPhoto: '/campaign/itoshima-coast-editorial-v1.webp',
+    illustrative: true,
+    sourceNote: 'Klook activity 115689 실물 확인, 4.9/5·후기 17건·약 5시간 (2026-07-30). 편집 이미지는 실제 투어 사진이 아님.',
+    operatorAction: 'Klook 공식 리다이렉트 형식 적용 완료 (aid=126848, 2026-07-30)',
+  },
+
   // ──────────────────────────────────────────────────────────────────────────
   // 홈 피처드 — 목적지별 추천 상품 (showOn: home)
   // ──────────────────────────────────────────────────────────────────────────
