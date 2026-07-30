@@ -58,6 +58,19 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
   const campaign = getTripSetCampaign(col.slug)
   const socialCopy = (lang === 'KO' || lang === 'JP') ? campaign?.copy[lang] : undefined
   const accent = campaign?.accent ?? '#38bdf8'
+  const categoryOrder = ['hotel', 'activity', 'transport', 'esim', 'insurance', 'education', 'visa'] as const
+  const categorySummary = categoryOrder
+    .map((category) => ({ category, count: items.filter((item) => item.category === category).length }))
+    .filter((entry) => entry.count > 0)
+  const trackSection = (section: string, placement: 'intro' | 'sticky') => {
+    trackEvent('trip_set_section_click', {
+      slug: col.slug,
+      destination: col.cityGuideSlug ?? col.slug,
+      locale: lang,
+      section,
+      placement,
+    })
+  }
 
   return (
     <div className={`min-h-screen bg-white ${lang === 'JP' ? 'font-jp' : ''}`}>
@@ -74,6 +87,11 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/22 to-[#04121f]/12" />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/35 to-transparent" />
+        {col.illustrative && (
+          <span className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/25 px-2.5 py-1 text-[0.625rem] font-bold text-white/75 backdrop-blur-sm sm:right-6 sm:top-6">
+            {COLLECTIONS_UI.ts_image_note[lang]}
+          </span>
+        )}
         <div className="relative w-full max-w-6xl mx-auto px-5 pb-8 sm:px-6 sm:pb-12">
           <Link
             href={`${prefix}/collections`}
@@ -110,22 +128,62 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       <section className="border-b border-[#e8e0d4] bg-[var(--wak-ivory)] px-5 py-8 sm:px-6 sm:py-10">
         <div className="mx-auto grid min-w-0 max-w-5xl gap-6 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <p className="min-w-0 max-w-3xl break-words text-[0.95rem] leading-7 text-[#45545e] sm:text-base">{col.desc[lang]}</p>
-          <div className="w-fit max-w-full justify-self-start md:justify-self-end">
-          <ShareButton
-            title={socialCopy?.shareTitle ?? `${col.title[lang]} — Wakation`}
-            text={socialCopy?.shareDescription ?? col.desc[lang]}
-            url={`https://www.wakation.kr${prefix}/collections/${col.slug}`}
-            contentType="collection"
-            slug={col.slug}
-            tone="light"
-          />
+          <div className="flex max-w-full flex-wrap items-center gap-2 justify-self-start md:max-w-sm md:justify-end">
+            {col.duration && (
+              <>
+                <a
+                  href="#trip-prepare"
+                  onClick={() => trackSection('prepare', 'intro')}
+                  className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#0b4b69] px-5 text-sm font-black text-white transition hover:bg-[#073c55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                >
+                  {COLLECTIONS_UI.ts_intro_prepare[lang]}
+                </a>
+                <a
+                  href="#trip-flow"
+                  onClick={() => trackSection('flow', 'intro')}
+                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#cbd9dc] bg-white px-5 text-sm font-black text-[#245f76] transition hover:border-[#8eb3bf] hover:bg-[#f6fafb] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+                >
+                  {COLLECTIONS_UI.ts_intro_flow[lang]}
+                </a>
+              </>
+            )}
+            <ShareButton
+              title={socialCopy?.shareTitle ?? `${col.title[lang]} — Wakation`}
+              text={socialCopy?.shareDescription ?? col.desc[lang]}
+              url={`https://www.wakation.kr${prefix}/collections/${col.slug}`}
+              contentType="collection"
+              slug={col.slug}
+              tone="light"
+            />
           </div>
         </div>
       </section>
 
+      {col.duration && (
+        <nav aria-label={COLLECTIONS_UI.ts_nav_label[lang]} className="sticky top-16 z-30 border-b border-[#dce5e5] bg-white/95 px-4 py-2.5 shadow-[0_8px_22px_rgba(15,50,65,0.05)] backdrop-blur-lg sm:px-6">
+          <div className="mx-auto flex max-w-5xl gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {([
+              ['fit', COLLECTIONS_UI.ts_nav_fit[lang]],
+              ['flow', COLLECTIONS_UI.ts_nav_flow[lang]],
+              ['comfort', COLLECTIONS_UI.ts_nav_comfort[lang]],
+              ['prepare', COLLECTIONS_UI.ts_nav_prepare[lang]],
+            ] as const).map(([section, label]) => (
+              <a
+                key={section}
+                href={`#trip-${section}`}
+                onClick={() => trackSection(section, 'sticky')}
+                className={`inline-flex min-h-11 shrink-0 items-center justify-center rounded-full px-4 text-xs font-black transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${section === 'prepare' ? 'bg-[#0b4b69] text-white hover:bg-[#073c55]' : 'text-[#526670] hover:bg-[#edf4f5] hover:text-[#163e51]'}`}
+              >
+                {label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
+
       {/* ── Trip Set 확장 섹션 (2026-07-28) — 확장 필드가 있을 때만 렌더, 기존 컬렉션 무영향 ── */}
       {col.audience && (
-        <section className="border-b border-[#edf0ed] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="trip-fit" data-trip-section="fit" className="scroll-mt-32 border-b border-[#edf0ed] px-5 py-12 sm:px-6 sm:py-16">
           <div className="max-w-5xl mx-auto">
             <h2 className="mb-7 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">{COLLECTIONS_UI.ts_audience[lang]}</h2>
             <div className="grid gap-4 sm:grid-cols-3">
@@ -141,7 +199,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       )}
 
       {col.dayFlow && (
-        <section className="border-b border-[#e8e0d4] bg-[var(--wak-ivory)] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="trip-flow" data-trip-section="flow" className="scroll-mt-32 border-b border-[#e8e0d4] bg-[var(--wak-ivory)] px-5 py-12 sm:px-6 sm:py-16">
           <div className="max-w-5xl mx-auto">
             <h2 className="mb-7 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">{COLLECTIONS_UI.ts_flow[lang]}</h2>
             <div className="-mx-5 flex snap-x gap-3 overflow-x-auto px-5 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
@@ -169,7 +227,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       )}
 
       {col.comfortFacts && (
-        <section className="border-b border-[#e4eaeb] bg-[#f2f7f7] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="trip-comfort" data-trip-section="comfort" className="scroll-mt-32 border-b border-[#e4eaeb] bg-[#f2f7f7] px-5 py-12 sm:px-6 sm:py-16">
           <div className="max-w-5xl mx-auto">
             <h2 className="mb-7 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">{COLLECTIONS_UI.ts_comfort[lang]}</h2>
             <div className="grid min-w-0 gap-3 sm:grid-cols-2">
@@ -194,17 +252,22 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       )}
 
       {/* 구성 상품 */}
-      <section className="bg-white px-4 py-14 sm:px-6 sm:py-20">
+      <section id={col.duration ? 'trip-prepare' : undefined} data-trip-section={col.duration ? 'prepare' : undefined} className="scroll-mt-32 bg-white px-4 py-14 sm:px-6 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          <p className="mb-2 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">
+          <h2 className="mb-2 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">
             {col.duration ? COLLECTIONS_UI.ts_prepare[lang] : COLLECTIONS_UI.included[lang]}
-          </p>
+          </h2>
           {col.duration && (
             <p className="mb-1 max-w-2xl text-xs leading-relaxed text-[#7a8a93]">{COLLECTIONS_UI.ts_prepare_note[lang]}</p>
           )}
-          <p className="mb-7 text-xs text-[#9aa7ad]">
-            {items.length}{COLLECTIONS_UI.count_label[lang]}
-          </p>
+          <div className="mb-7 mt-4 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold text-[#8a989f]">{items.length}{COLLECTIONS_UI.count_label[lang]}</span>
+            {col.duration && categorySummary.map(({ category, count }) => (
+              <span key={category} className="rounded-full border border-[#dce6e7] bg-[#f6f9f8] px-2.5 py-1 text-[0.6875rem] font-bold text-[#526a74]">
+                {COLLECTIONS_UI[`ts_category_${category}`][lang]} {count}
+              </span>
+            ))}
+          </div>
           <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {items.map((item) => (
               <AffiliateCard key={item.id} item={item} visual />
@@ -220,6 +283,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
           {col.cityGuideSlug && (
             <Link
               href={`${prefix}/guide/${col.cityGuideSlug}`}
+              onClick={() => trackEvent('trip_set_guide_click', { slug: col.slug, destination: col.cityGuideSlug ?? col.slug, locale: lang })}
               className="mt-8 inline-flex min-h-12 items-center gap-2 rounded-full border border-[#cfdcdf] px-5 text-sm font-bold text-[#245f76] transition-all hover:border-[#7faabc] hover:bg-[#f5fafb] hover:gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
             >
               {COLLECTIONS_UI.ts_guide_cta[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
