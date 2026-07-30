@@ -83,12 +83,19 @@ export const SUPPORT_PROFILES: SupportProfile[] = [
 
 const PROFILE_BY_ID = new Map(SUPPORT_PROFILES.map((profile) => [profile.id, profile]))
 
+export const SUPPORT_VERIFICATION_WARN_DAYS = 30
+export const SUPPORT_VERIFICATION_STALE_DAYS = 45
+
 function endOfKoreaDay(date: string) {
   return new Date(`${date}T23:59:59+09:00`)
 }
 
 export function getDaysUntil(date: string, now = new Date()) {
   return Math.max(0, Math.ceil((endOfKoreaDay(date).getTime() - now.getTime()) / 86_400_000))
+}
+
+export function getVerificationAgeDays(verifiedAt: string, now = new Date()) {
+  return Math.max(0, Math.floor((now.getTime() - new Date(`${verifiedAt}T23:59:59+09:00`).getTime()) / 86_400_000))
 }
 
 function resolveStatus(
@@ -102,6 +109,9 @@ function resolveStatus(
     if (remaining < 0) return 'closed'
     if (remaining <= 14 * 86_400_000) return 'closing_soon'
   }
+  // 모집·상시·예정 상태는 45일 이상 재검증되지 않으면 공개 확정 표현을 낮춘다.
+  // 프로그램을 삭제하지 않고 공식 공고 확인 상태로 유지해 오래된 정보의 오인을 막는다.
+  if (getVerificationAgeDays(profile.verifiedAt, now) > SUPPORT_VERIFICATION_STALE_DAYS) return 'needs_review'
   if (rawStatus === 'open') return 'open'
   if (rawStatus === 'always') return 'always_open'
   if (rawStatus === 'upcoming') return 'upcoming'
