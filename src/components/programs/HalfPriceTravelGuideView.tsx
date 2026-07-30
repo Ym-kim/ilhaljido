@@ -69,7 +69,7 @@ function prefixFor(lang: Lang) {
 export function HalfPriceTravelGuideView({ lang }: { lang: Lang }) {
   const prefix = prefixFor(lang)
   return (
-    <main className="min-h-screen bg-[#fbfaf6]">
+    <main className={`min-h-screen bg-[#fbfaf6] ${lang === 'JP' ? '[word-break:normal]' : ''}`}>
       <div className="px-5 pb-2 pt-8 sm:px-6"><div className="mx-auto max-w-5xl"><Link href={`${prefix}/programs/support`} className="inline-flex min-h-11 items-center gap-1.5 text-xs font-semibold text-[#74858d] hover:text-[#17647f]"><ArrowLeft className="h-3.5 w-3.5" />{COPY.back[lang]}</Link></div></div>
 
       <section className="px-5 pb-12 pt-8 sm:px-6 md:pb-16 md:pt-12">
@@ -85,14 +85,14 @@ export function HalfPriceTravelGuideView({ lang }: { lang: Lang }) {
       </section>
 
       <section className="border-y border-[#e2e7e5] bg-white px-5 py-12 sm:px-6 md:py-16">
-        <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[.9fr_1.1fr]">
-          <div>
+        <div className="mx-auto grid min-w-0 max-w-5xl gap-10 lg:grid-cols-[.9fr_1.1fr]">
+          <div className="min-w-0">
             <WalletCards className="h-7 w-7 text-[#317b98]" strokeWidth={ICON_STROKE} />
             <h2 className="mt-4 text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.capTitle[lang]}</h2>
             <p className="mt-4 text-sm leading-7 text-[#61747b]">{COPY.capDesc[lang]}</p>
             <p className="mt-5 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-6 text-amber-950/80">{COPY.caution[lang]}</p>
           </div>
-          <div>
+          <div className="min-w-0">
             <h2 className="text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.flowTitle[lang]}</h2>
             <ol className="mt-6 grid gap-3 sm:grid-cols-2">
               {COPY.flow[lang].map((step, index) => <li key={step} className="grid grid-cols-[2.25rem_1fr] items-start gap-3 rounded-xl bg-[#f5f8f7] p-4 text-sm leading-6 text-[#496069]"><span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white font-bold text-[#17647f] shadow-sm">{index + 1}</span><span className="pt-1.5">{step}</span></li>)}
@@ -130,4 +130,3 @@ export function HalfPriceTravelGuideView({ lang }: { lang: Lang }) {
     </main>
   )
 }
-
