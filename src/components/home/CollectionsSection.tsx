@@ -36,14 +36,15 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div data-ui-grid="editorial" className="wak-card-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {HOME_COLLECTIONS.map((col) => {
             const campaign = getTripSetCampaign(col.slug)
             return (
               <Link
                 key={col.slug}
                 href={`/collections/${col.slug}?src=home`}
-                className="group relative aspect-[4/5] overflow-hidden rounded-[1.75rem] border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                data-ui-card="editorial"
+                className="wak-card-editorial group relative aspect-[4/5] overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >
                 <Image
                   src={col.photo}
@@ -71,7 +72,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
                     className="mb-3 block h-1 w-9 rounded-full"
                     style={{ backgroundColor: campaign?.accent ?? '#38bdf8' }}
                   />
-                  <h3 className="text-xl font-black leading-snug text-white lg:text-[1.15rem]">
+                  <h3 className="wak-card-title text-lg text-white">
                     {col.title[lang]}
                   </h3>
                   <span className="mt-2 block line-clamp-2 text-xs leading-relaxed text-white/72">{col.tagline[lang]}</span>

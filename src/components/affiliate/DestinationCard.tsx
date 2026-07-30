@@ -71,12 +71,13 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
   return (
     <div
       id={entry.id}
-      className={`group relative flex scroll-mt-28 flex-col overflow-hidden rounded-[1.35rem] border bg-white shadow-[0_10px_35px_rgba(8,47,73,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(8,47,73,0.12)] ${
+      data-ui-card="destination"
+      className={`wak-card-destination group relative flex h-full scroll-mt-28 flex-col overflow-hidden border bg-white shadow-[0_10px_35px_rgba(8,47,73,0.05)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(8,47,73,0.12)] ${
         hasActive ? 'border-[#bae6fd] hover:border-[#7dd3fc]' : 'border-[#e2e8f0] hover:border-[#cbd5e1]'
       } ${className}`}
     >
       {/* 목적지 사진 헤더 */}
-      <div className="relative h-48 overflow-hidden bg-[#e9f0f2]">
+      <div className="relative aspect-[3/2] overflow-hidden bg-[#e9f0f2]">
         {entry.photo ? (
           <Image
             src={entry.photo}
@@ -103,7 +104,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
         <div className="absolute bottom-0 left-0 right-0 px-4 pb-3 flex items-end justify-between gap-2">
           <div>
             <p className="text-white/75 text-[0.7rem] font-medium drop-shadow">{entry.country}</p>
-            <p className="text-white font-black text-xl leading-tight drop-shadow-lg">
+            <p className="wak-card-title text-xl text-white drop-shadow-lg">
               {entry.city}
             </p>
           </div>
@@ -123,7 +124,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
       </div>
 
       {/* 대표 파트너 단일 CTA */}
-      <div className="p-4">
+      <div className="mt-auto p-4">
         {primary && <PrimaryButton link={primary} />}
       </div>
     </div>

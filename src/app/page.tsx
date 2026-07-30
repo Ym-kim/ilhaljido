@@ -312,7 +312,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
         </div>
 
         {/* 카드 — 모바일: 2열 그리드 / lg+: 3열 그리드 */}
-        <div className="grid grid-cols-1 gap-3 px-4 min-[520px]:grid-cols-2 sm:gap-4 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
+        <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 px-4 min-[520px]:grid-cols-2 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
           {featuredItems.map((item) => (
             <AffiliateCard key={item.id} item={item} visual />
           ))}
@@ -329,7 +329,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
             {bookingNote}
             <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-45">+</span>
           </summary>
-          <span className="mt-3 block max-w-2xl text-[0.65rem] leading-relaxed text-[#918b83]">{tr('h3_disclosure')}</span>
+          <span className="wak-caption mt-3 block max-w-2xl text-[#716b65]">{tr('h3_disclosure')}</span>
         </details>
       </section>
 
@@ -427,7 +427,8 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   <Link
                     key={p.id}
                     href={hostedHref}
-                    className="group relative rounded-3xl overflow-hidden block h-64 sm:h-72 border border-white/10 hover:border-sky-400/40 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)]"
+                    data-ui-card="editorial"
+                    className="wak-card-editorial group relative block h-64 overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)] sm:h-72"
                   >
                     <Image
                       src={p.img}

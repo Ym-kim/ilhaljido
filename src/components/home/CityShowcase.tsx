@@ -56,15 +56,14 @@ export function CityShowcase({ forceLang }: { forceLang?: Lang } = {}) {
             {UI.all[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
           </Link>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {cities.map((c, i) => (
+        <div data-ui-grid="destination" className="wak-card-grid grid grid-cols-2 lg:grid-cols-4">
+          {cities.map((c) => (
             <Link
               key={c.slug}
               href={`/guide/${c.slug}`}
               onClick={() => trackEvent('destination_open', { city: c.slug, from: 'home_city_showcase' })}
-              className={`group relative rounded-2xl overflow-hidden block border border-[#dbeafe] hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${
-                i < 2 ? 'h-56 sm:h-72 col-span-1' : 'h-44 sm:h-52'
-              }`}
+              data-ui-card="destination"
+              className="wak-card-destination group relative block h-52 overflow-hidden border border-[#dbeafe] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:h-72"
             >
               <Image
                 src={c.heroPhoto}
@@ -75,8 +74,8 @@ export function CityShowcase({ forceLang }: { forceLang?: Lang } = {}) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4">
-                <h3 className="text-white font-black text-lg sm:text-xl leading-snug">{c.name[lang]}</h3>
-                <p className="text-white/70 text-[0.7rem] sm:text-xs mt-1 leading-snug line-clamp-2">{c.tagline[lang]}</p>
+                <h3 className="wak-card-title text-white sm:text-lg">{c.name[lang]}</h3>
+                <p className="wak-caption mt-1 line-clamp-2 text-white/78">{c.tagline[lang]}</p>
                 <span className="mt-2 inline-flex items-center gap-1 text-sky-300 text-[0.75rem] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
                   {UI.cta[lang]} <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                 </span>

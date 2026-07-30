@@ -123,7 +123,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
 
               {/* 1) 에디터 추천 개별 숙소 — 지역별 4장 진열: 폰 2열·데스크톱 4열 모두 빈칸 없음 */}
               {featured.length > 0 && (
-                <div className="mb-6 grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+                <div data-ui-grid="product" className="wak-card-grid mb-6 grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4">
                   {featured.map((item) => (
                     <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
                   ))}
@@ -150,7 +150,7 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#64748b] text-[0.65rem] font-bold tracking-[0.18em] uppercase mb-5">
             {tr('selh_partners')}
           </p>
-          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4">
+          <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 min-[520px]:grid-cols-2">
             {HOTEL_PARTNERS.map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
@@ -161,9 +161,9 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
       {/* Disclosure */}
       <section className="px-6 pb-16 border-t border-[#e0f2fe]">
         <div className="max-w-6xl mx-auto pt-8 space-y-1">
-          <p className="text-[#a8a29e] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_1')}</p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_2')}</p>
-          <p className="text-[#c0bcb6] text-[0.65rem] leading-relaxed max-w-2xl">{tr('sel_disc_3')}</p>
+          <p className="wak-caption max-w-2xl text-[#66747d]">{tr('sel_disc_1')}</p>
+          <p className="wak-caption max-w-2xl text-[#74818a]">{tr('sel_disc_2')}</p>
+          <p className="wak-caption max-w-2xl text-[#74818a]">{tr('sel_disc_3')}</p>
         </div>
       </section>
     </div>

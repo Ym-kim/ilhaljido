@@ -88,12 +88,13 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
 
       {/* City grid */}
       <section className="max-w-5xl mx-auto px-6 py-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div data-ui-grid="destination" className="wak-card-grid grid sm:grid-cols-2 lg:grid-cols-3">
           {CITY_INSIGHTS.map((city) => (
             <Link
               key={city.id}
               href={`${prefix}/destinations/${city.id}`}
-              className="group bg-white rounded-2xl overflow-hidden border border-[#e8e4dc] hover:border-teal-300 hover:shadow-lg transition-all duration-300"
+              data-ui-card="destination"
+              className="wak-card-destination group overflow-hidden border border-[#e8e4dc] bg-white transition-all duration-300 hover:border-teal-300 hover:shadow-lg"
             >
               {/* Cover photo */}
               <div className="relative h-44 overflow-hidden">
@@ -106,8 +107,7 @@ export function DestinationsHubView({ forceLang }: { forceLang?: Lang }) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-3 left-4 text-white">
-                  <div className="text-2xl mb-0.5">{city.flag}</div>
-                  <div className="font-black text-lg leading-tight">{city.name[lang]}</div>
+                  <div className="wak-card-title text-lg text-white">{city.name[lang]}</div>
                   <div className="text-white/70 text-xs">{city.country[lang]}</div>
                 </div>
               </div>
