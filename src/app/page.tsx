@@ -16,7 +16,7 @@ import { trackAffiliateClick, trackEvent } from '@/lib/track'
 import { MoodExplorer } from '@/components/home/MoodExplorer'
 import { DurationExplorer } from '@/components/home/DurationExplorer'
 import { TripMatchHomeCta } from '@/components/trip-match/TripMatchHomeCta'
-import { CityShowcase } from '@/components/home/CityShowcase'
+import { DomesticOnboarding } from '@/components/home/DomesticOnboarding'
 import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
 import { HouseBanner } from '@/components/home/HouseBanner'
@@ -260,14 +260,14 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* 한 번의 명확한 진입점 — 기존 Mood·Duration을 뒤집지 않고 매칭 경험으로 연결 */}
       <TripMatchHomeCta forceLang={forceLang} />
 
+      {/* 입문 동선 — KO·JA는 국내 3곳, EN은 한국·일본 4곳을 해외 탐색보다 먼저 제안 */}
+      <DomesticOnboarding lang={lang} />
+
       {/* ── 무드 탐색 — 감정·상황으로 먼저 (2026-07-28 라이프스타일 개편, 탐색 1축) ── */}
       <MoodExplorer forceLang={forceLang} />
 
       {/* ── 기간 탐색 — 쓸 수 있는 날짜로 고르기 (탐색 2축) ── */}
       <DurationExplorer forceLang={forceLang} />
-
-      {/* ── 지금 떠나기 좋은 도시 — locale별 순서 분기(KO=일본 단기 / JP=제주 우선) ── */}
-      <CityShowcase forceLang={forceLang} />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
@@ -459,7 +459,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 ))}
               </div>
 
-              {/* 오픈 알림 이메일 수집 — 신청 전 단계 트래픽을 리드로 전환 */}
+              {/* 카카오톡 우선 + 보조 이메일 관심 등록 — 신청 전 단계 트래픽을 저이탈 리드로 전환 */}
               <div className="mt-8 max-w-xl">
                 <NotifySignup source="홈 Hosted 다음 회차 알림" event="hosted_alert_submitted" lang={lang} />
               </div>

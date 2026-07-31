@@ -450,7 +450,7 @@ const KO: Record<string, string> = {
   domestic_themed_title: '테마별 예정 프로그램',
   domestic_coming_soon: '준비중',
   domestic_notify_desc: '다음 프로그램 알림을 받고 싶으신가요?',
-  domestic_notify_btn: '사전 신청 문의하기',
+  domestic_notify_btn: '모집 소식 받기',
   domestic_prep_title: '국내 워케이션 준비하기',
   domestic_prep_sub: '프로그램 일정 전후로 머물 숙소와 지역 체험을 미리 챙겨보세요.',
   domestic_vat: 'VAT 포함',
@@ -464,7 +464,7 @@ const KO: Record<string, string> = {
   golf_hero_desc: '골프와 워케이션이 결합된 새로운 비즈니스 교류의 장',
   sports_hero_title: '경기 관람과 체류를\n하나로 즐기다',
   sports_hero_desc: '스포츠를 보고, 현지에서 일하고, 새로운 연결을 만드는 워케이션',
-  theme_cta_desc: '사전 신청을 남기시면 일정 확정 시 가장 먼저 안내해 드립니다.',
+  theme_cta_desc: '관심 있는 여행을 남겨두면 모집 일정이 열릴 때 안내해 드립니다.',
   visa_back: '← 이전 단계',
 
   global_hero_title: '해외 거점에서\n글로벌로 성장하다',
@@ -594,7 +594,7 @@ const KO: Record<string, string> = {
   footer_tagline: '일하는 사람을 위한 글로벌 체류형 성장 플랫폼',
 
   coming_soon: 'Coming Soon',
-  pre_register: '사전 신청',
+  pre_register: '모집 소식 받기',
   market_what_eyebrow: '이게 뭔가요?',
   market_what_title: '시장조사단이란?',
   market_what_desc:
@@ -1210,7 +1210,7 @@ const EN: Record<string, string> = {
   domestic_themed_title: 'Upcoming Programs by Theme',
   domestic_coming_soon: 'Coming soon',
   domestic_notify_desc: 'Want alerts for the next program?',
-  domestic_notify_btn: 'Pre-register inquiry',
+  domestic_notify_btn: 'Get program updates',
   domestic_prep_title: 'Get ready for your Korea workation',
   domestic_prep_sub: 'Sort out stays and local experiences around your program dates.',
   domestic_vat: 'VAT included',
@@ -1224,7 +1224,7 @@ const EN: Record<string, string> = {
   golf_hero_desc: 'Where golf and workation combine for a new kind of business exchange',
   sports_hero_title: 'Watch the game.\nWork. Connect.',
   sports_hero_desc: 'A workation that pairs live sports with work and new connections',
-  theme_cta_desc: 'Leave your pre-registration and we will notify you first when dates are confirmed.',
+  theme_cta_desc: 'Register your interest and get an update when dates open.',
   visa_back: '← Back',
 
   global_hero_title: 'Grow globally\nfrom abroad hubs',
@@ -1353,7 +1353,7 @@ const EN: Record<string, string> = {
   footer_tagline: 'Global stay & growth platform for working professionals',
 
   coming_soon: 'Coming Soon',
-  pre_register: 'Pre-register',
+  pre_register: 'Get program updates',
   market_what_eyebrow: 'What is this?',
   market_what_title: 'What is a market research unit?',
   market_what_desc:
@@ -1969,7 +1969,7 @@ const JP: Record<string, string> = {
   domestic_themed_title: 'テーマ別予定プログラム',
   domestic_coming_soon: '準備中',
   domestic_notify_desc: '次のプログラムの通知を受け取りますか？',
-  domestic_notify_btn: '事前申込のお問い合わせ',
+  domestic_notify_btn: '募集のお知らせを受け取る',
   domestic_prep_title: '国内ワーケーションの準備',
   domestic_prep_sub: 'プログラム前後の宿泊と地域体験を事前にチェックしましょう。',
   domestic_vat: 'VAT込み',
@@ -1983,7 +1983,7 @@ const JP: Record<string, string> = {
   golf_hero_desc: 'ゴルフとワーケーションが融合した新しいビジネス交流の場',
   sports_hero_title: '観戦と滞在を\nひとつで楽しむ',
   sports_hero_desc: '好きなスポーツを見て、現地で働き、新しい繋がりを作るワーケーション',
-  theme_cta_desc: '事前申込を頂ければ、日程確定時に最初にご案内します。',
+  theme_cta_desc: '興味を登録すると、募集日程が決まり次第お知らせします。',
   visa_back: '← 戻る',
 
   global_hero_title: '海外拠点で\nグローバルに成長',
@@ -2112,7 +2112,7 @@ const JP: Record<string, string> = {
   footer_tagline: '働く人のためのグローバル滞在型成長プラットフォーム',
 
   coming_soon: 'Coming Soon',
-  pre_register: '事前申込',
+  pre_register: '募集のお知らせを受け取る',
   market_what_eyebrow: 'これは何？',
   market_what_title: '市場調査団とは？',
   market_what_desc:

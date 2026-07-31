@@ -30,9 +30,9 @@ const COPY: Record<HostedLeadVariant, { source: string; title: L; sub: L }> = {
       JP: '日本市場調査団 — 次回募集の通知を受け取る',
     },
     sub: {
-      KO: '현장 시장조사 프로그램의 다음 모집이 열리면 이메일로 가장 먼저 알려드립니다.',
-      EN: "We'll email you first when the next research cohort opens.",
-      JP: '次回の募集が始まり次第、メールでいち早くお知らせします。',
+      KO: '현장 시장조사 프로그램의 다음 모집 소식을 카카오톡 또는 간단한 관심 등록으로 받아보세요.',
+      EN: 'Get the next research cohort update on KakaoTalk or with a short interest form.',
+      JP: '次回の募集情報を、カカオトークまたは簡単な興味登録で受け取れます。',
     },
   },
   networking: {
@@ -57,7 +57,7 @@ const COPY: Record<HostedLeadVariant, { source: string; title: L; sub: L }> = {
     },
     sub: {
       KO: '어학 수업과 체류를 결합한 프로그램을 준비하고 있습니다 — 오픈하면 알려드립니다.',
-      EN: "We're preparing programs that combine classes and long stays — we'll email you at launch.",
+      EN: "We're preparing programs that combine classes and long stays — choose how you want to hear when they open.",
       JP: '語学レッスンと滞在を組み合わせたプログラムを準備中 — オープン時にお知らせします。',
     },
   },
@@ -69,7 +69,7 @@ const COPY: Record<HostedLeadVariant, { source: string; title: L; sub: L }> = {
       JP: '国内プログラム — オープン通知',
     },
     sub: {
-      KO: '양양 1기처럼 국내 거점에서 열리는 다음 회차를 이메일로 가장 먼저 알려드립니다.',
+      KO: '양양 1기처럼 국내 거점에서 열리는 다음 회차 소식을 부담 없이 받아보세요.',
       EN: "Be first to hear when the next Korea cohort opens — like our Yangyang pilot.",
       JP: '襄陽1期のような国内回次のオープンをいち早くお知らせします。',
     },
@@ -110,7 +110,7 @@ export function HostedLeadSection({
   const light = tone === 'light'
 
   return (
-    <section className={light ? 'border-t border-[#e0f2fe] bg-[#f0f9ff]/60 px-6 py-14' : 'border-t border-white/8 bg-[#0a1e33] dark-surface px-6 py-14'}>
+    <section id="hosted-interest" className={light ? 'scroll-mt-24 border-t border-[#e0f2fe] bg-[#f0f9ff]/60 px-6 py-14' : 'scroll-mt-24 border-t border-white/8 bg-[#0a1e33] dark-surface px-6 py-14'}>
       <div className="mx-auto max-w-2xl">
         <div className="mb-3">
           <HostedBadge tone={tone} lang={lang} />

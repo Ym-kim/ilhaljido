@@ -22,7 +22,7 @@ const COPY = {
   },
   lead: {
     KO: '머물고, 일하고, 연결되는 시간을 Wakation이 직접 설계합니다. 지금은 관심 분야만 남겨주세요. 일정과 조건이 확정되면 먼저 안내합니다.',
-    EN: 'Wakation designs the stay, work rhythm and connections end to end. Tell us what interests you now; we will email you when dates and terms are confirmed.',
+    EN: 'Wakation designs the stay, work rhythm and connections end to end. Tell us what interests you now; we will share updates when dates and terms are confirmed.',
     JP: '滞在・仕事・つながりの時間をWakationが一貫して設計します。今は関心分野だけを登録。日程と条件が確定したら先にお知らせします。',
   },
   primary: { KO: '관심 분야 고르기', EN: 'Choose an interest', JP: '関心分野を選ぶ' },
@@ -40,9 +40,9 @@ const COPY = {
   captureEyebrow: { KO: 'OPENING ALERT', EN: 'OPENING ALERT', JP: 'OPENING ALERT' },
   captureTitle: { KO: '일정이 확정되면 먼저 알려드릴게요', EN: 'We will tell you when it is confirmed', JP: '日程が確定したら先にお知らせします' },
   captureLead: {
-    KO: '등록은 모집 신청이나 예약이 아닙니다. 이메일은 선택한 Hosted 프로그램 안내에만 사용합니다.',
-    EN: 'This is not an application or booking. Your email is used only for updates about the Hosted program you selected.',
-    JP: 'これは応募や予約ではありません。メールは選択したHostedプログラムの案内にのみ使用します。',
+    KO: '관심 등록은 모집 신청이나 예약이 아닙니다. 카카오톡 또는 이메일 중 편한 방법으로 소식을 받아보세요.',
+    EN: 'This is not an application or booking. Choose KakaoTalk or a short email form for updates.',
+    JP: '興味登録は応募や予約ではありません。カカオトークまたは簡単なメール登録でお知らせを受け取れます。',
   },
   proofEyebrow: { KO: 'OPERATED, THEN DOCUMENTED', EN: 'OPERATED, THEN DOCUMENTED', JP: 'OPERATED, THEN DOCUMENTED' },
   proofTitle: { KO: '말보다 운영 기록으로 보여드립니다', EN: 'Proof from a program we actually ran', JP: '言葉ではなく、実際の運営記録で' },
@@ -96,7 +96,7 @@ const STATS: { value: string; label: L }[] = [
 const PROCESS: { title: L; desc: L }[] = [
   {
     title: { KO: '관심 분야 등록', EN: 'Register your interest', JP: '関心分野を登録' },
-    desc: { KO: '원하는 체류 유형과 이메일만 남깁니다.', EN: 'Leave only your preferred stay type and email.', JP: '希望する滞在タイプとメールだけを登録します。' },
+    desc: { KO: '원하는 체류 유형을 고르고 편한 안내 방법을 선택합니다.', EN: 'Choose a stay type and the update method that suits you.', JP: '希望する滞在タイプと受け取りやすい案内方法を選びます。' },
   },
   {
     title: { KO: '일정·조건 확정', EN: 'Dates and terms confirmed', JP: '日程・条件を確定' },
@@ -115,7 +115,7 @@ const FAQ: { q: L; a: L }[] = [
   },
   {
     q: { KO: '지금 확정된 일정이 있나요?', EN: 'Are dates confirmed now?', JP: '現在、確定した日程はありますか？' },
-    a: { KO: '이 페이지는 다음 회차의 관심 수요를 확인하는 단계입니다. 확정되지 않은 일정이나 가격은 표시하지 않으며, 실제 조건이 정해진 뒤 이메일로 안내합니다.', EN: 'This page gauges interest for future cohorts. We do not display unconfirmed dates or prices; we email you after the real terms are set.', JP: 'このページは次回への関心を確認する段階です。未確定の日程や価格は表示せず、実際の条件が決まってからメールで案内します。' },
+    a: { KO: '이 페이지는 다음 회차의 관심 수요를 확인하는 단계입니다. 확정되지 않은 일정이나 가격은 표시하지 않으며, 실제 조건이 정해진 뒤 선택한 채널로 안내합니다.', EN: 'This page gauges interest for future cohorts. We do not display unconfirmed dates or prices; updates follow after the real terms are set.', JP: 'このページは次回への関心を確認する段階です。未確定の日程や価格は表示せず、実際の条件が決まってから選んだ方法で案内します。' },
   },
   {
     q: { KO: '관심 등록하면 바로 신청되나요?', EN: 'Does registering interest apply me automatically?', JP: '関心登録すると自動で応募になりますか？' },
@@ -235,7 +235,7 @@ export function HostedLandingView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
-      <section className="dark-surface bg-[#071824] px-5 py-16 sm:px-8 md:py-24">
+      <section id="hosted-updates" className="dark-surface scroll-mt-20 bg-[#071824] px-5 py-16 sm:px-8 md:py-24">
         <div className="mx-auto grid min-w-0 max-w-6xl gap-9 lg:grid-cols-[minmax(0,0.82fr)_minmax(22rem,1fr)] lg:items-center">
           <div className="min-w-0">
             <span className="text-[0.68rem] font-black tracking-[0.2em] text-[#8fd3e9]">{COPY.captureEyebrow[lang]}</span>

@@ -45,6 +45,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
   const programs = getDomesticThemedUpcoming(lang).filter((p) => themeIds.includes(p.id))
 
   const mailto = `mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(emailSubject)}`
+  const interestHref = leadVariant ? '#hosted-interest' : mailto
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
@@ -83,11 +84,11 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
         <div className="max-w-6xl mx-auto">
           <p className="text-sky-400 text-xs font-black tracking-widest uppercase mb-6">{tr('coming_soon')}</p>
           {programs.length === 0 ? (
-            /* 빈 상태 — 흐릿한 텍스트 대신 대비 있는 안내 카드 + 사전신청 동선 */
+            /* 빈 상태 — 흐릿한 텍스트 대신 대비 있는 안내 카드 + 모집 소식 동선 */
             <div className="bg-[#1a1a1a] border border-white/12 rounded-2xl px-8 py-10 text-center">
               <p className="text-white font-black text-lg mb-2">{tr('home_recruiting_coming_title')}</p>
               <p className="text-white/65 text-sm mb-6">{tr('home_recruiting_coming_desc')}</p>
-              <a href={mailto} className="inline-flex items-center gap-2 bg-brand-mid text-white font-bold px-6 py-3 rounded-full hover:bg-sky-500 transition-all text-sm">
+              <a href={interestHref} className="inline-flex items-center gap-2 bg-brand-mid text-white font-bold px-6 py-3 rounded-full hover:bg-sky-500 transition-all text-sm">
                 {tr('pre_register')} <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -107,7 +108,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
                     <h3 className="text-white font-black mb-3">{p.name}</h3>
                     <div className="flex items-center justify-between">
                       <span className="text-sky-400 text-xs font-bold">{p.date}</span>
-                      <a href={mailto} className="text-white/60 text-xs hover:text-sky-400 transition-colors flex items-center gap-1">
+                      <a href={interestHref} className="text-white/60 text-xs hover:text-sky-400 transition-colors flex items-center gap-1">
                         {tr('pre_register')} <ArrowRight className="w-3 h-3" />
                       </a>
                     </div>
@@ -132,7 +133,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
           <h2 className="text-2xl font-black text-white mb-4">{tr(titleKey)}</h2>
           <p className="text-caption-on-dark text-sm mb-8">{tr('theme_cta_desc')}</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <a href={mailto} className="bg-brand-mid text-white font-black px-8 py-3.5 rounded-full hover:bg-sky-500 transition-all text-sm">
+            <a href={interestHref} className="bg-brand-mid text-white font-black px-8 py-3.5 rounded-full hover:bg-sky-500 transition-all text-sm">
               {tr('pre_register')}
             </a>
             <Link href={`${prefix}/programs/domestic`} className="bg-white/10 text-white font-bold px-8 py-3.5 rounded-full border border-white/20 hover:bg-white/20 transition-all text-sm">

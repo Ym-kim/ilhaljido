@@ -15,17 +15,17 @@ export type MediaAsset = {
 
 export const MEDIA_ASSETS: MediaAsset[] = [
   {
-    id: 'activity-seoul-baseball-editorial-v1',
-    src: '/covers/activity-seoul-baseball-editorial-v1.webp',
+    id: 'activity-seoul-baseball-editorial-v2',
+    src: '/covers/activity-seoul-baseball-editorial-v2.webp',
     alt: {
-      KO: '서울의 야구장에서 저녁 경기를 바라보는 여행자 두 명의 편집 이미지',
-      EN: 'Editorial image of two travelers watching an evening baseball game in Seoul',
-      JP: 'ソウルの野球場でナイターを観戦する二人の旅行者を描いた編集イメージ',
+      KO: '인물과 구단 표식 없이 조명이 켜진 야간 야구장의 편집 이미지',
+      EN: 'Editorial image of an illuminated empty baseball stadium without people or team marks',
+      JP: '人物や球団の表示がない、照明の灯る無人の野球場を描いた編集イメージ',
     },
     sourceType: 'generated',
     usage: 'editorial',
     illustrative: true,
-    focalPoint: { x: 0.5, y: 0.52 },
+    focalPoint: { x: 0.58, y: 0.56 },
     source: 'OpenAI image generation; Wakation editorial direction',
     license: 'Wakation-owned generated editorial asset',
     createdAt: '2026-07-31',

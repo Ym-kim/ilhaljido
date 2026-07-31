@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
 import { BUSINESS } from '@/lib/legal'
+import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
 
 export default function Footer() {
   const { tr, lang } = useLang()
@@ -69,7 +70,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://pf.kakao.com/_xiPxbXG"
+                  href={KAKAO_CHANNEL_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

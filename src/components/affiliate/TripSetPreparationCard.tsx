@@ -25,7 +25,7 @@ const DESTINATION_EDITORIAL_FALLBACK: Record<string, string> = {
 }
 
 const ITEM_EDITORIAL_FALLBACK: Record<string, string> = {
-  'theme-sports-seoul-baseball': '/covers/activity-seoul-baseball-editorial-v1.webp',
+  'theme-sports-seoul-baseball': '/covers/activity-seoul-baseball-editorial-v2.webp',
   'esim-airalo': '/covers/esim-asia-ai.jpeg',
   'feat-transfer-klook': '/covers/transfer-klook-ai.jpeg',
 }
