@@ -24,6 +24,12 @@ const DESTINATION_EDITORIAL_FALLBACK: Record<string, string> = {
   busan: '/covers/stay-uh-busan-ai.jpeg',
 }
 
+const ITEM_EDITORIAL_FALLBACK: Record<string, string> = {
+  'theme-sports-seoul-baseball': '/covers/activity-seoul-baseball-editorial-v1.webp',
+  'esim-airalo': '/covers/esim-asia-ai.jpeg',
+  'feat-transfer-klook': '/covers/transfer-klook-ai.jpeg',
+}
+
 function formatVerifiedAt(value: string) {
   return value.replaceAll('-', '.')
 }
@@ -52,7 +58,9 @@ export function TripSetPreparationCard({
   const title = item.productTitle ?? item.displayTitle ?? item.name
   const coverPhoto = item.coverPhoto?.startsWith('/')
     ? item.coverPhoto
-    : DESTINATION_EDITORIAL_FALLBACK[destinationSlug] ?? '/covers/trip-prep-allinone-ai.jpeg'
+    : ITEM_EDITORIAL_FALLBACK[item.id]
+      ?? DESTINATION_EDITORIAL_FALLBACK[destinationSlug]
+      ?? '/covers/trip-prep-allinone-ai.jpeg'
 
   return (
     <article

@@ -15,6 +15,22 @@ export type MediaAsset = {
 
 export const MEDIA_ASSETS: MediaAsset[] = [
   {
+    id: 'activity-seoul-baseball-editorial-v1',
+    src: '/covers/activity-seoul-baseball-editorial-v1.webp',
+    alt: {
+      KO: '서울의 야구장에서 저녁 경기를 바라보는 여행자 두 명의 편집 이미지',
+      EN: 'Editorial image of two travelers watching an evening baseball game in Seoul',
+      JP: 'ソウルの野球場でナイターを観戦する二人の旅行者を描いた編集イメージ',
+    },
+    sourceType: 'generated',
+    usage: 'editorial',
+    illustrative: true,
+    focalPoint: { x: 0.5, y: 0.52 },
+    source: 'OpenAI image generation; Wakation editorial direction',
+    license: 'Wakation-owned generated editorial asset',
+    createdAt: '2026-07-31',
+  },
+  {
     id: 'itoshima-coast-editorial-v1',
     src: '/campaign/itoshima-coast-editorial-v1.webp',
     alt: {
