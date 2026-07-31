@@ -90,6 +90,17 @@ const COPY: Record<string, L> = {
   shareText: { KO: '내게 맞는 여행이 나왔어요. 같이 볼래요?', EN: 'I found a trip that fits. Take a look?', JP: '今の私に合う旅が見つかりました。一緒に見てみる？' },
 }
 
+const TRIP_MATCH_INTRO_ASSET = {
+  id: 'trip-match-model-d-city-departure-v1',
+  modelId: 'WAK-MODEL-D',
+  src: '/media/brand-models/trip-match-model-d-city-departure-v1.webp',
+  alt: {
+    KO: '도시 이동을 앞두고 라운지에서 노트북을 닫는 여행자',
+    EN: 'A traveler closing a laptop in a city departure lounge',
+    JP: '街への出発前にラウンジでノートパソコンを閉じる旅行者',
+  } satisfies L,
+} as const
+
 const subscribeToLocation = () => () => {}
 
 function getQuestionValue(step: number, answer: TripMatchAnswer) {
@@ -178,6 +189,8 @@ export function TripMatchExperience({
   const start = () => {
     trackEvent('trip_match_start', {
       locale,
+      assetId: TRIP_MATCH_INTRO_ASSET.id,
+      modelId: TRIP_MATCH_INTRO_ASSET.modelId,
       ...(campaign ? { campaign } : {}),
       ...campaignEventFields(utm),
     })
@@ -260,12 +273,12 @@ export function TripMatchExperience({
       <main className={`min-h-screen bg-[#071824] ${lang === 'JP' ? 'font-jp' : ''}`}>
         <section className="dark-surface relative flex min-h-[calc(100svh-4rem)] items-end overflow-hidden">
           <Image
-            src="/campaign/home-workation-editorial-v1.webp"
-            alt=""
+            src={TRIP_MATCH_INTRO_ASSET.src}
+            alt={TRIP_MATCH_INTRO_ASSET.alt[lang]}
             fill
-            priority
+            preload
             sizes="100vw"
-            className="object-cover"
+            className="object-cover object-[72%_48%]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,18,29,.94)_0%,rgba(3,18,29,.73)_55%,rgba(3,18,29,.25)_100%)]" />
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-24 sm:px-8 md:pb-20">

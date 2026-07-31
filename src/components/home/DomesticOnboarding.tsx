@@ -13,7 +13,10 @@ type L = Record<Lang, string>
 type Entry = {
   slug: string
   href: string
+  assetId: string
+  modelId?: 'WAK-MODEL-A' | 'WAK-MODEL-C' | 'WAK-MODEL-D'
   image: string
+  imagePosition?: string
   name: L
   description: L
   tag: L
@@ -38,7 +41,10 @@ const ENTRIES: Entry[] = [
   {
     slug: 'seoul-3n4d',
     href: '/collections/seoul-3n4d',
-    image: '/campaign/trip-sets/seoul-3n4d-editorial-v1.webp',
+    assetId: 'domestic-seoul-model-d-urban-work-v1',
+    modelId: 'WAK-MODEL-D',
+    image: '/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp',
+    imagePosition: '68% 48%',
     name: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
     description: {
       KO: '도시의 리듬 안에서 일과 저녁 문화를 함께 구성하는 3박 4일',
@@ -46,12 +52,15 @@ const ENTRIES: Entry[] = [
       JP: '仕事の時間とソウルの夜を組み合わせる3泊4日',
     },
     tag: { KO: '도시형 3박 4일', EN: '3-night city stay', JP: '都市で3泊4日' },
-    alt: { KO: '서울 도심의 저녁 풍경', EN: 'An evening city scene in Seoul', JP: 'ソウルの夕暮れの街並み' },
+    alt: { KO: '서울을 연상시키는 도시형 카페 공간에서 노트를 정리하는 여행자', EN: 'A traveler taking notes in a Seoul-inspired urban café setting', JP: 'ソウルをイメージした都会的なカフェ空間でノートを書く旅行者' },
   },
   {
     slug: 'busan-weekend',
     href: '/collections/busan-weekend',
-    image: '/campaign/trip-sets/busan-weekend-editorial-v1.webp',
+    assetId: 'domestic-busan-model-c-coastal-transition-v1',
+    modelId: 'WAK-MODEL-C',
+    image: '/media/brand-models/domestic-busan-model-c-coastal-transition-v1.webp',
+    imagePosition: '58% 48%',
     name: { KO: '부산', EN: 'Busan', JP: '釜山' },
     description: {
       KO: '바다와 도심을 오가며 쉬는 시간을 확보하는 주말 2박 3일',
@@ -59,12 +68,15 @@ const ENTRIES: Entry[] = [
       JP: '海と街を行き来しながら余白をつくる週末2泊3日',
     },
     tag: { KO: '주말 2박 3일', EN: 'Weekend · 2 nights', JP: '週末2泊3日' },
-    alt: { KO: '바다와 도심이 이어지는 부산 풍경', EN: 'Busan where the coast meets the city', JP: '海と街がつながる釜山の風景' },
+    alt: { KO: '부산을 연상시키는 해안 공간에서 가방을 들고 산책을 시작하는 여행자', EN: 'A traveler beginning a walk in a Busan-inspired coastal setting', JP: '釜山をイメージした海辺の空間で散歩を始める旅行者' },
   },
   {
     slug: 'jeju',
     href: '/guide/jeju',
-    image: '/media/destinations/jeju-editorial-v1.webp',
+    assetId: 'domestic-jeju-model-a-slow-stay-v1',
+    modelId: 'WAK-MODEL-A',
+    image: '/media/brand-models/domestic-jeju-model-a-slow-stay-v1.webp',
+    imagePosition: '72% 50%',
     name: { KO: '제주', EN: 'Jeju', JP: '済州' },
     description: {
       KO: '3박 이상 머물며 일상의 속도를 바꾸는 섬 체류 가이드',
@@ -72,11 +84,12 @@ const ENTRIES: Entry[] = [
       JP: '3泊以上滞在し、日常のペースを整える島のガイド',
     },
     tag: { KO: '3박 이상', EN: '3+ nights', JP: '3泊以上' },
-    alt: { KO: '제주 바다와 산이 이어지는 풍경', EN: 'Jeju coast with mountains in the distance', JP: '海と山が広がる済州の風景' },
+    alt: { KO: '제주를 연상시키는 돌담과 억새 풍경 앞에서 노트를 펼친 여행자', EN: 'A traveler with a notebook beside stone walls and grass in a Jeju-inspired setting', JP: '済州をイメージした石垣とススキの風景でノートを開く旅行者' },
   },
   {
     slug: 'fukuoka-3n4d',
     href: '/collections/fukuoka-3n4d',
+    assetId: 'fukuoka-3n4d-editorial-v1',
     image: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
     name: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' },
     description: {
@@ -122,6 +135,8 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
       source: 'home',
       placement,
       destinationSlug: entry.slug,
+      assetId: entry.assetId,
+      ...(entry.modelId ? { modelId: entry.modelId } : {}),
     })
   }
 
@@ -182,6 +197,7 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
                   fill
                   loading="lazy"
                   sizes="(max-width: 519px) 100vw, (max-width: 1023px) 50vw, 288px"
+                  style={{ objectPosition: entry.imagePosition ?? '50% 50%' }}
                   className="object-cover transition duration-700 group-hover:scale-[1.025] motion-reduce:transition-none"
                 />
                 <span className="absolute left-3 top-3 rounded-full border border-white/35 bg-[#0a2938]/78 px-3 py-1 text-[0.65rem] font-black text-white backdrop-blur-sm">{entry.tag[lang]}</span>

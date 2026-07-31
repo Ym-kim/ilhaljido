@@ -1,4 +1,7 @@
 import type { Lang } from '@/lib/i18n/types'
+import type { BrandModelId } from '@/lib/media/brandModels'
+
+export type MediaFocalPoint = { x: number; y: number }
 
 export type MediaAsset = {
   id: string
@@ -7,13 +10,159 @@ export type MediaAsset = {
   sourceType: 'owned' | 'licensed' | 'generated' | 'partner'
   usage: 'hero' | 'editorial' | 'destination' | 'product' | 'story' | 'social'
   illustrative: boolean
-  focalPoint?: { x: number; y: number }
+  width?: number
+  height?: number
+  modelId?: BrandModelId
+  localeUsage?: Array<'ko' | 'en' | 'ja'>
+  focalPoint?: MediaFocalPoint
+  focalPoints?: {
+    desktop?: MediaFocalPoint
+    mobile?: MediaFocalPoint
+  }
   source?: string
   license?: string
   createdAt?: string
+  restriction?: Record<Lang, string>
 }
 
 export const MEDIA_ASSETS: MediaAsset[] = [
+  {
+    id: 'home-workation-editorial-v1-legacy',
+    src: '/campaign/home-workation-editorial-v1.webp',
+    alt: {
+      KO: '해안에서의 체류와 업무 전환을 표현한 Wakation 브랜드 편집 이미지',
+      EN: 'Wakation brand editorial image about moving between coastal time and work',
+      JP: '海辺での滞在と仕事の切り替えを表現したWakationのブランド編集画像',
+    },
+    sourceType: 'generated',
+    usage: 'hero',
+    illustrative: true,
+    width: 1600,
+    height: 900,
+    localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.62, y: 0.5 },
+    source: 'Legacy Wakation generated editorial asset; original production prompt not retained in this branch',
+    license: 'Wakation-owned generated editorial asset',
+    restriction: {
+      KO: '실제 Hosted 참가자·숙소·확정 프로그램 현장으로 표현하지 않는다.',
+      EN: 'Do not present as a real Hosted participant, stay or confirmed program location.',
+      JP: '実在のHosted参加者・宿泊施設・確定済みプログラムの現場として表現しない。',
+    },
+  },
+  {
+    id: 'home-hero-model-a-coastal-work-desktop-v1',
+    src: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v1.webp',
+    alt: {
+      KO: '바다가 보이는 밝은 공간에서 노트북을 닫고 창밖을 보는 여행자',
+      EN: 'A traveler closing a laptop and looking outside in a bright coastal setting',
+      JP: '海の見える明るい空間でノートパソコンを閉じ、窓の外を見る旅行者',
+    },
+    sourceType: 'generated',
+    usage: 'hero',
+    illustrative: true,
+    width: 1536,
+    height: 1024,
+    modelId: 'WAK-MODEL-A',
+    localeUsage: ['ko', 'en', 'ja'],
+    focalPoints: { desktop: { x: 0.7, y: 0.48 }, mobile: { x: 0.68, y: 0.47 } },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-A identity references',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: {
+      KO: '특정 카페·호텔 또는 실제 Wakation 참가자 장면으로 단정하지 않는다.',
+      EN: 'Do not identify this as a specific café, hotel or real Wakation participant scene.',
+      JP: '特定のカフェ・ホテル、または実際のWakation参加者の場面として扱わない。',
+    },
+  },
+  {
+    id: 'home-hero-model-a-coastal-work-mobile-v1',
+    src: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v1.webp',
+    alt: {
+      KO: '바다가 보이는 밝은 공간에서 노트북을 정리하는 여행자',
+      EN: 'A traveler packing up a laptop in a bright coastal setting',
+      JP: '海の見える明るい空間でノートパソコンを片づける旅行者',
+    },
+    sourceType: 'generated',
+    usage: 'hero',
+    illustrative: true,
+    width: 960,
+    height: 1280,
+    modelId: 'WAK-MODEL-A',
+    localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.68, y: 0.47 },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-A identity references',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: {
+      KO: '특정 카페·호텔 또는 실제 Wakation 참가자 장면으로 단정하지 않는다.',
+      EN: 'Do not identify this as a specific café, hotel or real Wakation participant scene.',
+      JP: '特定のカフェ・ホテル、または実際のWakation参加者の場面として扱わない。',
+    },
+  },
+  {
+    id: 'domestic-seoul-model-d-urban-work-v1',
+    src: '/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp',
+    alt: {
+      KO: '서울을 연상시키는 도시형 카페 공간에서 노트를 정리하는 여행자',
+      EN: 'A traveler taking notes in a Seoul-inspired urban café setting',
+      JP: 'ソウルをイメージした都会的なカフェ空間でノートを書く旅行者',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.68, y: 0.48 },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-D identity reference',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: { KO: '실제 서울 매장이나 참가자 사진이 아니다.', EN: 'Not a real Seoul venue or participant photograph.', JP: '実在のソウルの店舗や参加者の写真ではない。' },
+  },
+  {
+    id: 'domestic-busan-model-c-coastal-transition-v1',
+    src: '/media/brand-models/domestic-busan-model-c-coastal-transition-v1.webp',
+    alt: {
+      KO: '부산을 연상시키는 해안 공간에서 가방을 들고 산책을 시작하는 여행자',
+      EN: 'A traveler beginning a walk in a Busan-inspired coastal setting',
+      JP: '釜山をイメージした海辺の空間で散歩を始める旅行者',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-C', localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.58, y: 0.48 },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-C identity reference',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: { KO: '실제 부산 카페·해변 또는 참가자 사진이 아니다.', EN: 'Not a real Busan café, beach or participant photograph.', JP: '実在の釜山のカフェ・海辺、または参加者の写真ではない。' },
+  },
+  {
+    id: 'domestic-jeju-model-a-slow-stay-v1',
+    src: '/media/brand-models/domestic-jeju-model-a-slow-stay-v1.webp',
+    alt: {
+      KO: '제주를 연상시키는 돌담과 억새 풍경 앞에서 노트를 펼친 여행자',
+      EN: 'A traveler with a notebook beside stone walls and grass in a Jeju-inspired setting',
+      JP: '済州をイメージした石垣とススキの風景でノートを開く旅行者',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-A', localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.72, y: 0.5 },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-A identity references',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: { KO: '실제 제주 숙소·프로그램 또는 참가자 사진이 아니다.', EN: 'Not a real Jeju stay, program or participant photograph.', JP: '実在の済州の宿・プログラム、または参加者の写真ではない。' },
+  },
+  {
+    id: 'trip-match-model-d-city-departure-v1',
+    src: '/media/brand-models/trip-match-model-d-city-departure-v1.webp',
+    alt: {
+      KO: '도시 이동을 앞두고 라운지에서 노트북을 닫는 여행자',
+      EN: 'A traveler closing a laptop in a city departure lounge',
+      JP: '街への出発前にラウンジでノートパソコンを閉じる旅行者',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1536, height: 1024, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'],
+    focalPoint: { x: 0.72, y: 0.48 },
+    source: 'OpenAI image generation using user-provided WAK-MODEL-D identity reference',
+    license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
+    createdAt: '2026-07-31',
+    restriction: { KO: '실제 역·교통사 또는 참가자 사진이 아니다.', EN: 'Not a real station, transport provider or participant photograph.', JP: '実在の駅・交通事業者、または参加者の写真ではない。' },
+  },
   {
     id: 'activity-seoul-baseball-editorial-v2',
     src: '/covers/activity-seoul-baseball-editorial-v2.webp',
