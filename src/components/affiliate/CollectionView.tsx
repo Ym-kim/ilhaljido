@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -17,12 +17,14 @@ import { trackEvent } from '@/lib/track'
 import { getTripSetCampaign } from '@/lib/tripSetCampaign'
 import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
+import { TripSetPreparationCard } from '@/components/affiliate/TripSetPreparationCard'
 
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
 export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
   const col = getCollection(slug)
+  const conversionSectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -44,6 +46,28 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [col?.slug])
 
+  useEffect(() => {
+    if (!col?.duration || !col.conversionItems?.length) return
+    const section = conversionSectionRef.current
+    if (!section) return
+
+    let sent = false
+    const observer = new IntersectionObserver((entries) => {
+      if (sent || !entries.some((entry) => entry.isIntersecting)) return
+      sent = true
+      trackEvent('trip_set_conversion_view', {
+        slug: col.slug,
+        destination: col.cityGuideSlug ?? col.slug,
+        locale: lang,
+        item_count: String(col.conversionItems?.length ?? 0),
+      })
+      observer.disconnect()
+    }, { threshold: 0.2 })
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [col, lang])
+
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
   if (!col) {
@@ -56,7 +80,14 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
     )
   }
 
-  const items = getCatalogItems(col.itemIds).map((i) => localizeAffiliateItem(i, lang))
+  const conversionItems = (col.conversionItems ?? []).flatMap((entry, index) => {
+    const item = getCatalogItems([entry.affiliateItemId])[0]
+    if (!item || item.status !== 'active_affiliate' || !item.href) return []
+    return [{ entry, item: localizeAffiliateItem(item, lang), position: index + 1 }]
+  })
+  const items = col.duration && conversionItems.length > 0
+    ? conversionItems.map(({ item }) => item)
+    : getCatalogItems(col.itemIds).map((item) => localizeAffiliateItem(item, lang))
   const campaign = getTripSetCampaign(col.slug)
   const socialCopy = (lang === 'KO' || lang === 'JP') ? campaign?.copy[lang] : undefined
   const accent = campaign?.accent ?? '#38bdf8'
@@ -269,7 +300,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       )}
 
       {/* 구성 상품 */}
-      <section id={col.duration ? 'trip-prepare' : undefined} data-trip-section={col.duration ? 'prepare' : undefined} className="scroll-mt-32 bg-white px-4 py-14 sm:px-6 sm:py-20">
+      <section ref={col.duration ? conversionSectionRef : undefined} id={col.duration ? 'trip-prepare' : undefined} data-trip-section={col.duration ? 'prepare' : undefined} className="scroll-mt-32 bg-white px-4 py-14 sm:px-6 sm:py-20">
         <div className="max-w-6xl mx-auto">
           <h2 className="mb-2 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">
             {col.duration ? COLLECTIONS_UI.ts_prepare[lang] : COLLECTIONS_UI.included[lang]}
@@ -286,9 +317,23 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
             ))}
           </div>
           <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-            {items.map((item) => (
-              <AffiliateCard key={item.id} item={item} visual />
-            ))}
+            {col.duration && conversionItems.length > 0
+              ? conversionItems.map(({ entry, item, position }) => (
+                  <TripSetPreparationCard
+                    key={item.id}
+                    item={item}
+                    reason={entry.reason[lang]}
+                    verifiedAt={entry.verifiedAt}
+                    categoryLabel={COLLECTIONS_UI[`ts_category_${item.category}`][lang]}
+                    lang={lang}
+                    tripSetSlug={col.slug}
+                    destinationSlug={col.cityGuideSlug ?? col.slug}
+                    position={position}
+                  />
+                ))
+              : items.map((item) => (
+                  <AffiliateCard key={item.id} item={item} visual />
+                ))}
           </div>
           <details className="group mt-7 max-w-2xl border-t border-[#e5e9e8] pt-4">
             <summary className="min-h-11 cursor-pointer list-none py-2 text-xs font-bold text-[#65757d] [&::-webkit-details-marker]:hidden">

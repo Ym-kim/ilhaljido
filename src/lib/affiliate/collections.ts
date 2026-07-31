@@ -14,6 +14,12 @@ import { TRIP_SET_CAMPAIGNS } from '@/lib/tripSetCampaign'
 
 type L = Record<Lang, string>
 
+export type TripSetConversionItem = {
+  affiliateItemId: string
+  reason: L
+  verifiedAt: string
+}
+
 // ── Trip Set 확장 (2026-07-28, feat/promotable-trip-sets-v1) ──
 // 기존 Collection을 optional 필드로 점진 확장 — 기존 8개 컬렉션은 무변경·무영향.
 // 확장 필드가 있는 컬렉션은 CollectionView가 '여행 랜딩페이지'형으로 렌더한다.
@@ -60,6 +66,8 @@ export type Collection = {
   comfortFacts?: ComfortFact[]
   /** 관련 도시 가이드 slug (보조 CTA) */
   cityGuideSlug?: string
+  /** Trip Set 상세에서 일정 맥락과 함께 노출할 active affiliate 선택지 (최대 4개) */
+  conversionItems?: TripSetConversionItem[]
 }
 
 const P = (id: string) =>
@@ -105,6 +113,44 @@ export const COLLECTIONS: Collection[] = [
       JP: '直行1時間台、空港から都心まで地下鉄ですぐ。博多のコワーキングラウンジ付きの宿で働き、近郊の温泉町へ一日を空けて。',
     },
     itemIds: ['stay-webase-hakata', 'act-fukuoka-bustour', 'esim-klook-japan', 'feat-flight-tripcom'],
+    conversionItems: [
+      {
+        affiliateItemId: 'stay-webase-hakata',
+        reason: {
+          KO: '하카타를 거점으로 두면 도착일 이동과 오전 업무 동선을 짧게 잡을 수 있어요.',
+          EN: 'A Hakata base keeps arrival transfers short and makes morning work blocks easier.',
+          JP: '博多を拠点にすると、到着日の移動と午前の仕事時間を短い動線で組めます。',
+        },
+        verifiedAt: '2026-07-06',
+      },
+      {
+        affiliateItemId: 'act-fukuoka-bustour',
+        reason: {
+          KO: '하루를 비울 수 있다면 다자이후·유후인·벳부를 한 동선으로 살펴보는 선택이에요.',
+          EN: 'If you can spare a full day, this links Dazaifu, Yufuin and Beppu in one route.',
+          JP: '一日空けられるなら、太宰府・湯布院・別府をひとつの動線で巡る選択肢です。',
+        },
+        verifiedAt: '2026-07-21',
+      },
+      {
+        affiliateItemId: 'esim-klook-japan',
+        reason: {
+          KO: '출발 전에 설치해 두면 공항 도착 직후 지도와 업무 연락을 바로 확인할 수 있어요.',
+          EN: 'Install it before departure so maps and work messages are ready as soon as you land.',
+          JP: '出発前に設定しておけば、到着後すぐに地図や仕事の連絡を確認できます。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+      {
+        affiliateItemId: 'feat-flight-tripcom',
+        reason: {
+          KO: '3박 4일은 출도착 시간이 체류 시간을 좌우해 왕복 일정을 먼저 비교하는 편이 좋아요.',
+          EN: 'On a 3N4D trip, flight times shape the stay, so compare the round trip first.',
+          JP: '3泊4日は発着時間で滞在時間が変わるため、往復便を先に比べると安心です。',
+        },
+        verifiedAt: '2026-07-09',
+      },
+    ],
     duration: '3n4d',
     durationLabel: { KO: '3박 4일', EN: '3N4D', JP: '3泊4日' },
     companions: { KO: '혼자 · 일하며 여행', EN: 'Solo · work + travel', JP: 'ひとり · 働きながら' },
@@ -158,6 +204,44 @@ export const COLLECTIONS: Collection[] = [
       JP: 'ユニバ、黒門市場、周遊パスで巡る40カ所以上。友達との大阪は計画も楽しみのうち。ラウンジの広い宿をベースに、昼と夜をバランスよく。',
     },
     itemIds: ['stay-lively-osaka', 'act-osaka-usj', 'act-klook-osaka-pass', 'theme-local-kuromon', 'esim-klook-japan', 'feat-flight-tripcom'],
+    conversionItems: [
+      {
+        affiliateItemId: 'stay-lively-osaka',
+        reason: {
+          KO: '친구와 쉬는 공간과 각자 일할 라운지를 한 숙소 안에서 함께 확보하는 선택이에요.',
+          EN: 'It gives friends a shared base while keeping lounge space for separate work blocks.',
+          JP: '友達と過ごす拠点と、それぞれが仕事できるラウンジを一つの宿で確保できます。',
+        },
+        verifiedAt: '2026-07-06',
+      },
+      {
+        affiliateItemId: 'act-osaka-usj',
+        reason: {
+          KO: '테마파크 하루를 일정의 중심에 두고 나머지 날을 가볍게 구성할 때 잘 맞아요.',
+          EN: 'A good fit when the theme-park day is the anchor and the other days stay flexible.',
+          JP: 'テーマパークの一日を旅の軸にして、ほかの日を軽めに組みたい時に合います。',
+        },
+        verifiedAt: '2026-07-21',
+      },
+      {
+        affiliateItemId: 'act-klook-osaka-pass',
+        reason: {
+          KO: 'Day 3의 전망대·크루즈·도심 이동을 하나의 패스로 묶어 계획을 단순하게 해요.',
+          EN: 'It simplifies Day 3 by grouping city transport, viewpoints and cruises into one pass.',
+          JP: 'Day 3の市内移動・展望台・クルーズを一つのパスにまとめ、計画をシンプルにできます。',
+        },
+        verifiedAt: '2026-07-19',
+      },
+      {
+        affiliateItemId: 'esim-klook-japan',
+        reason: {
+          KO: '친구와 흩어져 움직일 때도 지도와 메시지를 바로 확인할 수 있게 출발 전에 준비해요.',
+          EN: 'Set it up before departure so maps and messages work even when the group splits up.',
+          JP: '別行動の時も地図やメッセージを使えるよう、出発前に準備しておくと安心です。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+    ],
     duration: '3n4d',
     durationLabel: { KO: '3박 4일', EN: '3N4D', JP: '3泊4日' },
     companions: { KO: '친구와 둘이서', EN: 'With a friend', JP: '友達とふたりで' },
@@ -209,6 +293,44 @@ export const COLLECTIONS: Collection[] = [
       JP: '聖水のポップアップ、延南洞のカフェ、夜は野球観戦まで。ソウルは歩くほど見えてくる街。キッチン付きレジデンスを拠点に、観光と日常のあいだの3泊4日を。',
     },
     itemIds: ['stay-fraser-seoul', 'theme-sports-seoul-baseball', 'esim-airalo', 'feat-transfer-klook'],
+    conversionItems: [
+      {
+        affiliateItemId: 'stay-fraser-seoul',
+        reason: {
+          KO: '주방과 세탁이 있는 도심 거점은 3박 4일을 관광보다 생활에 가깝게 만들어줘요.',
+          EN: 'A central base with a kitchen and laundry makes four days feel closer to city living.',
+          JP: 'キッチンと洗濯設備のある都心拠点なら、3泊4日を観光より暮らしに近づけられます。',
+        },
+        verifiedAt: '2026-07-21',
+      },
+      {
+        affiliateItemId: 'theme-sports-seoul-baseball',
+        reason: {
+          KO: '낮의 성수·연남 산책 뒤에 서울의 저녁 문화를 경험하는 Day 3 선택이에요.',
+          EN: 'A Day 3 evening option after daytime walks through Seongsu and Yeonnam.',
+          JP: '聖水・延南洞を歩いた後に、ソウルの夜の文化を楽しむDay 3の選択肢です。',
+        },
+        verifiedAt: '2026-07-21',
+      },
+      {
+        affiliateItemId: 'esim-airalo',
+        reason: {
+          KO: '해외에서 서울을 찾는 여행자라면 지도·번역·업무 연락을 위한 연결을 먼저 준비해요.',
+          EN: 'For visitors arriving from abroad, sort maps, translation and work connectivity first.',
+          JP: '海外からソウルへ来るなら、地図・翻訳・仕事連絡の通信を先に整えておきましょう。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+      {
+        affiliateItemId: 'feat-transfer-klook',
+        reason: {
+          KO: '짐이 많거나 늦게 도착한다면 공항에서 숙소까지의 첫 이동을 미리 비교해 보세요.',
+          EN: 'If you have luggage or land late, compare the first transfer to your stay in advance.',
+          JP: '荷物が多い時や到着が遅い時は、空港から宿までの移動を事前に比べておくと安心です。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+    ],
     duration: '3n4d',
     durationLabel: { KO: '3박 4일', EN: '3N4D', JP: '3泊4日' },
     companions: { KO: '혼자·친구 모두', EN: 'Solo or with a friend', JP: 'ひとりでも友達とでも' },
@@ -261,6 +383,44 @@ export const COLLECTIONS: Collection[] = [
       JP: '海雲台のオーシャンビューレジデンスで目覚める週末。田浦カフェ通りを歩いて、必要なら釜山駅のワーケーション拠点で少しだけ仕事。短いからこそいい2泊3日。',
     },
     itemIds: ['stay-uh-busan', 'cruise-panstar-miracle', 'esim-airalo', 'feat-transfer-klook'],
+    conversionItems: [
+      {
+        affiliateItemId: 'stay-uh-busan',
+        reason: {
+          KO: '짧은 주말에는 해운대 산책과 휴식을 숙소 주변에서 해결할 수 있는 거점이 효율적이에요.',
+          EN: 'For a short weekend, a Haeundae base keeps beach walks and downtime close together.',
+          JP: '短い週末は、海雲台の散歩と休息を宿の近くでまとめられる拠点が効率的です。',
+        },
+        verifiedAt: '2026-07-21',
+      },
+      {
+        affiliateItemId: 'cruise-panstar-miracle',
+        reason: {
+          KO: '오사카에서 부산으로 들어오는 여행자라면 이동 자체를 하룻밤 여정으로 바꾸는 선택이에요.',
+          EN: 'For travelers coming from Osaka, it turns the transfer itself into an overnight journey.',
+          JP: '大阪から釜山へ向かうなら、移動そのものを一泊の旅に変える選択肢です。',
+        },
+        verifiedAt: '2026-07-26',
+      },
+      {
+        affiliateItemId: 'esim-airalo',
+        reason: {
+          KO: '해외에서 부산을 찾는 경우 지도와 번역을 위해 도착 전 연결을 준비해 두세요.',
+          EN: 'Visitors arriving from abroad can set up maps and translation before landing.',
+          JP: '海外から釜山へ来る場合は、地図や翻訳の通信を到着前に準備しておきましょう。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+      {
+        affiliateItemId: 'feat-transfer-klook',
+        reason: {
+          KO: '해운대까지 짐을 들고 이동하는 부담이 크다면 공항 이동 조건을 먼저 확인해 보세요.',
+          EN: 'If luggage makes the trip to Haeundae difficult, check airport-transfer terms first.',
+          JP: '荷物を持って海雲台まで移動する負担が大きいなら、空港送迎の条件を先に確認しましょう。',
+        },
+        verifiedAt: '2026-07-15',
+      },
+    ],
     duration: '2n3d',
     durationLabel: { KO: '2박 3일', EN: '2N3D', JP: '2泊3日' },
     companions: { KO: '혼자·친구 모두', EN: 'Solo or with a friend', JP: 'ひとりでも友達とでも' },
@@ -430,10 +590,14 @@ export const COLLECTIONS_UI: Record<string, L> = {
   ts_comfort: { KO: '알아두면 편한 것', EN: 'Good to know', JP: '知っておくと便利' },
   ts_prepare: { KO: '이 여행을 준비하는 선택', EN: 'Prepare this trip, piece by piece', JP: 'この旅の準備を始める' },
   ts_prepare_note: {
-    KO: '각 상품은 제휴사에서 개별 예약·결제됩니다. 패키지 일괄 판매가 아닙니다.',
-    EN: 'Each item is booked and paid separately at the partner. This is not a package sale.',
-    JP: '各商品は提携先で個別に予約・決済されます。パッケージ販売ではありません。',
+    KO: '일정에 필요한 이유를 먼저 살펴보고, 가격과 이용 조건은 제휴사에서 최종 확인하세요.',
+    EN: 'Start with why each option fits the itinerary, then confirm prices and terms with the partner.',
+    JP: 'この日程に合う理由を確認してから、料金・利用条件は提携先で最終確認してください。',
   },
+  ts_verified: { KO: '조건 확인', EN: 'Details checked', JP: '条件確認' },
+  ts_partner_cta: { KO: '제휴사에서 조건 확인', EN: 'Check terms with partner', JP: '提携先で条件を確認' },
+  ts_save_add: { KO: '여행 준비에 저장', EN: 'Save for this trip', JP: '旅の準備に保存' },
+  ts_save_remove: { KO: '저장한 준비에서 삭제', EN: 'Remove from saved items', JP: '保存した準備から削除' },
   ts_disclosure_label: { KO: '예약 전에 확인하세요', EN: 'Before you book', JP: '予約前にご確認ください' },
   ts_guide_cta: { KO: '도시 가이드 보기', EN: 'Open the city guide', JP: '都市ガイドを見る' },
   ts_category_hotel: { KO: '숙소', EN: 'Stay', JP: '宿' },
