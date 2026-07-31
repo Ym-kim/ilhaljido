@@ -159,9 +159,13 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   }
 
   const openMobileMenu = (section?: string) => {
+    const initialSection = section ?? 'more'
     setMobileMenuOpen(true)
-    setMobileSection(section ?? null)
-    trackNavigation('mobile_menu_open', section ?? 'global', 'mobile')
+    setMobileSection(initialSection)
+    trackNavigation('mobile_menu_open', initialSection, 'mobile')
+    if (initialSection === 'more') {
+      trackEvent('mobile_nav_more_view', { locale: lang, source: 'mobile_nav', placement: 'default_open' })
+    }
   }
 
   const closeMobileMenu = (menu = 'global') => {
@@ -181,7 +185,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
       mobileDialogRef.current?.querySelectorAll<HTMLElement>(
         'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
       ) ?? [],
-    ).filter((element) => !element.hasAttribute('hidden'))
+    ).filter((element) => !element.hasAttribute('hidden') && !element.closest('[inert]'))
     if (focusable.length === 0) return
     const first = focusable[0]
     const last = focusable[focusable.length - 1]
@@ -343,6 +347,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
   const renderMobileSection = (menu: NavigationMenu) => {
     const open = mobileSection === menu.id
     const groups = getNavigationGroups(menu, lang)
+    const compact = menu.id === 'more'
     return (
       <div key={menu.id} className="border-b border-[#e5ebec]">
         <button
@@ -352,17 +357,32 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
           onClick={() => {
             const next = open ? null : menu.id
             setMobileSection(next)
-            if (next) trackNavigation('navigation_open', menu.id, 'mobile')
+            if (next) {
+              trackNavigation('navigation_open', menu.id, 'mobile')
+              if (menu.id === 'more') trackEvent('mobile_nav_more_view', { locale: lang, source: 'mobile_nav', placement: 'accordion' })
+            }
           }}
-          className="flex min-h-14 w-full items-center justify-between gap-4 py-3 text-left text-[1.02rem] font-black tracking-[-0.02em] text-[#142b39] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-sky-500"
+          className={cn(
+            'flex w-full items-center justify-between gap-4 text-left font-black tracking-[-0.02em] text-[#142b39] focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-sky-500',
+            compact ? 'min-h-12 py-2.5 text-[0.96rem]' : 'min-h-14 py-3 text-[1.02rem]',
+          )}
         >
           <span>{menu.label[lang]}</span>
           <ChevronDown className={cn('h-4 w-4 transition-transform motion-reduce:transition-none', open && 'rotate-180')} strokeWidth={ICON_STROKE} />
         </button>
-        {open && (
-          <div id={`mobile-menu-${menu.id}`} className="pb-4">
-            <span className="mb-2 block text-[0.67rem] font-bold leading-5 text-[#71828a]">{menu.title[lang]}</span>
-            <div className={cn('grid gap-1', groups.length > 1 && 'min-[390px]:grid-cols-2')}>
+        <div
+          id={`mobile-menu-${menu.id}`}
+          aria-hidden={!open}
+          inert={open ? undefined : true}
+          className={cn(
+            'grid transition-[grid-template-rows,opacity] duration-200 ease-out motion-reduce:transition-none',
+            open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+          )}
+        >
+          <div className="min-h-0 overflow-hidden">
+            <div className={compact ? 'pb-3' : 'pb-4'}>
+              <span className={cn('block text-[0.67rem] font-bold leading-5 text-[#71828a]', compact ? 'mb-1.5' : 'mb-2')}>{menu.title[lang]}</span>
+              <div className={cn('grid', compact ? 'gap-0.5' : 'gap-1', groups.length > 1 && 'min-[390px]:grid-cols-2')}>
               {groups.flatMap((group) => group.links).slice(0, 6).map((item) => {
                 const href = getNavigationHref(item, lang)
                 const active = isPathActive(pathname, href)
@@ -373,7 +393,8 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                     aria-current={active ? 'page' : undefined}
                     onClick={() => onNavigationClick(menu.id, item, 'mobile')}
                     className={cn(
-                      'flex min-h-12 min-w-0 items-center justify-between gap-2 rounded-xl px-3 py-2 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-sky-500',
+                      'flex min-w-0 items-center justify-between gap-2 rounded-xl px-3 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-sky-500',
+                      compact ? 'min-h-11 py-1.5' : 'min-h-12 py-2',
                       active ? 'bg-[#eaf6fb] text-[#08719b]' : 'text-[#425660] hover:bg-[#f2f6f6]',
                     )}
                   >
@@ -382,19 +403,20 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                   </Link>
                 )
               })}
+              </div>
+              {menu.allLink && (
+                <Link
+                  href={getNavigationHref(menu.allLink, lang)}
+                  onClick={() => onNavigationClick(menu.id, menu.allLink!, 'mobile')}
+                  className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-black text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                >
+                  {menu.allLink.label[lang]} <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
+                </Link>
+              )}
+              {menu.campaign && renderCampaignCard('mobile')}
             </div>
-            {menu.allLink && (
-              <Link
-                href={getNavigationHref(menu.allLink, lang)}
-                onClick={() => onNavigationClick(menu.id, menu.allLink!, 'mobile')}
-                className="mt-2 inline-flex min-h-11 items-center gap-1.5 px-3 text-xs font-black text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
-              >
-                {menu.allLink.label[lang]} <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
-              </Link>
-            )}
-            {menu.campaign && renderCampaignCard('mobile')}
           </div>
-        )}
+        </div>
       </div>
     )
   }
@@ -587,7 +609,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 {renderMobileSection(NAVIGATION_MENUS.find((menu) => menu.id === 'more')!)}
               </div>
 
-              <div className="mt-5">
+              <div className="mt-4">
                 <span className="mb-2 block text-[0.65rem] font-black uppercase tracking-[0.16em] text-[#819198]">{NAVIGATION_COPY.languageLabel[lang]}</span>
                 <div className="grid grid-cols-3 gap-2">
                   {(['KO', 'EN', 'JP'] as Lang[]).map((locale) => (
@@ -596,7 +618,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 </div>
               </div>
 
-              <Link href="/contact" onClick={() => closeMobileMenu('contact')} className="mt-5 flex min-h-11 items-center justify-center text-sm font-bold text-[#5a6d76] hover:text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">{NAVIGATION_COPY.contact[lang]}</Link>
+              <Link href="/contact" onClick={() => closeMobileMenu('contact')} className="mt-3 flex min-h-11 items-center justify-center text-sm font-bold text-[#5a6d76] hover:text-[#08719b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">{NAVIGATION_COPY.contact[lang]}</Link>
             </div>
           </div>
         )}
