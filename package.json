@@ -13,7 +13,8 @@
     "audit:media": "node scripts/audit-media-assets.mjs",
     "audit:support-data": "node scripts/audit-support-data.mjs",
     "audit:support-freshness": "node scripts/audit-support-freshness.mjs",
-    "audit:experience-data": "node scripts/audit-experience-data.mjs"
+    "audit:experience-data": "node scripts/audit-experience-data.mjs",
+    "audit:trip-set-conversion": "node scripts/audit-trip-set-conversion.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

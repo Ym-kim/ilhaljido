@@ -29,6 +29,11 @@ export function trackAffiliateClick(props: {
   provider?: string
   status?: string
   page?: string
+  tripSetSlug?: string
+  destination?: string
+  category?: string
+  locale?: string
+  position?: string
 }) {
   try {
     let campaignContext: Record<string, string> = {}
@@ -51,6 +56,11 @@ export function trackAffiliateClick(props: {
       status: props.status ?? 'unknown',
       page: props.page ?? (typeof window !== 'undefined' ? window.location.pathname : 'unknown'),
       ...campaignContext,
+      ...(props.tripSetSlug ? { trip_set_slug: props.tripSetSlug } : {}),
+      ...(props.destination ? { destination: props.destination } : {}),
+      ...(props.category ? { category: props.category } : {}),
+      ...(props.locale ? { locale: props.locale } : {}),
+      ...(props.position ? { position: props.position } : {}),
     }
     track('affiliate_click', payload)
     trackGaEvent('affiliate_click', payload)
