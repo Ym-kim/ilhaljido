@@ -127,6 +127,16 @@ const FAQ: { q: L; a: L }[] = [
   },
 ]
 
+const HOSTED_HERO_ASSET = {
+  id: 'home-workation-editorial-v1-legacy',
+  src: '/campaign/home-workation-editorial-v1.webp',
+  alt: {
+    KO: '해안에서의 체류와 업무 전환을 표현한 Wakation 브랜드 편집 이미지',
+    EN: 'Wakation brand editorial image about moving between coastal time and work',
+    JP: '海辺での滞在と仕事の切り替えを表現したWakationのブランド編集画像',
+  } satisfies L,
+} as const
+
 function localeCode(lang: Lang) {
   return lang === 'JP' ? 'ja' : lang === 'EN' ? 'en' : 'ko'
 }
@@ -143,7 +153,7 @@ export function HostedLandingView({ forceLang }: { forceLang?: Lang }) {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
     if (!viewed.current) {
       viewed.current = true
-      trackEvent('hosted_landing_view', { locale: localeCode(lang) })
+      trackEvent('hosted_landing_view', { locale: localeCode(lang), assetId: HOSTED_HERO_ASSET.id })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang, ctxLang])
@@ -169,10 +179,10 @@ export function HostedLandingView({ forceLang }: { forceLang?: Lang }) {
 
       <section className="dark-surface relative flex min-h-[88svh] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-8 md:min-h-[760px] md:pb-20">
         <Image
-          src="/campaign/home-workation-editorial-v1.webp"
-          alt={{ KO: '바다가 보이는 숙소에서 노트북으로 일하는 여행자', EN: 'A traveler working on a laptop in a sea-view stay', JP: '海の見える滞在先でノートPCを開いて働く旅人' }[lang]}
+          src={HOSTED_HERO_ASSET.src}
+          alt={HOSTED_HERO_ASSET.alt[lang]}
           fill
-          priority
+          preload
           sizes="100vw"
           className="object-cover object-[62%_center] md:object-center"
         />
