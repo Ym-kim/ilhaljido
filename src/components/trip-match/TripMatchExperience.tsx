@@ -282,7 +282,7 @@ export function TripMatchExperience({
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,18,29,.94)_0%,rgba(3,18,29,.73)_55%,rgba(3,18,29,.25)_100%)]" />
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-24 sm:px-8 md:pb-20">
-            <div className="max-w-2xl">
+            <div data-motion="reveal" data-motion-speed="editorial" className="max-w-2xl">
               <span className="block text-[0.68rem] font-extrabold tracking-[0.22em] text-[#8fd3e9]">{COPY.eyebrow[lang]}</span>
               <h1 className="mt-4 text-[clamp(2.7rem,11vw,5.2rem)] font-black leading-[0.98] tracking-[-0.055em] text-white text-balance">{COPY.title[lang]}</h1>
               <span className="mt-6 block max-w-xl text-base font-medium leading-7 text-white/72">{COPY.lead[lang]}</span>
@@ -331,7 +331,7 @@ export function TripMatchExperience({
             <span className="block h-full rounded-full bg-[#317b98] transition-[width] duration-300 motion-reduce:transition-none" style={{ width: `${((step + 1) / 3) * 100}%` }} />
           </div>
 
-          <section className="mt-8 rounded-[2rem] border border-[#dedbd3] bg-white px-5 py-7 shadow-[0_22px_70px_rgba(31,51,58,.08)] sm:px-9 sm:py-10">
+          <section key={step} data-motion="reveal" className="mt-8 rounded-[2rem] border border-[#dedbd3] bg-white px-5 py-7 shadow-[0_22px_70px_rgba(31,51,58,.08)] sm:px-9 sm:py-10">
             <span className="text-[0.66rem] font-extrabold tracking-[0.2em] text-[#3f8ba8]">TRIP MATCH · 0{step + 1}</span>
             <h1 className="mt-3 text-3xl font-black leading-tight tracking-[-0.04em] sm:text-4xl">{question}</h1>
             <p className="mt-3 text-sm font-medium leading-6 text-[#72808a]">{hint}</p>
@@ -429,7 +429,7 @@ export function TripMatchExperience({
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,18,29,.95)_0%,rgba(3,18,29,.73)_52%,rgba(3,18,29,.2)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824] to-transparent" />
         <div className="relative mx-auto flex min-h-[78svh] max-w-7xl items-end px-5 pb-10 pt-24 sm:px-8 md:items-center md:pb-16 lg:px-10">
-          <div className="max-w-2xl" aria-live="polite">
+          <div data-motion="reveal" data-motion-speed="editorial" className="max-w-2xl" aria-live="polite">
             <span className="block text-[0.68rem] font-extrabold tracking-[0.22em] text-[#8fd3e9]">{COPY.resultEyebrow[lang]}</span>
             <span className="mt-3 block text-sm font-bold text-white/58">{COPY.resultTitle[lang]}</span>
             <h1 className="mt-2 text-[clamp(3rem,12vw,5.8rem)] font-black leading-[0.95] tracking-[-0.06em] text-white">{primary.title}</h1>
@@ -480,7 +480,7 @@ export function TripMatchExperience({
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 md:grid-cols-[1.08fr_.92fr] md:py-20 lg:px-10">
+      <section data-motion="reveal" className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 md:grid-cols-[1.08fr_.92fr] md:py-20 lg:px-10">
         <div>
           <span className="text-[0.68rem] font-extrabold tracking-[0.2em] text-[#317b98]">{COPY.alternativeEyebrow[lang]}</span>
           <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] sm:text-4xl">{COPY.alternativeTitle[lang]}</h2>
@@ -519,7 +519,7 @@ export function TripMatchExperience({
         </div>
       </section>
 
-      <section className="border-y border-[#d8e5e7] bg-[#edf5f4] px-5 py-14 sm:px-8 md:py-20">
+      <section data-motion="reveal" className="border-y border-[#d8e5e7] bg-[#edf5f4] px-5 py-14 sm:px-8 md:py-20">
         <div className="mx-auto max-w-7xl">
           <span className="text-[0.68rem] font-extrabold tracking-[0.2em] text-[#317b98]">{COPY.prepareEyebrow[lang]}</span>
           <h2 className="mt-3 text-3xl font-black tracking-[-0.04em] sm:text-4xl">{COPY.prepareTitle[lang]}</h2>
@@ -532,7 +532,7 @@ export function TripMatchExperience({
       </section>
 
       {shouldShowHosted && (
-        <section className="bg-[#071824] px-5 py-14 sm:px-8 md:py-20">
+        <section data-motion="reveal" className="bg-[#071824] px-5 py-14 sm:px-8 md:py-20">
           <div className="dark-surface mx-auto max-w-5xl rounded-[1.75rem] border border-white/12 bg-white/[0.05] p-6 sm:p-9">
             <span className="block text-[0.68rem] font-extrabold tracking-[0.2em] text-[#8fd3e9]">{COPY.hostedEyebrow[lang]}</span>
             <span className="mt-3 block text-2xl font-black tracking-[-0.035em] text-white sm:text-3xl">{COPY.hostedTitle[lang]}</span>

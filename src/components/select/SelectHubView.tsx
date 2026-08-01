@@ -256,7 +256,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#64748b] text-[0.7rem] font-bold tracking-[0.18em] uppercase mb-4">
             {COPY.cat_label[lang]}
           </p>
-          <ol data-visual-module="preparation-timeline" aria-label={COPY.cat_label[lang]} className="grid overflow-hidden border border-[#d9e1df] bg-[#d9e1df] lg:grid-cols-4">
+          <ol data-visual-module="preparation-timeline" data-motion="reveal" data-motion-speed="editorial" aria-label={COPY.cat_label[lang]} className="grid overflow-hidden border border-[#d9e1df] bg-[#d9e1df] lg:grid-cols-4">
             {CATEGORIES.map((cat, index) => (
               <li key={cat.id} className="relative bg-white">
                 <Link

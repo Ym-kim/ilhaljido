@@ -43,6 +43,12 @@
   --wak-sage: #9aaa86;
   --wak-ink: #142431;
   --wak-muted: #66747d;
+  --wak-motion-micro: 150ms;
+  --wak-motion-ui: 220ms;
+  --wak-motion-reveal: 520ms;
+  --wak-motion-editorial: 720ms;
+  --wak-motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --wak-motion-ease-emphasis: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Wakation editorial typography — one hierarchy for KO, EN and JA. */
@@ -141,6 +147,7 @@ html[lang='ja'] body,
   font-family: 'Hiragino Sans', 'Yu Gothic', 'YuGothic', 'Meiryo', var(--font-sans);
   letter-spacing: 0;
   line-break: strict;
+  word-break: normal;
 }
 
 html[lang='ja'] h1,
@@ -330,16 +337,16 @@ nav ul { list-style: none; }
 }
 .animate-rise {
   opacity: 0;
-  animation: rise-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: rise-in var(--wak-motion-editorial) var(--wak-motion-ease-emphasis) forwards;
 }
 
 /* 히어로 슬로우 줌(Ken Burns) — 첫 화면 정적감 해소. transform만 사용해 LCP 무영향 */
 @keyframes kenburns {
   from { transform: scale(1); }
-  to   { transform: scale(1.08); }
+  to   { transform: scale(1.035); }
 }
 .animate-kenburns {
-  animation: kenburns 26s ease-in-out infinite alternate;
+  animation: kenburns 32s ease-in-out infinite alternate;
   will-change: transform;
 }
 
@@ -362,10 +369,65 @@ nav ul { list-style: none; }
   animation: ticker-scroll 36s linear infinite;
 }
 
+/* Wakation Motion System v1 — calm, one-shot editorial reveals. */
+html[data-wak-motion='ready'] [data-motion='reveal'] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition:
+    opacity var(--wak-motion-reveal) var(--wak-motion-ease-standard),
+    transform var(--wak-motion-reveal) var(--wak-motion-ease-emphasis);
+  transition-delay: var(--wak-motion-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html[data-wak-motion='ready'] [data-motion='reveal'][data-motion-variant='fade'] {
+  transform: none;
+}
+
+html[data-wak-motion='ready'] [data-motion='reveal'][data-motion-variant='left'] {
+  transform: translate3d(-18px, 0, 0);
+}
+
+html[data-wak-motion='ready'] [data-motion='reveal'][data-motion-speed='editorial'] {
+  transition-duration: var(--wak-motion-editorial);
+}
+
+[data-motion-order='1'] { --wak-motion-delay: 60ms; }
+[data-motion-order='2'] { --wak-motion-delay: 120ms; }
+[data-motion-order='3'] { --wak-motion-delay: 180ms; }
+[data-motion-order='4'] { --wak-motion-delay: 240ms; }
+[data-motion-order='5'] { --wak-motion-delay: 300ms; }
+[data-motion-order='6'] { --wak-motion-delay: 360ms; }
+
+html[data-wak-motion='ready'] [data-motion='reveal'][data-motion-state='visible'],
+html[data-wak-motion='reduced'] [data-motion='reveal'] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .animate-rise {
+    opacity: 1;
+    transform: none;
+  }
+
   .animate-kenburns,
   .animate-ticker {
     animation: none;
+    transform: none;
   }
 }
 

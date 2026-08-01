@@ -48,7 +48,7 @@ export function WorkOverlap({ timeZone, cityName, lang }: { timeZone: string; ci
 
   // SSG/hydration 시엔 자리만 (시간은 클라이언트 전용)
   if (!now) {
-    return <div className="h-40 rounded-2xl border border-[#dbeafe] bg-[#f8fbff] animate-pulse" aria-hidden />
+    return <div className="h-40 rounded-2xl border border-[#dbeafe] bg-[#f8fbff] animate-pulse motion-reduce:animate-none" aria-hidden />
   }
 
   const seoulNow = nowIn('Asia/Seoul')

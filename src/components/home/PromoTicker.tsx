@@ -1,8 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Pause, Play } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
@@ -24,6 +25,12 @@ const INTRO: Record<Lang, { label: string; sub: string }> = {
   KO: { label: '이번 주 추천', sub: '머무는 여행을 위한 선택' },
   EN: { label: 'This week', sub: 'Picked for longer stays' },
   JP: { label: '今週のおすすめ', sub: '長く滞在する旅のために' },
+}
+
+const MOTION_COPY: Record<Lang, { pause: string; play: string }> = {
+  KO: { pause: '추천 흐름 멈추기', play: '추천 흐름 재생하기' },
+  EN: { pause: 'Pause recommendations', play: 'Play recommendations' },
+  JP: { pause: 'おすすめの流れを停止', play: 'おすすめの流れを再生' },
 }
 
 const ITEMS: TickerItem[] = [
@@ -140,6 +147,13 @@ function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
 
 export function PromoTicker() {
   const { lang } = useLang()
+  const [paused, setPaused] = useState(false)
+
+  const toggleMotion = () => {
+    const next = !paused
+    setPaused(next)
+    try { track('promo_ticker_motion_toggled', { state: next ? 'paused' : 'playing' }) } catch {}
+  }
 
   return (
     <section className="flex overflow-hidden border-y border-[#d8e1e5] bg-[#f2f6f5]">
@@ -147,10 +161,19 @@ export function PromoTicker() {
         <span className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-sky-300">{INTRO[lang].label}</span>
         <span className="mt-1 text-[0.7rem] font-medium text-white/55">{INTRO[lang].sub}</span>
       </div>
+      <button
+        type="button"
+        onClick={toggleMotion}
+        className="flex min-h-11 w-12 shrink-0 items-center justify-center border-r border-[#d8e1e5] text-[#526a76] transition-colors hover:bg-white hover:text-[#153846] focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-sky-600"
+        aria-label={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
+        title={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
+      >
+        {paused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+      </button>
       <div className="group/ticker min-w-0 flex-1 overflow-hidden">
         <div
-          className="flex w-max animate-ticker motion-reduce:animate-none group-hover/ticker:[animation-play-state:paused]"
-          style={{ animationDuration: '76s' }}
+          className="flex w-max animate-ticker motion-reduce:animate-none group-hover/ticker:[animation-play-state:paused] group-focus-within/ticker:[animation-play-state:paused]"
+          style={{ animationDuration: '76s', animationPlayState: paused ? 'paused' : undefined }}
         >
           <div className="flex">
             {ITEMS.map((item) => <TickerCard key={item.id} item={item} lang={lang} />)}

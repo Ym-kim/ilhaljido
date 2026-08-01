@@ -20,7 +20,10 @@
     "audit:content-depth": "node scripts/audit-content-depth.mjs",
     "audit:menu-routes": "node scripts/audit-menu-routes.mjs",
     "audit:affiliate-placement": "node scripts/audit-affiliate-placement.mjs",
-    "audit:visual-content": "node scripts/audit-visual-content.mjs"
+    "audit:visual-content": "node scripts/audit-visual-content.mjs",
+    "audit:routes": "node scripts/build-full-site-route-inventory.mjs",
+    "audit:motion-visual": "node scripts/audit-full-site-motion-visual.mjs",
+    "audit:motion-scorecard": "node scripts/build-motion-visual-scorecard.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

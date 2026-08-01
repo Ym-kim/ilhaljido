@@ -11,6 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics as GtagConsent } from '@/components/analytics/Analytics'
 import { WishlistToast } from '@/components/affiliate/WishlistToast'
 import { LocaleDocument } from '@/components/layout/LocaleDocument'
+import { MotionRuntime } from '@/components/motion/MotionRuntime'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
@@ -104,6 +105,7 @@ const organizationJsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <LocaleDocument organizationJsonLd={JSON.stringify(organizationJsonLd)}>
+      <MotionRuntime />
       <LanguageProvider>
         <AuthProvider>
           <AnnounceProvider>

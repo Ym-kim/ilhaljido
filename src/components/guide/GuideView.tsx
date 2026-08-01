@@ -152,7 +152,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         <h2 className="text-xl md:text-2xl font-bold text-[#111827] tracking-tight mb-6">
           {GUIDE_UI.areasTitle[lang]}
         </h2>
-        <ol data-visual-module="neighborhood-rail" aria-label={GUIDE_UI.areasTitle[lang]} className="grid overflow-hidden border border-[#cfe0e5] bg-[#cfe0e5] md:grid-cols-2">
+        <ol data-visual-module="neighborhood-rail" data-motion="reveal" data-motion-speed="editorial" aria-label={GUIDE_UI.areasTitle[lang]} className="grid overflow-hidden border border-[#cfe0e5] bg-[#cfe0e5] md:grid-cols-2">
           {guide.areas.map((a, i) => (
             <li key={i} className="grid min-h-44 grid-cols-[3rem_1fr] gap-4 bg-[#f8fbff] p-5 sm:p-6">
               <div className="flex flex-col items-center" aria-hidden="true">
