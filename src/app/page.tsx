@@ -222,7 +222,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               {/* 실제 운영·제휴 신뢰 신호 */}
               <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
                 <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
-                  <span className="w-1.5 h-1.5 rounded-full bg-sky-300 animate-pulse inline-block" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-300 inline-block" />
                   {tr('h3_badge_pilot')}
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1.5 rounded-full bg-white/8 text-white/90 border border-white/15 backdrop-blur-md">
@@ -348,7 +348,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-6">
             <div>
               <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-mid inline-block" />
                 Wakation Select · {tr('h3_sel_live')}
               </p>
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight">
@@ -420,7 +420,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
           {recruitingPrograms.length > 0 ? (
             <div className="space-y-5">
               <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-1 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse inline-block" />
+                <span className="w-2 h-2 rounded-full bg-sky-400 inline-block" />
                 {tr('home_recruiting_eyebrow')}
               </p>
               {recruitingPrograms.map((p) => (
@@ -475,7 +475,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8">
                 <div>
                   <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse inline-block" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
                     Wakation Hosted · {tr('h3_lineup_eyebrow')}
                   </p>
                   <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight">
@@ -576,7 +576,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
-            <div data-visual-module="service-ecosystem-map" className="min-w-0 border border-[#c9dde4] bg-white p-6 shadow-[0_16px_42px_rgba(29,78,96,0.08)] sm:p-8">
+            <div data-visual-module="service-ecosystem-map" data-motion="reveal" data-motion-variant="left" data-motion-speed="editorial" className="min-w-0 border border-[#c9dde4] bg-white p-6 shadow-[0_16px_42px_rgba(29,78,96,0.08)] sm:p-8">
               <div className="flex items-center justify-between gap-4 border-b border-[#dbe7ea] pb-5">
                 <div>
                   <p className="text-[0.66rem] font-black tracking-[0.15em] text-[#5f8390]">SERVICE MAP</p>

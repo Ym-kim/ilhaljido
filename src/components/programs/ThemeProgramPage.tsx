@@ -67,7 +67,7 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
         <section className="py-14 px-6 bg-[#0d0d0d] border-t border-white/8">
           <div className="max-w-6xl mx-auto">
             <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse inline-block" />
+              <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
               {tr('theme_featured')}
             </p>
             <p className="text-white/60 text-sm mb-6">{tr('theme_featured_d')}</p>

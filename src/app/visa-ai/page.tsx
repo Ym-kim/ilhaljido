@@ -228,7 +228,7 @@ export default function VisaAiPage() {
             <div>
               {loading && (
                 <div className="text-center py-16">
-                  <div className="w-16 h-16 border-4 border-brand-mid border-t-transparent rounded-full animate-spin mx-auto mb-6" />
+                  <div className="w-16 h-16 border-4 border-brand-mid border-t-transparent rounded-full animate-spin motion-reduce:animate-none mx-auto mb-6" />
                   <p className="text-white font-bold text-lg">{tr('visa_analyzing')}</p>
                   <p className="text-caption-on-dark text-sm mt-2">{selectionSummary}</p>
                 </div>

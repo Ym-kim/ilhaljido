@@ -568,11 +568,11 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
 
         {/* 에디터 심층 가이드 크로스링크 */}
         {hasGuide && (
-          <section className="bg-[#f8f7f4] border border-[#e8e4dc] rounded-2xl p-5 flex items-center gap-4">
+          <section data-motion="reveal" className="bg-[#f8f7f4] border border-[#e8e4dc] rounded-2xl p-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
             <div className="w-10 h-10 bg-white rounded-xl border border-[#e8e4dc] flex items-center justify-center shrink-0">
               <BookOpen className="w-5 h-5 text-[#555]" strokeWidth={2} />
             </div>
-            <div className="flex-1">
+            <div className="min-w-0 flex-1">
               <p className="text-xs text-[#888] mb-0.5">{UI.guideLabel[lang]}</p>
               <p className="font-bold text-[#111]">{t('guideTitle')}</p>
               <p className="text-xs text-[#888]">{UI.guideSub[lang]}</p>

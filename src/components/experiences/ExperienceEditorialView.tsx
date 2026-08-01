@@ -149,7 +149,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
       </nav>
 
       <main>
-        <section id="overview" className="scroll-mt-32 border-b border-[#e9e5dc] bg-white px-5 py-12 sm:px-6 sm:py-16">
+        <section id="overview" data-motion="reveal" className="scroll-mt-32 border-b border-[#e9e5dc] bg-white px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(17rem,0.75fr)]">
             <div>
               <span className="text-[0.7rem] font-black tracking-[0.15em] text-[#5e8491]">{COPY.editor[lang]}</span>
@@ -164,7 +164,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           </div>
         </section>
 
-        <section id="facts" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#f4f0e8] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="facts" data-motion="reveal" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#f4f0e8] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">
             <h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.facts[lang]}</h2>
             <div className="mt-7 grid grid-cols-2 gap-px overflow-hidden rounded-[1.5rem] border border-[#ddd6ca] bg-[#ddd6ca] sm:grid-cols-3">
@@ -186,7 +186,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           </div>
         </section>
 
-        <section id="course" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#0b2938] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="course" data-motion="reveal" data-motion-variant="fade" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#0b2938] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">
             <h2 className="text-2xl font-black text-white sm:text-3xl">{COPY.course[lang]}</h2>
             <div className="mt-7 grid gap-5 lg:grid-cols-2">
@@ -202,7 +202,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           </div>
         </section>
 
-        <section id="reviews" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#f4f0e8] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="reviews" data-motion="reveal" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#f4f0e8] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)]">
             <div className="rounded-[1.5rem] bg-[#143848] p-6 text-white">
               <span className="text-[0.68rem] font-black tracking-[0.13em] text-sky-200">{COPY.providerMetrics[lang]}</span>
@@ -218,14 +218,14 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           </div>
         </section>
 
-        <section id="checks" className="scroll-mt-32 border-b border-[#e1e8e7] bg-white px-5 py-12 sm:px-6 sm:py-16">
+        <section id="checks" data-motion="reveal" className="scroll-mt-32 border-b border-[#e1e8e7] bg-white px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
             <div><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.operator[lang]}</h2><dl className="mt-6 divide-y divide-[#e7eceb] border-y border-[#e7eceb]">{[[COPY.operatorLabel[lang], experience.operator[lang]], [COPY.sellerLabel[lang], 'Klook'], [COPY.roleLabel[lang], COPY.role[lang]]].map(([term, description]) => <div key={term} className="grid grid-cols-[8rem_minmax(0,1fr)] gap-3 py-4"><dt className="text-xs font-black text-[#7b8a90]">{term}</dt><dd className="text-sm font-semibold leading-6 text-[#334c57]">{description}</dd></div>)}</dl></div>
             <div><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.checks[lang]}</h2><ul className="mt-6 space-y-3">{experience.checks.map((entry) => <li key={entry[lang]} className="flex gap-3 rounded-2xl bg-[#f4f8f7] px-4 py-3.5 text-sm leading-6 text-[#53666d]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#4c8a99]" strokeWidth={ICON_STROKE} />{entry[lang]}</li>)}</ul></div>
           </div>
         </section>
 
-        <section id="faq" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#fbfaf7] px-5 py-12 sm:px-6 sm:py-16">
+        <section id="faq" data-motion="reveal" data-motion-variant="fade" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#fbfaf7] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-4xl"><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.faq[lang]}</h2><div className="mt-7 divide-y divide-[#dfe5e3] border-y border-[#dfe5e3]">{experience.faq.map((entry) => <details key={entry.question[lang]} className="group"><summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-4 text-sm font-black text-[#233f4a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 [&::-webkit-details-marker]:hidden"><span>{entry.question[lang]}</span><span className="text-xl font-light text-[#6b8791] transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pb-5 pr-8 text-sm leading-7 text-[#607078]">{entry.answer[lang]}</p></details>)}</div></div>
         </section>
 

@@ -82,7 +82,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
       <section className="px-6 pb-12 border-t border-[#e0f2fe] bg-[#f0f9ff]/50">
         <div className="max-w-6xl mx-auto pt-10">
           <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-1.5 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid animate-pulse inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-brand-mid inline-block" />
             {tr('sela_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('sela_featured_d')}</p>

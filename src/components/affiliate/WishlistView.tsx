@@ -88,7 +88,7 @@ export function WishlistView() {
             <div className="min-h-[30vh]" aria-hidden />
           ) : items.length === 0 && supportIds.length === 0 && savedTripMatches.length === 0 ? (
             <div className="mx-auto max-w-4xl">
-            <div data-visual-module="first-save-journey" className="grid overflow-hidden border border-[#cfe0e5] bg-[#153846] lg:grid-cols-[0.9fr_1.1fr]">
+            <div data-visual-module="first-save-journey" data-motion="reveal" data-motion-speed="editorial" className="grid overflow-hidden border border-[#cfe0e5] bg-[#153846] lg:grid-cols-[0.9fr_1.1fr]">
               <div className="flex flex-col justify-center p-7 sm:p-10">
                 <span className="text-[0.68rem] font-black tracking-[0.16em] text-sky-300">START HERE</span>
                 <h2 className="mt-3 text-2xl font-black text-white">{COPY.empty_title[lang]}</h2>

@@ -44,6 +44,7 @@ next-env.d.ts
 
 # browser automation snapshots
 .playwright-cli/
+/artifacts/
 
 # local screenshots / images
 *.png

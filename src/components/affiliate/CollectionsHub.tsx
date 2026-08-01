@@ -54,6 +54,8 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
             href={`${prefix}/collections/${featured.slug}`}
             data-visual-module="featured-trip-set"
             data-ui-card="editorial"
+            data-motion="reveal"
+            data-motion-speed="editorial"
             onClick={() => trackEvent('visual_module_interaction', { route: '/collections', locale: lang, sectionId: 'featured-trip-set', visualType: 'featured-editorial', contentId: featured.slug, targetRoute: `${prefix}/collections/${featured.slug}` })}
             className="group relative block min-h-[28rem] overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_20px_54px_rgba(8,32,48,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:min-h-[32rem]"
           >
@@ -88,7 +90,7 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
 
           <div className="mt-12">
             <h2 className="text-2xl font-black text-[#17242b]">{VISUAL_COPY.tripSets[lang]}</h2>
-            <div data-visual-module="trip-set-comparison" data-ui-grid="editorial" className="mt-5 grid gap-4 md:grid-cols-3">
+            <div data-visual-module="trip-set-comparison" data-ui-grid="editorial" data-motion="reveal" className="mt-5 grid gap-4 md:grid-cols-3">
               {tripSets.map((col, index) => (
                 <Link
                   key={col.slug}
@@ -116,7 +118,7 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
 
           <div className="mt-14 border-t border-[#d7dedf] pt-8">
             <h2 className="text-xl font-black text-[#17242b]">{VISUAL_COPY.more[lang]}</h2>
-            <div data-visual-module="editorial-theme-index" className="mt-5 grid border-t border-[#d7dedf] md:grid-cols-2">
+            <div data-visual-module="editorial-theme-index" data-motion="reveal" data-motion-variant="fade" className="mt-5 grid border-t border-[#d7dedf] md:grid-cols-2">
               {editorialCollections.map((col, index) => {
             const count = getCatalogItems(col.itemIds).length
             return (

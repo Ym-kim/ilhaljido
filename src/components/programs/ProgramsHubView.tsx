@@ -105,7 +105,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
             <SectionEyebrow>{tr('programs_grid_eyebrow')}</SectionEyebrow>
             <SectionTitle className="text-center">{tr('programs_grid_title')}</SectionTitle>
           </div>
-          <div data-visual-module="program-portfolio" data-ui-grid="editorial" className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+          <div data-visual-module="program-portfolio" data-ui-grid="editorial" data-motion="reveal" data-motion-speed="editorial" className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
             {featuredProgram && (
               <Link
                 href={PREFIXABLE_PATHS.has(featuredProgram.href) ? `${prefix}${featuredProgram.href}` : featuredProgram.href}
@@ -170,7 +170,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
               {tr('prog_sel_desc')}
             </p>
           </div>
-          <div data-visual-module="program-status-roadmap" className="grid gap-px overflow-hidden border border-[#cfe1e8] bg-[#cfe1e8] lg:grid-cols-4">
+          <div data-visual-module="program-status-roadmap" data-motion="reveal" className="grid gap-px overflow-hidden border border-[#cfe1e8] bg-[#cfe1e8] lg:grid-cols-4">
             {STATUS_ORDER.map((status) => {
               const entries = selectCategories.filter((cat) => cat.status === status)
               if (entries.length === 0) return null
