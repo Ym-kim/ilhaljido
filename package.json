@@ -24,7 +24,12 @@
     "audit:routes": "node scripts/build-full-site-route-inventory.mjs",
     "audit:motion-visual": "node scripts/audit-full-site-motion-visual.mjs",
     "audit:motion-scorecard": "node scripts/build-motion-visual-scorecard.mjs",
-    "audit:motion-contact-sheet": "node scripts/build-motion-visual-contact-sheets.mjs"
+    "audit:motion-contact-sheet": "node scripts/build-motion-visual-contact-sheets.mjs",
+    "media:verified:plan": "node scripts/migrate-verified-remote-media.mjs",
+    "media:verified:download": "node scripts/migrate-verified-remote-media.mjs --download",
+    "media:verified:apply": "node scripts/migrate-verified-remote-media.mjs --apply",
+    "audit:verified-media": "node scripts/audit-verified-remote-media.mjs",
+    "audit:verified-media:contact-sheet": "node scripts/build-verified-media-contact-sheets.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

@@ -1,0 +1,978 @@
+[
+  {
+    "key": "1414235077428-338989a2e8c0",
+    "src": "/media/verified/unsplash/1414235077428-338989a2e8c0.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1146,
+        "label": "id: 'activity-japan-fukuoka"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 121634,
+    "sha256": "f01de66bffdbc1d91426aa84725227ab636c5f0d9fe48e7c104fffa728687ab0"
+  },
+  {
+    "key": "1470004914212-05527e49370b",
+    "src": "/media/verified/unsplash/1470004914212-05527e49370b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 490,
+        "label": "id: 'taiwan-taipei"
+      }
+    ],
+    "width": 1600,
+    "height": 865,
+    "bytes": 251864,
+    "sha256": "35701abefd6ce2585b5f2ca55787ea5d02787d080ccba28cb91e91e96dc6add1"
+  },
+  {
+    "key": "1473116763249-2faaef81ccda",
+    "src": "/media/verified/unsplash/1473116763249-2faaef81ccda.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 301,
+        "label": "id: 'korea-gangneung"
+      }
+    ],
+    "width": 1600,
+    "height": 1036,
+    "bytes": 112120,
+    "sha256": "836d9b881327d3f8b74b4c1a67e148ef98d0dcc5dd31f640e33af4510bfc1f34"
+  },
+  {
+    "key": "1488646953014-85cb44e25828",
+    "src": "/media/verified/unsplash/1488646953014-85cb44e25828.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1311,
+        "label": "id: 'esim-global"
+      }
+    ],
+    "width": 1600,
+    "height": 1264,
+    "bytes": 321230,
+    "sha256": "1ae675c7880daa6738d3a7b425615733b44b06f424fc4693b24951703fcdd062"
+  },
+  {
+    "key": "1497366216548-37526070297c",
+    "src": "/media/verified/unsplash/1497366216548-37526070297c.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1367,
+        "label": "id: 'learn-dev"
+      }
+    ],
+    "width": 1600,
+    "height": 1068,
+    "bytes": 63262,
+    "sha256": "7eafb216616cf6fbb03dbc93655f492d658f4020a3eb1715d4b2d6ebbb26da45"
+  },
+  {
+    "key": "1502680390469-be75c86b636f",
+    "src": "/media/verified/unsplash/1502680390469-be75c86b636f.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 275,
+        "label": "id: 'korea-yangyang"
+      },
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1184,
+        "label": "id: 'activity-bali"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 162748,
+    "sha256": "aafa4a4270a355dcd984a6b52a40996e7ff1c89f4157b40e19e31f25b0832899"
+  },
+  {
+    "key": "1503676260728-1c00da094a0b",
+    "src": "/media/verified/unsplash/1503676260728-1c00da094a0b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1377,
+        "label": "id: 'learn-language"
+      }
+    ],
+    "width": 1600,
+    "height": 1130,
+    "bytes": 38226,
+    "sha256": "fbc51ecd56b61405845fc748281e3984a5094bec759f5b65d8b2bfdc54bb7c9d"
+  },
+  {
+    "key": "1504109586057-7a2ae83d1338",
+    "src": "/media/verified/unsplash/1504109586057-7a2ae83d1338.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1504109586057-7a2ae83d1338?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1037,
+        "label": "id: 'japan-hiroshima"
+      }
+    ],
+    "width": 1600,
+    "height": 899,
+    "bytes": 136446,
+    "sha256": "886d5bea5cc88e6b174b045cd38ffa9bb4820bef76aa3d630542074ad9ac8816"
+  },
+  {
+    "key": "1507525428034-b723cf961d3e",
+    "src": "/media/verified/unsplash/1507525428034-b723cf961d3e.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 355,
+        "label": "id: 'japan-okinawa"
+      }
+    ],
+    "width": 1600,
+    "height": 1064,
+    "bytes": 96602,
+    "sha256": "8110e817af5c2b0d325a4f61e0fe5afebea04af9cca0ac4286c44619f43c968a"
+  },
+  {
+    "key": "1508009603885-50cf7c579365",
+    "src": "/media/verified/unsplash/1508009603885-50cf7c579365.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 408,
+        "label": "id: 'thailand-bangkok"
+      }
+    ],
+    "width": 1600,
+    "height": 1238,
+    "bytes": 269042,
+    "sha256": "8aaa738735112b52df985cc9b730ced2ac2c4c0d0f7f762a8059f8871a187608"
+  },
+  {
+    "key": "1517154421773-0529f29ea451",
+    "src": "/media/verified/unsplash/1517154421773-0529f29ea451.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1291,
+        "label": "id: 'esim-korea"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 217346,
+    "sha256": "94cfea74c89df413d45b29e556b08895e2a78f86869a1b453ee6f9192104731a"
+  },
+  {
+    "key": "1518599807935-37015b9cefcb",
+    "src": "/media/verified/unsplash/1518599807935-37015b9cefcb.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1518599807935-37015b9cefcb?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 873,
+        "label": "id: 'china-hongkong"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 194828,
+    "sha256": "53b014d101e3985e1e032b3e47b176461b37574e1afdf67f2941a17f51bac38c"
+  },
+  {
+    "key": "1522199755839-a2bacb67c546",
+    "src": "/media/verified/unsplash/1522199755839-a2bacb67c546.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1357,
+        "label": "id: 'learn-productivity"
+      }
+    ],
+    "width": 1600,
+    "height": 1065,
+    "bytes": 75878,
+    "sha256": "2e0a0897dd8a2a8bafba93ac9c54cad08053a72b67ee2418424d11b1cb202790"
+  },
+  {
+    "key": "1525625293386-3f8f99389edd",
+    "src": "/media/verified/unsplash/1525625293386-3f8f99389edd.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 516,
+        "label": "id: 'singapore-city"
+      }
+    ],
+    "width": 1600,
+    "height": 1234,
+    "bytes": 249770,
+    "sha256": "66a394c0b9f507964fc85dda899006a2e6c6b333a3ec6fac462b7c6d532ab8fe"
+  },
+  {
+    "key": "1528360983277-13d401cdc186",
+    "src": "/media/verified/unsplash/1528360983277-13d401cdc186.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1127,
+        "label": "id: 'activity-japan"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 149532,
+    "sha256": "7d5d59e66dd5519867389a4d15c1565342549a01c78f1427a10e2a4cba78de22"
+  },
+  {
+    "key": "1537996194471-e657df975ab4",
+    "src": "/media/verified/unsplash/1537996194471-e657df975ab4.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1251,
+        "label": "id: 'esim-indonesia"
+      }
+    ],
+    "width": 1600,
+    "height": 2123,
+    "bytes": 219494,
+    "sha256": "a9cd2e312ecf755ecba901f07af2805f776b57264fd1c24fb0d540fbc4e36886"
+  },
+  {
+    "key": "1540959733332-eab4deabeeaf",
+    "src": "/media/verified/unsplash/1540959733332-eab4deabeeaf.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1210,
+        "label": "id: 'esim-japan"
+      }
+    ],
+    "width": 1600,
+    "height": 1038,
+    "bytes": 419696,
+    "sha256": "4f28bbca070b63d20b65f685727f86d0f6aff5820eacbb094628711d0d1560e1"
+  },
+  {
+    "key": "1544367567-0f2fcb009e0b",
+    "src": "/media/verified/unsplash/1544367567-0f2fcb009e0b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 708,
+        "label": "id: 'indonesia-ubud"
+      }
+    ],
+    "width": 1600,
+    "height": 1009,
+    "bytes": 45052,
+    "sha256": "074446b47790b634d01b3c824667aa561617be948175e23244897c4b3b351343"
+  },
+  {
+    "key": "1545569341-9eb8b30979d9",
+    "src": "/media/verified/unsplash/1545569341-9eb8b30979d9.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 329,
+        "label": "id: 'japan-kyoto"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 128152,
+    "sha256": "20f67e2ed9aa4ba8cdbd5f709d00673ce8b33901901f1ae074ef50fd84b686b2"
+  },
+  {
+    "key": "1548707309-dcebeab9ea9b",
+    "src": "/media/verified/unsplash/1548707309-dcebeab9ea9b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 223,
+        "label": "id: 'portugal-lisbon"
+      },
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1271,
+        "label": "id: 'esim-portugal"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 164386,
+    "sha256": "fa97ed9708e770340c9fad47a90b74c1016a0fb3ae53462fb6a672dfe2046e13"
+  },
+  {
+    "key": "1552581234-26160f608093",
+    "src": "/media/verified/unsplash/1552581234-26160f608093.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1347,
+        "label": "id: 'learn-marketing"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 131318,
+    "sha256": "49e8338c42f1f3d53e540bd10ba9489f7a9bc99622e6a0d055f1d2325d5a983b"
+  },
+  {
+    "key": "1559592413-7cec4d0cae2b",
+    "src": "/media/verified/unsplash/1559592413-7cec4d0cae2b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1231,
+        "label": "id: 'esim-vietnam"
+      }
+    ],
+    "width": 1600,
+    "height": 1000,
+    "bytes": 218902,
+    "sha256": "6d6b3ff17dfcc34b32ceda22e9ffb835e8c2e8a6fa5f7569b05f4356ee365cc3"
+  },
+  {
+    "key": "1560472354-b33ff0c44a43",
+    "src": "/media/verified/unsplash/1560472354-b33ff0c44a43.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1387,
+        "label": "id: 'learn-finance"
+      }
+    ],
+    "width": 1600,
+    "height": 976,
+    "bytes": 62836,
+    "sha256": "e025ce9a54f1b88c37f88b902b9249eeefeb8028e876ffa5121f97572a32dfb1"
+  },
+  {
+    "key": "1583417319070-4a69db38a482",
+    "src": "/media/verified/unsplash/1583417319070-4a69db38a482.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 168,
+        "label": "id: 'vietnam-hcmc"
+      },
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1165,
+        "label": "id: 'activity-vietnam"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 168806,
+    "sha256": "caa85bdbb8d6eaa0a9a296683e331c687aa25034710f531388dbe4257efdaa53"
+  },
+  {
+    "key": "1584698048102-bbedb5811cba",
+    "src": "/media/verified/unsplash/1584698048102-bbedb5811cba.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "sourcePage": "https://unsplash.com/photos/CIOagJnSTWY",
+    "photographer": "Bide Cui",
+    "location": "The Bund, Shanghai, China",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1584698048102-bbedb5811cba?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 847,
+        "label": "id: 'china-shanghai"
+      }
+    ],
+    "width": 1600,
+    "height": 546,
+    "bytes": 64540,
+    "sha256": "eeeb15733a21c21e96eee587873532dfd9e67775fce1ff4fe77e0178e60a924c"
+  },
+  {
+    "key": "1591040973846-61888c2de010",
+    "src": "/media/verified/unsplash/1591040973846-61888c2de010.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1591040973846-61888c2de010?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1064,
+        "label": "id: 'portugal-porto"
+      }
+    ],
+    "width": 1600,
+    "height": 1200,
+    "bytes": 355792,
+    "sha256": "2f10e979bf2220fbe73dbd480ad087067813695ee925beb915b710c730ae902d"
+  },
+  {
+    "key": "1601225612316-b4733315a717",
+    "src": "/media/verified/unsplash/1601225612316-b4733315a717.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1601225612316-b4733315a717?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 984,
+        "label": "id: 'thailand-phuket"
+      }
+    ],
+    "width": 1600,
+    "height": 2133,
+    "bytes": 693866,
+    "sha256": "20203ffd3ff304ae7775a235e31de5891fe48e408e568c63cab9380e0f243ed9"
+  },
+  {
+    "key": "1613516392416-1a621fb69004",
+    "src": "/media/verified/unsplash/1613516392416-1a621fb69004.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1613516392416-1a621fb69004?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 957,
+        "label": "id: 'korea-sokcho"
+      }
+    ],
+    "width": 1600,
+    "height": 1200,
+    "bytes": 194806,
+    "sha256": "71ebc28dbbf414d555c614e32cd7f3bef3b0c06f5fdcc91c292218fd04032fc7"
+  },
+  {
+    "key": "1617653202545-931490e8d7e7",
+    "src": "/media/verified/unsplash/1617653202545-931490e8d7e7.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 434,
+        "label": "id: 'vietnam-nhatrang"
+      }
+    ],
+    "width": 1600,
+    "height": 900,
+    "bytes": 122038,
+    "sha256": "4e44837b4a8d6416befa7308ebf841e1af8d8a9c7a1a2607904900412e6ed651"
+  },
+  {
+    "key": "1677442135703-1787eea5ce01",
+    "src": "/media/verified/unsplash/1677442135703-1787eea5ce01.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1337,
+        "label": "id: 'learn-ai"
+      }
+    ],
+    "width": 1600,
+    "height": 900,
+    "bytes": 112018,
+    "sha256": "fdd0665f85cb3d84ccb9eedfd4254579e41140ee55f5154f86f1472b2018acf2"
+  },
+  {
+    "key": "1712497867605-cd8d80574245",
+    "src": "/media/verified/unsplash/1712497867605-cd8d80574245.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1712497867605-cd8d80574245?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1091,
+        "label": "id: 'portugal-faro"
+      }
+    ],
+    "width": 1600,
+    "height": 1200,
+    "bytes": 225678,
+    "sha256": "2899c723a45324f4de276e2576c25f9803ce9f6e651c1092bd89d5c368d78a35"
+  },
+  {
+    "key": "1742643635715-00c577862b56",
+    "src": "/media/verified/unsplash/1742643635715-00c577862b56.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "sourcePage": "https://unsplash.com/photos/1uH3GuCEjSc",
+    "photographer": "Harsil Patel",
+    "location": "Swan Street Bridge, Melbourne VIC, Australia",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1742643635715-00c577862b56?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 792,
+        "label": "id: 'australia-melbourne"
+      }
+    ],
+    "width": 1600,
+    "height": 1205,
+    "bytes": 310020,
+    "sha256": "27686e269c0efd68f368db1b0a06481294a21bc1f0c136ae5d1a78d0cfe9667c"
+  },
+  {
+    "key": "1747546314703-6c4fc20c5a37",
+    "src": "/media/verified/unsplash/1747546314703-6c4fc20c5a37.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1747546314703-6c4fc20c5a37?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 1010,
+        "label": "id: 'japan-nagoya"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 166992,
+    "sha256": "977f996c8bf8aea3528c24eacceffc56b7e4674752bd49072745195b49386a03"
+  },
+  {
+    "key": "1756007847785-b3369b87173b",
+    "src": "/media/verified/unsplash/1756007847785-b3369b87173b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "sourcePage": "https://unsplash.com/photos/bsKvQLTgwVo",
+    "photographer": "PJH",
+    "location": "Kobe Harborland, Kobe, Hyogo, Japan",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1756007847785-b3369b87173b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/destinations.ts"
+    ],
+    "usages": [
+      "destination"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/destinations.ts",
+        "line": 595,
+        "label": "id: 'japan-kobe"
+      }
+    ],
+    "width": 1600,
+    "height": 2416,
+    "bytes": 382056,
+    "sha256": "c883881b147eaff647fb8dfe50db78ebca8cca7047274cc0707d49c9a7d56e1e"
+  }
+]
