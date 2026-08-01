@@ -10,7 +10,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics as GtagConsent } from '@/components/analytics/Analytics'
 import { WishlistToast } from '@/components/affiliate/WishlistToast'
-import { LocaleHtmlLang } from '@/components/layout/LocaleHtmlLang'
+import { LocaleDocument } from '@/components/layout/LocaleDocument'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
@@ -103,31 +103,22 @@ const organizationJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko" className="scroll-smooth" data-scroll-behavior="smooth">
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-      </head>
-      <body className="min-h-full bg-[#0f0f0f] text-[#141414] antialiased flex flex-col">
-        <LanguageProvider>
-          <LocaleHtmlLang />
-          <AuthProvider>
-            <AnnounceProvider>
-              <SiteNavbar />
-              <MainContent>{children}</MainContent>
-              <Footer />
-              <Analytics />
-              <SpeedInsights />
-              {/* GA4 + 쿠키 동의 (NEXT_PUBLIC_GA_ID 설정 시에만 작동) */}
-              <GtagConsent />
-              {/* 위시리스트 하트 토스트 (Airbnb 벤치) */}
-              <WishlistToast />
-            </AnnounceProvider>
-          </AuthProvider>
-        </LanguageProvider>
-      </body>
-    </html>
+    <LocaleDocument organizationJsonLd={JSON.stringify(organizationJsonLd)}>
+      <LanguageProvider>
+        <AuthProvider>
+          <AnnounceProvider>
+            <SiteNavbar />
+            <MainContent>{children}</MainContent>
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+            {/* GA4 + 쿠키 동의 (NEXT_PUBLIC_GA_ID 설정 시에만 작동) */}
+            <GtagConsent />
+            {/* 위시리스트 하트 토스트 (Airbnb 벤치) */}
+            <WishlistToast />
+          </AnnounceProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </LocaleDocument>
   )
 }
