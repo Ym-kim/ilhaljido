@@ -10,11 +10,13 @@ import {
   VISA_COUNTRIES,
   VISA_PURPOSES,
   VISA_DURATIONS,
-  getVisaMockResult,
 } from '@/lib/i18n'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { VISA_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { getVisaVerifiedGuidance } from '@/lib/content/visaGuidance'
+import { VISA_OFFICIAL_SOURCES } from '@/lib/content/research'
+import { OfficialSourceList } from '@/components/editorial/OfficialSourceList'
 
 type Step = 1 | 2 | 3 | 4
 
@@ -82,10 +84,8 @@ export default function VisaAiPage() {
           setShowResult(true)
         })
     } else {
-      setTimeout(() => {
-        setLoading(false)
-        setShowResult(true)
-      }, 1800)
+      setLoading(false)
+      setShowResult(true)
     }
   }
 
@@ -100,8 +100,9 @@ export default function VisaAiPage() {
 
   const result =
     showResult && selections.country
-      ? getVisaMockResult(lang, selections.country, selections.purpose, selections.duration)
+      ? getVisaVerifiedGuidance(lang, selections.country, selections.purpose)
       : null
+  const officialSources = selections.country ? VISA_OFFICIAL_SOURCES[selections.country] ?? [] : []
 
   const selectionSummary = [
     selections.country ? labelForCountry(selections.country) : '',
@@ -242,12 +243,12 @@ export default function VisaAiPage() {
                     </SectionTitle>
                   </div>
 
-                  {/* 비로그인 — 실시간 AI 유도 배너 */}
+                  {/* 비로그인 — 기본 가이드와 로그인 분석의 범위를 구분 */}
                   {!user && (
                     <div className="mb-5 bg-gradient-to-r from-sky-500/12 to-blue-500/8 border border-sky-500/30 rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div>
                         <p className="text-sky-300 font-bold text-sm mb-1 flex items-center gap-1.5">
-                          <Sparkles className="w-4 h-4" /> {tr('visa_login_banner_t')}
+                          <Sparkles className="w-4 h-4" aria-hidden="true" /> {tr('visa_login_banner_t')}
                         </p>
                         <p className="text-white/55 text-xs leading-relaxed">{tr('visa_login_banner_d')}</p>
                       </div>
@@ -298,13 +299,15 @@ export default function VisaAiPage() {
                         href="/programs"
                         className="inline-flex items-center gap-1 text-sky-400 text-sm font-semibold hover:gap-2 transition-all"
                       >
-                        {tr('nav_cta')} <ArrowRight className="w-3.5 h-3.5" />
+                        {tr('visa_program_cta')} <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                     </div>
                     <div className="bg-amber-500/10 border border-amber-500/30 rounded-2xl p-5">
                       <p className="text-amber-400 text-xs font-bold tracking-widest uppercase mb-1">{tr('visa_label_official')}</p>
                       <p className="text-white/55 text-xs">{result.official}</p>
                     </div>
+
+                    <OfficialSourceList lang={lang} sources={officialSources} />
 
                     {/* 요금제 고지 — 베타 무료 → 연간 멤버십 */}
                     <p className="text-white/30 text-[0.7rem] text-center pt-2">{tr('visa_beta_notice')}</p>

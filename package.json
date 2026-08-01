@@ -16,7 +16,10 @@
     "audit:experience-data": "node scripts/audit-experience-data.mjs",
     "audit:trip-set-conversion": "node scripts/audit-trip-set-conversion.mjs",
     "audit:card-media": "node scripts/audit-card-media.mjs",
-    "audit:locale-lang": "node scripts/audit-locale-document-lang.mjs"
+    "audit:locale-lang": "node scripts/audit-locale-document-lang.mjs",
+    "audit:content-depth": "node scripts/audit-content-depth.mjs",
+    "audit:menu-routes": "node scripts/audit-menu-routes.mjs",
+    "audit:affiliate-placement": "node scripts/audit-affiliate-placement.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

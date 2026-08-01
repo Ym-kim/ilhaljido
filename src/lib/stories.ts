@@ -18,6 +18,9 @@ export type Story = {
   category: L
   title: L
   sub: L
+  image?: string
+  imageAlt?: L
+  illustrative?: boolean
 }
 
 export const STORIES: Story[] = [
@@ -36,6 +39,13 @@ export const STORIES: Story[] = [
       EN: 'Eight Caribbean days in Korean winter — Martinique home port, Starlink Wi-Fi.',
       JP: '韓国の冬にカリブ8日 — マルティニーク母港、スターリンクWi-Fi。',
     },
+    image: '/covers/cruise-caribbean-editorial-photo-v2.webp',
+    imageAlt: {
+      KO: '따뜻한 바다를 항해하는 크루즈를 표현한 편집 이미지',
+      EN: 'Editorial image of a cruise sailing through warm waters',
+      JP: '暖かな海を航行するクルーズを表現した編集画像',
+    },
+    illustrative: true,
   },
   {
     slug: 'serena',
@@ -52,6 +62,13 @@ export const STORIES: Story[] = [
       EN: '19–23 days from South America to Europe — a month at sea on a repositioning voyage.',
       JP: '南米からヨーロッパへ19〜23日 — リポジショニングで海上のひと月。',
     },
+    image: '/covers/cruise-transatlantic-editorial-photo-v2.webp',
+    imageAlt: {
+      KO: '대양 횡단 항해를 표현한 크루즈 편집 이미지',
+      EN: 'Editorial image representing an ocean-crossing cruise',
+      JP: '大洋横断の航海を表現したクルーズ編集画像',
+    },
+    illustrative: true,
   },
   {
     slug: 'bellissima',
@@ -116,18 +133,31 @@ export const STORIES: Story[] = [
       EN: 'PanStar Miracle: two buffet meals, satellite Wi-Fi, no baggage limits.',
       JP: 'パンスター·ミラクル：ビュッフェ2食·衛星Wi-Fi·手荷物制限なし。',
     },
+    image: '/covers/cruise-panstar-real-v2.jpeg',
+    imageAlt: {
+      KO: '부산과 오사카를 잇는 팬스타 크루즈 선박',
+      EN: 'PanStar cruise ship connecting Busan and Osaka',
+      JP: '釜山と大阪を結ぶパンスタークルーズ船',
+    },
   },
 ]
 
 export const STORIES_UI: Record<string, L> = {
   eyebrow: { KO: 'Stories', EN: 'Stories', JP: 'Stories' },
-  title: { KO: '워케이션 스토리', EN: 'Workation Stories', JP: 'ワーケーションストーリー' },
+  title: { KO: '여행 이야기', EN: 'Travel stories', JP: '旅のストーリー' },
   sub: {
     KO: '검증된 사실만으로 쓰는 에디토리얼 — 새로운 체류지와 이동 방식의 가능성을 취재합니다.',
     EN: 'Editorials built on verified facts — new bases and new ways to move, researched.',
     JP: '検証済みの事実だけで書くエディトリアル — 新しい滞在地と移動のかたち。',
   },
   read: { KO: '읽기', EN: 'Read', JP: '読む' },
+  featured: { KO: '편집자가 살펴본 이동과 체류', EN: 'Researched journeys and stays', JP: '編集部が調べた移動と滞在' },
+  more: { KO: '더 많은 여행 이야기', EN: 'More travel stories', JP: 'もっと旅のストーリー' },
+  illustrative: { KO: '편집 이미지', EN: 'Editorial image', JP: '編集画像' },
+  explore_title: { KO: '이야기에서 다음 여행으로', EN: 'Turn a story into your next trip', JP: 'ストーリーから次の旅へ' },
+  explore_sub: { KO: '도시를 비교하거나, 일정이 담긴 여행 구성을 살펴보세요.', EN: 'Compare destinations or explore a trip set with a ready-made flow.', JP: '都市を比べたり、日程の流れがある旅の構成を見てみましょう。' },
+  explore_destinations: { KO: '여행지 살펴보기', EN: 'Explore destinations', JP: '行き先を見る' },
+  explore_collections: { KO: '여행 구성 보기', EN: 'Explore trip sets', JP: '旅の構成を見る' },
   note: {
     KO: '스토리 속 일부 링크는 제휴 링크이며, 요금과 조건은 제휴사 사이트에서 최종 확인됩니다.',
     EN: 'Some links in stories are affiliate links; final prices are confirmed on partner sites.',
