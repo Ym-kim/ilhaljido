@@ -897,6 +897,8 @@ export type SupportStatus = 'open' | 'always' | 'upcoming' | 'check'
 type SupportProgram = {
   id: string
   photo: string          // 지역 사진 (검증 풀)
+  photoAlt?: Loc<string>
+  illustrative?: boolean // 실제 프로그램 현장이 아닌 지역 편집 이미지
   region: Loc<string>
   name: Loc<string>
   benefit: Loc<string>       // 지원 내용 요약
@@ -1104,10 +1106,13 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   // ── 2026-07-26 신규: 경남 4개 시군 — '2026 경남에서 한 달 여행하기' 도 공모 계열.
   //    과거(07-15) 제외 사유(공식 URL 미확보)가 시군 공식 페이지 확보로 해소. 전부 WebFetch 실물검증.
-  //    공통 구조: 숙박 실비 + 체험비 + 보험, 경남 외 거주 만 19세+, SNS 홍보 미션. 사진=AI 커버(seed 5201~5204)
+  //    공통 구조: 숙박 실비 + 체험비 + 보험, 경남 외 거주 만 19세+, SNS 홍보 미션.
+  //    사진=실제 현장을 단정하지 않는 지역 편집 이미지(2026-08-01 생성·매니페스트 관리)
   {
     id: 'gyeongnam-namhae',
-    photo: '/covers/support-namhae-ai.jpeg',
+    photo: '/covers/support-namhae-photo-v2.webp',
+    photoAlt: loc('남해의 다랭이논과 푸른 해안이 이어지는 지역 편집 이미지', 'Editorial view of terraced fields and blue coastline in the Namhae area', '南海エリアの棚田と青い海岸を写した地域編集イメージ'),
+    illustrative: true,
     region: loc('경남', 'Gyeongnam', '慶南'),
     name: loc('국민쉼터 남해에서 한 달 살기', 'Namhae Month-Stay', '南海1カ月暮らし'),
     benefit: loc(
@@ -1127,7 +1132,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gyeongnam-hamyang',
-    photo: '/covers/support-hamyang-ai.jpeg',
+    photo: '/covers/support-hamyang-photo-v2.webp',
+    photoAlt: loc('산 안개와 전통 가옥이 어우러진 함양 산촌 지역 편집 이미지', 'Editorial view of a misty mountain village in the Hamyang area', '山霧と伝統家屋が調和する咸陽エリアの地域編集イメージ'),
+    illustrative: true,
     region: loc('경남', 'Gyeongnam', '慶南'),
     name: loc('내가 그린 함양에서 한 달 여행하기', 'Hamyang Month-Stay', '咸陽1カ月旅'),
     benefit: loc(
@@ -1147,7 +1154,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gyeongnam-tongyeong',
-    photo: '/covers/support-tongyeong-ai.jpeg',
+    photo: '/covers/support-tongyeong-photo-v2.webp',
+    photoAlt: loc('섬과 어선이 보이는 통영 항구의 지역 편집 이미지', 'Editorial view of an island-dotted harbor in the Tongyeong area', '島々と漁船を望む統営港の地域編集イメージ'),
+    illustrative: true,
     region: loc('경남', 'Gyeongnam', '慶南'),
     name: loc('통영애(愛)온나', 'Tongyeong Ae-Onna', '統営エオンナ'),
     benefit: loc(
@@ -1167,7 +1176,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gyeongnam-gimhae',
-    photo: '/covers/support-gimhae-ai.jpeg',
+    photo: '/covers/support-gimhae-photo-v2.webp',
+    photoAlt: loc('강변 자전거길과 들판이 이어지는 김해 지역 편집 이미지', 'Editorial view of a riverside cycle path and fields in the Gimhae area', '川沿いのサイクリングロードと田園が続く金海エリアの地域編集イメージ'),
+    illustrative: true,
     region: loc('경남', 'Gyeongnam', '慶南'),
     name: loc('김해에 스밈애(愛)', 'Gimhae Seumim-ae', '金海スミメ'),
     benefit: loc(
@@ -1189,10 +1200,12 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   //    스킵 사유 기록: 해남 반값여행(단기 환급형—성격 불일치) / 영월 살아보기(전국 농촌살아보기와
   //    중복 계열) / 예산군 한달살기(공고문 원문 미확인—보류) / 대전 대덕(공식 신청 URL 여전히 부재,
   //    네이버폼만) / 거제·합천·보은·홍성·서산(상반기 차수 마감—8월 말 차수 재탐색 가치).
-  //    사진 = AI 커버(seed 영덕5205·강진5216·청주5207, 텍스트 없음 육안 확인)
+  //    사진=실제 현장을 단정하지 않는 지역 편집 이미지(2026-08-01 생성·매니페스트 관리)
   {
     id: 'yeongdeok-worcation',
-    photo: '/covers/support-yeongdeok-ai.jpeg',
+    photo: '/covers/support-yeongdeok-photo-v2.webp',
+    photoAlt: loc('푸른 바다와 작은 어항이 보이는 영덕 해안의 지역 편집 이미지', 'Editorial view of a small harbor and blue sea in the Yeongdeok area', '青い海と小さな漁港を望む盈徳エリアの地域編集イメージ'),
+    illustrative: true,
     region: loc('경북 영덕', 'Yeongdeok', '盈徳'),
     name: loc('영덕형 워케이션 — 동해의 ON, 여명의 OFF', 'Yeongdeok Workation', '盈徳型ワーケーション'),
     // 2026-07-28 검증: ydct.org 공고 663(재단 공식) — 숙박비·체험비 일부 지원 명시. 운영 ~11/27·
@@ -1213,7 +1226,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'gangjin-fuso',
-    photo: '/covers/support-gangjin-ai.jpeg',
+    photo: '/covers/support-gangjin-photo-v2.webp',
+    photoAlt: loc('논과 한옥 담장이 이어지는 강진 농촌의 지역 편집 이미지', 'Editorial view of rice fields and traditional rooflines in the Gangjin area', '田園と韓屋の屋根が続く康津エリアの地域編集イメージ'),
+    illustrative: true,
     region: loc('전남 강진', 'Gangjin', '康津'),
     name: loc('강진 촌캉스 푸소(FU-SO)', 'Gangjin FU-SO Farmstay', '康津チョンカンスFU-SO'),
     // 2026-07-28 검증: fuso.or.kr(군 운영) 실물 — 1박2일·2박3일·일주일살기(6박7일) 구조 확인.
@@ -1235,7 +1250,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
   },
   {
     id: 'cheongju-miwon-forest',
-    photo: '/covers/support-cheongju-ai.jpeg',
+    photo: '/covers/support-cheongju-photo-v2.webp',
+    photoAlt: loc('소나무 숲과 차분한 업무 테이블을 담은 청주 지역 편집 이미지', 'Editorial forest-retreat work scene inspired by the Cheongju area', '松林と落ち着いたワークテーブルを写した清州エリアの地域編集イメージ'),
+    illustrative: true,
     region: loc('충북 청주', 'Cheongju', '清州'),
     name: loc('미원별빛자연휴양림 워케이션센터', 'Miwon Starlight Forest Workation Center', 'ミウォン星光自然休養林'),
     // 2026-07-28 검증: 숲나들e(산림청 .go.kr) 예약정책 페이지 실물 — 매월 5일 10시 선착순·최대 3박4일.
@@ -1262,6 +1279,8 @@ export function getSupportPrograms(lang: Lang) {
   return SUPPORT_PROGRAMS.map((p) => ({
     id: p.id,
     photo: p.photo,
+    photoAlt: p.photoAlt ? tloc(lang, p.photoAlt) : undefined,
+    illustrative: p.illustrative,
     region: tloc(lang, p.region),
     name: tloc(lang, p.name),
     benefit: tloc(lang, p.benefit),

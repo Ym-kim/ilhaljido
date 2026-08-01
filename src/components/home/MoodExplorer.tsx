@@ -46,7 +46,7 @@ const MOODS: { href: string; photo: string; label: L; desc: L }[] = [
     desc: { KO: '창업가·1인 워커 네트워킹', EN: 'Founders & solo workers', JP: '起業家・ソロワーカー交流' },
   },
   {
-    href: '/select/learn', photo: '/covers/course-notion-ai.jpeg',
+    href: '/select/learn', photo: '/covers/course-notion-photo-v2.webp',
     label: { KO: '배우며 성장', EN: 'Learn & grow', JP: '学びながら成長' },
     desc: { KO: '여행에 얹는 온라인 강의', EN: 'Courses that travel with you', JP: '旅に載せるオンライン講座' },
   },

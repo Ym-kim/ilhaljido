@@ -26,8 +26,8 @@ const DESTINATION_EDITORIAL_FALLBACK: Record<string, string> = {
 
 const ITEM_EDITORIAL_FALLBACK: Record<string, string> = {
   'theme-sports-seoul-baseball': '/covers/activity-seoul-baseball-editorial-v2.webp',
-  'esim-airalo': '/covers/esim-asia-ai.jpeg',
-  'feat-transfer-klook': '/covers/transfer-klook-ai.jpeg',
+  'esim-airalo': '/covers/esim-asia-photo-v2.webp',
+  'feat-transfer-klook': '/covers/airport-transfer-editorial-photo-v2.webp',
 }
 
 function formatVerifiedAt(value: string) {

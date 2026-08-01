@@ -62,7 +62,7 @@ const CATEGORY_COVER: Record<AffiliateItem['category'], string> = {
   transport: '/covers/flight-global-real-v2.jpeg',
   esim: '/covers/wifi-japan-real-v2.jpeg',
   insurance: '/covers/trip-prep-allinone-ai.jpeg',
-  education: '/covers/course-notion-ai.jpeg',
+  education: '/covers/course-notion-photo-v2.webp',
   visa: '/covers/flight-global-real-v2.jpeg',
 }
 
@@ -72,7 +72,7 @@ const PRODUCT_TYPE_COVER: Partial<Record<NonNullable<AffiliateItem['productType'
   transport: '/covers/flight-global-real-v2.jpeg',
   esim: '/covers/wifi-japan-real-v2.jpeg',
   insurance: '/covers/trip-prep-allinone-ai.jpeg',
-  education: '/covers/course-notion-ai.jpeg',
+  education: '/covers/course-notion-photo-v2.webp',
   visa: '/covers/flight-global-real-v2.jpeg',
   workspace: '/covers/home-hero-real.jpeg',
 }

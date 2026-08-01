@@ -1,5 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 import type { BrandModelId } from '@/lib/media/brandModels'
+import { CARD_MEDIA_ASSETS } from '@/lib/media/cardMedia'
 
 export type MediaFocalPoint = { x: number; y: number }
 
@@ -495,6 +496,7 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     license: 'Unsplash License',
     createdAt: '2026-07-30',
   },
+  ...CARD_MEDIA_ASSETS,
 ]
 
 export function getMediaAsset(id: string): MediaAsset | undefined {

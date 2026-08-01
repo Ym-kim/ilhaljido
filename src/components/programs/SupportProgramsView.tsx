@@ -278,7 +278,7 @@ export function SupportProgramsView({ forceLang }: { forceLang?: Lang }) {
           <div className="min-w-0">
             {filtered.length ? (
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
-                {filtered.map((program) => <SupportProgramCard key={program.id} program={program} lang={lang} />)}
+                {filtered.map((program, index) => <SupportProgramCard key={program.id} program={program} lang={lang} imagePriority={index === 0} />)}
               </div>
             ) : (
               <div className="rounded-[1.5rem] border border-dashed border-[#cbdadd] bg-white px-6 py-16 text-center">
