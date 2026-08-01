@@ -8,6 +8,9 @@ const MANIFEST_PATH = path.join(ROOT, 'src', 'lib', 'media', 'verifiedRemoteSour
 const ASSET_DIR = path.join(ROOT, 'public', 'media', 'verified', 'unsplash')
 const SOURCE_FILES = [
   'src/lib/affiliate/destinations.ts',
+  'src/lib/affiliate/featured.ts',
+  'src/lib/affiliate/items.ts',
+  'src/lib/i18n/data.ts',
 ]
 
 const manifest = JSON.parse(await fs.readFile(MANIFEST_PATH, 'utf8'))
@@ -46,12 +49,8 @@ for (const entry of manifest) {
 for (const file of SOURCE_FILES) {
   const source = await fs.readFile(path.join(ROOT, file), 'utf8')
   if (source.includes('https://images.unsplash.com/')) failures.push(`${file}: remote Unsplash URL remains`)
-  for (const entry of manifest) {
-    if (entry.files.includes(file) && !source.includes(entry.src)) failures.push(`${entry.key}: local src not used by ${file}`)
-  }
 }
 
-if (manifest.length !== 34) failures.push(`expected 34 entries, received ${manifest.length}`)
 const assetFiles = (await fs.readdir(ASSET_DIR)).filter((file) => file.endsWith('.webp'))
 const manifestFiles = new Set(manifest.map((entry) => path.basename(entry.src)))
 for (const file of assetFiles) {

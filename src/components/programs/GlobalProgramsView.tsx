@@ -27,12 +27,16 @@ export function GlobalProgramsView({ forceLang }: { forceLang?: Lang }) {
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
   const tr = (key: string) => translate(lang, key)
   const destinations = getGlobalDestinations(lang)
+  const illustrativeLabel = { KO: '편집 이미지', EN: 'Editorial image', JP: '編集イメージ' }[lang]
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <Image src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1800&q=85" alt="" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/media/verified/unsplash/1488646953014-85cb44e25828.webp" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
+        <span className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/45 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm sm:right-6 sm:top-6">
+          {illustrativeLabel}
+        </span>
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark className="!flex items-center gap-2">
             <Globe2 className="w-4 h-4" strokeWidth={ICON_STROKE} /> {tr('nav_prog_global')}

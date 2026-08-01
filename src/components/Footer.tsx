@@ -12,6 +12,8 @@ export default function Footer() {
   const address = lang === 'KO' ? BUSINESS.addressKo : BUSINESS.addressEn
   const bizLabel = lang === 'KO' ? '사업자등록번호' : lang === 'JP' ? '事業者登録番号' : 'Business reg. no.'
   const ceoLabel = lang === 'KO' ? '대표' : lang === 'JP' ? '代表' : 'CEO'
+  const localePrefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
+  const mediaCreditsLabel = lang === 'KO' ? '미디어 출처' : lang === 'JP' ? 'メディア出典' : 'Media credits'
 
   return (
     <footer className="bg-[#0a0a0a] text-white/70 py-16 px-6 border-t border-white/5">
@@ -90,6 +92,9 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row justify-between gap-3 text-[0.875rem] text-white/45">
           <span>{tr('footer_copy')}</span>
           <div className="flex gap-5">
+            <Link href={`${localePrefix}/media-credits`} className="hover:text-white/80 transition-colors">
+              {mediaCreditsLabel}
+            </Link>
             <Link href="/privacy" className="hover:text-white/80 transition-colors font-medium">
               {tr('footer_privacy')}
             </Link>

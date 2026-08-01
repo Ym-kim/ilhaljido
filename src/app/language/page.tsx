@@ -69,7 +69,7 @@ export default function LanguagePage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        <Image src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/media/verified/unsplash/1503676260728-1c00da094a0b.webp" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('lang_badge')}</SectionEyebrow>
