@@ -29,7 +29,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('jp/the-millennials-shibuya-shibuya-ku.html'),
     badge: '코워킹 내장',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-tokyo-city-real.jpeg',
+    coverPhoto: '/media/product-editorial/accommodation-urban-studio-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-lively-osaka',
@@ -48,7 +48,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('jp/the-lively-osaka.html'),
     badge: '라운지 워크',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-webase-hakata',
@@ -66,7 +66,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('jp/webase-hakata-hostel.html'),
     badge: '무료 코워킹',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/social-stay-lounge-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-tribal-bali',
@@ -84,7 +84,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('id/tribal-bali-mengwi.html'),
     badge: '노마드 성지',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-tribal-bali-ai.jpeg',
+    coverPhoto: '/media/product-editorial/tropical-coliving-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-chicland-danang',
@@ -102,7 +102,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('vn/chicland-da-nang.html'),
     badge: '비치 워크',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-chicland-danang-ai.jpeg',
+    coverPhoto: '/media/product-editorial/coastal-residence-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-playce-jeju',
@@ -121,7 +121,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('kr/playce-camp-jeju.html'),
     badge: '워케이션 특화',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-playce-jeju-ai.jpeg',
+    coverPhoto: '/media/product-editorial/coastal-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-kantary-chiangmai',
@@ -140,7 +140,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('th/kantary-hills-chiang-mai.html'),
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-kantary-chiangmai-ai.jpeg',
+    coverPhoto: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp', illustrative: true,
   },
 ]
 
@@ -163,7 +163,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/19252?cid=25833',
     badge: '테마파크',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/act-tokyo-disney-ai.jpeg',
+    coverPhoto: '/media/destinations/tokyo-editorial-v1.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -184,7 +184,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/20944?cid=25833',
     badge: '익스프레스',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/act-osaka-usj-ai.jpeg',
+    coverPhoto: '/media/destinations/osaka-editorial-v1.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -205,7 +205,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/134297?cid=25833',
     badge: '한국어 가이드',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/act-fukuoka-bustour-ai.jpeg',
+    coverPhoto: '/media/destinations/fukuoka-editorial-v1.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -226,7 +226,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/141520?cid=25833',
     badge: '프라이빗',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/act-bali-ubud-ai.jpeg',
+    coverPhoto: '/media/destinations/bali-editorial-v1.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -247,7 +247,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/129472?cid=25833',
     badge: '올인클루시브',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/act-danang-banahills-ai.jpeg',
+    coverPhoto: '/media/destinations/danang-editorial-v1.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
 
@@ -274,7 +274,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848',
     badge: '몰입형 전시',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/act-klook-teamlab-tokyo-ai.jpeg',
+    coverPhoto: '/media/destinations/tokyo-editorial-v1.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -297,7 +297,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848',
     badge: '교통+입장',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/act-klook-osaka-pass-ai.jpeg',
+    coverPhoto: '/media/destinations/osaka-editorial-v1.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -320,7 +320,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/3521-jiufen-full-day-tour-taipei/?aid=126848',
     badge: '한국어 가이드',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1470004914212-05527e49370b.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -343,7 +343,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/117-universal-studios-singapore/?aid=126848',
     badge: '테마파크',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/act-klook-uss-singapore-ai.jpeg',
+    coverPhoto: '/media/verified/unsplash/1525625293386-3f8f99389edd.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -366,7 +366,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/15758-nusa-penida-full-day-trip-bali/?aid=126848',
     badge: '일일 투어',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/act-klook-nusapenida-bali-ai.jpeg',
+    coverPhoto: '/media/destinations/bali-editorial-v1.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -389,7 +389,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/3631-elephant-jungle-sanctuary-chiang-mai/?aid=126848',
     badge: '윤리적 체험',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/act-klook-elephant-chiangmai-ai.jpeg',
+    coverPhoto: '/media/destinations/chiangmai-editorial-v1.webp', illustrative: true,
     operatorAction: 'Klook 대시보드에서 승인 상태·클릭 집계 확인',
     sourceNote: 'Klook 검색 리스팅 실브라우저 실측 (기준 2026-07-19) — 평점·리뷰수·가격',
   },
@@ -532,7 +532,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     badge: '뷔페 2식 포함',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/cruise-panstar-real-v2.jpeg',
+    coverPhoto: '/covers/cruise-panstar-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     sourceNote:
       'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-26 재검, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
@@ -554,7 +554,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     href: 'https://kr.trip.com/cruises/line-140351-singapore-greater-china-3night-navigator-of-the-seas-rci/?departure=2027-02-01&locale=ko-KR&Allianceid=9024807',
     badge: '싱가포르 출항',
     trackingId: 'Allianceid=9024807',
-    coverPhoto: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1548574505-5e239809ee19.webp', illustrative: true,
     sourceNote: 'Trip.com 페이지 내장 JSON 실측 ₩362,503 (기준 2026-07-13) — /api/prices 일일 자동 갱신 대상',
   },
   {
@@ -597,7 +597,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     href: 'https://kr.trip.com/cruises/ship-msc-mscbellissima-496?curr=KRW&Allianceid=9024807',
     badge: '한국 출발',
     trackingId: 'Allianceid=9024807',
-    coverPhoto: 'https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1599640842225-85d111c60e6b.webp', illustrative: true,
     sourceNote: 'Trip.com 선박 페이지 실측 2026-07-26 — 인천 3박4일(기륭, 2027-06-20) ₩341,523·부산 5일(상하이·서귀포, 2026-09-14) ₩786,671. 인천 모항 2027-06-14부터(롯데관광개발 3년 전세선, CruiseMapper·노컷·한경 교차). 스타링크=MSC 공식 보도자료 2024',
   },
   {
@@ -643,7 +643,7 @@ export const FEATURED_COURSES: AffiliateItem[] = [
     href: 'https://inf.run/zXusL',
     badge: '실무 AI',
     trackingId: 'partners(utm_campaign=1771445)',
-    coverPhoto: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1677442135703-1787eea5ce01.webp', illustrative: true,
     sourceNote: '인프런 파트너스 홍보 링크 적용 (2026-07-15 리다이렉트 실물검증)',
   },
   {
@@ -662,7 +662,7 @@ export const FEATURED_COURSES: AffiliateItem[] = [
     href: 'https://inf.run/4j6xb',
     badge: 'AI 생산성',
     trackingId: 'partners(utm_campaign=1771445)',
-    coverPhoto: 'https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1552581234-26160f608093.webp', illustrative: true,
     sourceNote: '인프런 파트너스 홍보 링크 적용 (2026-07-15 리다이렉트 실물검증)',
   },
   // 노션·비즈영어·피그마(어필리에이트 미지원, public_external_link)는 2026-07-13 운영자 지시로 제거
@@ -683,7 +683,7 @@ export const FEATURED_COURSES: AffiliateItem[] = [
     href: 'https://inf.run/xTxcg',
     badge: '마케팅',
     trackingId: 'partners(utm_campaign=1771445)',
-    coverPhoto: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1511632765486-a01980e01a18.webp', illustrative: true,
     sourceNote: '인프런 파트너스 홍보 링크 적용 (2026-07-15 리다이렉트 실물검증)',
   },
   // ── 2026-07-16 재선정 (1차 3종은 수강제한/제휴불가/부재로 폐기 — 운영자 확인) ──
@@ -833,7 +833,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/au/adina-sydney.html?aid=7854081',
     badge: '풀키친',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-adina-sydney-ai.jpeg',
+    coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-nomadshub-cebu',
@@ -853,7 +853,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/ph/nomad-39-s-hub.html?aid=7854081',
     badge: '코리빙',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-nomadshub-cebu-ai.jpeg',
+    coverPhoto: '/media/product-editorial/social-stay-lounge-editorial-v1.webp', illustrative: true,
   },
   // ── 2026-07-15 MD 확충 — 웹검색으로 Booking 슬러그 실존 검증 완료 ──
   {
@@ -874,7 +874,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081',
     badge: '코리빙',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-lyf-sukhumvit-bangkok-ai.jpeg',
+    coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-citizenm-taipei',
@@ -894,7 +894,7 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
     href: 'https://www.booking.com/hotel/tw/citizenm-taipei-north-gate.html?aid=7854081',
     badge: '스마트 호텔',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-citizenm-taipei-ai.jpeg',
+    coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
   },
 ]
 
@@ -912,7 +912,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.8',
     reviews: '1,096',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '주방·데스크', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-mimaru-tokyo-ai.jpeg',
+    badge: '주방·데스크', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/japanese-apartment-editorial-v1.webp', illustrative: true,
   },
   // 한국 (+3)
   {
@@ -923,7 +923,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.9',
     reviews: '3,437',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-fraser-seoul-ai.jpeg',
+    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-uh-busan', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -933,7 +933,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '7.8',
     reviews: '421',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-uh-busan-ai.jpeg',
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coastal-residence-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-skybay-gangneung', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -943,7 +943,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.2',
     reviews: '2,241',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '오션뷰 풀', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-skybay-gangneung-ai.jpeg',
+    badge: '오션뷰 풀', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coastal-apartment-editorial-v1.webp', illustrative: true,
   },
   // 태국 (+2)
   {
@@ -954,7 +954,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.8',
     reviews: '602',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-shama-bangkok-ai.jpeg',
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-naka-phuket', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -964,7 +964,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.6',
     reviews: '132',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '장기체류', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-naka-phuket-ai.jpeg',
+    badge: '장기체류', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp', illustrative: true,
   },
   // 베트남 (+3)
   {
@@ -975,7 +975,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.8',
     reviews: '715',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-sanouva-danang-ai.jpeg',
+    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-seaside-nhatrang', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -985,7 +985,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '9.1',
     reviews: '539',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-seaside-nhatrang-ai.jpeg',
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coastal-residence-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-dhts-hcmc', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -995,7 +995,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '9.2',
     reviews: '525',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-dhts-hcmc-ai.jpeg',
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
   },
   // 인도네시아 (+3)
   {
@@ -1006,7 +1006,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '9.5',
     reviews: '30',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '노마드 코리빙', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-thenomad-canggu-ai.jpeg',
+    badge: '노마드 코리빙', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-coliving-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-ubud-village', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1016,7 +1016,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '9.1',
     reviews: '555',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '풀 빌라', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-ubud-village-ai.jpeg',
+    badge: '풀 빌라', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-fields-seminyak', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1026,7 +1026,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.8',
     reviews: '35',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-fields-seminyak-ai.jpeg',
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-coliving-editorial-v1.webp', illustrative: true,
   },
   // 아시아 (+2)
   {
@@ -1037,7 +1037,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.5',
     reviews: '8,550',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-lyf-funan-singapore-ai.jpeg',
+    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/social-stay-lounge-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-gloria-taipei', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1047,7 +1047,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '9.0',
     reviews: '368',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-gloria-taipei-ai.jpeg',
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
   },
   // 오세아니아 (+3)
   {
@@ -1058,7 +1058,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.4',
     reviews: '5,662',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-meriton-kent-sydney-ai.jpeg',
+    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-adina-melbourne', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1068,7 +1068,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.2',
     reviews: '2,172',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '아파트 호텔', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-adina-melbourne-ai.jpeg',
+    badge: '아파트 호텔', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/accommodation-urban-studio-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-meriton-surfers-goldcoast', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1078,7 +1078,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     rating: '8.8',
     reviews: '10,024',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-07-21)',
-    badge: '오션뷰 스위트', trackingId: 'aid=7854081', coverPhoto: '/covers/stay-meriton-goldcoast-ai.jpeg',
+    badge: '오션뷰 스위트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coastal-apartment-editorial-v1.webp', illustrative: true,
   },
 ]
 
@@ -1102,7 +1102,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/162518?cid=25833',
     badge: '골프',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1535131749006-b7f58c99034b.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -1123,7 +1123,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/136700?cid=25833',
     badge: '골프',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1587174486073-ae5e5cff23aa.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -1144,7 +1144,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/147558?cid=25833',
     badge: '힐링',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1544367567-0f2fcb009e0b.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -1165,7 +1165,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/162648?cid=25833',
     badge: '요가',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1506126613408-eca07ce68773.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   {
@@ -1186,7 +1186,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/21633?cid=25833',
     badge: '야구 직관',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1459865264687-595d652de67e.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
   // ── 2026-07-16 확충: 전 테마 4장 이상 (검색 인덱스 실존 확인, KKday cid / Klook aid) ──
@@ -1208,7 +1208,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/155736?cid=25833',
     badge: '골프',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1512553353614-82a7370096dc.webp', illustrative: true,
   },
   {
     id: 'theme-golf-pattaya-cc',
@@ -1228,7 +1228,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/155844?cid=25833',
     badge: '골프',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/golf-pattaya-real-v2.jpeg',
+    coverPhoto: '/covers/golf-pattaya-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-emerald-900 via-green-950 to-[#0d0d0d]',
   },
   {
@@ -1249,7 +1249,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/123986?cid=25833',
     badge: '힐링',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1512553353614-82a7370096dc.webp', illustrative: true,
   },
   {
     id: 'theme-heal-forest-danang',
@@ -1266,7 +1266,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/154790?cid=25833',
     badge: '힐링',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1559592413-7cec4d0cae2b.webp', illustrative: true,
   },
   {
     id: 'theme-sports-seoul-baseball',
@@ -1286,7 +1286,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/576749?cid=25833',
     badge: '야구 직관',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1517154421773-0529f29ea451.webp', illustrative: true,
   },
   {
     id: 'theme-sports-tottenham',
@@ -1308,7 +1308,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/81238-tottenham-hotspur-premier-league-football-ticket-london/?aid=126848',
     badge: '축구 직관',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/sports-tottenham-real-v2.jpeg',
+    coverPhoto: '/covers/sports-tottenham-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-indigo-900 via-blue-950 to-[#0d0d0d]',
   },
   {
@@ -1329,7 +1329,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/45658-kyoto-eat-drink-like-a-local-izakaya-experience/?aid=126848',
     badge: '미식',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/local-izakaya-kyoto-real-v2.jpeg',
+    coverPhoto: '/covers/local-izakaya-kyoto-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-amber-900 via-orange-950 to-[#0d0d0d]',
   },
 
@@ -1349,7 +1349,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/102480-nishiki-market-join-3-hr-walking-tour-kyoto-food-tour/?aid=126848',
     badge: '미식',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1545569341-9eb8b30979d9.webp', illustrative: true,
   },
   {
     id: 'theme-local-gion-food',
@@ -1369,7 +1369,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/159777-kyoto-gion-food-tour-with-13-dishes-at-4-eateries/?aid=126848',
     badge: '미식',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1493780474015-ba834fd0ce2f.webp', illustrative: true,
   },
   {
     id: 'theme-sports-sumo-osaka',
@@ -1386,7 +1386,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/activity/105524-osaka-city-osaka-grand-sumo-tournament-viewing-half-day-walking-tour/?aid=126848',
     badge: '직관',
     trackingId: 'aid=126848',
-    coverPhoto: 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1590559899731-a382839e5549.webp', illustrative: true,
   },
   {
     id: 'theme-local-kuromon',
@@ -1406,7 +1406,7 @@ export const THEME_EXPERIENCES: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/266918?cid=25833',
     badge: '미식',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1414235077428-338989a2e8c0.webp', illustrative: true,
     operatorAction: 'KKpartners cid=25833 적용 완료 (2026-07-09)',
   },
 ]

@@ -65,6 +65,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/partnership',              priority: 0.7, freq: 'monthly' },
   { path: '/privacy',                  priority: 0.3, freq: 'yearly' },
   { path: '/terms',                    priority: 0.3, freq: 'yearly' },
+  { path: '/media-credits',            priority: 0.2, freq: 'yearly' },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -77,6 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: r.freq,
       priority: r.priority,
+    })),
+    ...['en', 'ja'].map((locale) => ({
+      url: `${BASE}/${locale}/media-credits`,
+      lastModified: now,
+      changeFrequency: 'yearly' as const,
+      priority: 0.2,
     })),
     // 목적지 인사이트 카드 (cities.ts에 추가 시 자동 반영)
     ...CITY_INSIGHTS.map((c) => ({

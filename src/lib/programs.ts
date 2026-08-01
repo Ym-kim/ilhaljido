@@ -23,17 +23,17 @@ export function withEffectiveStatus(p: Program): Program {
 // 검증 풀 사진 매핑 (program.id 기준) — 새 프로그램 등록 시 여기에 추가
 const PROGRAM_PHOTOS: Record<string, string> = {
   // AI 활용 실무 집중 캠프 — 강원 속초 (동해 해변)
-  'b701ae8f-0f87-4626-9b6c-1fb407c9af02': 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80',
+  'b701ae8f-0f87-4626-9b6c-1fb407c9af02': '/media/verified/unsplash/1473116763249-2faaef81ccda.webp',
   // 온라인 마케팅 & 상세페이지 집중반 — 경기 가평 (들판)
-  'e1f2f76e-bc8c-4a96-8d85-42c57559bff9': 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=900&q=80',
+  'e1f2f76e-bc8c-4a96-8d85-42c57559bff9': '/media/verified/unsplash/1500382017468-9049fed747ef.webp',
   // 번아웃 탈출 힐링 워케이션 — 충남 태안 (해변)
-  'f71b9c49-d981-4c24-bcf4-6b2be5b2cbff': 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80',
+  'f71b9c49-d981-4c24-bcf4-6b2be5b2cbff': '/media/verified/unsplash/1507525428034-b723cf961d3e.webp',
   // 1인 기업가 네트워킹 캠프 — 강원 춘천 (자연)
-  '59f91d96-0cae-4ced-8cc3-622b7692f70a': 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=900&q=80',
+  '59f91d96-0cae-4ced-8cc3-622b7692f70a': '/media/verified/unsplash/1501854140801-50d01698950b.webp',
   // 일본 시장조사 + 소도시 워케이션 — 오사카 (신세카이)
-  'f4031123-0db9-4c4e-9253-982992ae1006': 'https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=900&q=80',
+  'f4031123-0db9-4c4e-9253-982992ae1006': '/media/verified/unsplash/1590559899731-a382839e5549.webp',
   // 디자인 & 브랜딩 집중 캠프 — 경남 통영 (부두·바다)
-  '684a3f59-1957-4d61-a510-150851d40e27': 'https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=900&q=80',
+  '684a3f59-1957-4d61-a510-150851d40e27': '/media/verified/unsplash/1617653202545-931490e8d7e7.webp',
 }
 
 /** picsum 플레이스홀더는 노출하지 않음 — 매핑 없으면 null(그라디언트 폴백) */

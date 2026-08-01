@@ -23,7 +23,7 @@ export default function GrowthPage() {
 
       <section className="relative h-[55vh] flex items-end overflow-hidden dark-surface">
 
-        <Image src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/media/verified/unsplash/1522199755839-a2bacb67c546.webp" alt="" fill priority sizes="100vw" className="object-cover" />
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
 

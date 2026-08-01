@@ -90,7 +90,7 @@ export function YangyangReportView() {
       {/* Hero — 동해 해변 (검증 풀) */}
       <section className="relative h-[52vh] min-h-[380px] flex items-end overflow-hidden dark-surface">
         <Image
-          src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1800&q=85"
+          src="/media/verified/unsplash/1473116763249-2faaef81ccda.webp"
           alt=""
           fill
           priority

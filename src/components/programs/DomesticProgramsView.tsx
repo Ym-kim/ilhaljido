@@ -29,12 +29,16 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
   const completed = getDomesticCompleted(lang)
   const themed = getDomesticThemedUpcoming(lang).filter((p) => !p.isGlobal)
   const upcoming = getDomesticUpcoming(lang)
+  const illustrativeLabel = { KO: '편집 이미지', EN: 'Editorial image', JP: '編集イメージ' }[lang]
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <Image src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85" alt="" fill priority sizes="100vw" className="object-cover" />
+        <Image src="/campaign/programs-editorial-coastal-work-v1.webp" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
+        <span className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/45 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm sm:right-6 sm:top-6">
+          {illustrativeLabel}
+        </span>
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark className="flex items-center gap-2">
             <Home className="w-4 h-4 inline" strokeWidth={ICON_STROKE} /> {tr('nav_prog_domestic')}
@@ -72,6 +76,11 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
                     <div className="relative md:w-80 h-56 md:h-auto shrink-0 overflow-hidden">
                       <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                       <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
+                      {p.illustrative && (
+                        <span className="absolute right-4 top-4 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm">
+                          {illustrativeLabel}
+                        </span>
+                      )}
                     </div>
                     <div className="p-8 flex flex-col justify-between flex-1">
                       <div>
@@ -138,6 +147,11 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
                     <span className="absolute top-3 left-3 bg-white/10 backdrop-blur-sm text-white/60 text-xs font-bold px-2.5 py-1 rounded-full border border-white/15">
                       {tr('pilot_complete_eyebrow')}
                     </span>
+                    {p.illustrative && (
+                      <span className="absolute right-3 top-3 rounded-full border border-white/15 bg-black/55 px-2.5 py-1 text-[0.65rem] font-bold text-white/70 backdrop-blur-sm">
+                        {illustrativeLabel}
+                      </span>
+                    )}
                   </div>
                   <div className="p-5">
                     <p className="text-white/30 text-xs flex items-center gap-1 mb-1.5">
@@ -168,6 +182,11 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
                   <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                   <span className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full border border-white/20">{p.theme}</span>
+                  {p.illustrative && (
+                    <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm">
+                      {illustrativeLabel}
+                    </span>
+                  )}
                 </div>
                 <div className="p-4">
                   <p className="text-white/40 text-xs flex items-center gap-1 mb-1">

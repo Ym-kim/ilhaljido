@@ -12,7 +12,7 @@ export type VerifiedRemoteMediaSource = {
   visualStatus: 'verified'
   sourceUrls: string[]
   files: string[]
-  usages: Array<'support' | 'destination' | 'product'>
+  usages: Array<'support' | 'destination' | 'product' | 'program'>
   contexts: Array<{ file: string; line: number; label: string }>
   width: number
   height: number

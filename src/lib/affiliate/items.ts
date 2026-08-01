@@ -57,7 +57,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking',
-    coverPhoto: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -85,7 +85,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-tripcom',
-    coverPhoto: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
     name: 'Trip.com',
     category: 'hotel',
     productType: 'stay',
@@ -112,7 +112,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'activity-kkday',
-    coverPhoto: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/destinations/fukuoka-editorial-v1.webp', illustrative: true,
     name: 'KKday',
     category: 'activity',
     productType: 'activity',
@@ -139,7 +139,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'esim-airalo',
-    coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1512941937669-90a1b58e7e9c.webp', illustrative: true,
     name: 'Airalo',
     category: 'esim',
     productType: 'esim',
@@ -160,7 +160,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'edu-inflearn',
-    coverPhoto: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1503676260728-1c00da094a0b.webp', illustrative: true,
     name: '인프런',
     category: 'education',
     productType: 'education',
@@ -191,7 +191,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.klook.com/ko/?aid=126848',
     badge: '현지 체험',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/activity-curated-real-v2.jpeg',
+    coverPhoto: '/covers/activity-curated-real-v2.jpeg', illustrative: true,
     priority: 6,
     showOn: ['select'],
     sourceNote: 'aid=126848 부착 (2026-07-15) — aid 파라미터 형식은 실유통 Klook 어필리에이트 URL로 실물검증. 대시보드 승인·집계 확인 필요',
@@ -203,7 +203,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'insurance-klook',
-    coverPhoto: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1469854523086-cc02fe5d8800.webp', illustrative: true,
     name: 'Klook',
     category: 'insurance',
     productType: 'insurance',
@@ -226,7 +226,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking-visa',
-    coverPhoto: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/accommodation-urban-studio-editorial-v1.webp', illustrative: true,
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -248,7 +248,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'esim-airalo-visa',
-    coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/verified/unsplash/1512941937669-90a1b58e7e9c.webp', illustrative: true,
     name: 'Airalo eSIM',
     category: 'esim',
     productType: 'esim',
@@ -269,7 +269,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking-market',
-    coverPhoto: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/accommodation-urban-studio-editorial-v1.webp', illustrative: true,
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -296,7 +296,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-booking-domestic',
-    coverPhoto: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/product-editorial/coastal-residence-editorial-v1.webp', illustrative: true,
     name: 'Booking.com',
     category: 'hotel',
     productType: 'stay',
@@ -314,7 +314,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
 
   {
     id: 'activity-kkday-domestic',
-    coverPhoto: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80',
+    coverPhoto: '/media/destinations/busan-editorial-v1.webp', illustrative: true,
     name: 'KKday',
     category: 'activity',
     productType: 'activity',
@@ -370,7 +370,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo',
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-tokyo-city-real.jpeg',
+    coverPhoto: '/media/product-editorial/japanese-apartment-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-rose-900 via-red-950 to-[#0d0d0d]',
     priority: 1,
     showOn: ['home'],
@@ -392,7 +392,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://kr.trip.com/hotels/osaka-hotels-list-219/?Allianceid=9024807',
     badge: '숙소·항공',
     trackingId: 'Allianceid=9024807',
-    coverPhoto: '/covers/stay-osaka-city-real.jpeg',
+    coverPhoto: '/media/product-editorial/japanese-apartment-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-amber-900 via-orange-950 to-[#0d0d0d]',
     priority: 2,
     showOn: ['home'],
@@ -415,7 +415,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Fukuoka',
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-fukuoka-city-real.jpeg',
+    coverPhoto: '/media/product-editorial/japanese-apartment-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-pink-900 via-rose-950 to-[#0d0d0d]',
     priority: 3,
     showOn: ['home'],
@@ -437,7 +437,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Bali',
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: '/covers/stay-bali-city-real.jpeg',
+    coverPhoto: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-teal-900 via-emerald-950 to-[#0d0d0d]',
     priority: 4,
     showOn: ['home'],
@@ -459,7 +459,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/destination/jp-japan?cid=25833',
     badge: '현지 체험',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80',
+    coverPhoto: '/media/destinations/fukuoka-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-red-900 via-rose-950 to-[#0d0d0d]',
     priority: 5,
     showOn: ['home'],
@@ -482,7 +482,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
     badge: 'eSIM',
     trackingId: 'impact 7451946',
-    coverPhoto: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80',
+    coverPhoto: '/media/verified/unsplash/1512941937669-90a1b58e7e9c.webp', illustrative: true,
     coverGradient: 'from-violet-900 via-purple-950 to-[#0d0d0d]',
     priority: 6,
     showOn: ['home'],
@@ -507,7 +507,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://kr.trip.com/flights/?Allianceid=9024807',
     badge: '항공',
     trackingId: 'Allianceid=9024807',
-    coverPhoto: '/covers/flight-global-real-v2.jpeg',
+    coverPhoto: '/covers/flight-global-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     priority: 4,
     showOn: ['home', 'select', 'global', 'visa', 'programs', 'esim', 'learn'],
@@ -632,7 +632,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F1420-7-day-whole-japan-rail-pass-jr-pass%2F',
     badge: '철도패스',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/jrpass-japan-real-v2.jpeg',
+    coverPhoto: '/covers/jrpass-japan-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-green-900 via-emerald-950 to-[#0d0d0d]',
     priority: 9,
     showOn: ['global', 'programs', 'select'],
@@ -656,7 +656,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/product/146171-unlimited-4g-pocket-wifi-airport-pick-up-japan?cid=25833',
     badge: '포켓와이파이',
     trackingId: 'cid=25833',
-    coverPhoto: '/covers/wifi-japan-real-v2.jpeg',
+    coverPhoto: '/covers/wifi-japan-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-cyan-900 via-sky-950 to-[#0d0d0d]',
     priority: 10,
     showOn: ['esim', 'global'],
@@ -684,7 +684,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     badge: '철도패스',
     trackingId: 'aid=126848',
-    coverPhoto: '/covers/eurail-europe-real-v2.jpeg',
+    coverPhoto: '/covers/eurail-europe-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-indigo-900 via-blue-950 to-[#0d0d0d]',
     priority: 11,
     showOn: ['global', 'select'],
@@ -706,7 +706,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Vietnam',
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80',
+    coverPhoto: '/media/product-editorial/coastal-apartment-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-teal-900 via-cyan-950 to-[#0d0d0d]',
     priority: 7,
     showOn: ['home'],
@@ -728,7 +728,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://www.kkday.com/ko/destination/id-bali?cid=25833',
     badge: '현지 체험',
     trackingId: 'cid=25833',
-    coverPhoto: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80',
+    coverPhoto: '/media/destinations/bali-editorial-v1.webp', illustrative: true,
     coverGradient: 'from-orange-900 via-amber-950 to-[#0d0d0d]',
     priority: 8,
     showOn: ['home'],

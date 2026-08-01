@@ -7,6 +7,9 @@ const ROOT = process.cwd()
 const VERIFIED_AT = '2026-08-02'
 const SOURCE_FILES = [
   'src/lib/affiliate/destinations.ts',
+  'src/lib/affiliate/featured.ts',
+  'src/lib/affiliate/items.ts',
+  'src/lib/i18n/data.ts',
 ]
 const URL_PATTERN = /https:\/\/images\.unsplash\.com\/photo-[^"'`\s)]+/g
 const PUBLIC_DIR = path.join(ROOT, 'public', 'media', 'verified', 'unsplash')
@@ -43,6 +46,8 @@ function publicSrc(key) {
 
 function usageForFile(file) {
   if (file.includes('affiliate/destinations')) return 'destination'
+  if (file.includes('affiliate/')) return 'product'
+  if (file.includes('i18n/data')) return 'program'
   throw new Error(`Unsupported verified media source: ${file}`)
 }
 
@@ -58,6 +63,11 @@ function nearbyContext(lines, lineIndex) {
 
 async function collectPlan() {
   const byKey = new Map()
+
+  try {
+    const existingManifest = JSON.parse(await fs.readFile(MANIFEST_PATH, 'utf8'))
+    existingManifest.forEach((entry) => byKey.set(entry.key, entry))
+  } catch {}
 
   for (const file of SOURCE_FILES) {
     const absolute = path.join(ROOT, file)
@@ -108,13 +118,23 @@ async function downloadOne(entry) {
   const target = path.join(ROOT, 'public', entry.src.replace(/^\//, ''))
   try {
     const existing = await fs.readFile(target)
-    const metadata = await sharp(existing).metadata()
+    let output = existing
+    let metadata = await sharp(output).metadata()
+    if (output.byteLength > 780_000 || metadata.format !== 'webp' || (metadata.width ?? 0) > 1600) {
+      output = await sharp(existing)
+        .rotate()
+        .resize({ width: 1600, withoutEnlargement: true })
+        .webp({ quality: 76, effort: 5 })
+        .toBuffer()
+      await fs.writeFile(target, output)
+      metadata = await sharp(output).metadata()
+    }
     return {
       ...entry,
       width: metadata.width,
       height: metadata.height,
-      bytes: existing.byteLength,
-      sha256: crypto.createHash('sha256').update(existing).digest('hex'),
+      bytes: output.byteLength,
+      sha256: crypto.createHash('sha256').update(output).digest('hex'),
     }
   } catch {}
 
@@ -165,7 +185,10 @@ async function replaceSources(entries) {
     const absolute = path.join(ROOT, file)
     const source = await fs.readFile(absolute, 'utf8')
     const next = source.replace(URL_PATTERN, (url) => replacements.get(url) ?? url)
-    if (next === source) throw new Error(`${file}: no replacements applied`)
+    if (next === source) {
+      if (source.includes('https://images.unsplash.com/')) throw new Error(`${file}: remote source was not replaced`)
+      continue
+    }
     await fs.writeFile(absolute, next)
   }
 }

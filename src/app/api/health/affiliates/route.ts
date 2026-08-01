@@ -46,6 +46,7 @@ const CHECKS: Check[] = [
   { id: 'page:compare', url: 'https://www.wakation.kr/destinations/compare' },
   { id: 'page:campaign-korea-weekend', url: 'https://www.wakation.kr/ja/campaign/korea-weekend' },
   { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
+  { id: 'page:media-credits', url: 'https://www.wakation.kr/media-credits' },
 
   // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
   { id: 'booking:searchresults', url: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo', okStatuses: [200, 202, 403] },

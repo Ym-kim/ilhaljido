@@ -35,7 +35,7 @@ export default function PartnershipPage() {
 
         <div className="absolute inset-0">
 
-          <Image src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?auto=format&fit=crop&w=1800&q=80" alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/media/verified/unsplash/1560472354-b33ff0c44a43.webp" alt="" fill priority sizes="100vw" className="object-cover" />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
 

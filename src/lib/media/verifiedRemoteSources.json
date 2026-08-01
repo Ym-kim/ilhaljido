@@ -7,25 +7,97 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1146,
-        "label": "id: 'activity-japan-fukuoka"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1409,
+        "label": "country: '일본"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 481,
+        "label": "id: 'local-jeonju"
       }
     ],
     "width": 1600,
     "height": 1067,
     "bytes": 121634,
     "sha256": "f01de66bffdbc1d91426aa84725227ab636c5f0d9fe48e7c104fffa728687ab0"
+  },
+  {
+    "key": "1459865264687-595d652de67e",
+    "src": "/media/verified/unsplash/1459865264687-595d652de67e.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1459865264687-595d652de67e?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1189,
+        "label": "country: '일본"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 506,
+        "label": "id: 'sports-busan"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 118776,
+    "sha256": "37908d9838a28fe7cbe5cbfa4f3d7faa0f794dfb23ab063cc01544c5fd1f433b"
+  },
+  {
+    "key": "1469854523086-cc02fe5d8800",
+    "src": "/media/verified/unsplash/1469854523086-cc02fe5d8800.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 206,
+        "label": "id: 'insurance-klook"
+      }
+    ],
+    "width": 1600,
+    "height": 1131,
+    "bytes": 321480,
+    "sha256": "a49bb6b9dec416d5908673d08fdfb2fc321d9faa4b794e691344f418ef6c75f2"
   },
   {
     "key": "1470004914212-05527e49370b",
@@ -38,16 +110,16 @@
       "https://images.unsplash.com/photo-1470004914212-05527e49370b?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts"
     ],
     "usages": [
-      "destination"
+      "product"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 490,
-        "label": "id: 'taiwan-taipei"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 323,
+        "label": "country: '대만"
       }
     ],
     "width": 1600,
@@ -63,25 +135,110 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 301,
-        "label": "id: 'korea-gangneung"
+        "file": "src/lib/affiliate/items.ts",
+        "line": 299,
+        "label": "id: 'hotel-booking-domestic"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 89,
+        "label": "id: 'gangwon"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 188,
+        "label": "id: 'auckland"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 438,
+        "label": "{ id: 'gangneung', img: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=800&q=80', "
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 953,
+        "label": "id: 'gangwon-workation"
       }
     ],
     "width": 1600,
     "height": 1036,
     "bytes": 112120,
     "sha256": "836d9b881327d3f8b74b4c1a67e148ef98d0dcc5dd31f640e33af4510bfc1f34"
+  },
+  {
+    "key": "1476514525535-07fb3b4ae5f1",
+    "src": "/media/verified/unsplash/1476514525535-07fb3b4ae5f1.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 200,
+        "label": "id: 'queenstown"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1044,
+        "label": "id: 'jeonbuk-worcation"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 239818,
+    "sha256": "7143c50b902f502a8dc1c74ccf0bf01b8b2592e03649a9ce39d0874a0b5de0eb"
+  },
+  {
+    "key": "1486406146926-c627a92ad1ab",
+    "src": "/media/verified/unsplash/1486406146926-c627a92ad1ab.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1004,
+        "label": "id: 'ulsan-ucation"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 214970,
+    "sha256": "0ddbd20affec3c1181e4e6838ce0c51bd26f168d387a7c9117c1b240aee3db21"
   },
   {
     "key": "1488646953014-85cb44e25828",
@@ -112,6 +269,62 @@
     "sha256": "1ae675c7880daa6738d3a7b425615733b44b06f424fc4693b24951703fcdd062"
   },
   {
+    "key": "1493780474015-ba834fd0ce2f",
+    "src": "/media/verified/unsplash/1493780474015-ba834fd0ce2f.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1372,
+        "label": "country: '일본"
+      }
+    ],
+    "width": 1600,
+    "height": 1103,
+    "bytes": 253438,
+    "sha256": "3eddf69ce653c07b86d1195d604634c09fbafa3005b0513d5962abc26c4c5106"
+  },
+  {
+    "key": "1495474472287-4d71bcdd2085",
+    "src": "/media/verified/unsplash/1495474472287-4d71bcdd2085.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 233,
+        "label": "id: 'cafe"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 78088,
+    "sha256": "4f66aae833c7a4d1bdcd27376eadca49836dcbf85ca9e500f2a91d24d21a7484"
+  },
+  {
     "key": "1497366216548-37526070297c",
     "src": "/media/verified/unsplash/1497366216548-37526070297c.webp",
     "sourceType": "licensed",
@@ -119,25 +332,95 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1367,
-        "label": "id: 'learn-dev"
+        "file": "src/lib/affiliate/items.ts",
+        "line": 272,
+        "label": "id: 'hotel-booking-market"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 164,
+        "label": "id: 'melbourne"
       }
     ],
     "width": 1600,
     "height": 1068,
     "bytes": 63262,
     "sha256": "7eafb216616cf6fbb03dbc93655f492d658f4020a3eb1715d4b2d6ebbb26da45"
+  },
+  {
+    "key": "1500382017468-9049fed747ef",
+    "src": "/media/verified/unsplash/1500382017468-9049fed747ef.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 979,
+        "label": "id: 'rural-living"
+      }
+    ],
+    "width": 1600,
+    "height": 900,
+    "bytes": 142828,
+    "sha256": "3239bd10b4fbcb417e39683a114bf84a13397de90896f79d2854342ebf3caa79"
+  },
+  {
+    "key": "1501854140801-50d01698950b",
+    "src": "/media/verified/unsplash/1501854140801-50d01698950b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 309,
+        "label": "id: 'malta"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 967,
+        "label": "id: 'muan-jeonnam"
+      }
+    ],
+    "width": 1600,
+    "height": 953,
+    "bytes": 250148,
+    "sha256": "947558ffcef6b9aca8be6ccc63cab0b00b54de04fdf638e8bba1c9a65af49198"
   },
   {
     "key": "1502680390469-be75c86b636f",
@@ -147,24 +430,38 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
+      "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 275,
-        "label": "id: 'korea-yangyang"
+        "file": "src/lib/affiliate/items.ts",
+        "line": 731,
+        "label": "country: '인도네시아"
       },
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1184,
-        "label": "id: 'activity-bali"
+        "file": "src/lib/i18n/data.ts",
+        "line": 176,
+        "label": "id: 'byron"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 254,
+        "label": "id: 'surf"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 991,
+        "label": "id: 'chungnam-month"
       }
     ],
     "width": 1600,
@@ -183,16 +480,16 @@
       "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/items.ts"
     ],
     "usages": [
-      "destination"
+      "product"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1377,
-        "label": "id: 'learn-language"
+        "file": "src/lib/affiliate/items.ts",
+        "line": 163,
+        "label": "id: 'edu-inflearn"
       }
     ],
     "width": 1600,
@@ -229,6 +526,136 @@
     "sha256": "886d5bea5cc88e6b174b045cd38ffa9bb4820bef76aa3d630542074ad9ac8816"
   },
   {
+    "key": "1505142468610-359e7d316be0",
+    "src": "/media/verified/unsplash/1505142468610-359e7d316be0.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1058,
+        "label": "id: 'jeonnam-blue-worcation"
+      }
+    ],
+    "width": 1600,
+    "height": 2848,
+    "bytes": 351512,
+    "sha256": "e713091da9c0759f74c3c0c1c5f9e81644706afbd08b9f0e0259d23c2039d7f9"
+  },
+  {
+    "key": "1506126613408-eca07ce68773",
+    "src": "/media/verified/unsplash/1506126613408-eca07ce68773.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1168,
+        "label": "country: '인도네시아"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 247,
+        "label": "id: 'yoga"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 457,
+        "label": "id: 'healing-taean"
+      }
+    ],
+    "width": 1600,
+    "height": 1860,
+    "bytes": 702976,
+    "sha256": "be23f2076c02821f0d05390fa62cbceeeddc726653051b62cf932dcdcd7119ac"
+  },
+  {
+    "key": "1506905925346-21bda4d32df4",
+    "src": "/media/verified/unsplash/1506905925346-21bda4d32df4.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 439,
+        "label": "{ id: 'jeju', img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80', title"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 111440,
+    "sha256": "25213ddad7c6e335fce8649ef6479a53fb330ea84ead674f89cab13b2e83b034"
+  },
+  {
+    "key": "1506973035872-a4ec16b8e8d9",
+    "src": "/media/verified/unsplash/1506973035872-a4ec16b8e8d9.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 152,
+        "label": "id: 'sydney"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 407,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 286106,
+    "sha256": "07ebceb68e18cc95d6c703398ad50204da59cd29e893b63c455e5a891e53cd25"
+  },
+  {
     "key": "1507525428034-b723cf961d3e",
     "src": "/media/verified/unsplash/1507525428034-b723cf961d3e.webp",
     "sourceType": "licensed",
@@ -236,19 +663,30 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 355,
-        "label": "id: 'japan-okinawa"
+        "file": "src/lib/i18n/data.ts",
+        "line": 77,
+        "label": "id: 'jeju"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 414,
+        "label": "id: 'yangyang-1"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 924,
+        "label": "id: 'jeju-voucher"
       }
     ],
     "width": 1600,
@@ -264,25 +702,171 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1508009603885-50cf7c579365?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 408,
-        "label": "id: 'thailand-bangkok"
+        "file": "src/lib/i18n/data.ts",
+        "line": 385,
+        "label": "id: 'guangzhou"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 402,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
       }
     ],
     "width": 1600,
     "height": 1238,
     "bytes": 269042,
     "sha256": "8aaa738735112b52df985cc9b730ced2ac2c4c0d0f7f762a8059f8871a187608"
+  },
+  {
+    "key": "1511632765486-a01980e01a18",
+    "src": "/media/verified/unsplash/1511632765486-a01980e01a18.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 686,
+        "label": "category: 'education"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 252070,
+    "sha256": "71797f827b65493fe597d2732025b852e155fd0cedad25c98350f9aac4e4578b"
+  },
+  {
+    "key": "1512553353614-82a7370096dc",
+    "src": "/media/verified/unsplash/1512553353614-82a7370096dc.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1512553353614-82a7370096dc?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1211,
+        "label": "country: '태국"
+      },
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1252,
+        "label": "country: '태국"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 125,
+        "label": "id: 'chiangmai"
+      }
+    ],
+    "width": 1600,
+    "height": 900,
+    "bytes": 68358,
+    "sha256": "74b2031700518749e5eccaa73a8ff1cc980cf5a4a471080c72ef271e14ff2a79"
+  },
+  {
+    "key": "1512941937669-90a1b58e7e9c",
+    "src": "/media/verified/unsplash/1512941937669-90a1b58e7e9c.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=600&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 142,
+        "label": "id: 'esim-airalo"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 251,
+        "label": "id: 'esim-airalo-visa"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 485,
+        "label": "country: '일본"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 67080,
+    "sha256": "cf7f82b7a2da0d33293553c2868c1ad4b455903a2ce64e798b80b6f1efbd68a5"
+  },
+  {
+    "key": "1515187029135-18ee286d815b",
+    "src": "/media/verified/unsplash/1515187029135-18ee286d815b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 240,
+        "label": "id: 'meetup"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 465,
+        "label": "id: 'network-chuncheon"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 142698,
+    "sha256": "4aac0c01703ac21847b2996772d4d380f30bb8ba297b6c776a7add0f858633a3"
   },
   {
     "key": "1517154421773-0529f29ea451",
@@ -292,19 +876,38 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts",
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1291,
-        "label": "id: 'esim-korea"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1289,
+        "label": "country: '한국"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 317,
+        "label": "id: 'activity-kkday-domestic"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 440,
+        "label": "{ id: 'jeonju', img: 'https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&w=800&q=80', tit"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 939,
+        "label": "id: 'busan-workation"
       }
     ],
     "width": 1600,
@@ -341,6 +944,41 @@
     "sha256": "53b014d101e3985e1e032b3e47b176461b37574e1afdf67f2941a17f51bac38c"
   },
   {
+    "key": "1520250497591-112f2f40a3f4",
+    "src": "/media/verified/unsplash/1520250497591-112f2f40a3f4.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 229,
+        "label": "id: 'hotel-booking-visa"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1088,
+        "label": "id: 'gyeonggi-healing-worcation"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 340762,
+    "sha256": "31c200b9ceef0784919e1d24f1b41eaf0b02fda259199074faffd7d91d40ce92"
+  },
+  {
     "key": "1522199755839-a2bacb67c546",
     "src": "/media/verified/unsplash/1522199755839-a2bacb67c546.webp",
     "sourceType": "licensed",
@@ -367,6 +1005,34 @@
     "height": 1065,
     "bytes": 75878,
     "sha256": "2e0a0897dd8a2a8bafba93ac9c54cad08053a72b67ee2418424d11b1cb202790"
+  },
+  {
+    "key": "1524492412937-b28074a5d7da",
+    "src": "/media/verified/unsplash/1524492412937-b28074a5d7da.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=600&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 462,
+        "label": "country: '일본"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 190576,
+    "sha256": "4b9df8efa78d725cfa0b4cf1dc0c30df0b0cd10dcfbee393b43baba67712fb1b"
   },
   {
     "key": "1525625293386-3f8f99389edd",
@@ -397,6 +1063,34 @@
     "sha256": "66a394c0b9f507964fc85dda899006a2e6c6b333a3ec6fac462b7c6d532ab8fe"
   },
   {
+    "key": "1526481280693-3bfa7568e0f3",
+    "src": "/media/verified/unsplash/1526481280693-3bfa7568e0f3.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 115,
+        "label": "id: 'activity-kkday"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 277886,
+    "sha256": "5ef8a09d8632aa77996e139d929d641c2e596f5c18678476fde58baaf640d912"
+  },
+  {
     "key": "1528360983277-13d401cdc186",
     "src": "/media/verified/unsplash/1528360983277-13d401cdc186.webp",
     "sourceType": "licensed",
@@ -425,6 +1119,47 @@
     "sha256": "7d5d59e66dd5519867389a4d15c1565342549a01c78f1427a10e2a4cba78de22"
   },
   {
+    "key": "1535131749006-b7f58c99034b",
+    "src": "/media/verified/unsplash/1535131749006-b7f58c99034b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1105,
+        "label": "country: '베트남"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 408,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 489,
+        "label": "id: 'golf-jeju"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 180162,
+    "sha256": "c506869e7efeacd76976173f3482cc67c779bdd9503dafcfbbe2b648894d5fcf"
+  },
+  {
     "key": "1537996194471-e657df975ab4",
     "src": "/media/verified/unsplash/1537996194471-e657df975ab4.webp",
     "sourceType": "licensed",
@@ -432,19 +1167,24 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1251,
-        "label": "id: 'esim-indonesia"
+        "file": "src/lib/i18n/data.ts",
+        "line": 113,
+        "label": "id: 'bali"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 401,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
       }
     ],
     "width": 1600,
@@ -460,19 +1200,29 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1210,
-        "label": "id: 'esim-japan"
+        "file": "src/lib/i18n/data.ts",
+        "line": 298,
+        "label": "id: 'tokyo"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 377,
+        "label": "id: 'osaka"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 403,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
       }
     ],
     "width": 1600,
@@ -491,16 +1241,16 @@
       "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts"
     ],
     "usages": [
-      "destination"
+      "product"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 708,
-        "label": "id: 'indonesia-ubud"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1147,
+        "label": "country: '인도네시아"
       }
     ],
     "width": 1600,
@@ -516,25 +1266,84 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1545569341-9eb8b30979d9?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 329,
-        "label": "id: 'japan-kyoto"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1352,
+        "label": "country: '일본"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 261,
+        "label": "id: 'culture"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 404,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1072,
+        "label": "id: 'gyeongbuk-worcation"
       }
     ],
     "width": 1600,
     "height": 1067,
     "bytes": 128152,
     "sha256": "20f67e2ed9aa4ba8cdbd5f709d00673ce8b33901901f1ae074ef50fd84b686b2"
+  },
+  {
+    "key": "1548574505-5e239809ee19",
+    "src": "/media/verified/unsplash/1548574505-5e239809ee19.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 557,
+        "label": "country: '싱가포르"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 340,
+        "label": "id: 'east-asia"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1016,
+        "label": "id: 'incheon-workation"
+      }
+    ],
+    "width": 1600,
+    "height": 963,
+    "bytes": 242120,
+    "sha256": "97394f81732f88eae1f6005e506fd551aa93531274969ccb1c58e9c748404e96"
   },
   {
     "key": "1548707309-dcebeab9ea9b",
@@ -544,30 +1353,53 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 223,
-        "label": "id: 'portugal-lisbon"
-      },
-      {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1271,
-        "label": "id: 'esim-portugal"
+        "file": "src/lib/i18n/data.ts",
+        "line": 358,
+        "label": "id: 'med"
       }
     ],
     "width": 1600,
     "height": 1067,
     "bytes": 164386,
     "sha256": "fa97ed9708e770340c9fad47a90b74c1016a0fb3ae53462fb6a672dfe2046e13"
+  },
+  {
+    "key": "1551632811-561732d1e306",
+    "src": "/media/verified/unsplash/1551632811-561732d1e306.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 226,
+        "label": "id: 'trek"
+      }
+    ],
+    "width": 1600,
+    "height": 1068,
+    "bytes": 435812,
+    "sha256": "faa7ccf5cd7e2fc0f49054cc6e36638d83ecb7f0920b81e93bb2c59d1fc647f0"
   },
   {
     "key": "1552581234-26160f608093",
@@ -580,16 +1412,16 @@
       "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts"
     ],
     "usages": [
-      "destination"
+      "product"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1347,
-        "label": "id: 'learn-marketing"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 665,
+        "label": "category: 'education"
       }
     ],
     "width": 1600,
@@ -605,19 +1437,54 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts",
+      "src/lib/affiliate/items.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1231,
-        "label": "id: 'esim-vietnam"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1269,
+        "label": "country: '베트남"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 709,
+        "label": "country: '베트남"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 137,
+        "label": "id: 'danang"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 212,
+        "label": "id: 'fiji"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 393,
+        "label": "id: 'bangkok"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 405,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 441,
+        "label": "{ id: 'yeosu', img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80', title: "
       }
     ],
     "width": 1600,
@@ -652,6 +1519,101 @@
     "height": 976,
     "bytes": 62836,
     "sha256": "e025ce9a54f1b88c37f88b902b9249eeefeb8028e876ffa5121f97572a32dfb1"
+  },
+  {
+    "key": "1560814304-4f05b62af116",
+    "src": "/media/verified/unsplash/1560814304-4f05b62af116.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1560814304-4f05b62af116?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 320,
+        "label": "id: 'vancouver"
+      }
+    ],
+    "width": 1600,
+    "height": 1199,
+    "bytes": 285976,
+    "sha256": "1cac04bb31de8b302ba12d7136e56a28183f77759584172df3b9df8ba0339b58"
+  },
+  {
+    "key": "1566073771259-6a8506099945",
+    "src": "/media/verified/unsplash/1566073771259-6a8506099945.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 51,
+        "label": "country: '일본"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 60,
+        "label": "id: 'hotel-booking"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 256438,
+    "sha256": "bac1d1c04fa79cf13558a59c7f9fa278efc8ee2fdbc38b7aee900db6a00a48c0"
+  },
+  {
+    "key": "1573790387438-4da905039392",
+    "src": "/media/verified/unsplash/1573790387438-4da905039392.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1573790387438-4da905039392?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 287,
+        "label": "id: 'cebu"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 406,
+        "label": "region: loc('방콕·치앙마이', 'Bangkok · Chiang Mai', 'バンコク・チェンマイ')"
+      }
+    ],
+    "width": 1600,
+    "height": 2187,
+    "bytes": 709894,
+    "sha256": "dc1d0920b07c16d5a754cf25fb56e05a157ac310fba72b45d3bad07b4c3658fd"
   },
   {
     "key": "1583417319070-4a69db38a482",
@@ -718,6 +1680,70 @@
     "sha256": "eeeb15733a21c21e96eee587873532dfd9e67775fce1ff4fe77e0178e60a924c"
   },
   {
+    "key": "1587174486073-ae5e5cff23aa",
+    "src": "/media/verified/unsplash/1587174486073-ae5e5cff23aa.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1126,
+        "label": "country: '베트남"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 497,
+        "label": "id: 'golf-okinawa"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 157248,
+    "sha256": "622e117ed498593c0ec3dece28202a1e0385f364c0d0cf055b8b2ef1fc109ef4"
+  },
+  {
+    "key": "1590559899731-a382839e5549",
+    "src": "/media/verified/unsplash/1590559899731-a382839e5549.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1590559899731-a382839e5549?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 1389,
+        "label": "country: '일본"
+      }
+    ],
+    "width": 1600,
+    "height": 2400,
+    "bytes": 618670,
+    "sha256": "7ad004a89ef351d753693e3ebef75788e0f01911f6fb9de7a777269f1ec63120"
+  },
+  {
     "key": "1591040973846-61888c2de010",
     "src": "/media/verified/unsplash/1591040973846-61888c2de010.webp",
     "sourceType": "licensed",
@@ -744,6 +1770,42 @@
     "height": 1200,
     "bytes": 355792,
     "sha256": "2f10e979bf2220fbe73dbd480ad087067813695ee925beb915b710c730ae902d"
+  },
+  {
+    "key": "1599640842225-85d111c60e6b",
+    "src": "/media/verified/unsplash/1599640842225-85d111c60e6b.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1599640842225-85d111c60e6b?auto=format&fit=crop&w=800&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
+    ],
+    "usages": [
+      "product",
+      "program"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 600,
+        "label": "country: '한국 출발"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 349,
+        "label": "id: 'sea"
+      }
+    ],
+    "width": 1600,
+    "height": 1200,
+    "bytes": 213238,
+    "sha256": "979f2d340c380273acd1bd2adf6e484d0a6b7ea3971e9e1930879a8eca9c0819"
   },
   {
     "key": "1601225612316-b4733315a717",
@@ -809,25 +1871,65 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
+      "https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1617653202545-931490e8d7e7?auto=format&fit=crop&w=700&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 434,
-        "label": "id: 'vietnam-nhatrang"
+        "file": "src/lib/i18n/data.ts",
+        "line": 101,
+        "label": "id: 'yeosu"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 1030,
+        "label": "id: 'eochon-workation"
       }
     ],
     "width": 1600,
     "height": 900,
     "bytes": 122038,
     "sha256": "4e44837b4a8d6416befa7308ebf841e1af8d8a9c7a1a2607904900412e6ed651"
+  },
+  {
+    "key": "1631049307264-da0ec9d70304",
+    "src": "/media/verified/unsplash/1631049307264-da0ec9d70304.webp",
+    "sourceType": "licensed",
+    "license": "https://unsplash.com/license",
+    "verifiedAt": "2026-08-02",
+    "visualStatus": "verified",
+    "sourceUrls": [
+      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=700&q=80"
+    ],
+    "files": [
+      "src/lib/affiliate/featured.ts",
+      "src/lib/affiliate/items.ts"
+    ],
+    "usages": [
+      "product"
+    ],
+    "contexts": [
+      {
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 69,
+        "label": "country: '일본"
+      },
+      {
+        "file": "src/lib/affiliate/items.ts",
+        "line": 88,
+        "label": "id: 'hotel-tripcom"
+      }
+    ],
+    "width": 1600,
+    "height": 1067,
+    "bytes": 98362,
+    "sha256": "991559ebdbfb42f97fba61b4a12f4c7cdb057955db7ab53ff46f7be136b22b97"
   },
   {
     "key": "1677442135703-1787eea5ce01",
@@ -837,19 +1939,27 @@
     "verifiedAt": "2026-08-02",
     "visualStatus": "verified",
     "sourceUrls": [
-      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80"
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=80",
+      "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=800&q=80"
     ],
     "files": [
-      "src/lib/affiliate/destinations.ts"
+      "src/lib/affiliate/featured.ts",
+      "src/lib/i18n/data.ts"
     ],
     "usages": [
-      "destination"
+      "product",
+      "program"
     ],
     "contexts": [
       {
-        "file": "src/lib/affiliate/destinations.ts",
-        "line": 1337,
-        "label": "id: 'learn-ai"
+        "file": "src/lib/affiliate/featured.ts",
+        "line": 646,
+        "label": "category: 'education"
+      },
+      {
+        "file": "src/lib/i18n/data.ts",
+        "line": 473,
+        "label": "id: 'ai-sokcho"
       }
     ],
     "width": 1600,
