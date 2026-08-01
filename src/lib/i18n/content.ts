@@ -54,7 +54,7 @@ export function getProgramsList(): ProgramCard[] {
       titleKey: 'home_cat_domestic_l',
       descKey: 'home_cat_domestic_d',
       href: '/programs/domestic',
-      img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1800&q=80',
+      img: '/media/destinations/jeju-editorial-v1.webp',
       badgeKey: 'programs_badge_yangyang',
     },
     {
@@ -62,28 +62,28 @@ export function getProgramsList(): ProgramCard[] {
       titleKey: 'home_cat_global_l',
       descKey: 'home_cat_global_d',
       href: '/programs/global',
-      img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1800&q=80',
+      img: '/media/destinations/bali-editorial-v1.webp',
     },
     {
       id: 'market',
       titleKey: 'home_cat_market_l',
       descKey: 'home_cat_market_d',
       href: '/programs/market',
-      img: 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=1800&q=80',
+      img: '/media/destinations/osaka-editorial-v1.webp',
     },
     {
       id: 'language',
       titleKey: 'home_cat_language_l',
       descKey: 'home_cat_language_d',
       href: '/language',
-      img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1800&q=80',
+      img: '/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp',
     },
     {
       id: 'cruise',
       titleKey: 'home_cat_cruise_l',
       descKey: 'home_cat_cruise_d',
       href: '/cruise',
-      img: 'https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&w=1800&q=80',
+      img: '/covers/cruise-panstar-real-v2.jpeg',
     },
   ]
 }

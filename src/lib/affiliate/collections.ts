@@ -70,9 +70,6 @@ export type Collection = {
   conversionItems?: TripSetConversionItem[]
 }
 
-const P = (id: string) =>
-  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1600&q=80`
-
 export const COLLECTIONS: Collection[] = [
   // 시즌 기획전 — 2026 추석 연휴(9/24 목~9/27 일, 대체공휴일 없음). 배열 선두 = 홈 상위3 노출.
   // ⚠️ 시즌 종료(9/27) 후 배열 뒤로 이동하거나 제거할 것
@@ -480,7 +477,8 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'chiangmai-nomad',
     emoji: '🏯',
-    photo: P('1512553353614-82a7370096dc'), // 치앙마이 (검증)
+    photo: '/media/destinations/chiangmai-editorial-v1.webp',
+    illustrative: true,
     title: { KO: '치앙마이 노마드 세트', EN: 'Chiang Mai nomad set', JP: 'チェンマイ ノマドセット' },
     tagline: { KO: '장기 체류의 교과서', EN: 'The textbook long stay', JP: '長期滞在の定番' },
     desc: {
@@ -493,7 +491,7 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'japan-onsen-reset',
     emoji: '♨️',
-    photo: P('1526481280693-3bfa7568e0f3'), // 후지산 (검증)
+    photo: '/covers/onsen-hero-real.jpeg',
     title: { KO: '일본 소도시 온천 리셋', EN: 'Japan onsen-town reset', JP: '日本の温泉町リセット' },
     tagline: { KO: '일하고, 온천으로 하루를 닫다', EN: 'Work, then close the day at the onsen', JP: '働いて、温泉で一日を締める' },
     desc: {
@@ -506,7 +504,8 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'osaka-foodie',
     emoji: '🍜',
-    photo: P('1590559899731-a382839e5549'), // 오사카 (검증)
+    photo: '/media/destinations/osaka-editorial-v1.webp',
+    illustrative: true,
     title: { KO: '오사카 미식 워케이션', EN: 'Osaka foodie workation', JP: '大阪グルメワーケーション' },
     tagline: { KO: '먹고 일하고, 주말은 주유패스로', EN: 'Eat, work, and roam with the Amazing Pass', JP: '食べて働き、週末は周遊パスで' },
     desc: {
@@ -519,7 +518,8 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'singapore-business',
     emoji: '🌆',
-    photo: P('1525625293386-3f8f99389edd'), // 싱가포르 (검증)
+    photo: '/covers/stay-lyf-funan-singapore-ai.jpeg',
+    illustrative: true,
     title: { KO: '싱가포르 비즈니스 워케이션', EN: 'Singapore business workation', JP: 'シンガポール ビジネスワーケーション' },
     tagline: { KO: '코워킹 코리빙 + 도심 인프라', EN: 'Co-living meets a global business hub', JP: 'コリビング＋都市インフラ' },
     desc: {
@@ -532,7 +532,8 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'taipei-workation',
     emoji: '🏮',
-    photo: P('1470004914212-05527e49370b'), // 타이베이 (검증)
+    photo: '/covers/stay-citizenm-taipei-ai.jpeg',
+    illustrative: true,
     title: { KO: '타이베이 워케이션', EN: 'Taipei workation', JP: '台北ワーケーション' },
     tagline: { KO: '야시장과 코워킹 사이', EN: 'Between night markets and coworking', JP: '夜市とコワーキングの間で' },
     desc: {
