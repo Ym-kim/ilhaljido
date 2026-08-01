@@ -68,7 +68,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '1m',
-    photo: '/covers/cruise-msc-world-europa-ai.jpeg',
+    photo: '/covers/cruise-caribbean-editorial-photo-v2.webp',
     label: { KO: '한 달', EN: 'A month', JP: 'ひと月' },
     hint: { KO: '살아보기가 되는', EN: 'When a trip becomes living', JP: '暮らすような旅になる' },
     chips: [

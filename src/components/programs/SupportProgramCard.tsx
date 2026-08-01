@@ -25,6 +25,7 @@ const COPY = {
   deadline: { KO: '접수 마감', EN: 'Application deadline', JP: '受付締切' },
   open: { KO: '조건 확인', EN: 'Check details', JP: '条件を確認' },
   source: { KO: '공식 공고 기준', EN: 'Based on official notice', JP: '公式公告を基準' },
+  editorialImage: { KO: '지역 편집 이미지', EN: 'Regional editorial image', JP: '地域編集イメージ' },
 } satisfies Record<string, Record<Lang, string>>
 
 function localeCode(lang: Lang) {
@@ -35,7 +36,7 @@ function localePrefix(lang: Lang) {
   return lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : ''
 }
 
-export function SupportProgramCard({ program, lang }: { program: SupportCatalogItem; lang: Lang }) {
+export function SupportProgramCard({ program, lang, imagePriority = false }: { program: SupportCatalogItem; lang: Lang; imagePriority?: boolean }) {
   const { has, toggle } = useSavedSupportPrograms()
   const saved = has(program.id)
   const href = `${localePrefix(lang)}/programs/support/${program.slug}`
@@ -57,10 +58,11 @@ export function SupportProgramCard({ program, lang }: { program: SupportCatalogI
   return (
     <article data-support-card className="group flex h-full min-w-0 flex-col overflow-hidden rounded-[1.35rem] border border-[#dce5e7] bg-white shadow-[0_10px_35px_rgba(18,62,78,.06)] transition hover:-translate-y-0.5 hover:border-[#9fc2ce] hover:shadow-[0_16px_42px_rgba(18,62,78,.11)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-[#e8eef0]">
-        <Link href={href} onClick={() => trackEvent('support_program_open', { locale: lang.toLowerCase(), program_slug: program.slug, region: program.regionGroup, status: program.status })} className="block h-full focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#317b98]">
-          <Image src={program.photo} alt={`${program.region} — ${program.name}`} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
+        <Link href={href} onClick={() => trackEvent('support_program_open', { locale: lang.toLowerCase(), program_slug: program.slug, region: program.regionGroup, status: program.status })} className="relative block h-full focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-[#317b98]">
+          <Image src={program.photo} alt={program.photoAlt ?? `${program.region} — ${program.name}`} fill loading={imagePriority ? 'eager' : 'lazy'} fetchPriority={imagePriority ? 'high' : 'auto'} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
           <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden />
           <span className="absolute bottom-3 left-4 text-sm font-bold text-white drop-shadow">{program.region}</span>
+          {program.illustrative && <span className="absolute bottom-3 right-3 rounded-full border border-white/25 bg-black/45 px-2 py-1 text-[0.625rem] font-bold text-white/90 backdrop-blur-sm">{COPY.editorialImage[lang]}</span>}
         </Link>
         <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[0.6875rem] font-bold ${STATUS_STYLE[program.status]}`}>
           {SUPPORT_LABELS.status[program.status][lang]}
