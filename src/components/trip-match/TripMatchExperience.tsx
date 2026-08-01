@@ -91,13 +91,13 @@ const COPY: Record<string, L> = {
 }
 
 const TRIP_MATCH_INTRO_ASSET = {
-  id: 'trip-match-model-d-city-departure-v1',
+  id: 'trip-match-model-d-itinerary-choice-v2',
   modelId: 'WAK-MODEL-D',
-  src: '/media/brand-models/trip-match-model-d-city-departure-v1.webp',
+  src: '/media/brand-models/trip-match-model-d-itinerary-choice-v2.webp',
   alt: {
-    KO: '도시 이동을 앞두고 라운지에서 노트북을 닫는 여행자',
-    EN: 'A traveler closing a laptop in a city departure lounge',
-    JP: '街への出発前にラウンジでノートパソコンを閉じる旅行者',
+    KO: '출발 라운지에서 두 여행 일정과 노트북을 정리하는 여행자',
+    EN: 'A traveler choosing between two itineraries in an unnamed departure lounge',
+    JP: '出発ラウンジで2つの旅程とノートパソコンを整理する旅人',
   } satisfies L,
 } as const
 

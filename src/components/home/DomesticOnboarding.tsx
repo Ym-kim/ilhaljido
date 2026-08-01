@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 import { ArrowRight } from 'lucide-react'
 import type { Lang } from '@/lib/i18n/types'
+import type { BrandModelId } from '@/lib/media/brandModels'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
 
@@ -14,7 +15,7 @@ type Entry = {
   slug: string
   href: string
   assetId: string
-  modelId?: 'WAK-MODEL-A' | 'WAK-MODEL-C' | 'WAK-MODEL-D'
+  modelId?: BrandModelId
   image: string
   imagePosition?: string
   name: L
@@ -41,10 +42,10 @@ const ENTRIES: Entry[] = [
   {
     slug: 'seoul-3n4d',
     href: '/collections/seoul-3n4d',
-    assetId: 'domestic-seoul-model-d-urban-work-v1',
-    modelId: 'WAK-MODEL-D',
-    image: '/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp',
-    imagePosition: '68% 48%',
+    assetId: 'domestic-seoul-model-j-city-noir-v2',
+    modelId: 'WAK-MODEL-J',
+    image: '/media/brand-models/domestic-seoul-model-j-city-noir-v2.webp',
+    imagePosition: '72% 48%',
     name: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
     description: {
       KO: '도시의 리듬 안에서 일과 저녁 문화를 함께 구성하는 3박 4일',
@@ -52,15 +53,15 @@ const ENTRIES: Entry[] = [
       JP: '仕事の時間とソウルの夜を組み合わせる3泊4日',
     },
     tag: { KO: '도시형 3박 4일', EN: '3-night city stay', JP: '都市で3泊4日' },
-    alt: { KO: '서울을 연상시키는 도시형 카페 공간에서 노트를 정리하는 여행자', EN: 'A traveler taking notes in a Seoul-inspired urban café setting', JP: 'ソウルをイメージした都会的なカフェ空間でノートを書く旅行者' },
+    alt: { KO: '서울을 연상시키는 저녁 전시 골목을 여행 가방과 함께 걷는 여행자', EN: 'A traveler walking through an evening gallery lane inspired by Seoul', JP: 'ソウルをイメージした夕方のギャラリー通りを旅行バッグと歩く旅人' },
   },
   {
     slug: 'busan-weekend',
     href: '/collections/busan-weekend',
-    assetId: 'domestic-busan-model-c-coastal-transition-v1',
-    modelId: 'WAK-MODEL-C',
-    image: '/media/brand-models/domestic-busan-model-c-coastal-transition-v1.webp',
-    imagePosition: '58% 48%',
+    assetId: 'domestic-busan-model-e-coastal-city-v2',
+    modelId: 'WAK-MODEL-E',
+    image: '/media/brand-models/domestic-busan-model-e-coastal-city-v2.webp',
+    imagePosition: '34% 48%',
     name: { KO: '부산', EN: 'Busan', JP: '釜山' },
     description: {
       KO: '바다와 도심을 오가며 쉬는 시간을 확보하는 주말 2박 3일',
@@ -68,14 +69,14 @@ const ENTRIES: Entry[] = [
       JP: '海と街を行き来しながら余白をつくる週末2泊3日',
     },
     tag: { KO: '주말 2박 3일', EN: 'Weekend · 2 nights', JP: '週末2泊3日' },
-    alt: { KO: '부산을 연상시키는 해안 공간에서 가방을 들고 산책을 시작하는 여행자', EN: 'A traveler beginning a walk in a Busan-inspired coastal setting', JP: '釜山をイメージした海辺の空間で散歩を始める旅行者' },
+    alt: { KO: '부산을 연상시키는 바다와 도시 사이 산책로를 걷는 여행자', EN: 'A traveler walking where an unnamed Busan-inspired city meets the sea', JP: '釜山をイメージした海と街のあいだの遊歩道を歩く旅人' },
   },
   {
     slug: 'jeju',
     href: '/guide/jeju',
-    assetId: 'domestic-jeju-model-a-slow-stay-v1',
-    modelId: 'WAK-MODEL-A',
-    image: '/media/brand-models/domestic-jeju-model-a-slow-stay-v1.webp',
+    assetId: 'domestic-jeju-model-g-slow-stay-v2',
+    modelId: 'WAK-MODEL-G',
+    image: '/media/brand-models/domestic-jeju-model-g-slow-stay-v2.webp',
     imagePosition: '72% 50%',
     name: { KO: '제주', EN: 'Jeju', JP: '済州' },
     description: {
@@ -84,7 +85,7 @@ const ENTRIES: Entry[] = [
       JP: '3泊以上滞在し、日常のペースを整える島のガイド',
     },
     tag: { KO: '3박 이상', EN: '3+ nights', JP: '3泊以上' },
-    alt: { KO: '제주를 연상시키는 돌담과 억새 풍경 앞에서 노트를 펼친 여행자', EN: 'A traveler with a notebook beside stone walls and grass in a Jeju-inspired setting', JP: '済州をイメージした石垣とススキの風景でノートを開く旅行者' },
+    alt: { KO: '제주를 연상시키는 돌담과 억새 길에서 여행 일정을 적는 여행자', EN: 'A traveler writing beside a stone wall and silver grass in a Jeju-inspired landscape', JP: '済州をイメージした石垣とススキの道で旅の予定を書く旅人' },
   },
   {
     slug: 'fukuoka-3n4d',
