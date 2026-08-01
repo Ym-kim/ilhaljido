@@ -3,6 +3,7 @@
 Date: 2026-08-01  
 Production baseline: `aabba0b`  
 Branch: `feat/full-site-motion-visual-elevation-v1`
+Preview: `https://ilhaljido-72n1s9xov-clark-kims-projects.vercel.app`
 
 ## Coverage
 
@@ -54,15 +55,16 @@ The lowest baseline group was Home because a Ken Burns hero, ticker and multiple
 
 ## After verification
 
-The final local production build rendered all 264 routes at both required viewports with:
+The final Vercel Preview rendered all 264 routes at both required viewports with:
 
 - 0 route failures;
 - 0 horizontal-overflow failures;
+- 0 broken images, including configured remote photographic sources;
 - 0 missing `alt` attributes;
 - Motion Runtime active on every route;
 - 21 deliberate reveal targets across the eight priority route groups.
 
-The local sandbox cannot fetch configured Unsplash origins, so local image-optimizer requests for those sources fail. This is not counted as an application regression: the Production baseline rendered those same routes with zero broken images, and Preview is the authoritative final image check.
+The local sandbox cannot fetch configured Unsplash origins, so local image-optimizer requests for those sources fail. Preview was therefore used as the authoritative final image check. The local security regression also returned 403 for unauthenticated `/api/admin/applications` and redirected unauthenticated `/admin` to `/login?redirect=/admin`.
 
 ## Remaining visual debt
 

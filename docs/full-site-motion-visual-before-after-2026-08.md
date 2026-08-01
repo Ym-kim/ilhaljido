@@ -2,6 +2,7 @@
 
 Baseline: Production `aabba0b`  
 After: `feat/full-site-motion-visual-elevation-v1`
+Preview: `https://ilhaljido-72n1s9xov-clark-kims-projects.vercel.app`
 
 ## Capture archive
 
@@ -10,7 +11,12 @@ After: `feat/full-site-motion-visual-elevation-v1`
 - After mobile: `artifacts/full-site-audit/after/mobile/`
 - After desktop: `artifacts/full-site-audit/after/desktop/`
 
-The Before archive contains 170 route/template variants at each of 390×844 and 1440×900. After captures use the same filenames and viewports on Vercel Preview. Binary captures stay out of Git; the route, image and source audit tables are checked in under `docs/audits/`.
+The Before and After archives each contain 170 route/template variants at both 390×844 and 1440×900. After captures use the same filenames and viewports on Vercel Preview. Binary captures stay out of Git; the route, image and source audit tables are checked in under `docs/audits/`.
+
+Generated comparison sheets:
+
+- `artifacts/full-site-audit/contact-sheets/desktop-before-after.jpg`
+- `artifacts/full-site-audit/contact-sheets/mobile-before-after.jpg`
 
 ## Quantitative comparison
 
@@ -28,6 +34,8 @@ The Before archive contains 170 route/template variants at each of 390×844 and 
 | Reduced-motion reset for `animate-rise` | no | yes |
 | Local image payload added | — | 0 bytes |
 | New animation dependency | — | none |
+
+The final Preview audit rendered 264 routes at both viewports (528 route renders) and found zero route failures, horizontal overflows, broken images, missing `alt` attributes or missing Motion Runtime states.
 
 ## Visual changes to verify
 
