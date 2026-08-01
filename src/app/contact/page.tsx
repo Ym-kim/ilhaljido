@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowRight } from 'lucide-react'
-import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
+import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 
 // 카카오톡 채널 (실제 운영 채널)
@@ -23,7 +23,7 @@ export default function ContactPage() {
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="pt-28 pb-12 px-6 text-center">
         <SectionEyebrow>{tr('contact_eyebrow')}</SectionEyebrow>
-        <SectionTitle className="mb-4 text-center">{tr('contact_title')}</SectionTitle>
+        <h1 className="mb-4 text-center text-4xl font-black leading-tight text-gray-900 md:text-5xl">{tr('contact_title')}</h1>
         <p className="text-gray-500 text-sm">{tr('contact_subtitle')}</p>
       </section>
 

@@ -1,145 +1,129 @@
 'use client'
 
 import Image from 'next/image'
-import { BookOpen, Mic, Users, TrendingUp, ArrowRight, Mail } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
-import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
+import { FEATURED_COURSES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
-import { ICON_STROKE } from '@/lib/icons'
+import type { Lang } from '@/lib/i18n/types'
 
-const PROGRAMS = [
+type L = Record<Lang, string>
+
+const COPY: Record<string, L> = {
+  eyebrow: { KO: '일과 성장', EN: 'Work & growth', JP: '仕事と成長' },
+  title: { KO: '이동해도,\n일의 감각은 이어지도록', EN: 'Keep your work moving,\nwherever you stay', JP: '場所が変わっても、\n仕事の感覚をつなぐ' },
+  sub: {
+    KO: '준비되지 않은 워크숍 대신, 지금 확인할 수 있는 강의와 워케이션 중 바로 써볼 학습 흐름을 골랐습니다.',
+    EN: 'Instead of unconfirmed workshops, explore currently available courses and practical learning paths for a workation.',
+    JP: '未確定のワークショップではなく、今確認できる講座と、滞在中に試せる学び方を選びました。',
+  },
+  path_eyebrow: { KO: 'LEARNING PATHS', EN: 'LEARNING PATHS', JP: 'LEARNING PATHS' },
+  path_title: { KO: '여행 중에도 부담 없는 세 가지 흐름', EN: 'Three lightweight ways to learn while away', JP: '旅先でも無理なく続ける3つの学び方' },
+  courses_title: { KO: '현재 확인 가능한 실무 강의', EN: 'Practical courses available now', JP: '現在確認できる実務講座' },
+  courses_sub: {
+    KO: '업무 자동화·콘텐츠·1인 비즈니스에 바로 적용할 수 있는 활성 제휴 강의만 보여드립니다.',
+    EN: 'Only active partner courses for automation, content and solo-business skills are shown.',
+    JP: '業務自動化・コンテンツ・個人ビジネスに活かせる、提携中の講座のみ掲載します。',
+  },
+  all_courses: { KO: '모든 강의와 언어학습 보기', EN: 'See all courses and language learning', JP: 'すべての講座・語学学習を見る' },
+  partner_eyebrow: { KO: 'PARTNERSHIP', EN: 'PARTNERSHIP', JP: 'PARTNERSHIP' },
+  partner_title: { KO: '실제 운영 가능한 교육 프로그램을 제안해 주세요', EN: 'Propose a learning program you can operate', JP: '実際に運営できる学習プログラムをご提案ください' },
+  partner_sub: {
+    KO: '모집 일정과 운영 주체가 확인된 프로그램만 검토 후 소개합니다. 제안이 곧 게시나 모집을 의미하지는 않습니다.',
+    EN: 'We review programs with a confirmed operator and schedule. A proposal does not guarantee publication or recruitment.',
+    JP: '運営主体と日程が確認できる企画のみ審査します。提案は掲載・募集を保証するものではありません。',
+  },
+  inquire: { KO: '교육 파트너 문의', EN: 'Learning partner inquiry', JP: '教育パートナーのお問い合わせ' },
+}
+
+const PATHS: Array<{ label: L; title: L; desc: L }> = [
   {
-    icon: TrendingUp,
-    ko: { title: '프리랜서 수익화 워크숍', desc: '1인 비즈니스를 지속 가능하게 만드는 수익 구조 설계. 실제 사례 기반의 집중 워크숍.', tag: '4시간', date: '준비중' },
-    en: { title: 'Freelancer Monetization', desc: 'Revenue structure design for sustainable solo businesses. Intensive workshop based on real cases.', tag: '4 hrs', date: 'Coming Soon' },
-    jp: { title: 'フリーランス収益化ワークショップ', desc: '個人ビジネスを持続可能にする収益構造の設計。実例ベースの集中ワークショップ。', tag: '4時間', date: '準備中' },
+    label: { KO: '30분', EN: '30 minutes', JP: '30分' },
+    title: { KO: '이동 전, 반복 업무 하나 줄이기', EN: 'Remove one repetitive task before departure', JP: '出発前に反復作業を一つ減らす' },
+    desc: { KO: 'AI 자동화 강의에서 필요한 챕터만 골라, 이번 여행의 업무 루틴에 적용합니다.', EN: 'Pick one relevant automation lesson and apply it to your travel work routine.', JP: 'AI自動化講座から必要な章を選び、旅先の仕事ルーティンに活かします。' },
   },
   {
-    icon: Mic,
-    ko: { title: '브랜딩 & 퍼스널 마케팅', desc: '디지털 환경에서 나를 알리는 법. SNS·포트폴리오·콘텐츠 전략을 실전으로 배웁니다.', tag: '반일', date: '준비중' },
-    en: { title: 'Branding & Personal Marketing', desc: 'How to build your presence online. Social media, portfolio, and content strategy in practice.', tag: 'Half-day', date: 'Coming Soon' },
-    jp: { title: 'ブランディング＆パーソナルマーケ', desc: 'デジタル環境で自分を知らせる方法。SNS・ポートフォリオ・コンテンツ戦略を実践で学ぶ。', tag: '半日', date: '準備中' },
+    label: { KO: '한 저녁', EN: 'One evening', JP: '夜のひととき' },
+    title: { KO: '오늘 본 장면을 콘텐츠로 정리하기', EN: 'Turn today’s scenes into useful content', JP: '今日の景色をコンテンツにまとめる' },
+    desc: { KO: '사진과 메모를 정리한 뒤 마케팅·이미지 실무 강의로 표현 방식을 다듬습니다.', EN: 'Organize photos and notes, then refine the output with practical marketing or image lessons.', JP: '写真とメモを整理し、マーケティングや画像制作の実務講座で表現を磨きます。' },
   },
   {
-    icon: Users,
-    ko: { title: '네트워킹 마스터클래스', desc: '의미 있는 인맥을 만들고 유지하는 방법. 워케이션 현장에서 활용 가능한 실전 스킬.', tag: '3시간', date: '준비중' },
-    en: { title: 'Networking Masterclass', desc: 'Building and maintaining meaningful connections. Practical skills you can use at workation venues.', tag: '3 hrs', date: 'Coming Soon' },
-    jp: { title: 'ネットワーキングマスタークラス', desc: '意味のある人脈を作り維持する方法。ワーケーション現場で使える実践スキル。', tag: '3時間', date: '準備中' },
-  },
-  {
-    icon: BookOpen,
-    ko: { title: '글로벌 진출 세미나', desc: '동남아·일본·미국 시장 진출 전략. 비자·세금·법인 설립까지 한 번에 정리합니다.', tag: '2시간', date: '준비중' },
-    en: { title: 'Global Expansion Seminar', desc: 'Strategy for entering SE Asia, Japan, and US markets. Visa, tax, and company setup all in one.', tag: '2 hrs', date: 'Coming Soon' },
-    jp: { title: 'グローバル進出セミナー', desc: '東南アジア・日本・米国への進出戦略。ビザ・税務・法人設立まで一気に整理。', tag: '2時間', date: '準備中' },
+    label: { KO: '여행 후', EN: 'After the trip', JP: '旅のあと' },
+    title: { KO: '배운 것을 수익 구조로 연결하기', EN: 'Connect what you learned to your work', JP: '学びを仕事の仕組みにつなげる' },
+    desc: { KO: '여행 중 만든 결과물을 1인 비즈니스의 채널·상품·업무 방식으로 이어갑니다.', EN: 'Carry what you made into your channel, offer or solo-business workflow.', JP: '旅先で作ったものを、個人ビジネスの発信・商品・仕事の進め方につなげます。' },
   },
 ]
 
 export default function LearnPage() {
-  const { lang, tr } = useLang()
-
-  const pick = (item: typeof PROGRAMS[0]) =>
-    lang === 'KO' ? item.ko : lang === 'EN' ? item.en : item.jp
+  const { lang } = useLang()
+  const activeCourses = FEATURED_COURSES.filter((course) => course.status === 'active_affiliate')
+    .slice(0, 6)
+    .map((course) => localizeAffiliateItem(course, lang))
 
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
-      <section className="relative h-[55vh] flex items-end overflow-hidden">
-        <Image src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1800&q=85" alt="" fill priority sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
-        <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
-          <SectionEyebrow onDark className="flex items-center gap-2">
-            <BookOpen className="w-4 h-4 inline" strokeWidth={ICON_STROKE} />
-            {lang === 'KO' ? '강의 · 세미나' : lang === 'EN' ? 'Workshops & Seminars' : '講義・セミナー'}
-          </SectionEyebrow>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
-            {lang === 'KO' ? '일하면서\n배우고 성장하다' : lang === 'EN' ? 'Learn While\nYou Work' : '働きながら\n学び、成長する'}
+      <section className="relative flex min-h-[34rem] items-end overflow-hidden">
+        <Image
+          src="/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/15" />
+        <div className="relative mx-auto w-full max-w-6xl px-6 pb-16">
+          <SectionEyebrow onDark>{COPY.eyebrow[lang]}</SectionEyebrow>
+          <h1 className="max-w-3xl whitespace-pre-line text-4xl font-black leading-[1.08] text-white md:text-6xl">
+            {COPY.title[lang]}
           </h1>
-          <p className="text-lead-on-dark mt-4 max-w-xl">
-            {lang === 'KO'
-              ? '워케이션에 녹아든 강의와 세미나. 이동 중, 쉬는 틈, 네트워킹 자리에서 자연스럽게 배웁니다.'
-              : lang === 'EN'
-              ? 'Workshops embedded in your workation. Learn naturally during transitions, breaks, and networking moments.'
-              : 'ワーケーションに溶け込んだ講義とセミナー。移動中、休憩中、ネットワーキングの場で自然に学びます。'}
-          </p>
+          <span className="mt-5 block max-w-2xl text-base leading-relaxed text-white/72 md:text-lg">{COPY.sub[lang]}</span>
         </div>
       </section>
 
-      <section className="py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-3">
-            {lang === 'KO' ? '예정 프로그램' : lang === 'EN' ? 'Upcoming Programs' : '予定プログラム'}
-          </p>
-          <h2 className="text-2xl font-black text-white mb-10">
-            {lang === 'KO' ? '자기개발·성장 워크숍' : lang === 'EN' ? 'Growth Workshops' : '自己成長ワークショップ'}
-          </h2>
-          <div className="grid md:grid-cols-2 gap-5">
-            {PROGRAMS.map((p, i) => {
-              const d = pick(p)
-              const Icon = p.icon
-              return (
-                <div key={i} className="bg-[#1a1a1a] border border-white/10 rounded-2xl p-7 hover:border-teal-500/30 transition-all">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-11 h-11 rounded-xl bg-teal-500/10 flex items-center justify-center shrink-0">
-                      <Icon className="w-5 h-5 text-teal-400" strokeWidth={ICON_STROKE} />
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-teal-400/70 text-xs font-bold">{d.tag}</span>
-                        <span className="text-white/30 text-xs">·</span>
-                        <span className="text-white/30 text-xs">{d.date}</span>
-                      </div>
-                      <h3 className="text-white font-black text-lg leading-tight">{d.title}</h3>
-                    </div>
-                  </div>
-                  <p className="text-white/50 text-sm leading-relaxed">{d.desc}</p>
-                  <div className="mt-5">
-                    <a
-                      href="mailto:wakation.sf@gmail.com"
-                      className="inline-flex items-center gap-1.5 text-teal-400 text-xs font-bold hover:text-teal-300 transition-colors"
-                    >
-                      {lang === 'KO' ? '사전 알림 신청' : lang === 'EN' ? 'Pre-register' : '事前登録'} <ArrowRight className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-              )
-            })}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <span className="text-eyebrow-on-dark mb-3 block">{COPY.path_eyebrow[lang]}</span>
+          <h2 className="max-w-2xl text-3xl font-bold leading-tight text-white md:text-4xl">{COPY.path_title[lang]}</h2>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {PATHS.map((path) => (
+              <article key={path.title.KO} className="flex h-full flex-col border-t border-white/25 py-6">
+                <span className="text-xs font-bold text-sky-300">{path.label[lang]}</span>
+                <h3 className="mt-3 text-xl font-bold leading-snug text-white">{path.title[lang]}</h3>
+                <span className="mt-3 block text-sm leading-relaxed text-white/55">{path.desc[lang]}</span>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-[#0d0d0d]">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="text-teal-400 text-xs font-black tracking-widest uppercase mb-4">
-            {lang === 'KO' ? '강사 / 파트너 모집' : lang === 'EN' ? 'Speaker & Partner Inquiry' : '講師・パートナー募集'}
-          </p>
-          <h2 className="text-2xl font-black text-white mb-4">
-            {lang === 'KO' ? '함께 만들어 가요' : lang === 'EN' ? "Let's Build Together" : '一緒に作っていきましょう'}
-          </h2>
-          <p className="text-white/50 text-sm mb-8 leading-relaxed">
-            {lang === 'KO'
-              ? '강의·워크숍 진행에 관심 있는 전문가나 팀을 찾습니다. 워케이션 참가자를 대상으로 함께 프로그램을 만들어봐요.'
-              : lang === 'EN'
-              ? 'Looking for experts and teams to run workshops. Let\'s co-create programs for workation participants.'
-              : '講義・ワークショップ進行に関心のある専門家やチームを探しています。'}
-          </p>
-          <a
-            href="mailto:wakation.sf@gmail.com?subject=강의·세미나 문의"
-            className="inline-flex items-center gap-2 bg-teal-500 text-white font-black px-8 py-4 rounded-full hover:bg-teal-400 transition-all"
-          >
-            <Mail className="w-4 h-4" strokeWidth={ICON_STROKE} />
-            {lang === 'KO' ? '문의하기' : lang === 'EN' ? 'Get in Touch' : 'お問い合わせ'}
-          </a>
+      <AffiliateSection
+        eyebrow="WAKATION SELECT"
+        title={COPY.courses_title[lang]}
+        subtitle={COPY.courses_sub[lang]}
+        items={activeCourses}
+      />
+
+      <section className="border-t border-white/10 bg-[#0d0d0d] px-6 py-16">
+        <div className="mx-auto flex max-w-6xl flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <span className="text-eyebrow-on-dark mb-3 block">{COPY.partner_eyebrow[lang]}</span>
+            <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">{COPY.partner_title[lang]}</h2>
+            <span className="mt-3 block text-sm leading-relaxed text-white/55">{COPY.partner_sub[lang]}</span>
+          </div>
+          <div className="flex flex-col items-start gap-3 sm:flex-row">
+            <Link href="/select/learn" className="inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#111] hover:bg-sky-100">
+              {COPY.all_courses[lang]} <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <a href="mailto:wakation.sf@gmail.com?subject=Learning%20partnership" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-bold text-white hover:border-sky-300">
+              <Mail className="h-4 w-4" aria-hidden="true" /> {COPY.inquire[lang]}
+            </a>
+          </div>
         </div>
       </section>
-
-      {/* 여행 준비 크로스셀 — Wakation Select */}
-      <AffiliateSection
-        eyebrow="Wakation Select"
-        title={tr('prep_title')}
-        subtitle={tr('prep_sub')}
-        items={PROGRAMS_LEARN_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
-      />
     </div>
   )
 }

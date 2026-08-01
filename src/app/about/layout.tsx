@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '서비스 소개',
-  description: '주식회사 스테이포워드가 운영하는 워케이션 플랫폼 Wakation. 국내외 워케이션 프로그램, 숙소·업무공간·비자까지 한 곳에서 준비하세요.',
-  keywords: ['워케이션', 'Wakation', '워케이션 플랫폼', '스테이포워드'],
-  robots: { index: true, follow: true },
+  title: 'Wakation 소개 — 머무는 시간을 일과 성장으로',
+  description: '여행 발견부터 준비, Wakation Hosted 프로그램과 외부 제휴 상품의 차이, Wakation의 편집 원칙을 소개합니다.',
+  alternates: { canonical: 'https://www.wakation.kr/about' },
 }
 
-export default function AboutLayout({ children }: { children: React.ReactNode }) {
+export default function AboutLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return children
 }
