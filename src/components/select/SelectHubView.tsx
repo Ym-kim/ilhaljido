@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ArrowRight, BedDouble, Sparkles, Wifi, BookOpen } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
 import { ICON_STROKE } from '@/lib/icons'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { ProductBrowser } from '@/components/affiliate/ProductBrowser'
@@ -13,6 +14,7 @@ import { ALL_AFFILIATE_ITEMS } from '@/lib/affiliate/items'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
+import { trackEvent } from '@/lib/track'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Wakation Select 허브 — 2026-07-13 i18n 적용 (KO 하드코딩 잔존 해소, 인라인 3언어)
@@ -84,23 +86,30 @@ const DEST_FILTERS = [
 ] as const
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
+const SELECT_HERO_ASSET = {
+  id: 'select-model-i-travel-prep-v2',
+  modelId: 'WAK-MODEL-I',
+  src: '/media/brand-models/select-model-i-travel-prep-v2.webp',
+  alt: {
+    KO: '이동 전 라운지에서 일정표와 휴대전화를 확인하는 여행자',
+    EN: 'A traveler checking an itinerary and phone in an unnamed intercity travel lounge',
+    JP: '移動前のラウンジで旅程とスマートフォンを確認する旅人',
+  } satisfies L,
+} as const
+
 const CATEGORIES: {
   id: string
   href: string
-  icon: typeof BedDouble
   label: L
   title: L
   badge: L
   badgeClass: string
   cardClass: string
-  iconBg: string
-  iconColor: string
   cta: string
 }[] = [
   {
     id: 'hotel',
     href: '/select/hotel',
-    icon: BedDouble,
     label: { KO: '숙소 찾기', EN: 'Find stays', JP: '宿泊先を探す' },
     title: {
       KO: '목적지별 숙소 큐레이션',
@@ -110,14 +119,11 @@ const CATEGORIES: {
     badge: { KO: '제휴', EN: 'Partner', JP: '提携' },
     badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
     cta: 'text-emerald-600',
   },
   {
     id: 'activity',
     href: '/select/activity',
-    icon: Sparkles,
     label: { KO: '현지 체험', EN: 'Experiences', JP: '現地体験' },
     title: {
       KO: '목적지별 투어·액티비티',
@@ -127,14 +133,11 @@ const CATEGORIES: {
     badge: { KO: '제휴', EN: 'Partner', JP: '提携' },
     badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
-    iconBg: 'bg-emerald-50',
-    iconColor: 'text-emerald-600',
     cta: 'text-emerald-600',
   },
   {
     id: 'esim',
     href: '/select/esim',
-    icon: Wifi,
     label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' },
     title: {
       KO: '목적지별 eSIM 즉시 구매',
@@ -144,14 +147,11 @@ const CATEGORIES: {
     badge: { KO: '큐레이션', EN: 'Curated', JP: '厳選' },
     badgeClass: 'bg-[#f1f5f9] text-[#64748b] border-[#e2e8f0]',
     cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
-    iconBg: 'bg-[#f5f3ef]',
-    iconColor: 'text-[#7a7a7a]',
     cta: 'text-[#9a9a9a]',
   },
   {
     id: 'learn',
     href: '/select/learn',
-    icon: BookOpen,
     label: { KO: '강의·학습', EN: 'Courses', JP: '講座·学習' },
     title: {
       KO: '워케이션 중 성장하는 강의',
@@ -161,8 +161,6 @@ const CATEGORIES: {
     badge: { KO: '큐레이션', EN: 'Curated', JP: '厳選' },
     badgeClass: 'bg-[#f1f5f9] text-[#64748b] border-[#e2e8f0]',
     cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
-    iconBg: 'bg-[#f5f3ef]',
-    iconColor: 'text-[#7a7a7a]',
     cta: 'text-[#9a9a9a]',
   },
 ]
@@ -175,6 +173,17 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
+
+  useEffect(() => {
+    trackEvent('visual_asset_view', {
+      assetId: SELECT_HERO_ASSET.id,
+      modelId: SELECT_HERO_ASSET.modelId,
+      route: lang === 'JP' ? '/ja/select' : lang === 'EN' ? '/en/select' : '/select',
+      section: 'select_hero_editorial',
+      locale: lang,
+      placement: 'editorial_banner',
+    })
+  }, [lang])
 
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
@@ -203,21 +212,34 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
     <div className="min-h-screen bg-white">
 
       {/* Hero */}
-      <section className="pt-20 pb-16 px-6 bg-[#f9f7f3] border-b border-[#e5e1da]">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-brand-mid text-xs font-bold tracking-widest uppercase mb-5">
-            WAKATION SELECT
-          </p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#141414] leading-[1.06] tracking-tight mb-5">
-            {COPY.title1[lang]}<br />
-            <span className="text-brand-mid">{COPY.title2a[lang]}</span>{COPY.title2b[lang]}
-          </h1>
-          {/* 2026-07-19 가독성: #5c5c5c/base → #3f3f46/lg 상향 (운영자 지적) */}
-          <p className="text-[#3f3f46] text-lg md:text-xl leading-relaxed max-w-xl mb-3">
-            {COPY.sub[lang]}
-          </p>
-          <p className="text-[#a0a0a0] text-xs">{COPY.note[lang]}</p>
-          <SelectionCriteria className="mt-4" />
+      <section className="border-b border-[#ded8cf] bg-[#f4efe7] px-5 pb-14 pt-24 sm:px-6 md:pb-20 md:pt-28">
+        <div className="mx-auto grid max-w-6xl items-center gap-9 lg:grid-cols-[minmax(0,0.88fr)_minmax(30rem,1.12fr)] lg:gap-12">
+          <div className="min-w-0">
+            <span className="wak-overline text-[#397083]">WAKATION SELECT</span>
+            <h1 className="wak-page-title mt-4 max-w-xl text-[#17242b]">
+              {COPY.title1[lang]}<br />
+              <span className="text-brand-mid">{COPY.title2a[lang]}</span>{COPY.title2b[lang]}
+            </h1>
+            <p className="mt-5 max-w-xl text-base font-medium leading-7 text-[#485a62] sm:text-lg sm:leading-8">
+              {COPY.sub[lang]}
+            </p>
+            <p className="mt-3 text-xs font-medium leading-5 text-[#747d80]">{COPY.note[lang]}</p>
+            <SelectionCriteria className="mt-5" />
+          </div>
+          <div className="relative aspect-[16/10] min-w-0 overflow-hidden rounded-[1.5rem] border border-white/70 bg-[#d9e1df] shadow-[0_22px_60px_rgba(36,54,60,0.16)] lg:aspect-[16/11]">
+            <Image
+              src={SELECT_HERO_ASSET.src}
+              alt={SELECT_HERO_ASSET.alt[lang]}
+              fill
+              preload
+              sizes="(max-width: 1023px) 100vw, 52vw"
+              className="object-cover object-[72%_45%]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#102532]/20 via-transparent to-transparent" />
+            <span className="absolute bottom-4 left-4 rounded-full border border-white/35 bg-[#102532]/78 px-3 py-1.5 text-[0.65rem] font-black text-white backdrop-blur-sm">
+              {lang === 'KO' ? '여행 준비의 시작' : lang === 'JP' ? '旅の準備を始める' : 'Start with the essentials'}
+            </span>
+          </div>
         </div>
       </section>
 
@@ -229,24 +251,21 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {CATEGORIES.map((cat) => {
-              const Icon = cat.icon
               return (
                 <Link
                   key={cat.id}
                   href={`${prefix}${cat.href}`}
-                  className={`group relative flex flex-col bg-white border rounded-2xl p-5 transition-all duration-200 hover:-translate-y-0.5 ${cat.cardClass}`}
+                  className={`group relative flex min-h-48 flex-col border bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 ${cat.cardClass}`}
                 >
-                  <div className="flex items-start justify-between mb-3">
-                    <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${cat.iconBg}`}>
-                      <Icon className={`w-4 h-4 ${cat.iconColor}`} strokeWidth={ICON_STROKE} />
-                    </div>
+                  <div className="mb-5 flex items-start justify-between">
+                    <span aria-hidden="true" className="mt-2 h-px w-10 bg-[#7da3a8] transition-all group-hover:w-14" />
                     <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
                       {cat.badge[lang]}
                     </span>
                   </div>
                   <p className="text-[#141414] font-black text-[0.9375rem] mb-1">{cat.label[lang]}</p>
                   <p className="text-[#52525b] text-[0.8125rem] leading-relaxed line-clamp-2">{cat.title[lang]}</p>
-                  <div className={`mt-4 flex items-center gap-1 text-xs font-bold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
+                  <div className={`mt-auto flex items-center gap-1 pt-5 text-xs font-bold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
                     {COPY.browse[lang]}
                     <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
                   </div>

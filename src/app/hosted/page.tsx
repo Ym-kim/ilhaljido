@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     alternateLocale: ['en_US', 'ja_JP'],
     type: 'website',
-    images: [{ url: '/campaign/home-workation-editorial-v1.webp', width: 1600, height: 900, alt: '바다가 보이는 숙소에서 일하는 여행자' }],
+    images: [{ url: '/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp', width: 1440, height: 900, alt: '해안 공동 작업 공간에서 함께 체류 일정을 살펴보는 두 여행자' }],
   },
   robots: { index: true, follow: true },
 }

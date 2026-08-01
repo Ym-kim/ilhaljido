@@ -13,7 +13,12 @@ export type MediaAsset = {
   width?: number
   height?: number
   modelId?: BrandModelId
+  modelIds?: BrandModelId[]
   localeUsage?: Array<'ko' | 'en' | 'ja'>
+  routeUsage?: string[]
+  sectionUsage?: string[]
+  generatedFromReferenceIds?: string[]
+  referenceOnly?: boolean
   focalPoint?: MediaFocalPoint
   focalPoints?: {
     desktop?: MediaFocalPoint
@@ -22,6 +27,7 @@ export type MediaAsset = {
   source?: string
   license?: string
   createdAt?: string
+  verifiedAt?: string
   restriction?: Record<Lang, string>
 }
 
@@ -162,6 +168,152 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     license: 'User-controlled generated brand editorial asset; commercial review completed for this use',
     createdAt: '2026-07-31',
     restriction: { KO: '실제 역·교통사 또는 참가자 사진이 아니다.', EN: 'Not a real station, transport provider or participant photograph.', JP: '実在の駅・交通事業者、または参加者の写真ではない。' },
+  },
+  {
+    id: 'home-hero-model-a-coastal-work-desktop-v2',
+    src: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
+    alt: {
+      KO: '해안 작업 공간에서 노트북을 닫고 다음 이동을 준비하는 여행자',
+      EN: 'A traveler closing a laptop and preparing to leave an unnamed coastal workspace',
+      JP: '海辺のワークスペースでノートパソコンを閉じ、次の移動を準備する旅人',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1536, height: 1024, modelId: 'WAK-MODEL-A', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-hero'],
+    generatedFromReferenceIds: ['wak-model-a-coastal-calm-identity-anchor'],
+    focalPoints: { desktop: { x: 0.73, y: 0.48 }, mobile: { x: 0.7, y: 0.47 } },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-A identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '특정 숙소·카페나 실제 Wakation 참가자 장면으로 단정하지 않는다.', EN: 'Do not identify this as a specific stay, café or real Wakation participant.', JP: '特定の宿・カフェ、または実際のWakation参加者として扱わない。' },
+  },
+  {
+    id: 'home-hero-model-a-coastal-work-mobile-v2',
+    src: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
+    alt: {
+      KO: '해안 작업 공간에서 노트북과 여행 가방을 챙기는 여행자',
+      EN: 'A traveler gathering a laptop and weekender in an unnamed coastal workspace',
+      JP: '海辺のワークスペースでノートパソコンと旅行バッグをまとめる旅人',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 960, height: 1280, modelId: 'WAK-MODEL-A', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-hero-mobile'],
+    generatedFromReferenceIds: ['wak-model-a-coastal-calm-identity-anchor'], focalPoint: { x: 0.7, y: 0.43 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-A identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '특정 숙소·카페나 실제 Wakation 참가자 장면으로 단정하지 않는다.', EN: 'Do not identify this as a specific stay, café or real Wakation participant.', JP: '特定の宿・カフェ、または実際のWakation参加者として扱わない。' },
+  },
+  {
+    id: 'domestic-seoul-model-j-city-noir-v2',
+    src: '/media/brand-models/domestic-seoul-model-j-city-noir-v2.webp',
+    alt: {
+      KO: '서울을 연상시키는 저녁 전시 골목을 여행 가방과 함께 걷는 여행자',
+      EN: 'A traveler walking through an evening gallery lane inspired by Seoul',
+      JP: 'ソウルをイメージした夕方のギャラリー通りを旅行バッグと歩く旅人',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-J', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['domestic-onboarding-seoul'],
+    generatedFromReferenceIds: ['wak-model-j-city-noir-identity-anchor-v2-2'], focalPoint: { x: 0.72, y: 0.48 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-J identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 서울 매장·전시·참가자 사진이 아니다.', EN: 'Not a photograph of a real Seoul venue, exhibition or participant.', JP: '実在のソウルの店舗・展示・参加者の写真ではない。' },
+  },
+  {
+    id: 'domestic-busan-model-e-coastal-city-v2',
+    src: '/media/brand-models/domestic-busan-model-e-coastal-city-v2.webp',
+    alt: {
+      KO: '부산을 연상시키는 바다와 도시 사이 산책로를 걷는 여행자',
+      EN: 'A traveler walking where an unnamed Busan-inspired city meets the sea',
+      JP: '釜山をイメージした海と街のあいだの遊歩道を歩く旅人',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-E', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['domestic-onboarding-busan'],
+    generatedFromReferenceIds: ['wak-model-e-city-chic-identity-anchor'], focalPoint: { x: 0.34, y: 0.48 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-E identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 부산 해변·매장·참가자 사진이 아니다.', EN: 'Not a photograph of a real Busan beach, venue or participant.', JP: '実在の釜山の海辺・店舗・参加者の写真ではない。' },
+  },
+  {
+    id: 'domestic-jeju-model-g-slow-stay-v2',
+    src: '/media/brand-models/domestic-jeju-model-g-slow-stay-v2.webp',
+    alt: {
+      KO: '제주를 연상시키는 돌담과 억새 길에서 여행 일정을 적는 여행자',
+      EN: 'A traveler writing beside a stone wall and silver grass in a Jeju-inspired landscape',
+      JP: '済州をイメージした石垣とススキの道で旅の予定を書く旅人',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1200, height: 900, modelId: 'WAK-MODEL-G', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['domestic-onboarding-jeju'],
+    generatedFromReferenceIds: ['wak-model-g-clean-romantic-identity-anchor'], focalPoint: { x: 0.72, y: 0.48 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-G identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 제주 숙소·프로그램·참가자 사진이 아니다.', EN: 'Not a photograph of a real Jeju stay, program or participant.', JP: '実在の済州の宿・プログラム・参加者の写真ではない。' },
+  },
+  {
+    id: 'trip-match-model-d-itinerary-choice-v2',
+    src: '/media/brand-models/trip-match-model-d-itinerary-choice-v2.webp',
+    alt: {
+      KO: '출발 라운지에서 두 여행 일정과 노트북을 정리하는 여행자',
+      EN: 'A traveler choosing between two itineraries in an unnamed departure lounge',
+      JP: '出発ラウンジで2つの旅程とノートパソコンを整理する旅人',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1536, height: 1024, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/trip-match', '/ja/trip-match'], sectionUsage: ['trip-match-intro'],
+    generatedFromReferenceIds: ['wak-model-d-refined-editorial-identity-anchor'], focalPoint: { x: 0.73, y: 0.48 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-D identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 역·교통사·참가자 사진이 아니다.', EN: 'Not a photograph of a real station, transport provider or participant.', JP: '実在の駅・交通事業者・参加者の写真ではない。' },
+  },
+  {
+    id: 'hosted-models-h-i-coastal-planning-v2',
+    src: '/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp',
+    alt: {
+      KO: '해안 공동 작업 공간에서 함께 체류 일정을 살펴보는 두 여행자',
+      EN: 'Two travelers reviewing a shared stay plan in an unnamed coastal workspace',
+      JP: '海辺の共同ワークスペースで滞在プランを一緒に確認する2人の旅人',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1440, height: 900, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/hosted', '/en/hosted', '/ja/hosted'], sectionUsage: ['hosted-hero'],
+    generatedFromReferenceIds: ['wak-model-h-soft-daylight-identity-anchor-v2-2', 'wak-model-i-modern-grace-identity-anchor-v2-2'],
+    focalPoints: { desktop: { x: 0.66, y: 0.46 }, mobile: { x: 0.58, y: 0.42 } },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-H and WAK-MODEL-I identity anchors',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 Hosted 참가자·숙소·확정 프로그램 현장으로 표현하지 않는다.', EN: 'Do not present as real Hosted participants, a stay or a confirmed program location.', JP: '実在のHosted参加者・宿泊施設・確定済みプログラムの現場として表現しない。' },
+  },
+  {
+    id: 'hosted-models-h-i-coastal-planning-mobile-v2',
+    src: '/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v2.webp',
+    alt: {
+      KO: '해안 작업 공간에서 지도와 노트를 함께 살펴보는 두 여행자',
+      EN: 'Two travelers reviewing a map and notebook together in an unnamed coastal workspace',
+      JP: '海辺のワークスペースで地図とノートを一緒に確認する2人の旅人',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/hosted', '/en/hosted', '/ja/hosted'], sectionUsage: ['hosted-hero-mobile'],
+    generatedFromReferenceIds: ['wak-model-h-soft-daylight-identity-anchor-v2-2', 'wak-model-i-modern-grace-identity-anchor-v2-2'], focalPoint: { x: 0.5, y: 0.34 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-H and WAK-MODEL-I identity anchors',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 Hosted 참가자·숙소·확정 프로그램 현장으로 표현하지 않는다.', EN: 'Do not present as real Hosted participants, a stay or a confirmed program location.', JP: '実在のHosted参加者・宿泊施設・確定済みプログラムの現場として表現しない。' },
+  },
+  {
+    id: 'select-model-i-travel-prep-v2',
+    src: '/media/brand-models/select-model-i-travel-prep-v2.webp',
+    alt: {
+      KO: '이동 전 라운지에서 일정표와 휴대전화를 확인하는 여행자',
+      EN: 'A traveler checking an itinerary and phone in an unnamed intercity travel lounge',
+      JP: '移動前のラウンジで旅程とスマートフォンを確認する旅人',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1440, height: 810, modelId: 'WAK-MODEL-I', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/select', '/en/select', '/ja/select'], sectionUsage: ['select-hero-editorial'],
+    generatedFromReferenceIds: ['wak-model-i-modern-grace-identity-anchor-v2-2'], focalPoint: { x: 0.72, y: 0.45 },
+    source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-I identity anchor',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
+    restriction: { KO: '실제 교통사·예약 고객·제휴 상품 사진이 아니다.', EN: 'Not a photograph of a real transport provider, booking customer or partner product.', JP: '実在の交通事業者・予約客・提携商品の写真ではない。' },
   },
   {
     id: 'activity-seoul-baseball-editorial-v2',

@@ -79,20 +79,20 @@ const HERO_DESTS = [
 // 테마 섹션은 MoodExplorer가 흡수(healing·networking·onsen·domestic 직결. golf·sports·local은 /programs 허브에서 접근)
 
 const HOME_HERO_ALT: Record<Lang, string> = {
-  KO: '바다가 보이는 밝은 공간에서 노트북을 닫고 창밖을 보는 여행자',
-  EN: 'A traveler closing a laptop and looking outside in a bright coastal setting',
-  JP: '海の見える明るい空間でノートパソコンを閉じ、窓の外を見る旅行者',
+  KO: '해안 작업 공간에서 노트북을 닫고 다음 이동을 준비하는 여행자',
+  EN: 'A traveler closing a laptop and preparing to leave an unnamed coastal workspace',
+  JP: '海辺のワークスペースでノートパソコンを閉じ、次の移動を準備する旅人',
 }
 
 const HOME_HERO_ASSET = {
-  id: 'home-hero-model-a-coastal-work-desktop-v1',
+  id: 'home-hero-model-a-coastal-work-desktop-v2',
   modelId: 'WAK-MODEL-A',
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v1.webp',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v1.webp',
+  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
+  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
 } as const
 
 function HomeHeroVisual({ alt }: { alt: string }) {
-  const common = { alt, sizes: '100vw' }
+  const common = { alt, sizes: '100vw', loading: 'eager' as const, fetchPriority: 'high' as const }
   const { props: { srcSet: desktopSrcSet } } = getImageProps({
     ...common,
     src: HOME_HERO_ASSET.desktop,
@@ -116,6 +116,7 @@ function HomeHeroVisual({ alt }: { alt: string }) {
         {...mobileProps}
         alt={alt}
         fetchPriority="high"
+        loading="eager"
         className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[68%_47%] animate-kenburns motion-reduce:animate-none md:object-[70%_48%]"
       />
     </picture>

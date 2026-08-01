@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
+import { getImageProps } from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { NotifySignup } from '@/components/home/NotifySignup'
@@ -128,14 +128,48 @@ const FAQ: { q: L; a: L }[] = [
 ]
 
 const HOSTED_HERO_ASSET = {
-  id: 'home-workation-editorial-v1-legacy',
-  src: '/campaign/home-workation-editorial-v1.webp',
+  id: 'hosted-models-h-i-coastal-planning-v2',
+  modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] as const,
+  desktop: '/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp',
+  mobile: '/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v2.webp',
   alt: {
-    KO: '해안에서의 체류와 업무 전환을 표현한 Wakation 브랜드 편집 이미지',
-    EN: 'Wakation brand editorial image about moving between coastal time and work',
-    JP: '海辺での滞在と仕事の切り替えを表現したWakationのブランド編集画像',
+    KO: '해안 공동 작업 공간에서 함께 체류 일정을 살펴보는 두 여행자',
+    EN: 'Two travelers reviewing a shared stay plan in an unnamed coastal workspace',
+    JP: '海辺の共同ワークスペースで滞在プランを一緒に確認する2人の旅人',
   } satisfies L,
 } as const
+
+function HostedHeroVisual({ alt }: { alt: string }) {
+  const common = { alt, sizes: '100vw', loading: 'eager' as const, fetchPriority: 'high' as const }
+  const { props: { srcSet: desktopSrcSet } } = getImageProps({
+    ...common,
+    src: HOSTED_HERO_ASSET.desktop,
+    width: 1440,
+    height: 900,
+    quality: 75,
+  })
+  const { props: { srcSet: mobileSrcSet, ...mobileProps } } = getImageProps({
+    ...common,
+    src: HOSTED_HERO_ASSET.mobile,
+    width: 960,
+    height: 1280,
+    quality: 75,
+  })
+
+  return (
+    <picture className="absolute inset-0 block">
+      <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
+      <source media="(max-width: 767px)" srcSet={mobileSrcSet} />
+      <img
+        {...mobileProps}
+        alt={alt}
+        fetchPriority="high"
+        loading="eager"
+        className="absolute inset-0 h-full w-full object-cover object-[50%_34%] md:object-[66%_46%]"
+      />
+    </picture>
+  )
+}
 
 function localeCode(lang: Lang) {
   return lang === 'JP' ? 'ja' : lang === 'EN' ? 'en' : 'ko'
@@ -153,7 +187,7 @@ export function HostedLandingView({ forceLang }: { forceLang?: Lang }) {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
     if (!viewed.current) {
       viewed.current = true
-      trackEvent('hosted_landing_view', { locale: localeCode(lang), assetId: HOSTED_HERO_ASSET.id })
+      trackEvent('hosted_landing_view', { locale: localeCode(lang), assetId: HOSTED_HERO_ASSET.id, modelIds: HOSTED_HERO_ASSET.modelIds.join(',') })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang, ctxLang])
@@ -178,16 +212,9 @@ export function HostedLandingView({ forceLang }: { forceLang?: Lang }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <section className="dark-surface relative flex min-h-[88svh] items-end overflow-hidden px-5 pb-12 pt-28 sm:px-8 md:min-h-[760px] md:pb-20">
-        <Image
-          src={HOSTED_HERO_ASSET.src}
-          alt={HOSTED_HERO_ASSET.alt[lang]}
-          fill
-          preload
-          sizes="100vw"
-          className="object-cover object-[62%_center] md:object-center"
-        />
-        <div className="absolute inset-0 bg-[#04121f]/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#04121f] via-[#04121f]/55 to-[#04121f]/10 md:bg-gradient-to-r md:from-[#04121f]/95 md:via-[#04121f]/58 md:to-transparent" />
+        <HostedHeroVisual alt={HOSTED_HERO_ASSET.alt[lang]} />
+        <div className="absolute inset-0 bg-[#04121f]/8" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/98 via-[#04121f]/50 to-[#04121f]/5 md:bg-gradient-to-r md:from-[#04121f]/90 md:via-[#04121f]/24 md:to-[#04121f]/5" />
         <div className="relative mx-auto w-full max-w-6xl">
           <span className="inline-flex rounded-full border border-white/22 bg-black/20 px-4 py-2 text-[0.68rem] font-black tracking-[0.16em] text-sky-200 backdrop-blur-md">
             WAKATION HOSTED · {COPY.badge[lang]}
