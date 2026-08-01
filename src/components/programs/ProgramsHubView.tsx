@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Mail, BellRing, Handshake } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { getProgramsList, getSelectCategories, translate } from '@/lib/i18n'
@@ -12,6 +12,7 @@ import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { getMediaAsset } from '@/lib/media/assets'
+import { trackEvent } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
 
 // 성장형 프로그램 방향성 — 로드맵 (Hosted + Learning + Tools 결합)
@@ -23,19 +24,39 @@ const DIRECTION_NOTE: Record<Lang, string> = {
 
 const PROGRAMS_HERO = getMediaAsset('programs-editorial-coastal-work-v1')
 
-const STATUS_ICON = {
-  recruiting: Handshake,
-  reviewing: Mail,
-  preparing: BellRing,
-  inquiry: Mail,
-} as const
-
 const STATUS_COLOR = {
   recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
   reviewing: 'bg-blue-50 text-blue-700 border-blue-200',
   preparing: 'bg-gray-50 text-gray-500 border-gray-200',
   inquiry: 'bg-amber-50 text-amber-700 border-amber-200',
 } as const
+
+type ProgramStatus = keyof typeof STATUS_COLOR
+
+const STATUS_ORDER: ProgramStatus[] = ['recruiting', 'reviewing', 'inquiry', 'preparing']
+
+const STATUS_COPY: Record<ProgramStatus, Record<Lang, string>> = {
+  recruiting: {
+    KO: '함께 만들 파트너를 찾고 있어요',
+    EN: 'Open for partners to build with us',
+    JP: '一緒につくるパートナーを募集中',
+  },
+  reviewing: {
+    KO: '연결 방식과 운영 조건을 검토 중이에요',
+    EN: 'Partnership and operating terms are under review',
+    JP: '連携方法と運営条件を検討中です',
+  },
+  inquiry: {
+    KO: '관심을 남기면 준비 상황을 안내해요',
+    EN: 'Leave an inquiry to follow the next update',
+    JP: '関心をお寄せいただくと準備状況をご案内します',
+  },
+  preparing: {
+    KO: '정보를 다듬는 단계로, 현재 신청은 받지 않아요',
+    EN: 'Information is being prepared; applications are not open',
+    JP: '情報準備中のため、現在は申込を受け付けていません',
+  },
+}
 
 // en/ja 라우트가 존재하는 경로만 로케일 접두 (그 외는 KO 단일 라우트)
 const PREFIXABLE_PATHS = new Set(['/programs', '/programs/global', '/programs/domestic', '/programs/market'])
@@ -53,6 +74,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
   const tr = (key: string) => translate(lang, key)
   const programs = getProgramsList()
   const selectCategories = getSelectCategories(lang)
+  const [featuredProgram, ...otherPrograms] = programs
 
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
@@ -83,33 +105,50 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
             <SectionEyebrow>{tr('programs_grid_eyebrow')}</SectionEyebrow>
             <SectionTitle className="text-center">{tr('programs_grid_title')}</SectionTitle>
           </div>
-          <div data-ui-grid="editorial" className="wak-card-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {programs.map((p) => (
+          <div data-visual-module="program-portfolio" data-ui-grid="editorial" className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
+            {featuredProgram && (
               <Link
-                key={p.id}
-                href={PREFIXABLE_PATHS.has(p.href) ? `${prefix}${p.href}` : p.href}
+                href={PREFIXABLE_PATHS.has(featuredProgram.href) ? `${prefix}${featuredProgram.href}` : featuredProgram.href}
                 data-ui-card="editorial"
-                className="wak-card-editorial group flex flex-col overflow-hidden border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                onClick={() => trackEvent('visual_module_interaction', { sectionId: 'program-portfolio', visualType: 'featured-editorial', contentId: featuredProgram.id, locale: lang })}
+                className="wak-card-editorial group relative min-h-[25rem] overflow-hidden border border-black/5 bg-[#102532] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
               >
-                <div className="relative h-52 overflow-hidden">
-                  <Image src={p.img} alt={tr(p.titleKey)} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                  {p.badgeKey && (
-                    <div className="absolute top-4 left-4">
-                      <span className="bg-orange-500 text-white text-xs font-bold px-3 py-1.5 rounded-full">
-                        {tr(p.badgeKey)}
-                      </span>
-                    </div>
-                  )}
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="wak-card-title mb-2 line-clamp-2 min-h-[2.85rem] text-gray-900">{tr(p.titleKey)}</h3>
-                  <p className="wak-body line-clamp-3 min-h-[4.65rem] flex-1 text-gray-600">{tr(p.descKey)}</p>
-                  <div className="flex items-center gap-1 text-brand-mid text-sm font-semibold mt-5 group-hover:gap-2 transition-all">
-                    {tr('learn_more')} <ArrowRight className="w-4 h-4" />
-                  </div>
+                <Image src={featuredProgram.img} alt={tr(featuredProgram.titleKey)} fill sizes="(max-width: 1024px) 100vw, 58vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071722]/95 via-[#071722]/35 to-transparent" />
+                {featuredProgram.badgeKey && (
+                  <span className="absolute left-5 top-5 rounded-full border border-white/25 bg-black/45 px-3 py-1.5 text-xs font-bold text-white backdrop-blur-sm">
+                    {tr(featuredProgram.badgeKey)}
+                  </span>
+                )}
+                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                  <p className="mb-2 text-[0.68rem] font-black tracking-[0.14em] text-sky-300">FEATURED PROGRAM</p>
+                  <h3 className="wak-card-title mb-2 max-w-xl text-2xl text-white">{tr(featuredProgram.titleKey)}</h3>
+                  <p className="max-w-xl text-sm leading-relaxed text-white/70">{tr(featuredProgram.descKey)}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-sky-300">
+                    {tr('learn_more')} <ArrowRight className="h-4 w-4" />
+                  </span>
                 </div>
               </Link>
-            ))}
+            )}
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {otherPrograms.map((p, index) => (
+                <Link
+                  key={p.id}
+                  href={PREFIXABLE_PATHS.has(p.href) ? `${prefix}${p.href}` : p.href}
+                  onClick={() => trackEvent('visual_module_interaction', { sectionId: 'program-portfolio', visualType: 'compact-route', contentId: p.id, locale: lang, position: String(index + 2) })}
+                  className="group grid min-h-28 grid-cols-[7.5rem_1fr] overflow-hidden border border-[#dbe4e5] bg-white transition hover:border-[#8db8c5] hover:shadow-md"
+                >
+                  <div className="relative min-h-28 overflow-hidden">
+                    <Image src={p.img} alt="" fill sizes="120px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                  <div className="flex min-w-0 flex-col justify-center p-4">
+                    <span className="mb-1 text-[0.62rem] font-black tracking-[0.12em] text-[#6f8790]">0{index + 2}</span>
+                    <h3 className="line-clamp-2 text-sm font-black leading-snug text-[#17242b]">{tr(p.titleKey)}</h3>
+                    <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-brand-mid">{tr('learn_more')} <ArrowRight className="h-3 w-3" /></span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* 성장형 프로그램 방향성 */}
@@ -131,40 +170,35 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
               {tr('prog_sel_desc')}
             </p>
           </div>
-          <div data-ui-grid="compact" className="wak-card-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-            {selectCategories.map((cat) => {
-              const StatusIcon = STATUS_ICON[cat.status] ?? BellRing
-              const isMailto = cat.ctaHref.startsWith('mailto:')
+          <div data-visual-module="program-status-roadmap" className="grid gap-px overflow-hidden border border-[#cfe1e8] bg-[#cfe1e8] lg:grid-cols-4">
+            {STATUS_ORDER.map((status) => {
+              const entries = selectCategories.filter((cat) => cat.status === status)
+              if (entries.length === 0) return null
               return (
-                <div
-                  key={cat.id}
-                  data-ui-card="compact"
-                  className="wak-card-compact flex min-h-[15rem] flex-col border border-[#dbeafe] bg-white p-6 transition-all hover:border-[#7dd3fc] hover:shadow-md"
-                >
-                  <div className="flex items-start justify-end mb-4">
-                    <span className={`text-[0.65rem] font-bold px-2.5 py-1 rounded-full border flex items-center gap-1 ${STATUS_COLOR[cat.status]}`}>
-                      <StatusIcon className="w-3 h-3" strokeWidth={2} />
-                      {cat.statusLabel}
-                    </span>
-                  </div>
-                  <h3 className="wak-card-title mb-2 text-[#111827]">{cat.name}</h3>
-                  <p className="wak-caption mb-5 line-clamp-3 flex-1 text-[#64748b]">{cat.desc}</p>
-                  {isMailto ? (
-                    <a
-                      href={cat.ctaHref}
-                      className="w-full flex items-center justify-center gap-1.5 bg-[#f0f9ff] text-[#475569] font-bold py-2.5 rounded-xl border border-[#dbeafe] text-xs hover:bg-[#e0f2fe] hover:text-[#111827] transition-all"
-                    >
-                      {cat.cta} <ArrowRight className="w-3 h-3" />
-                    </a>
-                  ) : (
-                    <Link
-                      href={cat.ctaHref}
-                      className="w-full flex items-center justify-center gap-1.5 bg-[#f0f9ff] text-[#475569] font-bold py-2.5 rounded-xl border border-[#dbeafe] text-xs hover:bg-[#e0f2fe] hover:text-[#111827] transition-all"
-                    >
-                      {cat.cta} <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  )}
-                </div>
+                <section key={status} aria-labelledby={`program-status-${status}`} className="bg-white p-5 sm:p-6">
+                  <span className={`inline-flex rounded-full border px-2.5 py-1 text-[0.65rem] font-bold ${STATUS_COLOR[status]}`}>
+                    {entries[0].statusLabel}
+                  </span>
+                  <h3 id={`program-status-${status}`} className="mt-4 min-h-10 text-sm font-black leading-snug text-[#17242b]">
+                    {STATUS_COPY[status][lang]}
+                  </h3>
+                  <ul className="mt-5 divide-y divide-[#e8eef0] border-t border-[#e8eef0]">
+                    {entries.map((cat) => {
+                      const className = 'group flex min-h-14 items-center justify-between gap-3 py-3 text-sm font-bold text-[#42545c] hover:text-brand-mid'
+                      const content = <>{cat.name}<ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:translate-x-1" /></>
+                      const onClick = () => trackEvent('visual_module_interaction', { sectionId: 'program-status-roadmap', visualType: 'status-roadmap', contentId: cat.id, locale: lang, status })
+                      return (
+                        <li key={cat.id}>
+                          {cat.ctaHref.startsWith('mailto:') ? (
+                            <a href={cat.ctaHref} onClick={onClick} className={className}>{content}</a>
+                          ) : (
+                            <Link href={cat.ctaHref} onClick={onClick} className={className}>{content}</Link>
+                          )}
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </section>
               )
             })}
           </div>

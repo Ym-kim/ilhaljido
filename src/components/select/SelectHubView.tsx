@@ -165,6 +165,13 @@ const CATEGORIES: {
   },
 ]
 
+const PREP_TIMING: Record<string, L> = {
+  hotel: { KO: '여행 2~4주 전', EN: '2–4 weeks before', JP: '出発2〜4週間前' },
+  activity: { KO: '여행 1주 전', EN: 'About a week before', JP: '出発1週間前' },
+  esim: { KO: '출발 1~3일 전', EN: '1–3 days before', JP: '出発1〜3日前' },
+  learn: { KO: '여행 전후', EN: 'Before and after', JP: '旅の前後' },
+}
+
 export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
@@ -243,36 +250,36 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
-      {/* Category navigation */}
+      {/* 여행 준비 시점 — 카테고리 나열 대신 언제 준비할지 보여주는 여정 */}
       <section className="px-6 py-10 border-b border-[#e5e1da]">
         <div className="max-w-6xl mx-auto">
           <p className="text-[#64748b] text-[0.7rem] font-bold tracking-[0.18em] uppercase mb-4">
             {COPY.cat_label[lang]}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {CATEGORIES.map((cat) => {
-              return (
+          <ol data-visual-module="preparation-timeline" aria-label={COPY.cat_label[lang]} className="grid overflow-hidden border border-[#d9e1df] bg-[#d9e1df] lg:grid-cols-4">
+            {CATEGORIES.map((cat, index) => (
+              <li key={cat.id} className="relative bg-white">
                 <Link
-                  key={cat.id}
                   href={`${prefix}${cat.href}`}
-                  className={`group relative flex min-h-48 flex-col border bg-white p-5 transition-all duration-200 hover:-translate-y-0.5 ${cat.cardClass}`}
+                  onClick={() => trackEvent('preparation_step_click', { route: '/select', locale: lang, sectionId: 'preparation-timeline', visualType: 'timeline-rail', contentId: cat.id, position: String(index + 1), targetRoute: `${prefix}${cat.href}` })}
+                  className="group flex min-h-40 gap-4 p-5 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-sky-500 lg:min-h-52 lg:flex-col lg:p-6"
                 >
-                  <div className="mb-5 flex items-start justify-between">
-                    <span aria-hidden="true" className="mt-2 h-px w-10 bg-[#7da3a8] transition-all group-hover:w-14" />
-                    <span className={`text-[0.55rem] font-bold px-1.5 py-0.5 rounded-full border ${cat.badgeClass}`}>
-                      {cat.badge[lang]}
+                  <div className="flex shrink-0 flex-col items-center lg:flex-row lg:items-center lg:gap-3">
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#153846] text-xs font-black text-white">{index + 1}</span>
+                    <span aria-hidden="true" className="mt-2 h-full w-px bg-[#bfd0d4] lg:mt-0 lg:h-px lg:w-10" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[0.66rem] font-black tracking-[0.12em] text-[#568091]">{PREP_TIMING[cat.id][lang]}</p>
+                    <h2 className="mt-2 text-base font-black text-[#17242b]">{cat.label[lang]}</h2>
+                    <p className="mt-1.5 text-sm leading-relaxed text-[#617077]">{cat.title[lang]}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-brand-mid">
+                      {COPY.browse[lang]} <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" strokeWidth={ICON_STROKE} />
                     </span>
                   </div>
-                  <p className="text-[#141414] font-black text-[0.9375rem] mb-1">{cat.label[lang]}</p>
-                  <p className="text-[#52525b] text-[0.8125rem] leading-relaxed line-clamp-2">{cat.title[lang]}</p>
-                  <div className={`mt-auto flex items-center gap-1 pt-5 text-xs font-bold transition-colors ${cat.cta} group-hover:text-brand-mid`}>
-                    {COPY.browse[lang]}
-                    <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
-                  </div>
                 </Link>
-              )
-            })}
-          </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -369,9 +376,9 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
         <div className="max-w-6xl mx-auto">
           <Link
             href={`${prefix}/select/learn`}
-            className="group flex items-center justify-between bg-gradient-to-r from-indigo-50 to-violet-50 border border-indigo-100 hover:border-indigo-200 rounded-2xl p-6 transition-all hover:shadow-md"
+            className="group flex items-center justify-between bg-gradient-to-r from-indigo-50 to-violet-50 border border-indigo-100 hover:border-indigo-200 rounded-2xl p-5 sm:p-6 transition-all hover:shadow-md"
           >
-            <div>
+            <div className="min-w-0">
               <p className="text-indigo-500 text-xs font-bold tracking-widest uppercase mb-2">
                 {COPY.learn_eyebrow[lang]}
               </p>
@@ -379,7 +386,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
               <p className="text-[#6b6b6b] text-sm">{COPY.learn_desc[lang]}</p>
             </div>
             <ArrowRight
-              className="w-5 h-5 text-[#c0bdb8] group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all shrink-0 ml-6"
+              className="w-5 h-5 text-[#c0bdb8] group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all shrink-0 ml-3 sm:ml-6"
               strokeWidth={ICON_STROKE}
             />
           </Link>

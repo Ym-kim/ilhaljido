@@ -51,6 +51,36 @@ const PARTNER_ICON_MAP = {
   corporate: PARTNER_ICONS.corporate,
 }
 
+const SERVICE_RELATION: Array<{
+  id: string
+  label: string
+  href: string
+  descKey: string
+  role: Record<Lang, string>
+}> = [
+  {
+    id: 'hosted',
+    label: 'Wakation Hosted',
+    href: '/hosted',
+    descKey: 'h3_about_hosted_d',
+    role: { KO: '직접 기획·운영', EN: 'Planned and run by Wakation', JP: 'Wakationが企画・運営' },
+  },
+  {
+    id: 'select',
+    label: 'Wakation Select',
+    href: '/select',
+    descKey: 'h3_about_select_d',
+    role: { KO: '외부 파트너 연결', EN: 'External partner services', JP: '外部パートナーへの接続' },
+  },
+  {
+    id: 'partner',
+    label: 'Wakation Partner',
+    href: '/partnership',
+    descKey: 'h3_about_partner_d',
+    role: { KO: '지역·기업 공동 기획', EN: 'Co-created with regions and teams', JP: '地域・企業との共同企画' },
+  },
+]
+
 const DEST_FILTERS = [
   { id: 'all',         labelKey: 'filter_all',         country: null },
   { id: 'japan',       labelKey: 'filter_japan',       country: '일본' },
@@ -546,17 +576,38 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
-            <div className="min-w-0 space-y-3">
-              {([
-                { label: 'Wakation Hosted', descKey: 'h3_about_hosted_d', color: 'border-brand-mid/20 bg-white' },
-                { label: 'Wakation Select', descKey: 'h3_about_select_d', color: 'border-blue-200 bg-white' },
-                { label: 'Wakation Partner', descKey: 'h3_about_partner_d', color: 'border-purple-200 bg-white' },
-              ] as const).map((item) => (
-                <div key={item.label} className={`rounded-2xl border p-6 shadow-sm ${item.color}`}>
-                  <p className="text-[#111827] font-black text-sm mb-2">{item.label}</p>
-                  <p className="text-[#64748b] text-sm leading-relaxed">{tr(item.descKey)}</p>
+            <div data-visual-module="service-ecosystem-map" className="min-w-0 border border-[#c9dde4] bg-white p-6 shadow-[0_16px_42px_rgba(29,78,96,0.08)] sm:p-8">
+              <div className="flex items-center justify-between gap-4 border-b border-[#dbe7ea] pb-5">
+                <div>
+                  <p className="text-[0.66rem] font-black tracking-[0.15em] text-[#5f8390]">SERVICE MAP</p>
+                  <p className="mt-1 text-xl font-black text-[#17242b]">Wakation</p>
                 </div>
-              ))}
+                <span className="max-w-36 text-right text-xs leading-relaxed text-[#6b7d84]">{tr('h3_about_title')}</span>
+              </div>
+              <div className="relative mt-5">
+                <span aria-hidden="true" className="absolute bottom-5 left-[0.7rem] top-5 w-px bg-[#b9d0d7]" />
+                <ul className="space-y-2">
+                  {SERVICE_RELATION.map((item, index) => (
+                    <li key={item.id} className="relative pl-9">
+                      <span aria-hidden="true" className="absolute left-0 top-5 flex h-6 w-6 items-center justify-center rounded-full border border-[#83aebc] bg-white text-[0.6rem] font-black text-[#356a7d]">{index + 1}</span>
+                      <Link
+                        href={item.href}
+                        onClick={() => trackEvent('ecosystem_node_click', { route: '/', locale: lang, sectionId: 'service-ecosystem-map', visualType: 'ecosystem-map', contentId: item.id, position: String(index + 1), targetRoute: item.href })}
+                        className="group block border-b border-[#e6edef] px-1 py-4 last:border-b-0"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <h3 className="text-sm font-black text-[#17242b]">{item.label}</h3>
+                          <span className="text-[0.64rem] font-bold text-[#5d8290]">{item.role[lang]}</span>
+                        </div>
+                        <p className="mt-1.5 text-sm leading-relaxed text-[#64757b]">{tr(item.descKey)}</p>
+                        <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-brand-mid opacity-70 transition group-hover:gap-2 group-hover:opacity-100">
+                          {tr('learn_more')} <ArrowRight className="h-3 w-3" />
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

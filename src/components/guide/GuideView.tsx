@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, ArrowLeft, Search, MapPin, Plane } from 'lucide-react'
+import { ArrowRight, ArrowLeft, Search, Plane } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
@@ -152,17 +152,21 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         <h2 className="text-xl md:text-2xl font-bold text-[#111827] tracking-tight mb-6">
           {GUIDE_UI.areasTitle[lang]}
         </h2>
-        <div className="grid md:grid-cols-2 gap-4">
+        <ol data-visual-module="neighborhood-rail" aria-label={GUIDE_UI.areasTitle[lang]} className="grid overflow-hidden border border-[#cfe0e5] bg-[#cfe0e5] md:grid-cols-2">
           {guide.areas.map((a, i) => (
-            <div key={i} className="rounded-2xl border border-[#dbeafe] bg-[#f8fbff] p-5">
-              <p className="flex items-center gap-1.5 text-[#111827] font-bold text-base mb-2">
-                <MapPin className="w-4 h-4 text-brand-mid" strokeWidth={ICON_STROKE} />
-                {a.name[lang]}
-              </p>
-              <p className="text-[#475569] text-sm leading-relaxed">{a.desc[lang]}</p>
-            </div>
+            <li key={i} className="grid min-h-44 grid-cols-[3rem_1fr] gap-4 bg-[#f8fbff] p-5 sm:p-6">
+              <div className="flex flex-col items-center" aria-hidden="true">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#153846] text-xs font-black text-white">0{i + 1}</span>
+                {i < guide.areas.length - 1 && <span className="mt-2 h-full w-px bg-[#a9c4cc] md:hidden" />}
+              </div>
+              <div className="min-w-0">
+                <span className="text-[0.64rem] font-black tracking-[0.14em] text-[#6b8790]">NEIGHBORHOOD</span>
+                <h3 className="mt-2 text-lg font-black text-[#17242b]">{a.name[lang]}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#475d66]">{a.desc[lang]}</p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
 
       {flagshipExperience && (
