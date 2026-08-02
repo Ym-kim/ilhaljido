@@ -18,70 +18,94 @@ export default function Footer() {
   return (
     <footer className="bg-[#0a0a0a] text-white/70 py-16 px-6 border-t border-white/5">
       <div className="max-w-6xl mx-auto">
-        <div className="grid min-w-0 gap-10 mb-12 md:grid-cols-4">
-          <div className="min-w-0 md:col-span-2">
+        {/* 사이트맵 확장 (2026-08-02 발견성 개선) — 상단 내비에 없는 세부 페이지들의 상시 진입로.
+            운영자 피드백 "세세한 메뉴를 찾아보기 어렵다" 대응: 고아 라우트(온천·크루즈·모먼트·
+            비자AI·성장·어학·인프라·B2B·양양 등)를 4열 그룹으로 전수 연결 */}
+        <div className="grid min-w-0 gap-10 mb-12 md:grid-cols-2 lg:grid-cols-6">
+          <div className="min-w-0 md:col-span-2 lg:col-span-2">
             <Logo variant="light" className="mb-5" />
             <p className="text-[0.9375rem] leading-relaxed text-white/55 max-w-sm font-medium">
               Stay. Work. Grow.
             </p>
             <p className="text-caption-on-dark mt-2 max-w-full break-words">{tr('footer_tagline')}</p>
-          </div>
-          <div className="min-w-0">
-            <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">
-              {tr('footer_service')}
-            </h4>
-            <ul className="space-y-2.5 text-[0.9375rem] font-medium">
-              {[
-                { k: 'nav_discover', h: '/trip-match' },
-                { k: 'nav_destinations', h: '/destinations' },
-                { k: 'nav_plan', h: '/select' },
-                { k: 'nav_programs', h: '/programs' },
-                { k: 'nav_saved', h: '/wishlist' },
-                { k: 'nav_about', h: '/about' },
-                { k: 'nav_partnership', h: '/partnership' },
-              ].map((i) => (
-                <li key={i.k}>
-                  <Link href={i.h} className="hover:text-white transition-colors">
-                    {tr(i.k)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="min-w-0">
-            <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">
-              {tr('footer_contact')}
-            </h4>
-            <ul className="space-y-2.5 text-[0.9375rem] font-medium">
-              <li className="break-all text-white/55">wakation.sf@gmail.com</li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  {tr('nav_contact')}
-                </Link>
-              </li>
-              {/* 공식 커뮤니티 — 신뢰·리텐션 채널 */}
-              <li>
-                <a
-                  href="https://cafe.naver.com/shcafa32"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
+            <ul className="mt-6 space-y-2 text-[0.875rem] font-medium">
+              <li className="break-all text-white/45">wakation.sf@gmail.com</li>
+              <li className="flex flex-wrap gap-x-4 gap-y-1">
+                <a href="https://cafe.naver.com/shcafa32" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   {tr('footer_cafe')}
                 </a>
-              </li>
-              <li>
-                <a
-                  href={KAKAO_CHANNEL_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
+                <a href={KAKAO_CHANNEL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
                   {tr('footer_kakao')}
                 </a>
               </li>
             </ul>
           </div>
+          {(
+            [
+              {
+                title: { KO: '발견하기', EN: 'Discover', JP: '見つける' },
+                links: [
+                  { l: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を探す' }, h: '/trip-match' },
+                  { l: { KO: '목적지 가이드', EN: 'City guides', JP: '都市ガイド' }, h: '/guide' },
+                  { l: { KO: '스토리', EN: 'Stories', JP: 'ストーリー' }, h: '/stories' },
+                  { l: { KO: '모먼트', EN: 'Moments', JP: 'モーメント' }, h: '/moments' },
+                  { l: { KO: '기획전 · Trip Set', EN: 'Collections & trip sets', JP: '特集 · トリップセット' }, h: '/collections' },
+                  { l: { KO: '도시 비교', EN: 'Compare cities', JP: '都市を比較' }, h: '/destinations/compare' },
+                ],
+              },
+              {
+                title: { KO: '여행 준비', EN: 'Plan', JP: '旅の準備' },
+                links: [
+                  { l: { KO: '숙소', EN: 'Stays', JP: '宿泊' }, h: '/select/hotel' },
+                  { l: { KO: '현지 체험', EN: 'Experiences', JP: '現地体験' }, h: '/select/activity' },
+                  { l: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, h: '/select/esim' },
+                  { l: { KO: '온라인 강의', EN: 'Courses', JP: 'オンライン講座' }, h: '/select/learn' },
+                  { l: { KO: '크루즈', EN: 'Cruises', JP: 'クルーズ' }, h: '/cruise' },
+                  { l: { KO: '저장한 여행', EN: 'Saved trips', JP: '保存した旅' }, h: '/wishlist' },
+                ],
+              },
+              {
+                title: { KO: '프로그램', EN: 'Programs', JP: 'プログラム' },
+                links: [
+                  { l: { KO: '국내 워케이션', EN: 'Korea workations', JP: '韓国ワーケーション' }, h: '/programs/domestic' },
+                  { l: { KO: '해외 워케이션·체류', EN: 'Overseas stays', JP: '海外滞在' }, h: '/programs/global' },
+                  { l: { KO: '온천·료칸', EN: 'Onsen & ryokan', JP: '温泉 · 旅館' }, h: '/programs/onsen' },
+                  { l: { KO: '네트워킹', EN: 'Networking', JP: 'ネットワーキング' }, h: '/programs/networking' },
+                  { l: { KO: '지자체 지원사업', EN: 'Gov-support programs', JP: '自治体支援' }, h: '/programs/support' },
+                  { l: { KO: '오픈 알림 받기', EN: 'Get open alerts', JP: 'オープン通知を受け取る' }, h: '/hosted' },
+                  { l: { KO: '양양 1기 리포트', EN: 'Yangyang report', JP: '襄陽レポート' }, h: '/report/yangyang' },
+                ],
+              },
+              {
+                title: { KO: 'Wakation', EN: 'Wakation', JP: 'Wakation' },
+                links: [
+                  { l: { KO: '소개', EN: 'About', JP: '会社紹介' }, h: '/about' },
+                  { l: { KO: '비자·체류 AI', EN: 'Visa & stay AI', JP: 'ビザ · 滞在AI' }, h: '/visa-ai' },
+                  { l: { KO: '워케이션 진단', EN: 'Workation self-check', JP: 'ワーケーション診断' }, h: '/tools/diagnosis' },
+                  { l: { KO: '성장 캠프', EN: 'Growth camp', JP: '成長キャンプ' }, h: '/growth' },
+                  { l: { KO: '어학 체류', EN: 'Language stays', JP: '語学滞在' }, h: '/language' },
+                  { l: { KO: '기업 워케이션 (B2B)', EN: 'Corporate (B2B)', JP: '企業向け (B2B)' }, h: '/business' },
+                  { l: { KO: '파트너십', EN: 'Partnership', JP: 'パートナーシップ' }, h: '/partnership' },
+                  { l: { KO: '문의', EN: 'Contact', JP: 'お問い合わせ' }, h: '/contact' },
+                ],
+              },
+            ] as const
+          ).map((col) => (
+            <div key={col.title.KO} className="min-w-0">
+              <h4 className="text-white/80 text-[0.8125rem] font-bold uppercase tracking-widest mb-4">
+                {col.title[lang]}
+              </h4>
+              <ul className="space-y-2.5 text-[0.875rem] font-medium">
+                {col.links.map((i) => (
+                  <li key={i.h}>
+                    <Link href={i.h} className="hover:text-white transition-colors">
+                      {i.l[lang]}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
         {/* 사업자 정보 — 전자상거래법·신뢰 시그널 */}
         <div className="border-t border-white/8 pt-6 mb-4 text-[0.8125rem] text-white/40 leading-relaxed">
