@@ -54,6 +54,10 @@ export type Collection = {
   /** 진열 순서대로 — 보통 숙소 → 체험 → eSIM → 항공 순 */
   itemIds: string[]
   // ── 이하 Trip Set optional 확장 ──
+  /** 홈 기획전 상단 와이드 시즌 카드로 노출 (2026-08-02 v2 — 시즌 종료 시 이 플래그만 제거) */
+  spotlight?: boolean
+  /** 시즌 라벨 칩 (예: 2026 추석 연휴 9/24–9/27) */
+  spotlightNote?: L
   duration?: '2n3d' | '3n4d' | '1week' | '2weeks' | '1month'
   durationLabel?: L
   /** 동행·상황 한 줄 (예: 친구와 둘이서 / ひとりでも) */
@@ -85,6 +89,38 @@ export const COLLECTIONS: Collection[] = [
       JP: '2026年の秋夕連休は4日間（9/24木〜9/27日）。時差ゼロ・直行1〜2時間の日本が正解です。福岡・大阪・東京の検証済みの宿を選び、eSIMと航空券まで一度に準備。9月下旬は3都市ともベストシーズン。',
     },
     itemIds: ['stay-webase-hakata', 'stay-lively-osaka', 'stay-millennials-shibuya', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // ── 추석 Trip Set 승격 (2026-08-02 v2) — ⚠️ 9/27 시즌 종료 후 spotlight·확장 필드 제거하고 배열 후퇴 ──
+    spotlight: true,
+    spotlightNote: { KO: '2026 추석 연휴 · 9/24(목)–9/27(일)', EN: 'Chuseok holidays · Sep 24–27, 2026', JP: '秋夕連休 · 9/24(木)–9/27(日)' },
+    duration: '3n4d',
+    durationLabel: { KO: '나흘 연휴', EN: '4-day break', JP: '4日連休' },
+    companions: { KO: '혼자·친구 모두', EN: 'Solo or with friends', JP: 'ひとりでも友達とでも' },
+    audience: [
+      { KO: '연차 없이 나흘을 통째로 쓰고 싶은 사람', EN: 'Want four full days without using leave', JP: '有休なしで4日間まるごと使いたい人' },
+      { KO: '연휴 장거리 대신 가까운 일본을 고른 사람', EN: 'Chose nearby Japan over a long-haul holiday', JP: '長距離より近い日本を選んだ人' },
+      { KO: '숙소·eSIM·항공을 한 화면에서 정리하고 싶은 사람', EN: 'Want stay, eSIM and flights sorted on one screen', JP: '宿・eSIM・航空券を1画面で整理したい人' },
+    ],
+    dayFlow: [
+      { day: 1, title: { KO: '출발', EN: 'Depart', JP: '出発' }, items: [
+        { KO: '오전 출발 · 1~2시간 비행', EN: 'Morning flight, 1–2 hours', JP: '午前出発 · 飛行1〜2時間' },
+        { KO: '체크인 · 골목 저녁', EN: 'Check in · dinner in the alleys', JP: 'チェックイン · 路地で夕食' },
+      ]},
+      { day: 2, title: { KO: '온전한 하루', EN: 'A full day', JP: 'まる一日' }, items: [
+        { KO: '오전 카페에서 가벼운 업무 1~2시간', EN: 'A light 1–2h work block at a café', JP: '午前はカフェで軽く1〜2時間仕事' },
+        { KO: '오후 도시 탐색 · 저녁 미식', EN: 'Afternoon exploring, evening eating', JP: '午後は街歩き · 夜はグルメ' },
+      ]},
+      { day: 3, title: { KO: '자유', EN: 'Free day', JP: '自由日' }, items: [
+        { KO: '근교 반나절 또는 쇼핑·전시', EN: 'A half-day nearby, or shopping & exhibits', JP: '近郊半日、または買い物・展示' },
+      ]},
+      { day: 4, title: { KO: '귀국', EN: 'Home', JP: '帰国' }, items: [
+        { KO: '체크아웃 · 오후 귀국', EN: 'Check out · afternoon flight home', JP: 'チェックアウト · 午後帰国' },
+      ]},
+    ],
+    comfortFacts: [
+      { type: 'airport_access', label: { KO: '이동', EN: 'Getting there', JP: '移動' }, value: { KO: '직항 1~2시간대 — 나흘 일정에 이동 부담 최소', EN: 'Direct flights of 1–2 hours — minimal transit for four days', JP: '直行1〜2時間台 — 4日間でも移動負担が少ない' } },
+      { type: 'wifi', label: { KO: '시차', EN: 'Time zone', JP: '時差' }, value: { KO: '한국과 0시간 — 연휴 중 급한 연락도 그대로', EN: 'Zero time difference from Korea', JP: '韓国と時差ゼロ' } },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
+    ],
   },
   // ── Trip Sets (2026-07-28, feat/promotable-trip-sets-v1) ──
   // KO용 2(후쿠오카·오사카)+JP용 2(서울·부산). 전 아이템 FULL_CATALOG 실존·활성 확인.
@@ -448,6 +484,53 @@ export const COLLECTIONS: Collection[] = [
     ],
     cityGuideSlug: 'busan',
   },
+  // ── Trip Sets v2 (2026-08-02) — 제주 혼자 회복 신설. 아이템 3종 전부 활성 확인,
+  //    사진은 외부 검증 로컬 자산(/media/destinations) 재사용, 팩트는 제주 가이드 검증값 재사용 ──
+  {
+    slug: 'jeju-solo-reset',
+    emoji: '🍊',
+    photo: '/media/destinations/jeju-editorial-v1.webp',
+    title: { KO: '제주 혼자 회복 2박 3일', EN: 'Jeju solo reset, 2N3D', JP: '済州ひとりリセット 2泊3日' },
+    tagline: {
+      KO: '바다 앞에서 일하고, 해안 도로로 하루를 닫는 혼자만의 리셋',
+      EN: 'Work by the sea, close the day on the coastal road — a reset of your own',
+      JP: '海の前で働いて、海岸道路で一日を締める。自分だけのリセット',
+    },
+    desc: {
+      KO: '여권도 환전도 로밍도 없이, 비행 1시간이면 다른 리듬이 시작됩니다. 코워킹 라운지를 갖춘 스테이를 베이스로, 렌터카로 해안을 돌며 아무에게도 방해받지 않는 2박 3일을 보내세요.',
+      EN: 'No passport, no currency exchange, no roaming — one hour of flying starts a different rhythm. Base yourself at a stay with a coworking lounge and circle the coast by car, undisturbed for three days.',
+      JP: 'パスポートも両替もローミングも不要。飛行機1時間で違うリズムが始まります。コワーキングラウンジ付きのステイを拠点に、レンタカーで海岸を回る2泊3日。',
+    },
+    itemIds: ['stay-playce-jeju', 'feat-flight-tripcom', 'feat-carhire-tripcom'],
+    duration: '2n3d',
+    durationLabel: { KO: '2박 3일', EN: '2N3D', JP: '2泊3日' },
+    companions: { KO: '혼자', EN: 'Solo', JP: 'ひとりで' },
+    audience: [
+      { KO: '주말+하루로 혼자만의 리셋이 필요한 사람', EN: 'Need a solo reset on a weekend plus one day', JP: '週末＋1日でひとりのリセットが必要な人' },
+      { KO: '바다와 카페 사이에서 일도 조금 하고 싶은 사람', EN: 'Want a little work between the sea and cafés', JP: '海とカフェの間で少しだけ働きたい人' },
+      { KO: '렌터카로 자유롭게 도는 동선이 편한 사람', EN: 'Prefer the freedom of a rental car', JP: 'レンタカーで自由に回るのが好きな人' },
+    ],
+    dayFlow: [
+      { day: 1, title: { KO: '도착', EN: 'Arrive', JP: '到着' }, items: [
+        { KO: '공항 · 렌터카 픽업', EN: 'Airport · pick up the car', JP: '空港 · レンタカー受け取り' },
+        { KO: '해안 드라이브 · 체크인 · 노을', EN: 'Coastal drive · check in · sunset', JP: '海岸ドライブ · チェックイン · 夕日' },
+      ]},
+      { day: 2, title: { KO: '바다와 일', EN: 'Sea & work', JP: '海と仕事' }, items: [
+        { KO: '오전 코워킹 라운지 또는 카페 업무', EN: 'Morning work from the lounge or a café', JP: '午前はラウンジかカフェで仕事' },
+        { KO: '오후 동쪽 해안 산책 · 저녁 로컬 식당', EN: 'Afternoon on the east coast, local dinner', JP: '午後は東海岸を散歩 · 夜はローカル食堂' },
+      ]},
+      { day: 3, title: { KO: '반납과 귀가', EN: 'Return & home', JP: '返却と帰路' }, items: [
+        { KO: '아침 산책 · 렌터카 반납 · 귀가', EN: 'Morning walk · return the car · fly home', JP: '朝の散歩 · 返却 · 帰路へ' },
+      ]},
+    ],
+    comfortFacts: [
+      { type: 'airport_access', label: { KO: '이동', EN: 'Getting there', JP: '移動' }, value: { KO: '김포—제주 비행 약 1시간 10분', EN: 'Gimpo–Jeju in about 1h 10m', JP: '金浦—済州は約1時間10分' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'wifi', label: { KO: '연결', EN: 'Connectivity', JP: '通信' }, value: { KO: '국내 — 로밍·eSIM 준비 불필요', EN: 'Domestic — no roaming or eSIM needed', JP: '国内（韓国）— ローミング・eSIM不要' } },
+      { type: 'workspace', label: { KO: '업무 공간', EN: 'Workspace', JP: 'ワークスペース' }, value: { KO: '코워킹 라운지를 갖춘 스테이 선택 가능', EN: 'Stays with coworking lounges available', JP: 'コワーキングラウンジ付きのステイを選べる' } },
+      { type: 'transit_pass', label: { KO: '동선', EN: 'Getting around', JP: '移動手段' }, value: { KO: '해안 동선은 렌터카가 효율적 — 공항 픽업 지점 다수', EN: 'A rental car works best for the coast — many airport pickup points', JP: '海岸の移動はレンタカーが効率的' } },
+    ],
+    cityGuideSlug: 'jeju',
+  },
   {
     slug: 'tokyo-allinone',
     emoji: '🗼',
@@ -473,6 +556,21 @@ export const COLLECTIONS: Collection[] = [
       JP: 'コワーキング特化の宿で1カ月。ヌサペニダ島ツアーで週末を、アジアマルチ国eSIMと航空券で移動を準備。滞在中に学べる講座も。',
     },
     itemIds: ['stay-tribal-bali', 'act-klook-nusapenida-bali', 'esim-klook-asia', 'feat-flight-tripcom', 'course-gpts-automation'],
+    // ── Trip Set 승격 (2026-08-02 v2) — 기간 탐색 '한 달' 행과 직결. dayFlow는 장기 체류라 생략(정직 원칙) ──
+    duration: '1month',
+    durationLabel: { KO: '한 달', EN: 'A month', JP: '1カ月' },
+    companions: { KO: '혼자 · 노마드', EN: 'Solo nomads', JP: 'ひとり · ノマド' },
+    audience: [
+      { KO: '치앙마이 다음 한 달을 찾는 노마드', EN: 'Nomads looking for the month after Chiang Mai', JP: 'チェンマイの次のひと月を探すノマド' },
+      { KO: '코워킹이 숙소 안에 있어야 하는 사람', EN: 'Need coworking built into the stay', JP: '宿の中にコワーキングが欲しい人' },
+      { KO: '주말 섬 투어로 체류 리듬을 만들고 싶은 사람', EN: 'Want weekend island trips to pace the stay', JP: '週末の島ツアーで滞在にリズムを作りたい人' },
+    ],
+    comfortFacts: [
+      { type: 'workspace', label: { KO: '업무 공간', EN: 'Workspace', JP: 'ワークスペース' }, value: { KO: '코워킹 전용 설계 숙소 — 장기 체류에 최적', EN: 'A coworking-first stay, built for long visits', JP: 'コワーキング特化設計の宿 — 長期滞在向き' } },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '아시아 멀티국 eSIM으로 주변국 이동까지 커버', EN: 'A multi-country Asia eSIM covers side trips too', JP: 'アジアマルチ国eSIMで周辺国への移動もカバー' } },
+      { type: 'wifi', label: { KO: '리듬', EN: 'Rhythm', JP: 'リズム' }, value: { KO: '주말 섬 투어로 일과 휴식의 경계 만들기', EN: 'Weekend island trips draw the line between work and rest', JP: '週末の島ツアーで仕事と休みの境界を' } },
+    ],
+    cityGuideSlug: 'bali',
   },
   {
     slug: 'chiangmai-nomad',
