@@ -543,6 +543,39 @@ export const COLLECTIONS: Collection[] = [
       JP: '時差ゼロの東京ワーケーション。コワーキング付きの宿、夜を彩るチームラボ、到着後すぐ繋がるeSIM、そして航空券まで。',
     },
     itemIds: ['stay-millennials-shibuya', 'act-klook-teamlab-tokyo', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // ── Trip Set 승격 (2026-08-03) — 팩트는 도쿄 가이드 검증값(.andwork 코워킹 2개층·직항 약 2h20m) 재사용 ──
+    duration: '3n4d',
+    durationLabel: { KO: '3박 4일', EN: '3N4D', JP: '3泊4日' },
+    companions: { KO: '혼자·친구 모두', EN: 'Solo or with friends', JP: 'ひとりでも友達とでも' },
+    audience: [
+      { KO: '시차 없이 업무 리듬을 유지하고 싶은 사람', EN: 'Want to keep your work rhythm, zero jet lag', JP: '時差なしで仕事のリズムを保ちたい人' },
+      { KO: '숙소 안에 코워킹이 있어야 하는 사람', EN: 'Need coworking inside the stay', JP: '宿の中にコワーキングが欲しい人' },
+      { KO: '저녁·주말을 전시와 도시로 채우고 싶은 사람', EN: 'Fill evenings and weekends with the city', JP: '夜と週末を展示と街で満たしたい人' },
+    ],
+    dayFlow: [
+      { day: 1, title: { KO: '도착', EN: 'Arrive', JP: '到着' }, items: [
+        { KO: '공항 → 도심 이동 · 체크인', EN: 'Airport to downtown · check in', JP: '空港→都心 · チェックイン' },
+        { KO: '시부야 골목 저녁 산책', EN: 'Evening walk around Shibuya', JP: '渋谷を夜さんぽ' },
+      ]},
+      { day: 2, title: { KO: '일과 도시', EN: 'Work & city', JP: '仕事と街' }, items: [
+        { KO: '오전 숙소 코워킹에서 업무', EN: 'Morning work at the in-house coworking', JP: '午前は宿のコワーキングで仕事' },
+        { KO: '오후 신주쿠·마루노우치 탐색', EN: 'Afternoon in Shinjuku & Marunouchi', JP: '午後は新宿・丸の内へ' },
+      ]},
+      { day: 3, title: { KO: '몰입의 저녁', EN: 'Immersive evening', JP: '没入の夜' }, items: [
+        { KO: '낮 자유 일정 또는 가벼운 업무', EN: 'Free daytime, or a light work block', JP: '昼は自由時間か軽い仕事' },
+        { KO: '저녁 팀랩 플래닛', EN: 'teamLab Planets in the evening', JP: '夜はチームラボプラネッツ' },
+      ]},
+      { day: 4, title: { KO: '체크아웃', EN: 'Check out', JP: 'チェックアウト' }, items: [
+        { KO: '체크아웃 · 공항 이동', EN: 'Check out · to the airport', JP: 'チェックアウト · 空港へ' },
+      ]},
+    ],
+    comfortFacts: [
+      { type: 'wifi', label: { KO: '시차', EN: 'Time zone', JP: '時差' }, value: { KO: '한국과 0시간 — 회의·마감 그대로', EN: 'Zero difference — meetings stay put', JP: '韓国と時差ゼロ' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'airport_access', label: { KO: '이동', EN: 'Getting there', JP: '移動' }, value: { KO: '직항 약 2시간 20분 · 공항—도심 철도 직결', EN: '~2h 20m direct · rail links airport to downtown', JP: '直行約2時間20分 · 空港—都心は鉄道直結' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'workspace', label: { KO: '업무 공간', EN: 'Workspace', JP: 'ワークスペース' }, value: { KO: '코워킹을 2개 층 품은 숙소 선택 가능', EN: 'A stay with two floors of coworking available', JP: 'コワーキング2フロア内蔵の宿を選べる' } },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
+    ],
+    cityGuideSlug: 'tokyo',
   },
   {
     slug: 'bali-monthstay',
@@ -585,6 +618,22 @@ export const COLLECTIONS: Collection[] = [
       JP: 'サービスアパートが揃うノマドの都チェンマイ。象のサンクチュアリで一日を空け、アジアeSIMと航空券で準備完了。11〜2月の乾季が◎。',
     },
     itemIds: ['stay-kantary-chiangmai', 'act-klook-elephant-chiangmai', 'esim-klook-asia', 'feat-flight-tripcom'],
+    // ── Trip Set 승격 (2026-08-03) — 2주 세트. 장기 체류라 dayFlow 생략(발리와 동일 정직 원칙),
+    //    팩트는 치앙마이 가이드 검증값(11~2월 건기·서비스드 아파트) 재사용 ──
+    duration: '2weeks',
+    durationLabel: { KO: '2주', EN: '2 weeks', JP: '2週間' },
+    companions: { KO: '혼자 · 노마드', EN: 'Solo nomads', JP: 'ひとり · ノマド' },
+    audience: [
+      { KO: '첫 장기 워케이션을 검증된 도시에서 시작하고 싶은 사람', EN: 'Want your first long workation in a proven city', JP: '初の長期ワーケーションを定番都市で始めたい人' },
+      { KO: '주방·세탁이 있는 서비스드 아파트가 필요한 사람', EN: 'Need a serviced apartment with kitchen & laundry', JP: 'キッチン・洗濯付きのサービスアパートが必要な人' },
+      { KO: '주말 하루는 일에서 완전히 벗어나고 싶은 사람', EN: 'Want one weekend day fully away from work', JP: '週末の一日は仕事から完全に離れたい人' },
+    ],
+    comfortFacts: [
+      { type: 'workspace', label: { KO: '숙소', EN: 'Stay', JP: '宿' }, value: { KO: '서비스드 아파트가 많아 2주 체류에 적합', EN: 'Serviced apartments make two weeks easy', JP: 'サービスアパートが多く2週間向き' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'wifi', label: { KO: '시즌', EN: 'Season', JP: 'シーズン' }, value: { KO: '11~2월 건기가 가장 쾌적', EN: 'Nov–Feb dry season is best', JP: '11〜2月の乾季がベスト' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '아시아 멀티국 eSIM으로 주변국 이동까지 커버', EN: 'A multi-country Asia eSIM covers side trips', JP: 'アジアマルチ国eSIMで周辺国もカバー' } },
+    ],
+    cityGuideSlug: 'chiangmai',
   },
   {
     slug: 'japan-onsen-reset',
