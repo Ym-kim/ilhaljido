@@ -2,16 +2,50 @@
 
 import { useLang } from '@/context/LanguageContext'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight, GraduationCap, HeartHandshake, Compass } from 'lucide-react'
 
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { NotifySignup } from '@/components/home/NotifySignup'
+import { ICON_STROKE } from '@/lib/icons'
+import type { Lang } from '@/lib/i18n/types'
 
 import { getGrowthCamps } from '@/lib/i18n'
+
+// ── 여정 연결 (2026-08-02 발견성 개선) — 캠프 소개 후 다음 행동이 없던 막다른 페이지에
+//    실존 경로 3개(강의·네트워킹·진단)와 오픈 알림 리드를 연결 ──
+type L = Record<Lang, string>
+const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L }[] = [
+  {
+    icon: GraduationCap, href: '/select/learn',
+    label: { KO: '지금 시작하는 온라인 강의', EN: 'Start with an online course', JP: 'まずはオンライン講座から' },
+    desc: { KO: '캠프 전에 미리 배우는 파트너 강의', EN: 'Partner courses to learn before camp', JP: 'キャンプ前に学べる提携講座' },
+  },
+  {
+    icon: HeartHandshake, href: '/programs/networking',
+    label: { KO: '창업가·1인 워커 네트워킹', EN: 'Founder & solo-worker networking', JP: '起業家・ソロワーカー交流' },
+    desc: { KO: '같은 고민을 하는 사람들과 연결', EN: 'Meet people working on the same things', JP: '同じ課題を持つ人とつながる' },
+  },
+  {
+    icon: Compass, href: '/tools/diagnosis',
+    label: { KO: '나에게 맞는 워케이션 진단', EN: 'Workation self-check', JP: '自分に合う旅を診断' },
+    desc: { KO: '3분 진단으로 목적지부터 정하기', EN: 'Pick a destination in 3 minutes', JP: '3分診断で行き先から決める' },
+  },
+]
+const NEXT_UI: Record<string, L> = {
+  title: { KO: '캠프를 기다리는 동안', EN: 'While you wait for the next camp', JP: '次のキャンプを待つあいだに' },
+  notify: {
+    KO: '성장 캠프 회차가 열리면 가장 먼저 알려드릴게요',
+    EN: "We'll tell you first when a growth camp opens",
+    JP: '成長キャンプの募集開始をいち早くお知らせします',
+  },
+}
 
 
 
 export default function GrowthPage() {
 
-  const { tr } = useLang()
+  const { tr, lang } = useLang()
 
   const camps = getGrowthCamps()
 
@@ -69,6 +103,38 @@ export default function GrowthPage() {
 
         </div>
 
+      </section>
+
+      {/* ── 다음 행동 — 실존 경로 연결 + 오픈 알림 리드 (2026-08-02) ── */}
+      <section className="border-t border-white/8 py-16 px-6">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-white font-black text-xl md:text-2xl mb-6">{NEXT_UI.title[lang]}</h2>
+          <div className="grid gap-3 md:grid-cols-3 mb-10">
+            {NEXT_STEPS.map((s) => {
+              const Icon = s.icon
+              return (
+                <Link
+                  key={s.href}
+                  href={s.href}
+                  className="group flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-teal-500/40 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
+                >
+                  <span className="shrink-0 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400">
+                    <Icon className="w-5 h-5" strokeWidth={ICON_STROKE} />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-white font-bold text-[0.9375rem] leading-snug">{s.label[lang]}</span>
+                    <span className="block text-white/45 text-xs mt-0.5">{s.desc[lang]}</span>
+                  </span>
+                  <ArrowRight className="ml-auto w-4 h-4 text-white/25 group-hover:text-teal-400 shrink-0 transition-colors" strokeWidth={ICON_STROKE} />
+                </Link>
+              )
+            })}
+          </div>
+          <div className="max-w-xl">
+            <p className="text-white/60 text-sm font-semibold mb-3">{NEXT_UI.notify[lang]}</p>
+            <NotifySignup source="성장 캠프 오픈 알림 (growth)" />
+          </div>
+        </div>
       </section>
 
     </div>
