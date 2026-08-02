@@ -42,7 +42,7 @@ const ROWS: DurationRow[] = [
       { href: '/collections/fukuoka-3n4d?src=duration', label: { KO: '후쿠오카 세트', EN: 'Fukuoka set', JP: '福岡セット' } },
       { href: '/collections/osaka-friends?src=duration', label: { KO: '오사카 친구 세트', EN: 'Osaka friends set', JP: '大阪友達セット' } },
       { href: '/collections/seoul-3n4d?src=duration', label: { KO: '서울 세트', EN: 'Seoul set', JP: 'ソウルセット' } },
-      { href: '/guide/tokyo', label: { KO: '도쿄', EN: 'Tokyo', JP: '東京' } },
+      { href: '/collections/tokyo-allinone?src=duration', label: { KO: '도쿄 세트', EN: 'Tokyo set', JP: '東京セット' } },
     ],
   },
   {
@@ -62,8 +62,8 @@ const ROWS: DurationRow[] = [
     label: { KO: '2주', EN: 'Two weeks', JP: '2週間' },
     hint: { KO: '현지 리듬이 생기는', EN: 'Long enough to find a rhythm', JP: '現地のリズムが生まれる' },
     chips: [
+      { href: '/collections/chiangmai-nomad?src=duration', label: { KO: '치앙마이 2주 세트', EN: 'Chiang Mai 2-week set', JP: 'チェンマイ2週間セット' } },
       { href: '/guide/bali', label: { KO: '발리', EN: 'Bali', JP: 'バリ' } },
-      { href: '/guide/chiangmai', label: { KO: '치앙마이', EN: 'Chiang Mai', JP: 'チェンマイ' } },
     ],
   },
   {

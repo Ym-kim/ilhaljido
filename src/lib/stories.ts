@@ -24,6 +24,25 @@ export type Story = {
 }
 
 export const STORIES: Story[] = [
+  // ⚠️ 시즌 아티클 — 9/27 추석 종료 후 배열 후퇴 또는 제거
+  {
+    slug: 'chuseok-4days',
+    href: '/campaign/chuseok-4days',
+    published: '2026-08-03',
+    image: '/covers/stay-fukuoka-city-real.jpeg',
+    imageAlt: { KO: '추석 연휴 일본 골목 야경', EN: 'Japan alley at night for Chuseok break', JP: '秋夕連休の日本の路地夜景' },
+    category: { KO: '시즌 · 추석 연휴', EN: 'Season · Chuseok', JP: 'シーズン · 秋夕連休' },
+    title: {
+      KO: '연차 없이 나흘 — 추석을 워케이션으로 보내는 법',
+      EN: 'Four days, no leave — a Chuseok workation playbook',
+      JP: '有休なしの4日間 — 秋夕をワーケーションで過ごす方法',
+    },
+    sub: {
+      KO: '9/24–9/27 나흘 연휴 — 일본 3거점과 부산·제주 다섯 세트의 설계법.',
+      EN: 'Sep 24–27 — five trip sets across Japan, Busan and Jeju.',
+      JP: '9/24–9/27の4連休 — 日本3拠点と釜山・済州、5つのセット設計。',
+    },
+  },
   {
     slug: 'world-europa',
     href: '/cruise/world-europa',
