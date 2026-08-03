@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 더 알아보기 — 홈 다이어트 v2 (2026-07-28)
@@ -70,7 +71,7 @@ export function MoreExplore() {
             return (
               <Link
                 key={l.href}
-                href={l.href}
+                href={localizeHref(l.href, lang)}
                 data-ui-card="compact"
                 className="wak-card-compact group flex min-h-20 items-center gap-3 border border-[#dbeafe] bg-white px-4 py-4 transition-all hover:border-[#93c5fd] hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >

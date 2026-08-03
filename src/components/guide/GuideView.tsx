@@ -223,7 +223,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
       <section className="max-w-5xl mx-auto px-6 pb-12 md:pb-16">
         <div className="flex flex-col sm:flex-row gap-2.5">
           <Link
-            href={`/select/hotel#${guide.anchor}`}
+            href={`${prefix}/select/hotel#${guide.anchor}`}
             className="btn-primary justify-center"
           >
             <Search className="w-4 h-4" strokeWidth={ICON_STROKE} />

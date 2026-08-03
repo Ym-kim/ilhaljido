@@ -7,6 +7,7 @@ import { useLang } from '@/context/LanguageContext'
 import { MOMENTS } from '@/lib/moments'
 import { CITY_GUIDES } from '@/lib/guides'
 import { ICON_STROKE } from '@/lib/icons'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 레일 (홈)
@@ -87,13 +88,13 @@ export function MomentRail() {
 
       {/* 도시 가이드 진입 칩 — SEO 내부 링크 + 체류 동선 */}
       <div className="max-w-6xl mx-auto px-6 mt-7 flex flex-wrap items-center gap-2.5">
-        <Link href="/guide" className="text-[#64748b] text-xs font-bold mr-1 hover:text-brand-mid transition-colors underline-offset-2 hover:underline">
+        <Link href={localizeHref('/guide', lang)} className="text-[#64748b] text-xs font-bold mr-1 hover:text-brand-mid transition-colors underline-offset-2 hover:underline">
           {tr('home_moments_guides')}
         </Link>
         {CITY_GUIDES.map((g) => (
           <Link
             key={g.slug}
-            href={`/guide/${g.slug}`}
+            href={localizeHref(`/guide/${g.slug}`, lang)}
             className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-[#dbeafe] bg-white text-[#475569] text-xs font-semibold hover:border-[#93c5fd] hover:text-[#111827] transition-all"
           >
             {g.name[lang]}
