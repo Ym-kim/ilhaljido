@@ -569,6 +569,55 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 5,
     visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
   },
+  {
+    // 팩트 검증 2026-08-03: 한옥마을 700여 채(visitkorea 공식 — 국내 최대 도심 한옥군)
+    // 유네스코 음식창의도시 2012 지정(unesco.org/en/creative-cities/jeonju)
+    // KTX 용산→전주 통상 1시간 37분~45분·일 27회+(최단 1시간 26분) → '약 1시간 40분' 표기
+    // 인천공항 T1/T2→전주 직행 리무진 일 17~19회, 약 3시간 30분
+    slug: 'jeonju',
+    anchor: 'korea-jeonju',
+    heroPhoto: '/media/product-editorial/program-jeonju-hanok-licensed-v1.webp',
+    name: { KO: '전주', EN: 'Jeonju', JP: '全州' },
+    tagline: {
+      KO: '한옥 처마 아래서 일하는 슬로 워케이션 — 유네스코 미식 도시',
+      EN: 'A slow workation under hanok eaves — a UNESCO city of gastronomy',
+      JP: '韓屋の軒下ではたらくスローワーケーション — ユネスコ美食都市',
+    },
+    intro: {
+      KO: '700여 채 한옥이 골목을 이루는 국내 최대 도심 한옥군에서, 오전엔 한옥 스테이나 카페 데스크에서 일하고 오후엔 골목을 걷는 리듬의 도시입니다. 2012년 유네스코 음식창의도시로 지정된 미식의 수도라 퇴근 후 한 끼가 하루의 보상이 됩니다. 용산에서 KTX 약 1시간 40분 — 주말을 붙인 2~4일 슬로 워케이션에 맞습니다.',
+      EN: "Korea's largest urban cluster of some 700 hanok houses — mornings at a hanok-stay desk or café, afternoons wandering the lanes. Designated a UNESCO Creative City of Gastronomy in 2012, so dinner is the day's reward. About 1h 40m from Seoul (Yongsan) by KTX — built for a slow 2–4 day workation.",
+      JP: '約700棟の韓屋が路地を成す韓国最大の都心韓屋群。午前は韓屋ステイやカフェのデスクで働き、午後は路地歩きへ。2012年ユネスコ食文化創造都市に指定された美食の都で、仕事終わりの一食が一日のご褒美になります。仁川空港から直行リムジンバスで約3時間半、ソウルからKTXで約1時間40分。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
+      { label: F.flight, value: { KO: 'KTX 약 1시간 40분 (용산발)', EN: 'KTX ~1h 40m from Seoul', JP: '仁川空港からバス約3時間半' } },
+      { label: F.currency, value: { KO: '원 (KRW)', EN: 'KRW', JP: 'ウォン (KRW)' } },
+      { label: F.season, value: { KO: '4~6월 · 9~11월', EN: 'Apr–Jun · Sep–Nov', JP: '4〜6月 · 9〜11月' } },
+    ],
+    areas: [
+      {
+        name: { KO: '한옥마을', EN: 'Hanok Village', JP: '韓屋村（ハノクマウル）' },
+        desc: {
+          KO: '700여 채 한옥 골목 사이에 경기전·향교 같은 문화유산과 카페가 섞여 있는 동네. 한옥 스테이 툇마루에 노트북을 펴면 그대로 오피스가 됩니다.',
+          EN: 'Some 700 hanok lanes woven with heritage sites like Gyeonggijeon shrine and cafés in between. Open a laptop on a hanok-stay porch and it becomes your office.',
+          JP: '約700棟の韓屋の路地に、慶基殿・郷校などの文化遺産とカフェが混ざるエリア。韓屋ステイの縁側でノートPCを開けば、そのままオフィスに。',
+        },
+      },
+      {
+        name: { KO: '객리단길', EN: 'Gaengnidan-gil', JP: '客里団通り（ケンニダンギル）' },
+        desc: {
+          KO: '구도심 골목이 카페·베이커리·바 거리로 바뀐 지역. 한옥마을보다 관광 밀도가 낮아 평일 낮 노트북 작업 자리를 찾기 수월합니다.',
+          EN: 'Old-downtown alleys turned café, bakery and bar streets — less touristy than the Hanok Village, so weekday laptop seats are easier to find.',
+          JP: '旧市街の路地がカフェ・ベーカリー・バーの通りに変わったエリア。韓屋村より観光密度が低く、平日昼のPC作業席を見つけやすい。',
+        },
+      },
+    ],
+    stayIds: [],
+    activityIds: [],
+    timeZone: 'Asia/Seoul',
+    internet: 5,
+    visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+  },
 ]
 
 export function getGuide(slug: string): CityGuide | undefined {

@@ -28,7 +28,7 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
 const REGIONS = [
   { id: 'region-japan',     labelKey: 'region_japan',     ids: ['japan-tokyo', 'japan-osaka', 'japan-kyoto', 'japan-fukuoka', 'japan-nagoya', 'japan-hiroshima', 'japan-okinawa', 'japan-sapporo', 'japan-kobe'], featuredIds: ['stay-millennials-shibuya', 'stay-lively-osaka', 'stay-webase-hakata', 'stay-mimaru-tokyo'] },
   { id: 'region-japan-small', labelKey: 'region_japan_small', ids: ['japan-kawaguchiko', 'japan-kanazawa', 'japan-yufuin'], featuredIds: [] },
-  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-seoul', 'korea-jeju', 'korea-busan', 'korea-yangyang', 'korea-gangneung', 'korea-sokcho'], featuredIds: ['stay-playce-jeju', 'stay-fraser-seoul', 'stay-uh-busan', 'stay-skybay-gangneung'] },
+  { id: 'region-korea',     labelKey: 'region_korea',     ids: ['korea-seoul', 'korea-jeju', 'korea-busan', 'korea-jeonju', 'korea-yangyang', 'korea-gangneung', 'korea-sokcho'], featuredIds: ['stay-playce-jeju', 'stay-fraser-seoul', 'stay-uh-busan', 'stay-skybay-gangneung'] },
   { id: 'region-thailand',  labelKey: 'region_thailand',  ids: ['thailand-chiangmai', 'thailand-bangkok', 'thailand-phuket'], featuredIds: ['stay-kantary-chiangmai', 'stay-lyf-sukhumvit-bangkok', 'stay-shama-bangkok', 'stay-naka-phuket'] },
   { id: 'region-vietnam',   labelKey: 'region_vietnam',   ids: ['vietnam-danang', 'vietnam-nhatrang', 'vietnam-hcmc'], featuredIds: ['stay-chicland-danang', 'stay-sanouva-danang', 'stay-seaside-nhatrang', 'stay-dhts-hcmc'] },
   { id: 'region-indonesia', labelKey: 'region_indonesia', ids: ['indonesia-bali', 'indonesia-ubud', 'indonesia-canggu'], featuredIds: ['stay-tribal-bali', 'stay-thenomad-canggu', 'stay-ubud-village', 'stay-fields-seminyak'] },

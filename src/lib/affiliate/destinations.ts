@@ -980,6 +980,34 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     ],
   },
   {
+    id: 'korea-jeonju',
+    // 라이선스 미디어 재사용 (CC BY 4.0, productEditorial.ts 매니페스트 등재)
+    photo: '/media/product-editorial/program-jeonju-hanok-licensed-v1.webp',
+    flag: '🏮',
+    city: '전주',
+    cityEn: 'Jeonju',
+    country: '국내',
+    gradient: 'from-teal-900/25 to-[#1a1a1a]',
+    tags: ['한옥 스테이', '미식 도시'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Jeonju',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — jeonju-si-hotels-list-61380 (2026-08-03 kr.trip.com 실물검증: 라한호텔 전주·신라스테이 전주 한옥마을 확인, -si 슬러그)
+        href: 'https://kr.trip.com/hotels/jeonju-si-hotels-list-61380/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
+    ],
+  },
+  {
     id: 'thailand-phuket',
     photo: '/media/verified/unsplash/1601225612316-b4733315a717.webp',
     flag: '🏝',

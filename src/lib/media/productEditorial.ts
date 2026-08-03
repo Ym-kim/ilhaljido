@@ -102,7 +102,8 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
     src: '/media/product-editorial/program-jeonju-hanok-licensed-v1.webp',
     alt: { KO: '전주 한옥마을의 골목과 한옥 지붕', EN: 'A lane and traditional roofs in Jeonju Hanok Village', JP: '全州韓屋村の路地と韓屋の屋根' },
     sourceType: 'licensed', usage: 'editorial', illustrative: false, width: 1200, height: 900,
-    localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/programs/domestic'], sectionUsage: ['program-card'],
+    // 2026-08-03 가이드 12번째 도시 전주 신설 — 가이드 히어로·목적지 카드에 재사용
+    localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/programs/domestic', '/guide/jeonju', '/select/hotel'], sectionUsage: ['program-card', 'guide-hero', 'destination-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'https://commons.wikimedia.org/wiki/File:20240727_Jeonju_Hanok_Village_001.jpg',
     license: 'CC BY 4.0 — Jjw; resized and converted to WebP', verifiedAt: '2026-08-02',
   },
