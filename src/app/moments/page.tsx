@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Camera } from 'lucide-react'
 import { MOMENTS } from '@/lib/moments'
+import { CITY_GUIDES } from '@/lib/guides'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 
@@ -67,6 +68,11 @@ export default function MomentsPage() {
       EN: 'Tell us about a memorable moment from your workation.',
       JP: 'ワーケーション中の印象的な瞬間を教えてください。',
     },
+    guidesLabel: {
+      KO: '도시 가이드로 이어보기',
+      EN: 'Continue with city guides',
+      JP: '都市ガイドで続きを',
+    },
   } as const
 
   return (
@@ -89,6 +95,25 @@ export default function MomentsPage() {
             <div key={m.id} className="break-inside-avoid">
               <MomentCard moment={m} />
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 도시 가이드 진입 칩 (2026-08-04 막다른 피드 해소 — 홈 MomentRail 패턴 이식) */}
+      <section className="max-w-5xl mx-auto px-6 pb-14">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <Link href="/guide" className="text-white/50 text-xs font-bold mr-1 hover:text-teal-300 transition-colors underline-offset-2 hover:underline">
+            {ui.guidesLabel[lang]}
+          </Link>
+          {CITY_GUIDES.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/guide/${g.slug}`}
+              className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-semibold hover:border-teal-400/50 hover:text-white transition-all"
+            >
+              {g.name[lang]}
+              <ArrowRight className="w-3 h-3" strokeWidth={ICON_STROKE} />
+            </Link>
           ))}
         </div>
       </section>

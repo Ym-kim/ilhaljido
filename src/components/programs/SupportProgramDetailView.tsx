@@ -4,7 +4,19 @@ import { ArrowLeft, ArrowRight, CalendarDays, CheckCircle2, ExternalLink, MapPin
 import { ICON_STROKE } from '@/lib/icons'
 import { SUPPORT_LABELS, type SupportCatalogItem } from '@/lib/support/catalog'
 import { SupportProgramActions } from '@/components/programs/SupportProgramActions'
+import { getGuide } from '@/lib/guides'
 import type { Lang } from '@/lib/i18n/types'
+
+// 지원사업 → 도시 가이드 역방향 연결 (2026-08-04 cross-link-mesh)
+// 가이드 supportProgram 콜아웃 4건의 반대 방향 — 실존 가이드 slug만 등재
+const GUIDE_BY_PROGRAM: Record<string, string> = {
+  'jeju-voucher': 'jeju',
+  'busan-workation': 'busan',
+  'jeonbuk-worcation': 'jeonju',
+  'jeonnam-blue-worcation': 'yeosu',
+}
+const GUIDE_LINK_LABEL = (city: string, lang: Lang) =>
+  lang === 'KO' ? `${city} 워케이션 가이드` : lang === 'JP' ? `${city}ワーケーションガイド` : `${city} workation guide`
 
 const COPY = {
   back: { KO: '지원 프로그램', EN: 'Support programs', JP: '支援プログラム' },
@@ -183,11 +195,16 @@ export function SupportProgramDetailView({ program, lang }: { program: SupportCa
           <h2 className="text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.related[lang]}</h2>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-[#6a7c83]">{COPY.relatedDesc[lang]}</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            {[
-              { href: `${prefix}/select/hotel`, label: COPY.stays[lang] },
-              { href: `${prefix}/select#transport`, label: COPY.transport[lang] },
-              { href: `${prefix}/collections`, label: COPY.trips[lang] },
-            ].map((item) => <Link key={item.href} href={item.href} className="group flex min-h-20 items-center justify-between rounded-[1.1rem] border border-[#dce5e7] px-5 text-sm font-bold text-[#294650] transition hover:border-[#9fc2ce] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">{item.label}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" /></Link>)}
+            {(() => {
+              const guide = GUIDE_BY_PROGRAM[program.slug] ? getGuide(GUIDE_BY_PROGRAM[program.slug]) : undefined
+              return [
+                // 매칭 도시 가이드가 있으면 첫 슬롯 — 콜아웃(가이드→지원사업)의 역방향
+                ...(guide ? [{ href: `${prefix}/guide/${guide.slug}`, label: GUIDE_LINK_LABEL(guide.name[lang], lang) }] : []),
+                { href: `${prefix}/select/hotel`, label: COPY.stays[lang] },
+                { href: `${prefix}/select#transport`, label: COPY.transport[lang] },
+                { href: `${prefix}/collections`, label: COPY.trips[lang] },
+              ]
+            })().map((item) => <Link key={item.href} href={item.href} className="group flex min-h-20 items-center justify-between rounded-[1.1rem] border border-[#dce5e7] px-5 text-sm font-bold text-[#294650] transition hover:border-[#9fc2ce] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#317b98]">{item.label}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" /></Link>)}
           </div>
         </div>
       </section>

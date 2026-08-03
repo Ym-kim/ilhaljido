@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
@@ -13,6 +14,7 @@ import { FEATURED_ESIM } from '@/lib/affiliate/featured'
 import { ALL_AFFILIATE_ITEMS } from '@/lib/affiliate/items'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -37,6 +39,10 @@ const COPY: Record<string, L> = {
   prep_title: { KO: '소도시 가는 길, 미리 준비', EN: 'Getting there, sorted in advance', JP: '小都市への道のり、事前に準備' },
   prep_sub: { KO: '항공권과 일본 eSIM — 도착 전에 끝내두면 소도시에선 쉬기만 하면 됩니다.', EN: 'Flights and a Japan eSIM — sort them before you land, then just settle in.', JP: '航空券と日本eSIM — 到着前に済ませて、小都市ではゆっくり。' },
   notify_label: { KO: '료칸·온천 소도시 프로그램이 열리면 알려드릴게요', EN: "We'll tell you when the ryokan & onsen program opens", JP: '旅館・温泉の小都市プログラム開始時にお知らせ' },
+  next_title: { KO: '이어서 보기', EN: 'Keep exploring', JP: '続けて見る' },
+  next_set: { KO: '온천 리셋 기획전 — 하카타 거점 세트', EN: 'Onsen reset collection — Hakata base', JP: '温泉リセット特集 — 博多拠点セット' },
+  next_guide: { KO: '후쿠오카 워케이션 가이드', EN: 'Fukuoka workation guide', JP: '福岡ワーケーションガイド' },
+  next_stays: { KO: '일본 전체 숙소 검색', EN: 'Search all Japan stays', JP: '日本全体の宿を検索' },
   program_badge: { KO: '프로그램 준비 중', EN: 'Program in prep', JP: 'プログラム準備中' },
   preregister: { KO: '사전 신청 문의', EN: 'Pre-register inquiry', JP: '事前申込のお問い合わせ' },
 }
@@ -99,6 +105,29 @@ export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
         items={prepItems.map((i) => localizeAffiliateItem(i, lang))}
         cols={2}
       />
+
+      {/* 이어서 보기 — 내부 동선 (2026-08-04 막다른 페이지 해소: 기존엔 내부 라우트 링크 0) */}
+      <section className="border-t border-gray-100 px-6 py-12">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="mb-5 text-lg font-black text-[#111827]">{COPY.next_title[lang]}</h2>
+          <div className="grid gap-3 sm:grid-cols-3">
+            {[
+              { href: '/collections/japan-onsen-reset', label: COPY.next_set[lang] },
+              { href: '/guide/fukuoka', label: COPY.next_guide[lang] },
+              { href: '/select/hotel#japan-tokyo', label: COPY.next_stays[lang] },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={localizeHref(item.href, lang)}
+                className="group flex min-h-16 items-center justify-between rounded-2xl border border-[#e2e8f0] px-5 text-sm font-bold text-[#334155] transition-all hover:border-brand-mid hover:text-brand-mid"
+              >
+                {item.label}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" strokeWidth={ICON_STROKE} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* 프로그램 알림 + 사전신청 */}
       <section className="dark-surface bg-gradient-to-b from-[#04121f] to-[#0a1e33] py-16 px-6">

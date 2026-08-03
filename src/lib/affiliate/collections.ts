@@ -72,6 +72,8 @@ export type Collection = {
   cityGuideSlug?: string
   /** Trip Set 상세에서 일정 맥락과 함께 노출할 active affiliate 선택지 (최대 4개) */
   conversionItems?: TripSetConversionItem[]
+  /** 지자체 지원사업 연계 콜아웃 — id는 SUPPORT_PROGRAMS 실존 id만 (guides.ts 패턴, 2026-08-04) */
+  supportProgram?: { id: string; name: L; desc: L }
 }
 
 export const COLLECTIONS: Collection[] = [
@@ -483,6 +485,16 @@ export const COLLECTIONS: Collection[] = [
       { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
     ],
     cityGuideSlug: 'busan',
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (부산 가이드 콜아웃과 동일)
+      id: 'busan-workation',
+      name: { KO: '부산형 워케이션', EN: 'Busan Workation', JP: '釜山型ワーケーション' },
+      desc: {
+        KO: '업무공간 무료 + 웰컴키트 + 관광 바우처 — 부산 외 재직자 대상, 조건은 공식 공고 기준으로 확인하세요.',
+        EN: 'Free workspace, welcome kit and tour vouchers for non-Busan workers — check conditions on the official notice.',
+        JP: 'ワークスペース無料＋ウェルカムキット＋観光バウチャー（釜山外の在職者対象） — 条件は公式公告でご確認ください。',
+      },
+    },
   },
   // ── Trip Sets v2 (2026-08-02) — 제주 혼자 회복 신설. 아이템 3종 전부 활성 확인,
   //    사진은 외부 검증 로컬 자산(/media/destinations) 재사용, 팩트는 제주 가이드 검증값 재사용 ──
@@ -530,6 +542,16 @@ export const COLLECTIONS: Collection[] = [
       { type: 'transit_pass', label: { KO: '동선', EN: 'Getting around', JP: '移動手段' }, value: { KO: '해안 동선은 렌터카가 효율적 — 공항 픽업 지점 다수', EN: 'A rental car works best for the coast — many airport pickup points', JP: '海岸の移動はレンタカーが効率的' } },
     ],
     cityGuideSlug: 'jeju',
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (제주 가이드 콜아웃과 동일)
+      id: 'jeju-voucher',
+      name: { KO: '제주 민간형 워케이션 바우처', EN: 'Jeju Workation Voucher', JP: '済州ワーケーションバウチャー' },
+      desc: {
+        KO: '숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳 — 도외 재직자 대상, 조건은 공식 공고 기준으로 확인하세요.',
+        EN: 'Stay+office voucher up to ₩50,000/night at 17 partner offices for non-Jeju workers — check conditions on the official notice.',
+        JP: '宿泊＋オフィス1泊最大5万W・提携オフィス17カ所（道外の在職者対象） — 条件は公式公告でご確認ください。',
+      },
+    },
   },
   {
     slug: 'tokyo-allinone',
@@ -647,6 +669,8 @@ export const COLLECTIONS: Collection[] = [
       JP: '大都市の喧騒の代わりに博多のコワーキング宿で働き、福岡近郊の温泉町へ日帰り。日本eSIMと航空券も。旅館・温泉の小都市は専用ページで。',
     },
     itemIds: ['stay-webase-hakata', 'act-fukuoka-bustour', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // 2026-08-04 막다른 페이지 해소 — 거점이 하카타라 후쿠오카 가이드 연결
+    cityGuideSlug: 'fukuoka',
   },
   {
     slug: 'osaka-foodie',
@@ -661,6 +685,8 @@ export const COLLECTIONS: Collection[] = [
       JP: '時差ゼロ·直行1時間台の大阪。ラウンジの広い宿で働き、周遊パスで40カ所以上へ。日本eSIMと航空券も。',
     },
     itemIds: ['stay-lively-osaka', 'act-klook-osaka-pass', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // 2026-08-04 막다른 페이지 해소 (싱가포르·타이베이는 가이드 미존재라 제외)
+    cityGuideSlug: 'osaka',
   },
   {
     slug: 'singapore-business',

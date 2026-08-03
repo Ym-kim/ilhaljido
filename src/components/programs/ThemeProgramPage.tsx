@@ -13,6 +13,7 @@ import { THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { HostedLeadSection, type HostedLeadVariant } from '@/components/programs/HostedLeadSection'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 type Props = {
@@ -26,10 +27,12 @@ type Props = {
   emailSubject: string
   /** Hosted 관심 등록 섹션 — 지정 테마만 (feat/hosted-lead-v1) */
   leadVariant?: HostedLeadVariant
+  /** 테마 ↔ 가이드·Trip Set 크로스링크 (2026-08-04) */
+  crossLinks?: { href: string; label: Record<Lang, string> }[]
   forceLang?: Lang
 }
 
-export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], leadVariant, forceLang }: Props) {
+export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], leadVariant, crossLinks = [], forceLang }: Props) {
   const themeProducts = THEME_EXPERIENCES.filter((i) => featuredExperienceIds.includes(i.id))
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
@@ -136,6 +139,24 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
         subtitle={tr('prep_sub')}
         items={GLOBAL_PREP_ITEMS.map((i) => localizeAffiliateItem(i, lang))}
       />
+
+      {/* 가이드·Trip Set 크로스링크 (2026-08-04 cross-link-mesh) */}
+      {crossLinks.length > 0 && (
+        <section className="border-t border-white/8 px-6 py-10">
+          <div className="max-w-6xl mx-auto flex flex-wrap gap-3">
+            {crossLinks.map((c) => (
+              <Link
+                key={c.href}
+                href={localizeHref(c.href, forceLang ?? 'KO')}
+                className="group inline-flex min-h-12 items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 text-sm font-bold text-white/75 transition-all hover:border-sky-400/50 hover:text-white"
+              >
+                {c.label[lang]}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="py-16 px-6 bg-[#0d0d0d]">
         <div className="max-w-2xl mx-auto text-center">

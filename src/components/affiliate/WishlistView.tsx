@@ -128,11 +128,24 @@ export function WishlistView() {
             </div>
             </div>
           ) : items.length > 0 ? (
-            <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-              {items.map((item) => (
-                <AffiliateCard key={item.id} item={item} visual />
-              ))}
-            </div>
+            <>
+              <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+                {items.map((item) => (
+                  <AffiliateCard key={item.id} item={item} visual />
+                ))}
+              </div>
+              {/* 2026-08-04: 저장분 보유 상태가 그리드에서 끝나던 막다른 화면 해소 — 빈 상태와 동일한 다음 동선 렌더 */}
+              <h2 className="mt-14 text-center text-2xl font-black text-[#111827]">{COPY.next_title[lang]}</h2>
+              <div className="mt-6 grid gap-3 md:grid-cols-3">
+                {discoveryLinks.map((item, index) => (
+                  <Link key={item.href} href={item.href} onClick={() => trackEvent('visual_module_interaction', { route: '/wishlist', locale: lang, sectionId: 'saved-discovery-index', visualType: 'compact-index', contentId: item.href, position: String(index + 1), targetRoute: item.href })} className="group flex min-h-40 flex-col border-t border-[#cbd5e1] px-1 py-5 text-left hover:border-brand-mid">
+                    <h3 className="text-lg font-black text-[#111827]">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-[#64748b]">{item.desc}</p>
+                    <ArrowRight className="mt-auto h-4 w-4 text-brand-mid transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>
+            </>
           ) : null}
         </div>
       </section>

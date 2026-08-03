@@ -351,6 +351,25 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
               {COLLECTIONS_UI.ts_guide_cta[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
             </Link>
           )}
+          {/* 지자체 지원사업 연계 (2026-08-04 cross-link-mesh) — GuideView 콜아웃 패턴 이식, 등재 데이터 재사용 */}
+          {col.supportProgram && (
+            <div className="mt-6 flex max-w-2xl flex-col gap-4 rounded-2xl border border-[#c8e3d8] bg-[#f2faf6] p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <span className="text-[0.64rem] font-black tracking-[0.14em] text-[#3e7a61]">
+                  {lang === 'KO' ? '지자체 지원 연계' : lang === 'JP' ? '自治体支援と連携' : 'LOCAL SUPPORT PROGRAM'}
+                </span>
+                <h3 className="mt-1.5 text-lg font-black text-[#17352a]">{col.supportProgram.name[lang]}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-[#3f5c50]">{col.supportProgram.desc[lang]}</p>
+              </div>
+              <Link
+                href={`${prefix}/programs/support/${col.supportProgram.id}`}
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full border-2 border-[#2f8f68] px-5 py-2.5 text-sm font-bold text-[#2f8f68] transition-all hover:bg-[#2f8f68] hover:text-white"
+              >
+                {lang === 'KO' ? '조건 확인' : lang === 'JP' ? '条件を確認' : 'See conditions'}
+                <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+              </Link>
+            </div>
+          )}
         </div>
       </section>
 
