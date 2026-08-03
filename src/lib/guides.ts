@@ -639,6 +639,16 @@ export const CITY_GUIDES: CityGuide[] = [
     timeZone: 'Asia/Seoul',
     internet: 5,
     visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (jeonbuk-worcation, 신규 주장 0 — 전주 포함 14개 시군)
+      id: 'jeonbuk-worcation',
+      name: { KO: '전북형 워케이션', EN: 'Jeonbuk Workation', JP: '全北ワーケーション' },
+      desc: {
+        KO: '전주 포함 14개 시군의 다양한 숙소+오피스, 연중 운영 — 조건은 공식 공고 기준으로 확인하세요.',
+        EN: 'Stays and offices across 14 cities and counties including Jeonju, year-round — check conditions on the official notice.',
+        JP: '全州を含む14市郡の宿＋オフィス、通年運営 — 条件は公式公告でご確認ください。',
+      },
+    },
   },
   {
     // 팩트 검증 2026-08-03: KTX 여수EXPO↔용산 통상 3시간 0~12분·일 25회(최단 2시간 50분) → '약 3시간'
