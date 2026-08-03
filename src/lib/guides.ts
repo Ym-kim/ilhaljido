@@ -570,6 +570,16 @@ export const CITY_GUIDES: CityGuide[] = [
     timeZone: 'Asia/Seoul',
     internet: 5,
     visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (busan-workation, 신규 주장 0)
+      id: 'busan-workation',
+      name: { KO: '부산형 워케이션', EN: 'Busan Workation', JP: '釜山型ワーケーション' },
+      desc: {
+        KO: '업무공간 무료 + 웰컴키트 + 관광 바우처 — 부산 외 재직자 대상, 조건은 공식 공고 기준으로 확인하세요.',
+        EN: 'Free workspace, welcome kit and tour vouchers for non-Busan workers — check conditions on the official notice.',
+        JP: 'ワークスペース無料＋ウェルカムキット＋観光バウチャー（釜山外の在職者対象） — 条件は公式公告でご確認ください。',
+      },
+    },
   },
   {
     // 팩트 검증 2026-08-03: 한옥마을 700여 채(visitkorea 공식 — 국내 최대 도심 한옥군)
