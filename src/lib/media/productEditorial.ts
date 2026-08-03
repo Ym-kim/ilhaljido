@@ -112,7 +112,8 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
     src: '/media/product-editorial/program-yeosu-harbor-licensed-v1.webp',
     alt: { KO: '여수 앞바다와 항구 전경', EN: 'The coast and harbor of Yeosu', JP: '麗水の海岸と港の風景' },
     sourceType: 'licensed', usage: 'editorial', illustrative: false, width: 1200, height: 675,
-    localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/programs/domestic'], sectionUsage: ['program-card'],
+    // 2026-08-03 가이드 13번째 도시 여수 신설 — 가이드 히어로·목적지 카드에 재사용
+    localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/programs/domestic', '/guide/yeosu', '/select/hotel'], sectionUsage: ['program-card', 'guide-hero', 'destination-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'https://commons.wikimedia.org/wiki/File:Korea-Yeosu-Harbor-01.jpg',
     license: 'CC BY 2.0 — LWY; resized and converted to WebP', verifiedAt: '2026-08-02',
   },

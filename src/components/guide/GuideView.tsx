@@ -169,6 +169,28 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         </ol>
       </section>
 
+      {/* ── 지자체 지원사업 연계 (SUPPORT_PROGRAMS 등재 데이터 재사용 — 조건·혜택 자체 주장 없음) ── */}
+      {guide.supportProgram && (
+        <section className="max-w-5xl mx-auto px-6 pb-12 md:pb-16">
+          <div className="flex flex-col gap-4 rounded-2xl border border-[#c8e3d8] bg-[#f2faf6] p-6 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0">
+              <span className="text-[0.64rem] font-black tracking-[0.14em] text-[#3e7a61]">
+                {lang === 'KO' ? '지자체 지원 연계' : lang === 'JP' ? '自治体支援と連携' : 'LOCAL SUPPORT PROGRAM'}
+              </span>
+              <h3 className="mt-1.5 text-lg font-black text-[#17352a]">{guide.supportProgram.name[lang]}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-[#3f5c50]">{guide.supportProgram.desc[lang]}</p>
+            </div>
+            <Link
+              href={`${prefix}/programs/support/${guide.supportProgram.id}`}
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border-2 border-[#2f8f68] px-5 py-2.5 text-sm font-bold text-[#2f8f68] transition-all hover:bg-[#2f8f68] hover:text-white"
+            >
+              {lang === 'KO' ? '조건 확인' : lang === 'JP' ? '条件を確認' : 'See conditions'}
+              <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+        </section>
+      )}
+
       {flagshipExperience && (
         <section className="border-t border-[#dfe7e7] bg-[#f7f5ef] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">

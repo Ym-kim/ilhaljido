@@ -1008,6 +1008,34 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     ],
   },
   {
+    id: 'korea-yeosu',
+    // 라이선스 미디어 재사용 (CC BY 2.0, productEditorial.ts 매니페스트 등재)
+    photo: '/media/product-editorial/program-yeosu-harbor-licensed-v1.webp',
+    flag: '🌉',
+    city: '여수',
+    cityEn: 'Yeosu',
+    country: '국내',
+    gradient: 'from-teal-900/25 to-[#1a1a1a]',
+    tags: ['밤바다 야경', '해안 산책로'],
+    links: [
+      {
+        provider: 'Booking.com',
+        status: 'active_affiliate',
+        href: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Yeosu',
+        label: '숙소 예약',
+        emoji: '🛎',
+      },
+      {
+        provider: 'Trip.com',
+        status: 'active_affiliate',
+        // Trip 시티 딥링크 — yeosu-hotels-list-4016 (2026-08-03 kr.trip.com 실물검증: 소노캄 여수·신라스테이 여수 엑스포역 확인. ⚠️-si 접미는 404 — 무접미가 정답인 도시)
+        href: 'https://kr.trip.com/hotels/yeosu-hotels-list-4016/?Allianceid=9024807',
+        label: '호텔 보기',
+        emoji: '🏨',
+      },
+    ],
+  },
+  {
     id: 'thailand-phuket',
     photo: '/media/verified/unsplash/1601225612316-b4733315a717.webp',
     flag: '🏝',

@@ -32,6 +32,8 @@ export type CityGuide = {
   internet?: 1 | 2 | 3 | 4 | 5
   costMonthly?: L   // { KO: '월 160만원대', … }
   visaFree?: L      // { KO: '무비자 90일', … }
+  /** 지자체 지원사업 연계 콜아웃 — id는 SUPPORT_PROGRAMS 실존 id만 (/programs/support/[slug]) */
+  supportProgram?: { id: string; name: L; desc: L }
 }
 
 const FLIGHT = (slug: string) =>
@@ -617,6 +619,64 @@ export const CITY_GUIDES: CityGuide[] = [
     timeZone: 'Asia/Seoul',
     internet: 5,
     visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+  },
+  {
+    // 팩트 검증 2026-08-03: KTX 여수EXPO↔용산 통상 3시간 0~12분·일 25회(최단 2시간 50분) → '약 3시간'
+    // 종포해양공원 1.5km 해안 산책로·낭만포차 거북선대교 하부(visitkorea) / 웅천친수공원
+    // 인공해변·송림, 예울마루 인접(여수시·visitkorea) / 김포발 여수공항(RSU) 국내선 운항(편수 적음)
+    slug: 'yeosu',
+    anchor: 'korea-yeosu',
+    heroPhoto: '/media/product-editorial/program-yeosu-harbor-licensed-v1.webp',
+    name: { KO: '여수', EN: 'Yeosu', JP: '麗水' },
+    tagline: {
+      KO: '밤바다를 마주한 데스크 — 남해안 해양 도시 워케이션',
+      EN: "A desk facing the night sea — workation on Korea's south coast",
+      JP: '夜の海に向かうデスク — 南海岸の港町ワーケーション',
+    },
+    intro: {
+      KO: '남해안을 마주한 해양 도시 여수는 용산에서 KTX 약 3시간이면 닿습니다. 낮에는 종포해양공원의 1.5km 해안 산책로와 웅천 카페거리 사이에서 일하고, 밤에는 거북선대교 아래 낭만포차 거리가 하루를 닫아줍니다. 전남블루 워케이션 지원사업 대상 지역이라 체류 비용을 줄일 길도 열려 있습니다.',
+      EN: "Yeosu faces Korea's southern sea, about three hours from Seoul (Yongsan) by KTX. Work between the 1.5km waterfront promenade at Jongpo Marine Park and Ungcheon's café district, then let the pocha street under Geobukseon Bridge close out the day. The Jeonnam Blue workation support program covers the city, too.",
+      JP: '南海岸に面した港町・麗水は、ソウル（龍山）からKTXで約3時間。昼は鍾浦海洋公園の1.5kmの海辺遊歩道やウンチョンのカフェ街で働き、夜は亀甲船大橋の下のポチャ（屋台）通りが一日を締めくくります。全南ブルーワーケーション支援の対象地域でもあります。',
+    },
+    facts: [
+      { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
+      { label: F.flight, value: { KO: 'KTX 약 3시간 (용산발)', EN: 'KTX ~3h from Seoul', JP: 'ソウルからKTX約3時間' } },
+      { label: F.currency, value: { KO: '원 (KRW)', EN: 'KRW', JP: 'ウォン (KRW)' } },
+      { label: F.season, value: { KO: '4~6월 · 9~11월', EN: 'Apr–Jun · Sep–Nov', JP: '4〜6月 · 9〜11月' } },
+    ],
+    areas: [
+      {
+        name: { KO: '종화동 · 해양공원', EN: 'Jongpo Marine Park area', JP: '鍾浦海洋公園エリア' },
+        desc: {
+          KO: '종포해양공원의 1.5km 해안 산책로를 낀 원도심 해안선. 밤이면 거북선대교 아래 낭만포차 거리가 열려 퇴근 후 동선이 자연스럽습니다.',
+          EN: "The old-town waterfront along Jongpo Marine Park's 1.5km promenade. At night the pocha street under Geobukseon Bridge opens — a natural after-work route.",
+          JP: '鍾浦海洋公園の1.5kmの海辺遊歩道が続く旧市街の海岸線。夜は亀甲船大橋の下にポチャ通りが開き、仕事終わりの動線が自然につながります。',
+        },
+      },
+      {
+        name: { KO: '웅천', EN: 'Ungcheon', JP: '熊川（ウンチョン）' },
+        desc: {
+          KO: '인공해변과 송림 산책로(웅천친수공원), 공연장 예울마루를 낀 신도심. 카페거리가 트렌드 지역으로 떠올라 낮 작업 자리를 찾기 좋습니다.',
+          EN: "The new town around Ungcheon Waterfront Park — a man-made beach, pine promenade and the Yeulmaru arts center. Its café district is the city's trend spot, good for daytime laptop seats.",
+          JP: '人工ビーチと松林の遊歩道（熊川親水公園）、アートセンター「イェウルマル」を擁する新都心。カフェ街がトレンドエリアとして注目され、日中の作業席を見つけやすい。',
+        },
+      },
+    ],
+    stayIds: [],
+    activityIds: [],
+    timeZone: 'Asia/Seoul',
+    internet: 5,
+    visaFree: { KO: '국내 (비자 불필요)', EN: 'Visa-free 90 days (many passports)', JP: 'ビザなし90日 · K-ETA免除は2026年末まで' },
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (신규 주장 0)
+      id: 'jeonnam-blue-worcation',
+      name: { KO: '전남블루 워케이션', EN: 'Jeonnam Blue Workation', JP: '全南ブルーワーケーション' },
+      desc: {
+        KO: '여수·완도 등 전남 40+ 워케이션 프로그램 — 조건·혜택은 공식 공고 기준으로 확인하세요.',
+        EN: '40+ workation programs across Jeonnam including Yeosu — check conditions on the official notice.',
+        JP: '麗水・莞島など全南40+のワーケーションプログラム — 条件・特典は公式公告でご確認ください。',
+      },
+    },
   },
 ]
 
