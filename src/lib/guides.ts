@@ -328,6 +328,16 @@ export const CITY_GUIDES: CityGuide[] = [
     internet: 4,
     costMonthly: { KO: '월 70만원대', EN: '~₩700K / month', JP: '月70万ウォン程度' },
     visaFree: { KO: '국내 (비자 불필요)', EN: 'Domestic (no visa)', JP: '国内（ビザ不要）' },
+    supportProgram: {
+      // SUPPORT_PROGRAMS 실존 등재 데이터 재사용 (jeju-voucher, 신규 주장 0)
+      id: 'jeju-voucher',
+      name: { KO: '제주 민간형 워케이션 바우처', EN: 'Jeju Workation Voucher', JP: '済州ワーケーションバウチャー' },
+      desc: {
+        KO: '숙박+오피스 1박 최대 5만원, 파트너 오피스 17곳 — 도외 재직자 대상, 조건은 공식 공고 기준으로 확인하세요.',
+        EN: 'Stay+office voucher up to ₩50,000/night at 17 partner offices for non-Jeju workers — check conditions on the official notice.',
+        JP: '宿泊＋オフィス1泊最大5万W・提携オフィス17カ所（道外の在職者対象） — 条件は公式公告でご確認ください。',
+      },
+    },
   },
   {
     slug: 'osaka',
