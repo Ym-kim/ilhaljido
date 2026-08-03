@@ -36,7 +36,8 @@ const MOTION_COPY: Record<Lang, { pause: string; play: string }> = {
 const ITEMS: TickerItem[] = [
   {
     id: 'ticker-gov-support', href: '/programs/support',
-    label: { KO: '정부 지원 워케이션 — 상시 모집 6곳', EN: 'Gov-supported workations — 6 rolling programs', JP: '政府支援ワーケーション — 随時募集6件' },
+    // 2026-08-04 동기: data.ts SUPPORT_PROGRAMS status:'always' 실카운트 7건 (드리프트 정정)
+    label: { KO: '정부 지원 워케이션 — 상시 모집 7곳', EN: 'Gov-supported workations — 7 rolling programs', JP: '政府支援ワーケーション — 随時募集7件' },
     tag: { KO: '지원사업', EN: 'Support', JP: '支援事業' },
   },
   {

@@ -346,7 +346,8 @@ export const CITY_INSIGHTS: CityInsight[] = [
     },
     bestSeason: { KO: '2~8월', EN: 'Feb–Aug', JP: '2〜8月' },
     visaFree: {
-      KO: '무비자 45일 (전자입국신고 K-ETA 불필요)',
+      // 2026-08-04 오기 정정: K-ETA는 대한민국 입국 제도라 베트남 입국과 무관 (구 문구 "전자입국신고 K-ETA 불필요" 제거)
+      KO: '무비자 45일',
       EN: 'Visa-free 45 days',
       JP: 'ビザなし45日',
     },
