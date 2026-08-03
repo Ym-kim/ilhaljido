@@ -25,10 +25,11 @@ const TUTOR_COPY: Record<string, Record<Lang, string>> = {
     JP: '語学研修の前にオンライン1:1で会話の基礎を。ワーケーション中も時差に合わせて継続。AmazingTalkerで言語を選んで開始。',
   },
   cta: { KO: '튜터 찾아보기', EN: 'Find a tutor', JP: '講師を探す' },
+  // 2026-08-04 정정: aff 파라미터 부착·rel=sponsored 적용 상태와 고지문이 모순이었음("추적 미적용" 구문 제거)
   note: {
-    KO: '외부 서비스이며 제휴 추적은 아직 적용 전입니다. 수강 조건은 해당 사이트에서 최종 확인됩니다.',
-    EN: 'External service; affiliate tracking not yet applied. Terms are confirmed on their site.',
-    JP: '外部サービスで、提携トラッキングは未適用です。条件は先方サイトでご確認ください。',
+    KO: '제휴 링크이며, 예약 시 Wakation이 수수료를 받을 수 있습니다. 수강 조건·요금은 해당 사이트에서 최종 확인됩니다.',
+    EN: 'Affiliate links — Wakation may earn a commission. Terms and pricing are confirmed on their site.',
+    JP: '提携リンクです。予約時にWakationが手数料を受け取る場合があります。条件・料金は先方サイトでご確認ください。',
   },
   prog_prep: { KO: '프로그램 준비 중', EN: 'Program in prep', JP: 'プログラム準備中' },
   prog_prep_desc: {
@@ -152,7 +153,7 @@ export default function LanguagePage() {
                 href={t.href}
                 target="_blank"
                 rel="sponsored noopener noreferrer"
-                onClick={() => trackAffiliateClick({ id: t.id, provider: 'AmazingTalker', status: 'public_external_link' })}
+                onClick={() => trackAffiliateClick({ id: t.id, provider: 'AmazingTalker', status: 'active_affiliate' })}
                 className="group bg-rose-50/60 border border-rose-100 rounded-3xl p-6 hover:border-rose-300 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-4">

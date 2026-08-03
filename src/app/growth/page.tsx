@@ -29,9 +29,13 @@ const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L 
   {
     icon: Compass, href: '/tools/diagnosis',
     label: { KO: '나에게 맞는 워케이션 진단', EN: 'Workation self-check', JP: '自分に合う旅を診断' },
-    desc: { KO: '3분 진단으로 목적지부터 정하기', EN: 'Pick a destination in 3 minutes', JP: '3分診断で行き先から決める' },
+    // 2026-08-04 정직성 정정: 진단 결과는 프로그램·체크리스트 추천 (MoreExplore와 동일 정정)
+    desc: { KO: '3분 진단으로 맞춤 프로그램 찾기', EN: 'Find your program in 3 minutes', JP: '3分診断で合うプログラム探し' },
   },
 ]
+// 2026-08-04 정직성: 캠프 6종은 모집 전 커리큘럼 — 상태 배지 없이는 운영 중 상품처럼 읽힘 (/language '준비 중' 패턴 이식)
+const CAMP_STATUS: L = { KO: '모집 준비 중', EN: 'In preparation', JP: '募集準備中' }
+
 const NEXT_UI: Record<string, L> = {
   title: { KO: '캠프를 기다리는 동안', EN: 'While you wait for the next camp', JP: '次のキャンプを待つあいだに' },
   notify: {
@@ -87,7 +91,12 @@ export default function GrowthPage() {
 
             >
 
-              <span className="text-teal-400/50 text-xs font-black tracking-widest">{c.num}</span>
+              <div className="flex items-center justify-between">
+                <span className="text-teal-400/50 text-xs font-black tracking-widest">{c.num}</span>
+                <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-400/10 px-2.5 py-0.5 text-[0.6875rem] font-bold text-amber-300">
+                  {CAMP_STATUS[lang]}
+                </span>
+              </div>
 
               <h3 className="text-white font-black text-lg mt-4 mb-3 group-hover:text-teal-400 transition-colors">
 

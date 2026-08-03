@@ -309,7 +309,7 @@ export default function VisaAiPage() {
 
                     <OfficialSourceList lang={lang} sources={officialSources} />
 
-                    {/* 요금제 고지 — 베타 무료 → 연간 멤버십 */}
+                    {/* 베타 무료 고지 (멤버십 전환은 미결정 — 운영자 보류) */}
                     <p className="text-white/30 text-[0.7rem] text-center pt-2">{tr('visa_beta_notice')}</p>
                   </div>
 

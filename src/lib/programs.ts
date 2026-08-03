@@ -17,6 +17,11 @@ export function withEffectiveStatus(p: Program): Program {
   if (isExpired(p) && p.status !== 'closed') {
     return { ...p, status: 'closed' }
   }
+  // 보류 회차는 상세에서도 'soon'으로 강등 — 잔여석 게이지·'지금 신청하기' 노출 차단
+  // (2026-08-04 감사: 홈 위젯만 필터되고 상세는 open 유지되던 구멍. CTA는 prog_preorder=사전 관심 등록으로 전환됨)
+  if (HELD_PROGRAM_IDS.has(p.id) && p.status === 'open') {
+    return { ...p, status: 'soon' }
+  }
   return p
 }
 

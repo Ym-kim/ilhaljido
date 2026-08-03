@@ -117,8 +117,8 @@ export const COLLECTIONS: Collection[] = [
       ]},
     ],
     comfortFacts: [
-      { type: 'airport_access', label: { KO: '이동', EN: 'Getting there', JP: '移動' }, value: { KO: '직항 1~2시간대 — 나흘 일정에 이동 부담 최소', EN: 'Direct flights of 1–2 hours — minimal transit for four days', JP: '直行1〜2時間台 — 4日間でも移動負担が少ない' } },
-      { type: 'wifi', label: { KO: '시차', EN: 'Time zone', JP: '時差' }, value: { KO: '한국과 0시간 — 연휴 중 급한 연락도 그대로', EN: 'Zero time difference from Korea', JP: '韓国と時差ゼロ' } },
+      { type: 'airport_access', label: { KO: '이동', EN: 'Getting there', JP: '移動' }, value: { KO: '직항 1~2시간대 — 나흘 일정에 이동 부담 최소', EN: 'Direct flights of 1–2 hours — minimal transit for four days', JP: '直行1〜2時間台 — 4日間でも移動負担が少ない' }, source: '가이드 검증', verifiedAt: '2026-08-03' },
+      { type: 'wifi', label: { KO: '시차', EN: 'Time zone', JP: '時差' }, value: { KO: '한국과 0시간 — 연휴 중 급한 연락도 그대로', EN: 'Zero time difference from Korea', JP: '韓国と時差ゼロ' }, source: '가이드 검증', verifiedAt: '2026-08-03' },
       { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
     ],
   },
@@ -211,7 +211,7 @@ export const COLLECTIONS: Collection[] = [
       ]},
     ],
     comfortFacts: [
-      { type: 'airport_access', label: { KO: '공항 접근', EN: 'Airport access', JP: '空港アクセス' }, value: { KO: '후쿠오카공항—하카타역 지하철 공항선 직결', EN: 'Subway links the airport straight to Hakata Station', JP: '福岡空港—博多駅は地下鉄空港線で直結' } },
+      { type: 'airport_access', label: { KO: '공항 접근', EN: 'Airport access', JP: '空港アクセス' }, value: { KO: '후쿠오카공항—하카타역 지하철 공항선 직결', EN: 'Subway links the airport straight to Hakata Station', JP: '福岡空港—博多駅は地下鉄空港線で直結' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
       { type: 'workspace', label: { KO: '업무 공간', EN: 'Workspace', JP: 'ワークスペース' }, value: { KO: '코워킹 라운지를 갖춘 숙소 선택 가능', EN: 'Stays with coworking lounges available', JP: 'コワーキングラウンジ付きの宿を選べる' } },
       { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
       { type: 'station_access', label: { KO: '동선', EN: 'Getting around', JP: '移動' }, value: { KO: '하카타역 중심 도보권 — 숙소를 역 근처로', EN: 'Hakata Station is the hub — stay nearby', JP: '博多駅中心の徒歩圏 — 宿は駅近が便利' } },
