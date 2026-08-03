@@ -38,6 +38,10 @@ const SHARED_EXACT = new Set<string>([
   '/destinations/compare',
   '/collections',
   '/guide',
+  // 2026-08-04 i18n-routes-v1 신설분
+  '/stories',
+  '/moments',
+  '/tools/diagnosis',
 ])
 
 /** EN·JA 양쪽에 실존하는 동적 패밀리 (하위 slug 라우트) */

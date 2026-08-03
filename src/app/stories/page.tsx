@@ -7,7 +7,16 @@ export const metadata: Metadata = {
   title: '여행 이야기 — 검증된 사실로 쓰는 에디토리얼',
   description:
     '미라클호 크루즈, 정선 아리랑 열차, 마나도 — 새로운 체류지와 이동 방식의 가능성을 검증된 사실만으로 취재하는 Wakation 에디토리얼.',
-  alternates: { canonical: 'https://www.wakation.kr/stories' },
+  alternates: {
+    canonical: 'https://www.wakation.kr/stories',
+    // 2026-08-04 i18n-routes-v1 — EN/JA 라우트 신설과 함께 hreflang 상호 연결
+    languages: {
+      ko: 'https://www.wakation.kr/stories',
+      en: 'https://www.wakation.kr/en/stories',
+      ja: 'https://www.wakation.kr/ja/stories',
+      'x-default': 'https://www.wakation.kr/stories',
+    },
+  },
   openGraph: {
     title: '여행 이야기',
     description: '새로운 체류지와 이동 방식의 가능성 — 검증된 사실로 쓰는 워케이션 에디토리얼.',

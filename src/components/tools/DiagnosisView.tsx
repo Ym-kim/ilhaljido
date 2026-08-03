@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
+import type { Lang } from '@/lib/i18n/types'
 import {
   DIAGNOSIS_QUESTIONS,
   DIAGNOSIS_UI,
@@ -54,12 +55,19 @@ function saveStored(s: Stored) {
 
 const PHASES: ChecklistPhase[] = ['before', 'during', 'after']
 
-export function DiagnosisView() {
-  const { lang } = useLang()
+// forceLang: /en·/ja 로케일 라우트용 (2026-08-04 i18n-routes-v1)
+export function DiagnosisView({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
   const [answers, setAnswers] = useState<Partial<DiagnosisAnswers>>({})
   const [done, setDone] = useState(false)
   const [checked, setChecked] = useState<Set<string>>(new Set())
   const [hydrated, setHydrated] = useState(false)
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
 
   // 저장된 결과 복원 (SSR 불일치 방지를 위해 mount 후)
   useEffect(() => {
