@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { ArrowRight, Check } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 import {
   CITY_INSIGHTS,
@@ -343,6 +344,24 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
           </table>
         </div>
         <p className="text-[0.6875rem] text-[#999] mt-3 max-w-2xl">{UI.note[lang]}</p>
+
+        {/* 비교 후 다음 동선 (2026-08-04 막다른 페이지 해소) */}
+        <div className="mt-10 flex flex-wrap gap-3">
+          {([
+            { href: '/guide', label: { KO: '도시 가이드 전체 보기', EN: 'All city guides', JP: '都市ガイド一覧' } },
+            { href: '/collections', label: { KO: '기획전 · Trip Set', EN: 'Collections & trip sets', JP: '特集・トリップセット' } },
+            { href: '/trip-match', label: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を探す' } },
+          ] as const).map((c) => (
+            <Link
+              key={c.href}
+              href={localizeHref(c.href, lang)}
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#e2e8f0] px-5 py-2.5 text-sm font-bold text-[#475569] transition-all hover:border-teal-500 hover:text-teal-600"
+            >
+              {c.label[lang]}
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          ))}
+        </div>
       </section>
     </div>
   )

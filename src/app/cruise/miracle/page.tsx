@@ -235,9 +235,13 @@ export default function MiracleCruisePage() {
             위 버튼은 제휴 링크이며, Wakation은 예약 주체가 아닙니다. 요금·운항 일정·환불 조건은 각 예약
             페이지에서 최종 확인됩니다. 팩트 기준: 팬스타 공식 보도자료·판매처 상품 구성 (2026-07-18 확인).
           </span>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
             <Link href="/cruise" className="text-sky-300 text-sm font-bold hover:text-sky-200">
               ← 크루즈 워케이션 전체 보기
+            </Link>
+            {/* 2026-08-04: 다른 3편과 동일한 스토리 허브 아웃링크 (고아 해소) */}
+            <Link href="/stories" className="text-sky-300 text-sm font-bold hover:text-sky-200">
+              스토리 전체 보기 →
             </Link>
           </div>
         </div>

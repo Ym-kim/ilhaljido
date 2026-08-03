@@ -14,6 +14,7 @@ import { WEEKLY_PLANS, PLAN_UI } from '@/lib/weeklyPlans'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { CITY_GUIDES } from '@/lib/guides'
+import { COLLECTIONS } from '@/lib/affiliate/collections'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /destinations/[city] 상세 뷰 — 도시 인사이트 (3언어, 라이트 톤)
@@ -586,6 +587,27 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
           </section>
         )}
 
+        {/* Trip Set 역방향 링크 (2026-08-04 cross-link-mesh) — cityGuideSlug 매칭 duration 세트만 */}
+        {(() => {
+          const tripSet = COLLECTIONS.find((c) => c.duration && c.cityGuideSlug === city.id)
+          if (!tripSet) return null
+          return (
+            <section data-motion="reveal" className="bg-[#f4f9f7] border border-[#d9e8e0] rounded-2xl p-5 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-bold text-[#3e7a61] uppercase tracking-wider mb-1">TRIP SET</p>
+                <p className="font-bold text-[#111]">{tripSet.title[lang]}</p>
+                <p className="text-xs text-[#7a8d85] mt-0.5">{tripSet.tagline[lang]}</p>
+              </div>
+              <Link
+                href={`${prefix}/collections/${tripSet.slug}?src=city`}
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-[#2f8f68] hover:text-[#1f6b4c] transition-colors whitespace-nowrap shrink-0"
+              >
+                {{ KO: '세트 보기', EN: 'See the set', JP: 'セットを見る' }[lang]} <ArrowRight className="w-4 h-4" />
+              </Link>
+            </section>
+          )
+        })()}
+
         {/* Visa quick link */}
         <section className="bg-gradient-to-r from-teal-50 to-blue-50 border border-teal-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <div className="flex-1">
@@ -601,13 +623,19 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
           </Link>
         </section>
 
-        {/* Back to destinations */}
-        <div className="pt-2 pb-6">
+        {/* Back to destinations + 비교 동선 (2026-08-04: 도시 상세→비교 링크 부재 해소) */}
+        <div className="pt-2 pb-6 flex flex-wrap gap-x-6 gap-y-2">
           <Link
             href={`${prefix}/destinations`}
             className="text-sm text-[#888] hover:text-teal-600 flex items-center gap-1.5 transition-colors"
           >
             {UI.back[lang]}
+          </Link>
+          <Link
+            href={`${prefix}/destinations/compare?cities=${city.id}`}
+            className="text-sm text-[#888] hover:text-teal-600 flex items-center gap-1.5 transition-colors"
+          >
+            {{ KO: '다른 도시와 비교하기 →', EN: 'Compare with other cities →', JP: '他の都市と比較する →' }[lang]}
           </Link>
         </div>
       </div>

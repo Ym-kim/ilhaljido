@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, RotateCcw, Sparkles, LogIn } from 'lucide-react'
 import { SectionTitle } from '@/components/brand/SectionEyebrow'
@@ -35,6 +35,17 @@ export default function VisaAiPage() {
   const [showResult, setShowResult] = useState(false)
   const [aiResult, setAiResult] = useState<string | null>(null)
   const [aiFailed, setAiFailed] = useState(false)
+
+  // ?country= 딥링크 프리셀렉트 (2026-08-04) — 도시 인사이트 8곳의 CTA가 무시되던 파손 복구.
+  // 정적 페이지라 useSearchParams(Suspense 요구) 대신 mount 1회 window 조회.
+  useEffect(() => {
+    const c = new URLSearchParams(window.location.search).get('country')
+    if (c && VISA_COUNTRIES.some((x) => x.value === c)) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 마운트 1회 딥링크 복원 의도 패턴
+      setSelections((p) => ({ ...p, country: c }))
+      setStep(2)
+    }
+  }, [])
 
   const stepLabelKeys = ['visa_step_country', 'visa_step_purpose', 'visa_step_duration', 'visa_step_result'] as const
 

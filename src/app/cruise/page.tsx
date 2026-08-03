@@ -107,6 +107,10 @@ export default function CruisePage() {
             <Link href="/cruise/bellissima" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
               {lang === 'EN' ? 'MSC Bellissima →' : lang === 'JP' ? 'MSCベリッシマ →' : 'MSC 벨리시마 →'}
             </Link>
+            {/* 2026-08-04: 미라클호 아티클이 허브에서 도달 불가하던 고아 상태 해소 */}
+            <Link href="/cruise/miracle" className="text-[#64748b] text-xs font-bold hover:text-brand-mid transition-colors">
+              {lang === 'EN' ? 'Busan–Osaka, Panstar Miracle →' : lang === 'JP' ? '釜山—大阪パンスター·ミラクル →' : '부산—오사카 팬스타 미라클 →'}
+            </Link>
           </div>
         </div>
       </section>

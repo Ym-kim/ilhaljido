@@ -150,6 +150,28 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
             </div>
           </div>
 
+          {/* 테마·지원사업 진입 (2026-08-04 cross-link-mesh — 허브 본문에 테마 6종·support 진입로가 없던 갭 해소) */}
+          <div className="mt-10 flex flex-wrap justify-center gap-2.5">
+            {([
+              { href: '/programs/golf', label: { KO: '골프', EN: 'Golf', JP: 'ゴルフ' } },
+              { href: '/programs/healing', label: { KO: '힐링·요가', EN: 'Healing', JP: 'ヒーリング' } },
+              { href: '/programs/local', label: { KO: '미식·로컬', EN: 'Local & food', JP: 'グルメ・ローカル' } },
+              { href: '/programs/networking', label: { KO: '네트워킹', EN: 'Networking', JP: 'ネットワーキング' } },
+              { href: '/programs/sports', label: { KO: '스포츠 관람', EN: 'Sports', JP: 'スポーツ観戦' } },
+              { href: '/programs/onsen', label: { KO: '온천·료칸', EN: 'Onsen & ryokan', JP: '温泉・旅館' } },
+              { href: '/programs/support', label: { KO: '지자체 지원사업', EN: 'Gov support', JP: '自治体支援' } },
+            ] as const).map((c) => (
+              <Link
+                key={c.href}
+                href={localizeHref(c.href, forceLang ?? 'KO')}
+                className="inline-flex items-center gap-1 rounded-full border border-[#dbe4e5] bg-white px-4 py-2 text-xs font-bold text-[#475d66] transition-all hover:border-brand-mid hover:text-brand-mid"
+              >
+                {c.label[lang]}
+                <ArrowRight className="h-3 w-3" />
+              </Link>
+            ))}
+          </div>
+
           {/* 성장형 프로그램 방향성 */}
           <p className="mt-10 max-w-3xl mx-auto text-center text-[#64748b] text-sm leading-relaxed bg-[#f0f9ff] border border-[#dbeafe] rounded-2xl px-6 py-5">
             {DIRECTION_NOTE[lang]}
