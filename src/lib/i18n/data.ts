@@ -1149,7 +1149,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     ),
     maxBenefit: loc('숙박 1일 ₩70,000', '₩70,000/day lodging', '宿泊1日₩70,000'),
     status: 'open',
-    deadline: loc('2차 접수 7.27~8.8 (15팀)', '2nd batch Jul 27–Aug 8 (15 teams)', '2次受付7/27〜8/8'),
+    // 마감일 공식 원문 재확인 2026-08-03: 신청기간 2026.7.27(월)~8.7(금) — 8/8 표기는 오차였음
+    deadline: loc('2차 접수 7.27~8.7 (15팀)', '2nd batch Jul 27–Aug 7 (15 teams)', '2次受付7/27〜8/7'),
     conditions: loc(
       ['경남 외 거주 만 19세 이상', '팀당 1~2명', 'SNS 홍보 미션(1일 2건)'],
       ['Non-Gyeongnam, age 19+', '1–2 per team', 'SNS posting mission'],
@@ -1199,7 +1200,9 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
       ['Non-Gyeongnam, age 19+', '3+ nights free travel', 'Public SNS promotion'],
       ['慶南外居住・満19歳以上', '3泊以上', '公開SNSで発信可能'],
     ),
-    href: 'https://www.tongyeong.go.kr/00852/00853/00858.web?amode=view&not_ancmt_mgt_no=50268',
+    // 1차 공고 딥링크(50268)는 접수 마감 후 '지난 공고' 분류 + 게시기간 만료 시 자동 삭제 안내
+    // → 고시공고 목록으로 교체 (2026-08-03 실물 확인, 2차 공고 게시 시 딥링크 복원)
+    href: 'https://www.tongyeong.go.kr/00852/00853/00858.web',
   },
   {
     id: 'gyeongnam-gimhae',
