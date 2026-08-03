@@ -1,17 +1,26 @@
 'use client'
 
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { STORIES, STORIES_UI } from '@/lib/stories'
+import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /stories 허브 — 에디토리얼 집결지 (3언어, 라이트 톤 — destinations 허브와 동일 문법)
+// forceLang: /en·/ja 로케일 라우트용 (2026-08-04 i18n-routes-v1 — 번역 완비·라우트 부재였음)
 // ─────────────────────────────────────────────────────────────────────────────
 
-export function StoriesHubView() {
-  const { lang } = useLang()
+export function StoriesHubView({ forceLang }: { forceLang?: Lang } = {}) {
+  const { lang: ctxLang, setLang } = useLang()
+  const lang = forceLang ?? ctxLang
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
   const visualStories = STORIES.filter((story) => story.image)
   const textStories = STORIES.filter((story) => !story.image)
   const featured = visualStories[0]

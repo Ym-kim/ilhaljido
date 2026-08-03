@@ -86,6 +86,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'yearly' as const,
       priority: 0.2,
     })),
+    // 2026-08-04 i18n-routes-v1 — stories·moments·진단 EN/JA 라우트 신설분
+    ...['en', 'ja'].flatMap((locale) => [
+      { url: `${BASE}/${locale}/stories`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.6 },
+      { url: `${BASE}/${locale}/moments`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.6 },
+      { url: `${BASE}/${locale}/tools/diagnosis`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.6 },
+    ]),
     // 목적지 인사이트 카드 (cities.ts에 추가 시 자동 반영)
     ...CITY_INSIGHTS.map((c) => ({
       url: `${BASE}/destinations/${c.id}`,
