@@ -383,7 +383,8 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
             <div className={compact ? 'pb-3' : 'pb-4'}>
               <span className={cn('block text-[0.67rem] font-bold leading-5 text-[#71828a]', compact ? 'mb-1.5' : 'mb-2')}>{menu.title[lang]}</span>
               <div className={cn('grid', compact ? 'gap-0.5' : 'gap-1', groups.length > 1 && 'min-[390px]:grid-cols-2')}>
-              {groups.flatMap((group) => group.links).slice(0, 6).map((item) => {
+              {/* 2026-08-04: slice(0,6) 제거 — Programs 7번째 링크(/business B2B)가 무조건 잘리던 버그 */}
+              {groups.flatMap((group) => group.links).map((item) => {
                 const href = getNavigationHref(item, lang)
                 const active = isPathActive(pathname, href)
                 return (

@@ -8,13 +8,15 @@ import { ICON_STROKE } from '@/lib/icons'
 import { COLLECTIONS, COLLECTIONS_UI } from '@/lib/affiliate/collections'
 import { getTripSetCampaign } from '@/lib/tripSetCampaign'
 import type { Lang } from '@/lib/i18n/types'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // 홈 기획전 v2 (2026-08-02) — 시즌 스포트라이트(와이드 1장) + Trip Set 그리드.
 // spotlight=시즌 카드(추석 — 9/27 종료 시 데이터의 플래그만 제거하면 자동 소멸),
-// 그리드는 나머지 duration 세트 6장(2열/3열). 기존 컬렉션은 /collections 허브에서.
+// 그리드는 나머지 duration 세트 전량(2열/3열). 기존 컬렉션은 /collections 허브에서.
+// 2026-08-04: slice(0,6) 제거 — 배열 끝의 승격 세트(발리 한 달·치앙마이 2주)가 잘려나가던 것 해소
 const TRIP_SETS = COLLECTIONS.filter((c) => c.duration)
 const SPOTLIGHT = TRIP_SETS.find((c) => c.spotlight)
-const HOME_COLLECTIONS = TRIP_SETS.filter((c) => !c.spotlight).slice(0, 6)
+const HOME_COLLECTIONS = TRIP_SETS.filter((c) => !c.spotlight)
 
 export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
   const { lang: ctxLang } = useLang()
@@ -32,7 +34,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
             <p className="text-[#64748b] text-sm leading-relaxed max-w-2xl">{COLLECTIONS_UI.home_sub[lang]}</p>
           </div>
           <Link
-            href="/collections"
+            href={localizeHref('/collections', lang)}
             className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
           >
             {COLLECTIONS_UI.see_all[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -42,7 +44,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
         {/* 시즌 스포트라이트 — 와이드 카드, 웜(앰버) 액센트 절제 사용 */}
         {SPOTLIGHT && (
           <Link
-            href={`/collections/${SPOTLIGHT.slug}?src=home`}
+            href={localizeHref(`/collections/${SPOTLIGHT.slug}?src=home`, lang)}
             data-ui-card="editorial"
             className="wak-card-editorial group relative mb-4 block h-56 overflow-hidden rounded-3xl border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:h-64 lg:h-72"
           >
@@ -76,7 +78,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
             return (
               <Link
                 key={col.slug}
-                href={`/collections/${col.slug}?src=home`}
+                href={localizeHref(`/collections/${col.slug}?src=home`, lang)}
                 data-ui-card="editorial"
                 className="wak-card-editorial group relative aspect-[4/5] overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
               >

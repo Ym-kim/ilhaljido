@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { ArrowUpRight, Pause, Play } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
@@ -140,7 +141,7 @@ function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
       {inner}
     </a>
   ) : (
-    <Link href={item.href} onClick={onClick} className={cls}>
+    <Link href={localizeHref(item.href, lang)} onClick={onClick} className={cls}>
       {inner}
     </Link>
   )

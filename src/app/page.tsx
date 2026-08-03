@@ -13,6 +13,7 @@ import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { trackAffiliateClick, trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 import { MoodExplorer } from '@/components/home/MoodExplorer'
 import { DurationExplorer } from '@/components/home/DurationExplorer'
 import { TripMatchHomeCta } from '@/components/trip-match/TripMatchHomeCta'
@@ -157,7 +158,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
   const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
   const lang = forceLang ?? ctxLang
   const tr = (key: string) => forceLang ? (t[forceLang][key] ?? t.KO[key] ?? key) : ctxTr(key)
-  const hostedHref = lang === 'JP' ? '/ja/hosted' : lang === 'EN' ? '/en/hosted' : '/hosted'
+  const hostedHref = localizeHref('/hosted', lang)
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -301,7 +302,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
             <div className="h-px bg-white/10 my-4" />
             <div className="flex flex-col gap-2.5">
               <Link
-                href={heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel'}
+                href={localizeHref(heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel', lang)}
                 onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none', assetId: HOME_HERO_ASSET.id, modelId: HOME_HERO_ASSET.modelId })}
                 className="inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
@@ -310,7 +311,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {heroDest && <span className="opacity-90">· {tr(heroDest.labelKey)}</span>}
               </Link>
               <Link
-                href="/programs"
+                href={localizeHref('/programs', lang)}
                 onClick={() => trackEvent('hero_cta_click', { cta: 'programs', assetId: HOME_HERO_ASSET.id, modelId: HOME_HERO_ASSET.modelId })}
                 className="hidden sm:inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
@@ -693,7 +694,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* ── 모바일 스티키 예약 바 ── */}
       <div className="sticky-cta-bar flex md:hidden">
         <Link
-          href="/select/hotel"
+          href={localizeHref('/select/hotel', lang)}
           className="flex-1 inline-flex items-center justify-center gap-1.5 bg-brand-mid text-white font-bold text-sm px-4 py-3 rounded-xl"
         >
           <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />

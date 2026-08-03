@@ -5,6 +5,7 @@ import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
 import { BUSINESS } from '@/lib/legal'
 import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 export default function Footer() {
   const { tr, lang } = useLang()
@@ -98,7 +99,8 @@ export default function Footer() {
               <ul className="space-y-2.5 text-[0.875rem] font-medium">
                 {col.links.map((i) => (
                   <li key={i.h}>
-                    <Link href={i.h} className="hover:text-white transition-colors">
+                    {/* 로케일 라우트 실존분만 prefix (localizeHref) — KO 전용 라우트는 원경로 유지 (2026-08-04) */}
+                    <Link href={localizeHref(i.h, lang)} className="hover:text-white transition-colors">
                       {i.l[lang]}
                     </Link>
                   </li>

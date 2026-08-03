@@ -13,6 +13,7 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { getMediaAsset } from '@/lib/media/assets'
 import { trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 // 성장형 프로그램 방향성 — 로드맵 (Hosted + Learning + Tools 결합)
@@ -58,8 +59,7 @@ const STATUS_COPY: Record<ProgramStatus, Record<Lang, string>> = {
   },
 }
 
-// en/ja 라우트가 존재하는 경로만 로케일 접두 (그 외는 KO 단일 라우트)
-const PREFIXABLE_PATHS = new Set(['/programs', '/programs/global', '/programs/domestic', '/programs/market'])
+// 2026-08-04: 로컬 PREFIXABLE_PATHS(4경로 — 테마 7경로 누락)를 공용 매니페스트 헬퍼로 교체
 
 export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
@@ -70,7 +70,6 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
 
-  const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
   const tr = (key: string) => translate(lang, key)
   const programs = getProgramsList()
   const selectCategories = getSelectCategories(lang)
@@ -108,7 +107,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
           <div data-visual-module="program-portfolio" data-ui-grid="editorial" data-motion="reveal" data-motion-speed="editorial" className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
             {featuredProgram && (
               <Link
-                href={PREFIXABLE_PATHS.has(featuredProgram.href) ? `${prefix}${featuredProgram.href}` : featuredProgram.href}
+                href={localizeHref(featuredProgram.href, forceLang ?? 'KO')}
                 data-ui-card="editorial"
                 onClick={() => trackEvent('visual_module_interaction', { sectionId: 'program-portfolio', visualType: 'featured-editorial', contentId: featuredProgram.id, locale: lang })}
                 className="wak-card-editorial group relative min-h-[25rem] overflow-hidden border border-black/5 bg-[#102532] shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
@@ -134,7 +133,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
               {otherPrograms.map((p, index) => (
                 <Link
                   key={p.id}
-                  href={PREFIXABLE_PATHS.has(p.href) ? `${prefix}${p.href}` : p.href}
+                  href={localizeHref(p.href, forceLang ?? 'KO')}
                   onClick={() => trackEvent('visual_module_interaction', { sectionId: 'program-portfolio', visualType: 'compact-route', contentId: p.id, locale: lang, position: String(index + 2) })}
                   className="group grid min-h-28 grid-cols-[7.5rem_1fr] overflow-hidden border border-[#dbe4e5] bg-white transition hover:border-[#8db8c5] hover:shadow-md"
                 >

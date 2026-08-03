@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 기간 탐색 — "쓸 수 있는 날짜"로 여행을 고른다 (2026-07-28 라이프스타일 홈 개편)
@@ -124,7 +125,7 @@ export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
                 {row.chips.map((c) => (
                   <Link
                     key={c.href}
-                    href={c.href}
+                    href={localizeHref(c.href, lang)}
                     onClick={() => trackEvent('duration_select', { duration: row.key, dest: c.label.KO })}
                     className="inline-flex items-center rounded-full border border-[#d6e2e3] bg-[#f9fbfb] px-3 py-1.5 text-xs font-semibold text-[#475d66] transition-colors hover:border-brand-mid hover:bg-white hover:text-brand-mid focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:px-4 sm:py-2 sm:text-sm"
                   >

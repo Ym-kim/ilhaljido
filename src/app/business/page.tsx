@@ -12,6 +12,7 @@ import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
 import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
+import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -236,7 +237,7 @@ export default function BusinessPage() {
               {t('cta_form')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </a>
             <a
-              href="http://pf.kakao.com/_xiPxbXG"
+              href={KAKAO_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-white border border-[#dbeafe] text-[#334155] text-sm font-bold px-6 py-3 rounded-xl hover:border-[#7dd3fc] transition-colors"

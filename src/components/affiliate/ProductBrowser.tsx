@@ -20,6 +20,7 @@ import {
 } from '@/lib/affiliate/featured'
 import { COLLECTIONS } from '@/lib/affiliate/collections'
 import { getCatalogItems } from '@/lib/affiliate/catalog'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { AffiliateItem } from '@/lib/affiliate/types'
 import type { Lang } from '@/lib/i18n/types'
 
@@ -121,7 +122,7 @@ export function ProductBrowser() {
               return (
                 <Link
                   key={col.slug}
-                  href={`/collections/${col.slug}`}
+                  href={localizeHref(`/collections/${col.slug}`, lang)}
                   className="group relative rounded-2xl overflow-hidden block h-52 border border-[#e2e8f0] hover:border-brand-mid transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
                   <Image src={col.photo} alt={col.title[lang]} fill sizes="(max-width: 640px) 100vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />

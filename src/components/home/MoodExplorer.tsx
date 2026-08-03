@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 무드 탐색 — "지금 어떤 여행이 필요한가요?" (2026-07-28 라이프스타일 홈 개편)
@@ -83,7 +84,7 @@ export function MoodExplorer({ forceLang }: { forceLang?: Lang } = {}) {
             return (
               <Link
                 key={m.href + m.label.KO}
-                href={m.href}
+                href={localizeHref(m.href, lang)}
                 onClick={() => trackEvent('travel_mood_select', { mood: m.label.KO })}
                 data-ui-card="editorial"
                 className="wak-card-editorial group relative min-h-48 overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_8px_24px_rgba(8,32,48,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(8,32,48,0.16)] active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:min-h-56"

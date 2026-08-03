@@ -8,6 +8,7 @@ import type { Lang } from '@/lib/i18n/types'
 import type { BrandModelId } from '@/lib/media/brandModels'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 type L = Record<Lang, string>
 
@@ -103,11 +104,9 @@ const ENTRIES: Entry[] = [
   },
 ]
 
-function withLocale(href: string, lang: Lang) {
-  if (lang === 'EN') return `/en${href}`
-  if (lang === 'JP') return `/ja${href}`
-  return href
-}
+// 2026-08-04: 무조건 prefix 구현이 EN에서 /en/trip-match(미존재) 404를 만들던 것 →
+// 라우트 실존 매니페스트 기반 공용 헬퍼로 교체
+const withLocale = localizeHref
 
 export function DomesticOnboarding({ lang }: { lang: Lang }) {
   const sectionRef = useRef<HTMLElement>(null)
