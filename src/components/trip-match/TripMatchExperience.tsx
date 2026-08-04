@@ -509,13 +509,27 @@ export function TripMatchExperience({
             {primary.practicalNotes.map((note) => (
               <div key={`${note.type}-${note.label}`} className="grid gap-1 py-4 sm:grid-cols-[8rem_1fr] sm:gap-4">
                 <dt className="text-xs font-black text-[#317b98]">{note.label}</dt>
-                <dd className="text-sm font-semibold leading-6 text-[#53646d]">{note.value}</dd>
+                <dd className="text-sm font-semibold leading-6 text-[#53646d]">
+                  {note.value}
+                  {/* 2026-08-04: 매핑만 되고 렌더가 없어 검증일 표기가 소실되던 것 복구 (CollectionView와 동일 표기) */}
+                  {note.verifiedAt && (
+                    <span className="block text-[0.65rem] font-medium text-[#a3b0b6] mt-0.5">
+                      {note.source ? `${note.source} · ` : ''}{note.verifiedAt}
+                    </span>
+                  )}
+                </dd>
               </div>
             ))}
           </dl>
-          <Link href={comparisonHref} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-black text-[#0b4b69] hover:underline">
-            {COPY.together[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
-          </Link>
+          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+            <Link href={comparisonHref} className="inline-flex min-h-11 items-center gap-2 text-sm font-black text-[#0b4b69] hover:underline">
+              {COPY.together[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+            </Link>
+            {/* 2026-08-04: 비교 도구와 단절돼 있던 동선 연결 (기존 캠페인 링크는 유지) */}
+            <Link href={`${prefix}/destinations/compare`} className="inline-flex min-h-11 items-center gap-2 text-sm font-black text-[#0b4b69] hover:underline">
+              {{ KO: '도시 데이터 비교 도구', EN: 'City comparison tool', JP: '都市データ比較ツール' }[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
         </div>
       </section>
 
