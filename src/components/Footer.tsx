@@ -15,6 +15,13 @@ export default function Footer() {
   const ceoLabel = lang === 'KO' ? '대표' : lang === 'JP' ? '代表' : 'CEO'
   const localePrefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
   const mediaCreditsLabel = lang === 'KO' ? '미디어 출처' : lang === 'JP' ? 'メディア出典' : 'Media credits'
+  // 브랜드 표기 라인 — KO는 한글 '와케이션' 병기(네이버 브랜드 검색 매칭), JP는 ワーケーション 키워드 (2026-08-05)
+  const brandLine =
+    lang === 'KO'
+      ? '와케이션(Wakation) — 일하는 사람의 여행 플랫폼'
+      : lang === 'JP'
+        ? 'Wakation — 働く人のためのワーケーションプラットフォーム'
+        : 'Wakation — the travel platform for working people'
 
   return (
     <footer className="bg-[#0a0a0a] text-white/70 py-16 px-6 border-t border-white/5">
@@ -111,6 +118,7 @@ export default function Footer() {
         </div>
         {/* 사업자 정보 — 전자상거래법·신뢰 시그널 */}
         <div className="border-t border-white/8 pt-6 mb-4 text-[0.8125rem] text-white/40 leading-relaxed">
+          <p>{brandLine}</p>
           <p>{companyName} · {ceoLabel} {BUSINESS.ceo} · {bizLabel} {BUSINESS.bizNo}</p>
           <p>{address}</p>
           <p>{BUSINESS.email}</p>

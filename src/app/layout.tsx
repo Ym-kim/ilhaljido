@@ -16,12 +16,13 @@ import { MotionRuntime } from '@/components/motion/MotionRuntime'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.wakation.kr'),
   title: {
-    default: 'Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
+    // 한글 브랜드 표기 '와케이션' 병기 — 네이버 브랜드 검색 매칭용 (2026-08-05, 미병기 시 '와케이션' 쿼리에 매칭 텍스트가 없어 미노출)
+    default: '와케이션 Wakation | 일하고 쉬고 성장하는 워케이션 플랫폼',
     template: '%s | Wakation',
   },
   // 2026-07-28 라이프스타일 개편: 사업 나열형 → 브랜드 카피 정렬 (공유 미리보기가 첫인상)
-  description: '일도 여행도, 내 방식대로 — 이번 주말의 제주부터 한 달의 치앙마이까지, 일하는 사람의 여행을 검증한 것만 골라 큐레이션합니다.',
-  keywords: ['워케이션', '국내 워케이션', '글로벌 워케이션', '디지털 노마드', '리모트워크', '프리랜서 워케이션', '한달살기', '어학연수', '비자 정보', '장기체류', '코워킹', '성장캠프', '네트워킹'],
+  description: '와케이션(Wakation) — 일도 여행도, 내 방식대로. 이번 주말의 제주부터 한 달의 치앙마이까지, 일하는 사람의 여행을 검증한 것만 골라 큐레이션합니다.',
+  keywords: ['와케이션', 'Wakation', '워케이션', '국내 워케이션', '글로벌 워케이션', '디지털 노마드', '리모트워크', '프리랜서 워케이션', '한달살기', '어학연수', '비자 정보', '장기체류', '코워킹', '성장캠프', '네트워킹'],
   authors: [{ name: 'Wakation', url: 'https://www.wakation.kr' }],
   creator: 'Wakation',
   publisher: 'Wakation',
@@ -56,6 +57,14 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.wakation.kr',
+    // 홈 hreflang 상호 선언 — EN·JA 홈은 자체 선언 중인데 KO 홈만 미참여였음(클러스터 불완전, 일본 구글 노출 준비)
+    // 자체 alternates 정의 페이지는 이 값을 통째로 override하므로 영향 없음 (라이브 canonical 4곳 실측 확인)
+    languages: {
+      ko: 'https://www.wakation.kr',
+      en: 'https://www.wakation.kr/en',
+      ja: 'https://www.wakation.kr/ja',
+      'x-default': 'https://www.wakation.kr',
+    },
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
@@ -79,7 +88,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'Wakation',
   legalName: '주식회사 스테이포워드',
-  alternateName: 'StayForward Co., Ltd.',
+  alternateName: ['와케이션', 'StayForward Co., Ltd.'],
   url: 'https://www.wakation.kr',
   logo: 'https://www.wakation.kr/icon.svg',
   description: '일하는 사람을 위한 체류·업무·성장 플랫폼. 국내외 워케이션, 성장캠프, 시장조사단, 어학·유학, 비자·체류 정보를 하나의 플랫폼에서 제공합니다.',
@@ -102,9 +111,20 @@ const organizationJsonLd = {
   sameAs: ['https://cafe.naver.com/shcafa32', 'https://pf.kakao.com/_xiPxbXG'],
 }
 
+// 사이트 구조화데이터 — 브랜드명 '와케이션'(한글 표기) 검색 매칭 시그널 (2026-08-05)
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Wakation',
+  alternateName: '와케이션',
+  url: 'https://www.wakation.kr',
+  inLanguage: ['ko', 'en', 'ja'],
+  publisher: { '@type': 'Organization', name: 'Wakation', legalName: '주식회사 스테이포워드' },
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <LocaleDocument organizationJsonLd={JSON.stringify(organizationJsonLd)}>
+    <LocaleDocument organizationJsonLd={JSON.stringify([organizationJsonLd, websiteJsonLd])}>
       <MotionRuntime />
       <LanguageProvider>
         <AuthProvider>
