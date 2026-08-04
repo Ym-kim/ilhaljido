@@ -398,6 +398,33 @@ const EN: Record<string, Overlay> = {
     desc: 'A practical course on keywords and product SEO for independent online sellers.',
     cta: 'View course', badge: 'Online selling',
   },
+  // 2026-08-04 감사: 오버레이 누락 4건 마감 (course-*-free 3 + activity-klook)
+  'course-notion-free': {
+    name: 'Inflearn',
+    productTitle: 'Notion, fully explained',
+    destination: 'Productivity · Collaboration',
+    desc: 'Run your workation tasks and schedule in Notion — a free productivity setup course.',
+    cta: 'View free course', badge: 'Free',
+  },
+  'course-excel-free': {
+    name: 'Inflearn',
+    productTitle: 'Excel from basics to real work',
+    destination: 'Data · Office skills',
+    desc: 'Tables, formulas and automation in 190 lessons — remote-work fundamentals, free.',
+    cta: 'View free course', badge: 'Free',
+  },
+  'course-python-free': {
+    name: 'Inflearn',
+    productTitle: 'Python basics in six hours',
+    destination: 'Intro to coding',
+    desc: 'A hugely popular free Python intro — the first step into automation and data.',
+    cta: 'View free course', badge: 'Free',
+  },
+  'activity-klook': {
+    name: 'Klook',
+    desc: 'Local tours, activities, transit passes and tickets — curated experiences for your destination.',
+    cta: 'Browse activities', badge: 'Local experiences',
+  },
   'course-claude-vibecoding': {
     name: 'Inflearn',
     productTitle: 'Claude Code and vibe coding for business transformation',
@@ -925,6 +952,33 @@ const JP: Record<string, Overlay> = {
     destination: 'AI · バイブコーディング',
     desc: 'Claude Codeとバイブコーディングで業務を自動化し、実用ツールを作るための講座。',
     cta: '講座を見る', badge: '実務AI',
+  },
+  // 2026-08-04 감사: 오버레이 누락 4건 마감 (course-*-free 3 + activity-klook)
+  'course-notion-free': {
+    name: 'Inflearn',
+    productTitle: 'Notion完全活用法',
+    destination: '生産性 · コラボ',
+    desc: 'ワーケーションのタスクと日程をNotionひとつで。無料で始める生産性セットアップ。',
+    cta: '無料講座を見る', badge: '無料',
+  },
+  'course-excel-free': {
+    name: 'Inflearn',
+    productTitle: 'Excel 基礎から実務まで',
+    destination: 'データ · 実務',
+    desc: '表・関数・自動化まで190レッスン。リモートワークの基本を無料で。',
+    cta: '無料講座を見る', badge: '無料',
+  },
+  'course-python-free': {
+    name: 'Inflearn',
+    productTitle: '6時間でPython基本編',
+    destination: 'コーディング入門',
+    desc: '大人気の無料Python入門。自動化・データの第一歩に最適。',
+    cta: '無料講座を見る', badge: '無料',
+  },
+  'activity-klook': {
+    name: 'Klook',
+    desc: '現地ツアー・アクティビティ・交通パス・入場券。目的地の体験商品をキュレーション。',
+    cta: '体験を探す', badge: '現地体験',
   },
   'stay-adina-sydney': {
     productTitle: 'アディナ・アパートメントホテル・シドニー・タウンホール',
