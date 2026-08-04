@@ -47,6 +47,11 @@ const CHECKS: Check[] = [
   { id: 'page:campaign-korea-weekend', url: 'https://www.wakation.kr/ja/campaign/korea-weekend' },
   { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
   { id: 'page:media-credits', url: 'https://www.wakation.kr/media-credits' },
+  // 허브 페이지 (2026-08-04 감사: 하위는 있는데 허브가 빠져 있던 4곳)
+  { id: 'page:select-hub', url: 'https://www.wakation.kr/select' },
+  { id: 'page:cruise-hub', url: 'https://www.wakation.kr/cruise' },
+  { id: 'page:wishlist', url: 'https://www.wakation.kr/wishlist' },
+  { id: 'page:guide-hub', url: 'https://www.wakation.kr/guide' },
 
   // 대표 제휴 링크 패턴 — aid/Allianceid 유실·리다이렉트 감지 (봇챌린지 202/403은 생존)
   { id: 'booking:searchresults', url: 'https://www.booking.com/searchresults.html?aid=7854081&ss=Tokyo', okStatuses: [200, 202, 403] },
@@ -112,6 +117,21 @@ const CHECKS: Check[] = [
   { id: 'page:manado', url: 'https://www.wakation.kr/programs/global/manado' },
   { id: 'page:stories', url: 'https://www.wakation.kr/stories' },
   { id: 'kkday:oasis-spa', url: 'https://www.kkday.com/ko/product/123986?cid=25833', okStatuses: [200, 403] },
+
+  // ── 2026-08-04 감사 커버리지 확장 — 미등록 상품군 대표 ──
+  // AmazingTalker (/language 3링크 — 202 봇챌린지 생존, aff 파라미터 유실 감지)
+  { id: 'at:english', url: 'https://www.amazingtalker.co.kr/tutors/english?aff_c_code=aff_c-bXzneJ&aff_p_code=aff_p-bXRhXL', okStatuses: [200, 202, 403] },
+  { id: 'at:japanese', url: 'https://www.amazingtalker.co.kr/tutors/japanese?aff_c_code=aff_c-bXzneJ&aff_p_code=aff_p-bXRhXL', okStatuses: [200, 202, 403] },
+  { id: 'at:all', url: 'https://www.amazingtalker.co.kr/tutors?aff_c_code=aff_c-bXzneJ&aff_p_code=aff_p-bXRhXL', okStatuses: [200, 202, 403] },
+  // 쿠팡 파트너스 대표 2 (link.coupang.com 단축링크 생존 — 리다이렉트 최종지가 coupang이어야)
+  { id: 'coupang:carry-cabin', url: 'https://link.coupang.com/a/fqKeXt9wsK', finalMustInclude: 'coupang.com', okStatuses: [200, 202, 403] },
+  { id: 'coupang:adapter', url: 'https://link.coupang.com/a/fqKCgViWQK', finalMustInclude: 'coupang.com', okStatuses: [200, 202, 403] },
+  // KKday 테마 체험 대표 2 (16종 중 1종만 체크되던 갭 — 403 봇차단 생존)
+  { id: 'kkday:golf-montgomerie', url: 'https://www.kkday.com/ko/product/162518?cid=25833', okStatuses: [200, 403] },
+  { id: 'kkday:heal-spa-ubud', url: 'https://www.kkday.com/ko/product/147558?cid=25833', okStatuses: [200, 403] },
+  // Booking 개별 숙소 대표 2 (32종 중 1종만 체크되던 갭 — 202 봇챌린지 생존)
+  { id: 'booking:millennials-shibuya', url: 'https://www.booking.com/hotel/jp/the-millennials-shibuya-shibuya-ku.html?aid=7854081', okStatuses: [200, 202, 403] },
+  { id: 'booking:fraser-seoul', url: 'https://www.booking.com/hotel/kr/fraser-place-central-seoul.html?aid=7854081', okStatuses: [200, 202, 403] },
 ]
 
 async function runCheck(c: Check): Promise<{ id: string; ok: boolean; detail: string }> {
@@ -156,7 +176,8 @@ export async function GET(req: Request) {
   const STALE_DAYS = 30
   const now = Date.now()
   const stale = FULL_CATALOG.filter(
-    (i) => i.priceFrom && i.priceAsOf && now - Date.parse(i.priceAsOf) > STALE_DAYS * 86_400_000,
+    // '무료'는 가격 변동 재실측 대상이 아님 — stale 오탐 제외 (2026-08-04, course-*-free 3건이 8/15 오탐 예정이었음)
+    (i) => i.priceFrom && i.priceFrom !== '무료' && i.priceAsOf && now - Date.parse(i.priceAsOf) > STALE_DAYS * 86_400_000,
   ).map((i) => `${i.id}(${i.priceAsOf})`)
   results.push({
     id: 'policy:price-stale',
