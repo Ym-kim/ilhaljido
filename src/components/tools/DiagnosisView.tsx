@@ -19,9 +19,14 @@ import {
   DIAGNOSIS_UI,
   PHASE_LABEL,
   diagnose,
+  getDestinationRecs,
   type ChecklistPhase,
   type DiagnosisAnswers,
 } from '@/lib/diagnosis'
+import { getGuide } from '@/lib/guides'
+import { getCollection } from '@/lib/affiliate/collections'
+import { localizeHref } from '@/lib/i18n/localePath'
+import { NotifySignup } from '@/components/home/NotifySignup'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 참가자 진단 & 실행 리포트 — 룰베이스 위저드 (API 0원)
@@ -262,6 +267,52 @@ export function DiagnosisView({ forceLang }: { forceLang?: Lang } = {}) {
                 </div>
               </div>
 
+              {/* 목적지 추천 (2026-08-04 diagnosis-destinations-v1) — 유형×기간 매핑,
+                  카피는 CITY_GUIDES·COLLECTIONS 검증 데이터 그대로 (신규 주장 0) */}
+              {(() => {
+                const dest = getDestinationRecs(result.profile.id, answers as DiagnosisAnswers)
+                const guides = dest.citySlugs.map((s) => getGuide(s)).filter((g): g is NonNullable<typeof g> => Boolean(g))
+                const tripSet = getCollection(dest.tripSetSlug)
+                if (guides.length === 0) return null
+                return (
+                  <div>
+                    <h3 className="text-[#111827] font-black text-base mb-1">{DIAGNOSIS_UI.destTitle[lang]}</h3>
+                    <p className="text-[#94a3b8] text-xs mb-3">{DIAGNOSIS_UI.destSub[lang]}</p>
+                    <div className="grid sm:grid-cols-3 gap-3">
+                      {guides.map((g) => (
+                        <Link
+                          key={g.slug}
+                          href={localizeHref(`/guide/${g.slug}`, lang)}
+                          className="group bg-white border border-[#e2e8f0] rounded-2xl p-4 hover:border-brand-mid hover:shadow-md transition-all duration-150"
+                        >
+                          <p className="text-[0.62rem] font-black tracking-widest text-[#94a3b8] mb-1">{DIAGNOSIS_UI.destGuideLabel[lang]}</p>
+                          <p className="text-[#111827] font-bold text-sm mb-1">{g.name[lang]}</p>
+                          <p className="text-[#64748b] text-xs leading-relaxed mb-2 line-clamp-2">{g.tagline[lang]}</p>
+                          <span className="inline-flex items-center text-brand-mid group-hover:translate-x-0.5 transition-transform">
+                            <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                          </span>
+                        </Link>
+                      ))}
+                      {tripSet && (
+                        <Link
+                          href={localizeHref(`/collections/${tripSet.slug}?src=diagnosis`, lang)}
+                          className="group bg-[#f2faf6] border border-[#c8e3d8] rounded-2xl p-4 hover:border-[#2f8f68] hover:shadow-md transition-all duration-150"
+                        >
+                          <p className="text-[0.62rem] font-black tracking-widest text-[#3e7a61] mb-1">{DIAGNOSIS_UI.destSetLabel[lang]}</p>
+                          <p className="text-[#111827] font-bold text-sm mb-1">{tripSet.title[lang]}</p>
+                          <p className="text-[#64748b] text-xs leading-relaxed mb-2 line-clamp-2">
+                            {tripSet.durationLabel ? `${tripSet.durationLabel[lang]} · ` : ''}{tripSet.tagline[lang]}
+                          </p>
+                          <span className="inline-flex items-center text-[#2f8f68] group-hover:translate-x-0.5 transition-transform">
+                            <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                          </span>
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                )
+              })()}
+
               {/* 실행 체크리스트 */}
               <div className="bg-white border border-[#dbeafe] rounded-3xl p-6 md:p-8 shadow-sm">
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-1.5">
@@ -340,6 +391,12 @@ export function DiagnosisView({ forceLang }: { forceLang?: Lang } = {}) {
                     )
                   })}
                 </div>
+              </div>
+
+              {/* 오픈 알림 리드 (2026-08-04) — 진단 완료 = 최고 인텐트 세그먼트인데 수집 경로가 없었음 */}
+              <div className="bg-white border border-[#dbeafe] rounded-3xl p-6 md:p-8">
+                <p className="text-[#475569] text-sm font-semibold mb-3">{DIAGNOSIS_UI.notifyLabel[lang]}</p>
+                <NotifySignup source={`진단 완료 리드 (diagnosis:${result.profile.id})`} event="program_alert_submitted" />
               </div>
 
               {/* 신청 CTA */}

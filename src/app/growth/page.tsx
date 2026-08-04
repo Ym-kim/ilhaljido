@@ -29,8 +29,8 @@ const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L 
   {
     icon: Compass, href: '/tools/diagnosis',
     label: { KO: '나에게 맞는 워케이션 진단', EN: 'Workation self-check', JP: '自分に合う旅を診断' },
-    // 2026-08-04 정직성 정정: 진단 결과는 프로그램·체크리스트 추천 (MoreExplore와 동일 정정)
-    desc: { KO: '3분 진단으로 맞춤 프로그램 찾기', EN: 'Find your program in 3 minutes', JP: '3分診断で合うプログラム探し' },
+    // 2026-08-04 목적지 매핑 구현(diagnosis-destinations-v1)으로 카피 복원
+    desc: { KO: '3분 진단으로 목적지·프로그램 찾기', EN: 'Find your destination in 3 minutes', JP: '3分診断で行き先とプログラム' },
   },
 ]
 // 2026-08-04 정직성: 캠프 6종은 모집 전 커리큘럼 — 상태 배지 없이는 운영 중 상품처럼 읽힘 (/language '준비 중' 패턴 이식)
