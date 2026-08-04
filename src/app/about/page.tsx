@@ -13,7 +13,7 @@ const COPY: Record<string, L> = {
   eyebrow: { KO: 'ABOUT WAKATION', EN: 'ABOUT WAKATION', JP: 'ABOUT WAKATION' },
   title: { KO: '머무는 시간을,\n일과 성장의 다음 장면으로', EN: 'Turn time away\ninto work and growth', JP: '滞在する時間を、\n仕事と成長の次の場面へ' },
   intro: {
-    KO: 'Wakation은 여행을 발견하고, 필요한 것을 준비하고, 직접 운영 프로그램과 외부 제휴 상품을 구분해 살펴볼 수 있도록 돕는 편집형 체류 플랫폼입니다.',
+    KO: '와케이션(Wakation)은 여행을 발견하고, 필요한 것을 준비하고, 직접 운영 프로그램과 외부 제휴 상품을 구분해 살펴볼 수 있도록 돕는 편집형 체류 플랫폼입니다.',
     EN: 'Wakation is an editorial stay platform for discovering trips, preparing what you need, and clearly distinguishing our hosted programs from external partner products.',
     JP: 'Wakationは、旅を見つけ、必要な準備を整え、自社運営プログラムと外部提携商品を区別して選べる編集型の滞在プラットフォームです。',
   },

@@ -13,6 +13,7 @@ export function LocaleDocument({
   organizationJsonLd,
 }: {
   children: React.ReactNode
+  /** JSON-LD 문자열 — 단일 객체 또는 배열([Organization, WebSite]) 직렬화 모두 유효 */
   organizationJsonLd: string
 }) {
   const pathname = usePathname()
