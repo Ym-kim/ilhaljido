@@ -10,7 +10,17 @@ export const TRIP_MATCH_MOODS = [
   'workation',
 ] as const
 export const TRIP_MATCH_COMPANIONS = ['solo', 'friends', 'couple', 'workation', 'undecided'] as const
-export const TRIP_MATCH_SLUGS = ['fukuoka-3n4d', 'osaka-friends', 'seoul-3n4d', 'busan-weekend'] as const
+// 2026-08-04 장기 체류 확장: 4→8세트 — '2주 이상' 선택이 3박4일로 귀결되던 논리 결함 해소
+export const TRIP_MATCH_SLUGS = [
+  'fukuoka-3n4d',
+  'osaka-friends',
+  'seoul-3n4d',
+  'busan-weekend',
+  'jeju-solo-reset',
+  'tokyo-allinone',
+  'bali-monthstay',
+  'chiangmai-nomad',
+] as const
 export const TRIP_MATCH_CAMPAIGNS = ['japan-short-stay', 'korea-weekend'] as const
 
 export type TripMatchDuration = (typeof TRIP_MATCH_DURATIONS)[number]
@@ -59,23 +69,54 @@ const RULES: TripMatchRule[] = [
     mood: { cafe_food: 3, ocean_walk: 6, city_energy: 2, onsen_recovery: 3, culture: 3, workation: 2 },
     companion: { solo: 3, friends: 5, couple: 5, workation: 2, undecided: 3 },
   },
+  // ── 2026-08-04 확장 4종 — 각 세트의 실제 기간·성격에 맞춘 스코어 (컬렉션 duration 기준) ──
+  {
+    // 제주 혼자 회복 — 주말~3박4일, 솔로·회복 특화 (KO 주말+JP 방한 겸용 설계)
+    tripSetSlug: 'jeju-solo-reset',
+    duration: { weekend: 5, '3n4d': 5, '1week': 3, long: 1 },
+    mood: { cafe_food: 3, ocean_walk: 6, city_energy: 1, onsen_recovery: 5, culture: 2, workation: 4 },
+    companion: { solo: 6, friends: 1, couple: 3, workation: 4, undecided: 3 },
+  },
+  {
+    // 도쿄 3박4일 — 도시·문화·코워킹 2개 층 숙소
+    tripSetSlug: 'tokyo-allinone',
+    duration: { weekend: 2, '3n4d': 6, '1week': 4, long: 2 },
+    mood: { cafe_food: 4, ocean_walk: 1, city_energy: 6, onsen_recovery: 1, culture: 5, workation: 5 },
+    companion: { solo: 4, friends: 4, couple: 4, workation: 5, undecided: 3 },
+  },
+  {
+    // 발리 한 달 — 코워킹 특화 숙소, 장기 워케이션 (weekend/3n4d엔 부적합 → 0)
+    tripSetSlug: 'bali-monthstay',
+    duration: { weekend: 0, '3n4d': 0, '1week': 3, long: 7 },
+    mood: { cafe_food: 2, ocean_walk: 4, city_energy: 1, onsen_recovery: 3, culture: 3, workation: 6 },
+    companion: { solo: 5, friends: 2, couple: 3, workation: 6, undecided: 3 },
+  },
+  {
+    // 치앙마이 2주 — 서비스드 아파트·노마드 클래식 (weekend엔 부적합 → 0)
+    tripSetSlug: 'chiangmai-nomad',
+    duration: { weekend: 0, '3n4d': 1, '1week': 4, long: 7 },
+    mood: { cafe_food: 5, ocean_walk: 1, city_energy: 2, onsen_recovery: 3, culture: 4, workation: 6 },
+    companion: { solo: 6, friends: 2, couple: 3, workation: 6, undecided: 3 },
+  },
 ]
 
 const MARKET_ORDER: Record<Lang, TripMatchSlug[]> = {
-  KO: ['fukuoka-3n4d', 'osaka-friends', 'busan-weekend', 'seoul-3n4d'],
-  JP: ['seoul-3n4d', 'busan-weekend', 'fukuoka-3n4d', 'osaka-friends'],
-  EN: ['fukuoka-3n4d', 'seoul-3n4d', 'busan-weekend', 'osaka-friends'],
+  KO: ['fukuoka-3n4d', 'osaka-friends', 'busan-weekend', 'seoul-3n4d', 'jeju-solo-reset', 'tokyo-allinone', 'chiangmai-nomad', 'bali-monthstay'],
+  JP: ['seoul-3n4d', 'busan-weekend', 'jeju-solo-reset', 'fukuoka-3n4d', 'osaka-friends', 'tokyo-allinone', 'chiangmai-nomad', 'bali-monthstay'],
+  EN: ['fukuoka-3n4d', 'seoul-3n4d', 'busan-weekend', 'osaka-friends', 'tokyo-allinone', 'chiangmai-nomad', 'bali-monthstay', 'jeju-solo-reset'],
 }
 
+// 장기 세트 부스트: 단기 세트의 큰 시장 부스트(KO 8·JP 10)가 'long' 응답의 정직한 매칭을
+// 뒤집지 않도록 보정 (예: KO long+카페 → 오사카 19 vs 치앙마이 무보정 17이던 역전 방지)
 const MARKET_BOOST: Record<Lang, Partial<Record<TripMatchSlug, number>>> = {
-  KO: { 'fukuoka-3n4d': 8, 'osaka-friends': 8, 'busan-weekend': 2, 'seoul-3n4d': 1 },
-  JP: { 'seoul-3n4d': 10, 'busan-weekend': 10 },
-  EN: { 'fukuoka-3n4d': 4, 'seoul-3n4d': 4, 'busan-weekend': 3, 'osaka-friends': 3 },
+  KO: { 'fukuoka-3n4d': 8, 'osaka-friends': 8, 'busan-weekend': 2, 'seoul-3n4d': 1, 'jeju-solo-reset': 3, 'tokyo-allinone': 3, 'chiangmai-nomad': 6, 'bali-monthstay': 5 },
+  JP: { 'seoul-3n4d': 10, 'busan-weekend': 10, 'jeju-solo-reset': 8, 'chiangmai-nomad': 4, 'bali-monthstay': 3 },
+  EN: { 'fukuoka-3n4d': 4, 'seoul-3n4d': 4, 'busan-weekend': 3, 'osaka-friends': 3, 'tokyo-allinone': 3, 'chiangmai-nomad': 3, 'bali-monthstay': 3, 'jeju-solo-reset': 2 },
 }
 
 const CAMPAIGN_BOOST: Record<TripMatchCampaign, Partial<Record<TripMatchSlug, number>>> = {
-  'japan-short-stay': { 'fukuoka-3n4d': 3, 'osaka-friends': 3 },
-  'korea-weekend': { 'seoul-3n4d': 3, 'busan-weekend': 3 },
+  'japan-short-stay': { 'fukuoka-3n4d': 3, 'osaka-friends': 3, 'tokyo-allinone': 2 },
+  'korea-weekend': { 'seoul-3n4d': 3, 'busan-weekend': 3, 'jeju-solo-reset': 2 },
 }
 
 export const TRIP_MATCH_LABELS = {
