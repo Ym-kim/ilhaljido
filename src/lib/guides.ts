@@ -186,7 +186,8 @@ export const CITY_GUIDES: CityGuide[] = [
     timeZone: 'Asia/Ho_Chi_Minh',
     internet: 4,
     costMonthly: { KO: '월 90만원대', EN: '~₩900K / month', JP: '月90万ウォン程度' },
-    visaFree: { KO: '무비자 45일', EN: 'Visa-free 45 days', JP: 'ビザなし45日' },
+    // 2026-08-04 한시조치 표기 (content.ts 검증 표현 동기 — visaExpiries.ts 감시 대상)
+    visaFree: { KO: '무비자 45일 (2028.3까지 한시)', EN: 'Visa-free 45 days (until Mar 2028)', JP: 'ビザなし45日（2028.3まで）' },
   },
   {
     slug: 'bali',
