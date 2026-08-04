@@ -91,8 +91,9 @@ const ITEMS: TickerItem[] = [
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
   {
-    id: 'ticker-chuseok', href: '/collections/chuseok-short-haul',
-    label: { KO: '추석 연휴 단거리 워케이션 기획전', EN: 'Chuseok long-weekend collection', JP: '秋夕連休の近場特集' },
+    // 2026-08-04: 홈에서 도달 불가하던 추석 에디토리얼로 배선 (아티클이 세트 5개를 내부 연결 — 상위 퍼널)
+    id: 'ticker-chuseok', href: '/campaign/chuseok-4days',
+    label: { KO: '연차 없이 나흘 — 추석 워케이션 가이드', EN: 'Chuseok 4-day workation guide', JP: '有休なしで4日 — 秋夕ガイド' },
     tag: { KO: '시즌 기획', EN: 'Seasonal', JP: '季節特集' },
   },
   {

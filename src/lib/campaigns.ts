@@ -26,6 +26,28 @@ export type HouseCampaign = {
 
 export const HOUSE_CAMPAIGNS: HouseCampaign[] = [
   {
+    // 추석 시즌 배너 (2026-08-04 사전 등록, active:false) — 8월 말 운영자 승인 시 active:true 토글 1줄로 전환.
+    // ⚠️ 9/27 종료 시 active:false 복귀 (전체 롤백 절차: docs/SEASONAL_ROLLBACK_CHUSEOK_2026.md)
+    id: 'chuseok-4days-2026',
+    active: false,
+    eyebrow: { KO: '2026 추석 연휴 · 9/24–9/27', EN: 'Chuseok holidays · Sep 24–27', JP: '秋夕連休 · 9/24–9/27' },
+    title: {
+      KO: '연차 없이 나흘 — 추석 워케이션 설계 가이드',
+      EN: 'Four days, no leave needed — the Chuseok workation guide',
+      JP: '有休なしで4日間 — 秋夕ワーケーション設計ガイド',
+    },
+    sub: {
+      KO: '후쿠오카·오사카·도쿄·국내 — 실존 세트 5개로 잇는 연휴 설계 에디토리얼.',
+      EN: 'Fukuoka, Osaka, Tokyo and Korea — an editorial linking five real trip sets.',
+      JP: '福岡・大阪・東京・国内 — 実在セット5つでつなぐ連休設計エディトリアル。',
+    },
+    cta: { KO: '에디토리얼 읽기', EN: 'Read the editorial', JP: 'エディトリアルを読む' },
+    href: '/campaign/chuseok-4days',
+    gradient: 'from-[#7c2d12] via-[#9a3412] to-[#b45309]',
+    image: '/covers/stay-fukuoka-city-real.jpeg',
+    event: 'house_banner_clicked',
+  },
+  {
     id: 'trip-prep-allinone',
     active: true,
     eyebrow: { KO: '여정 준비 올인원', EN: 'Trip prep, all in one', JP: '旅の準備をまとめて' },
