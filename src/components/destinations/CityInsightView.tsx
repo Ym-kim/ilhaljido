@@ -449,6 +449,10 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
                     <p className="text-sm text-[#555] mb-2">
                       ★ {featuredStay.rating}
                       {featuredStay.reviews && <span className="text-[#888]"> ({featuredStay.reviews} {UI.reviews[lang]})</span>}
+                      {/* 2026-08-04: 기준일 없는 평점 렌더가 정직성 타입 구멍이었음 — ratingAsOf 강제와 함께 노출 */}
+                      {featuredStay.ratingAsOf && (
+                        <span className="text-[#b0bcc4] text-xs"> · {(() => { const [, m, d] = featuredStay.ratingAsOf.split('-'); return lang === 'EN' ? `as of ${Number(m)}/${Number(d)}` : lang === 'JP' ? `${Number(m)}.${Number(d)}基準` : `${Number(m)}.${Number(d)} 기준` })()}</span>
+                      )}
                     </p>
                   )}
                   <p className="text-[#666] text-sm line-clamp-2">{featuredStay.desc}</p>
