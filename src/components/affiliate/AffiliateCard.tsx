@@ -132,13 +132,16 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </div>
           )}
 
-          {/* 실제 평점 — 좌상단 픽토그램 옆 (리서치 확인 값만) */}
+          {/* 실제 평점 — 좌상단 픽토그램 옆 (리서치 확인 값만, 2026-08-04부터 기준일 동반 강제) */}
           {item.rating && (
             <div className="absolute left-3 top-3">
               <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[0.7rem] font-bold text-[#111827] shadow-sm">
                 <span className="text-amber-500">★</span>
                 {item.rating}
                 {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
+                {item.ratingAsOf && (
+                  <span className="font-medium text-[#b6c2d1]">· {formatAsOf(item.ratingAsOf, lang)}</span>
+                )}
               </span>
             </div>
           )}

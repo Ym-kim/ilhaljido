@@ -110,10 +110,15 @@ interface AffiliateItemBase {
   coverGradient?: string          // 카드 헤더 Tailwind 그라디언트 (사진 없을 때 fallback)
   coverPhoto?: string             // 실제 목적지 사진 URL (visual 모드)
   illustrative?: boolean          // 실제 상품 사진이 아닌 편집·생성 이미지 여부
-  rating?: string                 // 실제 평점 표시 (e.g. "8.7" — 리서치로 확인된 값만)
-  reviews?: string                // 리뷰 수 표시 (e.g. "2,005")
   operatorAction?: string         // 다음 운영자 액션 요약
 }
 
-// priceFrom("₩79,000~")은 PricedFields로 결합 — 기준일 없는 가격은 타입 에러
-export type AffiliateItem = AffiliateItemBase & PricedFields
+// ─── 평점 표시 정책 (2026-08-04, PRICE_POLICY 패턴 확장) ──────────────────────
+// rating을 표시하려면 실측 기준일(ratingAsOf, YYYY-MM-DD)이 반드시 함께 있어야
+// 한다 — 정직성 원칙의 마지막 타입 레벨 구멍 봉합. reviews는 rating에 종속.
+export type RatedFields =
+  | { rating: string; ratingAsOf: string; reviews?: string }
+  | { rating?: undefined; ratingAsOf?: undefined; reviews?: undefined }
+
+// priceFrom("₩79,000~")은 PricedFields로 결합 — 기준일 없는 가격·평점은 타입 에러
+export type AffiliateItem = AffiliateItemBase & PricedFields & RatedFields
