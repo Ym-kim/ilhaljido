@@ -508,6 +508,53 @@ export function diagnose(a: DiagnosisAnswers): DiagnosisResult {
   return { profile: PROFILES[top], checklist: buildChecklist(a) }
 }
 
+// ── 목적지 추천 (2026-08-04 diagnosis-destinations-v1) ────────────────────────
+// 유형×기간 → 가이드 도시 2 + Trip Set 1. 표시 카피는 CITY_GUIDES·COLLECTIONS의
+// 검증 데이터를 그대로 렌더 — 이 파일에서 새 사실 주장 0.
+// 도시 slug는 전부 CITY_GUIDES 실존분만 (13도시), tripSet은 duration 세트만.
+
+export type DestinationRecs = { citySlugs: [string, string]; tripSetSlug: string }
+
+const DEST_MAP: Record<ProfileId, Record<StayLength, DestinationRecs>> = {
+  deepwork: {
+    short: { citySlugs: ['fukuoka', 'jeonju'], tripSetSlug: 'fukuoka-3n4d' },
+    mid: { citySlugs: ['chiangmai', 'danang'], tripSetSlug: 'chiangmai-nomad' },
+    long: { citySlugs: ['chiangmai', 'bali'], tripSetSlug: 'bali-monthstay' },
+  },
+  explorer: {
+    short: { citySlugs: ['tokyo', 'osaka'], tripSetSlug: 'tokyo-allinone' },
+    mid: { citySlugs: ['tokyo', 'cebu'], tripSetSlug: 'tokyo-allinone' },
+    long: { citySlugs: ['bali', 'sydney'], tripSetSlug: 'bali-monthstay' },
+  },
+  recovery: {
+    short: { citySlugs: ['jeju', 'yeosu'], tripSetSlug: 'jeju-solo-reset' },
+    mid: { citySlugs: ['chiangmai', 'bali'], tripSetSlug: 'chiangmai-nomad' },
+    long: { citySlugs: ['bali', 'chiangmai'], tripSetSlug: 'bali-monthstay' },
+  },
+  connector: {
+    short: { citySlugs: ['seoul', 'busan'], tripSetSlug: 'busan-weekend' },
+    mid: { citySlugs: ['chiangmai', 'seoul'], tripSetSlug: 'chiangmai-nomad' },
+    long: { citySlugs: ['bali', 'chiangmai'], tripSetSlug: 'bali-monthstay' },
+  },
+}
+
+// '언어·현지 적응' 걱정 → 도시를 국내 페어로 교체 (Trip Set은 기간·도시가 카드에
+// 명시돼 자체 판단 가능하므로 기본 매핑 유지)
+const ADAPT_CITIES: Record<ProfileId, [string, string]> = {
+  deepwork: ['jeonju', 'jeju'],
+  explorer: ['seoul', 'busan'],
+  recovery: ['jeju', 'yeosu'],
+  connector: ['seoul', 'busan'],
+}
+
+export function getDestinationRecs(profileId: ProfileId, a: DiagnosisAnswers): DestinationRecs {
+  const base = DEST_MAP[profileId][a.stayLength]
+  if (a.concern === 'adapt') {
+    return { ...base, citySlugs: ADAPT_CITIES[profileId] }
+  }
+  return base
+}
+
 // ── UI 카피 ──────────────────────────────────────────────────────────────────
 
 export const DIAGNOSIS_UI: Record<string, L> = {
@@ -524,6 +571,19 @@ export const DIAGNOSIS_UI: Record<string, L> = {
   resultEyebrow: { KO: '나의 워케이션 유형', EN: 'Your workation type', JP: 'あなたのワーケーションタイプ' },
   rhythmTitle: { KO: '추천 하루 리듬', EN: 'Suggested daily rhythm', JP: 'おすすめの1日リズム' },
   recsTitle: { KO: '이 유형에게 맞는 프로그램', EN: 'Programs that fit this type', JP: 'このタイプに合うプログラム' },
+  destTitle: { KO: '이 유형·기간에 맞는 목적지', EN: 'Destinations for this type and length', JP: 'このタイプ·期間に合う行き先' },
+  destSub: {
+    KO: '답변한 기간과 유형 기준으로 고른 도시 가이드예요. 상세 조건은 각 가이드에서 확인하세요.',
+    EN: 'Cities picked for your answers — check details in each guide.',
+    JP: '回答した期間とタイプ基準で選んだ都市ガイドです。詳細は各ガイドでご確認ください。',
+  },
+  destGuideLabel: { KO: '도시 가이드', EN: 'City guide', JP: '都市ガイド' },
+  destSetLabel: { KO: 'TRIP SET', EN: 'TRIP SET', JP: 'TRIP SET' },
+  notifyLabel: {
+    KO: '이 유형에 맞는 프로그램이 열리면 가장 먼저 알려드릴게요',
+    EN: "We'll tell you first when a program for your type opens",
+    JP: 'このタイプに合うプログラムの開始をいち早くお知らせします',
+  },
   checklistTitle: { KO: '실행 체크리스트', EN: 'Action checklist', JP: '実行チェックリスト' },
   checklistSub: {
     KO: '체크 상태는 이 브라우저에 저장돼요 — 체류 중에도 열어서 하나씩 지워 나가세요',

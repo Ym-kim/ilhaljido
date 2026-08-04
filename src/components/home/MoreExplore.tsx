@@ -19,8 +19,8 @@ const LINKS: { href: string; label: L; desc: L }[] = [
   {
     href: '/tools/diagnosis',
     label: { KO: '나에게 맞는 워케이션 진단', EN: 'Workation self-check', JP: '自分に合う旅を診断' },
-    // 2026-08-04 정직성 정정: 진단 결과는 프로그램·체크리스트 추천 (목적지 매핑은 별도 브랜치 예정 — 구현 전까지 카피를 실제 기능에 맞춤)
-    desc: { KO: '3분 진단으로 맞춤 프로그램 추천', EN: '3-minute program match', JP: '3分でおすすめプログラム' },
+    // 2026-08-04 목적지 매핑 구현(diagnosis-destinations-v1)으로 카피 복원 — 이제 실기능
+    desc: { KO: '3분 진단으로 목적지·프로그램 추천', EN: '3-minute destination & program match', JP: '3分で行き先とプログラム' },
   },
   {
     href: '/visa-ai',
