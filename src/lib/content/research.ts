@@ -99,16 +99,29 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   taiwan: [
     {
-      id: 'taiwan-boca',
-      title: { KO: '대만 외교부 영사국 비자 안내', EN: 'Taiwan Bureau of Consular Affairs', JP: '台湾外交部領事事務局' },
+      id: 'taiwan-boca-visa-exempt',
+      title: { KO: '대만 무비자 입국 공식 안내', EN: 'Taiwan visa-exempt entry (official)', JP: '台湾 ビザ免除入国の公式案内' },
       sourceName: 'Bureau of Consular Affairs, MOFA',
-      sourceUrl: 'https://www.boca.gov.tw/np-1-2.html',
+      sourceUrl: 'https://www.boca.gov.tw/cp-149-4486-7785a-2.html',
       sourceType: 'official',
       verifiedAt: '2026-08-06',
       note: {
-        KO: '무비자 입국·도착비자·전자비자 구분이 영사국 공식 안내에 정리돼 있습니다.',
-        EN: 'The consular bureau distinguishes visa-exempt entry, landing visas and eVisas.',
-        JP: 'ビザ免除入国・到着ビザ・電子ビザの区分が公式に案内されています。',
+        KO: '무비자 대상국 목록에 한국이 포함되며 체류 기간 90일로 명시돼 있습니다.',
+        EN: 'The visa-exemption list includes the Republic of Korea with a 90-day duration of stay.',
+        JP: 'ビザ免除対象国リストに韓国が含まれ、滞在期間90日と明記されています。',
+      },
+    },
+    {
+      id: 'taiwan-boca-nomad',
+      title: { KO: '대만 디지털노마드 방문비자 공식 안내', EN: 'Taiwan digital nomad visitor visa (official)', JP: '台湾 デジタルノマド訪問査証' },
+      sourceName: 'Bureau of Consular Affairs, MOFA',
+      sourceUrl: 'https://www.boca.gov.tw/cp-158-7718-c0382-2.html',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '연령대별 소득·잔고 요건이 명시돼 있습니다. 다만 체류 허용 기간은 이 페이지에 표기돼 있지 않아, 기간은 신청 시 재확인이 필요합니다.',
+        EN: 'Income and bank-balance requirements are stated by age band. The permitted length of stay is not stated on this page, so confirm it when applying.',
+        JP: '年齢帯別の収入・残高要件が明記されています。ただし滞在可能期間はこのページに記載がないため、申請時に再確認が必要です。',
       },
     },
   ],
@@ -138,6 +151,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
     },
   ],
   malaysia: [
+    {
+      id: 'malaysia-de-rantau',
+      title: { KO: 'DE Rantau 노마드 패스 공식 안내', EN: 'DE Rantau Nomad Pass (official)', JP: 'DE Rantau ノマドパス公式案内' },
+      sourceName: 'Malaysia Digital Economy Corporation (MDEC)',
+      sourceUrl: 'https://mdec.my/derantau',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '전문방문패스 유효기간과 직군별 연소득 요건이 명시돼 있습니다.',
+        EN: 'States the Professional Visit Pass validity and annual income thresholds by talent category.',
+        JP: '専門訪問パスの有効期間と職種別の年収要件が明記されています。',
+      },
+    },
     {
       id: 'malaysia-imi-visa',
       title: { KO: '말레이시아 이민국 비자 안내', EN: 'Malaysia Immigration Department visa services', JP: 'マレーシア入国管理局ビザ案内' },
