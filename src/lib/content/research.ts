@@ -158,6 +158,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   philippines: [
     {
+      id: 'philippines-visa-waiver',
+      title: { KO: '필리핀 방문자 비자 웨이버 공식 안내', EN: 'Philippines — Temporary Visitor (9A) visa waiver', JP: 'フィリピン 一時訪問者ビザウェーバーの公式案内' },
+      sourceName: 'Bureau of Immigration',
+      sourceUrl: 'https://immigration.gov.ph/visas/visa-waiver/',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '무비자 최초 체류 일수와 웨이버 연장 일수, 누적 체류 상한이 명시돼 있습니다.',
+        EN: 'States the initial visa-free stay, the extension granted by the waiver and the cumulative stay limits.',
+        JP: 'ビザ免除の当初滞在日数、ウェーバーによる延長日数、通算滞在の上限が明記されています。',
+      },
+    },
+    {
       id: 'philippines-immigration',
       title: { KO: '필리핀 이민청 공식 사이트', EN: 'Philippine Bureau of Immigration', JP: 'フィリピン入国管理局' },
       sourceName: 'Bureau of Immigration',
@@ -167,6 +180,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
     },
   ],
   singapore: [
+    {
+      id: 'singapore-ica-extend',
+      title: { KO: '싱가포르 단기방문패스 연장 공식 안내', EN: 'Singapore — extension of short-term visit pass', JP: 'シンガポール 短期訪問パス延長の公式案内' },
+      sourceName: 'Immigration & Checkpoints Authority',
+      sourceUrl: 'https://www.ica.gov.sg/enter-depart/extend_short_stay',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '연장 신청 가능 시점과 수수료, 온라인 접수 원칙이 명시돼 있습니다.',
+        EN: 'States when an extension may be filed, the fees involved and that applications are online only.',
+        JP: '延長申請が可能な時期と手数料、オンライン受付のみである旨が明記されています。',
+      },
+    },
     {
       id: 'singapore-ica-entry',
       title: { KO: '싱가포르 입국 요건 공식 안내', EN: 'Singapore entry requirements (ICA)', JP: 'シンガポール入国要件（ICA）' },
