@@ -52,6 +52,16 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     JP: 'ベトナム入国管理局の公式ポータルでは、電子ビザの滞在可能期間を最長90日と案内しています。国籍と申請条件を確認してください。',
   },
   // 2026-08-06 확충 — 아래 3개국은 공식 원문 판독에 성공한 범위만 기재
+  philippines: {
+    KO: '필리핀 이민청 공식 안내에 따르면 무비자 대상 관광객은 최초 30일 체류가 허용되며, 비자 웨이버를 신청하면 29일이 추가됩니다. 이후에도 1개월·2개월 단위 연장이 가능하며 누적 체류 상한은 무비자 대상 국적 36개월, 비자 필요 국적 24개월입니다. 필요 서류는 이민청이 제공하는 체크리스트로 확인하세요.',
+    EN: 'The Philippine Bureau of Immigration admits visa-free tourists for an initial 30 days, with a visa waiver adding 29 more days. Further extensions are available in one- or two-month blocks, up to a cumulative limit of 36 months for visa-free nationals and 24 months for visa-required nationals. Check the bureau’s checklist for the required documents.',
+    JP: 'フィリピン入国管理局の公式案内によると、ビザ免除対象の観光客は当初30日の滞在が認められ、ビザウェーバーの申請でさらに29日が加算されます。その後も1カ月・2カ月単位の延長が可能で、通算滞在の上限はビザ免除対象国籍が36カ月、ビザが必要な国籍が24カ月です。必要書類は入管が提供するチェックリストで確認してください。',
+  },
+  singapore: {
+    KO: '싱가포르 ICA는 입국 시점에 여권 잔여 유효기간 6개월 이상을 요구하며, 도착 3일 전까지 SG 도착카드(SGAC) 제출을 필수로 안내합니다. 체류 기간은 입국 시 부여되는 방문패스로 정해지므로 ICA의 유효기간 조회 도구로 확인해야 하고, 연장은 남은 유효기간이 14일 이하일 때 온라인으로만 신청할 수 있습니다(수수료 S$40, 비자 필요 국적은 S$30 추가). 초과 체류는 처벌 대상입니다.',
+    EN: 'Singapore’s ICA requires at least six months of passport validity on entry and the SG Arrival Card submitted within three days before arrival. The length of stay is set by the visit pass granted at entry, so check ICA’s validity tool; extensions can only be filed online when 14 days or less remain (S$40, plus S$30 for visa-required nationals). Overstaying is a punishable offence.',
+    JP: 'シンガポールICAは入国時点で旅券残存6カ月以上を求め、到着3日前までのSG到着カード提出を必須としています。滞在期間は入国時に付与される訪問パスで決まるため、ICAの有効期間確認ツールで確認が必要です。延長は残り14日以下の時点でオンラインのみ申請でき（手数料S$40、ビザが必要な国籍はS$30追加）、超過滞在は処罰の対象です。',
+  },
   indonesia: {
     KO: '인도네시아 이민총국 공식 FAQ에 따르면 E33G 원격근무 비자는 연소득 미화 6만 달러 이상을 증명해야 하고, 최근 3개월 개인 계좌 잔고 미화 2,000달러 이상도 요구됩니다. 비자는 발급일로부터 90일 이내에 입국에 사용해야 하며, KITAS 취득 후 최대 1년 체류가 가능합니다. 인도네시아 내 개인·기업으로부터 보수를 받는 근로와 현지에서의 재화·용역 판매는 금지됩니다.',
     EN: 'Indonesia’s immigration FAQ states the E33G remote worker visa requires proof of at least US$60,000 in annual income plus a personal bank balance of at least US$2,000 over the last three months. The visa must be used to enter within 90 days of issue, and the permit allows up to one year of stay. Receiving payment from Indonesian individuals or companies, and selling goods or services locally, are prohibited.',
