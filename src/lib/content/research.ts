@@ -42,6 +42,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   indonesia: [
     {
+      id: 'indonesia-e33g-faq',
+      title: { KO: '인도네시아 E33G 원격근무 비자 공식 FAQ', EN: 'Indonesia E33G remote worker visa — official FAQ', JP: 'インドネシアE33Gリモートワーカー査証 公式FAQ' },
+      sourceName: 'Directorate General of Immigration Indonesia',
+      sourceUrl: 'https://evisa.imigrasi.go.id/front/faq/e076131c-0d39-469b-afaf-75fc66aff923',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '연소득·잔고 요건, 입국 기한, 체류 기간, 인도네시아 내 영리활동 금지 조항이 명시돼 있습니다.',
+        EN: 'States the income and balance requirements, the entry deadline, the length of stay and the ban on earning income inside Indonesia.',
+        JP: '年収・残高要件、入国期限、滞在期間、インドネシア国内での収益活動禁止が明記されています。',
+      },
+    },
+    {
       id: 'indonesia-evisa',
       title: { KO: '인도네시아 전자비자 공식 포털', EN: 'Indonesia official e-Visa portal', JP: 'インドネシア電子ビザ公式ポータル' },
       sourceName: 'Directorate General of Immigration Indonesia',
