@@ -92,6 +92,21 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   // ───────────────────────────────────────────────────────────────────────────
   australia: [
     {
+      id: 'australia-eta-embassy-korea',
+      title: { KO: '주한 호주대사관 ETA 안내', EN: 'Australian Embassy in Korea — ETA (601)', JP: '駐韓オーストラリア大使館 ETA案内' },
+      sourceName: 'Australian Embassy, Republic of Korea',
+      // 본청 immi.homeaffairs.gov.au는 curl·WebFetch 모두 403(WAF) — 같은 정부의
+      // 주한 대사관 페이지가 한국 여권 기준을 직접 안내해 판독에 성공(2026-08-06)
+      sourceUrl: 'https://southkorea.embassy.gov.au/seol/ETA601.html',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '한국 여권 소지자의 ETA 체류 기간과 허용 방문 목적이 명시돼 있습니다.',
+        EN: 'States the ETA length of stay and the permitted purposes of visit for Korean passport holders.',
+        JP: '韓国旅券保持者のETA滞在期間と、認められる訪問目的が明記されています。',
+      },
+    },
+    {
       id: 'australia-eta-601',
       title: { KO: '호주 ETA(전자여행허가) 공식 안내', EN: 'Australia ETA (subclass 601) official page', JP: 'オーストラリアETA公式案内' },
       sourceName: 'Department of Home Affairs',
