@@ -62,6 +62,17 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'Hungary’s immigration authority issues the White Card for up to one year, extendable once for another year. Applicants must have net monthly income of €3,000 for at least six months before entry and maintain it during the stay; working for Hungarian employers or holding shares in Hungarian companies is not allowed, and family reunification permits are not granted.',
     JP: 'ハンガリー入国管理当局はホワイトカード（デジタルノマド滞在許可）を最長1年で発給し、1回に限り1年の延長が可能と案内しています。入国前6カ月以上、月の純収入€3,000を満たし滞在中も維持する必要があり、ハンガリーの雇用主のための就労や同国企業の持分保有は不可で、家族帯同の在留許可は認められません。',
   },
+  italy: {
+    // 소득 금액은 공식 페이지가 밝힌 기준 연도(2024)를 함께 적는다 — 의료세 연동이라 갱신 대상
+    KO: '이탈리아 총영사관 공식 안내에 따르면 디지털 노마드·원격근무 비자는 프리랜서(디지털 노마드)와 회사 소속 원격근무자로 나뉘며, 학사 이상 학위 또는 3년 이상 경력을 갖춘 고숙련자가 대상입니다. 최소 연소득은 페이지가 제시한 2024년 기준 €24,789이고, 의료보험은 최소 €30,000 보장이 필요합니다. 비자 기간 전체를 커버하는 본인 명의 임대차·부동산 계약도 요구됩니다. 체류허가(Permesso di Soggiorno)는 1년으로 발급되며 현지에서 갱신합니다.',
+    EN: 'Italy’s consular guidance splits the digital nomad / remote worker visa into freelancers and employees working remotely, and limits it to highly specialised applicants with a degree or at least three years of experience. Minimum annual income is €24,789 on the 2024 basis cited by the page, and health insurance must cover at least €30,000. A lease or property deed in the applicant’s name covering the whole visa period is also required. The residence permit is issued for one year and renewed locally.',
+    JP: 'イタリア総領事館の公式案内によると、デジタルノマド・リモートワーカー査証はフリーランスと企業所属のリモート勤務者に分かれ、学位または3年以上の経験を持つ高度専門人材が対象です。最低年収はページが示す2024年基準で€24,789、医療保険は最低€30,000の補償が必要です。査証期間全体をカバーする本人名義の賃貸・不動産契約も求められます。滞在許可は1年で発給され、現地で更新します。',
+  },
+  germany: {
+    KO: '독일 외무부는 전용 디지털 노마드 비자 대신 체류법 제21조의 두 경로를 안내합니다. 자영업(1항)은 사업의 경제적 효과와 자본·대출을 통한 자금 확보를 증명해야 하고, 자유업(5항)은 사업 자금·본인 생계 능력·해당 직업 수행 허가를 증명해야 합니다. 45세를 넘으면 노후 대비를 추가로 증명해야 하며, 사업이 자리 잡으면 체류허가를 우선 최대 3년까지 연장할 수 있습니다.',
+    EN: 'Germany’s foreign office describes two routes under Section 21 of the Residence Act rather than a dedicated nomad visa. Self-employment (21(1)) requires showing economic benefit and secured financing through capital or an approved loan; the liberal-profession route (21(5)) requires funding for the project, ability to support yourself and a permit to practise the profession. Applicants over 45 must additionally prove retirement provision, and a successful business can have the permit extended initially for up to three years.',
+    JP: 'ドイツ外務省は専用のデジタルノマド査証ではなく、滞在法第21条の2つの経路を案内しています。自営業（1項）は事業の経済的効果と、資本または融資承認による資金確保の証明が必要です。自由業（5項）は事業資金・自身の生計能力・当該職業の実施許可の証明が必要です。45歳を超える場合は老後の備えの証明が加わり、事業が軌道に乗れば滞在許可はまず最長3年まで延長できます。',
+  },
   spain: {
     // 금액은 공식 페이지가 명시한 SMI 기준 연도(2025)를 함께 적는다 — 최저임금 인상 시 갱신 대상
     KO: '스페인 영사 공식 안내에 따르면 원격근무 비자는 최저임금(SMI)의 200% 소득이 필요하며, 페이지가 제시한 2025년 SMI €1,184 기준으로 월 €2,368입니다. 동반 가족은 첫 1인 75%·이후 1인당 25%가 가산됩니다. 비자 유효기간은 최대 1년이고, 인정 대학·전문학교 학위 또는 3년 이상 경력이 필요합니다. 근로자는 스페인 기업에서 일할 수 없고, 자영업자도 스페인 기업 업무 비중이 20%를 넘을 수 없습니다.',
