@@ -8,6 +8,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useLang } from '@/context/LanguageContext'
 import { Logo } from '@/components/brand/Logo'
 import { GoogleIcon } from '@/components/brand/GoogleIcon'
+import { KakaoIcon } from '@/components/brand/KakaoIcon'
 
 function safeRedirectPath(raw: string | null): string {
   if (!raw) return '/mypage'
@@ -52,6 +53,15 @@ function LoginForm() {
       options: { redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTo)}` },
     })
     if (error) setError(tr('auth_err_google'))
+  }
+
+  const handleKakaoLogin = async () => {
+    setError(null)
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'kakao',
+      options: { redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTo)}` },
+    })
+    if (error) setError(tr('auth_err_kakao'))
   }
 
   return (
@@ -115,10 +125,19 @@ function LoginForm() {
             <div className="flex-1 h-px bg-[#e2e8f0]" />
           </div>
 
+          {/* 카카오 공식 버튼 가이드: 컨테이너 #FEE500 · 라벨 검정 85% */}
+          <button
+            type="button"
+            onClick={handleKakaoLogin}
+            className="w-full bg-[#FEE500] text-black/85 font-bold py-3 rounded-xl hover:brightness-95 transition-[filter] flex items-center justify-center gap-2.5 text-sm">
+            <KakaoIcon />
+            {tr('auth_kakao')}
+          </button>
+
           <button
             type="button"
             onClick={handleGoogleLogin}
-            className="w-full bg-white border border-[#dbeafe] text-[#334155] font-bold py-3 rounded-xl hover:bg-[#f0f9ff] transition-colors flex items-center justify-center gap-2.5 text-sm">
+            className="w-full mt-3 bg-white border border-[#dbeafe] text-[#334155] font-bold py-3 rounded-xl hover:bg-[#f0f9ff] transition-colors flex items-center justify-center gap-2.5 text-sm">
             <GoogleIcon />
             {tr('auth_google')}
           </button>
