@@ -32,6 +32,21 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   thailand: [
     {
+      id: 'thailand-dtv-embassy-korea',
+      title: { KO: '주한 태국대사관 DTV 비자 공식 안내', EN: 'Royal Thai Embassy Seoul — Destination Thailand Visa', JP: '駐韓タイ大使館 DTV査証の公式案内' },
+      sourceName: 'Royal Thai Embassy, Seoul',
+      // thaievisa.go.th 본체는 JS 렌더, 외교부 PDF는 CID 폰트라 판독 불가 →
+      // 주한 대사관 한국어 페이지에서 신청 요건 원문 확보(2026-08-06)
+      sourceUrl: 'https://seoul.thaiembassy.org/kr/publicservice/destination-thailand-visa-dtv?cate=5d661cd515e39c30180049a4',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '한국 거주자 기준 DTV 신청 요건과 재정 요건, 연장 가능 여부가 한국어로 안내돼 있습니다.',
+        EN: 'Sets out DTV application and financial requirements for applicants residing in Korea, including extension.',
+        JP: '韓国居住者を対象としたDTVの申請要件・資金要件・延長可否が案内されています。',
+      },
+    },
+    {
       id: 'thailand-evisa',
       title: { KO: '태국 전자비자 공식 포털', EN: 'Thailand official e-Visa portal', JP: 'タイ電子ビザ公式ポータル' },
       sourceName: 'Thai e-Visa',
