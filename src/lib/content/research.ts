@@ -226,6 +226,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   italy: [
     {
+      id: 'italy-digital-nomad-visa',
+      title: { KO: '이탈리아 디지털 노마드·원격근무 비자 공식 안내', EN: 'Italy digital nomad / remote worker visa — official', JP: 'イタリア デジタルノマド・リモートワーカー査証の公式案内' },
+      sourceName: 'Consolato Generale d’Italia (New York)',
+      sourceUrl: 'https://consnewyork.esteri.it/en/servizi-consolari-e-visti/servizi-per-il-cittadino-straniero/visti/visas-to-enter-italy/digital-nomad-remote-worker-visa/',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '최소 연소득·의료보험 보장액·숙소 계약 요건이 명시돼 있습니다. 금액은 페이지가 밝힌 기준 연도를 함께 확인하세요.',
+        EN: 'States the minimum annual income, health-insurance coverage and accommodation requirements. Check the reference year the page cites for the amounts.',
+        JP: '最低年収・医療保険の補償額・住居契約の要件が明記されています。金額はページが示す基準年度も併せて確認してください。',
+      },
+    },
+    {
       id: 'italy-maeci-visa',
       title: { KO: '이탈리아 입국 비자 공식 안내', EN: 'Italy entry visa official guidance', JP: 'イタリア入国査証の公式案内' },
       sourceName: 'Ministero degli Affari Esteri (MAECI)',
@@ -240,6 +253,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
     },
   ],
   germany: [
+    {
+      id: 'germany-self-employment',
+      title: { KO: '독일 자영업·프리랜서 체류허가 공식 FAQ', EN: 'Germany self-employment / freelance residence permit — official FAQ', JP: 'ドイツ 自営業・フリーランス滞在許可の公式FAQ' },
+      sourceName: 'Auswärtiges Amt (Federal Foreign Office)',
+      sourceUrl: 'https://www.auswaertiges-amt.de/en/visa-service/buergerservice/faq/12-own-business/606752',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '체류법 제21조의 자영업(1항)·자유업(5항) 경로와 45세 초과 시 추가 요건이 명시돼 있습니다.',
+        EN: 'Sets out the self-employment (Section 21(1)) and liberal-profession (Section 21(5)) routes and the extra condition for applicants over 45.',
+        JP: '滞在法第21条の自営業（1項）・自由業（5項）の経路と、45歳超の追加要件が明記されています。',
+      },
+    },
     {
       id: 'germany-visa-service',
       title: { KO: '독일 외무부 비자 서비스', EN: 'German Federal Foreign Office visa service', JP: 'ドイツ外務省ビザサービス' },
