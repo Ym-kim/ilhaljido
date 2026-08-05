@@ -203,6 +203,19 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   spain: [
     {
+      id: 'spain-telework-visa',
+      title: { KO: '스페인 원격근무(디지털 노마드) 비자 공식 안내', EN: 'Spain telework (digital nomad) visa — official', JP: 'スペイン テレワーク（デジタルノマド）査証の公式案内' },
+      sourceName: 'Ministerio de Asuntos Exteriores (Consulate General, Washington)',
+      sourceUrl: 'https://www.exteriores.gob.es/Consulados/washington/en/ServiciosConsulares/Paginas/Consular/Telework-visa.aspx',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '소득 요건(SMI 대비 비율)·비자 유효기간·자격 요건·스페인 기업 업무 비중 상한이 명시돼 있습니다. 표기된 SMI 기준 연도를 함께 확인하세요.',
+        EN: 'States the income threshold as a share of the minimum wage, the visa validity, eligibility criteria and the cap on work for Spanish companies. Check which minimum-wage year the figures use.',
+        JP: '最低賃金比の収入要件・査証の有効期間・資格要件・スペイン企業向け業務の上限が明記されています。基準となる最低賃金の年度も併せて確認してください。',
+      },
+    },
+    {
       id: 'spain-consular',
       title: { KO: '스페인 외무부 영사 서비스', EN: 'Spain consular services', JP: 'スペイン外務省領事サービス' },
       sourceName: 'Ministerio de Asuntos Exteriores',
@@ -238,10 +251,25 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   czech: [
     {
+      id: 'czech-ipc-portal',
+      title: { KO: '체코 외국인 공식 정보 포털', EN: 'Czech official information portal for foreigners', JP: 'チェコ 外国人向け公式情報ポータル' },
+      sourceName: 'Ministry of the Interior of the Czech Republic',
+      // 내무부 안내가 이 포털을 참조처로 지정. frs.gov.cz → ipc.gov.cz로 301 이전됨(2026-08-06 실측)
+      sourceUrl: 'https://ipc.gov.cz/en/',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '비자·체류허가 종류와 신청 안내가 이 포털에 모여 있습니다. 디지털 노마드 전용 제도는 확인되지 않았습니다.',
+        EN: 'Visa and residence permit types and application guides are consolidated here. No dedicated digital nomad scheme was found.',
+        JP: '査証・滞在許可の種類と申請案内がこのポータルに集約されています。デジタルノマド専用制度は確認できませんでした。',
+      },
+    },
+    {
       id: 'czech-mvcr',
       title: { KO: '체코 내무부 외국인 체류 안내', EN: 'Czech Ministry of the Interior — residence of foreigners', JP: 'チェコ内務省 外国人滞在案内' },
       sourceName: 'Ministerstvo vnitra ČR',
-      sourceUrl: 'https://www.mvcr.cz/mvcren/',
+      // mvcr.cz → mv.gov.cz 도메인 이전 확인(2026-08-06 리다이렉트 실측)
+      sourceUrl: 'https://mv.gov.cz/mvcren/',
       sourceType: 'official',
       verifiedAt: '2026-08-06',
     },

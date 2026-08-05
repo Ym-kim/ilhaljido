@@ -62,6 +62,12 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'Hungary’s immigration authority issues the White Card for up to one year, extendable once for another year. Applicants must have net monthly income of €3,000 for at least six months before entry and maintain it during the stay; working for Hungarian employers or holding shares in Hungarian companies is not allowed, and family reunification permits are not granted.',
     JP: 'ハンガリー入国管理当局はホワイトカード（デジタルノマド滞在許可）を最長1年で発給し、1回に限り1年の延長が可能と案内しています。入国前6カ月以上、月の純収入€3,000を満たし滞在中も維持する必要があり、ハンガリーの雇用主のための就労や同国企業の持分保有は不可で、家族帯同の在留許可は認められません。',
   },
+  spain: {
+    // 금액은 공식 페이지가 명시한 SMI 기준 연도(2025)를 함께 적는다 — 최저임금 인상 시 갱신 대상
+    KO: '스페인 영사 공식 안내에 따르면 원격근무 비자는 최저임금(SMI)의 200% 소득이 필요하며, 페이지가 제시한 2025년 SMI €1,184 기준으로 월 €2,368입니다. 동반 가족은 첫 1인 75%·이후 1인당 25%가 가산됩니다. 비자 유효기간은 최대 1년이고, 인정 대학·전문학교 학위 또는 3년 이상 경력이 필요합니다. 근로자는 스페인 기업에서 일할 수 없고, 자영업자도 스페인 기업 업무 비중이 20%를 넘을 수 없습니다.',
+    EN: 'Spain’s consular guidance requires income of 200% of the minimum wage (SMI) for the telework visa — €2,368 per month using the 2025 SMI of €1,184 cited on the page. Family adds 75% for the first member and 25% for each additional one. The visa is valid for a maximum of one year, and applicants need a degree from a recognised university or professional school, or at least three years of experience. Employees may not work for Spanish companies, and for the self-employed, work for Spanish companies may not exceed 20% of the total.',
+    JP: 'スペイン領事の公式案内によると、テレワーク査証は最低賃金（SMI）の200%の収入が必要で、ページが示す2025年SMI €1,184を基準に月€2,368となります。同伴家族は1人目75%・以降1人あたり25%が加算されます。査証の有効期間は最長1年で、認定大学・専門学校の学位または3年以上の実務経験が必要です。被雇用者はスペイン企業で就労できず、自営業者もスペイン企業向け業務が全体の20%を超えてはなりません。',
+  },
   croatia: {
     KO: '크로아티아 내무부는 디지털 노마드 임시체류를 최대 18개월로 허가하며, 18개월 미만으로 받은 경우 만료 60일 전에 최대 6개월 연장을 신청할 수 있다고 안내합니다. 월 소득 요건은 €3,622.50이며(12개월 €43,470·18개월 €65,205 기준), 이전 체류 종료 후 6개월이 지나야 다시 신청할 수 있습니다. 제출 서류는 크로아티아어 또는 영어여야 합니다.',
     EN: 'Croatia’s interior ministry grants digital nomad temporary stay for up to 18 months; if granted for less, an extension of up to six months can be requested 60 days before expiry. Monthly income must be €3,622.50 (€43,470 for 12 months, €65,205 for 18), and a new application is only possible six months after the previous stay ends. Documents must be in Croatian or English.',
