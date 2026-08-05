@@ -52,6 +52,11 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     JP: 'ベトナム入国管理局の公式ポータルでは、電子ビザの滞在可能期間を最長90日と案内しています。国籍と申請条件を確認してください。',
   },
   // 2026-08-06 확충 — 아래 3개국은 공식 원문 판독에 성공한 범위만 기재
+  indonesia: {
+    KO: '인도네시아 이민총국 공식 FAQ에 따르면 E33G 원격근무 비자는 연소득 미화 6만 달러 이상을 증명해야 하고, 최근 3개월 개인 계좌 잔고 미화 2,000달러 이상도 요구됩니다. 비자는 발급일로부터 90일 이내에 입국에 사용해야 하며, KITAS 취득 후 최대 1년 체류가 가능합니다. 인도네시아 내 개인·기업으로부터 보수를 받는 근로와 현지에서의 재화·용역 판매는 금지됩니다.',
+    EN: 'Indonesia’s immigration FAQ states the E33G remote worker visa requires proof of at least US$60,000 in annual income plus a personal bank balance of at least US$2,000 over the last three months. The visa must be used to enter within 90 days of issue, and the permit allows up to one year of stay. Receiving payment from Indonesian individuals or companies, and selling goods or services locally, are prohibited.',
+    JP: 'インドネシア入国管理総局の公式FAQによると、E33Gリモートワーカー査証は年収6万米ドル以上の証明が必要で、直近3カ月の個人口座残高2,000米ドル以上も求められます。査証は発給日から90日以内に入国に使用する必要があり、KITAS取得後は最長1年の滞在が可能です。インドネシア国内の個人・企業から報酬を受ける就労や、現地での物品・サービス販売は禁止されています。',
+  },
   taiwan: {
     KO: '대만 영사국은 한국 국적자의 무비자 체류를 최대 90일로 안내하며, 입국일 기준 여권 잔여 유효기간 6개월과 확약된 출국 항공권을 요구합니다. 무비자 체류는 원칙적으로 연장되지 않습니다. 디지털 노마드 방문비자는 무비자 대상국 국적자만 신청할 수 있고, 연소득 요건은 20~29세 미화 2만 달러·30세 이상 미화 4만 달러이며 최근 6개월 평균 잔고 미화 1만 달러를 함께 봅니다.',
     EN: 'Taiwan’s consular bureau allows visa-exempt stays of up to 90 days for Korean nationals, requiring six months of passport validity on entry and a confirmed onward ticket; visa-exempt stays are generally not extendable. The digital nomad visitor visa is open only to nationals of visa-exempt countries and requires annual income of US$20,000 (ages 20–29) or US$40,000 (30+), plus an average bank balance of US$10,000 over six months.',
