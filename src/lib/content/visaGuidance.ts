@@ -67,6 +67,13 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'Singapore’s ICA requires at least six months of passport validity on entry and the SG Arrival Card submitted within three days before arrival. The length of stay is set by the visit pass granted at entry, so check ICA’s validity tool; extensions can only be filed online when 14 days or less remain (S$40, plus S$30 for visa-required nationals). Overstaying is a punishable offence.',
     JP: 'シンガポールICAは入国時点で旅券残存6カ月以上を求め、到着3日前までのSG到着カード提出を必須としています。滞在期間は入国時に付与される訪問パスで決まるため、ICAの有効期間確認ツールで確認が必要です。延長は残り14日以下の時点でオンラインのみ申請でき（手数料S$40、ビザが必要な国籍はS$30追加）、超過滞在は処罰の対象です。',
   },
+  thailand: {
+    // ⚠️ 대사관 페이지가 '유효기간 180일, 체류기간 5년'으로 병기 — 통상 알려진 구조와
+    // 반대로 읽힐 여지가 있어 값을 해석하지 않고 원문 표기 그대로 옮기고 확인을 안내한다
+    KO: '주한 태국대사관은 DTV를 복수 입국 비자로 안내하며, 신청 요건으로 잔고 50만 밧 이상을 3개월간 유지한 영문 은행거래내역서와 원격근무·프리랜서 증빙(재직증명 또는 계약서, 사업자등록증, 소득증명)을 요구합니다. 신청 시점에 한국에 체류 중이어야 하고 여권 잔여 유효기간은 6개월 이상이어야 합니다. 체류기간은 태국 현지 이민국에서 180일 추가 연장을 신청할 수 있습니다. 대사관 안내에는 유효기간과 체류기간이 각각 180일·5년으로 병기돼 있으므로, 어느 항목이 어디에 적용되는지는 신청 시 확인하세요.',
+    EN: 'The Royal Thai Embassy in Seoul describes the DTV as a multiple-entry visa. Applicants must show an English bank statement holding at least THB 500,000 for three months plus evidence of remote or freelance work (employment certificate or contract, business registration, proof of income). You must be residing in Korea when applying and hold a passport valid for at least six months. A further 180-day extension can be requested from Thai Immigration. The embassy page lists the visa validity and length of stay as 180 days and five years respectively, so confirm which applies to which when you apply.',
+    JP: '駐韓タイ大使館はDTVを数次入国査証として案内しています。申請には残高50万バーツ以上を3カ月間維持した英文銀行取引明細書と、リモートワーク・フリーランスの証明（在職証明または契約書、事業者登録証、所得証明）が必要です。申請時点で韓国に滞在しており、旅券残存有効期間は6カ月以上である必要があります。滞在期間はタイ現地の入国管理局で180日の延長申請が可能です。大使館の案内では有効期間と滞在期間が180日・5年と併記されているため、どちらがどの項目に当たるかは申請時に確認してください。',
+  },
   indonesia: {
     KO: '인도네시아 이민총국 공식 FAQ에 따르면 E33G 원격근무 비자는 연소득 미화 6만 달러 이상을 증명해야 하고, 최근 3개월 개인 계좌 잔고 미화 2,000달러 이상도 요구됩니다. 비자는 발급일로부터 90일 이내에 입국에 사용해야 하며, KITAS 취득 후 최대 1년 체류가 가능합니다. 인도네시아 내 개인·기업으로부터 보수를 받는 근로와 현지에서의 재화·용역 판매는 금지됩니다.',
     EN: 'Indonesia’s immigration FAQ states the E33G remote worker visa requires proof of at least US$60,000 in annual income plus a personal bank balance of at least US$2,000 over the last three months. The visa must be used to enter within 90 days of issue, and the permit allows up to one year of stay. Receiving payment from Indonesian individuals or companies, and selling goods or services locally, are prohibited.',
