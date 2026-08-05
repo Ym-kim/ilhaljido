@@ -89,12 +89,30 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   portugal: [
     {
-      id: 'portugal-mne-visas',
-      title: { KO: '포르투갈 비자 공식 포털', EN: 'Portugal official visa portal', JP: 'ポルトガル査証公式ポータル' },
+      id: 'portugal-temporary-stay-docs',
+      title: { KO: '포르투갈 임시체류 비자 필요서류(원격근무 포함)', EN: 'Portugal temporary stay visa — required documents', JP: 'ポルトガル一時滞在査証 必要書類' },
       sourceName: 'Ministério dos Negócios Estrangeiros',
-      sourceUrl: 'https://vistos.mne.gov.pt/en/',
+      sourceUrl: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/temporary-stay',
       sourceType: 'official',
       verifiedAt: '2026-08-06',
+      note: {
+        KO: '원격근무(디지털 노마드) 항목에 최근 3개월 평균 월소득 요건이 최저임금의 4배로 명시돼 있습니다.',
+        EN: 'The remote-work (digital nomad) section requires average monthly income over the last three months of four times the minimum wage.',
+        JP: 'リモートワーク（デジタルノマド）項目に、直近3カ月の平均月収が最低賃金の4倍と明記されています。',
+      },
+    },
+    {
+      id: 'portugal-means-of-subsistence',
+      title: { KO: '포르투갈 생계 수단 기준', EN: 'Portugal means of subsistence', JP: 'ポルトガル 生計手段の基準' },
+      sourceName: 'Ministério dos Negócios Estrangeiros',
+      sourceUrl: 'https://vistos.mne.gov.pt/en/national-visas/necessary-documentation/means-of-subsistence',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '기준 최저임금(RMMG)과 동반 가족 가산율(성인 50%·미성년 30%)이 명시돼 있습니다.',
+        EN: 'States the reference minimum wage and the family uplift rates (50% per additional adult, 30% per minor).',
+        JP: '基準となる最低賃金と、同伴家族の加算率（成人50%・未成年30%）が明記されています。',
+      },
     },
   ],
   taiwan: [
@@ -240,12 +258,17 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   croatia: [
     {
-      id: 'croatia-mup',
-      title: { KO: '크로아티아 내무부 외국인 안내', EN: 'Croatian Ministry of the Interior', JP: 'クロアチア内務省' },
+      id: 'croatia-digital-nomads',
+      title: { KO: '크로아티아 디지털 노마드 임시체류 공식 안내', EN: 'Croatia — temporary stay of digital nomads', JP: 'クロアチア デジタルノマド一時滞在の公式案内' },
       sourceName: 'Ministarstvo unutarnjih poslova',
-      sourceUrl: 'https://mup.gov.hr/en',
+      sourceUrl: 'https://mup.gov.hr/aliens-281621/stay-and-work/temporary-stay-of-digital-nomads/286833',
       sourceType: 'official',
       verifiedAt: '2026-08-06',
+      note: {
+        KO: '체류 기간·월 소득 요건·재신청 대기 기간이 내무부 공식 안내에 명시돼 있습니다.',
+        EN: 'The interior ministry states the permitted period, monthly income threshold and the waiting period before reapplying.',
+        JP: '滞在期間・月収要件・再申請までの待機期間が内務省の公式案内に明記されています。',
+      },
     },
   ],
   georgia: [

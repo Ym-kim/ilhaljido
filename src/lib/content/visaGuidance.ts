@@ -62,6 +62,17 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'Hungary’s immigration authority issues the White Card for up to one year, extendable once for another year. Applicants must have net monthly income of €3,000 for at least six months before entry and maintain it during the stay; working for Hungarian employers or holding shares in Hungarian companies is not allowed, and family reunification permits are not granted.',
     JP: 'ハンガリー入国管理当局はホワイトカード（デジタルノマド滞在許可）を最長1年で発給し、1回に限り1年の延長が可能と案内しています。入国前6カ月以上、月の純収入€3,000を満たし滞在中も維持する必要があり、ハンガリーの雇用主のための就労や同国企業の持分保有は不可で、家族帯同の在留許可は認められません。',
   },
+  croatia: {
+    KO: '크로아티아 내무부는 디지털 노마드 임시체류를 최대 18개월로 허가하며, 18개월 미만으로 받은 경우 만료 60일 전에 최대 6개월 연장을 신청할 수 있다고 안내합니다. 월 소득 요건은 €3,622.50이며(12개월 €43,470·18개월 €65,205 기준), 이전 체류 종료 후 6개월이 지나야 다시 신청할 수 있습니다. 제출 서류는 크로아티아어 또는 영어여야 합니다.',
+    EN: 'Croatia’s interior ministry grants digital nomad temporary stay for up to 18 months; if granted for less, an extension of up to six months can be requested 60 days before expiry. Monthly income must be €3,622.50 (€43,470 for 12 months, €65,205 for 18), and a new application is only possible six months after the previous stay ends. Documents must be in Croatian or English.',
+    JP: 'クロアチア内務省はデジタルノマドの一時滞在を最長18カ月まで許可し、18カ月未満で許可された場合は満了60日前に最大6カ月の延長を申請できると案内しています。月収要件は€3,622.50（12カ月€43,470・18カ月€65,205）で、前回の滞在終了から6カ月経過後に再申請が可能です。提出書類はクロアチア語または英語である必要があります。',
+  },
+  portugal: {
+    // 4배 규정과 RMMG 금액은 각각 다른 공식 페이지에 있어, 곱셈 결과임을 문장에 드러낸다
+    KO: '포르투갈 영사 포털은 원격근무(디지털 노마드) 임시체류 비자에 최근 3개월 평균 월소득이 최저임금(RMMG)의 4배 이상일 것을 요구합니다. 같은 포털의 생계 수단 기준에 따르면 2026년 RMMG는 €920이므로 월 €3,680 수준이 됩니다. 동반 가족은 성인 50%·18세 미만 30%가 가산됩니다.',
+    EN: 'Portugal’s consular portal requires, for the remote-work (digital nomad) temporary stay visa, average monthly income over the last three months of at least four times the minimum wage (RMMG). The same portal puts the 2026 RMMG at €920, which works out to about €3,680 per month. Accompanying family adds 50% per adult and 30% per child under 18.',
+    JP: 'ポルトガル領事ポータルは、リモートワーク（デジタルノマド）一時滞在査証について、直近3カ月の平均月収が最低賃金（RMMG）の4倍以上であることを求めています。同ポータルの生計手段基準では2026年のRMMGは€920とされており、月額約€3,680に相当します。同伴家族は成人50%・18歳未満30%が加算されます。',
+  },
   malaysia: {
     KO: '말레이시아 디지털경제공사(MDEC)의 DE Rantau 노마드 패스는 3~12개월 전문방문패스로 발급되며 12개월 추가 갱신이 가능합니다. 연소득 요건은 기술 직군 미화 2만 4천 달러 초과, 비기술 직군 미화 6만 달러 초과입니다.',
     EN: 'The DE Rantau Nomad Pass from Malaysia’s MDEC is issued as a Professional Visit Pass valid for 3–12 months, renewable for a further 12 months. Annual income must exceed US$24,000 for tech talent and US$60,000 for non-tech professionals.',
