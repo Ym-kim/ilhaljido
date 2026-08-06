@@ -33,7 +33,11 @@ type Props = {
 }
 
 export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeIds, emailSubject, featuredExperienceIds = [], leadVariant, crossLinks = [], forceLang }: Props) {
-  const themeProducts = THEME_EXPERIENCES.filter((i) => featuredExperienceIds.includes(i.id))
+  // coming_soon은 노출 대상이 아니다 — AffiliateSection에만 있던 필터가 여기엔 없어서
+  // 소멸한 상품(2026-08-06 재실측: KKday 발리 요가 404)이 죽은 링크로 계속 렌더됐음
+  const themeProducts = THEME_EXPERIENCES.filter(
+    (i) => featuredExperienceIds.includes(i.id) && i.status !== 'coming_soon',
+  )
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
 

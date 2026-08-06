@@ -678,10 +678,10 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     desc: '유럽 여러 도시를 도는 워케이션이라면 패스 하나로 33개국 열차 무제한. 리스본·포르투 거점 이동에도.',
     cta: '유레일 패스 보기',
     rating: '4.6',
-    ratingAsOf: '2026-07-19',
-    reviews: '2,533',
-    priceFrom: '₩477,300~',
-    priceAsOf: '2026-07-19',
+    ratingAsOf: '2026-08-06',
+    reviews: '2,536',
+    priceFrom: '₩457,800~',
+    priceAsOf: '2026-08-06',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     badge: '철도패스',
     trackingId: 'aid=126848',
@@ -689,7 +689,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     coverGradient: 'from-indigo-900 via-blue-950 to-[#0d0d0d]',
     priority: 11,
     showOn: ['global', 'select'],
-    sourceNote: 'Klook activity/9868-eurail-global-rail-pass (WebSearch KO확정·403=생존 검증 2026-07-18). 가격 ₩477,300~=Klook 검색 리스팅 실브라우저 실측(기준 2026-07-19 — 상세 페이지는 옵션 선택 전 미노출). 유럽 33개국 — 포르투갈 목적지 크로스셀',
+    sourceNote: 'Klook activity/9868-eurail-global-rail-pass (WebSearch KO확정·403=생존 검증 2026-07-18). 가격 ₩477,300~=Klook 검색 리스팅 실브라우저 실측(기준 2026-08-06 — 상세 페이지는 옵션 선택 전 미노출). 유럽 33개국 — 포르투갈 목적지 크로스셀',
   },
 
   {
