@@ -178,15 +178,26 @@ export function ProgramDetailClient({ program }: { program: Program }) {
                 </div>
               </div>
 
-              <Button asChild size="lg" className="w-full mb-3">
-                <Link href={`/apply?program=${program.id}`}>
-                  {program.status === 'open' ? tr('prog_apply_now') : tr('prog_preorder')}
-                </Link>
-              </Button>
+              {/* 종료(취소·만료) 회차는 신청·사전예약 CTA를 렌더하지 않는다 —
+                  기존 구조는 status와 무관하게 버튼이 나가서, 진행하지 않을 회차에도
+                  '사전예약하기'가 노출됐다 (2026-08-06 운영자 취소 지시 처리 중 적발) */}
+              {program.status === 'closed' ? (
+                <div className="rounded-xl bg-gray-100 px-4 py-3 text-center text-sm font-bold text-gray-600">
+                  {tr('prog_closed_note')}
+                </div>
+              ) : (
+                <>
+                  <Button asChild size="lg" className="w-full mb-3">
+                    <Link href={`/apply?program=${program.id}`}>
+                      {program.status === 'open' ? tr('prog_apply_now') : tr('prog_preorder')}
+                    </Link>
+                  </Button>
 
-              <div className="text-xs text-muted text-center leading-relaxed whitespace-pre-line">
-                {tr('prog_apply_note')}
-              </div>
+                  <div className="text-xs text-muted text-center leading-relaxed whitespace-pre-line">
+                    {tr('prog_apply_note')}
+                  </div>
+                </>
+              )}
 
               <div className="mt-5 pt-4 border-t border-border">
                 <div className="text-xs font-bold text-dark mb-2">{tr('prog_contact')}</div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useLang } from '@/context/LanguageContext'
 import { ProgramCard } from '@/components/programs/ProgramCard'
-import { withEffectiveStatus, isExpired, HELD_PROGRAM_IDS } from '@/lib/programs'
+import { withEffectiveStatus, isExpired, HELD_PROGRAM_IDS, CANCELLED_PROGRAM_IDS } from '@/lib/programs'
 import type { Program } from '@/types/database'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -26,7 +26,7 @@ export function UpcomingCohorts() {
       .order('date_start', { ascending: true })
       .then(({ data }: { data: Program[] | null }) => {
         const upcoming = (data ?? [])
-          .filter((p) => !isExpired(p) && !HELD_PROGRAM_IDS.has(p.id))
+          .filter((p) => !isExpired(p) && !HELD_PROGRAM_IDS.has(p.id) && !CANCELLED_PROGRAM_IDS.has(p.id))
           .map(withEffectiveStatus)
           .slice(0, 6)
         setPrograms(upcoming)

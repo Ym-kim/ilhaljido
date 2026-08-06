@@ -14,6 +14,12 @@ export function isExpired(p: Pick<Program, 'date_end'>): boolean {
 }
 
 export function withEffectiveStatus(p: Program): Program {
+  // 취소 회차가 최우선 — 만료·보류보다 앞서 'closed'로 확정한다
+  // (2026-08-06 운영자 취소 지시: 오사카 8/18·통영 8/27. 보류와 달리 재개 예정이 없으므로
+  //  'soon'(=사전예약)으로 두면 진행하지 않을 회차에 신청이 들어옴 — 상세 CTA도 함께 차단)
+  if (CANCELLED_PROGRAM_IDS.has(p.id)) {
+    return { ...p, status: 'closed' }
+  }
   if (isExpired(p) && p.status !== 'closed') {
     return { ...p, status: 'closed' }
   }
@@ -48,13 +54,19 @@ export function programPhoto(p: Pick<Program, 'id' | 'image_url'>): string | nul
   return null
 }
 
-// 운영자 보류 회차 (2026-07-11 지시) — 일정 확정 시 여기서 제거하면 모집 캘린더에 재노출
-export const HELD_PROGRAM_IDS = new Set<string>([
+// 운영자 취소 회차 — 진행하지 않기로 확정된 것. 재개 예정이 없으므로 'closed' 고정.
+// 목록에서 제외되고 상세에서도 신청·사전예약 CTA가 렌더되지 않는다.
+// ⚠️ 보류(HELD)와 구분할 것: 보류는 일정 확정 시 재노출, 취소는 되살리지 않는다.
+export const CANCELLED_PROGRAM_IDS = new Set<string>([
   'f71b9c49-d981-4c24-bcf4-6b2be5b2cbff', // 번아웃 탈출 힐링 워케이션 — 태안 7/7 (진행 예정 없음)
-  '59f91d96-0cae-4ced-8cc3-622b7692f70a', // 1인 기업가 네트워킹 캠프 — 춘천 7/23 (운영자 취소 지시 2026-07-19, 진행 안 함)
-  'f4031123-0db9-4c4e-9253-982992ae1006', // 일본 시장조사 + 소도시 워케이션 — 오사카 8/18
-  '684a3f59-1957-4d61-a510-150851d40e27', // 디자인 & 브랜딩 집중 캠프 — 통영 8/27
+  '59f91d96-0cae-4ced-8cc3-622b7692f70a', // 1인 기업가 네트워킹 캠프 — 춘천 7/23 (운영자 취소 지시 2026-07-19)
+  'f4031123-0db9-4c4e-9253-982992ae1006', // 일본 시장조사 + 소도시 워케이션 — 오사카 8/18 (운영자 취소 지시 2026-08-06)
+  '684a3f59-1957-4d61-a510-150851d40e27', // 디자인 & 브랜딩 집중 캠프 — 통영 8/27 (운영자 취소 지시 2026-08-06)
 ])
+
+// 운영자 보류 회차 (2026-07-11 지시) — 일정 확정 시 여기서 제거하면 모집 캘린더에 재노출
+// (현재 비어 있음. 취소분은 위 CANCELLED_PROGRAM_IDS로 이관)
+export const HELD_PROGRAM_IDS = new Set<string>([])
 
 /** date_start까지 남은 일수 (지났으면 null) */
 export function daysUntilStart(p: Pick<Program, 'date_start'>): number | null {
