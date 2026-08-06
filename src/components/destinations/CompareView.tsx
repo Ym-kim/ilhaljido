@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { ArrowRight, Check } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
-import { localizeHref } from '@/lib/i18n/localePath'
+import { localizeHref, isRouteVisibleIn } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 import {
   CITY_INSIGHTS,
@@ -351,7 +351,8 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
             { href: '/guide', label: { KO: '도시 가이드 전체 보기', EN: 'All city guides', JP: '都市ガイド一覧' } },
             { href: '/collections', label: { KO: '기획전 · Trip Set', EN: 'Collections & trip sets', JP: '特集・トリップセット' } },
             { href: '/trip-match', label: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を探す' } },
-          ] as const).map((c) => (
+            // EN은 /trip-match 대응 화면이 없어 숨김 (2026-08-07 구조 결정 ③)
+          ] as const).filter((c) => isRouteVisibleIn(c.href, lang)).map((c) => (
             <Link
               key={c.href}
               href={localizeHref(c.href, lang)}

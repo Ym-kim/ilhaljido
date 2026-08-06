@@ -8,7 +8,7 @@ import type { Lang } from '@/lib/i18n/types'
 import type { BrandModelId } from '@/lib/media/brandModels'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
-import { localizeHref } from '@/lib/i18n/localePath'
+import { localizeHref, isRouteVisibleIn } from '@/lib/i18n/localePath'
 
 type L = Record<Lang, string>
 
@@ -157,13 +157,16 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
             >
               {COPY.primary[lang]} <ArrowRight aria-hidden="true" className="h-4 w-4" strokeWidth={ICON_STROKE} />
             </Link>
-            <Link
-              href={withLocale('/trip-match', lang)}
-              onClick={() => trackEvent('domestic_destination_click', { locale: lang, source: 'home', placement: 'trip_match_cta', destinationSlug: 'trip-match' })}
-              className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b9cdcf] bg-white/65 px-5 text-sm font-black text-[#1d4d5e] transition hover:border-[#6f9da7] hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d536b]"
-            >
-              {COPY.secondary[lang]}
-            </Link>
+            {/* EN은 /trip-match 대응 화면이 없어 CTA 자체를 숨김 (2026-08-07 구조 결정 ③) */}
+            {isRouteVisibleIn('/trip-match', lang) && (
+              <Link
+                href={withLocale('/trip-match', lang)}
+                onClick={() => trackEvent('domestic_destination_click', { locale: lang, source: 'home', placement: 'trip_match_cta', destinationSlug: 'trip-match' })}
+                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b9cdcf] bg-white/65 px-5 text-sm font-black text-[#1d4d5e] transition hover:border-[#6f9da7] hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d536b]"
+              >
+                {COPY.secondary[lang]}
+              </Link>
+            )}
           </div>
         </div>
 

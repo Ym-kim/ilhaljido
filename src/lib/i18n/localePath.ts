@@ -53,6 +53,33 @@ const FAMILY_EXCLUDES = new Set<string>(['/programs/support/register'])
 /** JA에만 실존 */
 const JA_ONLY = new Set<string>(['/trip-match', '/campaign/korea-weekend'])
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 언어별 노출 가능 여부 (2026-08-07 구조 결정 ③)
+//
+// localizeHref는 "404를 만들지 않는" 것까지만 보장한다 — 로케일 라우트가 없으면
+// KO 경로를 그대로 돌려주므로, EN 사용자가 KO 전용 화면으로 그대로 이동한다.
+// /trip-match는 forceLang="KO" 서버 페이지라 EN 사용자가 들어가면 화면 전체가 한국어다
+// (프로덕션 EN 홈에서 "Find my trip" → /trip-match 실측 확인).
+//
+// EN 지원은 하지 않기로 했다: TripMatchExperience 타입이 KO|JP 제한이고 매칭 로직의
+// 시장 부스트가 KO/JP 시장을 전제로 설계돼 있어, EN 추가는 카피+부스트 재설계가 필요하다.
+// 대신 EN 화면에서는 진입로를 숨긴다.
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** 해당 언어에 대응 화면이 없어 링크를 숨겨야 하는 라우트 */
+const HIDDEN_BY_LANG: Record<Lang, readonly string[]> = {
+  KO: [],
+  EN: ['/trip-match'],
+  JP: [],
+}
+
+/** 이 언어 화면에서 해당 내부 링크를 노출해도 되는지 */
+export function isRouteVisibleIn(href: string, lang: Lang): boolean {
+  if (!href.startsWith('/')) return true
+  const path = href.split(/[#?]/, 1)[0].replace(/\/$/, '') || '/'
+  return !HIDDEN_BY_LANG[lang].some((p) => path === p || path.startsWith(`${p}/`))
+}
+
 /**
  * 내부 href에 로케일 prefix를 안전하게 부착.
  * 해시(#)·쿼리(?)는 보존하고 경로부만 매니페스트와 대조한다.
