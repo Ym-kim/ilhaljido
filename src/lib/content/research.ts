@@ -489,7 +489,9 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
         EN: 'Georgia one-year visa-free stay — Korean embassy notice',
         JP: 'ジョージアのビザ免除滞在1年 — 韓国大使館の公示',
       },
-      sourceName: '주아제르바이잔 대한민국 대사관 (외교부)',
+      // sourceName은 Record<Lang>이 아니라 단일 문자열 → EN/JP 화면에도 그대로 노출된다.
+      // 한국어 설명을 넣으면 로케일 누출이 되므로 기관 공식 영문 표기를 쓴다 (2026-08-07 적발)
+      sourceName: 'Embassy of the Republic of Korea in Azerbaijan (MOFA)',
       // geoconsul.gov.ge는 전 경로가 JS 포털이라 판독 불가 → 한국 여권 기준을 직접
       // 다루는 우리 정부 공관 공지를 채택(2026-08-06). 한국인 대상 여부가 명시돼 더 적합
       sourceUrl: 'https://aze.mofa.go.kr/az-ko/brd/m_8247/view.do?seq=1151253',
@@ -556,7 +558,7 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
         EN: 'France long-stay visa serving as a residence permit (VLS-TS)',
         JP: 'フランス 滞在許可を兼ねる長期査証（VLS-TS）',
       },
-      sourceName: 'service-public.gouv.fr (프랑스 정부 공식 행정안내)',
+      sourceName: 'service-public.gouv.fr (French government)',
       // france-visas.gouv.fr 본체는 403 지속 → 정부 공식 행정안내 포털로 대체 판독 성공
       sourceUrl: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F16162?lang=en',
       sourceType: 'official',
