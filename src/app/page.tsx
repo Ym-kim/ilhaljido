@@ -553,7 +553,8 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
       {/* ── 홈 다이어트 v2 (2026-07-28): GrowthEngines·Learning·Tools·DestinationFinder·
           비자AI·Sponsor·인프라 7개 무거운 섹션 → MoreExplore 컴팩트 링크 그리드 1개로 압축.
-          컴포넌트·페이지·URL 전부 보존(전용 페이지에서 계속 서비스) — 홈 노출만 축소 */}
+          페이지·URL은 전부 보존(전용 페이지에서 계속 서비스) — 홈 노출만 축소.
+          2026-08-07: 이관 후에도 어디서도 import되지 않던 홈 섹션 컴포넌트 파일은 삭제(git 이력에 보존) */}
       <MoreExplore />
 
       {/* ── 비자AI·Media·Sponsor·인프라 섹션은 MoreExplore로 이관 (2026-07-28 v2) — 전용 페이지 유지 ── */}
