@@ -260,6 +260,17 @@ export default function BellissimaCruisePage() {
               모든 스토리 보기 →
             </Link>
           </div>
+
+          {/* 2026-08-07 크로스셀: 2026년은 부산 승선(인천 모항은 2027-06-14부터)이므로
+              부산 자산만 연결한다 — 검증된 사실 범위를 넘지 않기 위함 */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <Link href="/guide/busan" className="text-white/70 text-sm font-bold hover:text-white">
+              승선 전 부산 가이드 →
+            </Link>
+            <Link href="/collections/busan-weekend" className="text-white/70 text-sm font-bold hover:text-white">
+              부산 주말 Trip Set →
+            </Link>
+          </div>
         </div>
       </section>
     </div>

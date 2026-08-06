@@ -244,6 +244,27 @@ export default function MiracleCruisePage() {
               스토리 전체 보기 →
             </Link>
           </div>
+
+          {/* 2026-08-07 크로스셀: 이 항로의 출발·도착 도시로 이어지는 실존 가이드·Trip Set만 연결 */}
+          <div className="mt-10 border-t border-white/10 pt-8">
+            <div className="text-xs font-black uppercase tracking-widest text-sky-300/80 mb-4">
+              이 항로의 두 도시
+            </div>
+            <div className="flex flex-wrap gap-x-6 gap-y-3">
+              <Link href="/guide/busan" className="text-white/80 text-sm font-bold hover:text-white">
+                부산 워케이션 가이드 →
+              </Link>
+              <Link href="/guide/osaka" className="text-white/80 text-sm font-bold hover:text-white">
+                오사카 워케이션 가이드 →
+              </Link>
+              <Link href="/collections/busan-weekend" className="text-white/80 text-sm font-bold hover:text-white">
+                부산 주말 Trip Set →
+              </Link>
+              <Link href="/collections/osaka-friends" className="text-white/80 text-sm font-bold hover:text-white">
+                오사카 Trip Set →
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
