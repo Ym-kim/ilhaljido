@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { MarketProgramsView } from '@/components/programs/MarketProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/programs/market — 일본어 정적 로케일 라우트
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/market'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '市場調査団 | Wakation',
     description: '海外の展示会・市場の現場で直接調査しネットワーキングする市場調査団プログラム。',
     url: 'https://www.wakation.kr/ja/programs/market',

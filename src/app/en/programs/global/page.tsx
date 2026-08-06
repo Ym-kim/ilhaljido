@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GlobalProgramsView } from '@/components/programs/GlobalProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/programs/global — 영어 정적 로케일 라우트
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/global'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Global Workation | Wakation',
     description: 'Overseas stays, remote work, market research, trade fairs and language programs — all connected.',
     url: 'https://www.wakation.kr/en/programs/global',

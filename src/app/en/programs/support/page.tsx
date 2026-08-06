@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import { SupportProgramsView } from '@/components/programs/SupportProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/programs/support — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/support'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Local Government Workation Subsidies | Wakation',
     description:
       'Workation subsidies from Korean local governments — accommodation support and experience programs at a glance.',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Waves, Utensils, Mountain, Plane, Users, Wifi, CalendarDays } from 'lucide-react'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /programs/global/manado — 마나도 워케이션 에디토리얼 (2026-07-18)
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
     '다이버들의 성지 마나도(Manado) 워케이션 가이드. 부나켄 해양공원 산호 390여 종, 돼지고기·주류가 자유로운 북술라웨시, 인천 직항 전세기 — 아직 붐비지 않는 장기 체류 베이스.',
   alternates: { canonical: 'https://www.wakation.kr/programs/global/manado' },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '마나도 워케이션 — 비밀의 체류지 | Wakation',
     description: '다이버 성지 부나켄과 화산 호수 토모혼 사이, 일하기 좋은 한 달. 마나도 워케이션 가이드.',
     url: 'https://www.wakation.kr/programs/global/manado',

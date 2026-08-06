@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { StoriesHubView } from '@/components/editorial/StoriesHubView'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 const languages = {
   ko: 'https://www.wakation.kr/stories',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     'Cruise workations, slow trains and new places to stay — Wakation editorials researched with verified facts only.',
   alternates: { canonical: languages.en, languages },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Travel Stories | Wakation',
     description: 'New places to stay and new ways to move — workation editorials from verified facts.',
     url: languages.en,

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GuideHubView } from '@/components/guide/GuideHubView'
 import { guideLanguageAlternates } from '@/lib/guides'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 export const metadata: Metadata = {
   title: 'ワーケーション都市ガイド — 時差・フライト・シーズン比較',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.wakation.kr/ja/guide',
     languages: guideLanguageAlternates('/guide'),
   },
-  openGraph: { locale: 'ja_JP', alternateLocale: ['ko_KR', 'en_US'] },
+  openGraph: { images: OG_DEFAULT_IMAGES, locale: 'ja_JP', alternateLocale: ['ko_KR', 'en_US'] },
   robots: { index: true, follow: true },
 }
 

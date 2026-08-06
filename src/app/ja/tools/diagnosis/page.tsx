@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { DiagnosisView } from '@/components/tools/DiagnosisView'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 const languages = {
   ko: 'https://www.wakation.kr/tools/diagnosis',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     '5つの質問で自分のワーケーションタイプを診断。出発前・滞在中・帰国後のチェックリスト付き。登録不要・無料。',
   alternates: { canonical: languages.ja, languages },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'ワーケーション診断 | Wakation',
     description: '5つの質問で自分に合うワーケーションを — 実行チェックリスト付き。',
     url: languages.ja,

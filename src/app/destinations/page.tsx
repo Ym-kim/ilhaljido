@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { DestinationsHubView } from '@/components/destinations/DestinationsHubView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /destinations — 워케이션 도시 가이드 허브 (KO 기준 메타, 뷰는 방문자 언어 반응)
 
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/destinations'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '워케이션 도시 가이드 | Wakation',
     description: '도쿄·발리·치앙마이·다낭·세부·시드니 워케이션 완벽 가이드. 비자·생활비·인터넷 한눈에.',
     url: 'https://www.wakation.kr/destinations',

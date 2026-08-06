@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { HotelSelectView } from '@/components/select/HotelSelectView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/select/hotel — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/select/hotel'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Stays | Wakation Select',
     description: 'Workation stays curated by destination — search on Booking.com and Trip.com.',
     url: 'https://www.wakation.kr/en/select/hotel',

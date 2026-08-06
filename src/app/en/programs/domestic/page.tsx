@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { DomesticProgramsView } from '@/components/programs/DomesticProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/programs/domestic — 영어 정적 로케일 라우트
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/domestic'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Korea Workation | Wakation',
     description: 'Stay-based workation programs across Korea — work, rest, networking and growth in one.',
     url: 'https://www.wakation.kr/en/programs/domestic',

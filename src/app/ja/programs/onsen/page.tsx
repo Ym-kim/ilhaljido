@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { JapanTownsView } from '@/components/programs/JapanTownsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/programs/onsen — 일본어 정적 로케일 라우트. 콘텐츠는 일본 소도시 료칸·온천 뷰(JapanTownsView).
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/onsen'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '旅館・温泉ワーケーション | Wakation',
     description: '日本の小都市で働き、温泉で一日を締める — 河口湖・金沢・湯布院。',
     url: 'https://www.wakation.kr/ja/programs/onsen',

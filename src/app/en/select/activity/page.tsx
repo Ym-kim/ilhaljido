@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ActivitySelectView } from '@/components/select/ActivitySelectView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/select/activity — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/select/activity'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Local Tours & Activities | Wakation Select',
     description: 'Local tours, transit passes and tickets by destination — via KKday and Klook partners.',
     url: 'https://www.wakation.kr/en/select/activity',

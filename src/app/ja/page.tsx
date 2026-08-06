@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import HomePage from '@/app/page'
 import { LanguageProvider } from '@/context/LanguageContext'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 export const metadata: Metadata = {
   title: '仕事も旅も、自分らしく。',
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '仕事も旅も、自分らしく。 | Wakation',
     description: '韓国と海外で見つける、働く人のための滞在と旅。',
     url: 'https://www.wakation.kr/ja',

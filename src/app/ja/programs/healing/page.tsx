@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ThemeProgramPage } from '@/components/programs/ThemeProgramPage'
 import { THEME_PAGE_CONFIGS } from '@/lib/themePages'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/programs/healing — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/healing'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'ヒーリング・ヨガワーケーション | Wakation',
     description: 'ヨガ・瞑想・スパとともに働きながら回復するウェルネスワーケーション。',
     url: 'https://www.wakation.kr/ja/programs/healing',

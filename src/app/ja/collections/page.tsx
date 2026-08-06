@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CollectionsHub } from '@/components/affiliate/CollectionsHub'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/collections — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN와 상호 연결)
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/collections'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'ワーケーション特集 | Wakation',
     description: '宿・体験・eSIM・航空券を目的地テーマでまとめて、ワーケーション準備をひとつの画面で。',
     url: 'https://www.wakation.kr/ja/collections',

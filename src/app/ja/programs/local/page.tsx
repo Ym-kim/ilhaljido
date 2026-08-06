@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ThemeProgramPage } from '@/components/programs/ThemeProgramPage'
 import { THEME_PAGE_CONFIGS } from '@/lib/themePages'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/programs/local — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/local'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'グルメ・ローカルワーケーション | Wakation',
     description: '現地グルメとローカル文化を体験するワーケーション — フードツアー・ローカル体験。',
     url: 'https://www.wakation.kr/ja/programs/local',

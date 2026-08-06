@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { LearnSelectView } from '@/components/select/LearnSelectView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/select/learn — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/select/learn'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '講座・学習 | Wakation Select',
     description: 'ワーケーションの空き時間をInflearnのオンライン講座で — AI・マーケティング・生産性・開発・言語。',
     url: 'https://www.wakation.kr/ja/select/learn',

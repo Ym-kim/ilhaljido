@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { StoriesHubView } from '@/components/editorial/StoriesHubView'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 const languages = {
   ko: 'https://www.wakation.kr/stories',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     'クルーズワーケーション、ローカル列車、新しい滞在地 — 検証済みの事実だけで取材するWakationエディトリアル。',
   alternates: { canonical: languages.ja, languages },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '旅のストーリー | Wakation',
     description: '新しい滞在地と移動のかたち — 検証済みの事実で書くワーケーションエディトリアル。',
     url: languages.ja,

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import HomePage from '@/app/page'
 import { LanguageProvider } from '@/context/LanguageContext'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 export const metadata: Metadata = {
   title: 'Work and travel, your way',
@@ -15,6 +16,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Work and travel, your way',
     description: 'Short stays, workation city guides and practical travel planning for working people.',
     url: 'https://www.wakation.kr/en',

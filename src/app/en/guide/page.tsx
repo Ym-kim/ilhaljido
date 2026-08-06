@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { GuideHubView } from '@/components/guide/GuideHubView'
 import { guideLanguageAlternates } from '@/lib/guides'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 export const metadata: Metadata = {
   title: 'Workation City Guides — Time Zones, Flights & Seasons',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     canonical: 'https://www.wakation.kr/en/guide',
     languages: guideLanguageAlternates('/guide'),
   },
-  openGraph: { locale: 'en_US', alternateLocale: ['ko_KR', 'ja_JP'] },
+  openGraph: { images: OG_DEFAULT_IMAGES, locale: 'en_US', alternateLocale: ['ko_KR', 'ja_JP'] },
   robots: { index: true, follow: true },
 }
 

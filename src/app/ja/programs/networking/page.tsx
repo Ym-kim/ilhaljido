@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { ThemeProgramPage } from '@/components/programs/ThemeProgramPage'
 import { THEME_PAGE_CONFIGS } from '@/lib/themePages'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/programs/networking — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/networking'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '一人起業家ネットワーキングワーケーション | Wakation',
     description: 'フリーランス・一人起業家・創業者のためのネットワーキングワーケーション。',
     url: 'https://www.wakation.kr/ja/programs/networking',
