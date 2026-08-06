@@ -480,6 +480,12 @@ const EN: Record<string, Overlay> = {
     desc: 'Balinese spa in the Ubud jungle — your after-work recovery routine.',
     cta: 'Book spa', badge: 'Wellness',
   },
+  'theme-heal-yoga-ubud': {
+    productTitle: 'Ubud Yoga Centre class',
+    destination: 'Ubud · Bali',
+    desc: 'A one-day class at Ubud Yoga Centre — a morning routine before work. Pick your date on Klook.',
+    cta: 'See classes', badge: 'Yoga',
+  },
   'theme-heal-yoga-bali': {
     productTitle: 'Bali sunrise yoga class',
     destination: 'Bali · Indonesia',
@@ -1027,6 +1033,12 @@ const JP: Record<string, Overlay> = {
     destination: 'ウブド · バリ',
     desc: 'ウブドのジャングルでバリ式スパ。仕事後の回復ルーティンに。',
     cta: 'スパ予約', badge: 'ウェルネス',
+  },
+  'theme-heal-yoga-ubud': {
+    productTitle: 'ウブド・ヨガセンター レッスン',
+    destination: 'ウブド · バリ',
+    desc: 'ウブド・ヨガセンターの1日レッスン。仕事前の朝ルーティンに — Klookで日付を選んで予約。',
+    cta: 'クラスを見る', badge: 'ヨガ',
   },
   'theme-heal-yoga-bali': {
     productTitle: 'バリ サンライズヨガ',

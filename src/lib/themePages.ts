@@ -44,7 +44,8 @@ export const THEME_PAGE_CONFIGS: Record<ThemePageKey, ThemePageConfig> = {
     titleKey: 'healing_hero_title',
     descKey: 'healing_hero_desc',
     themeIds: ['healing-taean'],
-    featuredExperienceIds: ['theme-heal-spa-ubud', 'theme-heal-yoga-bali', 'theme-heal-oasis-chiangmai', 'theme-heal-forest-danang'],
+    // theme-heal-yoga-bali(KKday 162648)는 상품 소멸로 미노출 → Klook 동일 성격 상품으로 교체 (2026-08-06)
+    featuredExperienceIds: ['theme-heal-spa-ubud', 'theme-heal-yoga-ubud', 'theme-heal-oasis-chiangmai', 'theme-heal-forest-danang'],
     emailSubject: '힐링 워케이션 사전 신청',
     crossLinks: [
       { href: '/guide/bali', label: { KO: '발리 워케이션 가이드', EN: 'Bali workation guide', JP: 'バリワーケーションガイド' } },

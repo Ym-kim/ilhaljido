@@ -98,6 +98,8 @@ const CHECKS: Check[] = [
   // Klook/KKday — 봇 차단 403이 정상. 404/5xx만 이상
   { id: 'klook:teamlab', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
+  // 2026-08-06 신설 — KKday 발리 요가 소멸 대체분. 상품 소멸을 조기에 잡기 위해 감시 등록
+  { id: 'klook:yoga-ubud', url: 'https://www.klook.com/ko/activity/23956-yoga-class-ubud-centre-bali/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:miracle-ferry', url: 'https://www.klook.com/ko/activity/150798-busan-osaka-ferry-ticket/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:wifi-japan', url: 'https://www.klook.com/ko/activity/16399-unlimited-4g-lte-wifi-japan-airport-pickup-ninja-wifi/?aid=126848', okStatuses: [200, 403] },
   { id: 'klook:wifi-taiwan', url: 'https://www.klook.com/ko/activity/16960-4g-wifi-taiwan/?aid=126848', okStatuses: [200, 403] },
