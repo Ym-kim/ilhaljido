@@ -281,6 +281,42 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   usa: [
     {
+      id: 'usa-cbp-vwp',
+      title: {
+        KO: '미국 비자면제프로그램(VWP) 공식 안내 — CBP',
+        EN: 'U.S. Visa Waiver Program — CBP',
+        JP: '米国ビザ免除プログラム（VWP）— CBP',
+      },
+      sourceName: 'U.S. Customs and Border Protection',
+      // travel.state.gov는 403 지속, ESTA 사이트는 JS SPA → 소관 기관 CBP·DHS 본문 판독 성공
+      // (2026-08-07). curl은 200이나 WebFetch는 403이라 curl+본문 추출로 판독
+      sourceUrl: 'https://www.cbp.gov/travel/international-visitors/visa-waiver-program',
+      sourceType: 'official',
+      verifiedAt: '2026-08-07',
+      note: {
+        KO: '무비자 체류 가능 기간과 대상 목적(상용·관광), ESTA의 역할(입국 허가가 아님)과 e-Passport 요건이 명시돼 있습니다.',
+        EN: 'States the visa-free length of stay, the permitted purposes (business or tourism), that ESTA does not determine admissibility, and the e-Passport requirement.',
+        JP: 'ビザ免除で滞在できる期間と対象目的（商用・観光）、ESTAは入国可否を決めるものではない点、e-Passport要件が明記されています。',
+      },
+    },
+    {
+      id: 'usa-dhs-vwp',
+      title: {
+        KO: '미국 VWP 지정국 목록 — 국토안보부(DHS)',
+        EN: 'U.S. VWP designated countries — DHS',
+        JP: '米国VWP指定国リスト — 国土安全保障省（DHS）',
+      },
+      sourceName: 'U.S. Department of Homeland Security',
+      sourceUrl: 'https://www.dhs.gov/visa-waiver-program',
+      sourceType: 'official',
+      verifiedAt: '2026-08-07',
+      note: {
+        KO: '지정국 명단에 대한민국(Korea, Republic of)이 지정일과 함께 등재돼 있습니다.',
+        EN: 'The designated-country list includes the Republic of Korea with its designation date.',
+        JP: '指定国リストに大韓民国（Korea, Republic of）が指定日とともに記載されています。',
+      },
+    },
+    {
       id: 'usa-embassy-korea-visas',
       title: { KO: '주한 미국대사관 비자 안내', EN: 'U.S. Embassy in Korea — visas', JP: '駐韓米国大使館 ビザ案内' },
       sourceName: 'U.S. Embassy & Consulate in the Republic of Korea',
