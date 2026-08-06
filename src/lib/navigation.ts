@@ -1,3 +1,4 @@
+import { isRouteVisibleIn } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
@@ -260,7 +261,12 @@ export const NAVIGATION_MENUS: NavigationMenu[] = [
 ]
 
 export function getNavigationGroups(menu: NavigationMenu, lang: Lang) {
-  return typeof menu.groups === 'function' ? menu.groups(lang) : menu.groups
+  const groups = typeof menu.groups === 'function' ? menu.groups(lang) : menu.groups
+  // 2026-08-07 구조 결정 ③ — 해당 언어에 대응 화면이 없는 라우트는 내비에서 숨긴다
+  // (EN의 /trip-match. 링크가 비게 된 그룹은 그룹째 제거)
+  return groups
+    .map((g) => ({ ...g, links: g.links.filter((item) => isRouteVisibleIn(getNavigationHref(item, lang), lang)) }))
+    .filter((g) => g.links.length > 0)
 }
 
 export function getNavigationHref(item: NavigationLink, lang: Lang) {

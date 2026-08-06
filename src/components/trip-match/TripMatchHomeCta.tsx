@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
+import { isRouteVisibleIn } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
@@ -24,6 +25,10 @@ export function TripMatchHomeCta({ forceLang }: { forceLang?: Lang }) {
   const { lang: contextLang } = useLang()
   const lang = forceLang ?? contextLang
   const href = lang === 'JP' ? '/ja/trip-match' : '/trip-match'
+
+  // 2026-08-07 구조 결정 ③ — /trip-match는 KO·JA 전용(EN 대응 화면 없음).
+  // EN 홈에서 영어 CTA가 한국어 페이지로 보내던 것을 차단한다.
+  if (!isRouteVisibleIn('/trip-match', lang)) return null
 
   return (
     <section className="border-b border-[#dbe4e3] bg-[#edf5f4] px-5 py-7 sm:px-8 md:py-9">

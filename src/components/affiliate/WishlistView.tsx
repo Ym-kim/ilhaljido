@@ -15,6 +15,7 @@ import { SavedSupportProgramsSection } from '@/components/programs/SavedSupportP
 import { useSavedSupportPrograms } from '@/hooks/useSavedSupportPrograms'
 import { useSavedTripMatches } from '@/hooks/useSavedTripMatches'
 import { trackEvent } from '@/lib/track'
+import { isRouteVisibleIn } from '@/lib/i18n/localePath'
 
 // 찜한 상품 모아보기 — localStorage 기반(로그인 불필요). 개인 페이지라 noindex.
 type L = Record<Lang, string>
@@ -59,13 +60,20 @@ export function WishlistView() {
   useEffect(() => setHydrated(true), [])
   const items = getCatalogItems(ids).map((i) => localizeAffiliateItem(i, lang))
   const prefix = lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : ''
+  // 2026-08-07 구조 결정 ③ — /trip-match는 KO·JA 전용(EN 대응 화면 없음).
+  // EN에서는 진입로를 숨기고, 빈 상태 CTA는 EN에도 실존하는 /en/destinations 로 대체한다
+  // (CTA를 통째로 없애면 빈 화면에 다음 행동이 사라짐).
+  const showTripMatch = isRouteVisibleIn('/trip-match', lang)
   const discoveryLinks = [
-    { href: lang === 'JP' ? '/ja/trip-match' : '/trip-match', title: COPY.trip_match_t[lang], desc: COPY.trip_match_d[lang] },
+    ...(showTripMatch
+      ? [{ href: lang === 'JP' ? '/ja/trip-match' : '/trip-match', title: COPY.trip_match_t[lang], desc: COPY.trip_match_d[lang] }]
+      : []),
     { href: `${prefix}/destinations`, title: COPY.destinations_t[lang], desc: COPY.destinations_d[lang] },
     { href: '/programs/support', title: COPY.support_t[lang], desc: COPY.support_d[lang] },
   ]
   const saveJourney = [COPY.step1[lang], COPY.step2[lang], COPY.step3[lang]]
-  const tripMatchHref = lang === 'JP' ? '/ja/trip-match' : '/trip-match'
+  const emptyCtaHref = showTripMatch ? (lang === 'JP' ? '/ja/trip-match' : '/trip-match') : `${prefix}/destinations`
+  const emptyCtaLabel = showTripMatch ? COPY.browse[lang] : COPY.destinations_t[lang]
 
   return (
     <div className="min-h-screen bg-white">
@@ -94,11 +102,11 @@ export function WishlistView() {
                 <h2 className="mt-3 text-2xl font-black text-white">{COPY.empty_title[lang]}</h2>
                 <p className="mt-3 max-w-md text-sm leading-relaxed text-white/65">{COPY.empty_sub[lang]}</p>
                 <Link
-                  href={tripMatchHref}
-                  onClick={() => trackEvent('visual_cta_click', { route: '/wishlist', locale: lang, sectionId: 'first-save-journey', visualType: 'journey-map', contentId: 'trip-match', targetRoute: tripMatchHref })}
+                  href={emptyCtaHref}
+                  onClick={() => trackEvent('visual_cta_click', { route: '/wishlist', locale: lang, sectionId: 'first-save-journey', visualType: 'journey-map', contentId: showTripMatch ? 'trip-match' : 'destinations', targetRoute: emptyCtaHref })}
                   className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-bold text-white transition hover:bg-sky-400"
                 >
-                  {COPY.browse[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                  {emptyCtaLabel} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
                 </Link>
               </div>
               <div className="bg-[#f8fbfc] p-7 sm:p-10">
