@@ -3,19 +3,28 @@
 import { useLang } from '@/context/LanguageContext'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, GraduationCap, HeartHandshake, Compass } from 'lucide-react'
+import { ArrowRight, BookOpen, GraduationCap, HeartHandshake, Compass } from 'lucide-react'
 
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { ICON_STROKE } from '@/lib/icons'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 import { getGrowthCamps } from '@/lib/i18n'
 
 // ── 여정 연결 (2026-08-02 발견성 개선) — 캠프 소개 후 다음 행동이 없던 막다른 페이지에
 //    실존 경로 3개(강의·네트워킹·진단)와 오픈 알림 리드를 연결 ──
+// 2026-08-07: /learn 상호 크로스링크 추가(구조 결정 ① — 두 페이지는 수익 구조가 달라 분리 유지하되
+//    서로를 가리키는 링크만 연결). 동시에 기존 3개 링크에 localizeHref 적용 —
+//    EN/JA 사용자가 KO 경로로 새던 것 교정(/select/learn·/programs/networking·/tools/diagnosis는 3언어 실존).
 type L = Record<Lang, string>
 const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L }[] = [
+  {
+    icon: BookOpen, href: '/learn',
+    label: { KO: '일과 성장, 학습 흐름 보기', EN: 'See how learning fits your work', JP: '仕事と成長の学び方を見る' },
+    desc: { KO: '이동 중에도 이어가는 세 가지 흐름', EN: 'Three ways to keep learning while away', JP: '移動中も続く3つの学び方' },
+  },
   {
     icon: GraduationCap, href: '/select/learn',
     label: { KO: '지금 시작하는 온라인 강의', EN: 'Start with an online course', JP: 'まずはオンライン講座から' },
@@ -118,13 +127,13 @@ export default function GrowthPage() {
       <section className="border-t border-white/8 py-16 px-6">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-white font-black text-xl md:text-2xl mb-6">{NEXT_UI.title[lang]}</h2>
-          <div className="grid gap-3 md:grid-cols-3 mb-10">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
             {NEXT_STEPS.map((s) => {
               const Icon = s.icon
               return (
                 <Link
                   key={s.href}
-                  href={s.href}
+                  href={localizeHref(s.href, lang)}
                   className="group flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-teal-500/40 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
                 >
                   <span className="shrink-0 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400">
