@@ -37,7 +37,9 @@ const OFFERS: { icon: typeof Package; text: L }[] = [
   { icon: CalendarCheck, text: { KO: '연간 파트너십', EN: 'Annual partnership', JP: '年間パートナーシップ' } },
 ]
 
-export function ExperiencePartner() {
+// onInquire 를 주면 CTA가 같은 페이지의 문의 폼(#inquiry)으로 연결되고 해당 유형을 프리셋한다
+// (2026-08-07 mailto → 폼 전환). 주지 않으면 기존 mailto 동작 유지.
+export function ExperiencePartner({ onInquire }: { onInquire?: () => void } = {}) {
   const { lang } = useLang()
 
   return (
@@ -70,8 +72,11 @@ export function ExperiencePartner() {
 
         <div className="text-center">
           <a
-            href="mailto:wakation.sf@gmail.com?subject=Wakation%20Experience%20Partner"
-            onClick={() => { try { track('sponsor_inquiry_clicked', { kind: 'partnership_page' }) } catch {} }}
+            href={onInquire ? '#inquiry' : 'mailto:wakation.sf@gmail.com?subject=Wakation%20Experience%20Partner'}
+            onClick={() => {
+              try { track('sponsor_inquiry_clicked', { kind: 'partnership_page' }) } catch {}
+              onInquire?.()
+            }}
             className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white font-black text-sm px-8 py-4 rounded-full transition-all"
           >
             {COPY.cta[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />

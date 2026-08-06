@@ -2,6 +2,8 @@
 
 
 
+import { useState } from 'react'
+
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 
@@ -11,19 +13,51 @@ import { IconTile } from '@/components/brand/IconTile'
 
 import { useLang } from '@/context/LanguageContext'
 
-import { getPartnerTypes } from '@/lib/i18n'
+import { getPartnerTypes, t } from '@/lib/i18n'
 
 import { ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
 
 import { ExperiencePartner } from '@/components/partnership/ExperiencePartner'
 
+import { InquiryForm, type InquiryCategory } from '@/components/forms/InquiryForm'
 
+import type { Lang } from '@/lib/i18n/types'
+
+// 2026-08-07 구조 결정 ④ — mailto → 폼 전환. 문의는 /api/applications 에 저장되고
+// /admin 에서 job_type='파트너십 문의' 로 필터된다(mailto는 폼 하단 폴백으로 유지).
+const JOB_TYPE = '파트너십 문의'
+
+const FORM_COPY: Record<string, Record<Lang, string>> = {
+  eyebrow: { KO: 'CONTACT', EN: 'CONTACT', JP: 'CONTACT' },
+  title: { KO: '파트너십 문의 남기기', EN: 'Send a partnership inquiry', JP: 'パートナーシップのお問い合わせ' },
+  desc: {
+    KO: '유형을 고르고 내용을 남겨주시면 확인 후 이메일로 회신드립니다.',
+    EN: 'Choose a type and leave your message — we will reply by email.',
+    JP: '種別を選んで内容をお送りください。確認のうえメールでご返信します。',
+  },
+}
 
 export default function PartnershipPage() {
 
-  const { tr } = useLang()
+  const { tr, lang } = useLang()
 
   const partnerTypes = getPartnerTypes()
+
+  // 문의 유형 라벨은 3언어 사전에서 직접 구성 — tr()은 현재 언어 문자열만 반환하므로
+  // Record<Lang> 이 필요한 폼 카테고리에는 t[lang][key] 를 쓴다
+  const categories: InquiryCategory[] = [
+    ...partnerTypes.map((p) => ({
+      id: p.id,
+      label: { KO: t.KO[p.titleKey], EN: t.EN[p.titleKey], JP: t.JP[p.titleKey] },
+    })),
+    // 체험형 스폰서십은 partnerTypes에 없는 별도 유형 — ExperiencePartner 섹션 CTA가 이 값을 프리셋
+    {
+      id: 'experience',
+      label: { KO: '체험형 스폰서십', EN: 'Experience sponsorship', JP: '体験型スポンサーシップ' },
+    },
+  ]
+
+  const [categoryId, setCategoryId] = useState<string>(partnerTypes[0].id)
 
 
 
@@ -107,7 +141,9 @@ export default function PartnershipPage() {
 
                   <a
 
-                    href="mailto:wakation.sf@gmail.com?subject=Partnership"
+                    href="#inquiry"
+
+                    onClick={() => setCategoryId(p.id)}
 
                     className="inline-flex items-center gap-1.5 text-brand-mid text-[0.875rem] font-bold hover:gap-2.5 transition-all"
 
@@ -134,7 +170,7 @@ export default function PartnershipPage() {
 
 
       {/* 체험형 스폰서십 — Experience Partner */}
-      <ExperiencePartner />
+      <ExperiencePartner onInquire={() => setCategoryId('experience')} />
 
       <section className="dark-surface py-24 px-6 bg-gray-900">
 
@@ -150,7 +186,7 @@ export default function PartnershipPage() {
 
           <p className="text-caption-on-dark mb-10 leading-relaxed max-w-lg mx-auto">{tr('partnership_cta_desc')}</p>
 
-          <a href="mailto:wakation.sf@gmail.com?subject=Partnership" className="btn-primary text-base">
+          <a href="#inquiry" className="btn-primary text-base">
 
             {tr('partnership_cta_btn')}
 
@@ -158,7 +194,33 @@ export default function PartnershipPage() {
 
           </a>
 
-          <p className="text-white/45 text-[0.875rem] mt-6 font-medium">wakation.sf@gmail.com</p>
+        </div>
+
+      </section>
+
+      {/* ── 문의 폼 (2026-08-07 구조 결정 ④) — mailto 대신 DB 저장. /admin job_type='파트너십 문의' ── */}
+      <section id="inquiry" className="scroll-mt-24 bg-[#FAFAF8] py-20 px-6">
+
+        <div className="max-w-2xl mx-auto">
+
+          <div className="text-center mb-10">
+
+            <SectionEyebrow>{FORM_COPY.eyebrow[lang]}</SectionEyebrow>
+
+            <SectionTitle className="mb-3 text-center">{FORM_COPY.title[lang]}</SectionTitle>
+
+            <p className="text-caption">{FORM_COPY.desc[lang]}</p>
+
+          </div>
+
+          <InquiryForm
+            formId="partnership"
+            jobType={JOB_TYPE}
+            categories={categories}
+            categoryId={categoryId}
+            onCategoryChange={setCategoryId}
+            mailSubject="Partnership"
+          />
 
         </div>
 
