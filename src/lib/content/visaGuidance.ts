@@ -58,6 +58,13 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'The Australian Embassy in Korea states that Korean passport holders may stay up to three months per entry on an ETA (601) for tourism, visiting friends or family, or business visits. The ETA’s validity, number of entries and whether work is permitted are not covered there, so confirm before applying.',
     JP: '駐韓オーストラリア大使館は、韓国旅券保持者がETA（601）で観光・親族訪問・商用目的に限り、1回あたり最長3カ月滞在できると案内しています。ETAの有効期間や入国回数、就労の可否はこの案内に記載がないため、申請前に確認してください。',
   },
+  usa: {
+    // ⚠️ 무비자 90일·ESTA 유효기간 등 수치는 travel.state.gov(403)·ESTA 사이트(JS SPA)가
+    // 모두 판독 불가라 기재하지 않는다. 대사관 페이지에서 확인된 범위만 서술
+    KO: '주한 미국대사관은 외국 국적자가 원칙적으로 미국 비자를 받아야 하며, 일부 여행자만 비자면제프로그램(VWP) 요건을 충족할 경우 비자 없이 여행할 수 있다고 안내합니다. 비이민 비자는 DS-160으로 신청하고, 어떤 비자가 필요한지 모를 때는 대사관의 Visa Wizard로 확인하도록 안내합니다. 무비자 체류 일수와 ESTA 유효기간 등 구체 조건은 ESTA 공식 사이트에서 확인하세요.',
+    EN: 'The U.S. Embassy in Korea states that foreign nationals generally need a U.S. visa, and that some travellers may travel without one if they meet the Visa Waiver Program requirements. Nonimmigrant visas are filed on the DS-160, and the embassy’s Visa Wizard helps identify the right category. Check the official ESTA site for the permitted length of visa-free stay and ESTA validity.',
+    JP: '駐韓米国大使館は、外国籍者は原則として米国ビザを取得する必要があり、一部の渡航者はビザ免除プログラム（VWP）の要件を満たす場合にビザなしで渡航できると案内しています。非移民ビザはDS-160で申請し、種別が不明な場合は大使館のVisa Wizardで確認します。ビザ免除での滞在日数やESTAの有効期間などの詳細は、ESTA公式サイトで確認してください。',
+  },
   philippines: {
     KO: '필리핀 이민청 공식 안내에 따르면 무비자 대상 관광객은 최초 30일 체류가 허용되며, 비자 웨이버를 신청하면 29일이 추가됩니다. 이후에도 1개월·2개월 단위 연장이 가능하며 누적 체류 상한은 무비자 대상 국적 36개월, 비자 필요 국적 24개월입니다. 필요 서류는 이민청이 제공하는 체크리스트로 확인하세요.',
     EN: 'The Philippine Bureau of Immigration admits visa-free tourists for an initial 30 days, with a visa waiver adding 29 more days. Further extensions are available in one- or two-month blocks, up to a cumulative limit of 36 months for visa-free nationals and 24 months for visa-required nationals. Check the bureau’s checklist for the required documents.',
