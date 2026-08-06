@@ -9,7 +9,6 @@ export {
   VISA_COUNTRIES,
   VISA_PURPOSES,
   VISA_DURATIONS,
-  getVisaMockResult,
 } from './i18n/content'
 export {
   getSelectCategories,
