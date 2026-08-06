@@ -13,6 +13,25 @@ export type ResearchSource = {
 export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   japan: [
     {
+      id: 'japan-isa-digital-nomad',
+      title: {
+        KO: '일본 디지털 노마드 재류자격(특정활동) 공식 안내',
+        EN: 'Japan digital nomad status of residence — Immigration Services Agency',
+        JP: '在留資格「特定活動」（デジタルノマド）公式案内',
+      },
+      sourceName: 'Immigration Services Agency of Japan (出入国在留管理庁)',
+      // 외무성(mofa.go.jp)은 curl·WebFetch 모두 403 → 소관 부처인 출입국재류관리청
+      // 페이지에서 요건 원문 확보(2026-08-06). 재류자격 소관이라 1차 출처로 더 적합
+      sourceUrl: 'https://www.moj.go.jp/isa/applications/status/designatedactivities10_00001.html',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '체류 기간·소득 요건·의료보험 보장액·갱신 제한이 소관 부처 안내에 명시돼 있습니다. 대상 국적은 첨부 문서 목록으로 확인합니다.',
+        EN: 'The competent agency states the period of stay, income threshold, insurance coverage and renewal restrictions. Eligible nationalities are listed in an attached document.',
+        JP: '滞在期間・収入要件・医療保険の補償額・更新制限が所管庁の案内に明記されています。対象国籍は添付資料の一覧で確認します。',
+      },
+    },
+    {
       id: 'japan-mofa-digital-nomad',
       title: {
         KO: '일본 디지털 노마드 체류자격 안내',

@@ -42,9 +42,10 @@ const GENERIC: Record<Lang, Omit<VisaGuidance, 'program'>> = {
 // 각 항목의 출처·검증일은 research.ts VISA_OFFICIAL_SOURCES와 짝을 이룬다.
 const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> = {
   japan: {
-    KO: '일본 외무성은 디지털 노마드 체류자격의 체류기간을 6개월로 안내하며, 소득·보험 등 별도 요건을 두고 있습니다.',
-    EN: 'Japan’s Ministry of Foreign Affairs describes a six-month digital nomad status with separate income and insurance conditions.',
-    JP: '外務省はデジタルノマド向け在留資格を6カ月とし、収入・保険などの条件を案内しています。',
+    // 2026-08-06 출입국재류관리청(소관 부처) 원문으로 교체 — 기존 외무성 요약보다 요건이 구체적
+    KO: '일본 출입국재류관리청은 디지털 노마드 재류자격의 체류 기간을 6개월로 정하고 갱신을 허용하지 않습니다. 신청 시점 연간 소득 1,000만 엔 이상이 필요하고, 체류 기간 전체를 커버하는 민간 의료보험(상해·질병 치료비 보장 1,000만 엔 이상)에 가입해야 합니다. 자격외활동 허가는 원칙적으로 인정되지 않아 일본 내 고용 계약은 불가하며, 배우자·자녀는 별도 고시(54호)로 동반할 수 있습니다. 재신청은 출국 후 6개월이 지나야 가능합니다. 대상 국적은 청이 첨부한 목록으로 확인하세요.',
+    EN: 'Japan’s Immigration Services Agency sets the digital nomad status at six months with no renewal. Applicants need annual income of at least ¥10 million at the time of application and private medical insurance covering the whole stay, with injury and illness treatment cover of at least ¥10 million. Permission to work outside the designated activity is generally not granted, so local employment contracts are not allowed; spouses and children may accompany under a separate designation. Reapplication is only possible six months after leaving Japan. Eligible nationalities are listed in the agency’s attached document.',
+    JP: '出入国在留管理庁はデジタルノマドの在留資格を6カ月とし、更新を認めていません。申請時点で年収1,000万円以上が必要で、滞在期間全体をカバーする民間医療保険（傷害・疾病の治療費用補償1,000万円以上）への加入が求められます。資格外活動許可は原則認められず日本国内での雇用契約は不可で、配偶者・子は別告示（54号）で帯同できます。再申請は出国後6カ月経過後に可能です。対象国籍は同庁の添付資料で確認してください。',
   },
   vietnam: {
     KO: '베트남 이민국 공식 포털은 전자비자의 체류 가능 기간을 최대 90일로 안내합니다. 실제 적용 여부는 국적과 신청 조건을 확인하세요.',
