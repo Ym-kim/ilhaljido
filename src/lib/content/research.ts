@@ -281,6 +281,21 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   usa: [
     {
+      id: 'usa-embassy-korea-visas',
+      title: { KO: '주한 미국대사관 비자 안내', EN: 'U.S. Embassy in Korea — visas', JP: '駐韓米国大使館 ビザ案内' },
+      sourceName: 'U.S. Embassy & Consulate in the Republic of Korea',
+      // travel.state.gov는 curl·WebFetch 모두 403, ESTA 사이트는 JS SPA라 본문 판독 불가 →
+      // 한국 거주자 진입점으로 주한 대사관 페이지를 1순위 출처로 채택(2026-08-06 판독 성공)
+      sourceUrl: 'https://kr.usembassy.gov/visas/',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '비자 종류 판별 도구(Visa Wizard)와 비이민 비자 신청서(DS-160) 경로가 안내돼 있습니다.',
+        EN: 'Provides the Visa Wizard for identifying the right visa type and the DS-160 nonimmigrant application route.',
+        JP: 'ビザ種別を判定するVisa Wizardと、非移民ビザ申請（DS-160）の経路が案内されています。',
+      },
+    },
+    {
       id: 'usa-esta',
       title: { KO: '미국 ESTA 공식 신청 사이트', EN: 'Official U.S. ESTA application site', JP: '米国ESTA公式申請サイト' },
       sourceName: 'U.S. Customs and Border Protection',
