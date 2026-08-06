@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { TrainFront, Plug, Footprints, Bike, CalendarDays, MapPin, Battery, Waves } from 'lucide-react'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /programs/domestic/jeongseon-train — 정선 아리랑열차(A-train) 워케이션 에디토리얼
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
     '2년 3개월 만에 돌아온 산악열차 A-train. 제천~아우라지, 토·일과 정선 5일장에만 달리는 달리는 오피스 — 아우라지 산책과 7.2km 레일바이크까지 국내 슬로우 워케이션 가이드.',
   alternates: { canonical: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '정선 아리랑 열차 워케이션 — 달리는 오피스 | Wakation',
     description: '2년 3개월 만에 재개통한 A-train으로 떠나는 슬로우 트레인 워케이션 가이드.',
     url: 'https://www.wakation.kr/programs/domestic/jeongseon-train',

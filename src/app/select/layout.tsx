@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 export const metadata: Metadata = {
   title: 'Wakation Select — 워케이션 준비 상품',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Wakation Select | 워케이션 준비 상품',
     description: '숙소·체험·eSIM·강의 — 워케이션 준비를 한곳에서.',
     url: 'https://www.wakation.kr/select',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { StoriesHubView } from '@/components/editorial/StoriesHubView'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /stories — 에디토리얼 허브 (아티클 집결지, KO 메타)
 
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '여행 이야기',
     description: '새로운 체류지와 이동 방식의 가능성 — 검증된 사실로 쓰는 워케이션 에디토리얼.',
     url: 'https://www.wakation.kr/stories',

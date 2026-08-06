@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CompareView } from '@/components/destinations/CompareView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/destinations/compare — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN와 상호 연결)
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/destinations/compare'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'ワーケーション都市を比較 | Wakation',
     description: '迷っている2〜3都市を並べて、ネット・生活費・ビザ・時差を一度に比較。',
     url: 'https://www.wakation.kr/ja/destinations/compare',

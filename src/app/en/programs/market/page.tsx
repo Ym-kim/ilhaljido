@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { MarketProgramsView } from '@/components/programs/MarketProgramsView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/programs/market — 영어 정적 로케일 라우트
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/programs/market'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'Market Research Trips | Wakation',
     description: 'Research and network first-hand at overseas trade fairs and markets.',
     url: 'https://www.wakation.kr/en/programs/market',

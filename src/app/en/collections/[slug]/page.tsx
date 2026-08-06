@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { CollectionView } from '@/components/affiliate/CollectionView'
 import { COLLECTIONS, getCollection } from '@/lib/affiliate/collections'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /en/collections/{slug} — 영어 정적 로케일 라우트 (hreflang으로 KO/JA와 상호 연결)
 
@@ -28,6 +29,7 @@ export async function generateMetadata({
       languages: cityLanguageAlternates(`/collections/${slug}`),
     },
     openGraph: {
+      images: OG_DEFAULT_IMAGES,
       title: `${col.title.EN} | Wakation`,
       description: col.desc.EN,
       url: `https://www.wakation.kr/en/collections/${slug}`,

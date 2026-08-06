@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { CompareView } from '@/components/destinations/CompareView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /destinations/compare — 워케이션 도시 비교 도구 (클라이언트 도구, KO 메타)
 
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/destinations/compare'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: '워케이션 도시 비교 | Wakation',
     description: '고민 중인 워케이션 도시 2~3곳을 나란히 놓고 인터넷·생활비·비자·시차를 한 번에 비교하세요.',
     url: 'https://www.wakation.kr/destinations/compare',

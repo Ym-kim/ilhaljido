@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { EsimSelectView } from '@/components/select/EsimSelectView'
 import { cityLanguageAlternates } from '@/lib/cities'
+import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 // /ja/select/esim — 일본어 정적 로케일 라우트 (hreflang으로 KO/EN과 상호 연결)
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     languages: cityLanguageAlternates('/select/esim'),
   },
   openGraph: {
+    images: OG_DEFAULT_IMAGES,
     title: 'eSIM | Wakation Select',
     description: '空港のSIM行列なし。出発前にインストール、到着後すぐ接続 — AiraloのeSIM。',
     url: 'https://www.wakation.kr/ja/select/esim',
