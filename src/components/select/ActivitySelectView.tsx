@@ -108,7 +108,8 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
               : '골프·힐링·로컬·스포츠 — 테마별로 고른 검증 KKday 체험.'}
           </p>
           <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 min-[520px]:grid-cols-2 lg:grid-cols-4">
-            {THEME_EXPERIENCES.map((item) => (
+            {/* coming_soon 제외 — 소멸 상품이 죽은 링크로 렌더되던 것 차단 (2026-08-06) */}
+            {THEME_EXPERIENCES.filter((item) => item.status !== 'coming_soon').map((item) => (
               <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
             ))}
           </div>
