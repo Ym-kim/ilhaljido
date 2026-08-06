@@ -59,11 +59,12 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     JP: '駐韓オーストラリア大使館は、韓国旅券保持者がETA（601）で観光・親族訪問・商用目的に限り、1回あたり最長3カ月滞在できると案内しています。ETAの有効期間や入国回数、就労の可否はこの案内に記載がないため、申請前に確認してください。',
   },
   usa: {
-    // ⚠️ 무비자 90일·ESTA 유효기간 등 수치는 travel.state.gov(403)·ESTA 사이트(JS SPA)가
-    // 모두 판독 불가라 기재하지 않는다. 대사관 페이지에서 확인된 범위만 서술
-    KO: '주한 미국대사관은 외국 국적자가 원칙적으로 미국 비자를 받아야 하며, 일부 여행자만 비자면제프로그램(VWP) 요건을 충족할 경우 비자 없이 여행할 수 있다고 안내합니다. 비이민 비자는 DS-160으로 신청하고, 어떤 비자가 필요한지 모를 때는 대사관의 Visa Wizard로 확인하도록 안내합니다. 무비자 체류 일수와 ESTA 유효기간 등 구체 조건은 ESTA 공식 사이트에서 확인하세요.',
-    EN: 'The U.S. Embassy in Korea states that foreign nationals generally need a U.S. visa, and that some travellers may travel without one if they meet the Visa Waiver Program requirements. Nonimmigrant visas are filed on the DS-160, and the embassy’s Visa Wizard helps identify the right category. Check the official ESTA site for the permitted length of visa-free stay and ESTA validity.',
-    JP: '駐韓米国大使館は、外国籍者は原則として米国ビザを取得する必要があり、一部の渡航者はビザ免除プログラム（VWP）の要件を満たす場合にビザなしで渡航できると案内しています。非移民ビザはDS-160で申請し、種別が不明な場合は大使館のVisa Wizardで確認します。ビザ免除での滞在日数やESTAの有効期間などの詳細は、ESTA公式サイトで確認してください。',
+    // 2026-08-07 보완: travel.state.gov 403·ESTA 사이트 SPA는 여전하나, 소관 기관인
+    // CBP·DHS 본문 판독에 성공해 90일·한국 지정 여부를 확인. ESTA 유효기간은 세 페이지
+    // 어디에도 없어 계속 미기재(추정 금지)
+    KO: '미국 관세국경보호청(CBP)과 국토안보부(DHS)는 비자면제프로그램(VWP)이 지정국 국민에게 상용 또는 관광 목적으로 비자 없이 최대 90일 체류를 허용한다고 안내합니다. 대한민국은 DHS 지정국 명단에 등재돼 있습니다. VWP 이용에는 전자칩이 내장된 e-Passport가 필요하고, ESTA 승인은 여행 자격을 판단할 뿐 입국 허가를 보장하지 않으며 입국 가능 여부는 도착 시 CBP 심사관이 결정합니다. ESTA 유효기간은 위 안내에 명시돼 있지 않으니 ESTA 공식 사이트에서 확인하세요.',
+    EN: 'U.S. Customs and Border Protection and the Department of Homeland Security state that the Visa Waiver Program lets citizens of designated countries travel for business or tourism and stay up to 90 days without a visa. The Republic of Korea is on the DHS designated-country list. Using the VWP requires an e-Passport with an embedded chip, and ESTA approval only establishes eligibility to travel — admissibility is decided by CBP officers on arrival. The ESTA validity period is not stated in this guidance, so check the official ESTA site.',
+    JP: '米国税関国境警備局（CBP）と国土安全保障省（DHS）は、ビザ免除プログラム（VWP）により指定国の国民が商用または観光目的でビザなしに最長90日滞在できると案内しています。大韓民国はDHSの指定国リストに掲載されています。VWPの利用には電子チップ内蔵のe-Passportが必要で、ESTAの承認は渡航資格を判断するもので入国を保証せず、入国の可否は到着時にCBP審査官が決定します。ESTAの有効期間は本案内に記載がないため、ESTA公式サイトで確認してください。',
   },
   philippines: {
     KO: '필리핀 이민청 공식 안내에 따르면 무비자 대상 관광객은 최초 30일 체류가 허용되며, 비자 웨이버를 신청하면 29일이 추가됩니다. 이후에도 1개월·2개월 단위 연장이 가능하며 누적 체류 상한은 무비자 대상 국적 36개월, 비자 필요 국적 24개월입니다. 필요 서류는 이민청이 제공하는 체크리스트로 확인하세요.',
