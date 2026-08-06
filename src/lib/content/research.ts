@@ -380,6 +380,23 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   czech: [
     {
+      id: 'czech-business-long-term-visa',
+      title: {
+        KO: '체코 사업 목적 장기비자 공식 안내',
+        EN: 'Czech long-term visa for the purpose of doing business',
+        JP: 'チェコ 事業目的の長期査証の公式案内',
+      },
+      sourceName: 'Ministry of the Interior of the Czech Republic',
+      sourceUrl: 'https://ipc.gov.cz/en/visa-and-residence-permit-types/third-country-nationals/long-term-visa/long-term-visa-for-the-purpose-of-doing-business/',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '대상 활동·최대 유효기간·필요 서류·수수료·처리 기간이 명시돼 있습니다. 재정 요건 금액은 이 페이지에 없어 별도 확인이 필요합니다.',
+        EN: 'Covers eligible activities, maximum validity, required documents, fees and processing times. The financial threshold is not stated on this page.',
+        JP: '対象活動・最長有効期間・必要書類・手数料・処理期間が明記されています。資金要件の金額はこのページにありません。',
+      },
+    },
+    {
       id: 'czech-ipc-portal',
       title: { KO: '체코 외국인 공식 정보 포털', EN: 'Czech official information portal for foreigners', JP: 'チェコ 外国人向け公式情報ポータル' },
       sourceName: 'Ministry of the Interior of the Czech Republic',
@@ -430,6 +447,25 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   georgia: [
     {
+      id: 'georgia-korea-mofa-notice',
+      title: {
+        KO: '조지아 무비자 체류기간 1년 — 대한민국 대사관 공지',
+        EN: 'Georgia one-year visa-free stay — Korean embassy notice',
+        JP: 'ジョージアのビザ免除滞在1年 — 韓国大使館の公示',
+      },
+      sourceName: '주아제르바이잔 대한민국 대사관 (외교부)',
+      // geoconsul.gov.ge는 전 경로가 JS 포털이라 판독 불가 → 한국 여권 기준을 직접
+      // 다루는 우리 정부 공관 공지를 채택(2026-08-06). 한국인 대상 여부가 명시돼 더 적합
+      sourceUrl: 'https://aze.mofa.go.kr/az-ko/brd/m_8247/view.do?seq=1151253',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '한국 국민의 무비자 체류기간이 90일에서 1년으로 연장된 시행일과 근거가 공지돼 있습니다.',
+        EN: 'States when the visa-free stay for Korean nationals was extended from 90 days to one year, and the basis for it.',
+        JP: '韓国国民のビザ免除滞在が90日から1年に延長された施行日と根拠が案内されています。',
+      },
+    },
+    {
       id: 'georgia-consul',
       title: { KO: '조지아 외무부 영사 포털', EN: 'Georgia consular portal', JP: 'ジョージア外務省領事ポータル' },
       sourceName: 'Ministry of Foreign Affairs of Georgia',
@@ -445,6 +481,25 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
   ],
   canada: [
     {
+      id: 'canada-ircc-eta-stay',
+      title: {
+        KO: '캐나다 eTA 체류 기간·유효기간 (IRCC 헬프센터)',
+        EN: 'Canada eTA — length of stay and validity (IRCC Help Centre)',
+        JP: 'カナダeTAの滞在期間・有効期間（IRCCヘルプセンター）',
+      },
+      sourceName: 'Immigration, Refugees and Citizenship Canada',
+      // canada.ca 본체는 curl·WebFetch 모두 403(WAF)이나 **ircc.canada.ca 헬프센터는 판독 가능**
+      // (2026-08-06 발견). 같은 IRCC 공식 답변이므로 1차 출처로 사용
+      sourceUrl: 'https://ircc.canada.ca/english/helpcentre/answer.asp?qnum=1198&top=16',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '체류 허용 기간과 최종 결정 주체(입국 시 국경 담당관)가 명시돼 있습니다.',
+        EN: 'States the permitted length of stay and that a border services officer decides it on entry.',
+        JP: '許可される滞在期間と、入国時に国境担当官が決定する旨が明記されています。',
+      },
+    },
+    {
       id: 'canada-visa-eta',
       title: { KO: '캐나다 비자·eTA 필요 여부 확인', EN: 'Canada — find out if you need a visa or eTA', JP: 'カナダ ビザ・eTA要否の確認' },
       sourceName: 'Immigration, Refugees and Citizenship Canada',
@@ -458,6 +513,24 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
     },
   ],
   france: [
+    {
+      id: 'france-vls-ts',
+      title: {
+        KO: '프랑스 장기체류비자(VLS-TS) 공식 안내',
+        EN: 'France long-stay visa serving as a residence permit (VLS-TS)',
+        JP: 'フランス 滞在許可を兼ねる長期査証（VLS-TS）',
+      },
+      sourceName: 'service-public.gouv.fr (프랑스 정부 공식 행정안내)',
+      // france-visas.gouv.fr 본체는 403 지속 → 정부 공식 행정안내 포털로 대체 판독 성공
+      sourceUrl: 'https://www.service-public.gouv.fr/particuliers/vosdroits/F16162?lang=en',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '체류 기간, 체류증 대체 여부, 입국 후 온라인 검증 기한이 명시돼 있습니다.',
+        EN: 'States the period of stay, that the visa replaces a residence card, and the online validation deadline after arrival.',
+        JP: '滞在期間、滞在許可証の代替可否、入国後のオンライン認証期限が明記されています。',
+      },
+    },
     {
       id: 'france-mfa-visa',
       title: { KO: '프랑스 비자 신청 공식 안내', EN: 'France — requesting a visa (MFA)', JP: 'フランス査証申請の公式案内' },
@@ -475,6 +548,24 @@ export const VISA_OFFICIAL_SOURCES: Record<string, ResearchSource[]> = {
     },
   ],
   uae: [
+    {
+      id: 'uae-gdrfa-virtual-work',
+      title: {
+        KO: '두바이 가상근무 거주허가 발급 (GDRFA)',
+        EN: 'Dubai virtual work residence permit (GDRFA)',
+        JP: 'ドバイ バーチャルワーク居住許可（GDRFA）',
+      },
+      sourceName: 'General Directorate of Residency and Foreigners Affairs, Dubai',
+      // u.ae 심층 경로는 사이트 개편으로 404 → 소관 기관(두바이 이민국) 서비스 페이지 채택
+      sourceUrl: 'https://www.gdrfad.gov.ae/en/services/f52024e3-b812-11ed-5210-4cd98f768936',
+      sourceType: 'official',
+      verifiedAt: '2026-08-06',
+      note: {
+        KO: '월 소득 요건·유효기간·필요 서류·수수료·만료 후 유예기간이 소관 기관 서비스 안내에 명시돼 있습니다.',
+        EN: 'The competent authority lists the monthly income threshold, validity, required documents, fees and the post-expiry grace period.',
+        JP: '月収要件・有効期間・必要書類・手数料・満了後の猶予期間が所管機関の案内に明記されています。',
+      },
+    },
     {
       id: 'uae-visa-services',
       title: { KO: 'UAE 정부 공식 비자 안내', EN: 'UAE government visa information', JP: 'UAE政府 公式ビザ案内' },

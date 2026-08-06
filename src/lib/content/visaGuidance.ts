@@ -114,6 +114,31 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
     EN: 'Spain’s consular guidance requires income of 200% of the minimum wage (SMI) for the telework visa — €2,368 per month using the 2025 SMI of €1,184 cited on the page. Family adds 75% for the first member and 25% for each additional one. The visa is valid for a maximum of one year, and applicants need a degree from a recognised university or professional school, or at least three years of experience. Employees may not work for Spanish companies, and for the self-employed, work for Spanish companies may not exceed 20% of the total.',
     JP: 'スペイン領事の公式案内によると、テレワーク査証は最低賃金（SMI）の200%の収入が必要で、ページが示す2025年SMI €1,184を基準に月€2,368となります。同伴家族は1人目75%・以降1人あたり25%が加算されます。査証の有効期間は最長1年で、認定大学・専門学校の学位または3年以上の実務経験が必要です。被雇用者はスペイン企業で就労できず、自営業者もスペイン企業向け業務が全体の20%を超えてはなりません。',
   },
+  canada: {
+    KO: '캐나다 이민난민시민권부(IRCC) 안내에 따르면 eTA는 최대 5년 또는 여권 만료일 중 먼저 도래하는 때까지 유효하며, 유효한 동안에는 횟수 제한 없이 입국할 수 있어 매번 새로 신청할 필요가 없습니다. 방문자의 체류는 통상 최대 6개월까지 허용되지만, 실제 체류 가능 기간은 입국 시 국경 담당관이 결정해 여권에 표기합니다.',
+    EN: 'Canada’s IRCC states that an eTA is valid for up to five years or until the passport expires, whichever comes first, and allows as many entries as you wish while valid, so it need not be reapplied for each trip. Visitors are normally allowed to stay up to six months, but the actual period is set by the border services officer on entry and recorded in the passport.',
+    JP: 'カナダ移民・難民・市民権省（IRCC）の案内によると、eTAは最長5年または旅券の満了日のいずれか早い時点まで有効で、有効な間は回数制限なく入国できるため毎回申請し直す必要はありません。訪問者の滞在は通常最長6カ月まで認められますが、実際の期間は入国時に国境担当官が決定し旅券に記録されます。',
+  },
+  georgia: {
+    KO: '대한민국 외교부 공관 공지에 따르면 한국 국민의 조지아 무비자 체류기간은 2015년 6월 9일부터 90일에서 1년으로 연장됐고, 장기 체류 시에도 별도 체류허가증 없이 거주할 수 있습니다. 다만 무비자 상태에서 허용되는 활동 범위(취업·사업 등)는 이 공지에 명시돼 있지 않으므로 현지 이민 당국에 확인하세요.',
+    EN: 'A Korean embassy notice states that, since 9 June 2015, Korean nationals may stay in Georgia visa-free for one year instead of 90 days, and may reside there without a separate residence permit. The notice does not specify which activities (such as employment or business) are permitted while visa-free, so confirm with the local immigration authority.',
+    JP: '韓国外交部在外公館の公示によると、韓国国民のジョージアでのビザ免除滞在は2015年6月9日から90日から1年に延長され、長期滞在時も別途の滞在許可証なしで居住できます。ただしビザ免除中に認められる活動範囲（就労・事業など）は公示に明記されていないため、現地の入国管理当局に確認してください。',
+  },
+  uae: {
+    KO: '두바이 거주·외국인 총국(GDRFA)은 가상근무 거주허가의 월 소득 요건을 미화 3,500달러 이상으로 안내하며, 허가는 1년 유효하고 갱신할 수 있습니다. UAE 밖에서 원격으로 일한다는 증빙, 건강보험, 건강검진, 급여 증명이 필요하고 기본 수수료는 AED 200(별도 항목 추가)입니다. 허가 만료·취소 후 체류 유예기간은 60일입니다.',
+    EN: 'Dubai’s GDRFA sets the virtual work residence permit income threshold at US$3,500 or more per month; the permit is valid for one year and renewable. Applicants must show proof of remote work for an entity outside the UAE, health insurance, a medical fitness test and a salary certificate, with a base fee of AED 200 plus additional charges. The grace period to remain after expiry or cancellation is 60 days.',
+    JP: 'ドバイ居住・外国人総局（GDRFA）は、バーチャルワーク居住許可の月収要件を3,500米ドル以上とし、許可は1年間有効で更新可能と案内しています。UAE国外での遠隔勤務の証明、健康保険、健康診断、給与証明が必要で、基本手数料はAED 200（別途加算あり）です。満了・取消後の滞在猶予期間は60日です。',
+  },
+  czech: {
+    KO: '체코 내무부 외국인 포털은 자영업·허가업종·법인 임원 등 사업 목적 체류에 장기비자를 안내하며, 최대 유효기간은 1년입니다. 영업허가부 또는 상업등기부 등록 증빙, 숙소·재정 증빙, 범죄경력증명, 의료보험이 필요하고 신청 수수료는 5,000CZK(연장 1,000CZK)입니다. 처리 기간은 90일(복잡한 사안 120일)이며, 연장을 포함해 1년을 넘겨 체류하려면 장기 체류허가로 전환해야 합니다.',
+    EN: 'The Czech interior ministry’s foreigners portal describes a long-term visa for business purposes — self-employment, licensed trades or company officers — valid for up to one year. It requires proof of registration in the Trade Licensing or Commercial Register, accommodation and funds, a criminal record certificate and medical insurance, with a 5,000 CZK application fee (1,000 CZK for extension). Processing takes 90 days (120 in complex cases), and staying beyond one year in total requires switching to a long-term residence permit.',
+    JP: 'チェコ内務省の外国人ポータルは、自営業・許可業種・法人役員などの事業目的の滞在に長期査証を案内しており、最長有効期間は1年です。営業許可登記または商業登記の登録証明、住居・資金の証明、犯罪経歴証明、医療保険が必要で、申請手数料は5,000CZK（延長は1,000CZK）です。処理期間は90日（複雑な案件は120日）で、延長を含め1年を超えて滞在するには長期滞在許可への切替が必要です。',
+  },
+  france: {
+    KO: '프랑스 정부 공식 안내에 따르면 체류증을 대신하는 장기체류비자(VLS-TS)는 4개월~1년 체류에 적용되며, 이 비자가 있으면 도착 직후 도청에서 체류증을 따로 신청할 필요가 없습니다. 다만 입국 후 3개월 이내에 온라인 검증과 수수료 납부를 마쳐야 적법 체류가 유지되고 국경 통과가 가능합니다. 방문(visitor) 비자는 본인 재원으로 생활할 수 있어야 하며, 직업활동 가능 여부는 이 안내에 명시돼 있지 않으니 비자 종류별로 확인하세요.',
+    EN: 'French government guidance states that the long-stay visa serving as a residence permit (VLS-TS) covers stays of four months to one year, removing the need to apply for a residence card at the prefecture on arrival. It must be validated online, with the associated fee paid, within three months of arrival to keep your stay lawful and allow border crossings. Visitor applicants must be able to live off their own resources; whether professional activity is allowed is not specified on this page, so check per visa category.',
+    JP: 'フランス政府の公式案内によると、滞在許可を兼ねる長期査証（VLS-TS）は4カ月〜1年の滞在に適用され、到着後に県庁で滞在証を別途申請する必要がありません。ただし入国後3カ月以内にオンライン認証と手数料の納付を完了しないと適法な滞在が維持されず、国境通過もできません。訪問（visitor）区分は自己の資力で生活できることが求められ、就労の可否はこの案内に明記されていないため査証種別ごとに確認してください。',
+  },
   croatia: {
     KO: '크로아티아 내무부는 디지털 노마드 임시체류를 최대 18개월로 허가하며, 18개월 미만으로 받은 경우 만료 60일 전에 최대 6개월 연장을 신청할 수 있다고 안내합니다. 월 소득 요건은 €3,622.50이며(12개월 €43,470·18개월 €65,205 기준), 이전 체류 종료 후 6개월이 지나야 다시 신청할 수 있습니다. 제출 서류는 크로아티아어 또는 영어여야 합니다.',
     EN: 'Croatia’s interior ministry grants digital nomad temporary stay for up to 18 months; if granted for less, an extension of up to six months can be requested 60 days before expiry. Monthly income must be €3,622.50 (€43,470 for 12 months, €65,205 for 18), and a new application is only possible six months after the previous stay ends. Documents must be in Croatian or English.',
