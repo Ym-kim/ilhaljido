@@ -34,6 +34,9 @@ export type ComfortFact = {
     | 'wifi'
     | 'transit_pass'
     | 'esim'
+    // 2026-08-07 추가 — 입국 요건·비자는 공식 원문(이민국·영사국) 확인분만 기재한다
+    | 'entry_requirement'
+    | 'visa'
   label: L
   value: L
   /** 출처 표기(선택) — 검증 못 한 항목은 아예 넣지 않는다 */
@@ -701,6 +704,31 @@ export const COLLECTIONS: Collection[] = [
       JP: 'アジアのビジネス拠点シンガポール。コワーキング付きコリビングで働き、週末はユニバーサル・スタジオ。アジアマルチ国eSIMと航空券で準備完了。',
     },
     itemIds: ['stay-lyf-funan-singapore', 'act-klook-uss-singapore', 'esim-klook-asia', 'feat-flight-tripcom'],
+    // 2026-08-06 비자 실사에서 ICA 공식 안내 원문으로 확인한 항목만 옮겨 적음(신규 주장 0)
+    comfortFacts: [
+      {
+        type: 'entry_requirement',
+        label: { KO: '입국 준비', EN: 'Before you fly', JP: '入国準備' },
+        value: {
+          KO: '입국 시 여권 잔여 유효기간 6개월 이상, 도착 3일 전까지 SG 도착카드(SGAC) 제출',
+          EN: 'Six months of passport validity on entry, and the SG Arrival Card filed within three days before arrival',
+          JP: '入国時に旅券残存6カ月以上、到着3日前までにSG到着カード（SGAC）を提出',
+        },
+        source: 'ICA',
+        verifiedAt: '2026-08-06',
+      },
+      {
+        type: 'visa',
+        label: { KO: '체류 기간', EN: 'Length of stay', JP: '滞在期間' },
+        value: {
+          KO: '입국 시 부여되는 방문패스로 정해집니다 — ICA 조회 도구로 확인하세요',
+          EN: 'Set by the visit pass granted at entry — check with ICA’s validity tool',
+          JP: '入国時に付与される訪問パスで決まります — ICAの確認ツールでご確認ください',
+        },
+        source: 'ICA',
+        verifiedAt: '2026-08-06',
+      },
+    ],
   },
   {
     slug: 'taipei-workation',
@@ -715,6 +743,31 @@ export const COLLECTIONS: Collection[] = [
       JP: 'カフェ·夜市が密集する台北。スマートホテルで働き、野柳·九份の日帰りツアーへ。アジアeSIMと航空券も。',
     },
     itemIds: ['stay-citizenm-taipei', 'act-klook-taipei-tour', 'esim-klook-asia', 'feat-flight-tripcom'],
+    // 2026-08-06 비자 실사에서 대만 외교부 영사국(BOCA) 원문으로 확인한 항목만 (신규 주장 0)
+    comfortFacts: [
+      {
+        type: 'visa',
+        label: { KO: '무비자 체류', EN: 'Visa-free stay', JP: 'ビザ免除滞在' },
+        value: {
+          KO: '한국 여권은 최대 90일 — 무비자 체류는 원칙적으로 연장되지 않습니다',
+          EN: 'Up to 90 days on a Korean passport — visa-exempt stays are generally not extendable',
+          JP: '韓国旅券は最長90日 — ビザ免除滞在は原則延長できません',
+        },
+        source: 'BOCA',
+        verifiedAt: '2026-08-06',
+      },
+      {
+        type: 'entry_requirement',
+        label: { KO: '입국 준비', EN: 'Before you fly', JP: '入国準備' },
+        value: {
+          KO: '입국일 기준 여권 잔여 유효기간 6개월, 확약된 출국 항공권 필요',
+          EN: 'Six months of passport validity on entry and a confirmed onward ticket',
+          JP: '入国時点で旅券残存6カ月、出国便の予約確約が必要',
+        },
+        source: 'BOCA',
+        verifiedAt: '2026-08-06',
+      },
+    ],
   },
 ]
 
