@@ -8,6 +8,7 @@ import { useLang } from '@/context/LanguageContext'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
@@ -37,6 +38,14 @@ const COPY: Record<string, L> = {
     JP: '運営主体と日程が確認できる企画のみ審査します。提案は掲載・募集を保証するものではありません。',
   },
   inquire: { KO: '교육 파트너 문의', EN: 'Learning partner inquiry', JP: '教育パートナーのお問い合わせ' },
+  // 2026-08-07 구조 결정 ① — /growth(성장 캠프 리드)와 /learn(제휴 강의 커머스)은 수익 구조가
+  // 달라 분리 유지하되, 온라인 학습 ↔ 현장 캠프 맥락으로 상호 크로스링크 1개씩 연결
+  camp_lead: {
+    KO: '현장에서 함께 배우고 싶다면',
+    EN: 'Prefer to learn together, on site?',
+    JP: '現地で一緒に学びたいなら',
+  },
+  camp_cta: { KO: '성장 캠프 살펴보기', EN: 'See the growth camp', JP: '成長キャンプを見る' },
 }
 
 const PATHS: Array<{ label: L; title: L; desc: L }> = [
@@ -97,6 +106,15 @@ export default function LearnPage() {
               </article>
             ))}
           </div>
+
+          <Link
+            href={localizeHref('/growth', lang)}
+            className="group mt-10 inline-flex min-h-11 items-center gap-3 rounded-full border border-white/20 px-6 py-3 transition-colors hover:border-sky-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-400"
+          >
+            <span className="text-sm text-white/55">{COPY.camp_lead[lang]}</span>
+            <span className="text-sm font-bold text-white">{COPY.camp_cta[lang]}</span>
+            <ArrowRight className="h-4 w-4 text-white/40 transition-colors group-hover:text-sky-300" aria-hidden="true" />
+          </Link>
         </div>
       </section>
 
