@@ -1,15 +1,20 @@
 'use client'
 
+import { useEffect } from 'react'
 import { useLang } from '@/context/LanguageContext'
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, BookOpen, GraduationCap, HeartHandshake, Compass } from 'lucide-react'
 
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { NotifySignup } from '@/components/home/NotifySignup'
+import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
+import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { ICON_STROKE } from '@/lib/icons'
 import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
+import { getMediaAsset } from '@/lib/media/assets'
+import { trackEditorialAssetCta, trackEditorialAssetView } from '@/lib/media/editorialTracking'
+import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
 
 import { getGrowthCamps } from '@/lib/i18n'
 
@@ -45,6 +50,10 @@ const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L 
 // 2026-08-04 정직성: 캠프 6종은 모집 전 커리큘럼 — 상태 배지 없이는 운영 중 상품처럼 읽힘 (/language '준비 중' 패턴 이식)
 const CAMP_STATUS: L = { KO: '모집 준비 중', EN: 'In preparation', JP: '募集準備中' }
 
+const GROWTH_PLACEMENT = getEditorialModelPlacement('growth-hero')
+const GROWTH_DESKTOP = getMediaAsset('growth-model-b-urban-learning-desktop-v1')!
+const GROWTH_MOBILE = getMediaAsset('growth-model-b-urban-learning-mobile-v1')!
+
 const NEXT_UI: Record<string, L> = {
   title: { KO: '캠프를 기다리는 동안', EN: 'While you wait for the next camp', JP: '次のキャンプを待つあいだに' },
   notify: {
@@ -62,19 +71,41 @@ export default function GrowthPage() {
 
   const camps = getGrowthCamps()
 
+  useEffect(() => {
+    trackEditorialAssetView({
+      assetId: GROWTH_DESKTOP.id,
+      mobileAssetId: GROWTH_MOBILE.id,
+      modelIds: GROWTH_PLACEMENT.modelIds,
+      route: '/growth',
+      section: GROWTH_PLACEMENT.section,
+      locale: lang.toLowerCase(),
+    })
+  }, [lang])
+
 
 
   return (
 
     <div className="min-h-screen bg-[#111]">
 
-      <section className="relative h-[55vh] flex items-end overflow-hidden dark-surface">
+      <section className="relative flex min-h-[34rem] items-end overflow-hidden dark-surface md:min-h-[39rem]">
 
-        <Image src="/media/verified/unsplash/1522199755839-a2bacb67c546.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+        <ArtDirectedEditorialHero
+          desktopSrc={GROWTH_DESKTOP.src}
+          mobileSrc={GROWTH_MOBILE.src}
+          alt={GROWTH_DESKTOP.alt[lang]}
+          desktopWidth={GROWTH_DESKTOP.width!}
+          desktopHeight={GROWTH_DESKTOP.height!}
+          mobileWidth={GROWTH_MOBILE.width!}
+          mobileHeight={GROWTH_MOBILE.height!}
+        />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,15,22,.94)_0%,rgba(3,15,22,.68)_48%,rgba(3,15,22,.16)_100%)] md:bg-[linear-gradient(90deg,rgba(3,15,22,.92)_0%,rgba(3,15,22,.58)_48%,rgba(3,15,22,.08)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black/85 to-transparent" />
 
-        <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
+        <div className="relative mx-auto w-full max-w-6xl px-6 pb-14 md:pb-16">
+
+          <EditorialImageBadge lang={lang} className="mb-5 inline-flex" />
 
           <SectionEyebrow onDark>{tr('growth_badge')}</SectionEyebrow>
 
@@ -134,6 +165,16 @@ export default function GrowthPage() {
                 <Link
                   key={s.href}
                   href={localizeHref(s.href, lang)}
+                  onClick={() => trackEditorialAssetCta({
+                    assetId: GROWTH_DESKTOP.id,
+                    mobileAssetId: GROWTH_MOBILE.id,
+                    modelIds: GROWTH_PLACEMENT.modelIds,
+                    route: '/growth',
+                    section: GROWTH_PLACEMENT.section,
+                    locale: lang.toLowerCase(),
+                    target: localizeHref(s.href, lang),
+                    action: s.href === '/learn' ? 'primary_next_step' : 'next_step',
+                  })}
                   className="group flex items-center gap-4 rounded-2xl bg-white/5 border border-white/10 p-5 hover:border-teal-500/40 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-400"
                 >
                   <span className="shrink-0 inline-flex w-10 h-10 items-center justify-center rounded-xl bg-teal-500/10 text-teal-400">

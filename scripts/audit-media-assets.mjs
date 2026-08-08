@@ -9,6 +9,7 @@ const cityDataPath = path.join(root, 'src', 'lib', 'cities.ts')
 const guideDataPath = path.join(root, 'src', 'lib', 'guides.ts')
 const manifestPath = path.join(root, 'src', 'lib', 'media', 'assets.ts')
 const rosterPath = path.join(root, 'src', 'lib', 'media', 'brandModels.ts')
+const rotationPath = path.join(root, 'src', 'lib', 'media', 'modelRotation.ts')
 const destinationDirectory = path.join(root, 'public', 'media', 'destinations')
 const brandModelDirectory = path.join(root, 'public', 'media', 'brand-models')
 const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
@@ -38,19 +39,34 @@ const v2Assets = [
   { id: 'learn-model-k-creative-focus-mobile-v1', file: 'learn-model-k-creative-focus-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
   { id: 'programs-model-k-stay-planning-desktop-v1', file: 'programs-model-k-stay-planning-desktop-v1.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-K'] },
   { id: 'programs-model-k-stay-planning-mobile-v1', file: 'programs-model-k-stay-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
+  { id: 'growth-model-b-urban-learning-desktop-v1', file: 'growth-model-b-urban-learning-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
+  { id: 'growth-model-b-urban-learning-mobile-v1', file: 'growth-model-b-urban-learning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-B'] },
+  { id: 'business-model-c-team-planning-desktop-v1', file: 'business-model-c-team-planning-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-C'] },
+  { id: 'business-model-c-team-planning-mobile-v1', file: 'business-model-c-team-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-C'] },
+  { id: 'campaign-model-f-japan-choice-desktop-v1', file: 'campaign-model-f-japan-choice-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
+  { id: 'campaign-model-f-japan-choice-mobile-v1', file: 'campaign-model-f-japan-choice-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-F'] },
 ]
+
+const v2AssetIds = new Map(v2Assets.map((asset) => [asset.id, asset]))
+const assetIds = (...ids) => ids.map((id) => {
+  if (!v2AssetIds.has(id)) throw new Error(`Unknown audited asset ID: ${id}`)
+  return id
+})
 
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
 const v2Placements = [
-  { route: 'home', section: 'hero', models: ['WAK-MODEL-A'], assets: v2Assets.slice(0, 2).map((asset) => asset.id), source: 'src/app/page.tsx' },
-  { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: [v2Assets[2].id], source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-E'], assets: [v2Assets[3].id], source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-G'], assets: [v2Assets[4].id], source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: [v2Assets[5].id], source: 'src/components/trip-match/TripMatchExperience.tsx' },
-  { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: v2Assets.slice(6, 8).map((asset) => asset.id), source: 'src/components/hosted/HostedLandingView.tsx' },
-  { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: [v2Assets[8].id], source: 'src/components/select/SelectHubView.tsx' },
-  { route: 'learn', section: 'hero', models: ['WAK-MODEL-K'], assets: v2Assets.slice(9, 11).map((asset) => asset.id), source: 'src/app/learn/page.tsx' },
-  { route: 'programs', section: 'hero', models: ['WAK-MODEL-K'], assets: v2Assets.slice(11, 13).map((asset) => asset.id), source: 'src/components/programs/ProgramsHubView.tsx' },
+  { route: 'home', section: 'hero', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/app/page.tsx' },
+  { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: assetIds('domestic-seoul-model-j-city-noir-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
+  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-E'], assets: assetIds('domestic-busan-model-e-coastal-city-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
+  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-G'], assets: assetIds('domestic-jeju-model-g-slow-stay-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
+  { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: assetIds('trip-match-model-d-itinerary-choice-v2'), source: 'src/components/trip-match/TripMatchExperience.tsx' },
+  { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v2', 'hosted-models-h-i-coastal-planning-mobile-v2'), source: 'src/components/hosted/HostedLandingView.tsx' },
+  { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v2'), source: 'src/components/select/SelectHubView.tsx' },
+  { route: 'learn', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1'), source: 'src/app/learn/page.tsx' },
+  { route: 'programs', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1'), source: 'src/components/programs/ProgramsHubView.tsx' },
+  { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'), source: 'src/app/growth/page.tsx' },
+  { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
+  { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'), source: 'src/data/campaign-landings.ts' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -62,16 +78,20 @@ const nonModelMajorSurfaces = [
   'src/components/guide/GuideView.tsx',
   'src/components/guide/GuideHubView.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
-  'src/app/growth/page.tsx',
   'src/components/programs/GlobalProgramsView.tsx',
+  'src/components/programs/SupportProgramCard.tsx',
+  'src/components/experiences/ExperienceEditorialView.tsx',
+  'src/components/moments/MomentsView.tsx',
+  'src/components/destinations/DestinationsHubView.tsx',
 ]
 
 const errors = []
-const [cityData, guideData, manifest, roster] = await Promise.all([
+const [cityData, guideData, manifest, roster, rotation] = await Promise.all([
   fs.readFile(cityDataPath, 'utf8'),
   fs.readFile(guideDataPath, 'utf8'),
   fs.readFile(manifestPath, 'utf8'),
   fs.readFile(rosterPath, 'utf8'),
+  fs.readFile(rotationPath, 'utf8'),
 ])
 
 if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) errors.push('src/lib/cities.ts still contains an Unsplash hotlink')
@@ -178,7 +198,14 @@ for (const placement of v2Placements) {
 }
 
 const exposedModels = new Set(v2Placements.flatMap((placement) => placement.models))
-if (exposedModels.size < 5) errors.push(`Only ${exposedModels.size} distinct models are exposed; at least 5 are required`)
+for (const modelId of expectedRosterIds) {
+  if (!exposedModels.has(modelId)) errors.push(`${modelId} has no visible editorial placement`)
+  if (!rotation.includes(`'${modelId}'`)) errors.push(`${modelId} is missing from the deterministic rotation registry`)
+}
+for (const placement of v2Placements) {
+  for (const assetId of placement.assets) if (!rotation.includes(`'${assetId}'`)) errors.push(`${assetId} is missing from the deterministic rotation registry`)
+}
+if (!rotation.includes("strategy: 'deterministic-route-placement'")) errors.push('Rotation strategy must remain deterministic by route')
 const identityExposure = v2Placements.flatMap((placement) => placement.models)
 let maximumIdentityShare = 0
 for (const modelId of exposedModels) {

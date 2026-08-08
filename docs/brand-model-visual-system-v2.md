@@ -45,13 +45,17 @@ H·I·J는 v2.2에서 교체된 정체성이고 K는 2026-08-08에 추가된 ref
 | `/select` | Editorial banner | I | 기차 이동 전 가방·일정 확인 | 이름 없는 현대적 여행 라운지 | 브라운·크림 | 16:9 | 준비의 신뢰감 |
 | `/learn` | Hero | K | 여행 사진과 학습 노트 정리 | 이름 없는 디자인 라이브러리 | 잉크 네이비·웜 오크 | desktop + mobile | 이동 중 학습의 구체성 |
 | `/programs`, `/en/programs`, `/ja/programs` | Hero | K | 지도와 일정표로 체류 리듬 설계 | 이름 없는 해안 공동 작업 공간 | 소프트 블루·딥 틸 | desktop + mobile | 프로그램 탐색의 행동 맥락 |
+| `/growth` | Hero | B | 지도와 노트로 성장 계획 정리 | 이름 없는 도시 카페 라운지 | 차콜·소프트 블루 | desktop + mobile | 성장 콘텐츠의 도시 맥락 |
+| `/business` | Hero | C | 빈 기획 자료 검토 | 이름 없는 프리미엄 도시 라운지 | 잉크 블루·토프·크림 | desktop + mobile | 기업·팀 문의의 정돈된 첫인상 |
+| `/campaign/japan-short-stay` | Hero | F | 지도에서 짧은 체류 선택 | 이름 없는 일본풍 강변 거리 | 카멜·크림·블루아워 | desktop + mobile | 일본 단기체류 발견과 선택 |
 
 ### 노출 비율
 
-- 모델이 들어간 공개 배치: 9개 화면 배치, 8개 정체성(A·D·E·G·H·I·J·K).
+- 모델이 들어간 공개 배치: 12개 화면 배치, 11개 정체성(A–K 전체).
 - Home desktop/mobile 파생본은 동일 Hero의 art direction으로 한 배치로 센다.
 - Hosted의 2인 장면은 H와 I를 각각 한 정체성 노출로 센다.
-- 예상 최고 점유율: I·K 각 2/10 = 20%, 나머지 각 10% 이하.
+- 실제 정체성 노출은 13회이며 최고 점유율은 I·K 각 2/13 = 15.4%, 나머지는 각 7.7%다.
+- 화면 로드 때 모델을 무작위로 바꾸지 않는다. route·section별 고정 배치와 `modelRotation.ts` 노출 카운트를 사용해 다음 제작에서 덜 노출된 적합 모델부터 선택한다.
 - Collections·Guide·상품 카드는 실제 장소·상품 이미지가 우선이며 모델 이미지로 대체하지 않는다.
 
 ## 생성·출판 규칙
@@ -81,8 +85,14 @@ H·I·J는 v2.2에서 교체된 정체성이고 K는 2026-08-08에 추가된 ref
 | `learn-model-k-creative-focus-mobile-v1` | K | `/media/brand-models/learn-model-k-creative-focus-mobile-v1.webp` | 960×1280 | 65,100 B | 같은 학습 행동을 세로 환경 장면으로 재구성 | 통과 |
 | `programs-model-k-stay-planning-desktop-v1` | K | `/media/brand-models/programs-model-k-stay-planning-desktop-v1.webp` | 1440×900 | 70,286 B | 해안 작업 공간에서 체류 일정과 가방 정리, 왼쪽 카피 여백 | 통과 |
 | `programs-model-k-stay-planning-mobile-v1` | K | `/media/brand-models/programs-model-k-stay-planning-mobile-v1.webp` | 960×1280 | 68,128 B | 프로그램 준비 행동을 세로 환경 장면으로 재구성 | 통과 |
+| `growth-model-b-urban-learning-desktop-v1` | B | `/media/brand-models/growth-model-b-urban-learning-desktop-v1.webp` | 1536×1024 | 68,860 B | 도시 카페에서 지도·학습 노트 정리, 왼쪽 카피 여백 | 통과 |
+| `growth-model-b-urban-learning-mobile-v1` | B | `/media/brand-models/growth-model-b-urban-learning-mobile-v1.webp` | 960×1280 | 44,430 B | 같은 성장 계획 행동을 세로 환경 장면으로 재구성 | 통과 |
+| `business-model-c-team-planning-desktop-v1` | C | `/media/brand-models/business-model-c-team-planning-desktop-v1.webp` | 1536×1024 | 73,264 B | 도시 라운지에서 무기명 기획 폴더 검토, 왼쪽 카피 여백 | 통과 |
+| `business-model-c-team-planning-mobile-v1` | C | `/media/brand-models/business-model-c-team-planning-mobile-v1.webp` | 960×1280 | 50,638 B | 같은 기획 검토 행동을 세로 장면으로 재구성 | 통과 |
+| `campaign-model-f-japan-choice-desktop-v1` | F | `/media/brand-models/campaign-model-f-japan-choice-desktop-v1.webp` | 1536×1024 | 85,452 B | 이름 없는 일본풍 강변에서 지도 확인, 왼쪽 카피 여백 | 통과 |
+| `campaign-model-f-japan-choice-mobile-v1` | F | `/media/brand-models/campaign-model-f-japan-choice-mobile-v1.webp` | 960×1280 | 65,366 B | 블루아워 여행 선택 장면을 세로 구도로 재구성 | 통과 |
 
-총 13개 WebP, 1,072,398 bytes. 생성 원본은 브랜드 저장소 밖의 Codex 생성 디렉터리에 보존하고, 사이트에는 최적화 결과만 등록했다.
+총 19개 WebP, 1,460,408 bytes. 생성 원본은 브랜드 저장소 밖의 Codex 생성 디렉터리에 보존하고, 사이트에는 최적화 결과만 등록했다.
 
 ### 수동 이미지 QA
 

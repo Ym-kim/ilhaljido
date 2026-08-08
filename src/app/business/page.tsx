@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
@@ -12,8 +12,13 @@ import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
 import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
+import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
+import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
 import type { Lang } from '@/lib/i18n/types'
+import { getMediaAsset } from '@/lib/media/assets'
+import { trackEditorialAssetCta, trackEditorialAssetView } from '@/lib/media/editorialTracking'
+import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 기업·팀 워케이션 B2B 랜딩 — 더휴일(thehyuil.co.kr) 벤치마크 2026-07-15
@@ -143,6 +148,10 @@ const STATUS_STYLE: Record<string, string> = {
   check: 'bg-gray-100 text-gray-500 border border-gray-200',
 }
 
+const BUSINESS_PLACEMENT = getEditorialModelPlacement('business-hero')
+const BUSINESS_DESKTOP = getMediaAsset('business-model-c-team-planning-desktop-v1')!
+const BUSINESS_MOBILE = getMediaAsset('business-model-c-team-planning-mobile-v1')!
+
 // 기업 유형 — 지원사업 자격 판단에 실질적으로 쓰이는 구분 (더휴일 '지원금 연계' 벤치)
 const BIZ_TYPES: { v: string; l: L }[] = [
   { v: 'startup', l: { KO: '스타트업', EN: 'Startup', JP: 'スタートアップ' } },
@@ -169,6 +178,17 @@ export default function BusinessPage() {
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
   const [consent, setConsent] = useState(false)
+
+  useEffect(() => {
+    trackEditorialAssetView({
+      assetId: BUSINESS_DESKTOP.id,
+      mobileAssetId: BUSINESS_MOBILE.id,
+      modelIds: BUSINESS_PLACEMENT.modelIds,
+      route: '/business',
+      section: BUSINESS_PLACEMENT.section,
+      locale: lang.toLowerCase(),
+    })
+  }, [lang])
 
   const set = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((p) => ({ ...p, [k]: e.target.value }))
@@ -222,25 +242,60 @@ export default function BusinessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* ── 히어로 ── */}
-      <section className="relative bg-[#f0f9ff] border-b border-[#dbeafe] px-6 pt-14 pb-12 overflow-hidden">
-        <div className="max-w-6xl mx-auto relative">
-          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-3 flex items-center gap-2">
+      <section className="dark-surface relative flex min-h-[36rem] items-end overflow-hidden border-b border-[#15384d] bg-[#071824] px-6 py-14 md:min-h-[41rem] md:items-center">
+        <ArtDirectedEditorialHero
+          desktopSrc={BUSINESS_DESKTOP.src}
+          mobileSrc={BUSINESS_MOBILE.src}
+          alt={BUSINESS_DESKTOP.alt[lang]}
+          desktopWidth={BUSINESS_DESKTOP.width!}
+          desktopHeight={BUSINESS_DESKTOP.height!}
+          mobileWidth={BUSINESS_MOBILE.width!}
+          mobileHeight={BUSINESS_MOBILE.height!}
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
+        <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
+        <div className="relative mx-auto w-full max-w-6xl">
+          <EditorialImageBadge lang={lang} className="mb-5 inline-flex" />
+          <span className="mb-3 flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[#8fd3e9]">
             <Building2 className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             {t('eyebrow')}
-          </p>
-          <h1 className="text-3xl md:text-5xl font-bold text-[#111827] tracking-tight mb-4">
-            {t('title_pre')}<span className="text-brand-mid">{t('title_accent')}</span>
+          </span>
+          <h1 className="mb-4 max-w-3xl text-[clamp(2.35rem,7vw,4.9rem)] font-black leading-[0.98] tracking-[-0.05em] text-white text-balance">
+            {t('title_pre')}<span className="text-[#8fd3e9]">{t('title_accent')}</span>
           </h1>
-          <p className="text-[#64748b] text-sm md:text-base leading-relaxed max-w-xl mb-8">{t('sub')}</p>
+          <span className="mb-8 block max-w-xl text-sm font-medium leading-7 text-white/75 md:text-base">{t('sub')}</span>
           <div className="flex flex-wrap gap-3">
-            <a href="#inquiry" className="inline-flex items-center gap-2 bg-brand-mid text-white text-sm font-bold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity">
+            <a
+              href="#inquiry"
+              onClick={() => trackEditorialAssetCta({
+                assetId: BUSINESS_DESKTOP.id,
+                mobileAssetId: BUSINESS_MOBILE.id,
+                modelIds: BUSINESS_PLACEMENT.modelIds,
+                route: '/business',
+                section: BUSINESS_PLACEMENT.section,
+                locale: lang.toLowerCase(),
+                target: '#inquiry',
+                action: 'primary_inquiry',
+              })}
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#4ea6c7] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#68b6d2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8fd3e9]"
+            >
               {t('cta_form')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
             </a>
             <a
               href={KAKAO_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white border border-[#dbeafe] text-[#334155] text-sm font-bold px-6 py-3 rounded-xl hover:border-[#7dd3fc] transition-colors"
+              onClick={() => trackEditorialAssetCta({
+                assetId: BUSINESS_DESKTOP.id,
+                mobileAssetId: BUSINESS_MOBILE.id,
+                modelIds: BUSINESS_PLACEMENT.modelIds,
+                route: '/business',
+                section: BUSINESS_PLACEMENT.section,
+                locale: lang.toLowerCase(),
+                target: KAKAO_CHANNEL_URL,
+                action: 'kakao_inquiry',
+              })}
+              className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-md transition-colors hover:border-white/55 hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               <MessageCircle className="w-4 h-4" strokeWidth={ICON_STROKE} /> {t('cta_kakao')}
             </a>

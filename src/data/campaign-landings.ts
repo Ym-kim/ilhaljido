@@ -1,5 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 import type { TripSetSlug } from '@/lib/tripSetCampaign'
+import type { BrandModelId } from '@/lib/media/brandModels'
 
 export type CampaignChoice = {
   slug: TripSetSlug
@@ -33,6 +34,9 @@ export type CampaignLandingConfig = {
   heroSecondaryImage?: string
   heroSecondaryAlt?: string
   heroSecondaryPosition?: string
+  heroMediaAssetId?: string
+  heroMobileMediaAssetId?: string
+  heroModelId?: BrandModelId
   choicePrompt: string
   matchCta: string
   compareTitle: string
@@ -71,6 +75,9 @@ export const CAMPAIGN_LANDINGS: Record<CampaignLandingConfig['id'], CampaignLand
     heroImage: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
     heroAlt: '창가에서 차를 마시며 쉬는 여행자의 에디토리얼 이미지',
     heroPosition: '48% 48%',
+    heroMediaAssetId: 'campaign-model-f-japan-choice-desktop-v1',
+    heroMobileMediaAssetId: 'campaign-model-f-japan-choice-mobile-v1',
+    heroModelId: 'WAK-MODEL-F',
     choicePrompt: '이번 여행은 어떤 쪽인가요?',
     matchCta: '아직 고민된다면, 내 여행 추천받기',
     compareTitle: '20초 비교',

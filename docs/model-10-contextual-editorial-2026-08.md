@@ -10,7 +10,7 @@
 
 Model K is a fictional, clearly adult 29-year-old editorial identity used to connect learning, trip planning, and longer-stay program discovery. The canonical reference is `Gemini_Generated_Image_7a6e8x7a6e8x7a6e.png`; it is not a production asset and `directPublish` remains `false`.
 
-The first production placements are deliberately limited to `/learn` and `/programs`. Growth, testimonials, Hosted proof, actual accommodation or activity products, staff profiles, and participant stories remain place-led or use verified photography. This prevents a generated identity from being mistaken for a customer, participant, instructor, staff member, venue, or product.
+The first production placements are deliberately limited to `/learn` and `/programs`. Growth uses the separate Model B identity; testimonials, Hosted proof, actual accommodation or activity products, staff profiles, and participant stories remain place-led or use verified photography. This prevents Model K from becoming a default face or being mistaken for a customer, participant, instructor, staff member, venue, or product.
 
 ## Source archive audit
 
