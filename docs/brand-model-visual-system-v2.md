@@ -1,18 +1,18 @@
 # Wakation Brand Model Visual System v2
 
-기준일: 2026-08-01  
-공식 입력: `Wakation_Diverse_Model_Roster_v2_2.zip`
+기준일: 2026-08-08
+공식 입력: `Wakation_Diverse_Model_Roster_v2_2.zip`, `모델10.zip`
 
 ## 운영 원칙
 
-- v2.2의 A–J만 공식 모델 ID로 사용한다. 이전 H/I/J는 폐기하며 생성 참조와 공개 자산 모두에서 사용하지 않는다.
+- v2.3의 A–K만 공식 모델 ID로 사용한다. 이전 H/I/J는 폐기하며 생성 참조와 공개 자산 모두에서 사용하지 않는다.
 - identity anchor와 source reference는 생성 입력 전용이다. `public/`에 복사하거나 UI·OG·SNS에 직접 노출하지 않는다.
 - 모델 이미지는 실제 참가자, 고객, 직원, 후기 작성자, 호텔 투숙객 또는 체험 이용자로 표현하지 않는다.
 - 한 모델은 전체 모델 이미지 배치의 25%를 초과하지 않는다. 같은 모델을 한 viewport나 인접한 주요 카드에 반복하지 않는다.
 - 사이트 전체 이미지의 절반 이상은 장소·공간·교통·음식·상품 중심으로 유지한다.
 - 얼굴보다 행동과 장소를 먼저 설계한다. 모델은 여행·업무·이동·휴식·연결의 맥락을 설명할 때만 사용한다.
 
-## v2.2 공식 로스터
+## v2.3 공식 로스터
 
 | ID | 코드명 | 주 역할 | 시각 구분 | 우선 행동·장면 |
 | --- | --- | --- | --- | --- |
@@ -26,8 +26,9 @@
 | H | Soft Daylight | 로컬 카페, 입문 여행 | 둥근 얼굴, 커튼 뱅, 친근한 미소 | 대화, 일정 정리, 낮 카페 |
 | I | Modern Grace | 비즈니스 여행, 장기 체류 | 성숙한 타원형 얼굴, 밤색 웨이브 | 협업, 라운지, 전시·출장 |
 | J | City Noir | 서울·도시 야간, 전시 | 하트형 얼굴, 매끈한 검은 머리 | 퇴근 후 이동, 전시, 저녁 산책 |
+| K | Creative Navigator | 학습, 성장, 체류 일정 설계 | 성인 29세, 밤색 긴 머리, 차분하고 실용적인 인상 | 여행 노트 정리, 학습 계획, 체류 일정 설계 |
 
-H·I·J는 v2.2에서 교체된 새 정체성이다. 저장소의 공개 자산과 생성 프롬프트는 위 설명만 사용하며, 폐기된 정체성의 이미지·이름·경로를 참조하지 않는다.
+H·I·J는 v2.2에서 교체된 정체성이고 K는 2026-08-08에 추가된 reference-only 정체성이다. 저장소의 공개 자산과 생성 프롬프트는 위 설명만 사용하며, 폐기된 정체성의 이미지·이름·경로와 `모델10.zip` 원본을 UI에서 참조하지 않는다.
 
 ## v2 첫 배치표
 
@@ -42,13 +43,15 @@ H·I·J는 v2.2에서 교체된 새 정체성이다. 저장소의 공개 자산�
 | `/trip-match` | Intro Hero | D | 종이 일정표와 노트북을 정리 | 이름 없는 역 라운지 | 토프 코트, 딥블루 | 3:2 | 선택과 출발 |
 | `/hosted` | Hero | H + I | 테이블에서 함께 일정 검토 | 이름 없는 해안 공동 작업 공간 | H 샌드, I 네이비 | 16:10 | 연결·함께 머무름 |
 | `/select` | Editorial banner | I | 기차 이동 전 가방·일정 확인 | 이름 없는 현대적 여행 라운지 | 브라운·크림 | 16:9 | 준비의 신뢰감 |
+| `/learn` | Hero | K | 여행 사진과 학습 노트 정리 | 이름 없는 디자인 라이브러리 | 잉크 네이비·웜 오크 | desktop + mobile | 이동 중 학습의 구체성 |
+| `/programs`, `/en/programs`, `/ja/programs` | Hero | K | 지도와 일정표로 체류 리듬 설계 | 이름 없는 해안 공동 작업 공간 | 소프트 블루·딥 틸 | desktop + mobile | 프로그램 탐색의 행동 맥락 |
 
 ### 노출 비율
 
-- 모델이 들어간 공개 배치: 7개 화면 배치, 7개 정체성(A·D·E·G·H·I·J).
+- 모델이 들어간 공개 배치: 9개 화면 배치, 8개 정체성(A·D·E·G·H·I·J·K).
 - Home desktop/mobile 파생본은 동일 Hero의 art direction으로 한 배치로 센다.
 - Hosted의 2인 장면은 H와 I를 각각 한 정체성 노출로 센다.
-- 예상 최고 점유율: I 2/8 = 25%, 나머지 각 12.5% 이하.
+- 예상 최고 점유율: I·K 각 2/10 = 20%, 나머지 각 10% 이하.
 - Collections·Guide·상품 카드는 실제 장소·상품 이미지가 우선이며 모델 이미지로 대체하지 않는다.
 
 ## 생성·출판 규칙
@@ -61,7 +64,7 @@ H·I·J는 v2.2에서 교체된 새 정체성이다. 저장소의 공개 자산�
 
 ## 생성·적용 자산
 
-생성 방식: Codex built-in `imagegen`, v2.2 identity anchor를 참조한 route별 신규 생성. 앵커와 소스 시트는 결과 파일에 포함하거나 공개 경로로 복사하지 않았다.
+생성 방식: Codex built-in `imagegen`, v2.2 identity anchor 및 Model K reference를 참조한 route별 신규 생성. 앵커와 소스 시트는 결과 파일에 포함하거나 공개 경로로 복사하지 않았다.
 
 | assetId | 모델 | 공개 경로 | 크기 | 용량 | 프롬프트 요약 | QA |
 | --- | --- | --- | ---: | ---: | --- | --- |
@@ -74,8 +77,12 @@ H·I·J는 v2.2에서 교체된 새 정체성이다. 저장소의 공개 자산�
 | `hosted-models-h-i-coastal-planning-v2` | H·I | `/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp` | 1440×900 | 90,190 B | 해안 공동 작업 공간에서 함께 체류 일정 검토 | 통과 |
 | `hosted-models-h-i-coastal-planning-mobile-v2` | H·I | `/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v2.webp` | 960×1280 | 61,204 B | H/I 얼굴을 분리한 세로 협업 장면, 하단 카피 영역 | 통과 |
 | `select-model-i-travel-prep-v2` | I | `/media/brand-models/select-model-i-travel-prep-v2.webp` | 1440×810 | 61,530 B | 이동 전 일정표·휴대전화·가방을 점검하는 준비 장면 | 통과 |
+| `learn-model-k-creative-focus-desktop-v1` | K | `/media/brand-models/learn-model-k-creative-focus-desktop-v1.webp` | 1536×1024 | 83,678 B | 디자인 라이브러리에서 여행 사진과 학습 노트 정리, 왼쪽 카피 여백 | 통과 |
+| `learn-model-k-creative-focus-mobile-v1` | K | `/media/brand-models/learn-model-k-creative-focus-mobile-v1.webp` | 960×1280 | 65,100 B | 같은 학습 행동을 세로 환경 장면으로 재구성 | 통과 |
+| `programs-model-k-stay-planning-desktop-v1` | K | `/media/brand-models/programs-model-k-stay-planning-desktop-v1.webp` | 1440×900 | 70,286 B | 해안 작업 공간에서 체류 일정과 가방 정리, 왼쪽 카피 여백 | 통과 |
+| `programs-model-k-stay-planning-mobile-v1` | K | `/media/brand-models/programs-model-k-stay-planning-mobile-v1.webp` | 960×1280 | 68,128 B | 프로그램 준비 행동을 세로 환경 장면으로 재구성 | 통과 |
 
-총 9개 WebP, 785,206 bytes. 생성 원본은 브랜드 저장소 밖의 Codex 생성 디렉터리에 보존하고, 사이트에는 최적화 결과만 등록했다.
+총 13개 WebP, 1,072,398 bytes. 생성 원본은 브랜드 저장소 밖의 Codex 생성 디렉터리에 보존하고, 사이트에는 최적화 결과만 등록했다.
 
 ### 수동 이미지 QA
 

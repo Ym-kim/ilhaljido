@@ -6,7 +6,7 @@ const criticalFiles = [
   'src/components/affiliate/AffiliateCard.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
   'src/components/affiliate/DestinationCard.tsx',
-  'src/components/home/CityShowcase.tsx',
+  'src/components/home/DomesticOnboarding.tsx',
   'src/components/home/MoodExplorer.tsx',
   'src/components/home/MoreExplore.tsx',
   'src/components/programs/ProgramsHubView.tsx',
@@ -33,13 +33,17 @@ for (const relative of criticalFiles) {
 if (cardMarkers < 7) errors.push(`Expected at least 7 card variant markers; found ${cardMarkers}`)
 if (gridMarkers < 5) errors.push(`Expected at least 5 grid markers; found ${gridMarkers}`)
 
-const assetFile = path.join(root, 'public/campaign/programs-editorial-coastal-work-v1.webp')
-try {
-  const info = await stat(assetFile)
-  if (info.size === 0) errors.push('Generated Programs hero is empty')
-  if (info.size > 1_000_000) warnings.push(`Programs hero is ${(info.size / 1_000_000).toFixed(2)} MB`)
-} catch {
-  errors.push('Generated Programs hero is missing')
+for (const asset of [
+  'public/media/brand-models/programs-model-k-stay-planning-desktop-v1.webp',
+  'public/media/brand-models/programs-model-k-stay-planning-mobile-v1.webp',
+]) {
+  try {
+    const info = await stat(path.join(root, asset))
+    if (info.size === 0) errors.push(`${asset}: generated Programs hero is empty`)
+    if (info.size > 250_000) warnings.push(`${asset}: Programs hero is ${(info.size / 1_000_000).toFixed(2)} MB`)
+  } catch {
+    errors.push(`${asset}: generated Programs hero is missing`)
+  }
 }
 
 for (const folder of ['public/campaign', 'public/covers']) {

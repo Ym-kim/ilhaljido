@@ -13,7 +13,7 @@ const destinationDirectory = path.join(root, 'public', 'media', 'destinations')
 const brandModelDirectory = path.join(root, 'public', 'media', 'brand-models')
 const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
 const expectedDestinationIds = [...cityIds, 'jeju', 'seoul', 'busan']
-const expectedRosterIds = 'ABCDEFGHIJ'.split('').map((letter) => `WAK-MODEL-${letter}`)
+const expectedRosterIds = 'ABCDEFGHIJK'.split('').map((letter) => `WAK-MODEL-${letter}`)
 
 const archivedV1Assets = [
   ['home-hero-model-a-coastal-work-desktop-v1', 'home-hero-model-a-coastal-work-desktop-v1.webp', 1536, 1024],
@@ -34,6 +34,10 @@ const v2Assets = [
   { id: 'hosted-models-h-i-coastal-planning-v2', file: 'hosted-models-h-i-coastal-planning-v2.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'hosted-models-h-i-coastal-planning-mobile-v2', file: 'hosted-models-h-i-coastal-planning-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'select-model-i-travel-prep-v2', file: 'select-model-i-travel-prep-v2.webp', width: 1440, height: 810, modelIds: ['WAK-MODEL-I'] },
+  { id: 'learn-model-k-creative-focus-desktop-v1', file: 'learn-model-k-creative-focus-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-K'] },
+  { id: 'learn-model-k-creative-focus-mobile-v1', file: 'learn-model-k-creative-focus-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
+  { id: 'programs-model-k-stay-planning-desktop-v1', file: 'programs-model-k-stay-planning-desktop-v1.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-K'] },
+  { id: 'programs-model-k-stay-planning-mobile-v1', file: 'programs-model-k-stay-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
 ]
 
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
@@ -45,6 +49,8 @@ const v2Placements = [
   { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: [v2Assets[5].id], source: 'src/components/trip-match/TripMatchExperience.tsx' },
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: v2Assets.slice(6, 8).map((asset) => asset.id), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: [v2Assets[8].id], source: 'src/components/select/SelectHubView.tsx' },
+  { route: 'learn', section: 'hero', models: ['WAK-MODEL-K'], assets: v2Assets.slice(9, 11).map((asset) => asset.id), source: 'src/app/learn/page.tsx' },
+  { route: 'programs', section: 'hero', models: ['WAK-MODEL-K'], assets: v2Assets.slice(11, 13).map((asset) => asset.id), source: 'src/components/programs/ProgramsHubView.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -56,6 +62,8 @@ const nonModelMajorSurfaces = [
   'src/components/guide/GuideView.tsx',
   'src/components/guide/GuideHubView.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
+  'src/app/growth/page.tsx',
+  'src/components/programs/GlobalProgramsView.tsx',
 ]
 
 const errors = []
@@ -69,7 +77,7 @@ const [cityData, guideData, manifest, roster] = await Promise.all([
 if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) errors.push('src/lib/cities.ts still contains an Unsplash hotlink')
 if (/https?:\/\/images\.unsplash\.com/i.test(guideData)) errors.push('src/lib/guides.ts still contains an Unsplash hotlink')
 
-if (!roster.includes("BRAND_MODEL_ROSTER_VERSION = '2.2'")) errors.push('Brand model roster is not pinned to v2.2')
+if (!roster.includes("BRAND_MODEL_ROSTER_VERSION = '2.3'")) errors.push('Brand model roster is not pinned to v2.3')
 for (const id of expectedRosterIds) {
   if (!roster.includes(`id: '${id}'`)) errors.push(`Roster entry missing: ${id}`)
 }
@@ -85,6 +93,15 @@ for (const [id, nameCode, descriptor] of [
   if (!block.includes(descriptor)) errors.push(`v2.2 identity descriptor missing for ${id}`)
   if (!block.includes('supersedes and invalidates every previous')) errors.push(`Replacement record missing for ${id}`)
   if (!block.includes('directPublish: false')) errors.push(`Reference-only directPublish rule missing for ${id}`)
+}
+{
+  const start = roster.indexOf("id: 'WAK-MODEL-K'")
+  const next = roster.indexOf("\n  {", start + 1)
+  const block = start === -1 ? '' : roster.slice(start, next === -1 ? undefined : next)
+  if (!block.includes("nameCode: 'Creative Navigator'")) errors.push('Model K name code is missing')
+  if (!block.includes('age twenty-nine')) errors.push('Model K adult age descriptor is missing')
+  if (!block.includes("productionUse: 'generated_derivatives_only'")) errors.push('Model K derivative-only rule is missing')
+  if (!block.includes('directPublish: false')) errors.push('Model K reference-only directPublish rule is missing')
 }
 
 const hashes = new Map()
@@ -163,9 +180,11 @@ for (const placement of v2Placements) {
 const exposedModels = new Set(v2Placements.flatMap((placement) => placement.models))
 if (exposedModels.size < 5) errors.push(`Only ${exposedModels.size} distinct models are exposed; at least 5 are required`)
 const identityExposure = v2Placements.flatMap((placement) => placement.models)
+let maximumIdentityShare = 0
 for (const modelId of exposedModels) {
   const count = identityExposure.filter((id) => id === modelId).length
   const share = count / identityExposure.length
+  maximumIdentityShare = Math.max(maximumIdentityShare, share)
   if (share > 0.25) errors.push(`${modelId} exceeds 25% of visible model placements: ${(share * 100).toFixed(1)}%`)
 }
 const domesticModels = v2Placements.filter((placement) => placement.section.startsWith('domestic-')).flatMap((placement) => placement.models)
@@ -208,6 +227,6 @@ if (errors.length > 0) {
 }
 
 const v2Bytes = await Promise.all(v2Assets.map(async (asset) => (await fs.stat(path.join(brandModelDirectory, asset.file))).size))
-console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.2 models, ${v2Assets.length} v2 assets (${v2Bytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
-console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; max share 25%; non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
+console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.3 models, ${v2Assets.length} production assets (${v2Bytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
+console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; actual max share ${(maximumIdentityShare * 100).toFixed(1)}% (cap 25%); non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
 console.log(`Total audited media bytes: ${totalBytes.toLocaleString()}`)

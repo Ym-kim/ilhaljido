@@ -1,6 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 
-export const BRAND_MODEL_ROSTER_VERSION = '2.2' as const
+export const BRAND_MODEL_ROSTER_VERSION = '2.3' as const
 
 export const BRAND_MODEL_IDS = [
   'WAK-MODEL-A',
@@ -13,6 +13,7 @@ export const BRAND_MODEL_IDS = [
   'WAK-MODEL-H',
   'WAK-MODEL-I',
   'WAK-MODEL-J',
+  'WAK-MODEL-K',
 ] as const
 
 export type BrandModelId = (typeof BRAND_MODEL_IDS)[number]
@@ -169,6 +170,18 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 J; supersedes and invalidates every previous J identity.',
     notes: 'Keep the heart-shaped face, sleek black hair and urban restraint distinct from every prior J.',
+  },
+  {
+    id: 'WAK-MODEL-K', rosterVersion: BRAND_MODEL_ROSTER_VERSION, nameCode: 'Creative Navigator', adultAgeRange: 'late twenties',
+    visualRole: { KO: '학습·성장·체류 일정 설계', EN: 'Learning, growth and stay planning', JP: '学び・成長・滞在プラン' },
+    identityDescriptor: 'fictional adult East Asian woman, age twenty-nine, calm almond-shaped brown eyes, long chestnut-brown hair, composed approachable expression, practical contemporary work-travel styling',
+    faceKeywords: ['adult', 'calm almond eyes', 'approachable'], hairKeywords: ['long', 'chestnut brown', 'natural'], moodKeywords: ['curious', 'organized', 'grounded'],
+    wardrobePalette: ['ink navy', 'soft blue', 'ivory', 'stone'], preferredActions: ['organizing travel notes', 'planning a work-and-stay rhythm', 'packing a practical weekender'], preferredLocations: ['design library', 'coastal shared workspace', 'quiet learning lounge'],
+    allowedSections: ['learn-editorial', 'programs-editorial', 'growth-learning'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-k-creative-navigator-identity-reference-v1'], referenceAssetIds: ['model-10-gemini-travel-lounge-reference-2026-08-05'],
+    productionAssetIds: ['learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1', 'programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1'],
+    productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
+    notes: 'The supplied Model 10 pack remains reference-only. Publish only modest, action-led derivatives with clear editorial-image disclosure.',
   },
 ]
 
