@@ -4,7 +4,7 @@ import { FinalScene } from './scenes/FinalScene'
 
 const scenes = [
   {
-    image: 'media/brand-models/monthly-2026-08-model-e-city-arrival-v1.webp',
+    image: 'media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp',
     overline: 'ARRIVE',
     title: 'A new city,\nat your own pace.',
     note: 'CITY ARRIVAL · MONTHLY EDIT 08',
@@ -20,7 +20,7 @@ const scenes = [
     objectPosition: '54% center',
   },
   {
-    image: 'media/brand-models/monthly-2026-08-model-j-blue-hour-v1.webp',
+    image: 'media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
     overline: 'MOVE',
     title: 'Work ends.\nThe city continues.',
     note: 'BLUE HOUR · MONTHLY EDIT 08',

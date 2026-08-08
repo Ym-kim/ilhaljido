@@ -13,6 +13,15 @@
 3. Use three identities with different visual roles and never exceed the 25% identity-share cap.
 4. Keep at least half of major customer surfaces place-, story- or product-led rather than model-led.
 
+## Season, place and body-proportion direction
+
+- Define the intended publication month, destination hemisphere, local climate, daylight and likely weather before writing any prompt. A northern-hemisphere August scene must not use winter coats; a southern-hemisphere August scene must not be styled as midsummer.
+- Align location, brightness, time of day, atmosphere, fabric weight, sleeve length, layering, footwear and practical travel accessories with that month and place. Monsoon, extreme heat, snow and shoulder-season conditions require an explicit wardrobe check.
+- Use natural adult fashion fitting-model proportions as a framing guide: approximately 7.5–8 heads tall, balanced shoulders, torso and hips, naturally long but plausible limbs, realistic joints, hands and lens perspective.
+- Never imitate a named K-pop idol, celebrity or real person. Never stretch legs, shrink heads, narrow waists excessively, exaggerate thinness, sexualize styling or imply an unhealthy body standard.
+- Reject and regenerate any asset with seasonally implausible clothing, mismatched light/weather, anatomical distortion or a body ratio that reads as digitally stretched.
+- Record a short seasonal QA table for every monthly delivery: destination, month/season, expected climate, wardrobe, light/mood and pass/fail.
+
 ## Required output
 
 - Three new 1200×1500 WebP editorial photographs, each below 300 KB.

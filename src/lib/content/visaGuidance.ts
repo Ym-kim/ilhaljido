@@ -1,4 +1,5 @@
 import type { Lang } from '@/lib/i18n/types'
+import { getNationalityVisaProfile } from '@/lib/content/visaNationality'
 
 type VisaGuidance = {
   visaType: string
@@ -158,13 +159,17 @@ const VERIFIED_DESTINATION_NOTE: Partial<Record<string, Record<Lang, string>>> =
   },
 }
 
-export function getVisaVerifiedGuidance(lang: Lang, country: string, purpose: string): VisaGuidance {
+export function getVisaVerifiedGuidance(lang: Lang, country: string, purpose: string, passport = 'OTHER'): VisaGuidance {
   const base = GENERIC[lang]
-  const verifiedNote = VERIFIED_DESTINATION_NOTE[country]?.[lang]
+  const nationalityProfile = getNationalityVisaProfile(passport, country, lang)
+  // 기존 상세 데이터는 한국 여권을 기준으로 검증됐다. 다른 여권에 재사용하지 않는다.
+  const verifiedNote = passport === 'KR' ? VERIFIED_DESTINATION_NOTE[country]?.[lang] : undefined
+  const requirements = [nationalityProfile?.requirement, verifiedNote, base.requirement].filter(Boolean)
 
   return {
     ...base,
-    requirement: verifiedNote ? `${verifiedNote} ${base.requirement}` : base.requirement,
+    visaType: nationalityProfile?.visaType ?? base.visaType,
+    requirement: requirements.join(' '),
     program: PURPOSE_PROGRAM[purpose]?.[lang] ?? PURPOSE_PROGRAM.workation[lang],
   }
 }

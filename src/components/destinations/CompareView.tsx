@@ -37,7 +37,7 @@ const UI: Record<string, Record<Lang, string>> = {
   costBreakdown: { KO: '비용 구성', EN: 'Cost breakdown', JP: '費用の内訳' },
   timezone: { KO: '시간대', EN: 'Time zone', JP: 'タイムゾーン' },
   flight: { KO: '직항 소요', EN: 'Direct flight', JP: '直行便' },
-  visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
+  visa: { KO: '비자 (한국 여권)', EN: 'Visa (KR passport)', JP: '査証（韓国旅券）' },
   season: { KO: '베스트 시즌', EN: 'Best season', JP: 'ベストシーズン' },
   plug: { KO: '콘센트·전압', EN: 'Plug & voltage', JP: 'コンセント・電圧' },
   payment: { KO: '결제 환경', EN: 'Payments', JP: '決済環境' },

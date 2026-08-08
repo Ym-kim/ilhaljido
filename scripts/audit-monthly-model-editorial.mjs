@@ -8,11 +8,11 @@ const root = process.cwd()
 const month = '2026-08'
 const expectedModels = ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J']
 const imageFiles = [
-  `monthly-${month}-model-e-city-arrival-v1.webp`,
+  `monthly-${month}-model-e-city-arrival-v2.webp`,
   `monthly-${month}-model-h-coastal-reset-v1.webp`,
-  `monthly-${month}-model-j-blue-hour-v1.webp`,
+  `monthly-${month}-model-j-blue-hour-v2.webp`,
 ]
-const videoFile = `monthly-model-edit-${month}-v1.mp4`
+const videoFile = `monthly-model-edit-${month}-v2.mp4`
 const mediaDirectory = path.join(root, 'public', 'media', 'brand-models')
 const [manifest, rotation, component, remotion] = await Promise.all([
   fs.readFile(path.join(root, 'src', 'lib', 'media', 'assets.ts'), 'utf8'),
@@ -50,7 +50,7 @@ for (const model of expectedModels) {
 }
 for (const required of [
   `about-monthly-edit-${month}`,
-  `monthly-model-edit-${month}-v1`,
+  `monthly-model-edit-${month}-v2`,
   'prefers-reduced-motion: reduce',
   'preload="none"',
   'EditorialImageBadge',

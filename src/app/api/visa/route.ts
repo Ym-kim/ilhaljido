@@ -15,6 +15,7 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 export const maxDuration = 60
 
 const LANG_NAME: Record<string, string> = { KO: '한국어', EN: 'English', JP: '日本語' }
+const SAFE_LABEL = /^[\p{L}\p{M}\p{N} .,'’()·&+\-/–—]+$/u
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,22 +29,32 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json()
-    const { country, purpose, duration, lang = 'KO' } = body
-    if (!country || !purpose || !duration) {
+    const { passportCode, passportCountry, country, purpose, duration, lang = 'KO' } = body
+    if (!passportCode || !passportCountry || !country || !purpose || !duration) {
       return NextResponse.json({ error: '필수 파라미터가 없습니다.' }, { status: 400 })
     }
     // 입력 타입·길이 검증 — 초대형 문자열로 인한 입력 토큰 비용 증폭 차단
     if (
+      typeof passportCode !== 'string' || typeof passportCountry !== 'string' ||
       typeof country !== 'string' || typeof purpose !== 'string' || typeof duration !== 'string' ||
-      country.length > 60 || purpose.length > 100 || duration.length > 60
+      passportCode.length > 10 || passportCountry.length > 80 || country.length > 60 || purpose.length > 100 || duration.length > 60
     ) {
       return NextResponse.json({ error: '입력 형식이 올바르지 않습니다.' }, { status: 400 })
+    }
+    if (
+      !/^(?:[A-Z]{2}|OTHER)$/.test(passportCode) ||
+      ![passportCountry, country, purpose, duration].every((value) => SAFE_LABEL.test(value)) ||
+      !Object.hasOwn(LANG_NAME, lang)
+    ) {
+      return NextResponse.json({ error: '허용되지 않은 입력값입니다.' }, { status: 400 })
     }
 
     const langName = LANG_NAME[lang] ?? '한국어'
 
     const systemPrompt = `당신은 Wakation(워케이션 플랫폼)의 비자·체류 전문 AI 어시스턴트입니다.
-한국 여권 소지자 기준으로 답변합니다. 웹 검색으로 최신 정보를 확인한 뒤 답하세요.
+사용자가 명시적으로 선택한 여권 국적을 기준으로 답변합니다. 접속 국가를 국적으로 추정하지 마세요.
+목적지 정부·이민국·외교부와 선택한 여권 발급국의 외교부·영사관 등 1차 공식 출처를 우선 웹 검색해 최신 정보를 확인하세요.
+공식 출처로 확인되지 않는 조건은 추측하지 말고 "공식 확인 필요"라고 표시하세요.
 반드시 ${langName}로 답변하세요.
 
 답변 구조 (마크다운 헤더 없이, 각 섹션을 이모지+굵은 제목 한 줄로):
@@ -52,7 +63,7 @@ export async function POST(req: NextRequest) {
 ⏱ **처리 기간·비용** — 알려진 범위
 ⚠️ **주의사항** — 최근 변경사항이 있으면 반드시 언급
 전체 350단어 이내. 마지막 줄에 "※ 최종 확인은 해당국 대사관/공식 사이트에서 하세요."`
-    const userPrompt = `대상 국가: ${country}\n체류 목적: ${purpose}\n체류 기간: ${duration}\n\n한국 여권 기준 최신 비자/체류 요건을 분석해주세요.`
+    const userPrompt = `여권 국적: ${passportCountry} (${passportCode})\n대상 국가: ${country}\n체류 목적: ${purpose}\n체류 기간: ${duration}\n\n선택한 여권 국적 기준 최신 비자·체류 요건을 공식 출처 중심으로 분석해주세요.`
 
     // 1차: Gemini 무료 (Google Search 그라운딩 = 최신성 유지) / 실패 시 Anthropic 폴백
     let analysis = ''

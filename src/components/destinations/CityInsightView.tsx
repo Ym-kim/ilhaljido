@@ -36,7 +36,7 @@ const UI: Record<string, Record<Lang, string>> = {
   internet: { KO: '인터넷 속도', EN: 'Internet speed', JP: 'ネット速度' },
   cost: { KO: '월 생활비', EN: 'Monthly cost', JP: '月の生活費' },
   season: { KO: '베스트 시즌', EN: 'Best season', JP: 'ベストシーズン' },
-  visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
+  visa: { KO: '비자 (한국 여권 참고)', EN: 'Visa (Korean passport)', JP: '査証（韓国旅券の参考）' },
   timezone: { KO: '시간대', EN: 'Time zone', JP: 'タイムゾーン' },
   flight: { KO: '직항 소요', EN: 'Direct flight', JP: '直行便' },
   plug: { KO: '콘센트·전압', EN: 'Plug & voltage', JP: 'コンセント・電圧' },
@@ -97,9 +97,9 @@ const UI: Record<string, Record<Lang, string>> = {
     JP: '{city}のビザを詳しく知る',
   },
   visaSub: {
-    KO: '구체적인 조건과 연장 방법을 AI로 확인하세요.',
-    EN: 'Check exact conditions and extensions with AI.',
-    JP: '具体的な条件と延長方法をAIで確認。',
+    KO: '여권 국적을 직접 선택해 구체적인 조건을 다시 확인하세요.',
+    EN: 'Select your passport nationality to recheck the exact conditions.',
+    JP: '旅券の国籍を選び、具体的な条件を確認してください。',
   },
   visaCta: { KO: '비자 AI 확인', EN: 'Check visa AI', JP: 'ビザAIで確認' },
   back: { KO: '← 다른 도시 보기', EN: '← Back to destinations', JP: '← 他の都市を見る' },
@@ -617,7 +617,7 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
           <div className="flex-1">
             <p className="text-xs font-bold text-teal-600 uppercase tracking-wider mb-1">{UI.visaEyebrow[lang]}</p>
             <h3 className="font-black text-[#111] text-lg">{t('visaTitle')}</h3>
-            <p className="text-[#666] text-sm mt-1">{city.visaFree[lang]} — {UI.visaSub[lang]}</p>
+            <p className="text-[#666] text-sm mt-1">{UI.visaSub[lang]}</p>
           </div>
           <Link
             href={`/visa-ai?country=${city.visaCountryKey}`}

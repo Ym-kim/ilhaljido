@@ -25,6 +25,14 @@ const archivedV1Assets = [
   ['trip-match-model-d-city-departure-v1', 'trip-match-model-d-city-departure-v1.webp', 1536, 1024],
 ].map(([id, file, width, height]) => ({ id, file, width, height, archived: true }))
 
+// Superseded monthly files remain in public as an auditable generation archive,
+// but are intentionally absent from the active manifest and placement registry.
+const supersededMonthlyFiles = new Set([
+  'monthly-2026-08-model-e-city-arrival-v1.webp',
+  'monthly-2026-08-model-j-blue-hour-v1.webp',
+  'monthly-model-edit-2026-08-v1.mp4',
+])
+
 const v2Assets = [
   { id: 'home-hero-model-a-coastal-work-desktop-v2', file: 'home-hero-model-a-coastal-work-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-A'] },
   { id: 'home-hero-model-a-coastal-work-mobile-v2', file: 'home-hero-model-a-coastal-work-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-A'] },
@@ -45,13 +53,13 @@ const v2Assets = [
   { id: 'business-model-c-team-planning-mobile-v1', file: 'business-model-c-team-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-C'] },
   { id: 'campaign-model-f-japan-choice-desktop-v1', file: 'campaign-model-f-japan-choice-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
   { id: 'campaign-model-f-japan-choice-mobile-v1', file: 'campaign-model-f-japan-choice-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-F'] },
-  { id: 'monthly-2026-08-model-e-city-arrival-v1', file: 'monthly-2026-08-model-e-city-arrival-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-E'] },
+  { id: 'monthly-2026-08-model-e-city-arrival-v2', file: 'monthly-2026-08-model-e-city-arrival-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-E'] },
   { id: 'monthly-2026-08-model-h-coastal-reset-v1', file: 'monthly-2026-08-model-h-coastal-reset-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-H'] },
-  { id: 'monthly-2026-08-model-j-blue-hour-v1', file: 'monthly-2026-08-model-j-blue-hour-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
+  { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
 ]
 
 const motionAssets = [
-  { id: 'monthly-model-edit-2026-08-v1', file: 'monthly-model-edit-2026-08-v1.mp4', width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], maximumBytes: 2_200_000 },
+  { id: 'monthly-model-edit-2026-08-v2', file: 'monthly-model-edit-2026-08-v2.mp4', width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], maximumBytes: 2_200_000 },
 ]
 
 const auditedAssetIds = new Map([...v2Assets, ...motionAssets].map((asset) => [asset.id, asset]))
@@ -74,7 +82,7 @@ const v2Placements = [
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'), source: 'src/app/growth/page.tsx' },
   { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'), source: 'src/data/campaign-landings.ts' },
-  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v1', 'monthly-model-edit-2026-08-v1'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
+  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -217,7 +225,7 @@ for (const asset of motionAssets) {
 const publicBrandFiles = await fs.readdir(brandModelDirectory)
 for (const file of publicBrandFiles) {
   if (/reference|anchor|contact|grid|sheet|source/i.test(file)) errors.push(`Reference-only file is present in public assets: ${file}`)
-  if (![...archivedV1Assets, ...v2Assets, ...motionAssets].some((asset) => asset.file === file)) errors.push(`Unregistered brand model asset: ${file}`)
+  if (![...archivedV1Assets, ...v2Assets, ...motionAssets].some((asset) => asset.file === file) && !supersededMonthlyFiles.has(file)) errors.push(`Unregistered brand model asset: ${file}`)
 }
 
 const placementSources = new Map()
