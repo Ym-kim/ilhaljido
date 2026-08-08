@@ -80,7 +80,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
                 key={col.slug}
                 href={localizeHref(`/collections/${col.slug}?src=home`, lang)}
                 data-ui-card="editorial"
-                className="wak-card-editorial group relative aspect-[4/5] overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500"
+                className="wak-card-editorial group relative aspect-[3/4] overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_12px_32px_rgba(8,32,48,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(8,32,48,0.16)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:aspect-[4/5]"
               >
                 <Image
                   src={col.photo}
@@ -91,30 +91,42 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/20 to-black/5" />
-                <div className="absolute left-4 top-4 flex max-w-[calc(100%-2rem)] flex-wrap gap-1.5">
-                  {col.durationLabel && (
-                    <span className="rounded-full bg-white/92 px-3 py-1 text-[0.68rem] font-black text-[#102434] shadow-sm">
-                      {col.durationLabel[lang]}
+                <div className="absolute inset-0 flex min-h-0 flex-col p-3.5 sm:p-6">
+                  <div
+                    data-trip-set-meta
+                    className="flex min-h-[3.35rem] min-w-0 flex-col items-start gap-1.5 sm:min-h-0 sm:flex-row sm:flex-wrap"
+                  >
+                    {col.durationLabel && (
+                      <span className="shrink-0 whitespace-nowrap rounded-full bg-white/92 px-2.5 py-1 text-[0.65rem] font-black leading-4 text-[#102434] shadow-sm sm:px-3 sm:text-[0.68rem]">
+                        {col.durationLabel[lang]}
+                      </span>
+                    )}
+                    {col.companions && (
+                      <span
+                        title={col.companions[lang]}
+                        className="max-w-full truncate whitespace-nowrap rounded-full border border-white/25 bg-black/40 px-2.5 py-1 text-[0.65rem] font-bold leading-4 text-white backdrop-blur-sm sm:px-3 sm:text-[0.68rem]"
+                      >
+                        {col.companions[lang]}
+                      </span>
+                    )}
+                  </div>
+                  <div
+                    data-trip-set-content
+                    className="mt-auto flex min-h-[6.7rem] min-w-0 flex-col pt-3 sm:min-h-[10.5rem] sm:pt-5"
+                  >
+                    <span
+                      data-trip-set-accent
+                      className="mb-2.5 block h-1 w-9 shrink-0 rounded-full sm:mb-3"
+                      style={{ backgroundColor: campaign?.accent ?? '#38bdf8' }}
+                    />
+                    <h3 className="wak-card-title line-clamp-2 min-h-[2.85rem] text-base text-white sm:text-lg">
+                      {col.title[lang]}
+                    </h3>
+                    <span className="mt-2 hidden min-h-[2.4rem] line-clamp-2 text-xs leading-relaxed text-white/72 sm:block">{col.tagline[lang]}</span>
+                    <span className="mt-auto inline-flex min-h-7 items-end gap-1.5 pt-2 text-[0.7rem] font-bold leading-4 text-white transition-all group-hover:gap-2.5 sm:text-xs">
+                      {COLLECTIONS_UI.ts_card_cta[lang]} <ArrowRight className="h-3.5 w-3.5 shrink-0" strokeWidth={ICON_STROKE} />
                     </span>
-                  )}
-                  {col.companions && (
-                    <span className="rounded-full border border-white/25 bg-black/30 px-3 py-1 text-[0.68rem] font-bold text-white backdrop-blur-sm">
-                      {col.companions[lang]}
-                    </span>
-                  )}
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
-                  <span
-                    className="mb-3 block h-1 w-9 rounded-full"
-                    style={{ backgroundColor: campaign?.accent ?? '#38bdf8' }}
-                  />
-                  <h3 className="wak-card-title text-lg text-white">
-                    {col.title[lang]}
-                  </h3>
-                  <span className="mt-2 block line-clamp-2 text-xs leading-relaxed text-white/72">{col.tagline[lang]}</span>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-bold text-white transition-all group-hover:gap-2.5">
-                    {COLLECTIONS_UI.ts_card_cta[lang]} <ArrowRight className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} />
-                  </span>
+                  </div>
                 </div>
               </Link>
             )
