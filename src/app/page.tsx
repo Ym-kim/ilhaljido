@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Image, { getImageProps } from 'next/image'
+import Image from 'next/image'
 import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticCurrent, getDomesticThemedUpcoming, t } from '@/lib/i18n'
@@ -28,6 +28,8 @@ import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
 import { MoreExplore } from '@/components/home/MoreExplore'
 import { YangyangProof } from '@/components/home/YangyangProof'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
+import { HomeSeasonalHeroMedia } from '@/components/home/HomeSeasonalHeroMedia'
+import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -116,43 +118,9 @@ const HOME_HERO_ALT: Record<Lang, string> = {
 }
 
 const HOME_HERO_ASSET = {
-  id: 'home-hero-model-a-coastal-work-desktop-v2',
-  modelId: 'WAK-MODEL-A',
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
+  id: 'home-seasonal-film-2026-08-v1',
+  modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J'] as const,
 } as const
-
-function HomeHeroVisual({ alt }: { alt: string }) {
-  const common = { alt, sizes: '100vw', loading: 'eager' as const, fetchPriority: 'high' as const }
-  const { props: { srcSet: desktopSrcSet } } = getImageProps({
-    ...common,
-    src: HOME_HERO_ASSET.desktop,
-    width: 1536,
-    height: 1024,
-    quality: 75,
-  })
-  const { props: { srcSet: mobileSrcSet, ...mobileProps } } = getImageProps({
-    ...common,
-    src: HOME_HERO_ASSET.mobile,
-    width: 960,
-    height: 1280,
-    quality: 75,
-  })
-
-  return (
-    <picture className="absolute inset-0 block">
-      <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
-      <source media="(max-width: 767px)" srcSet={mobileSrcSet} />
-      <img
-        {...mobileProps}
-        alt={alt}
-        fetchPriority="high"
-        loading="eager"
-        className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[68%_47%] animate-kenburns motion-reduce:animate-none md:object-[70%_48%]"
-      />
-    </picture>
-  )
-}
 
 export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
   const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
@@ -165,13 +133,12 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
   useEffect(() => {
-    trackEvent('visual_asset_view', {
+    trackEditorialAssetView({
       assetId: HOME_HERO_ASSET.id,
-      modelId: HOME_HERO_ASSET.modelId,
+      modelIds: [...HOME_HERO_ASSET.modelIds],
       route: lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : '/',
-      section: 'home_hero',
+      section: 'home-seasonal-hero-2026-08',
       locale: lang,
-      placement: 'hero',
     })
   }, [lang])
   const bookingNote = ({ KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' } as const)[lang]
@@ -210,10 +177,10 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
     <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
       {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
-      <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14">
+      <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14" data-season="late-summer-early-autumn-2026">
         <div className="absolute inset-0">
           {/* Next 16 art direction: mobile/desktop 별도 소스로 얼굴 crop과 LCP 전송량을 제어한다. */}
-          <HomeHeroVisual alt={HOME_HERO_ALT[lang]} />
+          <HomeSeasonalHeroMedia alt={HOME_HERO_ALT[lang]} lang={lang} />
           <div className="absolute inset-0 bg-[#04121f]/22" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/98 via-[#04121f]/62 to-[#04121f]/20 md:bg-gradient-to-r md:from-[#04121f]/96 md:via-[#04121f]/68 md:to-[#04121f]/18" />
         </div>
@@ -303,7 +270,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
             <div className="flex flex-col gap-2.5">
               <Link
                 href={localizeHref(heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel', lang)}
-                onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none', assetId: HOME_HERO_ASSET.id, modelId: HOME_HERO_ASSET.modelId })}
+                onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
                 className="inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -312,7 +279,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               </Link>
               <Link
                 href={localizeHref('/programs', lang)}
-                onClick={() => trackEvent('hero_cta_click', { cta: 'programs', assetId: HOME_HERO_ASSET.id, modelId: HOME_HERO_ASSET.modelId })}
+                onClick={() => trackEvent('hero_cta_click', { cta: 'programs', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
                 className="hidden sm:inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
                 {tr('h3_cta_programs')}

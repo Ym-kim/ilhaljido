@@ -70,7 +70,7 @@ const assetIds = (...ids) => ids.map((id) => {
 
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
 const v2Placements = [
-  { route: 'home', section: 'hero', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/app/page.tsx' },
+  { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
   { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: assetIds('domestic-seoul-model-j-city-noir-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
   { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-E'], assets: assetIds('domestic-busan-model-e-coastal-city-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
   { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-G'], assets: assetIds('domestic-jeju-model-g-slow-stay-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },

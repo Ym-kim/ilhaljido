@@ -23,7 +23,7 @@ export const MODEL_ROTATION_POLICY = {
 } as const
 
 export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
-  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-hero', modelIds: ['WAK-MODEL-A'], assetIds: ['home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'], primaryHref: '/trip-match', status: 'active' },
+  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-seasonal-hero-2026-08', modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J'], assetIds: ['home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2', 'late-summer-model-f-market-v1', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'], primaryHref: '/trip-match', status: 'active' },
   { id: 'home-seoul', routes: ['/', '/en', '/ja'], section: 'domestic-onboarding-seoul', modelIds: ['WAK-MODEL-J'], assetIds: ['domestic-seoul-model-j-city-noir-v2'], primaryHref: '/destinations/seoul', status: 'active' },
   { id: 'home-busan', routes: ['/', '/en', '/ja'], section: 'domestic-onboarding-busan', modelIds: ['WAK-MODEL-E'], assetIds: ['domestic-busan-model-e-coastal-city-v2'], primaryHref: '/destinations/busan', status: 'active' },
   { id: 'home-jeju', routes: ['/', '/en', '/ja'], section: 'domestic-onboarding-jeju', modelIds: ['WAK-MODEL-G'], assetIds: ['domestic-jeju-model-g-slow-stay-v2'], primaryHref: '/destinations/jeju', status: 'active' },

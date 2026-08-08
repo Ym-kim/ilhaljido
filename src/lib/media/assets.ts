@@ -18,6 +18,7 @@ export type MediaAsset = {
   modelId?: BrandModelId
   modelIds?: BrandModelId[]
   localeUsage?: Array<'ko' | 'en' | 'ja'>
+  seasonalUsage?: Array<'spring' | 'summer' | 'late-summer' | 'autumn' | 'winter' | 'all-season'>
   routeUsage?: string[]
   sectionUsage?: string[]
   generatedFromReferenceIds?: string[]
@@ -204,6 +205,68 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-A identity anchor',
     license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
     restriction: { KO: '특정 숙소·카페나 실제 Wakation 참가자 장면으로 단정하지 않는다.', EN: 'Do not identify this as a specific stay, café or real Wakation participant.', JP: '特定の宿・カフェ、または実際のWakation参加者として扱わない。' },
+  },
+  {
+    id: 'late-summer-model-f-market-v1',
+    src: '/media/seasonal/late-summer-model-f-market-v1.webp',
+    alt: {
+      KO: '늦여름 골든아워의 조용한 골목을 위켄더와 노트를 들고 걷는 성인 여행자 편집 이미지',
+      EN: 'Editorial image of an adult traveller walking through a quiet local lane at late-summer golden hour',
+      JP: '晩夏のゴールデンアワーに、静かな街路を歩く大人の旅行者を描いたエディトリアル画像',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image',
+    width: 1536, height: 864, modelId: 'WAK-MODEL-F', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer', 'autumn'], routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-seasonal-hero-2026-08'],
+    generatedFromReferenceIds: ['campaign-model-f-japan-choice-desktop-v1'], focalPoint: { x: 0.68, y: 0.48 },
+    source: 'OpenAI built-in image generation using the approved WAK-MODEL-F production reference',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 고객, 참가자, 특정 일본 장소 또는 제휴 체험 현장으로 표시하지 않습니다.',
+      EN: 'Do not present as a real customer, participant, specific Japanese location or partner experience.',
+      JP: '実在の顧客・参加者・特定の日本の場所・提携体験として表示しないでください。',
+    },
+  },
+  {
+    id: 'home-seasonal-film-2026-08-desktop-v1',
+    src: '/media/seasonal/home-seasonal-film-2026-08-desktop-v1.mp4',
+    alt: {
+      KO: '해안 업무 공간, 늦여름 골목, 도시의 블루아워를 잇는 7초 무음 편집 영상',
+      EN: 'Seven-second silent editorial film moving from coastal work to a late-summer lane and city blue hour',
+      JP: '海辺のワークシーン、晩夏の街路、都市のブルーアワーをつなぐ7秒の無音エディトリアル映像',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'video',
+    width: 1920, height: 1080, modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J'], localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer', 'autumn'], routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-seasonal-hero-2026-08'],
+    generatedFromReferenceIds: ['home-hero-model-a-coastal-work-desktop-v2', 'late-summer-model-f-market-v1', 'monthly-2026-08-model-j-blue-hour-v2'],
+    focalPoint: { x: 0.68, y: 0.48 },
+    source: 'Wakation Remotion composition derived from approved generated editorial imagery',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 고객, 참가자, 장소, 숙소, 상품 또는 프로그램 영상으로 표시하지 않습니다.',
+      EN: 'Do not present as footage of real customers, participants, venues, stays, products or programs.',
+      JP: '実在の顧客・参加者・施設・宿泊先・商品・プログラムの映像として表示しないでください。',
+    },
+  },
+  {
+    id: 'home-seasonal-film-2026-08-mobile-v1',
+    src: '/media/seasonal/home-seasonal-film-2026-08-mobile-v1.mp4',
+    alt: {
+      KO: '해안 업무 공간, 늦여름 골목, 도시의 블루아워를 잇는 세로형 7초 무음 편집 영상',
+      EN: 'Portrait seven-second silent editorial film moving from coastal work to a late-summer lane and city blue hour',
+      JP: '海辺のワークシーン、晩夏の街路、都市のブルーアワーをつなぐ縦型7秒の無音エディトリアル映像',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'video',
+    width: 1080, height: 1920, modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J'], localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer', 'autumn'], routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-seasonal-hero-2026-08'],
+    generatedFromReferenceIds: ['home-hero-model-a-coastal-work-mobile-v2', 'late-summer-model-f-market-v1', 'monthly-2026-08-model-j-blue-hour-v2'],
+    focalPoint: { x: 0.58, y: 0.46 },
+    source: 'Wakation Remotion composition derived from approved generated editorial imagery',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 고객, 참가자, 장소, 숙소, 상품 또는 프로그램 영상으로 표시하지 않습니다.',
+      EN: 'Do not present as footage of real customers, participants, venues, stays, products or programs.',
+      JP: '実在の顧客・参加者・施設・宿泊先・商品・プログラムの映像として表示しないでください。',
+    },
   },
   {
     id: 'domestic-seoul-model-j-city-noir-v2',

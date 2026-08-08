@@ -135,7 +135,7 @@ export function TravelerNoteSubmitView({ forceLang }: { forceLang?: Lang } = {})
 
         <div>
           {loading ? (
-            <div className="min-h-80 animate-pulse border border-[#d8d2c7] bg-white" />
+            <div className="min-h-80 border border-[#d8d2c7] bg-[linear-gradient(110deg,#ffffff_12%,#f5f1e9_42%,#ffffff_72%)]" />
           ) : !user ? (
             <div className="border border-[#d2ccc0] bg-white p-7 md:p-10">
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e2efec] text-[#195f61]"><LockKeyhole className="h-5 w-5" aria-hidden="true" /></div>

@@ -48,7 +48,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '1w',
-    photo: '/covers/stay-chicland-danang-ai.jpeg',
+    photo: '/media/destinations/danang-editorial-v1.webp',
     label: { KO: '일주일', EN: 'One week', JP: '1週間' },
     hint: { KO: '일과 여행이 섞이기 시작하는', EN: 'Where work starts blending in', JP: '仕事と旅が混ざり始める' },
     chips: [
@@ -59,7 +59,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '2w',
-    photo: '/covers/stay-bali-city-real.jpeg',
+    photo: '/media/destinations/chiangmai-editorial-v1.webp',
     label: { KO: '2주', EN: 'Two weeks', JP: '2週間' },
     hint: { KO: '현지 리듬이 생기는', EN: 'Long enough to find a rhythm', JP: '現地のリズムが生まれる' },
     chips: [
@@ -69,7 +69,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '1m',
-    photo: '/covers/cruise-caribbean-editorial-photo-v2.webp',
+    photo: '/media/destinations/bali-editorial-v1.webp',
     label: { KO: '한 달', EN: 'A month', JP: 'ひと月' },
     hint: { KO: '살아보기가 되는', EN: 'When a trip becomes living', JP: '暮らすような旅になる' },
     chips: [
@@ -94,7 +94,7 @@ export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
   const { lang: ctxLang } = useLang()
   const lang = forceLang ?? ctxLang
   return (
-    <section className="bg-[#eef6f7] border-b border-[#d9e8ea] py-14 md:py-20 px-4 sm:px-6">
+    <section className="bg-[#f4efe7] border-b border-[#e7ded0] py-14 md:py-20 px-4 sm:px-6" data-seasonal-surface="late-summer-2026">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8 md:mb-10">
           <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5">{UI.eyebrow[lang]}</p>
@@ -105,7 +105,7 @@ export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
           {ROWS.map((row) => (
             <div
               key={row.key}
-              className="group flex gap-4 overflow-hidden rounded-[1.35rem] border border-[#d9e5e5] bg-white p-3 shadow-[0_5px_18px_rgba(16,55,70,0.04)] transition-shadow hover:shadow-[0_12px_28px_rgba(16,55,70,0.09)] sm:items-center sm:gap-6 sm:p-4"
+              className="group flex gap-4 overflow-hidden rounded-[1.35rem] border border-[#e1d8ca] bg-[#fffdf9] p-3 shadow-[0_5px_18px_rgba(64,45,27,0.04)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_30px_rgba(64,45,27,0.10)] sm:items-center sm:gap-6 sm:p-4"
             >
               <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl sm:h-28 sm:w-36">
                 <Image
@@ -113,7 +113,7 @@ export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
                   alt=""
                   fill
                   sizes="(max-width: 640px) 96px, 144px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  className="object-cover saturate-[1.04] contrast-[1.04] transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
               <div className="min-w-0 flex-1 sm:flex sm:items-center sm:gap-6">
