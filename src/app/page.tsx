@@ -359,7 +359,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               <p className="text-[#64748b] text-sm mt-2.5">{tr('h3_sel_sub')}</p>
             </div>
             <Link
-              href="/select"
+              href={localizeHref('/select', lang)}
               className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
             >
               {tr('view_all')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
@@ -461,7 +461,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                             {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
                           </a>
                         ) : (
-                          <Link href={p.href} className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
+                          <Link href={localizeHref(p.href, lang)} className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
                             {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
                           </Link>
                         )}
@@ -574,7 +574,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               <p className="text-[#64748b] text-sm leading-relaxed mb-8">
                 {tr('h3_about_p2')}
               </p>
-              <Link href="/programs" className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
+              <Link href={localizeHref('/programs', lang)} className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
                 {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
@@ -593,8 +593,8 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                     <li key={item.id} className="relative pl-9">
                       <span aria-hidden="true" className="absolute left-0 top-5 flex h-6 w-6 items-center justify-center rounded-full border border-[#83aebc] bg-white text-[0.6rem] font-black text-[#356a7d]">{index + 1}</span>
                       <Link
-                        href={item.href}
-                        onClick={() => trackEvent('ecosystem_node_click', { route: '/', locale: lang, sectionId: 'service-ecosystem-map', visualType: 'ecosystem-map', contentId: item.id, position: String(index + 1), targetRoute: item.href })}
+                        href={localizeHref(item.href, lang)}
+                        onClick={() => trackEvent('ecosystem_node_click', { route: '/', locale: lang, sectionId: 'service-ecosystem-map', visualType: 'ecosystem-map', contentId: item.id, position: String(index + 1), targetRoute: localizeHref(item.href, lang) })}
                         className="group block border-b border-[#e6edef] px-1 py-4 last:border-b-0"
                       >
                         <div className="flex flex-wrap items-center justify-between gap-2">

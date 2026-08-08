@@ -23,6 +23,7 @@ const nextConfig: NextConfig = {
     // WebP 유지(기본) — 2026-07-21 실측: Vercel AVIF 인코더가 이 사이트 사진 커버(q75)에서
     // WebP보다 3~20% 더 큼(도쿄 118KB AVIF vs 98KB WebP 등) → AVIF 미채택. 측정 기반 결정
     formats: ['image/webp'],
+    qualities: [70, 75, 78],
     // 최적화 이미지 캐시 31일 — 기존 max-age=0(매 요청 재검증) → 재방문·CDN 히트 개선
     minimumCacheTTL: 2678400,
     // 자체 제작 SVG 커버(/public/covers) 서빙용 — 스크립트 실행 차단 CSP로 안전

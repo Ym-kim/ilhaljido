@@ -236,7 +236,7 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
       prefetch={false}
       onClick={() => onCampaignClick(device)}
       className={cn(
-        'group/campaign relative isolate overflow-hidden bg-[#0b2437] text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
+        'group/campaign relative isolate block overflow-hidden bg-[#0b2437] text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500',
         device === 'desktop' ? 'min-h-[15.5rem] w-[18.5rem] rounded-[1.65rem]' : 'mt-3 min-h-[10.5rem] rounded-[1.35rem]',
       )}
     >

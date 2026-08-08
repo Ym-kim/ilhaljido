@@ -114,7 +114,7 @@ export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
             {[
               { href: '/collections/japan-onsen-reset', label: COPY.next_set[lang] },
               { href: '/guide/fukuoka', label: COPY.next_guide[lang] },
-              { href: '/select/hotel#japan-tokyo', label: COPY.next_stays[lang] },
+              { href: '/select/hotel#region-japan', label: COPY.next_stays[lang] },
             ].map((item) => (
               <Link
                 key={item.href}
