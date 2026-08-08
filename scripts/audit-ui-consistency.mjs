@@ -6,6 +6,7 @@ const criticalFiles = [
   'src/components/affiliate/AffiliateCard.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
   'src/components/affiliate/DestinationCard.tsx',
+  'src/components/home/CollectionsSection.tsx',
   'src/components/home/DomesticOnboarding.tsx',
   'src/components/home/MoodExplorer.tsx',
   'src/components/home/MoreExplore.tsx',
@@ -27,6 +28,13 @@ for (const relative of criticalFiles) {
   }
   if (/[🏨💻🌿✈️📚🛂📊🚢⛳🎓🧘♨️🎌]/u.test(source)) {
     errors.push(`${relative}: decorative emoji remains in a critical card surface`)
+  }
+}
+
+const homeTripSetSource = await readFile(path.join(root, 'src/components/home/CollectionsSection.tsx'), 'utf8')
+for (const marker of ['data-trip-set-meta', 'data-trip-set-content', 'data-trip-set-accent']) {
+  if (!homeTripSetSource.includes(marker)) {
+    errors.push(`src/components/home/CollectionsSection.tsx: missing ${marker} mobile layout guard`)
   }
 }
 
