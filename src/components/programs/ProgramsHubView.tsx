@@ -11,6 +11,8 @@ import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
+import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
+import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { getMediaAsset } from '@/lib/media/assets'
 import { trackEvent } from '@/lib/track'
 import { localizeHref } from '@/lib/i18n/localePath'
@@ -23,7 +25,8 @@ const DIRECTION_NOTE: Record<Lang, string> = {
   JP: '今後のWakationプログラムは、宿泊・ワークスペース・ネットワーキングに加え、事前VOD学習・現地実習・参加者用Webツールを組み合わせた成長型プログラムへ拡張されます。',
 }
 
-const PROGRAMS_HERO = getMediaAsset('programs-editorial-coastal-work-v1')
+const PROGRAMS_HERO_DESKTOP = getMediaAsset('programs-model-k-stay-planning-desktop-v1')
+const PROGRAMS_HERO_MOBILE = getMediaAsset('programs-model-k-stay-planning-mobile-v1')
 
 const STATUS_COLOR = {
   recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
@@ -70,6 +73,18 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
 
+  useEffect(() => {
+    trackEvent('visual_asset_view', {
+      assetId: PROGRAMS_HERO_DESKTOP?.id ?? 'programs-model-k-stay-planning-desktop-v1',
+      mobileAssetId: PROGRAMS_HERO_MOBILE?.id ?? 'programs-model-k-stay-planning-mobile-v1',
+      modelId: 'WAK-MODEL-K',
+      route: lang === 'JP' ? '/ja/programs' : lang === 'EN' ? '/en/programs' : '/programs',
+      section: 'programs_hero',
+      locale: lang,
+      placement: 'hero',
+    })
+  }, [lang])
+
   const tr = (key: string) => translate(lang, key)
   const programs = getProgramsList()
   const selectCategories = getSelectCategories(lang)
@@ -79,11 +94,21 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[50vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
-          {PROGRAMS_HERO && (
-            <Image src={PROGRAMS_HERO.src} alt={PROGRAMS_HERO.alt[lang]} fill priority sizes="100vw" className="object-cover object-center" />
+          {PROGRAMS_HERO_DESKTOP && PROGRAMS_HERO_MOBILE && (
+            <ArtDirectedEditorialHero
+              desktopSrc={PROGRAMS_HERO_DESKTOP.src}
+              mobileSrc={PROGRAMS_HERO_MOBILE.src}
+              alt={PROGRAMS_HERO_DESKTOP.alt[lang]}
+              desktopWidth={1440}
+              desktopHeight={900}
+              mobileWidth={960}
+              mobileHeight={1280}
+              className="absolute inset-0 h-full w-full object-cover object-[62%_54%] md:object-[73%_3%]"
+            />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
+        <EditorialImageBadge lang={lang} className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6" />
         <div className="relative w-full max-w-6xl mx-auto px-6 pb-16">
           <SectionEyebrow onDark pill>
             {tr('programs_hero_badge')}

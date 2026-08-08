@@ -1,6 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 
-export const BRAND_MODEL_ROSTER_VERSION = '2.2' as const
+export const BRAND_MODEL_ROSTER_VERSION = '2.3' as const
 
 export const BRAND_MODEL_IDS = [
   'WAK-MODEL-A',
@@ -13,6 +13,7 @@ export const BRAND_MODEL_IDS = [
   'WAK-MODEL-H',
   'WAK-MODEL-I',
   'WAK-MODEL-J',
+  'WAK-MODEL-K',
 ] as const
 
 export type BrandModelId = (typeof BRAND_MODEL_IDS)[number]
@@ -71,8 +72,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with a soft urban presence and long dark hair',
     faceKeywords: ['soft', 'urban', 'approachable'], hairKeywords: ['long', 'dark', 'natural'], moodKeywords: ['daylight', 'social', 'easy'],
     wardrobePalette: ['stone', 'soft blue', 'charcoal'], preferredActions: ['taking notes', 'walking between cafés', 'checking a route'], preferredLocations: ['city café', 'design district', 'local street'],
-    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: [],
+    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work', 'growth-learning'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: ['growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Regenerate environment-led scenes; never publish the source pose or synthetic lettering.',
   },
@@ -82,8 +83,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with a composed premium presence and polished long dark hair',
     faceKeywords: ['composed', 'polished', 'quiet'], hairKeywords: ['long', 'dark', 'smooth'], moodKeywords: ['premium', 'focused', 'minimal'],
     wardrobePalette: ['ink', 'taupe', 'cream'], preferredActions: ['waiting before check-in', 'reviewing a schedule', 'quiet laptop work'], preferredLocations: ['hotel lounge', 'business stay', 'museum café'],
-    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: [],
+    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Vary wardrobe and camera distance; avoid repeating a white top and beauty-portrait composition.',
   },
@@ -117,7 +118,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     faceKeywords: ['warm', 'modern', 'open'], hairKeywords: ['brown', 'long', 'soft wave'], moodKeywords: ['daylight', 'city food', 'social'],
     wardrobePalette: ['camel', 'cream', 'terracotta'], preferredActions: ['walking to a café', 'browsing a market', 'meeting a friend'], preferredLocations: ['Fukuoka-inspired street', 'Osaka-inspired café', 'market lane'],
     allowedSections: ['japan-campaign', 'food-editorial', 'social-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: [],
+    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: ['campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Use warm hair and natural daylight to diversify the roster without repeating glamour styling.',
   },
@@ -169,6 +170,18 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 J; supersedes and invalidates every previous J identity.',
     notes: 'Keep the heart-shaped face, sleek black hair and urban restraint distinct from every prior J.',
+  },
+  {
+    id: 'WAK-MODEL-K', rosterVersion: BRAND_MODEL_ROSTER_VERSION, nameCode: 'Creative Navigator', adultAgeRange: 'late twenties',
+    visualRole: { KO: '학습·성장·체류 일정 설계', EN: 'Learning, growth and stay planning', JP: '学び・成長・滞在プラン' },
+    identityDescriptor: 'fictional adult East Asian woman, age twenty-nine, calm almond-shaped brown eyes, long chestnut-brown hair, composed approachable expression, practical contemporary work-travel styling',
+    faceKeywords: ['adult', 'calm almond eyes', 'approachable'], hairKeywords: ['long', 'chestnut brown', 'natural'], moodKeywords: ['curious', 'organized', 'grounded'],
+    wardrobePalette: ['ink navy', 'soft blue', 'ivory', 'stone'], preferredActions: ['organizing travel notes', 'planning a work-and-stay rhythm', 'packing a practical weekender'], preferredLocations: ['design library', 'coastal shared workspace', 'quiet learning lounge'],
+    allowedSections: ['learn-editorial', 'programs-editorial', 'growth-learning'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-k-creative-navigator-identity-reference-v1'], referenceAssetIds: ['model-10-gemini-travel-lounge-reference-2026-08-05'],
+    productionAssetIds: ['learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1', 'programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1'],
+    productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
+    notes: 'The supplied Model 10 pack remains reference-only. Publish only modest, action-led derivatives with clear editorial-image disclosure.',
   },
 ]
 

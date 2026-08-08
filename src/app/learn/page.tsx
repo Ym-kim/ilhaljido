@@ -1,14 +1,18 @@
 'use client'
 
-import Image from 'next/image'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
+import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { useLang } from '@/context/LanguageContext'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeHref } from '@/lib/i18n/localePath'
+import { getMediaAsset } from '@/lib/media/assets'
+import { trackEvent } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
@@ -66,24 +70,44 @@ const PATHS: Array<{ label: L; title: L; desc: L }> = [
   },
 ]
 
+const LEARN_HERO_DESKTOP = getMediaAsset('learn-model-k-creative-focus-desktop-v1')
+const LEARN_HERO_MOBILE = getMediaAsset('learn-model-k-creative-focus-mobile-v1')
+
 export default function LearnPage() {
   const { lang } = useLang()
   const activeCourses = FEATURED_COURSES.filter((course) => course.status === 'active_affiliate')
     .slice(0, 6)
     .map((course) => localizeAffiliateItem(course, lang))
 
+  useEffect(() => {
+    trackEvent('visual_asset_view', {
+      assetId: LEARN_HERO_DESKTOP?.id ?? 'learn-model-k-creative-focus-desktop-v1',
+      mobileAssetId: LEARN_HERO_MOBILE?.id ?? 'learn-model-k-creative-focus-mobile-v1',
+      modelId: 'WAK-MODEL-K',
+      route: '/learn',
+      section: 'learn_hero',
+      locale: lang,
+      placement: 'hero',
+    })
+  }, [lang])
+
   return (
     <div className="min-h-screen bg-[#111] dark-surface">
       <section className="relative flex min-h-[34rem] items-end overflow-hidden">
-        <Image
-          src="/media/brand-models/domestic-seoul-model-d-urban-work-v1.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+        {LEARN_HERO_DESKTOP && LEARN_HERO_MOBILE && (
+          <ArtDirectedEditorialHero
+            desktopSrc={LEARN_HERO_DESKTOP.src}
+            mobileSrc={LEARN_HERO_MOBILE.src}
+            alt={LEARN_HERO_DESKTOP.alt[lang]}
+            desktopWidth={1536}
+            desktopHeight={1024}
+            mobileWidth={960}
+            mobileHeight={1280}
+            className="absolute inset-0 h-full w-full object-cover object-[62%_57%] md:object-[72%_12%]"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/15" />
+        <EditorialImageBadge lang={lang} className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6" />
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-16">
           <SectionEyebrow onDark>{COPY.eyebrow[lang]}</SectionEyebrow>
           <h1 className="max-w-3xl whitespace-pre-line text-4xl font-black leading-[1.08] text-white md:text-6xl">

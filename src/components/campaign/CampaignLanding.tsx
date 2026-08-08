@@ -14,8 +14,12 @@ import {
 } from '@/lib/campaignTracking'
 import { trackEvent } from '@/lib/track'
 import { ShareButton } from '@/components/share/ShareButton'
+import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
+import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
+import { getMediaAsset } from '@/lib/media/assets'
+import { trackEditorialAssetCta, trackEditorialAssetView } from '@/lib/media/editorialTracking'
 
 const ACCENT = {
   coral: {
@@ -35,6 +39,9 @@ const subscribeToLocation = () => () => {}
 export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
   const { lang, setLang } = useLang()
   const viewed = useRef(false)
+  const visualViewed = useRef(false)
+  const heroMedia = config.heroMediaAssetId ? getMediaAsset(config.heroMediaAssetId) : undefined
+  const heroMobileMedia = config.heroMobileMediaAssetId ? getMediaAsset(config.heroMobileMediaAssetId) : undefined
   const locationSearch = useSyncExternalStore(
     subscribeToLocation,
     () => window.location.search,
@@ -60,6 +67,20 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
       })
     }
   }, [config.id, config.locale, utm])
+
+  useEffect(() => {
+    if (!visualViewed.current && heroMedia && heroMobileMedia && config.heroModelId) {
+      visualViewed.current = true
+      trackEditorialAssetView({
+        assetId: heroMedia.id,
+        mobileAssetId: heroMobileMedia.id,
+        modelIds: [config.heroModelId],
+        route: config.canonicalPath,
+        section: `campaign-${config.id}-hero`,
+        locale: config.locale,
+      })
+    }
+  }, [config.canonicalPath, config.heroModelId, config.id, config.locale, heroMedia, heroMobileMedia])
 
   const choiceLinks = useMemo(
     () => Object.fromEntries(
@@ -89,6 +110,18 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
     rememberCampaignContext(fields)
     trackEvent('campaign_choice_click', fields)
     trackEvent('campaign_trip_set_open', fields)
+    if (heroMedia && heroMobileMedia && config.heroModelId) {
+      trackEditorialAssetCta({
+        assetId: heroMedia.id,
+        mobileAssetId: heroMobileMedia.id,
+        modelIds: [config.heroModelId],
+        route: config.canonicalPath,
+        section: `campaign-${config.id}-hero`,
+        locale: config.locale,
+        target: choiceLinks[destination],
+        action: 'trip_set_choice',
+      })
+    }
   }
 
   const handleTripMatch = () => {
@@ -99,12 +132,34 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
     }
     rememberCampaignContext(fields)
     trackEvent('campaign_trip_match_click', fields)
+    if (heroMedia && heroMobileMedia && config.heroModelId) {
+      trackEditorialAssetCta({
+        assetId: heroMedia.id,
+        mobileAssetId: heroMobileMedia.id,
+        modelIds: [config.heroModelId],
+        route: config.canonicalPath,
+        section: `campaign-${config.id}-hero`,
+        locale: config.locale,
+        target: tripMatchLink,
+        action: 'trip_match',
+      })
+    }
   }
 
   return (
     <main className="overflow-hidden bg-[#fbf8f2] text-[#142431]">
       <section className="dark-surface relative min-h-[calc(100svh-4rem)] overflow-hidden bg-[#071824]">
-        {config.heroSecondaryImage ? (
+        {heroMedia && heroMobileMedia ? (
+          <ArtDirectedEditorialHero
+            desktopSrc={heroMedia.src}
+            mobileSrc={heroMobileMedia.src}
+            alt={heroMedia.alt[config.lang]}
+            desktopWidth={heroMedia.width!}
+            desktopHeight={heroMedia.height!}
+            mobileWidth={heroMobileMedia.width!}
+            mobileHeight={heroMobileMedia.height!}
+          />
+        ) : config.heroSecondaryImage ? (
           <div className="absolute inset-0 grid grid-cols-2">
             <div className="relative min-w-0">
               <Image src={config.heroImage} alt={config.heroAlt} fill priority sizes="50vw" className="object-cover" style={{ objectPosition: config.heroPosition }} />
@@ -129,6 +184,7 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
 
         <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl flex-col justify-end px-5 pb-8 pt-20 sm:px-8 md:justify-center md:pb-16 md:pt-24 lg:px-10">
           <div className="max-w-2xl">
+            {heroMedia ? <EditorialImageBadge lang={config.lang} className="mb-5 inline-flex" /> : null}
             <span className="block text-[0.68rem] font-extrabold tracking-[0.22em] text-[#8fd3e9]">
               {config.eyebrow}
             </span>
