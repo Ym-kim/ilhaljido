@@ -659,8 +659,8 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     createdAt: '2026-07-30',
   },
   {
-    id: 'monthly-2026-08-model-e-city-arrival-v1',
-    src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v1.webp',
+    id: 'monthly-2026-08-model-e-city-arrival-v2',
+    src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp',
     alt: {
       KO: '이름 없는 해안 도시 터미널에서 여행 동선을 살펴보는 성인 여행자 편집 이미지',
       EN: 'Editorial image of an adult traveller reviewing her route at an unnamed coastal-city terminal',
@@ -699,8 +699,8 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     },
   },
   {
-    id: 'monthly-2026-08-model-j-blue-hour-v1',
-    src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v1.webp',
+    id: 'monthly-2026-08-model-j-blue-hour-v2',
+    src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
     alt: {
       KO: '이름 없는 도시의 강변에서 업무 후 시간을 확인하는 성인 여행자 편집 이미지',
       EN: 'Editorial image of an adult traveller checking the time beside an unnamed city river',
@@ -719,8 +719,8 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     },
   },
   {
-    id: 'monthly-model-edit-2026-08-v1',
-    src: '/media/brand-models/monthly-model-edit-2026-08-v1.mp4',
+    id: 'monthly-model-edit-2026-08-v2',
+    src: '/media/brand-models/monthly-model-edit-2026-08-v2.mp4',
     alt: {
       KO: '도시 도착, 해안의 리셋, 블루아워 이동을 담은 15초 무음 월간 편집 영상',
       EN: 'A 15-second silent monthly editorial film about city arrival, a coastal reset and blue-hour movement',
@@ -729,7 +729,7 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     sourceType: 'generated', usage: 'social', illustrative: true, mediaType: 'video',
     width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], localeUsage: ['ko', 'en', 'ja'],
     routeUsage: ['/about'], sectionUsage: ['monthly-model-editorial-2026-08'],
-    generatedFromReferenceIds: ['monthly-2026-08-model-e-city-arrival-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v1'],
+    generatedFromReferenceIds: ['monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2'],
     focalPoint: { x: 0.5, y: 0.5 },
     source: 'Wakation Remotion composition derived from three approved generated editorial images',
     license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',

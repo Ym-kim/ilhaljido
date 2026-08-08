@@ -48,8 +48,8 @@ const PHOTOS: Array<{
   caption: L
 }> = [
   {
-    id: 'monthly-2026-08-model-e-city-arrival-v1',
-    src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v1.webp',
+    id: 'monthly-2026-08-model-e-city-arrival-v2',
+    src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp',
     alt: {
       KO: '이름 없는 해안 도시 터미널에서 여행 동선을 살펴보는 성인 여행자 편집 이미지',
       EN: 'Editorial image of an adult traveller reviewing her route at an unnamed coastal-city terminal',
@@ -68,8 +68,8 @@ const PHOTOS: Array<{
     caption: { KO: '해안의 리셋', EN: 'Coastal reset', JP: '海辺でリセット' },
   },
   {
-    id: 'monthly-2026-08-model-j-blue-hour-v1',
-    src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v1.webp',
+    id: 'monthly-2026-08-model-j-blue-hour-v2',
+    src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
     alt: {
       KO: '이름 없는 도시의 강변에서 업무 후 시간을 확인하는 성인 여행자 편집 이미지',
       EN: 'Editorial image of an adult traveller checking the time beside an unnamed city river',
@@ -107,7 +107,7 @@ export function MonthlyModelEditorial() {
         if (!trackedRef.current) {
           trackedRef.current = true
           trackEditorialAssetView({
-            assetId: 'monthly-model-edit-2026-08-v1',
+            assetId: 'monthly-model-edit-2026-08-v2',
             modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'],
             route: '/about',
             section: 'monthly-model-editorial-2026-08',
@@ -159,9 +159,9 @@ export function MonthlyModelEditorial() {
               loop
               muted
               playsInline
-              poster="/media/brand-models/monthly-2026-08-model-e-city-arrival-v1.webp"
+              poster="/media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp"
               preload="none"
-              src={shouldLoadVideo && !reducedMotion ? '/media/brand-models/monthly-model-edit-2026-08-v1.mp4' : undefined}
+              src={shouldLoadVideo && !reducedMotion ? '/media/brand-models/monthly-model-edit-2026-08-v2.mp4' : undefined}
               onCanPlay={() => {
                 if (inViewRef.current && !userPausedRef.current && !reducedMotion) {
                   videoRef.current?.play().catch(() => undefined)

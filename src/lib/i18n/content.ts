@@ -110,7 +110,32 @@ export function getNavPrograms(lang: Lang) {
 
 type VisaOption = { value: string; label: Record<Lang, string> }
 
+export type VisaPassportOption = VisaOption & { countryCode?: string }
+
+export const VISA_PASSPORTS: VisaPassportOption[] = [
+  { value: 'KR', countryCode: 'KR', label: { KO: '대한민국', EN: 'Republic of Korea', JP: '韓国' } },
+  { value: 'JP', countryCode: 'JP', label: { KO: '일본', EN: 'Japan', JP: '日本' } },
+  { value: 'US', countryCode: 'US', label: { KO: '미국', EN: 'United States', JP: 'アメリカ' } },
+  { value: 'CA', countryCode: 'CA', label: { KO: '캐나다', EN: 'Canada', JP: 'カナダ' } },
+  { value: 'AU', countryCode: 'AU', label: { KO: '호주', EN: 'Australia', JP: 'オーストラリア' } },
+  { value: 'GB', countryCode: 'GB', label: { KO: '영국', EN: 'United Kingdom', JP: 'イギリス' } },
+  { value: 'TW', countryCode: 'TW', label: { KO: '대만', EN: 'Taiwan', JP: '台湾' } },
+  { value: 'SG', countryCode: 'SG', label: { KO: '싱가포르', EN: 'Singapore', JP: 'シンガポール' } },
+  { value: 'TH', countryCode: 'TH', label: { KO: '태국', EN: 'Thailand', JP: 'タイ' } },
+  { value: 'VN', countryCode: 'VN', label: { KO: '베트남', EN: 'Vietnam', JP: 'ベトナム' } },
+  { value: 'ID', countryCode: 'ID', label: { KO: '인도네시아', EN: 'Indonesia', JP: 'インドネシア' } },
+  { value: 'PH', countryCode: 'PH', label: { KO: '필리핀', EN: 'Philippines', JP: 'フィリピン' } },
+  { value: 'MY', countryCode: 'MY', label: { KO: '말레이시아', EN: 'Malaysia', JP: 'マレーシア' } },
+  { value: 'DE', countryCode: 'DE', label: { KO: '독일', EN: 'Germany', JP: 'ドイツ' } },
+  { value: 'FR', countryCode: 'FR', label: { KO: '프랑스', EN: 'France', JP: 'フランス' } },
+  { value: 'IT', countryCode: 'IT', label: { KO: '이탈리아', EN: 'Italy', JP: 'イタリア' } },
+  { value: 'ES', countryCode: 'ES', label: { KO: '스페인', EN: 'Spain', JP: 'スペイン' } },
+  { value: 'PT', countryCode: 'PT', label: { KO: '포르투갈', EN: 'Portugal', JP: 'ポルトガル' } },
+  { value: 'OTHER', label: { KO: '그 외 여권', EN: 'Other passport', JP: 'その他の旅券' } },
+]
+
 export const VISA_COUNTRIES: VisaOption[] = [
+  { value: 'korea', label: { KO: '대한민국', EN: 'Republic of Korea', JP: '韓国' } },
   { value: 'japan', label: { KO: '일본', EN: 'Japan', JP: '日本' } },
   { value: 'thailand', label: { KO: '태국', EN: 'Thailand', JP: 'タイ' } },
   { value: 'indonesia', label: { KO: '인도네시아', EN: 'Indonesia', JP: 'インドネシア' } },

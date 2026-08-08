@@ -16,7 +16,7 @@ if (!/^\d{4}-\d{2}-\d{2}$/.test(asOf) || Number.isNaN(Date.parse(`${asOf}T00:00:
 }
 
 // 엔트리 파싱 — id·expires·markers({file, contains})
-const entryBlocks = registry.split(/\n  \{\n/).slice(1)
+const entryBlocks = registry.split(/\r?\n  \{\r?\n/).slice(1)
 const entries = entryBlocks.map((block) => {
   const id = block.match(/id: '([^']+)'/)?.[1]
   const expires = block.match(/expires: '(\d{4}-\d{2}-\d{2})'/)?.[1]

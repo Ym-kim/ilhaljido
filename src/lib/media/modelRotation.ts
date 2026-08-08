@@ -35,7 +35,7 @@ export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
   { id: 'growth-hero', routes: ['/growth'], section: 'growth-hero', modelIds: ['WAK-MODEL-B'], assetIds: ['growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'], primaryHref: '/learn', status: 'active' },
   { id: 'business-hero', routes: ['/business'], section: 'business-hero', modelIds: ['WAK-MODEL-C'], assetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'], primaryHref: '#inquiry', status: 'active' },
   { id: 'japan-short-stay-hero', routes: ['/campaign/japan-short-stay'], section: 'campaign-japan-short-stay-hero', modelIds: ['WAK-MODEL-F'], assetIds: ['campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'], primaryHref: '/trip-match?campaign=japan-short-stay', status: 'active' },
-  { id: 'about-monthly-edit-2026-08', routes: ['/about'], section: 'monthly-model-editorial-2026-08', modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assetIds: ['monthly-2026-08-model-e-city-arrival-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v1', 'monthly-model-edit-2026-08-v1'], status: 'active' },
+  { id: 'about-monthly-edit-2026-08', routes: ['/about'], section: 'monthly-model-editorial-2026-08', modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assetIds: ['monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'], status: 'active' },
 ]
 
 export function getEditorialModelPlacement(id: string): EditorialModelPlacement {

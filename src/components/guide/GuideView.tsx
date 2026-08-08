@@ -131,7 +131,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
             )}
             {guide.visaFree && (
               <div>
-                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">{{ KO: '비자', EN: 'Visa', JP: 'ビザ' }[lang]}</p>
+                <p className="text-[#94a3b8] text-[0.6875rem] font-semibold uppercase tracking-wide mb-1">{{ KO: '비자 (한국 여권)', EN: 'Visa (KR passport)', JP: '査証（韓国旅券）' }[lang]}</p>
                 <p className="text-[#111827] text-sm font-bold">{guide.visaFree[lang]}</p>
               </div>
             )}

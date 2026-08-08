@@ -24,7 +24,7 @@ const UI: Record<string, Record<Lang, string>> = {
   },
   internet: { KO: '인터넷', EN: 'Internet', JP: 'ネット' },
   cost: { KO: '생활비', EN: 'Cost', JP: '生活費' },
-  visa: { KO: '비자', EN: 'Visa', JP: 'ビザ' },
+  visa: { KO: '비자 (한국 여권)', EN: 'Visa (KR passport)', JP: '査証（韓国旅券）' },
   more: { KO: '여행지 살펴보기', EN: 'Explore destination', JP: '行き先を見る' },
   compareTitle: { KO: '어디로 갈지 고민된다면', EN: 'Torn between cities?', JP: 'どこへ行くか迷ったら' },
   compareSub: {

@@ -7,6 +7,7 @@ import { SectionTitle } from '@/components/brand/SectionEyebrow'
 import { useLang } from '@/context/LanguageContext'
 import { useAuth } from '@/context/AuthContext'
 import {
+  VISA_PASSPORTS,
   VISA_COUNTRIES,
   VISA_PURPOSES,
   VISA_DURATIONS,
@@ -17,20 +18,65 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { getVisaVerifiedGuidance } from '@/lib/content/visaGuidance'
 import { VISA_OFFICIAL_SOURCES } from '@/lib/content/research'
 import { OfficialSourceList } from '@/components/editorial/OfficialSourceList'
+import { useGeoCountry } from '@/hooks/useGeoCountry'
+import { getNationalityVisaSources, getSuggestedPassportFromGeo } from '@/lib/content/visaNationality'
+import type { Lang } from '@/lib/i18n/types'
 
-type Step = 1 | 2 | 3 | 4
+type Step = 1 | 2 | 3 | 4 | 5
 
 interface Selections {
+  passport: string
   country: string
   purpose: string
   duration: string
 }
 
+const PAGE_COPY: Record<Lang, {
+  passportStep: string
+  passportTitle: string
+  passportDescription: string
+  geoSuggested: string
+  geoWarning: string
+  choosePassport: string
+  otherPassportPlaceholder: string
+  continue: string
+  sourcesMissing: string
+}> = {
+  KO: {
+    passportStep: '여권', passportTitle: '어느 나라 여권을 사용하나요?',
+    passportDescription: '비자 요건은 현재 접속 위치가 아니라 여권 국적을 기준으로 달라집니다.',
+    geoSuggested: '접속 위치를 바탕으로 선택값을 제안했습니다.',
+    geoWarning: '접속 국가와 여권 국적은 다를 수 있어요. 반드시 여권을 직접 확인해 주세요.',
+    choosePassport: '여권 국적 선택', otherPassportPlaceholder: '여권에 표시된 국가·지역명을 입력하세요', continue: '이 여권으로 계속',
+    sourcesMissing: '이 여권·목적지 조합은 정적 공식 근거를 아직 연결하지 않았습니다. 로그인 분석을 이용하거나 해당국 대사관·이민국에서 직접 확인해 주세요.',
+  },
+  EN: {
+    passportStep: 'Passport', passportTitle: 'Which passport will you use?',
+    passportDescription: 'Visa requirements depend on passport nationality, not your current connection location.',
+    geoSuggested: 'We suggested a value from your connection location.',
+    geoWarning: 'Your location and passport nationality may differ. Please confirm the passport yourself.',
+    choosePassport: 'Select passport nationality', otherPassportPlaceholder: 'Enter the country or territory shown on the passport', continue: 'Continue with this passport',
+    sourcesMissing: 'Official static guidance is not yet linked for this passport–destination pair. Use the signed-in analysis or check the destination embassy or immigration authority directly.',
+  },
+  JP: {
+    passportStep: '旅券', passportTitle: 'どの国・地域の旅券を使いますか？',
+    passportDescription: '査証要件は現在の接続場所ではなく、旅券の国籍を基準に変わります。',
+    geoSuggested: '接続場所をもとに候補を選択しました。',
+    geoWarning: '接続国と旅券の国籍は異なる場合があります。必ず旅券を確認してください。',
+    choosePassport: '旅券の国籍を選択', otherPassportPlaceholder: '旅券に記載された国・地域名を入力', continue: 'この旅券で続ける',
+    sourcesMissing: 'この旅券・目的地の組み合わせは、静的な公式根拠をまだ接続していません。ログイン分析を使うか、目的地の大使館・入国管理当局で直接確認してください。',
+  },
+}
+
 export default function VisaAiPage() {
   const { lang, tr } = useLang()
   const { user } = useAuth()
+  const geoCountry = useGeoCountry()
+  const copy = PAGE_COPY[lang]
   const [step, setStep] = useState<Step>(1)
-  const [selections, setSelections] = useState<Selections>({ country: '', purpose: '', duration: '' })
+  const [selections, setSelections] = useState<Selections>({ passport: '', country: '', purpose: '', duration: '' })
+  const [otherPassport, setOtherPassport] = useState('')
+  const [geoSuggested, setGeoSuggested] = useState(false)
   const [loading, setLoading] = useState(false)
   const [showResult, setShowResult] = useState(false)
   const [aiResult, setAiResult] = useState<string | null>(null)
@@ -43,11 +89,24 @@ export default function VisaAiPage() {
     if (c && VISA_COUNTRIES.some((x) => x.value === c)) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- 마운트 1회 딥링크 복원 의도 패턴
       setSelections((p) => ({ ...p, country: c }))
-      setStep(2)
     }
   }, [])
 
-  const stepLabelKeys = ['visa_step_country', 'visa_step_purpose', 'visa_step_duration', 'visa_step_result'] as const
+  useEffect(() => {
+    if (!geoCountry || selections.passport) return
+    const suggestedPassport = getSuggestedPassportFromGeo(geoCountry)
+    if (suggestedPassport === 'OTHER') return
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 위치는 추천값일 뿐이며 다음 버튼에서 사용자가 명시적으로 확정한다.
+    setSelections((previous) => ({ ...previous, passport: suggestedPassport }))
+    setGeoSuggested(true)
+  }, [geoCountry, selections.passport])
+
+  const stepLabels = [copy.passportStep, tr('visa_step_country'), tr('visa_step_purpose'), tr('visa_step_duration'), tr('visa_step_result')]
+
+  function labelForPassport(value: string) {
+    if (value === 'OTHER' && otherPassport.trim()) return otherPassport.trim()
+    return VISA_PASSPORTS.find((passport) => passport.value === value)?.label[lang] ?? value
+  }
 
   function labelForCountry(value: string) {
     return VISA_COUNTRIES.find((c) => c.value === value)?.label[lang] ?? value
@@ -55,19 +114,19 @@ export default function VisaAiPage() {
 
   function selectCountry(c: string) {
     setSelections((p) => ({ ...p, country: c }))
-    setStep(2)
+    setStep(3)
   }
 
   function selectPurpose(p: string) {
     setSelections((prev) => ({ ...prev, purpose: p }))
-    setStep(3)
+    setStep(4)
   }
 
   function selectDuration(d: string) {
     const sel = { ...selections, duration: d }
     setSelections(sel)
     setLoading(true)
-    setStep(4)
+    setStep(5)
 
     // 로그인 사용자: 실시간 AI 분석 (베타 무료) / 비로그인: 기본 가이드(mock)
     if (user) {
@@ -75,6 +134,10 @@ export default function VisaAiPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          passportCode: sel.passport,
+          passportCountry: sel.passport === 'OTHER'
+            ? otherPassport.trim()
+            : VISA_PASSPORTS.find((passport) => passport.value === sel.passport)?.label.EN ?? sel.passport,
           country: VISA_COUNTRIES.find((c) => c.value === sel.country)?.label.KO ?? sel.country,
           purpose: VISA_PURPOSES.find((p) => p.value === sel.purpose)?.label.KO ?? sel.purpose,
           duration: VISA_DURATIONS.find((x) => x.value === sel.duration)?.label.KO ?? sel.duration,
@@ -102,7 +165,9 @@ export default function VisaAiPage() {
 
   function reset() {
     setStep(1)
-    setSelections({ country: '', purpose: '', duration: '' })
+    setSelections({ passport: '', country: '', purpose: '', duration: '' })
+    setOtherPassport('')
+    setGeoSuggested(false)
     setLoading(false)
     setShowResult(false)
     setAiResult(null)
@@ -111,11 +176,15 @@ export default function VisaAiPage() {
 
   const result =
     showResult && selections.country
-      ? getVisaVerifiedGuidance(lang, selections.country, selections.purpose)
+      ? getVisaVerifiedGuidance(lang, selections.country, selections.purpose, selections.passport)
       : null
-  const officialSources = selections.country ? VISA_OFFICIAL_SOURCES[selections.country] ?? [] : []
+  const pairSources = selections.country ? getNationalityVisaSources(selections.passport, selections.country) : []
+  const destinationSources = selections.passport === 'KR' && selections.country ? VISA_OFFICIAL_SOURCES[selections.country] ?? [] : []
+  const officialSources = Array.from(new Map([...pairSources, ...destinationSources].map((source) => [source.id, source])).values())
+  const isOwnCountry = (selections.passport === 'KR' && selections.country === 'korea') || (selections.passport === 'JP' && selections.country === 'japan')
 
   const selectionSummary = [
+    selections.passport ? labelForPassport(selections.passport) : '',
     selections.country ? labelForCountry(selections.country) : '',
     selections.purpose ? VISA_PURPOSES.find((p) => p.value === selections.purpose)?.label[lang] : '',
     selections.duration ? VISA_DURATIONS.find((d) => d.value === selections.duration)?.label[lang] : '',
@@ -137,12 +206,12 @@ export default function VisaAiPage() {
       <section className="pb-24 px-6">
         <div className="max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-3 mb-10">
-            {stepLabelKeys.map((key, i) => {
+            {stepLabels.map((label, i) => {
               const s = (i + 1) as Step
               const isActive = step === s
               const isDone = step > s
               return (
-                <div key={key} className="flex items-center gap-2">
+                <div key={label} className="flex items-center gap-2">
                   <div
                     className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black transition-all ${
                       isDone ? 'bg-brand-mid text-white' : isActive ? 'bg-white text-gray-900' : 'bg-white/10 text-gray-500'
@@ -151,9 +220,9 @@ export default function VisaAiPage() {
                     {isDone ? '✓' : s}
                   </div>
                   <span className={`text-xs font-medium hidden sm:block ${isActive ? 'text-white' : 'text-white/45'}`}>
-                    {tr(key)}
+                    {label}
                   </span>
-                  {i < stepLabelKeys.length - 1 && <div className="w-6 h-px bg-white/20" />}
+                  {i < stepLabels.length - 1 && <div className="w-3 h-px bg-white/20 sm:w-5" />}
                 </div>
               )
             })}
@@ -162,19 +231,44 @@ export default function VisaAiPage() {
           {step === 1 && (
             <div>
               <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">
-                {tr('visa_pick_country')}
+                {copy.passportTitle}
               </SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {VISA_COUNTRIES.map((c) => (
-                  <button
-                    key={c.value}
-                    type="button"
-                    onClick={() => selectCountry(c.value)}
-                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5"
-                  >
-                    {c.label[lang]}
-                  </button>
-                ))}
+              <p className="mx-auto mb-5 max-w-lg text-center text-sm leading-relaxed text-white/60">{copy.passportDescription}</p>
+              <div className="rounded-2xl border border-white/15 bg-white/[0.07] p-5">
+                <label htmlFor="passport-country" className="mb-2 block text-sm font-semibold text-white">{copy.choosePassport}</label>
+                <select
+                  id="passport-country"
+                  value={selections.passport}
+                  onChange={(event) => {
+                    setSelections((previous) => ({ ...previous, passport: event.target.value }))
+                    setGeoSuggested(false)
+                  }}
+                  className="min-h-12 w-full rounded-xl border border-white/20 bg-[#16232b] px-4 text-base font-semibold text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                >
+                  <option value="">{copy.choosePassport}</option>
+                  {VISA_PASSPORTS.map((passport) => <option key={passport.value} value={passport.value}>{passport.label[lang]}</option>)}
+                </select>
+                {selections.passport === 'OTHER' && (
+                  <input
+                    type="text"
+                    value={otherPassport}
+                    onChange={(event) => setOtherPassport(event.target.value)}
+                    maxLength={80}
+                    placeholder={copy.otherPassportPlaceholder}
+                    aria-label={copy.otherPassportPlaceholder}
+                    className="mt-3 min-h-12 min-w-0 w-full rounded-xl border border-white/20 bg-[#16232b] px-4 text-base text-white placeholder:text-white/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                  />
+                )}
+                {geoSuggested && <p className="mt-3 text-xs font-medium text-sky-300">{copy.geoSuggested}</p>}
+                <p className="mt-2 text-xs leading-relaxed text-white/45">{copy.geoWarning}</p>
+                <button
+                  type="button"
+                  disabled={!selections.passport || (selections.passport === 'OTHER' && !otherPassport.trim())}
+                  onClick={() => setStep(2)}
+                  className="mt-5 min-h-12 w-full rounded-full bg-brand-mid px-5 text-sm font-bold text-white transition hover:bg-sky-500 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  {copy.continue}
+                </button>
               </div>
             </div>
           )}
@@ -183,17 +277,17 @@ export default function VisaAiPage() {
             <div>
               <p className="text-sky-400 text-sm text-center mb-2">{selectionSummary}</p>
               <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">
-                {tr('visa_pick_purpose')}
+                {tr('visa_pick_country')}
               </SectionTitle>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {VISA_PURPOSES.map((p) => (
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {VISA_COUNTRIES.map((country) => (
                   <button
-                    key={p.value}
+                    key={country.value}
                     type="button"
-                    onClick={() => selectPurpose(p.value)}
+                    onClick={() => selectCountry(country.value)}
                     className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5"
                   >
-                    {p.label[lang]}
+                    {country.label[lang]}
                   </button>
                 ))}
               </div>
@@ -211,17 +305,17 @@ export default function VisaAiPage() {
             <div>
               <p className="text-sky-400 text-sm text-center mb-2">{selectionSummary}</p>
               <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">
-                {tr('visa_pick_duration')}
+                {tr('visa_pick_purpose')}
               </SectionTitle>
-              <div className="grid grid-cols-2 gap-3">
-                {VISA_DURATIONS.map((d) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {VISA_PURPOSES.map((purpose) => (
                   <button
-                    key={d.value}
+                    key={purpose.value}
                     type="button"
-                    onClick={() => selectDuration(d.value)}
-                    className="bg-white/10 border border-white/20 text-white font-bold py-6 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5 text-lg"
+                    onClick={() => selectPurpose(purpose.value)}
+                    className="bg-white/10 border border-white/20 text-white font-bold py-4 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5"
                   >
-                    {d.label[lang]}
+                    {purpose.label[lang]}
                   </button>
                 ))}
               </div>
@@ -236,6 +330,26 @@ export default function VisaAiPage() {
           )}
 
           {step === 4 && (
+            <div>
+              <p className="text-sky-400 text-sm text-center mb-2">{selectionSummary}</p>
+              <SectionTitle onDark className="mb-6 text-center text-2xl md:text-3xl">{tr('visa_pick_duration')}</SectionTitle>
+              <div className="grid grid-cols-2 gap-3">
+                {VISA_DURATIONS.map((duration) => (
+                  <button
+                    key={duration.value}
+                    type="button"
+                    onClick={() => selectDuration(duration.value)}
+                    className="bg-white/10 border border-white/20 text-white font-bold py-6 rounded-2xl hover:bg-sky-500/20 hover:border-sky-500/50 transition-all hover:-translate-y-0.5 text-lg"
+                  >
+                    {duration.label[lang]}
+                  </button>
+                ))}
+              </div>
+              <button type="button" onClick={() => setStep(3)} className="block mx-auto mt-6 text-white/45 text-sm hover:text-white transition-colors">{tr('visa_back')}</button>
+            </div>
+          )}
+
+          {step === 5 && (
             <div>
               {loading && (
                 <div className="text-center py-16">
@@ -319,6 +433,11 @@ export default function VisaAiPage() {
                     </div>
 
                     <OfficialSourceList lang={lang} sources={officialSources} />
+                    {officialSources.length === 0 && !isOwnCountry && (
+                      <p className="rounded-2xl border border-amber-500/25 bg-amber-500/8 p-4 text-xs leading-relaxed text-amber-100/75">
+                        {copy.sourcesMissing}
+                      </p>
+                    )}
 
                     {/* 베타 무료 고지 (멤버십 전환은 미결정 — 운영자 보류) */}
                     <p className="text-white/30 text-[0.7rem] text-center pt-2">{tr('visa_beta_notice')}</p>

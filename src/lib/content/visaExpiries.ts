@@ -35,9 +35,9 @@ export const VISA_EXPIRIES: VisaExpiry[] = [
     expires: '2028-03-31',
     summary: '베트남 무비자 45일 한시 조치 (2028.3까지 — 재결정 예정)',
     action:
-      'content.ts visaByCountry 베트남 3언어 + cities.ts 다낭 visaFree·pros + guides.ts danang visaFree + destinations.ts 다낭 태그·localizeDest 사전(무비자 45일) 전량 갱신',
+      'visaNationality.ts 한국 여권 베트남 3언어 + cities.ts 다낭 visaFree·pros + guides.ts danang visaFree + destinations.ts 다낭 태그·localizeDest 사전(무비자 45일) 전량 갱신',
     markers: [
-      { file: 'src/lib/i18n/content.ts', contains: '45일 면제는 2028.3까지 한시 조치' },
+      { file: 'src/lib/content/visaNationality.ts', contains: '45일 면제는 2028년 3월까지의 한시 조치' },
       { file: 'src/lib/cities.ts', contains: '무비자 45일 (2028.3까지 한시)' },
       { file: 'src/lib/guides.ts', contains: '무비자 45일 (2028.3까지 한시)' },
     ],

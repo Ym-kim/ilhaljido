@@ -6,6 +6,7 @@ export {
   getProgramsList,
   getGrowthCamps,
   getNavPrograms,
+  VISA_PASSPORTS,
   VISA_COUNTRIES,
   VISA_PURPOSES,
   VISA_DURATIONS,
@@ -41,7 +42,7 @@ export {
   getBudgetOptions,
   getCompanionOptions,
 } from './i18n/data'
-export type { HomeCategory, PartnerType, ProgramCard } from './i18n/content'
+export type { HomeCategory, PartnerType, ProgramCard, VisaPassportOption } from './i18n/content'
 
 import type { Lang } from './i18n/types'
 import { STRINGS } from './i18n/strings'
