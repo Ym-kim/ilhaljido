@@ -26,6 +26,8 @@
     "audit:motion-visual": "node scripts/audit-full-site-motion-visual.mjs",
     "audit:motion-scorecard": "node scripts/build-motion-visual-scorecard.mjs",
     "audit:motion-contact-sheet": "node scripts/build-motion-visual-contact-sheets.mjs",
+    "audit:monthly-model-editorial": "node scripts/audit-monthly-model-editorial.mjs",
+    "media:monthly:render:2026-08": "remotion render remotion/index.ts MonthlyModelEdit202608 public/media/brand-models/monthly-model-edit-2026-08-v1.mp4 --codec=h264 --crf=29 --pixel-format=yuv420p --overwrite",
     "media:verified:plan": "node scripts/migrate-verified-remote-media.mjs",
     "media:verified:download": "node scripts/migrate-verified-remote-media.mjs --download",
     "media:verified:apply": "node scripts/migrate-verified-remote-media.mjs --apply",
@@ -57,12 +59,14 @@
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@remotion/cli": "^4.0.506",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
+    "remotion": "^4.0.506",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

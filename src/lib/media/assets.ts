@@ -12,6 +12,7 @@ export type MediaAsset = {
   sourceType: 'owned' | 'licensed' | 'generated' | 'partner'
   usage: 'hero' | 'editorial' | 'destination' | 'product' | 'story' | 'social'
   illustrative: boolean
+  mediaType?: 'image' | 'video'
   width?: number
   height?: number
   modelId?: BrandModelId
@@ -656,6 +657,87 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     source: 'https://images.unsplash.com/photo-1638591751482-1a7d27fcea15',
     license: 'Unsplash License',
     createdAt: '2026-07-30',
+  },
+  {
+    id: 'monthly-2026-08-model-e-city-arrival-v1',
+    src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v1.webp',
+    alt: {
+      KO: '이름 없는 해안 도시 터미널에서 여행 동선을 살펴보는 성인 여행자 편집 이미지',
+      EN: 'Editorial image of an adult traveller reviewing her route at an unnamed coastal-city terminal',
+      JP: '場所を特定しない海辺の街のターミナルで旅の動線を確認する成人旅行者の編集イメージ',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image',
+    width: 1200, height: 1500, modelId: 'WAK-MODEL-E', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/about'], sectionUsage: ['monthly-model-editorial-2026-08'],
+    generatedFromReferenceIds: ['wak-model-e-city-chic-identity-anchor'], focalPoint: { x: 0.54, y: 0.45 },
+    source: 'OpenAI built-in image generation using the user-provided v2.2 WAK-MODEL-E identity anchor',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 여행자, 고객, 터미널, 교통사 또는 프로그램 현장으로 표시하지 않습니다.',
+      EN: 'Do not present as a real traveller, customer, terminal, transport provider or program scene.',
+      JP: '実在の旅行者、顧客、ターミナル、交通事業者、プログラム会場として表示しません。',
+    },
+  },
+  {
+    id: 'monthly-2026-08-model-h-coastal-reset-v1',
+    src: '/media/brand-models/monthly-2026-08-model-h-coastal-reset-v1.webp',
+    alt: {
+      KO: '이름 없는 해안 카페에서 노트북과 노트를 정리하는 성인 여행자 편집 이미지',
+      EN: 'Editorial image of an adult traveller packing her notebook at an unnamed coastal café',
+      JP: '場所を特定しない海辺のカフェでノートを片づける成人旅行者の編集イメージ',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image',
+    width: 1200, height: 1500, modelId: 'WAK-MODEL-H', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/about'], sectionUsage: ['monthly-model-editorial-2026-08'],
+    generatedFromReferenceIds: ['wak-model-h-soft-daylight-identity-anchor-v2-2'], focalPoint: { x: 0.55, y: 0.42 },
+    source: 'OpenAI built-in image generation using the user-provided v2.2 WAK-MODEL-H identity anchor',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 여행자, 고객, 카페, 숙소 또는 Hosted 프로그램 현장으로 표시하지 않습니다.',
+      EN: 'Do not present as a real traveller, customer, café, stay or Hosted program scene.',
+      JP: '実在の旅行者、顧客、カフェ、宿泊施設、Hostedプログラム会場として表示しません。',
+    },
+  },
+  {
+    id: 'monthly-2026-08-model-j-blue-hour-v1',
+    src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v1.webp',
+    alt: {
+      KO: '이름 없는 도시의 강변에서 업무 후 시간을 확인하는 성인 여행자 편집 이미지',
+      EN: 'Editorial image of an adult traveller checking the time beside an unnamed city river',
+      JP: '場所を特定しない街の川辺で仕事後の時間を確認する成人旅行者の編集イメージ',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image',
+    width: 1200, height: 1500, modelId: 'WAK-MODEL-J', localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/about'], sectionUsage: ['monthly-model-editorial-2026-08'],
+    generatedFromReferenceIds: ['wak-model-j-city-noir-identity-anchor-v2-2'], focalPoint: { x: 0.43, y: 0.42 },
+    source: 'OpenAI built-in image generation using the user-provided v2.2 WAK-MODEL-J identity anchor',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 여행자, 고객, 도시, 시설 또는 프로그램 현장으로 표시하지 않습니다.',
+      EN: 'Do not present as a real traveller, customer, city, venue or program scene.',
+      JP: '実在の旅行者、顧客、都市、施設、プログラム会場として表示しません。',
+    },
+  },
+  {
+    id: 'monthly-model-edit-2026-08-v1',
+    src: '/media/brand-models/monthly-model-edit-2026-08-v1.mp4',
+    alt: {
+      KO: '도시 도착, 해안의 리셋, 블루아워 이동을 담은 15초 무음 월간 편집 영상',
+      EN: 'A 15-second silent monthly editorial film about city arrival, a coastal reset and blue-hour movement',
+      JP: '街への到着、海辺でのリセット、ブルーアワーの移動を描く15秒の無音マンスリー編集映像',
+    },
+    sourceType: 'generated', usage: 'social', illustrative: true, mediaType: 'video',
+    width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], localeUsage: ['ko', 'en', 'ja'],
+    routeUsage: ['/about'], sectionUsage: ['monthly-model-editorial-2026-08'],
+    generatedFromReferenceIds: ['monthly-2026-08-model-e-city-arrival-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v1'],
+    focalPoint: { x: 0.5, y: 0.5 },
+    source: 'Wakation Remotion composition derived from three approved generated editorial images',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-08', verifiedAt: '2026-08-08',
+    restriction: {
+      KO: '실제 고객, 참가자, 장소 또는 프로그램 영상으로 표시하지 않습니다.',
+      EN: 'Do not present as footage of real customers, participants, venues or programs.',
+      JP: '実在の顧客、参加者、施設、プログラムの映像として表示しません。',
+    },
   },
   ...CARD_MEDIA_ASSETS,
   ...PRODUCT_EDITORIAL_MEDIA_ASSETS,

@@ -45,11 +45,18 @@ const v2Assets = [
   { id: 'business-model-c-team-planning-mobile-v1', file: 'business-model-c-team-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-C'] },
   { id: 'campaign-model-f-japan-choice-desktop-v1', file: 'campaign-model-f-japan-choice-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
   { id: 'campaign-model-f-japan-choice-mobile-v1', file: 'campaign-model-f-japan-choice-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-F'] },
+  { id: 'monthly-2026-08-model-e-city-arrival-v1', file: 'monthly-2026-08-model-e-city-arrival-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-E'] },
+  { id: 'monthly-2026-08-model-h-coastal-reset-v1', file: 'monthly-2026-08-model-h-coastal-reset-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-H'] },
+  { id: 'monthly-2026-08-model-j-blue-hour-v1', file: 'monthly-2026-08-model-j-blue-hour-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
 ]
 
-const v2AssetIds = new Map(v2Assets.map((asset) => [asset.id, asset]))
+const motionAssets = [
+  { id: 'monthly-model-edit-2026-08-v1', file: 'monthly-model-edit-2026-08-v1.mp4', width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], maximumBytes: 2_200_000 },
+]
+
+const auditedAssetIds = new Map([...v2Assets, ...motionAssets].map((asset) => [asset.id, asset]))
 const assetIds = (...ids) => ids.map((id) => {
-  if (!v2AssetIds.has(id)) throw new Error(`Unknown audited asset ID: ${id}`)
+  if (!auditedAssetIds.has(id)) throw new Error(`Unknown audited asset ID: ${id}`)
   return id
 })
 
@@ -67,6 +74,7 @@ const v2Placements = [
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'), source: 'src/app/growth/page.tsx' },
   { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'), source: 'src/data/campaign-landings.ts' },
+  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v1', 'monthly-model-edit-2026-08-v1'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -181,10 +189,35 @@ for (const asset of [...archivedV1Assets, ...v2Assets]) {
   hashes.set(hash, relativePath)
 }
 
+for (const asset of motionAssets) {
+  const relativePath = `/media/brand-models/${asset.file}`
+  const filePath = path.join(brandModelDirectory, asset.file)
+  let buffer
+  try { buffer = await fs.readFile(filePath) } catch { errors.push(`Missing brand model video: ${relativePath}`); continue }
+  totalBytes += buffer.byteLength
+  if (buffer.byteLength === 0) errors.push(`Zero-byte asset: ${relativePath}`)
+  if (buffer.byteLength > asset.maximumBytes) errors.push(`Video exceeds size budget: ${relativePath}`)
+  if (buffer.subarray(4, 8).toString('ascii') !== 'ftyp') errors.push(`Brand model video is not a valid MP4 container: ${relativePath}`)
+  const entryStart = manifest.indexOf(`id: '${asset.id}'`)
+  const nextEntry = entryStart === -1 ? -1 : manifest.indexOf("\n  {", entryStart + 1)
+  const block = entryStart === -1 ? '' : manifest.slice(entryStart, nextEntry === -1 ? undefined : nextEntry)
+  if (!block) errors.push(`Manifest entry missing for ${asset.id}`)
+  if (!block.includes(`src: '${relativePath}'`)) errors.push(`Manifest source mismatch for ${asset.id}`)
+  if (!block.includes("mediaType: 'video'")) errors.push(`mediaType video missing for ${asset.id}`)
+  if (!block.includes("sourceType: 'generated'")) errors.push(`sourceType missing for ${asset.id}`)
+  if (!block.includes('illustrative: true')) errors.push(`illustrative flag missing for ${asset.id}`)
+  if (!block.includes(`width: ${asset.width}`) || !block.includes(`height: ${asset.height}`)) errors.push(`Manifest dimensions missing for ${asset.id}`)
+  if (!block.includes("localeUsage: ['ko', 'en', 'ja']")) errors.push(`localeUsage missing for ${asset.id}`)
+  for (const modelId of asset.modelIds) if (!block.includes(`'${modelId}'`)) errors.push(`model ID ${modelId} missing for ${asset.id}`)
+  for (const field of ['routeUsage:', 'sectionUsage:', 'generatedFromReferenceIds:', 'createdAt:', 'verifiedAt:', 'restriction:']) {
+    if (!block.includes(field)) errors.push(`${field.replace(':', '')} missing for ${asset.id}`)
+  }
+}
+
 const publicBrandFiles = await fs.readdir(brandModelDirectory)
 for (const file of publicBrandFiles) {
   if (/reference|anchor|contact|grid|sheet|source/i.test(file)) errors.push(`Reference-only file is present in public assets: ${file}`)
-  if (![...archivedV1Assets, ...v2Assets].some((asset) => asset.file === file)) errors.push(`Unregistered brand model asset: ${file}`)
+  if (![...archivedV1Assets, ...v2Assets, ...motionAssets].some((asset) => asset.file === file)) errors.push(`Unregistered brand model asset: ${file}`)
 }
 
 const placementSources = new Map()
@@ -253,7 +286,8 @@ if (errors.length > 0) {
   process.exit(1)
 }
 
-const v2Bytes = await Promise.all(v2Assets.map(async (asset) => (await fs.stat(path.join(brandModelDirectory, asset.file))).size))
-console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.3 models, ${v2Assets.length} production assets (${v2Bytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
+const productionFiles = [...v2Assets, ...motionAssets]
+const productionBytes = await Promise.all(productionFiles.map(async (asset) => (await fs.stat(path.join(brandModelDirectory, asset.file))).size))
+console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.3 models, ${v2Assets.length} production images and ${motionAssets.length} video (${productionBytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
 console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; actual max share ${(maximumIdentityShare * 100).toFixed(1)}% (cap 25%); non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
 console.log(`Total audited media bytes: ${totalBytes.toLocaleString()}`)
