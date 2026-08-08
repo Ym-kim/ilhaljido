@@ -24,7 +24,7 @@ export function MomentRail() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5">
           <div>
             <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5">
-              Wakation Moments
+              Traveler Notes
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight">
               {tr('home_moments_title')}
@@ -46,7 +46,7 @@ export function MomentRail() {
         {MOMENTS.map((m) => (
           <Link
             key={m.id}
-            href={`/select/hotel#${m.anchor}`}
+            href={localizeHref(`/moments/${m.slug}`, lang)}
             className="group relative shrink-0 snap-start w-[200px] sm:w-[220px] aspect-[3/5] rounded-2xl overflow-hidden bg-[#0a1e33] shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
           >
             <Image
@@ -102,7 +102,7 @@ export function MomentRail() {
           </Link>
         ))}
         <Link
-          href="/moments/submit"
+          href={localizeHref('/moments/submit', lang)}
           className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-full bg-brand-mid text-white text-xs font-bold hover:bg-brand-light transition-all"
         >
           {tr('home_moments_submit')}

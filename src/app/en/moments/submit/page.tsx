@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { TravelerNoteSubmitView } from '@/components/moments/TravelerNoteSubmitView'
 
 export const metadata: Metadata = {
-  title: '여행자 노트 작성',
-  description: '실제로 머문 여행지의 업무 환경, 동선과 팁을 Wakation 여행자 노트에 남겨보세요.',
+  title: 'Write a Traveler Note',
+  description: 'Share practical context, routes and work-friendly tips from a destination where you actually stayed.',
   robots: { index: false, follow: true },
 }
 
 export default function TravelerNoteSubmitPage() {
-  return <TravelerNoteSubmitView />
+  return <TravelerNoteSubmitView forceLang="EN" />
 }

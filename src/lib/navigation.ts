@@ -86,10 +86,10 @@ const FIND_LINKS: NavigationGroup[] = [
         { KO: '기간과 장면으로 고른 여행 구성', EN: 'Curated by timing and mood', JP: '日程と気分から選ぶ旅のプラン' },
       ),
       link(
-        'stories',
-        { KO: '여행 이야기', EN: 'Travel stories', JP: '旅のストーリー' },
-        '/stories',
-        { KO: '일하며 머무는 사람들의 장면', EN: 'Stories of working while away', JP: '旅先で働き、暮らす人の物語' },
+        'traveler-notes',
+        { KO: '여행자 노트', EN: 'Traveler Notes', JP: '旅のノート' },
+        { KO: '/moments', EN: '/en/moments', JP: '/ja/moments' },
+        { KO: '에디터 소개와 회원 여행 후기', EN: 'Editor introductions and member reviews', JP: '編集部の紹介と会員レビュー' },
       ),
       link(
         'compare',

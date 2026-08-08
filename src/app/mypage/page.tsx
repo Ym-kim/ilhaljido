@@ -12,6 +12,7 @@ type Application = {
   id: string
   program_id: string | null
   programs: { title: string } | null
+  job_type: string
   status: string | null
   created_at: string
 }
@@ -30,6 +31,14 @@ const STATUS_KEY: Record<string, string> = {
   cancelled: 'my_st_cancelled',
   contacted: 'my_st_contacted',
   payment_pending: 'my_st_payment',
+}
+
+const NOTE_LABEL: Record<Lang, string> = { KO: '여행자 노트 검수', EN: 'Traveler note review', JP: '旅のノート確認' }
+const NOTE_STATUS: Record<string, Record<Lang, string>> = {
+  pending: { KO: '검수 대기', EN: 'Awaiting review', JP: '確認待ち' },
+  contacted: { KO: '수정 확인 중', EN: 'Edit confirmation', JP: '修正確認中' },
+  confirmed: { KO: '공개 승인', EN: 'Approved to publish', JP: '公開承認' },
+  cancelled: { KO: '미게시', EN: 'Not published', JP: '非公開' },
 }
 
 export default function MyPage() {
@@ -128,14 +137,14 @@ export default function MyPage() {
               {apps.map((app) => (
                 <div key={app.id} className="flex items-center justify-between p-4 bg-[#f0f9ff] rounded-2xl">
                   <div>
-                    <p className="font-bold text-[#111827] text-sm">{app.programs?.title || app.program_id || tr('my_fallback_program')}</p>
+                    <p className="font-bold text-[#111827] text-sm">{app.job_type === 'traveler_note' ? NOTE_LABEL[lang] : app.programs?.title || app.program_id || tr('my_fallback_program')}</p>
                     <p className="text-xs text-[#64748b] flex items-center gap-1 mt-1">
                       <Calendar className="w-3 h-3" />
                       {new Date(app.created_at).toLocaleDateString(DATE_LOCALE[lang])}
                     </p>
                   </div>
                   <span className={`text-xs font-bold px-3 py-1 rounded-full ${STATUS_STYLE[app.status ?? ''] ?? 'bg-[#e2e8f0] text-[#475569]'}`}>
-                    {tr(STATUS_KEY[app.status ?? ''] ?? 'my_st_pending')}
+                    {app.job_type === 'traveler_note' ? (NOTE_STATUS[app.status ?? '']?.[lang] ?? NOTE_STATUS.pending[lang]) : tr(STATUS_KEY[app.status ?? ''] ?? 'my_st_pending')}
                   </span>
                 </div>
               ))}

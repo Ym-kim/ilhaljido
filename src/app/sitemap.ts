@@ -4,6 +4,7 @@ import { COLLECTIONS } from '@/lib/affiliate/collections'
 import { CITY_INSIGHTS } from '@/lib/cities'
 import { getSupportCatalog } from '@/lib/support/catalog'
 import { EXPERIENCE_EDITORIALS } from '@/lib/experiences/editorials'
+import { TRAVELER_NOTES } from '@/lib/moments'
 
 const BASE = 'https://www.wakation.kr'
 
@@ -58,7 +59,6 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/about',                    priority: 0.7, freq: 'monthly' },
   { path: '/infrastructure',           priority: 0.6, freq: 'monthly' },
   { path: '/moments',                   priority: 0.7, freq: 'weekly' },
-  { path: '/moments/submit',           priority: 0.5, freq: 'monthly' },
   // 문의·정책
   { path: '/apply',                    priority: 0.8, freq: 'monthly' },
   { path: '/business',                 priority: 0.8, freq: 'monthly' },
@@ -92,6 +92,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { url: `${BASE}/${locale}/moments`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.6 },
       { url: `${BASE}/${locale}/tools/diagnosis`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.6 },
     ]),
+    // 여행자 노트 상세 — 에디터 소개와 검수 완료 회원 후기만 색인
+    ...['', '/en', '/ja'].flatMap((localePrefix) => TRAVELER_NOTES.map((note) => ({
+      url: `${BASE}${localePrefix}/moments/${note.slug}`,
+      lastModified: new Date(`${note.publishedAt}T00:00:00+09:00`),
+      changeFrequency: 'monthly' as const,
+      priority: localePrefix ? 0.55 : 0.7,
+    }))),
     // 목적지 인사이트 카드 (cities.ts에 추가 시 자동 반영)
     ...CITY_INSIGHTS.map((c) => ({
       url: `${BASE}/destinations/${c.id}`,

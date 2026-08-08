@@ -29,6 +29,7 @@
     "audit:monthly-model-editorial": "node scripts/audit-monthly-model-editorial.mjs",
     "media:monthly:render:2026-08": "remotion render remotion/index.ts MonthlyModelEdit202608 public/media/brand-models/monthly-model-edit-2026-08-v2.mp4 --codec=h264 --crf=29 --pixel-format=yuv420p --overwrite",
     "audit:visa-nationality": "node scripts/audit-visa-nationality.mjs",
+    "audit:traveler-notes": "node scripts/audit-traveler-notes.mjs",
     "media:verified:plan": "node scripts/migrate-verified-remote-media.mjs",
     "media:verified:download": "node scripts/migrate-verified-remote-media.mjs --download",
     "media:verified:apply": "node scripts/migrate-verified-remote-media.mjs --apply",

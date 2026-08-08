@@ -17,7 +17,7 @@ export const BUSINESS = {
   email: 'wakation.sf@gmail.com',
   service: 'Wakation (wakation.kr)',
   privacyOfficer: '김용민',
-  effectiveDate: '2026-07-09',
+  effectiveDate: '2026-08-08',
 }
 
 type L = Record<Lang, string>
@@ -36,25 +36,25 @@ export const PRIVACY: { title: L; intro: L; sections: LegalSection[]; updated: L
     {
       heading: { KO: '1. 수집하는 개인정보 항목', EN: '1. Personal data we collect', JP: '1. 収集する個人情報の項目' },
       body: {
-        KO: '· 프로그램 신청·문의: 이름, 연락처(전화번호), 이메일, 직업, 업무 스타일, 관심 분야, 휴식 선호, 예산·희망 기간, 문의 내용\n· 회원가입: 이름, 이메일, (소셜 로그인 시) 제공사로부터 받은 프로필 정보\n· 모먼트 제보: 이름(닉네임), 이메일, 연락처, 사진 링크, 인스타그램 계정(선택)\n· 자동 수집: 서비스 이용 기록, 접속 로그(익명 집계)',
-        EN: '· Program applications/inquiries: name, phone, email, occupation, work style, interests, rest preferences, budget/duration, message\n· Sign-up: name, email, and (for social login) profile data from the provider\n· Moment submissions: name/nickname, email, phone, photo link, Instagram (optional)\n· Automatically collected: service usage records, access logs (anonymous aggregate)',
-        JP: '· プログラム申込・問い合わせ: 氏名、連絡先（電話番号）、メール、職業、勤務スタイル、関心分野、休息の好み、予算・希望期間、問い合わせ内容\n· 会員登録: 氏名、メール、（ソーシャルログイン時）提供元から受領するプロフィール情報\n· モーメント投稿: 氏名（ニックネーム）、メール、連絡先、写真リンク、Instagram（任意）\n· 自動収集: サービス利用記録、アクセスログ（匿名集計）',
+        KO: '· 프로그램 신청·문의: 이름, 연락처(전화번호), 이메일, 직업, 업무 스타일, 관심 분야, 휴식 선호, 예산·희망 기간, 문의 내용\n· 회원가입: 이름, 이메일, (소셜 로그인 시) 제공사로부터 받은 프로필 정보\n· 여행자 노트: 계정 이메일, 공개 닉네임, 여행지·여행 시기·여행 방식, 작성 내용, 사진 링크(선택)\n· 자동 수집: 서비스 이용 기록, 접속 로그(익명 집계)',
+        EN: '· Program applications/inquiries: name, phone, email, occupation, work style, interests, rest preferences, budget/duration, message\n· Sign-up: name, email, and (for social login) profile data from the provider\n· Traveler Notes: account email, public nickname, destination/travel month/travel style, submitted text, photo link (optional)\n· Automatically collected: service usage records, access logs (anonymous aggregate)',
+        JP: '· プログラム申込・問い合わせ: 氏名、連絡先（電話番号）、メール、職業、勤務スタイル、関心分野、休息の好み、予算・希望期間、問い合わせ内容\n· 会員登録: 氏名、メール、（ソーシャルログイン時）提供元から受領するプロフィール情報\n· トラベラーノート: アカウントメール、公開ニックネーム、行き先・旅行月・旅行スタイル、投稿内容、写真リンク（任意）\n· 自動収集: サービス利用記録、アクセスログ（匿名集計）',
       },
     },
     {
       heading: { KO: '2. 수집·이용 목적', EN: '2. Purpose of collection and use', JP: '2. 収集・利用目的' },
       body: {
-        KO: '· 프로그램 안내·신청 접수 및 상담, 문의 응대\n· 회원 식별 및 서비스 제공, 맞춤 추천\n· 모먼트 콘텐츠 게재(사전 동의 및 확인 후)\n· 서비스 개선 및 통계 분석',
-        EN: '· Program guidance, application handling, consultation, and inquiry response\n· Member identification, service delivery, personalized recommendations\n· Publishing moment content (after prior consent and confirmation)\n· Service improvement and statistical analysis',
-        JP: '· プログラム案内・申込受付・相談、問い合わせ対応\n· 会員識別およびサービス提供、パーソナライズ推薦\n· モーメントコンテンツの掲載（事前同意・確認後）\n· サービス改善および統計分析',
+        KO: '· 프로그램 안내·신청 접수 및 상담, 문의 응대\n· 회원 식별 및 서비스 제공, 맞춤 추천\n· 여행자 노트 검수·편집 연락 및 사전 확인 후 콘텐츠 게재\n· 서비스 개선 및 통계 분석',
+        EN: '· Program guidance, application handling, consultation, and inquiry response\n· Member identification, service delivery, personalized recommendations\n· Traveler Note review, editorial contact and publication after confirmation\n· Service improvement and statistical analysis',
+        JP: '· プログラム案内・申込受付・相談、問い合わせ対応\n· 会員識別およびサービス提供、パーソナライズ推薦\n· トラベラーノートの確認・編集連絡および確認後の掲載\n· サービス改善および統計分析',
       },
     },
     {
       heading: { KO: '3. 보유·이용 기간', EN: '3. Retention period', JP: '3. 保有・利用期間' },
       body: {
-        KO: '· 회원 정보: 회원 탈퇴 시까지\n· 프로그램 신청·문의·모먼트 제보: 목적 달성 후 1년 이내 파기\n· 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관\n· 이용자는 언제든 삭제를 요청할 수 있으며, 요청 시 지체 없이 파기합니다.',
-        EN: '· Member data: until account deletion\n· Applications/inquiries/moment submissions: destroyed within 1 year after the purpose is fulfilled\n· Retained for the legally required period where applicable\n· You may request deletion at any time; we destroy it without delay upon request.',
-        JP: '· 会員情報: 退会時まで\n· 申込・問い合わせ・モーメント投稿: 目的達成後1年以内に破棄\n· 関係法令により保存が必要な場合は当該期間保管\n· 利用者はいつでも削除を請求でき、請求時は遅滞なく破棄します。',
+        KO: '· 회원 정보: 회원 탈퇴 시까지\n· 프로그램 신청·문의·여행자 노트 제출 정보: 목적 달성 후 1년 이내 파기\n· 공개된 여행자 노트는 동의 철회 또는 삭제 요청 시까지 보관하며, 요청 시 공개본과 제출 정보를 지체 없이 처리합니다.\n· 관계 법령에 따라 보존이 필요한 경우 해당 기간 동안 보관합니다.',
+        EN: '· Member data: until account deletion\n· Applications, inquiries and Traveler Note submissions: destroyed within 1 year after the purpose is fulfilled\n· Published Traveler Notes are retained until consent is withdrawn or deletion is requested; the public copy and submission data are then handled without delay.\n· Data is retained for legally required periods where applicable.',
+        JP: '· 会員情報: 退会時まで\n· 申込・問い合わせ・トラベラーノート投稿情報: 目的達成後1年以内に破棄\n· 公開済みのトラベラーノートは同意撤回または削除依頼まで保管し、依頼時は公開内容と投稿情報を遅滞なく処理します。\n· 関係法令により保存が必要な場合は当該期間保管します。',
       },
     },
     {
@@ -145,9 +145,9 @@ export const TERMS: { title: L; intro: L; sections: LegalSection[]; updated: L }
     {
       heading: { KO: '제5조 (이용자의 의무)', EN: "Article 5 (User's obligations)", JP: '第5条（利用者の義務）' },
       body: {
-        KO: '이용자는 신청·문의·제보 시 정확한 정보를 제공해야 하며, 타인의 정보를 도용하거나 서비스 운영을 방해하는 행위를 해서는 안 됩니다. 모먼트 제보 시 제출한 콘텐츠에 대해 게재 권한이 있음을 보증합니다.',
-        EN: 'Users must provide accurate information and must not misappropriate others’ data or disrupt service operation. For moment submissions, users warrant that they have the right to publish the submitted content.',
-        JP: '利用者は申込・問い合わせ・投稿時に正確な情報を提供し、他人の情報を盗用したりサービス運営を妨害してはなりません。モーメント投稿時、提出コンテンツの掲載権限を有することを保証します。',
+        KO: '이용자는 신청·문의·여행자 노트 작성 시 정확한 정보를 제공해야 하며, 타인의 정보를 도용하거나 서비스 운영을 방해해서는 안 됩니다. 여행자 노트의 글과 사진은 직접 작성·촬영했거나 게재 권한이 있는 콘텐츠여야 하며, 광고·허위 후기·개인정보·차별적 표현을 포함해서는 안 됩니다.',
+        EN: 'Users must provide accurate information and must not misuse others’ data or disrupt the service. Text and photos submitted to Traveler Notes must be original or authorized for publication and must not contain advertising, fabricated reviews, personal data, or discriminatory content.',
+        JP: '利用者は申込・問い合わせ・トラベラーノート投稿時に正確な情報を提供し、他人の情報を盗用したりサービス運営を妨害してはなりません。投稿する文章・写真は自作・自撮影または掲載権限のあるものに限り、広告、虚偽の口コミ、個人情報、差別的表現を含めてはなりません。',
       },
     },
     {
