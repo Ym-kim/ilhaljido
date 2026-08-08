@@ -12,7 +12,6 @@ import { PROGRAMS_LEARN_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { getMediaAsset } from '@/lib/media/assets'
 import { trackEvent } from '@/lib/track'
 import { localizeHref } from '@/lib/i18n/localePath'
@@ -108,7 +107,6 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
-        <EditorialImageBadge lang={lang} className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6" />
         <div className="relative w-full max-w-6xl mx-auto px-6 pb-16">
           <SectionEyebrow onDark pill>
             {tr('programs_hero_badge')}

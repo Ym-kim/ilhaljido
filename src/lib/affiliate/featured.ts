@@ -922,8 +922,8 @@ export const FEATURED_STAYS_V2: AffiliateItem[] = [
 ]
 
 // ── 지역별 에디터픽 보강 (17종) ──
-// Booking 슬러그 실존 확인 + aid=7854081 추적. 커버는 상품 설명에 맞춘 편집 이미지이며
-// 실제 숙소 사진으로 오인되지 않도록 AffiliateCard에서 편집 이미지 라벨을 함께 노출한다.
+// Booking 슬러그 실존 확인 + aid=7854081 추적. 자체 제작 커버의 출처와 사용 범위는
+// 미디어 자산 매니페스트에서 관리하며 실제 숙소 사진으로 단정하지 않는다.
 
 export const FEATURED_STAYS_V3: AffiliateItem[] = [
   // 일본 (+1)

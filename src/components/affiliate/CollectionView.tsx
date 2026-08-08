@@ -121,11 +121,6 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/22 to-[#04121f]/12" />
         <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/35 to-transparent" />
-        {col.illustrative && (
-          <span className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/25 px-2.5 py-1 text-[0.625rem] font-bold text-white/75 backdrop-blur-sm sm:right-6 sm:top-6">
-            {COLLECTIONS_UI.ts_image_note[lang]}
-          </span>
-        )}
         <div className="relative w-full max-w-6xl mx-auto px-5 pb-8 sm:px-6 sm:pb-12">
           <Link
             href={`${prefix}/collections`}

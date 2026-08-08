@@ -43,7 +43,6 @@ const COPY = {
   sourceCta: { KO: '공식 공고에서 최종 조건 확인', EN: 'Check the official notice', JP: '公式公告で最終条件を確認' },
   verified: { KO: 'Wakation 확인일', EN: 'Checked by Wakation', JP: 'Wakation確認日' },
   notice: { KO: 'Wakation은 이 프로그램의 운영·선정·지급 주체가 아닙니다. 일정, 혜택, 모집 상태는 예산과 운영기관 사정에 따라 바뀔 수 있으며 공식 공고가 우선합니다.', EN: 'Wakation does not operate, select participants for, or fund this program. Dates, benefits and status may change; the official notice always takes precedence.', JP: 'Wakationは本プログラムの運営・選考・支給主体ではありません。日程・支援内容・募集状況は変更される場合があり、公式公告が優先されます。' },
-  editorialImage: { KO: '지역 편집 이미지', EN: 'Regional editorial image', JP: '地域編集イメージ' },
   related: { KO: '조건을 확인한 뒤 여행 준비', EN: 'Plan after confirming eligibility', JP: '条件確認後に旅を準備' },
   relatedDesc: { KO: '지원 대상 숙소나 비용 인정 범위와 별개인 일반 여행 준비 링크입니다. 공식 조건과 충돌하지 않는지 먼저 확인하세요.', EN: 'These are general planning links, not proof that a booking is eligible for support. Check the official conditions first.', JP: '以下は一般的な旅行準備リンクです。支援対象として認められることを保証するものではありません。' },
   stays: { KO: '숙소 찾기', EN: 'Find stays', JP: '宿泊先を探す' },
@@ -115,7 +114,6 @@ export function SupportProgramDetailView({ program, lang }: { program: SupportCa
             <Image src={program.photo} alt={program.photoAlt ?? `${program.region} — ${program.name}`} fill priority sizes="(max-width: 1024px) 100vw, 55vw" className="object-cover" />
             <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" aria-hidden />
             <span className="absolute bottom-5 left-5 inline-flex items-center gap-1.5 text-sm font-bold text-white"><MapPin className="h-4 w-4" strokeWidth={ICON_STROKE} />{program.region}</span>
-            {program.illustrative && <span className="absolute right-5 top-5 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[0.6875rem] font-bold text-white/90 backdrop-blur-sm">{COPY.editorialImage[lang]}</span>}
           </div>
           <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-11">
             <div className="flex flex-wrap gap-2">

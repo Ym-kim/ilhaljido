@@ -15,7 +15,6 @@ import {
 import { trackEvent } from '@/lib/track'
 import { ShareButton } from '@/components/share/ShareButton'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getMediaAsset } from '@/lib/media/assets'
@@ -184,7 +183,6 @@ export function CampaignLanding({ config }: { config: CampaignLandingConfig }) {
 
         <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-7xl flex-col justify-end px-5 pb-8 pt-20 sm:px-8 md:justify-center md:pb-16 md:pt-24 lg:px-10">
           <div className="max-w-2xl">
-            {heroMedia ? <EditorialImageBadge lang={config.lang} className="mb-5 inline-flex" /> : null}
             <span className="block text-[0.68rem] font-extrabold tracking-[0.22em] text-[#8fd3e9]">
               {config.eyebrow}
             </span>

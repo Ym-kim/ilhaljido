@@ -347,7 +347,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     trackingId: 'aid=126848',
     coverPhoto: '/campaign/itoshima-coast-editorial-v1.webp',
     illustrative: true,
-    sourceNote: 'Klook activity 115689 실물 확인, 4.9/5·후기 17건·약 5시간 (2026-07-30). 편집 이미지는 실제 투어 사진이 아님.',
+    sourceNote: 'Klook activity 115689 실물 확인, 4.9/5·후기 17건·약 5시간 (2026-07-30). 자체 제작 커버는 실제 투어 사진이 아님.',
     operatorAction: 'Klook 공식 리다이렉트 형식 적용 완료 (aid=126848, 2026-07-30)',
   },
 

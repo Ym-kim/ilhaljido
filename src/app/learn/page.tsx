@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { useLang } from '@/context/LanguageContext'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
@@ -107,7 +106,6 @@ export default function LearnPage() {
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/15" />
-        <EditorialImageBadge lang={lang} className="absolute right-4 top-4 z-10 sm:right-6 sm:top-6" />
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-16">
           <SectionEyebrow onDark>{COPY.eyebrow[lang]}</SectionEyebrow>
           <h1 className="max-w-3xl whitespace-pre-line text-4xl font-black leading-[1.08] text-white md:text-6xl">

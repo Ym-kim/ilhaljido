@@ -69,11 +69,6 @@ export function CollectionsHub({ forceLang }: { forceLang?: Lang }) {
               className="object-cover transition-transform duration-700 group-hover:scale-[1.025]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#04121f]/90 via-[#04121f]/42 to-transparent" />
-            {featured.illustrative && (
-              <span className="absolute right-5 top-5 border border-white/30 bg-black/45 px-3 py-1.5 text-[0.65rem] font-bold text-white backdrop-blur-sm">
-                {lang === 'KO' ? '편집 이미지' : lang === 'JP' ? 'イメージ写真' : 'Editorial image'}
-              </span>
-            )}
             <div className="absolute inset-x-0 bottom-0 max-w-2xl p-6 sm:p-10">
               <span className="text-[0.68rem] font-black tracking-[0.16em] text-sky-300">{VISUAL_COPY.featured[lang]}</span>
               <h2 className="mt-3 text-3xl font-black leading-tight text-white sm:text-5xl">{featured.title[lang]}</h2>

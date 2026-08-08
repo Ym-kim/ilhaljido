@@ -7,16 +7,11 @@ import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
 
-const COPY: Record<'season' | 'film' | 'play' | 'pause', L> = {
+const COPY: Record<'season' | 'play' | 'pause', L> = {
   season: {
     KO: '늦여름 · 초가을 에디트',
     EN: 'Late summer · early autumn',
     JP: '晩夏・初秋のエディット',
-  },
-  film: {
-    KO: 'Wakation 편집 영상',
-    EN: 'Wakation editorial film',
-    JP: 'Wakation エディトリアル映像',
   },
   play: { KO: '배경 영상 재생', EN: 'Play background film', JP: '背景映像を再生' },
   pause: { KO: '배경 영상 일시정지', EN: 'Pause background film', JP: '背景映像を一時停止' },
@@ -133,9 +128,6 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
       <div className="absolute right-4 top-24 z-30 flex items-center gap-2 sm:right-6 sm:top-28">
         <span className="hidden rounded-full border border-white/18 bg-[#071722]/52 px-3 py-2 text-[0.65rem] font-bold tracking-[0.08em] text-white/88 backdrop-blur-md sm:inline-flex">
           {COPY.season[lang]}
-        </span>
-        <span className="rounded-full border border-white/18 bg-[#071722]/52 px-3 py-2 text-[0.65rem] font-bold text-white/88 backdrop-blur-md">
-          {COPY.film[lang]}
         </span>
         {canAnimate && (
           <button

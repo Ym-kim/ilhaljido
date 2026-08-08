@@ -50,7 +50,6 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
   // SSG 첫 렌더가 컨텍스트(KO)로 나오지 않도록 tr을 해석된 lang에 바인딩
   const tr = (key: string) => translate(lang, key)
   const programs = getDomesticThemedUpcoming(lang).filter((p) => themeIds.includes(p.id))
-  const illustrativeLabel = { KO: '편집 이미지', EN: 'Editorial image', JP: '編集イメージ' }[lang]
 
   const mailto = `mailto:wakation.sf@gmail.com?subject=${encodeURIComponent(emailSubject)}`
   const interestHref = leadVariant ? '#hosted-interest' : mailto
@@ -61,9 +60,6 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
         {/* LCP 이미지 — next/image로 반응형 srcset·우선 로드 (모바일에 1800px 원본 전송 방지) */}
         <Image src={heroImage} alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-black/20" />
-        <span className="absolute right-4 top-4 z-10 rounded-full border border-white/20 bg-black/45 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm sm:right-6 sm:top-6">
-          {illustrativeLabel}
-        </span>
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{eyebrow[lang]}</SectionEyebrow>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight whitespace-pre-line">
@@ -111,11 +107,6 @@ export function ThemeProgramPage({ heroImage, eyebrow, titleKey, descKey, themeI
                     <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
                     <span className="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs font-bold px-2.5 py-1 rounded-full border border-white/20">{p.theme}</span>
-                    {p.illustrative && (
-                      <span className="absolute right-3 top-3 rounded-full border border-white/20 bg-black/50 px-2.5 py-1 text-[0.65rem] font-bold text-white/90 backdrop-blur-sm">
-                        {illustrativeLabel}
-                      </span>
-                    )}
                   </div>
                   <div className="p-5">
                     <p className="text-white/45 text-xs flex items-center gap-1 mb-2">

@@ -42,7 +42,6 @@ export function StoriesHubView({ forceLang }: { forceLang?: Lang } = {}) {
           <Link href={featured.href} className="group mt-5 grid overflow-hidden bg-[#17282d] md:grid-cols-[1.2fr_1fr]">
             <div className="relative aspect-[4/3] overflow-hidden md:aspect-auto md:min-h-[28rem]">
               <Image src={featured.image!} alt={featured.imageAlt?.[lang] ?? ''} fill priority sizes="(max-width: 768px) 100vw, 55vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
-              {featured.illustrative && <span className="absolute bottom-3 left-3 rounded-full bg-black/65 px-3 py-1 text-[0.65rem] font-bold text-white">{STORIES_UI.illustrative[lang]}</span>}
             </div>
             <div className="flex flex-col justify-end p-7 text-white md:p-10 dark-surface">
               <span className="text-xs font-bold tracking-widest text-sky-300">{featured.category[lang]}</span>
@@ -60,7 +59,6 @@ export function StoriesHubView({ forceLang }: { forceLang?: Lang } = {}) {
             <Link key={story.slug} href={story.href} className="wak-card-story group overflow-hidden border border-[#e8e4dc] bg-white">
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image src={story.image!} alt={story.imageAlt?.[lang] ?? ''} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
-                {story.illustrative && <span className="absolute bottom-3 left-3 rounded-full bg-black/65 px-3 py-1 text-[0.65rem] font-bold text-white">{STORIES_UI.illustrative[lang]}</span>}
               </div>
               <div className="p-6">
                 <p className="text-[0.6875rem] font-bold tracking-widest uppercase text-teal-700">{story.category[lang]}</p>

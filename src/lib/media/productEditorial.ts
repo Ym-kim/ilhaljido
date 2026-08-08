@@ -10,7 +10,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'accommodation-urban-studio-editorial-v1',
     src: '/media/product-editorial/accommodation-urban-studio-editorial-v1.webp',
-    alt: { KO: '업무용 책상과 침대가 함께 있는 도시형 스튜디오 편집 이미지', EN: 'Editorial urban studio with a work desk and bed', JP: 'ワークデスクとベッドを備えた都市型スタジオのイメージ写真' },
+    alt: { KO: '업무용 책상과 침대가 함께 있는 도시형 스튜디오', EN: 'An urban studio with a work desk and bed', JP: 'ワークデスクとベッドを備えた都市型スタジオ' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.52, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -19,7 +19,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'tropical-coliving-editorial-v1',
     src: '/media/product-editorial/tropical-coliving-editorial-v1.webp',
-    alt: { KO: '열대 식물과 공용 업무 테이블이 있는 코리빙 공간 편집 이미지', EN: 'Editorial tropical coliving courtyard with a shared work table', JP: '南国の植物と共用ワークテーブルがあるコリビングのイメージ写真' },
+    alt: { KO: '열대 식물과 공용 업무 테이블이 있는 코리빙 공간', EN: 'A tropical coliving courtyard with a shared work table', JP: '南国の植物と共用ワークテーブルがあるコリビング' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.5, y: 0.52 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -28,7 +28,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'social-stay-lounge-editorial-v1',
     src: '/media/product-editorial/social-stay-lounge-editorial-v1.webp',
-    alt: { KO: '공용 테이블과 조용한 업무 코너가 있는 소셜 스테이 라운지 편집 이미지', EN: 'Editorial social-stay lounge with communal tables and a quiet work nook', JP: '共用テーブルと静かなワークコーナーがあるソーシャルステイのイメージ写真' },
+    alt: { KO: '공용 테이블과 조용한 업무 코너가 있는 소셜 스테이 라운지', EN: 'A social-stay lounge with communal tables and a quiet work nook', JP: '共用テーブルと静かなワークコーナーがあるソーシャルステイ' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.56, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -37,7 +37,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'coastal-apartment-editorial-v1',
     src: '/media/product-editorial/coastal-apartment-editorial-v1.webp',
-    alt: { KO: '바다를 향한 업무 책상이 있는 해안형 아파트 편집 이미지', EN: 'Editorial coastal apartment with a desk facing the sea', JP: '海を望むワークデスクのある海辺のアパートメントのイメージ写真' },
+    alt: { KO: '바다를 향한 업무 책상이 있는 해안형 아파트', EN: 'A coastal apartment with a desk facing the sea', JP: '海を望むワークデスクのある海辺のアパートメント' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -46,7 +46,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'serviced-apartment-editorial-v1',
     src: '/media/product-editorial/serviced-apartment-editorial-v1.webp',
-    alt: { KO: '간이 주방과 업무 테이블이 있는 장기체류형 아파트 편집 이미지', EN: 'Editorial serviced apartment with a kitchenette and work table', JP: '簡易キッチンとワークテーブルを備えた長期滞在型アパートのイメージ写真' },
+    alt: { KO: '간이 주방과 업무 테이블이 있는 장기체류형 아파트', EN: 'A serviced apartment with a kitchenette and work table', JP: '簡易キッチンとワークテーブルを備えた長期滞在型アパート' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -55,7 +55,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'design-hotel-lobby-editorial-v1',
     src: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp',
-    alt: { KO: '조용한 업무 코너가 있는 디자인 호텔 로비 편집 이미지', EN: 'Editorial design-hotel lobby with a quiet work corner', JP: '静かなワークコーナーを備えたデザインホテルロビーのイメージ写真' },
+    alt: { KO: '조용한 업무 코너가 있는 디자인 호텔 로비', EN: 'A design-hotel lobby with a quiet work corner', JP: '静かなワークコーナーを備えたデザインホテルロビー' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -64,7 +64,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'japanese-apartment-editorial-v1',
     src: '/media/product-editorial/japanese-apartment-editorial-v1.webp',
-    alt: { KO: '낮은 침대와 업무 테이블이 있는 일본식 도시 아파트 편집 이미지', EN: 'Editorial Japanese-inspired city apartment with a work table', JP: 'ローベッドとワークテーブルを備えた和モダンな都市型アパートのイメージ写真' },
+    alt: { KO: '낮은 침대와 업무 테이블이 있는 일본식 도시 아파트', EN: 'A Japanese-inspired city apartment with a work table', JP: 'ローベッドとワークテーブルを備えた和モダンな都市型アパート' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.53, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -73,7 +73,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'city-highrise-apartment-editorial-v1',
     src: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp',
-    alt: { KO: '도시 전망과 업무 책상이 있는 고층 서비스드 아파트 편집 이미지', EN: 'Editorial high-rise serviced apartment with a city-view desk', JP: 'シティビューのデスクを備えた高層サービスアパートのイメージ写真' },
+    alt: { KO: '도시 전망과 업무 책상이 있는 고층 서비스드 아파트', EN: 'A high-rise serviced apartment with a city-view desk', JP: 'シティビューのデスクを備えた高層サービスアパート' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.55, y: 0.48 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -82,7 +82,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'coastal-residence-editorial-v1',
     src: '/media/product-editorial/coastal-residence-editorial-v1.webp',
-    alt: { KO: '바다 전망 발코니와 업무 테이블이 있는 장기체류형 레지던스 편집 이미지', EN: 'Editorial long-stay coastal residence with a balcony and work table', JP: '海を望むバルコニーとワークテーブルがある長期滞在型レジデンスのイメージ写真' },
+    alt: { KO: '바다 전망 발코니와 업무 테이블이 있는 장기체류형 레지던스', EN: 'A long-stay coastal residence with a balcony and work table', JP: '海を望むバルコニーとワークテーブルがある長期滞在型レジデンス' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.5, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',
@@ -91,7 +91,7 @@ export const PRODUCT_EDITORIAL_MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'tropical-boutique-room-editorial-v1',
     src: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp',
-    alt: { KO: '열대 정원 테라스와 업무 책상이 있는 부티크 장기체류 객실 편집 이미지', EN: 'Editorial tropical boutique long-stay room with a terrace work desk', JP: '熱帯のテラスとワークデスクを備えたブティック長期滞在客室のイメージ写真' },
+    alt: { KO: '열대 정원 테라스와 업무 책상이 있는 부티크 장기체류 객실', EN: 'A tropical boutique long-stay room with a terrace work desk', JP: '熱帯のテラスとワークデスクを備えたブティック長期滞在客室' },
     sourceType: 'generated', usage: 'product', illustrative: true, width: 1200, height: 900,
     localeUsage: ['ko', 'en', 'ja'], routeUsage: ['/select/hotel'], sectionUsage: ['product-card'],
     focalPoint: { x: 0.55, y: 0.5 }, source: 'OpenAI built-in image generation; prompt archived in docs/product-program-media-truth-2026-08.md',

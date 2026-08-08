@@ -25,7 +25,6 @@ const COPY = {
   deadline: { KO: '접수 마감', EN: 'Application deadline', JP: '受付締切' },
   open: { KO: '조건 확인', EN: 'Check details', JP: '条件を確認' },
   source: { KO: '공식 공고 기준', EN: 'Based on official notice', JP: '公式公告を基準' },
-  editorialImage: { KO: '지역 편집 이미지', EN: 'Regional editorial image', JP: '地域編集イメージ' },
 } satisfies Record<string, Record<Lang, string>>
 
 function localeCode(lang: Lang) {
@@ -62,7 +61,6 @@ export function SupportProgramCard({ program, lang, imagePriority = false }: { p
           <Image src={program.photo} alt={program.photoAlt ?? `${program.region} — ${program.name}`} fill loading={imagePriority ? 'eager' : 'lazy'} fetchPriority={imagePriority ? 'high' : 'auto'} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
           <span className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" aria-hidden />
           <span className="absolute bottom-3 left-4 text-sm font-bold text-white drop-shadow">{program.region}</span>
-          {program.illustrative && <span className="absolute bottom-3 right-3 rounded-full border border-white/25 bg-black/45 px-2 py-1 text-[0.625rem] font-bold text-white/90 backdrop-blur-sm">{COPY.editorialImage[lang]}</span>}
         </Link>
         <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-1 text-[0.6875rem] font-bold ${STATUS_STYLE[program.status]}`}>
           {SUPPORT_LABELS.status[program.status][lang]}
