@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
+import { MonthlyModelEditorial } from '@/components/media/MonthlyModelEditorial'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 
@@ -71,6 +72,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <MonthlyModelEditorial />
 
       <section className="bg-[#17282d] px-6 py-20 text-white dark-surface">
         <div className="mx-auto max-w-6xl">
