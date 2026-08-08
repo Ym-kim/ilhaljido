@@ -8,7 +8,6 @@ import { ArrowRight, BookOpen, GraduationCap, HeartHandshake, Compass } from 'lu
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { ICON_STROKE } from '@/lib/icons'
 import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
@@ -104,8 +103,6 @@ export default function GrowthPage() {
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black/85 to-transparent" />
 
         <div className="relative mx-auto w-full max-w-6xl px-6 pb-14 md:pb-16">
-
-          <EditorialImageBadge lang={lang} className="mb-5 inline-flex" />
 
           <SectionEyebrow onDark>{tr('growth_badge')}</SectionEyebrow>
 

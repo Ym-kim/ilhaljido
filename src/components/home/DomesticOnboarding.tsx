@@ -100,7 +100,7 @@ const ENTRIES: Entry[] = [
       JP: 'カフェと穏やかな夜を組み合わせる3泊4日',
     },
     tag: { KO: '가까운 해외', EN: 'Short Japan stay', JP: '近場の3泊4日' },
-    alt: { KO: '후쿠오카의 카페와 도시 분위기', EN: 'An editorial city scene inspired by Fukuoka', JP: '福岡の街をイメージした編集写真' },
+    alt: { KO: '후쿠오카의 카페와 도시 분위기', EN: 'A city scene inspired by Fukuoka', JP: '福岡のカフェと街の雰囲気' },
   },
 ]
 

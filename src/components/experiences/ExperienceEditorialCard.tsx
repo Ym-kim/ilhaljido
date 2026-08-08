@@ -11,7 +11,6 @@ import { trackEvent } from '@/lib/track'
 
 const COPY = {
   eyebrow: { KO: 'WAKATION EXPERIENCE', EN: 'WAKATION EXPERIENCE', JP: 'WAKATION EXPERIENCE' },
-  image: { KO: '편집 이미지', EN: 'Editorial image', JP: '編集イメージ' },
   cta: { KO: '체험 알아보기', EN: 'Explore the experience', JP: '体験を詳しく見る' },
 } satisfies Record<string, Record<Lang, string>>
 
@@ -50,9 +49,6 @@ export function ExperienceEditorialCard({
           className="object-cover transition duration-700 group-hover:scale-[1.025]"
           style={{ objectPosition: `${(media.focalPoint?.x ?? 0.5) * 100}% ${(media.focalPoint?.y ?? 0.5) * 100}%` }}
         />
-        <span className="absolute right-3 top-3 rounded-full border border-white/25 bg-black/45 px-2.5 py-1 text-[0.65rem] font-bold text-white backdrop-blur-sm">
-          {COPY.image[lang]}
-        </span>
       </div>
       <div className="flex min-w-0 flex-col justify-center px-5 py-7 sm:px-7 md:px-8">
         <span className="mb-3 text-[0.68rem] font-black tracking-[0.15em] text-[#557e8c]">{COPY.eyebrow[lang]}</span>

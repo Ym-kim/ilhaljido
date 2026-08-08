@@ -17,7 +17,6 @@ import { trackAffiliateClick, trackEvent } from '@/lib/track'
 
 const COPY = {
   back: { KO: '현지 체험', EN: 'Local experiences', JP: '現地体験' },
-  editorialImage: { KO: '편집 이미지 · 실제 투어 사진 아님', EN: 'Editorial image · not a tour photo', JP: '編集イメージ · 実際のツアー写真ではありません' },
   save: { KO: '저장', EN: 'Save', JP: '保存' },
   saved: { KO: '저장됨', EN: 'Saved', JP: '保存済み' },
   editor: { KO: 'Wakation 에디터 노트', EN: "Wakation editor's note", JP: 'Wakation エディターノート' },
@@ -134,7 +133,6 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
             </button>
             <ShareButton title={`${experience.title[lang]} — Wakation`} text={experience.subtitle[lang]} url={`https://www.wakation.kr${prefix}/experiences/${experience.slug}`} contentType="experience" slug={experience.slug} />
           </div>
-          <span className="mt-5 inline-flex rounded-full border border-white/20 bg-black/30 px-3 py-1.5 text-[0.68rem] font-bold text-white/75 backdrop-blur-sm">{COPY.editorialImage[lang]}</span>
         </div>
       </section>
 

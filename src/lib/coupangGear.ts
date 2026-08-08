@@ -9,16 +9,16 @@ import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
 
-export type GearItem = { id: string; emoji: string; name: L; href: string }
+export type GearItem = { id: string; name: L; href: string }
 
 export const COUPANG_GEAR: GearItem[] = [
-  { id: 'carry-cabin', emoji: '🧳', name: { KO: '기내용 캐리어', EN: 'Cabin luggage', JP: '機内キャリー' }, href: 'https://link.coupang.com/a/fqKeXt9wsK' },
-  { id: 'carry-large', emoji: '🧳', name: { KO: '수하물 캐리어', EN: 'Checked luggage', JP: '預け入れキャリー' }, href: 'https://link.coupang.com/a/fqKtQvOpno' },
-  { id: 'adapter', emoji: '🔌', name: { KO: '여행용 멀티어댑터', EN: 'Travel adapter', JP: '変換アダプター' }, href: 'https://link.coupang.com/a/fqKCgViWQK' },
-  { id: 'neckpillow', emoji: '💤', name: { KO: '목베개', EN: 'Neck pillow', JP: 'ネックピロー' }, href: 'https://link.coupang.com/a/fqKEUIv95g' },
-  { id: 'powerbank', emoji: '🔋', name: { KO: '보조배터리', EN: 'Power bank', JP: 'モバイルバッテリー' }, href: 'https://link.coupang.com/a/fqK7CKb3g4' },
-  { id: 'pouch', emoji: '🧴', name: { KO: '여행 정리 파우치', EN: 'Packing pouch', JP: '圧縮ポーチ' }, href: 'https://link.coupang.com/a/fqLdRYueRM' },
-  { id: 'backpack', emoji: '🎒', name: { KO: '기내용 백팩', EN: 'Cabin backpack', JP: '機内バックパック' }, href: 'https://link.coupang.com/a/fqLmHwGzhR' },
+  { id: 'carry-cabin', name: { KO: '기내용 캐리어', EN: 'Cabin luggage', JP: '機内キャリー' }, href: 'https://link.coupang.com/a/fqKeXt9wsK' },
+  { id: 'carry-large', name: { KO: '수하물 캐리어', EN: 'Checked luggage', JP: '預け入れキャリー' }, href: 'https://link.coupang.com/a/fqKtQvOpno' },
+  { id: 'adapter', name: { KO: '여행용 멀티어댑터', EN: 'Travel adapter', JP: '変換アダプター' }, href: 'https://link.coupang.com/a/fqKCgViWQK' },
+  { id: 'neckpillow', name: { KO: '목베개', EN: 'Neck pillow', JP: 'ネックピロー' }, href: 'https://link.coupang.com/a/fqKEUIv95g' },
+  { id: 'powerbank', name: { KO: '보조배터리', EN: 'Power bank', JP: 'モバイルバッテリー' }, href: 'https://link.coupang.com/a/fqK7CKb3g4' },
+  { id: 'pouch', name: { KO: '여행 정리 파우치', EN: 'Packing pouch', JP: '圧縮ポーチ' }, href: 'https://link.coupang.com/a/fqLdRYueRM' },
+  { id: 'backpack', name: { KO: '기내용 백팩', EN: 'Cabin backpack', JP: '機内バックパック' }, href: 'https://link.coupang.com/a/fqLmHwGzhR' },
 ]
 
 // 쿠팡 파트너스 의무 고지문구 (반드시 노출)

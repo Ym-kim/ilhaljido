@@ -13,7 +13,6 @@ import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
 import { ConsentCheckbox } from '@/components/legal/ConsentCheckbox'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
 import type { Lang } from '@/lib/i18n/types'
 import { getMediaAsset } from '@/lib/media/assets'
@@ -255,7 +254,6 @@ export default function BusinessPage() {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl">
-          <EditorialImageBadge lang={lang} className="mb-5 inline-flex" />
           <span className="mb-3 flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-[#8fd3e9]">
             <Building2 className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
             {t('eyebrow')}

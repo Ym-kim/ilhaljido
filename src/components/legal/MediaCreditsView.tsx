@@ -12,16 +12,16 @@ const COPY = {
     JP: 'メディアの出典と利用範囲',
   },
   intro: {
-    KO: 'Wakation은 직접 제작한 편집 이미지와 사용 권한을 확인한 사진을 구분해 관리합니다. 생성 이미지는 실제 제휴 숙소·객실·프로그램 현장 사진으로 사용하지 않습니다.',
-    EN: 'Wakation separates in-house editorial imagery from photographs with verified usage rights. Generated images are never presented as exact partner stays, rooms or program locations.',
-    JP: 'Wakationは自社制作の編集イメージと、利用権を確認した写真を分けて管理しています。生成画像を実在の提携宿泊施設・客室・プログラム会場の写真として表示しません。',
+    KO: 'Wakation은 직접 제작한 이미지와 사용 권한을 확인한 사진을 구분해 관리합니다. 생성 이미지는 실제 제휴 숙소·객실·프로그램 현장 사진으로 사용하지 않습니다.',
+    EN: 'Wakation separates in-house visuals from photographs with verified usage rights. Generated images are never presented as exact partner stays, rooms or program locations.',
+    JP: 'Wakationは自社制作画像と、利用権を確認した写真を分けて管理しています。生成画像を実在の提携宿泊施設・客室・プログラム会場の写真として表示しません。',
   },
   licensed: { KO: '라이선스 사진', EN: 'Licensed photographs', JP: 'ライセンス写真' },
-  generated: { KO: '자체 제작 편집 이미지', EN: 'In-house editorial imagery', JP: '自社制作の編集イメージ' },
+  generated: { KO: '자체 제작 이미지', EN: 'In-house visuals', JP: '自社制作画像' },
   generatedDesc: {
-    KO: 'OpenAI 이미지 생성 도구로 제작하고 Wakation이 편집·최적화한 이미지입니다. 카드에는 “편집 이미지” 고지를 표시합니다.',
-    EN: 'Created with OpenAI image generation and edited and optimized by Wakation. Cards carrying these assets are labeled “Editorial image.”',
-    JP: 'OpenAIの画像生成ツールで制作し、Wakationが編集・最適化した画像です。対象カードには「編集イメージ」と表示します。',
+    KO: 'OpenAI 이미지 생성 도구로 제작하고 Wakation이 편집·최적화했습니다. 이미지별 출처와 사용 범위는 내부 자산 매니페스트에서 관리합니다.',
+    EN: 'Created with OpenAI image generation, then edited and optimized by Wakation. Source and usage scope are maintained in the internal asset manifest.',
+    JP: 'OpenAIの画像生成ツールで制作し、Wakationが編集・最適化しています。画像ごとの出典と利用範囲は内部アセット台帳で管理します。',
   },
   back: { KO: 'Wakation 홈으로', EN: 'Back to Wakation', JP: 'Wakationホームへ' },
 } satisfies Record<string, Record<Lang, string>>

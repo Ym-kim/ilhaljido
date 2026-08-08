@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import { Pause, Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { EditorialImageBadge } from '@/components/media/EditorialImageBadge'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
@@ -23,9 +22,9 @@ const COPY: Record<string, L> = {
     JP: '街に着く瞬間、海辺でのリセット、仕事終わりの散歩。仕事と旅の間にある今月の3つのシーンです。',
   },
   disclosure: {
-    KO: '생성 편집 이미지와 무음 영상입니다. 실제 고객, 참가자, 장소 또는 프로그램 현장을 나타내지 않습니다.',
-    EN: 'Generated editorial imagery and a silent film. It does not depict real customers, participants, venues or program scenes.',
-    JP: '生成した編集用イメージと無音映像です。実在の顧客、参加者、施設、プログラム会場を示すものではありません。',
+    KO: 'Wakation이 제작한 이미지와 무음 영상입니다. 실제 고객, 참가자, 장소 또는 프로그램 현장을 나타내지 않습니다.',
+    EN: 'Images and a silent film created by Wakation. They do not depict real customers, participants, venues or program scenes.',
+    JP: 'Wakationが制作した画像と無音映像です。実在の顧客、参加者、施設、プログラム会場を示すものではありません。',
   },
   videoLabel: {
     KO: '2026년 8월 월간 브랜드 필름, 15초 무음 영상',
@@ -51,9 +50,9 @@ const PHOTOS: Array<{
     id: 'monthly-2026-08-model-e-city-arrival-v2',
     src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp',
     alt: {
-      KO: '이름 없는 해안 도시 터미널에서 여행 동선을 살펴보는 성인 여행자 편집 이미지',
-      EN: 'Editorial image of an adult traveller reviewing her route at an unnamed coastal-city terminal',
-      JP: '場所を特定しない海辺の街のターミナルで旅の動線を確認する成人旅行者の編集イメージ',
+      KO: '이름 없는 해안 도시 터미널에서 여행 동선을 살펴보는 성인 여행자',
+      EN: 'An adult traveller reviewing her route at an unnamed coastal-city terminal',
+      JP: '場所を特定しない海辺の街のターミナルで旅の動線を確認する成人旅行者',
     },
     caption: { KO: '도시 도착', EN: 'City arrival', JP: '街に着く' },
   },
@@ -61,9 +60,9 @@ const PHOTOS: Array<{
     id: 'monthly-2026-08-model-h-coastal-reset-v1',
     src: '/media/brand-models/monthly-2026-08-model-h-coastal-reset-v1.webp',
     alt: {
-      KO: '이름 없는 해안 카페에서 노트북과 노트를 정리하는 성인 여행자 편집 이미지',
-      EN: 'Editorial image of an adult traveller packing her notebook at an unnamed coastal café',
-      JP: '場所を特定しない海辺のカフェでノートを片づける成人旅行者の編集イメージ',
+      KO: '이름 없는 해안 카페에서 노트북과 노트를 정리하는 성인 여행자',
+      EN: 'An adult traveller packing her notebook at an unnamed coastal café',
+      JP: '場所を特定しない海辺のカフェでノートを片づける成人旅行者',
     },
     caption: { KO: '해안의 리셋', EN: 'Coastal reset', JP: '海辺でリセット' },
   },
@@ -71,9 +70,9 @@ const PHOTOS: Array<{
     id: 'monthly-2026-08-model-j-blue-hour-v2',
     src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
     alt: {
-      KO: '이름 없는 도시의 강변에서 업무 후 시간을 확인하는 성인 여행자 편집 이미지',
-      EN: 'Editorial image of an adult traveller checking the time beside an unnamed city river',
-      JP: '場所を特定しない街の川辺で仕事後の時間を確認する成人旅行者の編集イメージ',
+      KO: '이름 없는 도시의 강변에서 업무 후 시간을 확인하는 성인 여행자',
+      EN: 'An adult traveller checking the time beside an unnamed city river',
+      JP: '場所を特定しない街の川辺で仕事後の時間を確認する成人旅行者',
     },
     caption: { KO: '블루아워의 이동', EN: 'Blue-hour move', JP: 'ブルーアワーの移動' },
   },
@@ -170,7 +169,6 @@ export function MonthlyModelEditorial() {
               onPause={() => setIsPlaying(false)}
               onPlay={() => setIsPlaying(true)}
             />
-            <EditorialImageBadge lang={lang} className="absolute left-4 top-4" />
             {!reducedMotion && (
               <button
                 type="button"

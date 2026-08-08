@@ -24,7 +24,7 @@ export function CoupangGear() {
           <p className="text-[#475569] text-sm mt-1.5">{COUPANG_UI.sub[lang]}</p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div data-coupang-gear-grid className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
           {COUPANG_GEAR.map((g) => (
             <a
               key={g.id}
@@ -38,14 +38,20 @@ export function CoupangGear() {
                   /* 계측 실패 무시 */
                 }
               }}
-              className="group flex items-center gap-3 bg-white border border-[#e5e1da] rounded-2xl p-4 hover:border-[#c8c4be] hover:shadow-md transition-all"
+              data-coupang-gear-card
+              className="group flex min-h-[9rem] min-w-0 flex-col rounded-2xl border border-[#dfd9d0] bg-[#fffefa] p-4 transition-all hover:-translate-y-0.5 hover:border-[#9eb8c1] hover:shadow-[0_12px_28px_rgba(18,47,59,0.08)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:min-h-[9.5rem] sm:p-5"
             >
-              <span className="text-2xl shrink-0">{g.emoji}</span>
-              <span className="flex-1 min-w-0">
-                <span className="block font-bold text-[#141414] text-sm leading-tight truncate">{g.name[lang]}</span>
-                <span className="text-[#475569] text-xs font-semibold">{COUPANG_UI.cta[lang]}</span>
+              <span className="flex w-full items-start justify-between gap-3">
+                <span className="h-1 w-8 rounded-full bg-[#55a9c3] transition-all group-hover:w-11" aria-hidden="true" />
+                <ArrowUpRight className="h-4 w-4 shrink-0 text-[#8ba1a9] transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#0b759c]" strokeWidth={ICON_STROKE} />
               </span>
-              <ArrowUpRight className="w-4 h-4 text-[#c0bdb8] group-hover:text-[#f43f5e] transition-colors shrink-0" strokeWidth={ICON_STROKE} />
+              <span
+                data-coupang-gear-title
+                className="mt-4 line-clamp-2 min-h-[3rem] break-keep text-[0.95rem] font-black leading-6 text-[#17242b] sm:text-base"
+              >
+                {g.name[lang]}
+              </span>
+              <span className="mt-auto pt-3 text-[0.72rem] font-bold leading-5 text-[#4c6975] sm:text-xs">{COUPANG_UI.cta[lang]}</span>
             </a>
           ))}
         </div>

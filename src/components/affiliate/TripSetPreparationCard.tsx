@@ -10,7 +10,6 @@ import { useWishlist } from '@/hooks/useWishlist'
 import { recordRecentlyViewed } from '@/hooks/useRecentlyViewed'
 
 const COPY = {
-  editorial: { KO: '편집 이미지', EN: 'Editorial image', JP: '編集イメージ' },
   verified: { KO: '조건 확인', EN: 'Details checked', JP: '条件確認' },
   cta: { KO: '제휴사에서 조건 확인', EN: 'Check terms with partner', JP: '提携先で条件を確認' },
   save: { KO: '여행 준비에 저장', EN: 'Save for this trip', JP: '旅の準備に保存' },
@@ -71,7 +70,7 @@ export function TripSetPreparationCard({
       <div className="relative aspect-[4/3] max-h-60 min-h-48 shrink-0 overflow-hidden bg-[#e9f0f2]">
         <Image
           src={coverPhoto}
-          alt={`${title} — ${COPY.editorial[lang]}`}
+          alt={title}
           fill
           loading={item.id === 'feat-transfer-klook' ? 'eager' : 'lazy'}
           unoptimized={item.id === 'feat-transfer-klook'}
@@ -79,12 +78,9 @@ export function TripSetPreparationCard({
           className="object-cover saturate-[0.9] contrast-[1.03] transition duration-700 group-hover:scale-[1.025] group-hover:saturate-100"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/5 to-black/10" />
-        <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
+        <div className="absolute inset-x-3 top-3 flex items-start gap-2">
           <span className="rounded-full border border-white/25 bg-black/50 px-2.5 py-1 text-[0.65rem] font-bold text-white backdrop-blur-sm">
             {categoryLabel}
-          </span>
-          <span className="rounded-full border border-white/25 bg-black/50 px-2.5 py-1 text-[0.65rem] font-bold text-white backdrop-blur-sm">
-            {COPY.editorial[lang]}
           </span>
         </div>
         {item.destination && (

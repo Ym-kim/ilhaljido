@@ -799,7 +799,6 @@ export const COLLECTIONS_UI: Record<string, L> = {
   },
   back: { KO: '기획전 전체', EN: 'All collections', JP: '特集一覧' },
   // ── Trip Set 전용 UI (2026-07-28) ──
-  ts_image_note: { KO: '연출 이미지', EN: 'Editorial image', JP: 'イメージ画像' },
   ts_nav_label: { KO: 'Trip Set 빠른 이동', EN: 'Trip Set sections', JP: 'Trip Set 内の移動' },
   ts_nav_fit: { KO: '나와 맞는지', EN: 'Is it for me?', JP: '自分に合う？' },
   ts_nav_flow: { KO: '여행 흐름', EN: 'Trip flow', JP: '旅の流れ' },
