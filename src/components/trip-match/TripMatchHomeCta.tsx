@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
-import { isRouteVisibleIn } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
@@ -14,21 +13,17 @@ const COPY: Record<string, L> = {
   eyebrow: { KO: 'A TRIP THAT FITS', EN: 'A TRIP THAT FITS', JP: 'A TRIP THAT FITS' },
   title: { KO: '어디로 갈지 고민된다면', EN: 'Not sure where to go?', JP: '行き先に迷ったら' },
   lead: {
-    KO: '기간·분위기·동행만 고르면 지금 잘 맞는 Trip Set을 찾아드려요.',
+    KO: '기간·분위기·동행만 고르면 지금 나에게 맞는 Trip Set을 찾아드려요.',
     EN: 'Choose your time, mood and company to find a fitting Trip Set.',
-    JP: '日数・気分・同行者を選ぶだけで、今の自分に合うTrip Setが見つかります。',
+    JP: '期間・気分・同行者を選ぶだけで、今の自分に合うTrip Setが見つかります。',
   },
-  cta: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を見つける' },
+  cta: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を探す' },
 }
 
 export function TripMatchHomeCta({ forceLang }: { forceLang?: Lang }) {
   const { lang: contextLang } = useLang()
   const lang = forceLang ?? contextLang
-  const href = lang === 'JP' ? '/ja/trip-match' : '/trip-match'
-
-  // 2026-08-07 구조 결정 ③ — /trip-match는 KO·JA 전용(EN 대응 화면 없음).
-  // EN 홈에서 영어 CTA가 한국어 페이지로 보내던 것을 차단한다.
-  if (!isRouteVisibleIn('/trip-match', lang)) return null
+  const href = lang === 'JP' ? '/ja/trip-match' : lang === 'EN' ? '/en/trip-match' : '/trip-match'
 
   return (
     <section className="border-b border-[#dbe4e3] bg-[#edf5f4] px-5 py-7 sm:px-8 md:py-9">

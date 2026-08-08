@@ -20,6 +20,8 @@
     "audit:locale-lang": "node scripts/audit-locale-document-lang.mjs",
     "audit:content-depth": "node scripts/audit-content-depth.mjs",
     "audit:menu-routes": "node scripts/audit-menu-routes.mjs",
+    "audit:cta-routes": "node scripts/audit-cta-routes.mjs",
+    "audit:cta-routes:live": "node scripts/audit-cta-routes.mjs --live",
     "audit:affiliate-placement": "node scripts/audit-affiliate-placement.mjs",
     "audit:visual-content": "node scripts/audit-visual-content.mjs",
     "audit:routes": "node scripts/build-full-site-route-inventory.mjs",

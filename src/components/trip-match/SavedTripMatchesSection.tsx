@@ -41,7 +41,7 @@ export function SavedTripMatchesSection() {
           if (!collection) return null
           const query = new URLSearchParams(serializeTripMatchAnswer(saved.answer))
           if (saved.campaign) query.set('campaign', saved.campaign)
-          const prefix = saved.locale === 'JP' ? '/ja' : ''
+          const prefix = saved.locale === 'JP' ? '/ja' : saved.locale === 'EN' ? '/en' : ''
           const href = `${prefix}/trip-match/result?${query.toString()}`
 
           return (

@@ -76,7 +76,7 @@ const FIND_LINKS: NavigationGroup[] = [
       link(
         'trip-match',
         NAVIGATION_COPY.tripMatch,
-        { KO: '/trip-match', EN: '/trip-match', JP: '/ja/trip-match' },
+        { KO: '/trip-match', EN: '/en/trip-match', JP: '/ja/trip-match' },
         NAVIGATION_COPY.tripMatchShort,
       ),
       link(

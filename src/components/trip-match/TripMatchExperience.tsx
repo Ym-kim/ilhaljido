@@ -116,7 +116,7 @@ export function TripMatchExperience({
   initialCampaign,
   resultMode = false,
 }: {
-  forceLang: 'KO' | 'JP'
+  forceLang: Lang
   trips: TripMatchTripContent[]
   initialAnswer: TripMatchAnswer
   initialCampaign?: TripMatchCampaign
@@ -125,8 +125,8 @@ export function TripMatchExperience({
   const router = useRouter()
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang
-  const locale = lang === 'JP' ? 'ja' : 'ko'
-  const prefix = lang === 'JP' ? '/ja' : ''
+  const locale = lang === 'JP' ? 'ja' : lang === 'EN' ? 'en' : 'ko'
+  const prefix = lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : ''
   const [step, setStep] = useState(resultMode ? 3 : -1)
   const [answer, setAnswer] = useState<TripMatchAnswer>(initialAnswer)
   const opened = useRef(false)
@@ -237,7 +237,11 @@ export function TripMatchExperience({
   )
   const restartHref = withCampaignUtm(`${prefix}/trip-match${campaign ? `?campaign=${campaign}` : ''}`, utm)
   const comparisonHref = withCampaignUtm(
-    lang === 'JP' ? '/ja/campaign/korea-weekend' : '/campaign/japan-short-stay',
+    lang === 'JP'
+      ? '/ja/campaign/korea-weekend'
+      : lang === 'EN'
+        ? '/en/destinations/compare'
+        : '/campaign/japan-short-stay',
     utm,
   )
   const shouldShowHosted = answer.duration === 'long'
