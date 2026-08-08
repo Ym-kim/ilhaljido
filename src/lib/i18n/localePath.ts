@@ -45,7 +45,7 @@ const SHARED_EXACT = new Set<string>([
 ])
 
 /** EN·JA 양쪽에 실존하는 동적 패밀리 (하위 slug 라우트) */
-const SHARED_FAMILIES = ['/guide/', '/collections/', '/destinations/', '/experiences/', '/programs/support/']
+const SHARED_FAMILIES = ['/guide/', '/collections/', '/destinations/', '/experiences/', '/moments/', '/programs/support/']
 
 /** 패밀리에 걸리지만 KO 전용인 예외 (en·ja 미존재) */
 const FAMILY_EXCLUDES = new Set<string>(['/programs/support/register'])

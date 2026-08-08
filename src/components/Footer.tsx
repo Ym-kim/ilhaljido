@@ -56,7 +56,7 @@ export default function Footer() {
                   { l: { KO: '30초 여행 찾기', EN: 'Find my trip', JP: '30秒で旅を探す' }, h: '/trip-match' },
                   { l: { KO: '목적지 가이드', EN: 'City guides', JP: '都市ガイド' }, h: '/guide' },
                   { l: { KO: '스토리', EN: 'Stories', JP: 'ストーリー' }, h: '/stories' },
-                  { l: { KO: '모먼트', EN: 'Moments', JP: 'モーメント' }, h: '/moments' },
+                  { l: { KO: '여행자 노트', EN: 'Traveler Notes', JP: '旅のノート' }, h: '/moments' },
                   { l: { KO: '기획전 · Trip Set', EN: 'Collections & trip sets', JP: '特集 · トリップセット' }, h: '/collections' },
                   { l: { KO: '도시 비교', EN: 'Compare cities', JP: '都市を比較' }, h: '/destinations/compare' },
                 ],

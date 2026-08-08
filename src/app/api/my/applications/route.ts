@@ -19,7 +19,7 @@ export async function GET() {
   const admin = createAdminClient()
   const { data, error } = await admin
     .from('applications')
-    .select('id, program_id, programs(title), status, created_at')
+    .select('id, program_id, programs(title), job_type, status, created_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 

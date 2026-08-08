@@ -62,13 +62,15 @@ export default function AdminPage() {
 
   useEffect(() => {
     let result = apps
-    if (filter !== 'all') result = result.filter((a) => a.status === filter)
+    if (filter === 'traveler_note') result = result.filter((a) => a.job_type === 'traveler_note')
+    else if (filter !== 'all') result = result.filter((a) => a.status === filter)
     if (search) {
       result = result.filter(
         (a) =>
           a.name.includes(search) ||
           a.phone.includes(search) ||
-          a.email.includes(search)
+          a.email.includes(search) ||
+          a.job_type.includes(search)
       )
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect -- 파생 필터 목록 동기화(기존 동작 유지) — 리팩터는 admin 접촉 금지 원칙상 보류
@@ -154,6 +156,7 @@ export default function AdminPage() {
     contacted: apps.filter((a) => a.status === 'contacted').length,
     confirmed: apps.filter((a) => a.status === 'confirmed').length,
     cancelled: apps.filter((a) => a.status === 'cancelled').length,
+    traveler_note: apps.filter((a) => a.job_type === 'traveler_note').length,
   }
 
   if (authLoading) {
@@ -235,6 +238,7 @@ export default function AdminPage() {
                 { key: 'contacted', label: `연락완료 (${counts.contacted})` },
                 { key: 'confirmed', label: `확정 (${counts.confirmed})` },
                 { key: 'cancelled', label: `취소 (${counts.cancelled})` },
+                { key: 'traveler_note', label: `여행자 노트 (${counts.traveler_note})` },
               ].map((f) => (
                 <button
                   key={f.key}
@@ -311,7 +315,7 @@ export default function AdminPage() {
                         <td className="px-4 py-3 font-bold text-dark">{app.name}</td>
                         <td className="px-4 py-3 text-muted">{app.phone}</td>
                         <td className="px-4 py-3 text-muted hidden md:table-cell truncate max-w-[160px]">
-                          {app.programs?.title ?? app.program_id ?? '미정'}
+                          {app.job_type === 'traveler_note' ? '여행자 노트' : app.programs?.title ?? app.program_id ?? '미정'}
                         </td>
                         <td className="px-4 py-3 text-muted hidden lg:table-cell">{app.job_type}</td>
                         <td className="px-4 py-3">

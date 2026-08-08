@@ -10,14 +10,14 @@ const languages = {
 }
 
 export const metadata: Metadata = {
-  title: 'Workation Moments — Editor-Picked Highlights',
+  title: 'Traveler Notes — Destination Stories and Member Reviews',
   description:
-    'Tokyo, Bali, Da Nang, Chiang Mai, Jeju — the defining moments of workation life in vertical shorts, curated by our editors.',
+    'Read destination introductions from Wakation editors and honest stay reviews contributed by members.',
   alternates: { canonical: languages.en, languages },
   openGraph: {
     images: OG_DEFAULT_IMAGES,
-    title: 'Workation Moments | Wakation',
-    description: 'The defining moments of workation life — editor-picked destination inspiration.',
+    title: 'Traveler Notes — Destination Stories and Member Reviews',
+    description: 'A shared travel journal that begins with editor introductions and grows with member reviews.',
     url: languages.en,
     siteName: 'Wakation',
     locale: 'en_US',
