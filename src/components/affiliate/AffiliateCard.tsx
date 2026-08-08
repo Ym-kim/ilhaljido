@@ -57,7 +57,7 @@ const PENDING_STATUSES = new Set([
 ])
 
 const CATEGORY_COVER: Record<AffiliateItem['category'], string> = {
-  hotel: '/covers/home-hero-real.jpeg',
+  hotel: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp',
   activity: '/covers/activity-curated-real-v2.jpeg',
   transport: '/covers/flight-global-real-v2.jpeg',
   esim: '/covers/wifi-japan-real-v2.jpeg',
@@ -67,14 +67,14 @@ const CATEGORY_COVER: Record<AffiliateItem['category'], string> = {
 }
 
 const PRODUCT_TYPE_COVER: Partial<Record<NonNullable<AffiliateItem['productType']>, string>> = {
-  stay: '/covers/home-hero-real.jpeg',
+  stay: '/media/product-editorial/serviced-apartment-editorial-v1.webp',
   activity: '/covers/activity-curated-real-v2.jpeg',
   transport: '/covers/flight-global-real-v2.jpeg',
   esim: '/covers/wifi-japan-real-v2.jpeg',
   insurance: '/covers/trip-prep-allinone-ai.jpeg',
   education: '/covers/course-notion-photo-v2.webp',
   visa: '/covers/flight-global-real-v2.jpeg',
-  workspace: '/covers/home-hero-real.jpeg',
+  workspace: '/media/product-editorial/social-stay-lounge-editorial-v1.webp',
 }
 
 interface AffiliateCardProps {
@@ -114,11 +114,11 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             alt={title}
             fill
             sizes="(max-width: 519px) 100vw, (max-width: 1024px) 50vw, 384px"
-            className="object-cover saturate-[0.9] contrast-[1.04] transition-all duration-700 group-hover:scale-[1.035] group-hover:saturate-100"
+            className="object-cover saturate-[1.02] contrast-[1.06] brightness-[1.01] transition-all duration-700 group-hover:scale-[1.035] group-hover:saturate-[1.08]"
           />
 
           {/* 사진 하단 그라디언트 — 목적지 텍스트 가독성 */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/66 via-black/[0.06] to-transparent" />
 
           {/* 호버 광택(sheen) — 프리미엄 마이크로 인터랙션 */}
           <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-tr from-transparent via-white/[0.07] to-white/20" />

@@ -79,27 +79,27 @@ export function MoodExplorer({ forceLang }: { forceLang?: Lang } = {}) {
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight mb-2">{UI.title[lang]}</h2>
           <p className="text-[#64748b] text-sm leading-relaxed max-w-lg">{UI.sub[lang]}</p>
         </div>
-        <div data-ui-grid="editorial" className="wak-card-grid grid grid-cols-2 lg:grid-cols-4">
-          {MOODS.map((m) => {
+        <div data-ui-grid="editorial" className="grid auto-rows-[10.5rem] grid-cols-2 gap-3 sm:auto-rows-[12rem] sm:gap-4 lg:grid-cols-4">
+          {MOODS.map((m, index) => {
             return (
               <Link
                 key={m.href + m.label.KO}
                 href={localizeHref(m.href, lang)}
                 onClick={() => trackEvent('travel_mood_select', { mood: m.label.KO })}
                 data-ui-card="editorial"
-                className="wak-card-editorial group relative min-h-48 overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_8px_24px_rgba(8,32,48,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(8,32,48,0.16)] active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 sm:min-h-56"
+                className={`wak-card-editorial group relative overflow-hidden border border-black/5 bg-[#0b1b25] shadow-[0_8px_24px_rgba(8,32,48,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_38px_rgba(8,32,48,0.16)] active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500 ${index === 0 ? 'col-span-2 row-span-2' : 'row-span-1'}`}
               >
                 <Image
                   src={m.photo}
                   alt=""
                   fill
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 280px"
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  className="object-cover saturate-[1.04] contrast-[1.03] transition-transform duration-700 group-hover:scale-[1.04] group-hover:saturate-[1.1]"
                 />
-                <span className="absolute inset-0 bg-gradient-to-t from-[#061722]/95 via-[#061722]/18 to-black/5" />
-                <span className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-                  <span className="wak-card-title block text-white">{m.label[lang]}</span>
-                  <span className="wak-caption mt-1 block text-white/78">{m.desc[lang]}</span>
+                <span className="absolute inset-0 bg-gradient-to-t from-[#061722]/90 via-[#061722]/12 to-black/0" />
+                <span className={`absolute inset-x-0 bottom-0 p-4 sm:p-5 ${index === 0 ? 'md:p-7' : ''}`}>
+                  <span className={`wak-card-title block text-white ${index === 0 ? 'text-xl sm:text-2xl' : ''}`}>{m.label[lang]}</span>
+                  <span className={`wak-caption mt-1 block text-white/82 ${index === 0 ? 'max-w-sm sm:text-sm' : ''}`}>{m.desc[lang]}</span>
                 </span>
               </Link>
             )
