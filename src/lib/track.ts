@@ -136,6 +136,15 @@ function writeDebugEvent(name: string, payload: Record<string, string>) {
     ...entries.slice(-49),
     { event: name, payload, timestamp: new Date().toISOString() },
   ]
+  let output = document.getElementById('wakation-analytics-debug')
+  if (!output) {
+    output = document.createElement('output')
+    output.id = 'wakation-analytics-debug'
+    output.hidden = true
+    output.setAttribute('aria-hidden', 'true')
+    document.body.appendChild(output)
+  }
+  output.textContent = JSON.stringify({ event: name, payload })
   window.dispatchEvent(new CustomEvent('wakation:analytics', { detail: { event: name, payload } }))
 }
 
