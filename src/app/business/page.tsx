@@ -376,6 +376,7 @@ export default function BusinessPage() {
           desktopHeight={BUSINESS_DESKTOP.height!}
           mobileWidth={BUSINESS_MOBILE.width!}
           mobileHeight={BUSINESS_MOBILE.height!}
+          className="absolute inset-0 h-full w-full object-cover object-[65%_45%] md:object-[72%_15%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
