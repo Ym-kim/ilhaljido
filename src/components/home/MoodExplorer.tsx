@@ -37,7 +37,7 @@ const MOODS: { href: string; photo: string; label: L; desc: L }[] = [
     desc: { KO: '료칸과 노트북의 밸런스', EN: 'Ryokan-and-laptop balance', JP: '旅館とノートPCのバランス' },
   },
   {
-    href: '/collections/fukuoka-3n4d?src=mood', photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
+    href: '/collections/fukuoka-3n4d?src=mood', photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp',
     label: { KO: '카페와 미식', EN: 'Cafés & food', JP: 'カフェとグルメ' },
     desc: { KO: '후쿠오카 3박 4일 — 카페와 온천', EN: 'Fukuoka 3N4D — cafés & onsen', JP: '福岡3泊4日 — カフェと温泉' },
   },

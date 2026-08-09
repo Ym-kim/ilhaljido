@@ -19,7 +19,7 @@ const required = [
   ['Klook product id', '115689-fukuoka-itoshima-half-day-bus-tour', items],
   ['review source', 'reviewSnapshot:', data],
   ['review verified date', "verifiedAt: '2026-07-30'", data],
-  ['media manifest', "id: 'itoshima-coast-editorial-v1'", media],
+  ['media manifest', "id: 'itoshima-coast-editorial-model-g-v2'", media],
   ['illustrative flag', 'illustrative: true', media],
   ['sitemap registration', 'EXPERIENCE_EDITORIALS', sitemap],
   ['health check', 'klook:itoshima-photo-bus', health],
@@ -29,7 +29,7 @@ for (const [label, needle, source] of required) {
   if (!source.includes(needle)) failures.push(`${label}: missing ${needle}`)
 }
 
-const asset = path.join(root, 'public/campaign/itoshima-coast-editorial-v1.webp')
+const asset = path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp')
 if (!fs.existsSync(asset) || fs.statSync(asset).size === 0) failures.push('editorial image missing or empty')
 
 const slugs = [...data.matchAll(/slug: '([^']+)'/g)].map((match) => match[1])

@@ -201,7 +201,7 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     ],
     relatedTripSetSlugs: ['fukuoka-3n4d'],
     relatedGuideSlugs: ['fukuoka'],
-    mediaAssetIds: ['itoshima-coast-editorial-v1'],
+    mediaAssetIds: ['itoshima-coast-editorial-model-g-v2'],
     verifiedAt: '2026-07-30',
     sources: [
       { name: 'Klook activity 115689', url: 'https://www.klook.com/ko/activity/115689-fukuoka-itoshima-half-day-bus-tour/', verifiedAt: '2026-07-30', customerVisible: true },

@@ -36,7 +36,7 @@ const ROWS: DurationRow[] = [
   },
   {
     key: '3n4d',
-    photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp',
+    photo: '/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp',
     label: { KO: '3박 4일', EN: '3–4 days', JP: '3泊4日' },
     hint: { KO: '연차 하루면 되는', EN: 'One day off is all it takes', JP: '有休1日あれば' },
     chips: [

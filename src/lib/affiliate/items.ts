@@ -345,7 +345,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F115689-fukuoka-itoshima-half-day-bus-tour%2F',
     badge: '반나절 체험',
     trackingId: 'aid=126848',
-    coverPhoto: '/campaign/itoshima-coast-editorial-v1.webp',
+    coverPhoto: '/campaign/itoshima-coast-editorial-model-g-v2.webp',
     illustrative: true,
     sourceNote: 'Klook activity 115689 실물 확인, 4.9/5·후기 17건·약 5시간 (2026-07-30). 자체 제작 커버는 실제 투어 사진이 아님.',
     operatorAction: 'Klook 공식 리다이렉트 형식 적용 완료 (aid=126848, 2026-07-30)',
