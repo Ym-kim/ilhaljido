@@ -163,7 +163,18 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       return
     }
     setHeroSearchError(null)
-    try { trackAffiliateClick({ provider: 'Booking.com', status: 'active_affiliate', id: 'hero-search' }) } catch {}
+    trackAffiliateClick({
+      provider: 'Booking.com',
+      status: 'active_affiliate',
+      id: 'hero-search',
+      itemName: q,
+      sourceSection: 'home_hero_stay_search',
+      ctaLabel: tr('h3_search_go'),
+      ctaPosition: 'hero',
+      destination: q,
+      category: 'hotel',
+      locale: lang,
+    })
     window.open(buildBookingStaySearchHref({ destination: q, checkin, checkout }), '_blank', 'noopener,noreferrer')
   }
   const recruitingPrograms = getDomesticCurrent(lang)

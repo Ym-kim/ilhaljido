@@ -171,7 +171,18 @@ export function DomesticProgramsView({ forceLang }: { forceLang?: Lang }) {
                       href={buildBookingStaySearchHref({ destination: entry.bookingQuery })}
                       target="_blank"
                       rel="sponsored noopener noreferrer"
-                      onClick={() => trackAffiliateClick({ provider: 'Booking.com', status: 'active_affiliate', id: `domestic-${entry.id}` })}
+                      onClick={() => trackAffiliateClick({
+                        provider: 'Booking.com',
+                        status: 'active_affiliate',
+                        id: `domestic-${entry.id}`,
+                        itemName: `${entry.name[lang]} stay`,
+                        sourceSection: 'domestic_destination_card',
+                        ctaLabel: COPY.stay[lang],
+                        ctaPosition: 'card',
+                        destination: entry.id,
+                        category: 'hotel',
+                        locale: lang,
+                      })}
                       className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-[#0c7897] px-3 text-xs font-black text-white transition hover:bg-[#075f79] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d6c87]"
                     >
                       <BedDouble className="h-3.5 w-3.5" strokeWidth={ICON_STROKE} aria-hidden="true" /> {COPY.stay[lang]}

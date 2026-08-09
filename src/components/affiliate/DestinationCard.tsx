@@ -25,7 +25,7 @@ const ALT_SUFFIX: Record<Lang, string> = {
 
 // 단일 CTA — 파트너별 버튼 분리 대신 대표 파트너 1개로 통일 (2026-07-15 운영자 지시)
 // 우선순위: 활성 파트너 중 Trip.com(국내 MAU 1위) → 활성 아무거나 → 첫 링크
-function PrimaryButton({ link }: { link: ServiceLink }) {
+function PrimaryButton({ link, entry, category, locale }: { link: ServiceLink; entry: DestinationEntry; category: string; locale: Lang }) {
   const isActive = link.status === 'active_affiliate' || link.status === 'api_ready'
   const rel = isActive ? 'sponsored noopener noreferrer' : 'noopener noreferrer'
 
@@ -34,7 +34,18 @@ function PrimaryButton({ link }: { link: ServiceLink }) {
       href={link.href}
       target="_blank"
       rel={rel}
-      onClick={() => trackAffiliateClick({ provider: link.provider, status: link.status })}
+      onClick={() => trackAffiliateClick({
+        id: `${entry.id}-${link.provider.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+        itemName: `${entry.city} · ${link.label}`,
+        provider: link.provider,
+        status: link.status,
+        sourceSection: 'destination_card',
+        ctaLabel: link.label,
+        ctaPosition: 'card',
+        destination: entry.id,
+        category,
+        locale,
+      })}
       className={`flex w-full items-center justify-between gap-2 rounded-xl px-4 py-3 text-[0.8125rem] font-bold transition-all duration-200 ${
         isActive
           ? 'bg-brand-mid text-white shadow-sm hover:bg-brand-light hover:shadow-md'
@@ -58,10 +69,11 @@ function pickPrimaryLink(links: ServiceLink[]): ServiceLink | null {
 
 interface DestinationCardProps {
   entry: DestinationEntry
+  category?: string
   className?: string
 }
 
-export function DestinationCard({ entry, className = '' }: DestinationCardProps) {
+export function DestinationCard({ entry, category = 'travel', className = '' }: DestinationCardProps) {
   const { lang } = useLang()
   const hasActive = entry.links.some(
     (l) => l.status === 'active_affiliate' || l.status === 'api_ready'
@@ -125,7 +137,7 @@ export function DestinationCard({ entry, className = '' }: DestinationCardProps)
 
       {/* 대표 파트너 단일 CTA */}
       <div className="mt-auto p-4">
-        {primary && <PrimaryButton link={primary} />}
+        {primary && <PrimaryButton link={primary} entry={entry} category={category} locale={lang} />}
       </div>
     </div>
   )

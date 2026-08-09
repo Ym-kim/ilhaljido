@@ -4,10 +4,10 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowUpRight, Pause, Play } from 'lucide-react'
-import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
+import { trackAffiliateClick, trackEvent } from '@/lib/track'
 
 type L = Record<Lang, string>
 
@@ -18,6 +18,8 @@ type TickerItem = {
   href: string
   external?: boolean
   sponsored?: boolean
+  category?: 'activity' | 'esim' | 'transport' | 'hotel'
+  destination?: string
   label: L
   tag: L
 }
@@ -42,37 +44,37 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '지원사업', EN: 'Support', JP: '支援事業' },
   },
   {
-    id: 'ticker-teamlab', price: '₩32,900~',
+    id: 'ticker-teamlab', price: '₩32,900~', category: 'activity', destination: 'tokyo',
     href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', external: true, sponsored: true,
     label: { KO: '팀랩 플래닛 도쿄 티켓', EN: 'teamLab Planets TOKYO ticket', JP: 'チームラボプラネッツTOKYO' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
   {
-    id: 'ticker-japan-esim', price: 'US$11.50~',
+    id: 'ticker-japan-esim', price: 'US$11.50~', category: 'esim', destination: 'japan',
     href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim', external: true, sponsored: true,
     label: { KO: '일본 eSIM — 도착 전 5분 설치', EN: 'Japan eSIM — install before you land', JP: '日本eSIM — 到着前に5分で設置' },
     tag: { KO: 'Airalo', EN: 'Airalo', JP: 'Airalo' },
   },
   {
-    id: 'ticker-bellissima', price: '₩341,523~',
+    id: 'ticker-bellissima', price: '₩341,523~', category: 'transport', destination: 'korea',
     href: 'https://kr.trip.com/cruises/ship-msc-mscbellissima-496?curr=KRW&Allianceid=9024807', external: true, sponsored: true,
     label: { KO: 'MSC 벨리시마 — 한국 출발 크루즈', EN: 'MSC Bellissima — cruises from Korea', JP: 'MSCベリッシマ — 韓国発クルーズ' },
     tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
   },
   {
-    id: 'ticker-osaka-pass', price: '₩32,100~',
+    id: 'ticker-osaka-pass', price: '₩32,100~', category: 'transport', destination: 'osaka',
     href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848', external: true, sponsored: true,
     label: { KO: '오사카 주유패스 — 교통+40곳 입장', EN: 'Osaka Amazing Pass — transit + 40 spots', JP: '大阪周遊パス — 交通＋40カ所' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
   {
-    id: 'ticker-lyf-bangkok',
+    id: 'ticker-lyf-bangkok', category: 'hotel', destination: 'bangkok',
     href: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081', external: true, sponsored: true,
     label: { KO: '방콕 코리빙 lyf 수쿰빗 8', EN: 'lyf Sukhumvit 8 Bangkok co-living', JP: 'バンコク コリビング lyf' },
     tag: { KO: 'Booking', EN: 'Booking', JP: 'Booking' },
   },
   {
-    id: 'ticker-flight',
+    id: 'ticker-flight', category: 'transport', destination: 'global',
     href: 'https://kr.trip.com/flights/?Allianceid=9024807', external: true, sponsored: true,
     label: { KO: '항공권 요금 비교 — 전 노선', EN: 'Compare flight fares — all routes', JP: '航空券の料金比較 — 全路線' },
     tag: { KO: 'Trip.com', EN: 'Trip.com', JP: 'Trip.com' },
@@ -84,7 +86,7 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '새 기획', EN: 'New edit', JP: '新着' },
   },
   {
-    id: 'ticker-miracle', price: '₩120,000~',
+    id: 'ticker-miracle', price: '₩120,000~', category: 'transport', destination: 'busan-osaka',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     external: true, sponsored: true,
     label: { KO: '부산—오사카 미라클호 — 뷔페 2식 포함', EN: 'Busan–Osaka ferry — 2 buffet meals in', JP: '釜山—大阪ミラクル号 — ビュッフェ2食付き' },
@@ -97,7 +99,7 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '시즌 기획', EN: 'Seasonal', JP: '季節特集' },
   },
   {
-    id: 'ticker-eurail', price: '₩477,300~',
+    id: 'ticker-eurail', price: '₩477,300~', category: 'transport', destination: 'europe',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F9868-eurail-global-rail-pass%2F',
     external: true, sponsored: true,
     label: { KO: '유레일 글로벌 패스 — 유럽 33개국', EN: 'Eurail Global Pass — 33 countries', JP: 'ユーレイル グローバルパス — 33カ国' },
@@ -105,7 +107,7 @@ const ITEMS: TickerItem[] = [
   },
 ]
 
-function TickerCard({ item, lang, duplicate = false }: { item: TickerItem; lang: Lang; duplicate?: boolean }) {
+function TickerCard({ item, lang, position, duplicate = false }: { item: TickerItem; lang: Lang; position: number; duplicate?: boolean }) {
   const cls = 'group/item flex min-h-[74px] w-[272px] shrink-0 items-center gap-3 rounded-2xl border border-white/80 bg-white/82 px-4 py-3 shadow-[0_5px_18px_rgba(12,45,58,0.07)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-200 hover:bg-white hover:shadow-[0_10px_26px_rgba(12,45,58,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:w-[302px]'
   const inner = (
     <>
@@ -136,7 +138,21 @@ function TickerCard({ item, lang, duplicate = false }: { item: TickerItem; lang:
     </>
   )
   const onClick = () => {
-    try { track('promo_ticker_clicked', { id: item.id }) } catch {}
+    trackEvent('promo_ticker_clicked', { id: item.id, locale: lang, position: String(position) })
+    if (item.external && item.sponsored) {
+      trackAffiliateClick({
+        id: item.id,
+        itemName: item.label[lang],
+        provider: item.tag.EN,
+        status: 'active_affiliate',
+        sourceSection: 'promo_ticker',
+        ctaLabel: item.label[lang],
+        ctaPosition: String(position),
+        destination: item.destination,
+        category: item.category,
+        locale: lang,
+      })
+    }
   }
 
   return item.external ? (
@@ -157,7 +173,7 @@ export function PromoTicker() {
   const toggleMotion = () => {
     const next = !paused
     setPaused(next)
-    try { track('promo_ticker_motion_toggled', { state: next ? 'paused' : 'playing' }) } catch {}
+    trackEvent('promo_ticker_motion_toggled', { state: next ? 'paused' : 'playing', locale: lang })
   }
 
   return (
@@ -193,10 +209,10 @@ export function PromoTicker() {
             style={{ animationDuration: '94s', animationPlayState: paused ? 'paused' : undefined }}
           >
             <div className="flex gap-2 pr-2 sm:gap-3 sm:pr-3">
-              {ITEMS.map((item) => <TickerCard key={item.id} item={item} lang={lang} />)}
+              {ITEMS.map((item, index) => <TickerCard key={item.id} item={item} lang={lang} position={index + 1} />)}
             </div>
             <div className="flex gap-2 pr-2 sm:gap-3 sm:pr-3" aria-hidden>
-              {ITEMS.map((item) => <TickerCard key={`${item.id}-dup`} item={item} lang={lang} duplicate />)}
+              {ITEMS.map((item, index) => <TickerCard key={`${item.id}-dup`} item={item} lang={lang} position={index + 1} duplicate />)}
             </div>
           </div>
         </div>

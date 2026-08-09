@@ -1,70 +1,204 @@
 import { track } from '@vercel/analytics/react'
 
-type GtagWindow = Window & {
+type AuthTrackingState = 'true' | 'false' | 'unknown'
+
+type AnalyticsWindow = Window & {
   gtag?: (command: 'event', name: string, props: Record<string, string>) => void
+  __WAKATION_AUTH_STATE__?: AuthTrackingState
+  __WAKATION_ANALYTICS_DEBUG__?: Array<{
+    event: string
+    payload: Record<string, string>
+    timestamp: string
+  }>
 }
 
-function trackGaEvent(name: string, props: Record<string, string>) {
-  if (typeof window === 'undefined') return
-  ;(window as GtagWindow).gtag?.('event', name, props)
-}
-
-// 제휴 아웃바운드 클릭 계측 — 어떤 카드·파트너·상태가 실제 전환되는지 데이터화
-// (Vercel Analytics는 이미 layout에 로드됨, 추가 비용 0)
-// 범용 디스커버리 이벤트 — 홈 개편(무드·기간·도시 탐색) 퍼널 계측
-// 레포 컨벤션: Vercel Analytics track() 단일 채널 (GA4 gtag는 동의 게이트 뒤라 직접 호출 안 함)
-export function trackEvent(name: string, props?: Record<string, string>) {
-  try {
-    const payload = { page: typeof window !== 'undefined' ? window.location.pathname : 'unknown', ...props }
-    track(name, payload)
-    // GA4는 사용자가 분석 쿠키에 동의해 gtag가 로드된 경우에만 전송된다.
-    trackGaEvent(name, payload)
-  } catch {
-    // 계측 실패가 사용자 이동을 막지 않도록 무시
-  }
-}
-
-export function trackAffiliateClick(props: {
+export type AffiliateClickInput = {
   id?: string
+  itemName?: string
   provider?: string
   status?: string
   page?: string
+  sourcePage?: string
+  sourceSection?: string
+  ctaLabel?: string
+  ctaPosition?: string
   tripSetSlug?: string
   destination?: string
   category?: string
   locale?: string
   position?: string
-}) {
+  campaign?: string
+  isLoggedIn?: boolean
+}
+
+export type AffiliateClickPayload = {
+  partner: string
+  category: string
+  item_id: string
+  item_name: string
+  destination: string
+  source_page: string
+  source_section: string
+  cta_label: string
+  cta_position: string
+  locale: string
+  trip_set: string
+  campaign: string
+  campaign_source: string
+  campaign_content: string
+  is_logged_in: AuthTrackingState
+  status: string
+  categories_clicked: string
+  provider: string
+  id: string
+  page: string
+  position: string
+}
+
+const CAMPAIGN_CONTEXT_KEY = 'wakation_campaign_context'
+const AFFILIATE_CATEGORY_KEY = 'wakation_affiliate_categories'
+const DUPLICATE_WINDOW_MS = 900
+
+let lastAffiliateFingerprint = ''
+let lastAffiliateTimestamp = 0
+
+function currentPath() {
+  return typeof window === 'undefined' ? 'unknown' : window.location.pathname
+}
+
+function resolveLocale(value?: string) {
+  if (value) {
+    const normalized = value.toLowerCase()
+    if (normalized === 'jp') return 'ja'
+    if (normalized === 'ko' || normalized === 'en' || normalized === 'ja') return normalized
+  }
+  const pathname = currentPath()
+  if (pathname === '/en' || pathname.startsWith('/en/')) return 'en'
+  if (pathname === '/ja' || pathname.startsWith('/ja/')) return 'ja'
+  return 'ko'
+}
+
+function resolveAuthState(value?: boolean): AuthTrackingState {
+  if (typeof value === 'boolean') return value ? 'true' : 'false'
+  if (typeof window === 'undefined') return 'unknown'
+  return (window as AnalyticsWindow).__WAKATION_AUTH_STATE__ ?? 'unknown'
+}
+
+function readCampaignContext() {
+  const empty = { campaign: '', source: '', content: '' }
+  if (typeof window === 'undefined') return empty
   try {
-    let campaignContext: Record<string, string> = {}
-    if (typeof window !== 'undefined') {
-      try {
-        const raw = window.sessionStorage.getItem('wakation_campaign_context')
-        const parsed = raw ? JSON.parse(raw) as Record<string, unknown> : {}
-        campaignContext = Object.fromEntries(
-          ['campaign', 'destination', 'locale', 'source', 'content'].flatMap((key) =>
-            typeof parsed[key] === 'string' ? [[key, parsed[key] as string]] : [],
-          ),
-        )
-      } catch {
-        campaignContext = {}
-      }
+    const raw = window.sessionStorage.getItem(CAMPAIGN_CONTEXT_KEY)
+    const parsed = raw ? JSON.parse(raw) as Record<string, unknown> : {}
+    const search = new URLSearchParams(window.location.search)
+    const current = {
+      campaign: search.get('utm_campaign') ?? '',
+      source: search.get('utm_source') ?? '',
+      content: search.get('utm_content') ?? '',
     }
-    const payload = {
-      id: props.id ?? 'unknown',
-      provider: props.provider ?? 'unknown',
-      status: props.status ?? 'unknown',
-      page: props.page ?? (typeof window !== 'undefined' ? window.location.pathname : 'unknown'),
-      ...campaignContext,
-      ...(props.tripSetSlug ? { trip_set_slug: props.tripSetSlug } : {}),
-      ...(props.destination ? { destination: props.destination } : {}),
-      ...(props.category ? { category: props.category } : {}),
-      ...(props.locale ? { locale: props.locale } : {}),
-      ...(props.position ? { position: props.position } : {}),
+    const context = {
+      campaign: current.campaign || (typeof parsed.campaign === 'string' ? parsed.campaign : ''),
+      source: current.source || (typeof parsed.source === 'string' ? parsed.source : ''),
+      content: current.content || (typeof parsed.content === 'string' ? parsed.content : ''),
     }
-    track('affiliate_click', payload)
-    trackGaEvent('affiliate_click', payload)
+    if (current.campaign || current.source || current.content) {
+      window.sessionStorage.setItem(CAMPAIGN_CONTEXT_KEY, JSON.stringify(context))
+    }
+    return context
   } catch {
-    // 계측 실패가 사용자 이동을 막지 않도록 무시
+    return empty
+  }
+}
+
+function recordAffiliateCategory(category: string) {
+  if (typeof window === 'undefined') return { count: 0, isNew: false }
+  try {
+    const raw = window.sessionStorage.getItem(AFFILIATE_CATEGORY_KEY)
+    const parsed = raw ? JSON.parse(raw) as unknown : []
+    const previous = Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === 'string') : []
+    if (!category || category === 'unknown') return { count: previous.length, isNew: false }
+    const isNew = !previous.includes(category)
+    const next = isNew ? [...previous, category] : previous
+    window.sessionStorage.setItem(AFFILIATE_CATEGORY_KEY, JSON.stringify(next))
+    return { count: next.length, isNew }
+  } catch {
+    return { count: 0, isNew: false }
+  }
+}
+
+function writeDebugEvent(name: string, payload: Record<string, string>) {
+  if (typeof window === 'undefined') return
+  const search = new URLSearchParams(window.location.search)
+  if (search.get('analytics_debug') !== '1') return
+  const analyticsWindow = window as AnalyticsWindow
+  const entries = analyticsWindow.__WAKATION_ANALYTICS_DEBUG__ ?? []
+  analyticsWindow.__WAKATION_ANALYTICS_DEBUG__ = [
+    ...entries.slice(-49),
+    { event: name, payload, timestamp: new Date().toISOString() },
+  ]
+  window.dispatchEvent(new CustomEvent('wakation:analytics', { detail: { event: name, payload } }))
+}
+
+function emitEvent(name: string, payload: Record<string, string>) {
+  track(name, payload)
+  if (typeof window !== 'undefined') (window as AnalyticsWindow).gtag?.('event', name, payload)
+  writeDebugEvent(name, payload)
+}
+
+export function trackEvent(name: string, props?: Record<string, string>) {
+  try {
+    const page = currentPath()
+    emitEvent(name, { page, source_page: page, ...props })
+  } catch {
+    // Analytics must never block the user journey.
+  }
+}
+
+export function trackAffiliateClick(props: AffiliateClickInput) {
+  try {
+    const campaignContext = readCampaignContext()
+    const sourcePage = props.sourcePage ?? props.page ?? currentPath()
+    const itemId = props.id ?? 'unknown'
+    const partner = props.provider ?? 'unknown'
+    const category = props.category ?? 'unknown'
+    const ctaPosition = props.ctaPosition ?? props.position ?? 'unknown'
+    const fingerprint = [sourcePage, props.sourceSection, itemId, category, ctaPosition].join('|')
+    const now = Date.now()
+    if (fingerprint === lastAffiliateFingerprint && now - lastAffiliateTimestamp < DUPLICATE_WINDOW_MS) return
+    lastAffiliateFingerprint = fingerprint
+    lastAffiliateTimestamp = now
+
+    const categoryProgress = recordAffiliateCategory(category)
+    const payload: AffiliateClickPayload = {
+      partner,
+      category,
+      item_id: itemId,
+      item_name: props.itemName ?? itemId,
+      destination: props.destination ?? 'unknown',
+      source_page: sourcePage,
+      source_section: props.sourceSection ?? 'unknown',
+      cta_label: props.ctaLabel ?? 'external_link',
+      cta_position: ctaPosition,
+      locale: resolveLocale(props.locale),
+      trip_set: props.tripSetSlug ?? 'none',
+      campaign: (props.campaign ?? campaignContext.campaign) || 'none',
+      campaign_source: campaignContext.source || 'none',
+      campaign_content: campaignContext.content || 'none',
+      is_logged_in: resolveAuthState(props.isLoggedIn),
+      status: props.status ?? 'unknown',
+      categories_clicked: String(categoryProgress.count),
+      // Legacy aliases keep existing Vercel Analytics views usable during schema migration.
+      provider: partner,
+      id: itemId,
+      page: sourcePage,
+      position: ctaPosition,
+    }
+
+    emitEvent('affiliate_click', payload)
+    if (categoryProgress.isNew && categoryProgress.count === 2) {
+      emitEvent('second_category_click', payload)
+    }
+  } catch {
+    // Analytics must never block the external navigation.
   }
 }

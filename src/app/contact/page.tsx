@@ -121,6 +121,9 @@ export default function ContactPage() {
 
           <div className="mt-10 text-center">
             <p className="text-gray-400 text-xs">{tr('contact_note')}</p>
+            <a href="mailto:wakation.sf@gmail.com" className="mt-2 inline-flex min-h-11 items-center text-sm font-bold text-teal-700 underline decoration-teal-300 underline-offset-4 hover:text-teal-900">
+              wakation.sf@gmail.com
+            </a>
           </div>
         </div>
       </section>

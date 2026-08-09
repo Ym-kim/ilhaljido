@@ -153,7 +153,18 @@ export default function LanguagePage() {
                 href={t.href}
                 target="_blank"
                 rel="sponsored noopener noreferrer"
-                onClick={() => trackAffiliateClick({ id: t.id, provider: 'AmazingTalker', status: 'active_affiliate' })}
+                onClick={() => trackAffiliateClick({
+                  id: t.id,
+                  itemName: t.name[lang],
+                  provider: 'AmazingTalker',
+                  status: 'active_affiliate',
+                  sourceSection: 'language_tutor_card',
+                  ctaLabel: TUTOR_COPY.cta[lang],
+                  ctaPosition: 'card',
+                  destination: 'online',
+                  category: 'education',
+                  locale: lang,
+                })}
                 className="group bg-rose-50/60 border border-rose-100 rounded-3xl p-6 hover:border-rose-300 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-4">

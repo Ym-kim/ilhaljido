@@ -33,6 +33,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    ;(window as Window & { __WAKATION_AUTH_STATE__?: 'true' | 'false' | 'unknown' }).__WAKATION_AUTH_STATE__ = loading
+      ? 'unknown'
+      : user
+        ? 'true'
+        : 'false'
+  }, [loading, user])
+
   const signOut = async () => {
     await supabase.auth.signOut()
     setUser(null)

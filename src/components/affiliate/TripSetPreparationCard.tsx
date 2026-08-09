@@ -119,8 +119,12 @@ export function TripSetPreparationCard({
           onClick={() => {
             trackAffiliateClick({
               id: item.id,
+              itemName: title,
               provider: item.name,
               status: item.status,
+              sourceSection: 'trip_set_preparation',
+              ctaLabel: COPY.cta[lang],
+              ctaPosition: String(position),
               tripSetSlug,
               destination: destinationSlug,
               category: item.category,

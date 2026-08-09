@@ -68,7 +68,18 @@ export function DestinationSearch({ mode = 'hotel', forceLang }: { mode?: Mode; 
     }
     setError(null)
     const { provider, href } = buildLink(mode, destination, arrival, departure)
-    trackAffiliateClick({ provider, status: 'active_affiliate', id: `search-${mode}` })
+    trackAffiliateClick({
+      provider,
+      status: 'active_affiliate',
+      id: `search-${mode}`,
+      itemName: destination,
+      sourceSection: 'destination_search',
+      ctaLabel: mode === 'hotel' ? COPY.search[lang] : COPY.inflearn[lang],
+      ctaPosition: 'search_form',
+      destination,
+      category: mode === 'hotel' ? 'hotel' : 'education',
+      locale: lang,
+    })
     window.open(href, '_blank', 'noopener,noreferrer')
   }
 
