@@ -73,6 +73,7 @@ for (const slug of expectedTripSets) {
   }
 
   const seen = new Set()
+  const preparationOrders = []
   for (const match of references) {
     const id = match[1]
     if (seen.has(id)) errors.push(`${slug}: duplicate conversion item ${id}`)
@@ -95,6 +96,13 @@ for (const slug of expectedTripSets) {
       errors.push(`${slug}/${id}: valid verifiedAt missing`)
     }
 
+    const preparationOrder = Number(entryBlock.match(/preparationOrder:\s*(\d+)/)?.[1])
+    if (!Number.isInteger(preparationOrder) || preparationOrder < 1 || preparationOrder > 4) {
+      errors.push(`${slug}/${id}: preparationOrder must be 1-4`)
+    } else {
+      preparationOrders.push(preparationOrder)
+    }
+
     const itemBlock = findCatalogItem(id)
     if (!itemBlock) {
       errors.push(`${slug}/${id}: affiliate catalog item not found`)
@@ -106,6 +114,12 @@ for (const slug of expectedTripSets) {
     if (!/href:\s*/.test(itemBlock)) errors.push(`${slug}/${id}: href missing`)
     if (!/trackingId:\s*'[^']+'/.test(itemBlock)) errors.push(`${slug}/${id}: trackingId missing`)
     if (!/coverPhoto:\s*'[^']+'/.test(itemBlock)) errors.push(`${slug}/${id}: coverPhoto missing`)
+  }
+
+  const expectedOrder = Array.from({ length: references.length }, (_, index) => index + 1).join(',')
+  const actualOrder = [...preparationOrders].sort((a, b) => a - b).join(',')
+  if (actualOrder !== expectedOrder) {
+    errors.push(`${slug}: preparationOrder must be unique and contiguous (${expectedOrder}), found ${actualOrder || 'none'}`)
   }
 }
 

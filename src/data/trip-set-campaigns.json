@@ -3,8 +3,8 @@
     "id": "fukuoka-3n4d",
     "sourceType": "generated",
     "usage": "editorial",
-    "createdAt": "2026-07-30",
-    "image": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+    "createdAt": "2026-08-10",
+    "image": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
     "accent": "#9AAA86",
     "alt": {
       "KO": "아침 햇살이 드는 일본 카페에서 커피를 마시며 잠시 쉬는 여행자",
@@ -13,7 +13,7 @@
     },
     "focalPoint": { "x": 48, "y": 48 },
     "illustrative": true,
-    "source": "OpenAI ImageGen editorial asset, 2026-07-30",
+    "source": "OpenAI built-in image generation using the approved WAK-MODEL-G identity reference, 2026-08-10",
     "license": "Project-owned generated editorial asset; not evidence of an actual Wakation stay or participant",
     "copy": {
       "KO": {

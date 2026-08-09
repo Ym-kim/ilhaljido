@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-07-30",
+  "generatedAt": "2026-08-10",
   "count": 32,
   "assets": [
     {
@@ -663,9 +663,9 @@
       "width": 1080,
       "height": 1350,
       "mimeType": "image/webp",
-      "bytes": 98702,
-      "sha256": "119295bbdca0915dc6329e78200310b4e14031de9b26e41261c8db7c407a8b59",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 96896,
+      "sha256": "7af8389fbea4bba266d03e48a6148d77fd4426e36302d817c930c4dd8f815cab",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -744,9 +744,9 @@
       "width": 1080,
       "height": 1350,
       "mimeType": "image/webp",
-      "bytes": 100032,
-      "sha256": "d6f81ddc7601dec969b3dee9c6d8e78e9742dc20f4b807e1f23282d04cf3a632",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 98230,
+      "sha256": "74cf403b39f85be717ff00fef2ad84421b93d759f6683d526b000edef41cfba3",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -826,9 +826,9 @@
       "width": 1200,
       "height": 630,
       "mimeType": "image/webp",
-      "bytes": 72946,
-      "sha256": "def8f4fc1ee4456105f0c2380bf419d7865c32285792ba700d2ec19675fa81bc",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 73292,
+      "sha256": "d40901520e17f01e7b634e1a0565ddaf2d4a57fc8ef5b675e1a96860a6aac7df",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -907,9 +907,9 @@
       "width": 1200,
       "height": 630,
       "mimeType": "image/webp",
-      "bytes": 70184,
-      "sha256": "af267c1fff0bf0e8d2a673e6c3f42f7aa1b4c5dbbd76aa01eee9d88ab00eb128",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 70174,
+      "sha256": "a0753f2396d516e3c4f3f9444c4cb7913ec84b736ebad38f72bba545048c159a",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -988,9 +988,9 @@
       "width": 1080,
       "height": 1080,
       "mimeType": "image/webp",
-      "bytes": 93768,
-      "sha256": "80abecba76bd9025db535be1bdea1164ed8fba637dfa66a292f3ab61f79b45ef",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 92964,
+      "sha256": "563e02cf60ca7934096326072821204cbf9af4841b63fec811b3fbf1d4e61298",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -1069,9 +1069,9 @@
       "width": 1080,
       "height": 1080,
       "mimeType": "image/webp",
-      "bytes": 93374,
-      "sha256": "d6c66e8895565def7926b7e6f433aa82e14ee7504a3d832cc5ddf6ef6f0754a2",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 92692,
+      "sha256": "405f7a5491eac883f2f79beb9003ca9df9c8a140afa7cb2d95fe31157b821232",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -1151,9 +1151,9 @@
       "width": 1080,
       "height": 1920,
       "mimeType": "image/webp",
-      "bytes": 100476,
-      "sha256": "49ec4353a21474b7f68d21eef905d288bfe01918d30f5be6480a85a448b0600a",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 96954,
+      "sha256": "adb38a970ff32fb248f082e6e36c0b4e398498008ec2b40ca2c06446dfcbffc2",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {
@@ -1232,9 +1232,9 @@
       "width": 1080,
       "height": 1920,
       "mimeType": "image/webp",
-      "bytes": 98450,
-      "sha256": "1c43af7db21a514ec0df5e89e74e0aaacad28067cbf99a200e7e91091ec46909",
-      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp",
+      "bytes": 95210,
+      "sha256": "b67d5c41685dad59f6419943995336f3cc2e35623fa2739592a1a562d9dbdaf3",
+      "source": "/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp",
       "layout": {
         "version": 2,
         "canvas": {

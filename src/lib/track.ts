@@ -49,6 +49,9 @@ export type AffiliateClickPayload = {
   is_logged_in: AuthTrackingState
   status: string
   categories_clicked: string
+  affiliate_click_number: string
+  previous_category: string
+  cross_category: string
   provider: string
   id: string
   page: string
@@ -57,6 +60,7 @@ export type AffiliateClickPayload = {
 
 const CAMPAIGN_CONTEXT_KEY = 'wakation_campaign_context'
 const AFFILIATE_CATEGORY_KEY = 'wakation_affiliate_categories'
+const AFFILIATE_JOURNEY_KEY = 'wakation_affiliate_journey'
 const DUPLICATE_WINDOW_MS = 900
 
 let lastAffiliateFingerprint = ''
@@ -126,6 +130,33 @@ function recordAffiliateCategory(category: string) {
   }
 }
 
+function recordAffiliateJourney(category: string) {
+  const empty = { clickCount: 1, previousCategory: 'none', crossCategory: false }
+  if (typeof window === 'undefined') return empty
+  try {
+    const raw = window.sessionStorage.getItem(AFFILIATE_JOURNEY_KEY)
+    const parsed = raw ? JSON.parse(raw) as Record<string, unknown> : {}
+    const previousCount = typeof parsed.clickCount === 'number' && Number.isFinite(parsed.clickCount)
+      ? Math.max(0, Math.floor(parsed.clickCount))
+      : 0
+    const previousCategory = typeof parsed.lastCategory === 'string' && parsed.lastCategory
+      ? parsed.lastCategory
+      : 'none'
+    const clickCount = previousCount + 1
+    const crossCategory = previousCategory !== 'none'
+      && category !== 'unknown'
+      && previousCategory !== category
+
+    window.sessionStorage.setItem(AFFILIATE_JOURNEY_KEY, JSON.stringify({
+      clickCount,
+      lastCategory: category,
+    }))
+    return { clickCount, previousCategory, crossCategory }
+  } catch {
+    return empty
+  }
+}
+
 function writeDebugEvent(name: string, payload: Record<string, string>) {
   if (typeof window === 'undefined') return
   const search = new URLSearchParams(window.location.search)
@@ -186,6 +217,7 @@ export function trackAffiliateClick(props: AffiliateClickInput) {
     lastAffiliateTimestamp = now
 
     const categoryProgress = recordAffiliateCategory(category)
+    const journeyProgress = recordAffiliateJourney(category)
     const payload: AffiliateClickPayload = {
       partner,
       category,
@@ -204,6 +236,9 @@ export function trackAffiliateClick(props: AffiliateClickInput) {
       is_logged_in: resolveAuthState(props.isLoggedIn),
       status: props.status ?? 'unknown',
       categories_clicked: String(categoryProgress.count),
+      affiliate_click_number: String(journeyProgress.clickCount),
+      previous_category: journeyProgress.previousCategory,
+      cross_category: journeyProgress.crossCategory ? 'true' : 'false',
       // Legacy aliases keep existing Vercel Analytics views usable during schema migration.
       provider: partner,
       id: itemId,
@@ -212,6 +247,12 @@ export function trackAffiliateClick(props: AffiliateClickInput) {
     }
 
     emitEvent('affiliate_click', payload)
+    if (journeyProgress.clickCount === 2) {
+      emitEvent('second_affiliate_click', payload)
+    }
+    if (journeyProgress.crossCategory) {
+      emitEvent('cross_category_click', payload)
+    }
     if (categoryProgress.isNew && categoryProgress.count === 2) {
       emitEvent('second_category_click', payload)
     }

@@ -282,7 +282,7 @@ export function getCampaignHref(lang: Lang) {
 export function getCampaignImage(lang: Lang) {
   return lang === 'JP'
     ? '/campaign/trip-sets/busan-weekend-editorial-v1.webp'
-    : '/campaign/trip-sets/fukuoka-3n4d-editorial-v1.webp'
+    : '/campaign/trip-sets/fukuoka-3n4d-editorial-model-g-v2.webp'
 }
 
 export function getCampaignAlt(lang: Lang) {

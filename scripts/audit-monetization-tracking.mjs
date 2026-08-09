@@ -31,6 +31,9 @@ const requiredAffiliateFields = [
   'campaign_content',
   'is_logged_in',
   'status',
+  'affiliate_click_number',
+  'previous_category',
+  'cross_category',
 ]
 
 const checks = [
@@ -42,6 +45,9 @@ const checks = [
   ['short duplicate-click guard', files.track.includes('DUPLICATE_WINDOW_MS') && files.track.includes('lastAffiliateFingerprint')],
   ['campaign context persists in session', files.track.includes('CAMPAIGN_CONTEXT_KEY') && files.track.includes('sessionStorage.setItem(CAMPAIGN_CONTEXT_KEY')],
   ['second category event', files.track.includes("emitEvent('second_category_click', payload)")],
+  ['second affiliate click event', files.track.includes("emitEvent('second_affiliate_click', payload)")],
+  ['cross-category transition event', files.track.includes("emitEvent('cross_category_click', payload)")],
+  ['affiliate journey persists in session', files.track.includes('AFFILIATE_JOURNEY_KEY') && files.track.includes('lastCategory: category')],
   ['debug mode is opt-in', files.track.includes("search.get('analytics_debug') !== '1'")],
   ['debug capture is isolated from analytics transport failures', files.track.indexOf('writeDebugEvent(name, payload)') < files.track.indexOf('track(name, payload)')],
   ['debug payload exposes a hidden Preview-only DOM probe', files.track.includes("output.id = 'wakation-analytics-debug'") && files.track.includes('output.hidden = true')],

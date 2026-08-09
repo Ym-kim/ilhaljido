@@ -45,7 +45,8 @@
     "audit:product-media-truth": "node scripts/audit-product-media-truth.mjs --strict --summary",
     "audit:monetization-tracking": "node scripts/audit-monetization-tracking.mjs",
     "audit:b2b-conversion": "node scripts/audit-b2b-conversion.mjs",
-    "audit:verification-claims": "node scripts/audit-verification-claims.mjs"
+    "audit:verification-claims": "node scripts/audit-verification-claims.mjs",
+    "audit:trip-set-funnel": "node scripts/audit-trip-set-funnel.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.95.2",

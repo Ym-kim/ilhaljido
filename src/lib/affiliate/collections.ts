@@ -17,6 +17,7 @@ type L = Record<Lang, string>
 
 export type TripSetConversionItem = {
   affiliateItemId: string
+  preparationOrder: number
   reason: L
   verificationLevel: VerificationLevel
   verifiedAt: string
@@ -156,6 +157,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-webase-hakata',
+        preparationOrder: 2,
         verificationLevel: 'research',
         reason: {
           KO: '하카타를 거점으로 두면 도착일 이동과 오전 업무 동선을 짧게 잡을 수 있어요.',
@@ -166,6 +168,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-fukuoka-bustour',
+        preparationOrder: 4,
         verificationLevel: 'research',
         reason: {
           KO: '하루를 비울 수 있다면 다자이후·유후인·벳부를 한 동선으로 살펴보는 선택이에요.',
@@ -176,6 +179,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-klook-japan',
+        preparationOrder: 3,
         verificationLevel: 'research',
         reason: {
           KO: '출발 전에 설치해 두면 공항 도착 직후 지도와 업무 연락을 바로 확인할 수 있어요.',
@@ -186,6 +190,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-flight-tripcom',
+        preparationOrder: 1,
         verificationLevel: 'research',
         reason: {
           KO: '3박 4일은 출도착 시간이 체류 시간을 좌우해 왕복 일정을 먼저 비교하는 편이 좋아요.',
@@ -251,6 +256,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-lively-osaka',
+        preparationOrder: 1,
         verificationLevel: 'research',
         reason: {
           KO: '친구와 쉬는 공간과 각자 일할 라운지를 한 숙소 안에서 함께 확보하는 선택이에요.',
@@ -261,6 +267,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-osaka-usj',
+        preparationOrder: 2,
         verificationLevel: 'research',
         reason: {
           KO: '테마파크 하루를 일정의 중심에 두고 나머지 날을 가볍게 구성할 때 잘 맞아요.',
@@ -271,6 +278,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-klook-osaka-pass',
+        preparationOrder: 3,
         verificationLevel: 'research',
         reason: {
           KO: 'Day 3의 전망대·크루즈·도심 이동을 하나의 패스로 묶어 계획을 단순하게 해요.',
@@ -281,6 +289,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-klook-japan',
+        preparationOrder: 4,
         verificationLevel: 'research',
         reason: {
           KO: '친구와 흩어져 움직일 때도 지도와 메시지를 바로 확인할 수 있게 출발 전에 준비해요.',
@@ -344,6 +353,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-fraser-seoul',
+        preparationOrder: 1,
         verificationLevel: 'research',
         reason: {
           KO: '주방과 세탁이 있는 도심 거점은 3박 4일을 관광보다 생활에 가깝게 만들어줘요.',
@@ -354,6 +364,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'theme-sports-seoul-baseball',
+        preparationOrder: 4,
         verificationLevel: 'research',
         reason: {
           KO: '낮의 성수·연남 산책 뒤에 서울의 저녁 문화를 경험하는 Day 3 선택이에요.',
@@ -364,6 +375,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-airalo',
+        preparationOrder: 3,
         verificationLevel: 'research',
         reason: {
           KO: '해외에서 서울을 찾는 여행자라면 지도·번역·업무 연락을 위한 연결을 먼저 준비해요.',
@@ -374,6 +386,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-transfer-klook',
+        preparationOrder: 2,
         verificationLevel: 'research',
         reason: {
           KO: '짐이 많거나 늦게 도착한다면 공항에서 숙소까지의 첫 이동을 미리 비교해 보세요.',
@@ -438,6 +451,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-uh-busan',
+        preparationOrder: 2,
         verificationLevel: 'research',
         reason: {
           KO: '짧은 주말에는 해운대 산책과 휴식을 숙소 주변에서 해결할 수 있는 거점이 효율적이에요.',
@@ -448,6 +462,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'cruise-panstar-miracle',
+        preparationOrder: 1,
         verificationLevel: 'research',
         reason: {
           KO: '오사카에서 부산으로 들어오는 여행자라면 이동 자체를 하룻밤 여정으로 바꾸는 선택이에요.',
@@ -458,6 +473,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-airalo',
+        preparationOrder: 4,
         verificationLevel: 'research',
         reason: {
           KO: '해외에서 부산을 찾는 경우 지도와 번역을 위해 도착 전 연결을 준비해 두세요.',
@@ -468,6 +484,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-transfer-klook',
+        preparationOrder: 3,
         verificationLevel: 'research',
         reason: {
           KO: '해운대까지 짐을 들고 이동하는 부담이 크다면 공항 이동 조건을 먼저 확인해 보세요.',
@@ -845,6 +862,8 @@ export const COLLECTIONS_UI: Record<string, L> = {
     EN: 'Start with why each option fits the itinerary, then confirm prices and terms with the partner.',
     JP: 'この日程に合う理由を確認してから、料金・利用条件は提携先で最終確認してください。',
   },
+  ts_order_hint: { KO: '준비 순서대로 살펴보세요', EN: 'Follow the preparation order', JP: '準備の順に確認' },
+  ts_viewed: { KO: '살펴봄', EN: 'viewed', JP: '閲覧済み' },
   ts_verified: { KO: '조건 확인', EN: 'Details checked', JP: '条件確認' },
   ts_partner_cta: { KO: '제휴사에서 조건 확인', EN: 'Check terms with partner', JP: '提携先で条件を確認' },
   ts_save_add: { KO: '여행 준비에 저장', EN: 'Save for this trip', JP: '旅の準備に保存' },

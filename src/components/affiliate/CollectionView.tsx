@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef, useSyncExternalStore } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -19,12 +19,57 @@ import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 import { TripSetPreparationCard } from '@/components/affiliate/TripSetPreparationCard'
 
+const PREPARATION_PROGRESS_EVENT = 'wakation:trip-preparation-progress'
+
+const COMFORT_SOURCE_COPY: Record<string, Record<Lang, string>> = {
+  '가이드 검증': { KO: '가이드 공개 정보 확인', EN: 'Guide sources checked', JP: 'ガイド公開情報を確認' },
+  '공식 발표': { KO: '공식 발표', EN: 'Official announcement', JP: '公式発表' },
+  '부산시 보도자료': { KO: '부산시 보도자료', EN: 'Busan City release', JP: '釜山市報道資料' },
+}
+
+function localizeComfortSource(source: string, lang: Lang) {
+  return COMFORT_SOURCE_COPY[source]?.[lang] ?? source
+}
+
+function subscribePreparationProgress(onStoreChange: () => void) {
+  window.addEventListener(PREPARATION_PROGRESS_EVENT, onStoreChange)
+  window.addEventListener('storage', onStoreChange)
+  return () => {
+    window.removeEventListener(PREPARATION_PROGRESS_EVENT, onStoreChange)
+    window.removeEventListener('storage', onStoreChange)
+  }
+}
+
+function readPreparationProgress(key: string) {
+  try {
+    return window.sessionStorage.getItem(key) ?? '[]'
+  } catch {
+    return '[]'
+  }
+}
+
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
 export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
   const col = getCollection(slug)
   const conversionSectionRef = useRef<HTMLElement>(null)
+  const preparationStorageKey = `wakation_trip_preparation:${slug}`
+  const preparationSnapshot = useSyncExternalStore(
+    subscribePreparationProgress,
+    () => readPreparationProgress(preparationStorageKey),
+    () => '[]',
+  )
+  const viewedPreparationIds = useMemo(() => {
+    try {
+      const parsed = JSON.parse(preparationSnapshot) as unknown
+      return Array.isArray(parsed)
+        ? parsed.filter((value): value is string => typeof value === 'string')
+        : []
+    } catch {
+      return []
+    }
+  }, [preparationSnapshot])
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -80,11 +125,14 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
     )
   }
 
-  const conversionItems = (col.conversionItems ?? []).flatMap((entry, index) => {
+  const conversionItems = (col.conversionItems ?? []).flatMap((entry, sourceIndex) => {
     const item = getCatalogItems([entry.affiliateItemId])[0]
     if (!item || item.status !== 'active_affiliate' || !item.href) return []
-    return [{ entry, item: localizeAffiliateItem(item, lang), position: index + 1 }]
-  })
+    return [{ entry, item: localizeAffiliateItem(item, lang), sourceIndex }]
+  }).sort((a, b) => (
+    a.entry.preparationOrder - b.entry.preparationOrder
+    || a.sourceIndex - b.sourceIndex
+  )).map((entry, index) => ({ ...entry, position: index + 1 }))
   const items = col.duration && conversionItems.length > 0
     ? conversionItems.map(({ item }) => item)
     : getCatalogItems(col.itemIds).map((item) => localizeAffiliateItem(item, lang))
@@ -92,10 +140,20 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
   const socialCopy = (lang === 'KO' || lang === 'JP') ? campaign?.copy[lang] : undefined
   const accent = campaign?.accent ?? '#38bdf8'
   const flagshipExperience = col.slug === 'fukuoka-3n4d' ? getExperienceEditorial('itoshima-photo-bus-tour') : undefined
-  const categoryOrder = ['hotel', 'activity', 'transport', 'esim', 'insurance', 'education', 'visa'] as const
-  const categorySummary = categoryOrder
+  const categorySummary = [...new Set(items.map((item) => item.category))]
     .map((category) => ({ category, count: items.filter((item) => item.category === category).length }))
-    .filter((entry) => entry.count > 0)
+  const viewedPreparationSet = new Set(viewedPreparationIds)
+  const viewedPreparationCount = conversionItems.filter(({ item }) => viewedPreparationSet.has(item.id)).length
+  const nextPreparationId = conversionItems.find(({ item }) => !viewedPreparationSet.has(item.id))?.item.id
+  const markPreparationViewed = (itemId: string) => {
+    if (viewedPreparationIds.includes(itemId)) return
+    try {
+      window.sessionStorage.setItem(preparationStorageKey, JSON.stringify([...viewedPreparationIds, itemId]))
+      window.dispatchEvent(new Event(PREPARATION_PROGRESS_EVENT))
+    } catch {
+      // Progress is a convenience only; outbound conversion must remain available.
+    }
+  }
   const trackSection = (section: string, placement: 'intro' | 'sticky') => {
     trackEvent('trip_set_section_click', {
       slug: col.slug,
@@ -269,7 +327,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
                     {f.value[lang]}
                     {f.verifiedAt && (
                       <span className="block text-[#b6c2d1] text-[0.65rem] mt-0.5">
-                        {f.source ? `${f.source} · ` : ''}{f.verifiedAt}
+                        {f.source ? `${localizeComfortSource(f.source, lang)} · ` : ''}{f.verifiedAt}
                       </span>
                     )}
                   </span>
@@ -305,6 +363,13 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
           )}
           <div className="mb-7 mt-4 flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold text-[#8a989f]">{items.length}{COLLECTIONS_UI.count_label[lang]}</span>
+            {col.duration && conversionItems.length > 0 && (
+              <span className="rounded-full border border-[#b9d8e1] bg-[#eef8fa] px-2.5 py-1 text-[0.6875rem] font-bold text-[#2c677c]" aria-live="polite">
+                {viewedPreparationCount > 0
+                  ? `${viewedPreparationCount}/${conversionItems.length} ${COLLECTIONS_UI.ts_viewed[lang]}`
+                  : COLLECTIONS_UI.ts_order_hint[lang]}
+              </span>
+            )}
             {col.duration && categorySummary.map(({ category, count }) => (
               <span key={category} className="rounded-full border border-[#dce6e7] bg-[#f6f9f8] px-2.5 py-1 text-[0.6875rem] font-bold text-[#526a74]">
                 {COLLECTIONS_UI[`ts_category_${category}`][lang]} {count}
@@ -325,6 +390,10 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
                     tripSetSlug={col.slug}
                     destinationSlug={col.cityGuideSlug ?? col.slug}
                     position={position}
+                    isNext={item.id === nextPreparationId}
+                    isViewed={viewedPreparationSet.has(item.id)}
+                    hasViewedAny={viewedPreparationCount > 0}
+                    onPrepareClick={markPreparationViewed}
                   />
                 ))
               : items.map((item) => (
