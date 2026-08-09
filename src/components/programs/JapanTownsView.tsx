@@ -91,7 +91,7 @@ export function JapanTownsView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#64748b] text-sm mb-7">{COPY.stays_sub[lang]}</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {towns.map((entry) => (
-              <DestinationCard key={entry.id} entry={localizeDestination(entry, lang)} />
+              <DestinationCard key={entry.id} entry={localizeDestination(entry, lang)} category="hotel" />
             ))}
           </div>
         </div>

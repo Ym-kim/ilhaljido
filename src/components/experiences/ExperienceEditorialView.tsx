@@ -87,12 +87,12 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
   if (!media || !item) return null
 
   const handleSave = () => {
-    toggle(experience.affiliateItemId)
-    trackEvent('save_click', {
+    toggle(experience.affiliateItemId, {
       content_type: 'experience',
-      slug: experience.slug,
+      content_slug: experience.slug,
       locale: lang,
-      action: saved ? 'remove' : 'save',
+      destination: experience.destinationSlug,
+      source_section: 'experience_editorial',
     })
   }
 
@@ -103,7 +103,18 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
       destination: experience.destinationSlug,
       provider: 'klook',
     })
-    trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
+    trackAffiliateClick({
+      id: item.id,
+      itemName: item.productTitle ?? item.displayTitle ?? item.name,
+      provider: item.name,
+      status: item.status,
+      sourceSection: 'experience_editorial_provider',
+      ctaLabel: COPY.cta[lang],
+      ctaPosition: 'provider_cta',
+      destination: experience.destinationSlug,
+      category: item.category,
+      locale: lang,
+    })
   }
 
   return (

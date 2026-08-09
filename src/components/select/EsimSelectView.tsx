@@ -122,7 +122,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
                 live && entry.tags[0]?.startsWith('US$')
                   ? { ...entry, tags: [live, ...entry.tags.slice(1)] }
                   : entry
-              return <DestinationCard key={entry.id} entry={localizeDestination(withLivePrice, lang)} />
+              return <DestinationCard key={entry.id} entry={localizeDestination(withLivePrice, lang)} category="esim" />
             })}
           </div>
         </div>

@@ -235,7 +235,18 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
               href={guide.flightUrl}
               target="_blank"
               rel="sponsored noopener noreferrer"
-              onClick={() => trackAffiliateClick({ id: `flight-${guide.slug}`, provider: 'Trip.com', status: 'active_affiliate' })}
+              onClick={() => trackAffiliateClick({
+                id: `flight-${guide.slug}`,
+                itemName: `${guide.name[lang]} flight`,
+                provider: 'Trip.com',
+                status: 'active_affiliate',
+                sourceSection: 'guide_travel_preparation',
+                ctaLabel: GUIDE_UI.flightCta[lang],
+                ctaPosition: 'guide_footer',
+                destination: guide.slug,
+                category: 'transport',
+                locale: lang,
+              })}
               className="inline-flex items-center gap-2 justify-center px-6 py-3.5 rounded-full border-2 border-brand-mid text-brand-mid font-bold text-[0.9375rem] hover:bg-brand-mid hover:text-white transition-all"
             >
               <Plane className="w-4 h-4" strokeWidth={ICON_STROKE} />

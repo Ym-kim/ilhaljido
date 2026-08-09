@@ -56,7 +56,18 @@ export function RecentRail() {
                 href={item.href}
                 target="_blank"
                 rel={isActive ? 'sponsored noopener noreferrer' : 'noopener noreferrer'}
-                onClick={() => trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })}
+                onClick={() => trackAffiliateClick({
+                  id: item.id,
+                  itemName: item.productTitle ?? item.displayTitle ?? item.name,
+                  provider: item.name,
+                  status: item.status,
+                  sourceSection: 'recently_viewed',
+                  ctaLabel: item.cta,
+                  ctaPosition: 'rail',
+                  destination: item.destination,
+                  category: item.category,
+                  locale: lang,
+                })}
                 className="group shrink-0 flex items-center gap-2.5 bg-white border border-[#e2e8f0] rounded-xl pl-1.5 pr-3 py-1.5 hover:border-[#7dd3fc] hover:shadow-sm transition-all w-56"
               >
                 {item.coverPhoto ? (

@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
   ArrowRight, ArrowUpRight, Building2, CheckCircle2, ClipboardList,
   HandCoins, Lightbulb, MessageCircle, Send, Users, Zap,
 } from 'lucide-react'
-import { track } from '@vercel/analytics/react'
 import { ICON_STROKE } from '@/lib/icons'
 import { useLang } from '@/context/LanguageContext'
 import { getSupportPrograms } from '@/lib/i18n'
@@ -18,6 +17,7 @@ import type { Lang } from '@/lib/i18n/types'
 import { getMediaAsset } from '@/lib/media/assets'
 import { trackEditorialAssetCta, trackEditorialAssetView } from '@/lib/media/editorialTracking'
 import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
+import { trackEvent } from '@/lib/track'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 기업·팀 워케이션 B2B 랜딩 — 더휴일(thehyuil.co.kr) 벤치마크 2026-07-15
@@ -177,8 +177,13 @@ export default function BusinessPage() {
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
   const [consent, setConsent] = useState(false)
+  const inquiryStarted = useRef(false)
 
   useEffect(() => {
+    trackEvent('business_view', {
+      locale: lang.toLowerCase(),
+      source_section: 'business_landing',
+    })
     trackEditorialAssetView({
       assetId: BUSINESS_DESKTOP.id,
       mobileAssetId: BUSINESS_MOBILE.id,
@@ -193,6 +198,15 @@ export default function BusinessPage() {
     setForm((p) => ({ ...p, [k]: e.target.value }))
 
   const bizTypeLabel = BIZ_TYPES.find((b) => b.v === form.bizType)?.l[lang] ?? form.bizType
+
+  const trackInquiryStart = () => {
+    if (inquiryStarted.current) return
+    inquiryStarted.current = true
+    trackEvent('business_inquiry_start', {
+      locale: lang.toLowerCase(),
+      source_section: 'business_inquiry_form',
+    })
+  }
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -226,7 +240,11 @@ export default function BusinessPage() {
       })
       if (!res.ok) throw new Error('submit failed')
       setDone(true)
-      try { track('business_inquiry_submitted') } catch { /* 계측 실패 무시 */ }
+      trackEvent('business_inquiry_submit', {
+        locale: lang.toLowerCase(),
+        source_section: 'business_inquiry_form',
+        legacy_event: 'business_inquiry_submitted',
+      })
     } catch {
       setError(t('f_fail'))
     } finally {
@@ -448,7 +466,7 @@ export default function BusinessPage() {
               <p className="text-[#64748b] text-sm">{t('f_done_d')}</p>
             </div>
           ) : (
-            <form onSubmit={submit} className="space-y-5">
+            <form onSubmit={submit} onFocusCapture={trackInquiryStart} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label htmlFor="business-name" className={labelCls}>{t('f_name')} *</label>

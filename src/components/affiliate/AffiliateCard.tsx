@@ -97,7 +97,18 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
         target="_blank"
         rel={meta.rel}
         onClick={() => {
-          trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
+          trackAffiliateClick({
+            id: item.id,
+            itemName: title,
+            provider: item.name,
+            status: item.status,
+            sourceSection: 'affiliate_card_visual',
+            ctaLabel: item.cta,
+            ctaPosition: 'card',
+            destination: item.destination,
+            category: item.category,
+            locale: lang,
+          })
           recordRecentlyViewed(item.id)
         }}
         className={`wak-card-product group flex h-full min-h-[24rem] flex-col overflow-hidden border border-[#dfe6e9] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#a9cbd9] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)] ${className}`}
@@ -219,7 +230,18 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
       target="_blank"
       rel={meta.rel}
       onClick={() => {
-        trackAffiliateClick({ id: item.id, provider: item.name, status: item.status })
+        trackAffiliateClick({
+          id: item.id,
+          itemName: title,
+          provider: item.name,
+          status: item.status,
+          sourceSection: 'affiliate_card',
+          ctaLabel: item.cta,
+          ctaPosition: 'card',
+          destination: item.destination,
+          category: item.category,
+          locale: lang,
+        })
         recordRecentlyViewed(item.id)
       }}
       className={`wak-card-product group relative flex h-full flex-col overflow-hidden bg-[#17212a] transition-all duration-300 hover:-translate-y-1 ${

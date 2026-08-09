@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useSyncExternalStore } from 'react'
+import { trackEvent } from '@/lib/track'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 위시리스트 — localStorage 기반 (로그인·백엔드 불필요, 비용 0)
@@ -49,13 +50,19 @@ function subscribe(onChange: () => void) {
 export function useWishlist() {
   const ids = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
 
-  const toggle = useCallback((id: string) => {
+  const toggle = useCallback((id: string, tracking?: Record<string, string>) => {
     const cur = getSnapshot()
     const added = !cur.includes(id)
     const next = added ? [...cur, id] : cur.filter((v) => v !== id)
     try {
       localStorage.setItem(KEY, JSON.stringify(next))
     } catch {}
+    trackEvent('save', {
+      item_id: id,
+      action: added ? 'save' : 'remove',
+      source_section: 'wishlist',
+      ...tracking,
+    })
     // CustomEvent detail로 토스트(WishlistToast)가 추가/제거를 구분 — 기존 리스너와 호환
     window.dispatchEvent(new CustomEvent('wakation-wishlist', { detail: { id, added } }))
   }, [])

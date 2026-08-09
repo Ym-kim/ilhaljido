@@ -426,7 +426,19 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
                         target="_blank"
                         rel="sponsored noopener noreferrer"
                         onClick={() =>
-                          trackAffiliateClick({ id: `compare-hotel-${c.id}`, provider: 'booking', status: 'active_affiliate', page: '/destinations/compare' })
+                          trackAffiliateClick({
+                            id: `compare-hotel-${c.id}`,
+                            itemName: `${c.name[lang]} stay`,
+                            provider: 'Booking.com',
+                            status: 'active_affiliate',
+                            sourcePage: `${prefix}/destinations/compare`,
+                            sourceSection: 'destination_comparison_table',
+                            ctaLabel: UI.stay[lang],
+                            ctaPosition: 'comparison_row',
+                            destination: c.id,
+                            category: 'hotel',
+                            locale: lang,
+                          })
                         }
                         className="inline-flex items-center justify-center gap-1 px-3 py-2 rounded-full text-xs font-bold bg-teal-600 text-white hover:bg-teal-700 transition-colors"
                       >
