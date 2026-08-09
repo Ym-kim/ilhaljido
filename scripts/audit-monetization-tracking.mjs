@@ -43,6 +43,7 @@ const checks = [
   ['campaign context persists in session', files.track.includes('CAMPAIGN_CONTEXT_KEY') && files.track.includes('sessionStorage.setItem(CAMPAIGN_CONTEXT_KEY')],
   ['second category event', files.track.includes("emitEvent('second_category_click', payload)")],
   ['debug mode is opt-in', files.track.includes("search.get('analytics_debug') !== '1'")],
+  ['debug capture is isolated from analytics transport failures', files.track.indexOf('writeDebugEvent(name, payload)') < files.track.indexOf('track(name, payload)')],
   ['promo ticker uses affiliate schema', files.promo.includes("sourceSection: 'promo_ticker'") && files.promo.includes('trackAffiliateClick')],
   ['product card attribution', files.product.includes("sourceSection: 'affiliate_card_visual'") && files.product.includes("sourceSection: 'affiliate_card'")],
   ['Trip Set money-path attribution', files.tripSet.includes("sourceSection: 'trip_set_preparation'")],

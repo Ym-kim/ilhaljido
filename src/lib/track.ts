@@ -140,9 +140,17 @@ function writeDebugEvent(name: string, payload: Record<string, string>) {
 }
 
 function emitEvent(name: string, payload: Record<string, string>) {
-  track(name, payload)
-  if (typeof window !== 'undefined') (window as AnalyticsWindow).gtag?.('event', name, payload)
   writeDebugEvent(name, payload)
+  try {
+    track(name, payload)
+  } catch {
+    // Keep the remaining analytics channels and user journey intact.
+  }
+  try {
+    if (typeof window !== 'undefined') (window as AnalyticsWindow).gtag?.('event', name, payload)
+  } catch {
+    // Consent-gated GA4 may be unavailable without affecting the click.
+  }
 }
 
 export function trackEvent(name: string, props?: Record<string, string>) {
