@@ -186,7 +186,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
     .map(({ i }) => localizeAffiliateItem(i, lang))
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
+    <div className="home-performance-surface min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
       {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
       <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14" data-season="late-summer-early-autumn-2026">

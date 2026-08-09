@@ -350,6 +350,15 @@ nav ul { list-style: none; }
   animation: home-hero-rise-in 480ms var(--wak-motion-ease-emphasis) both;
 }
 
+/* Keep below-the-fold home sections in the document for SEO and accessibility,
+   while letting the browser skip their initial layout and paint work. */
+@supports (content-visibility: auto) {
+  .home-performance-surface > section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+}
+
 /* 히어로 슬로우 줌(Ken Burns) — 첫 화면 정적감 해소. transform만 사용해 LCP 무영향 */
 @keyframes kenburns {
   from { transform: scale(1); }

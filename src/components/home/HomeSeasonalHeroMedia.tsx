@@ -25,6 +25,11 @@ const POSTER = {
   mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
 } as const
 
+const POSTER_AVIF = {
+  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
+  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
+} as const
+
 export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const userPausedRef = useRef(false)
@@ -57,13 +62,14 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
     let delayHandle: number | undefined
 
     const loadVideoAfterPaint = () => {
-      delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 900)
+      // Keep the first interaction window free from the optional film request.
+      delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 2200)
     }
     const scheduleVideo = () => {
       if (idleWindow.requestIdleCallback) {
-        idleHandle = idleWindow.requestIdleCallback(loadVideoAfterPaint, { timeout: 3500 })
+        idleHandle = idleWindow.requestIdleCallback(loadVideoAfterPaint, { timeout: 5000 })
       } else {
-        delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 2400)
+        delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 4500)
       }
     }
 
@@ -109,6 +115,8 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
   return (
     <div className="absolute inset-0" data-home-seasonal-media="2026-08">
       <picture className="absolute inset-0 block">
+        <source media="(min-width: 768px)" srcSet={POSTER_AVIF.desktop} type="image/avif" />
+        <source media="(max-width: 767px)" srcSet={POSTER_AVIF.mobile} type="image/avif" />
         <source media="(min-width: 768px)" srcSet={POSTER.desktop} />
         <img
           src={POSTER.mobile}

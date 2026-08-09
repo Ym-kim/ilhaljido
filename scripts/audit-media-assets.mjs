@@ -61,6 +61,14 @@ const v2Assets = [
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
 ]
 
+// Delivery-format derivatives share the canonical WebP asset's provenance.
+// They are audited separately so the public directory stays fully accounted for
+// without duplicating one editorial asset in the semantic media manifest.
+const optimizedDerivatives = [
+  { file: 'home-hero-model-a-coastal-work-desktop-v2.avif', width: 1536, height: 1024, maximumBytes: 50_000 },
+  { file: 'home-hero-model-a-coastal-work-mobile-v2.avif', width: 960, height: 1280, maximumBytes: 50_000 },
+]
+
 const motionAssets = [
   { id: 'monthly-model-edit-2026-08-v2', file: 'monthly-model-edit-2026-08-v2.mp4', width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], maximumBytes: 2_200_000 },
 ]
@@ -224,10 +232,25 @@ for (const asset of motionAssets) {
   }
 }
 
+for (const asset of optimizedDerivatives) {
+  const relativePath = `/media/brand-models/${asset.file}`
+  const filePath = path.join(brandModelDirectory, asset.file)
+  let buffer
+  try { buffer = await fs.readFile(filePath) } catch { errors.push(`Missing optimized derivative: ${relativePath}`); continue }
+  totalBytes += buffer.byteLength
+  if (buffer.byteLength === 0) errors.push(`Zero-byte asset: ${relativePath}`)
+  if (buffer.byteLength > asset.maximumBytes) errors.push(`Optimized derivative exceeds size budget: ${relativePath}`)
+  const metadata = await sharp(buffer).metadata()
+  if (metadata.format !== 'heif') errors.push(`Optimized derivative is not AVIF: ${relativePath}`)
+  if (metadata.width !== asset.width || metadata.height !== asset.height) {
+    errors.push(`Unexpected dimensions for ${relativePath}: ${metadata.width}x${metadata.height}, expected ${asset.width}x${asset.height}`)
+  }
+}
+
 const publicBrandFiles = await fs.readdir(brandModelDirectory)
 for (const file of publicBrandFiles) {
   if (/reference|anchor|contact|grid|sheet|source/i.test(file)) errors.push(`Reference-only file is present in public assets: ${file}`)
-  if (![...archivedV1Assets, ...v2Assets, ...motionAssets].some((asset) => asset.file === file) && !supersededMonthlyFiles.has(file)) errors.push(`Unregistered brand model asset: ${file}`)
+  if (![...archivedV1Assets, ...v2Assets, ...motionAssets, ...optimizedDerivatives].some((asset) => asset.file === file) && !supersededMonthlyFiles.has(file)) errors.push(`Unregistered brand model asset: ${file}`)
 }
 
 const placementSources = new Map()
