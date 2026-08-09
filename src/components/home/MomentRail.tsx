@@ -55,6 +55,7 @@ export function MomentRail() {
               fill
               sizes="220px"
               quality={78}
+              unoptimized={m.photo.endsWith('.webp')}
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
             {/* 그라디언트 오버레이 */}

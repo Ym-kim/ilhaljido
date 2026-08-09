@@ -97,6 +97,7 @@ export function MoodExplorer({ forceLang }: { forceLang?: Lang } = {}) {
                     ? '(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, 568px'
                     : '(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 280px'}
                   quality={78}
+                  unoptimized={m.photo.endsWith('.webp')}
                   className="object-cover saturate-[1.04] contrast-[1.03] transition-transform duration-700 group-hover:scale-[1.04] group-hover:saturate-[1.1]"
                 />
                 <span className="absolute inset-0 bg-gradient-to-t from-[#061722]/90 via-[#061722]/12 to-black/0" />

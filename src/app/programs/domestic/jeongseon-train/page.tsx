@@ -64,6 +64,7 @@ export default function JeongseonTrainPage() {
             preload
             sizes="(max-width: 1023px) 100vw, 1024px"
             quality={78}
+            unoptimized
             className="object-cover object-[58%_center] lg:object-center"
           />
         </div>

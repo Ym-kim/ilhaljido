@@ -89,6 +89,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
                   fill
                   sizes="(max-width: 640px) calc(50vw - 1.5rem), (max-width: 1024px) calc(50vw - 2rem), 373px"
                   quality={78}
+                  unoptimized={col.photo.endsWith('.webp')}
                   style={{ objectPosition: col.photoPosition }}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />

@@ -41,6 +41,7 @@ export function HouseBanner() {
               fill
               sizes="(max-width: 768px) 100vw, 1152px"
               quality={78}
+              unoptimized={c.image.endsWith('.webp')}
               className="object-cover object-[62%_center] md:object-center transition-transform duration-700 group-hover:scale-[1.02]"
             />
           )}
