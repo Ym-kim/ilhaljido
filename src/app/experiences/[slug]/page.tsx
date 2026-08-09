@@ -60,5 +60,5 @@ export default async function ExperiencePage({ params }: { params: Promise<{ slu
       mainEntityOfPage: canonical,
     },
   ]
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><ExperienceEditorialView experience={experience} /></>
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><ExperienceEditorialView experience={experience} forceLang="KO" /></>
 }

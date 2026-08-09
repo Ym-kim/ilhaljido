@@ -43,6 +43,13 @@ export type ExperienceSource = {
   customerVisible: boolean
 }
 
+export type ExperiencePreparationItem = {
+  itemId: string
+  reason: LocalizedText
+  title?: LocalizedText
+  destinationLabel?: LocalizedText
+}
+
 export type ExperienceEditorial = {
   slug: string
   affiliateItemId: string
@@ -66,6 +73,7 @@ export type ExperienceEditorial = {
   faq: { question: LocalizedText; answer: LocalizedText }[]
   relatedTripSetSlugs: string[]
   relatedGuideSlugs: string[]
+  preparationItems: ExperiencePreparationItem[]
   mediaAssetIds: string[]
   verifiedAt: string
   sources: ExperienceSource[]
@@ -201,6 +209,34 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     ],
     relatedTripSetSlugs: ['fukuoka-3n4d'],
     relatedGuideSlugs: ['fukuoka'],
+    preparationItems: [
+      {
+        itemId: 'feat-fukuoka-hotel',
+        reason: L(
+          '하카타 출발 전후 동선이 짧아지도록 숙소 위치와 현재 객실 조건을 함께 비교해보세요.',
+          'Compare current stay options around Hakata to keep the route before and after the experience simple.',
+          '体験前後の移動を短くできるよう、博多周辺の立地と現在の客室条件を比較してみましょう。',
+        ),
+      },
+      {
+        itemId: 'feat-flight-tripcom',
+        title: L('후쿠오카 항공권 비교', 'Compare flights to Fukuoka', '福岡行き航空券を比較'),
+        destinationLabel: L('서울 출발 · 후쿠오카 도착', 'Seoul to Fukuoka', 'ソウル発 · 福岡着'),
+        reason: L(
+          '체험일 앞뒤에 여유를 둘 수 있는 후쿠오카 노선을 항공사별로 비교해보세요.',
+          'Compare flight options that leave enough time around the experience day.',
+          '体験日の前後に余裕を持てる福岡便を、航空会社ごとに比較してみましょう。',
+        ),
+      },
+      {
+        itemId: 'esim-klook-japan',
+        reason: L(
+          '미팅 장소 확인과 사진 수령에 필요한 데이터를 일본 도착 전에 준비해두세요.',
+          'Set up data before arrival for meeting-point checks and receiving your photographs.',
+          '集合場所の確認や写真データの受取に備えて、到着前に通信手段を確認しておきましょう。',
+        ),
+      },
+    ],
     mediaAssetIds: ['itoshima-coast-editorial-model-g-v2'],
     verifiedAt: '2026-07-30',
     sources: [
