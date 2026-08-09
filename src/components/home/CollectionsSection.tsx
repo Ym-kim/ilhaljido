@@ -55,6 +55,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
               priority={false}
               sizes="(max-width: 1024px) 100vw, 1152px"
               quality={78}
+              unoptimized={SPOTLIGHT.photo.endsWith('.webp')}
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#04121f]/92 via-[#04121f]/55 to-[#04121f]/10" />

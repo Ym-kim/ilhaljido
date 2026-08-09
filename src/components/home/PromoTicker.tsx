@@ -117,6 +117,7 @@ function TickerCard({ item, lang, duplicate = false }: { item: TickerItem; lang:
           height={56}
           sizes="56px"
           quality={78}
+          unoptimized={item.photo.endsWith('.webp')}
           className="h-12 w-12 shrink-0 rounded-xl object-cover ring-1 ring-black/5"
         />
       ) : (
