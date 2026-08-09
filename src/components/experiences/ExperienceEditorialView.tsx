@@ -14,6 +14,7 @@ import type { Lang } from '@/lib/i18n/types'
 import { getMediaAsset } from '@/lib/media/assets'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick, trackEvent } from '@/lib/track'
+import { ExperiencePreparationCard } from '@/components/experiences/ExperiencePreparationCard'
 
 const COPY = {
   back: { KO: '현지 체험', EN: 'Local experiences', JP: '現地体験' },
@@ -41,7 +42,11 @@ const COPY = {
   role: { KO: '여행 구성을 돕고 외부 상품을 편집·소개합니다.', EN: 'We help shape the trip and editorially introduce an external product.', JP: '旅の組み立てを助け、外部商品を編集・紹介します。' },
   checks: { KO: '예약 전 확인', EN: 'Check before booking', JP: '予約前の確認' },
   faq: { KO: '자주 묻는 질문', EN: 'Frequently asked questions', JP: 'よくある質問' },
-  related: { KO: '함께 준비하기', EN: 'Plan the rest of the trip', JP: '旅をまとめて準備する' },
+  preparationEyebrow: { KO: 'NEXT FOR THIS TRIP', EN: 'NEXT FOR THIS TRIP', JP: 'NEXT FOR THIS TRIP' },
+  preparation: { KO: '체험을 골랐다면, 여행 준비까지 한 번에', EN: 'Once the experience fits, prepare the rest of the trip', JP: '体験を決めたら、旅の準備もまとめて' },
+  preparationDesc: { KO: '하카타 숙소와 이동, 현지 연결 수단을 따로 헤매지 않도록 이 일정에 필요한 순서로 모았습니다.', EN: 'A short, itinerary-led list for the stay, journey and connectivity around this experience.', JP: '博多の宿、移動、現地での通信を、この体験に合わせた順番でまとめました。' },
+  preparationDisclosure: { KO: '각 항목은 별도 제휴사 상품입니다. Wakation은 예약·결제·변경·취소·환불을 처리하지 않으며, 최종 조건은 연결된 제휴사에서 확인합니다.', EN: 'Each item is offered by an external affiliate partner. Wakation does not process bookings, payments, changes, cancellations or refunds; confirm final terms with each provider.', JP: '各項目は外部提携先の商品です。Wakationでは予約・決済・変更・キャンセル・返金を扱いません。最終条件は各提携先でご確認ください。' },
+  related: { KO: '여행 구성 더 보기', EN: 'Continue planning the itinerary', JP: '旅の組み立てを続ける' },
   tripSet: { KO: '후쿠오카 3박 4일 구성', EN: 'Fukuoka 3N4D Trip Set', JP: '福岡3泊4日 Trip Set' },
   guide: { KO: '후쿠오카 여행지 가이드', EN: 'Fukuoka destination guide', JP: '福岡の旅行先ガイド' },
   affiliate: { KO: '제휴사 상품', EN: 'Affiliate product', JP: '提携先商品' },
@@ -60,6 +65,7 @@ const ANCHORS = [
   ['reviews', { KO: '후기', EN: 'Reviews', JP: '口コミ' }],
   ['checks', { KO: '확인사항', EN: 'Checks', JP: '確認事項' }],
   ['faq', { KO: 'FAQ', EN: 'FAQ', JP: 'FAQ' }],
+  ['prepare', { KO: '여행 준비', EN: 'Plan', JP: '旅の準備' }],
 ] as const
 
 export function ExperienceEditorialView({ experience, forceLang }: { experience: ExperienceEditorial; forceLang?: Lang }) {
@@ -69,11 +75,20 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
   const media = getMediaAsset(experience.mediaAssetIds[0])
   const itemBase = getCatalogItems([experience.affiliateItemId])[0]
   const item = itemBase ? localizeAffiliateItem(itemBase, lang) : undefined
+  const preparationItems = experience.preparationItems
+    .map((entry) => {
+      const catalogItem = getCatalogItems([entry.itemId])[0]
+      return catalogItem ? { ...entry, item: localizeAffiliateItem(catalogItem, lang) } : undefined
+    })
+    .filter((entry): entry is NonNullable<typeof entry> => !!entry)
   const { has, toggle } = useWishlist()
   const saved = has(experience.affiliateItemId)
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
+  }, [contextLang, forceLang, setLang])
+
+  useEffect(() => {
     const source = new URLSearchParams(window.location.search).get('src') ?? 'direct'
     trackEvent('experience_editorial_open', {
       locale: lang,
@@ -81,8 +96,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
       destination: experience.destinationSlug,
       source,
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [experience.slug, forceLang])
+  }, [experience.destinationSlug, experience.slug, lang])
 
   if (!media || !item) return null
 
@@ -236,6 +250,32 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
 
         <section id="faq" data-motion="reveal" data-motion-variant="fade" className="scroll-mt-32 border-b border-[#e8e1d7] bg-[#fbfaf7] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-4xl"><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.faq[lang]}</h2><div className="mt-7 divide-y divide-[#dfe5e3] border-y border-[#dfe5e3]">{experience.faq.map((entry) => <details key={entry.question[lang]} className="group"><summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-5 py-4 text-sm font-black text-[#233f4a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 [&::-webkit-details-marker]:hidden"><span>{entry.question[lang]}</span><span className="text-xl font-light text-[#6b8791] transition group-open:rotate-45">+</span></summary><p className="max-w-3xl pb-5 pr-8 text-sm leading-7 text-[#607078]">{entry.answer[lang]}</p></details>)}</div></div>
+        </section>
+
+        <section id="prepare" data-motion="reveal" className="scroll-mt-32 border-b border-[#dfe6e5] bg-[#f1eee7] px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl">
+            <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#3d8298]">{COPY.preparationEyebrow[lang]}</span>
+            <div className="mt-2 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)] lg:items-end">
+              <h2 className="max-w-3xl text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.preparation[lang]}</h2>
+              <span className="text-sm leading-6 text-[#5d7077] lg:text-right">{COPY.preparationDesc[lang]}</span>
+            </div>
+            <div className="mt-7 grid auto-rows-fr gap-4 md:grid-cols-3">
+              {preparationItems.map((entry, index) => (
+                <ExperiencePreparationCard
+                  key={entry.itemId}
+                  item={entry.item}
+                  reason={entry.reason[lang]}
+                  lang={lang}
+                  experienceSlug={experience.slug}
+                  destinationSlug={experience.destinationSlug}
+                  position={index + 1}
+                  displayTitle={entry.title?.[lang]}
+                  displayDestination={entry.destinationLabel?.[lang]}
+                />
+              ))}
+            </div>
+            <span className="mt-5 block max-w-4xl text-xs leading-6 text-[#718087]">{COPY.preparationDisclosure[lang]}</span>
+          </div>
         </section>
 
         <section className="bg-white px-5 py-12 sm:px-6 sm:py-16"><div className="mx-auto max-w-5xl"><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.related[lang]}</h2><div className="mt-6 grid gap-4 sm:grid-cols-2">{experience.relatedTripSetSlugs.map((slug) => <Link key={slug} href={`${prefix}/collections/${slug}`} onClick={() => trackEvent('experience_related_trip_click', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, trip_set: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{COPY.tripSet[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}{experience.relatedGuideSlugs.map((slug) => <Link key={slug} href={`${prefix}/guide/${slug}`} onClick={() => trackEvent('experience_related_guide_click', { locale: lang, experience_slug: experience.slug, destination: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{COPY.guide[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}</div></div></section>

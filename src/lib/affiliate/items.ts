@@ -505,6 +505,9 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     desc: '워케이션 목적지행 항공권을 항공사별로 비교. 편도·왕복·다구간 실시간 검색.',
     cta: '항공권 요금 비교',
     href: 'https://kr.trip.com/flights/?Allianceid=9024807',
+    deepLinks: {
+      fukuoka: 'https://kr.trip.com/flights/seoul-to-fukuoka/airfares-sel-fuk/?Allianceid=9024807',
+    },
     badge: '항공',
     trackingId: 'Allianceid=9024807',
     coverPhoto: '/covers/flight-global-real-v2.jpeg', illustrative: true,

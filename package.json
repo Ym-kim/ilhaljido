@@ -15,6 +15,7 @@
     "audit:support-freshness": "node scripts/audit-support-freshness.mjs",
     "audit:visa-freshness": "node scripts/audit-visa-freshness.mjs",
     "audit:experience-data": "node scripts/audit-experience-data.mjs",
+    "audit:experience-conversion": "node scripts/audit-experience-conversion.mjs",
     "audit:trip-set-conversion": "node scripts/audit-trip-set-conversion.mjs",
     "audit:card-media": "node scripts/audit-card-media.mjs",
     "audit:locale-lang": "node scripts/audit-locale-document-lang.mjs",
