@@ -86,7 +86,7 @@ export function CollectionsSection({ forceLang }: { forceLang?: Lang } = {}) {
                   src={col.photo}
                   alt={col.photoAlt?.[lang] ?? col.title[lang]}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+                  sizes="(max-width: 640px) calc(50vw - 1.5rem), (max-width: 1024px) calc(50vw - 2rem), 373px"
                   style={{ objectPosition: col.photoPosition }}
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />

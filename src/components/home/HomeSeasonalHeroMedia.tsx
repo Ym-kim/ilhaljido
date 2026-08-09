@@ -1,11 +1,14 @@
 'use client'
 
-import { getImageProps } from 'next/image'
 import { Pause, Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
+type IdleWindow = Window & {
+  requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
+  cancelIdleCallback?: (handle: number) => void
+}
 
 const COPY: Record<'season' | 'play' | 'pause', L> = {
   season: {
@@ -22,6 +25,11 @@ const POSTER = {
   mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
 } as const
 
+const POSTER_AVIF = {
+  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
+  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
+} as const
+
 export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const userPausedRef = useRef(false)
@@ -30,26 +38,15 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
   const [videoReady, setVideoReady] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  const common = { alt, sizes: '100vw', loading: 'eager' as const, fetchPriority: 'high' as const }
-  const { props: { srcSet: desktopSrcSet } } = getImageProps({
-    ...common,
-    src: POSTER.desktop,
-    width: 1536,
-    height: 1024,
-    quality: 78,
-  })
-  const { props: { srcSet: mobileSrcSet, ...mobileProps } } = getImageProps({
-    ...common,
-    src: POSTER.mobile,
-    width: 960,
-    height: 1280,
-    quality: 78,
-  })
-
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    const sync = () => setCanAnimate(!motion.matches && !connection?.saveData)
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    const sync = () => {
+      const constrainedNetwork = connection?.effectiveType === 'slow-2g'
+        || connection?.effectiveType === '2g'
+        || connection?.effectiveType === '3g'
+      setCanAnimate(!motion.matches && !connection?.saveData && !constrainedNetwork)
+    }
     sync()
     motion.addEventListener('change', sync)
     return () => motion.removeEventListener('change', sync)
@@ -60,8 +57,30 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
       videoRef.current?.pause()
       return
     }
-    const timer = window.setTimeout(() => setShouldLoadVideo(true), 700)
-    return () => window.clearTimeout(timer)
+    const idleWindow = window as IdleWindow
+    let idleHandle: number | undefined
+    let delayHandle: number | undefined
+
+    const loadVideoAfterPaint = () => {
+      // Keep the first interaction window free from the optional film request.
+      delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 2200)
+    }
+    const scheduleVideo = () => {
+      if (idleWindow.requestIdleCallback) {
+        idleHandle = idleWindow.requestIdleCallback(loadVideoAfterPaint, { timeout: 5000 })
+      } else {
+        delayHandle = window.setTimeout(() => setShouldLoadVideo(true), 4500)
+      }
+    }
+
+    if (document.readyState === 'complete') scheduleVideo()
+    else window.addEventListener('load', scheduleVideo, { once: true })
+
+    return () => {
+      window.removeEventListener('load', scheduleVideo)
+      if (idleHandle !== undefined) idleWindow.cancelIdleCallback?.(idleHandle)
+      if (delayHandle !== undefined) window.clearTimeout(delayHandle)
+    }
   }, [canAnimate])
 
   useEffect(() => {
@@ -77,7 +96,12 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
 
   const togglePlayback = async () => {
     const video = videoRef.current
-    if (!video || !canAnimate) return
+    if (!canAnimate) return
+    if (!video) {
+      userPausedRef.current = false
+      setShouldLoadVideo(true)
+      return
+    }
     if (video.paused) {
       userPausedRef.current = false
       setShouldLoadVideo(true)
@@ -91,14 +115,18 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
   return (
     <div className="absolute inset-0" data-home-seasonal-media="2026-08">
       <picture className="absolute inset-0 block">
-        <source media="(min-width: 768px)" srcSet={desktopSrcSet} />
-        <source media="(max-width: 767px)" srcSet={mobileSrcSet} />
+        <source media="(min-width: 768px)" srcSet={POSTER_AVIF.desktop} type="image/avif" />
+        <source media="(max-width: 767px)" srcSet={POSTER_AVIF.mobile} type="image/avif" />
+        <source media="(min-width: 768px)" srcSet={POSTER.desktop} />
         <img
-          {...mobileProps}
+          src={POSTER.mobile}
           alt={alt}
+          width={960}
+          height={1280}
           fetchPriority="high"
           loading="eager"
-          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[68%_47%] md:object-[70%_48%]"
+          decoding="async"
+          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[64%_34%] md:object-[70%_24%]"
         />
       </picture>
 
@@ -110,9 +138,8 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
           loop
           muted
           playsInline
-          preload="metadata"
-          poster={POSTER.desktop}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          preload="none"
+          className={`absolute inset-0 h-full w-full object-cover object-[58%_38%] transition-opacity duration-700 md:object-[68%_24%] ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           onCanPlay={() => {
             setVideoReady(true)
             if (!userPausedRef.current) videoRef.current?.play().catch(() => undefined)

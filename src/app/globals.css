@@ -340,6 +340,25 @@ nav ul { list-style: none; }
   animation: rise-in var(--wak-motion-editorial) var(--wak-motion-ease-emphasis) forwards;
 }
 
+/* The home hero is critical content: keep it readable from the first paint while
+   retaining the existing editorial rise motion. */
+@keyframes home-hero-rise-in {
+  from { opacity: 0.88; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.home-hero-rise {
+  animation: home-hero-rise-in 480ms var(--wak-motion-ease-emphasis) both;
+}
+
+/* Keep below-the-fold home sections in the document for SEO and accessibility,
+   while letting the browser skip their initial layout and paint work. */
+@supports (content-visibility: auto) {
+  .home-performance-surface > section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+}
+
 /* 히어로 슬로우 줌(Ken Burns) — 첫 화면 정적감 해소. transform만 사용해 LCP 무영향 */
 @keyframes kenburns {
   from { transform: scale(1); }
@@ -420,6 +439,12 @@ html[data-wak-motion='reduced'] [data-motion='reveal'] {
   }
 
   .animate-rise {
+    opacity: 1;
+    transform: none;
+  }
+
+  .home-hero-rise {
+    animation: none;
     opacity: 1;
     transform: none;
   }

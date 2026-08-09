@@ -73,8 +73,8 @@ for (const filename of retired) {
 
 const cardComponent = await readFile(path.join(root, 'src/components/programs/SupportProgramCard.tsx'), 'utf8')
 const detailComponent = await readFile(path.join(root, 'src/components/programs/SupportProgramDetailView.tsx'), 'utf8')
-if (!cardComponent.includes('program.illustrative') || !detailComponent.includes('program.illustrative')) {
-  failures.push('support program editorial-image disclosure is missing')
+if (/(?:편집 이미지|illustrative image|イメージ画像)/i.test(`${cardComponent}\n${detailComponent}`)) {
+  failures.push('support program UI still exposes an editorial-image label')
 }
 
 if (failures.length) {
@@ -83,4 +83,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log(`Card media audit passed: ${expected.length} photoreal editorial assets, 1200x900 WebP, unique, manifested and disclosed`)
+console.log(`Card media audit passed: ${expected.length} photoreal editorial assets, 1200x900 WebP, unique and manifested with internal provenance`)

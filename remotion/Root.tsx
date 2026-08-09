@@ -11,7 +11,7 @@ export const RemotionRoot = () => (
         durationInFrames={168}
         fps={24}
         width={1920}
-        height={1080}
+        height={900}
       />
       <Composition
         id="HomeSeasonalFilm202608Mobile"

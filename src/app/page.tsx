@@ -102,10 +102,12 @@ const HERO_DESTS = [
   { labelKey: 'dest_tokyo',   anchor: 'japan-tokyo' },
   { labelKey: 'dest_osaka',   anchor: 'japan-osaka' },
   { labelKey: 'dest_fukuoka', anchor: 'japan-fukuoka' },
+  { labelKey: 'dest_seoul',   anchor: 'korea-seoul' },
+  { labelKey: 'dest_busan',   anchor: 'korea-busan' },
+  { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
   { labelKey: 'dest_bali',    anchor: 'indonesia-bali' },
   { labelKey: 'dest_danang',  anchor: 'vietnam-danang' },
   { labelKey: 'dest_chiangmai', anchor: 'thailand-chiangmai' },
-  { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
 ] as const
 
 // CATEGORY_PHOTOS·THEME_ITEMS 제거(2026-07-28 라이프스타일 홈 개편):
@@ -184,7 +186,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
     .map(({ i }) => localizeAffiliateItem(i, lang))
 
   return (
-    <div className="min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
+    <div className="home-performance-surface min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
       {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
       <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14" data-season="late-summer-early-autumn-2026">
@@ -198,7 +200,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
           <div className="flex max-w-xl min-w-0 flex-col gap-7">
             <div className="min-w-0 lg:pb-2">
               {/* 실제 운영·제휴 신뢰 신호 */}
-              <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
+              <div className="home-hero-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
                 <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-sky-300 inline-block" />
                   {tr('h3_badge_pilot')}
@@ -210,7 +212,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               </div>
 
               <h1
-                className="animate-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
+                className="home-hero-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
                 style={{ animationDelay: '0.15s' }}
               >
                 {tr('h3_title_pre')}
@@ -219,7 +221,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {tr('h3_title_post')}
               </h1>
               <span
-                className="animate-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
+                className="home-hero-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
                 style={{ animationDelay: '0.25s' }}
               >
                 {tr('h3_sub')}
@@ -230,7 +232,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
             {/* 목적지 퀵서치 카드 */}
             <div
-              className="animate-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
+              className="home-hero-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
               style={{ animationDelay: '0.32s' }}
             >
               <span className="text-white/85 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
@@ -248,11 +250,11 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   checkout: String(form.get('checkout') ?? heroCheckout),
                 })
               }}
-              className="grid grid-cols-2 gap-2 mb-3 sm:grid-cols-[minmax(0,1fr)_9.5rem_9.5rem_auto]"
+              className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]"
             >
               {/* min-w-0: input의 flex 기본 min-width:auto가 긴 placeholder 폭만큼 버텨
                   모바일에서 버튼이 카드 밖으로 밀려 짤리던 버그 수정 (375px 실측) */}
-              <div className="col-span-2 flex min-w-0 items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3.5 transition-colors focus-within:border-sky-300/60 sm:col-span-1">
+              <div className="col-span-2 flex min-w-0 items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3.5 transition-colors focus-within:border-sky-300/60 sm:col-span-3">
                 <Search className="w-4 h-4 text-white/60 shrink-0" strokeWidth={ICON_STROKE} />
                 <input
                   type="text"
@@ -319,23 +321,22 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               ))}
             </div>
             <div className="h-px bg-white/10 my-4" />
-            <div className="flex flex-col gap-2.5">
+            <div className="grid grid-cols-2 gap-2.5">
               <Link
                 href={localizeHref(heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel', lang)}
                 onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
-                className="inline-flex items-center justify-center gap-2 bg-brand-mid hover:bg-brand-light text-white font-bold text-[0.9375rem] px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.45)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-2xl bg-brand-mid px-3 py-3.5 text-center text-xs font-bold leading-tight text-white shadow-[0_6px_24px_rgba(2,132,199,0.45)] transition-all hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:gap-2 sm:px-4 sm:text-sm"
               >
-                <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                <BedDouble className="h-4 w-4 shrink-0" strokeWidth={ICON_STROKE} />
                 {tr('h3_cta_stay')}
-                {heroDest && <span className="opacity-90">· {tr(heroDest.labelKey)}</span>}
               </Link>
               <Link
                 href={localizeHref('/programs', lang)}
                 onClick={() => trackEvent('hero_cta_click', { cta: 'programs', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
-                className="hidden sm:inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/15 text-white/90 font-bold text-sm px-6 py-3 rounded-2xl border border-white/18 transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-2xl border border-white/18 bg-white/8 px-3 py-3 text-center text-xs font-bold leading-tight text-white/90 transition-all hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:gap-2 sm:px-4 sm:text-sm"
               >
                 {tr('h3_cta_programs')}
-                <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={ICON_STROKE} />
               </Link>
             </div>
             </div>

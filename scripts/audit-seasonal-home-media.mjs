@@ -14,6 +14,8 @@ const assert = (condition, message) => {
 const files = {
   desktopVideo: 'public/media/seasonal/home-seasonal-film-2026-08-desktop-v1.mp4',
   mobileVideo: 'public/media/seasonal/home-seasonal-film-2026-08-mobile-v1.mp4',
+  desktopPosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
+  mobilePosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
   seasonalStill: 'public/media/seasonal/late-summer-model-f-market-v1.webp',
   component: 'src/components/home/HomeSeasonalHeroMedia.tsx',
   manifest: 'src/lib/media/assets.ts',
@@ -24,6 +26,10 @@ for (const file of Object.values(files)) await access(path.join(root, file))
 
 const desktopStat = await stat(path.join(root, files.desktopVideo))
 const mobileStat = await stat(path.join(root, files.mobileVideo))
+const desktopPosterStat = await stat(path.join(root, files.desktopPosterAvif))
+const mobilePosterStat = await stat(path.join(root, files.mobilePosterAvif))
+const desktopPosterMeta = await sharp(path.join(root, files.desktopPosterAvif)).metadata()
+const mobilePosterMeta = await sharp(path.join(root, files.mobilePosterAvif)).metadata()
 const stillMeta = await sharp(path.join(root, files.seasonalStill)).metadata()
 const component = await readFile(path.join(root, files.component), 'utf8')
 const manifest = await readFile(path.join(root, files.manifest), 'utf8')
@@ -31,13 +37,24 @@ const rotation = await readFile(path.join(root, files.rotation), 'utf8')
 
 assert(desktopStat.size <= 1_500_000, `desktop hero film is <= 1.5 MB (${desktopStat.size} bytes)`)
 assert(mobileStat.size <= 1_250_000, `mobile hero film is <= 1.25 MB (${mobileStat.size} bytes)`)
+assert(desktopPosterStat.size <= 50_000, `desktop AVIF poster is <= 50 KB (${desktopPosterStat.size} bytes)`)
+assert(mobilePosterStat.size <= 50_000, `mobile AVIF poster is <= 50 KB (${mobilePosterStat.size} bytes)`)
+assert(desktopPosterMeta.width === 1536 && desktopPosterMeta.height === 1024, `desktop AVIF poster is 1536x1024 (${desktopPosterMeta.width}x${desktopPosterMeta.height})`)
+assert(mobilePosterMeta.width === 960 && mobilePosterMeta.height === 1280, `mobile AVIF poster is 960x1280 (${mobilePosterMeta.width}x${mobilePosterMeta.height})`)
 assert(stillMeta.width === 1536 && stillMeta.height === 864, `seasonal still is 1536x864 (${stillMeta.width}x${stillMeta.height})`)
 assert(component.includes('prefers-reduced-motion: reduce'), 'home film respects reduced motion')
 assert(component.includes('saveData'), 'home film respects data saver')
 assert(component.includes('<Pause') && component.includes('<Play'), 'home film provides playback control')
-assert(component.includes('setTimeout(() => setShouldLoadVideo(true), 700)'), 'home film defers loading until after the LCP poster')
+assert(
+  component.includes("document.readyState === 'complete'")
+    && component.includes('requestIdleCallback')
+    && component.includes('preload="none"'),
+  'home film waits for window load and idle time before requesting video',
+)
 assert(component.includes('home-seasonal-film-2026-08-mobile-v1.mp4'), 'home film has a mobile-specific source')
 assert(component.includes('home-seasonal-film-2026-08-desktop-v1.mp4'), 'home film has a desktop-specific source')
+assert(component.includes('home-hero-model-a-coastal-work-desktop-v2.avif'), 'home hero serves a desktop AVIF poster')
+assert(component.includes('home-hero-model-a-coastal-work-mobile-v2.avif'), 'home hero serves a mobile AVIF poster')
 assert(manifest.includes("id: 'late-summer-model-f-market-v1'"), 'seasonal still is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-desktop-v1'"), 'desktop film is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-mobile-v1'"), 'mobile film is registered in the media manifest')

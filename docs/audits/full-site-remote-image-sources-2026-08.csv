@@ -7,5 +7,7 @@ file,url,decision
 "src/lib/media/assets.ts","https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
 "src/lib/media/assets.ts","https://images.unsplash.com/photo-1517154421773-0529f29ea451","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
 "src/lib/media/assets.ts","https://images.unsplash.com/photo-1638591751482-1a7d27fcea15","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
+"src/lib/media/assets.ts","https://commons.wikimedia.org/wiki/File:Anmok_Beach_20220430_010.jpg","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
+"src/lib/media/assets.ts","https://commons.wikimedia.org/wiki/File:낙산해수욕장.jpg","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
 "src/lib/media/productEditorial.ts","https://commons.wikimedia.org/wiki/File:20240727_Jeonju_Hanok_Village_001.jpg","MIGRATE_TO_VERIFIED_LOCAL_ASSET"
 "src/lib/media/productEditorial.ts","https://commons.wikimedia.org/wiki/File:Korea-Yeosu-Harbor-01.jpg","MIGRATE_TO_VERIFIED_LOCAL_ASSET"

@@ -61,6 +61,14 @@ const v2Assets = [
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
 ]
 
+// Delivery-format derivatives share the canonical WebP asset's provenance.
+// They are audited separately so the public directory stays fully accounted for
+// without duplicating one editorial asset in the semantic media manifest.
+const optimizedDerivatives = [
+  { file: 'home-hero-model-a-coastal-work-desktop-v2.avif', width: 1536, height: 1024, maximumBytes: 50_000 },
+  { file: 'home-hero-model-a-coastal-work-mobile-v2.avif', width: 960, height: 1280, maximumBytes: 50_000 },
+]
+
 const motionAssets = [
   { id: 'monthly-model-edit-2026-08-v2', file: 'monthly-model-edit-2026-08-v2.mp4', width: 1080, height: 1920, modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], maximumBytes: 2_200_000 },
 ]
@@ -74,9 +82,6 @@ const assetIds = (...ids) => ids.map((id) => {
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
 const v2Placements = [
   { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
-  { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: assetIds('domestic-seoul-model-j-city-noir-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-H'], assets: assetIds('domestic-busan-model-h-haeundae-v3'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-K'], assets: assetIds('domestic-jeju-model-k-coastal-stay-v4'), source: 'src/components/home/DomesticOnboarding.tsx' },
   { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: assetIds('trip-match-model-d-itinerary-choice-v2'), source: 'src/components/trip-match/TripMatchExperience.tsx' },
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v2', 'hosted-models-h-i-coastal-planning-mobile-v2'), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v2'), source: 'src/components/select/SelectHubView.tsx' },
@@ -89,6 +94,7 @@ const v2Placements = [
 ]
 
 const nonModelMajorSurfaces = [
+  'src/components/home/DomesticOnboarding.tsx',
   'src/components/home/MoodExplorer.tsx',
   'src/components/home/DurationExplorer.tsx',
   'src/components/home/CollectionsSection.tsx',
@@ -98,6 +104,7 @@ const nonModelMajorSurfaces = [
   'src/components/guide/GuideHubView.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
   'src/components/programs/GlobalProgramsView.tsx',
+  'src/components/programs/DomesticProgramsView.tsx',
   'src/components/programs/SupportProgramCard.tsx',
   'src/components/experiences/ExperienceEditorialView.tsx',
   'src/components/moments/MomentsView.tsx',
@@ -225,10 +232,25 @@ for (const asset of motionAssets) {
   }
 }
 
+for (const asset of optimizedDerivatives) {
+  const relativePath = `/media/brand-models/${asset.file}`
+  const filePath = path.join(brandModelDirectory, asset.file)
+  let buffer
+  try { buffer = await fs.readFile(filePath) } catch { errors.push(`Missing optimized derivative: ${relativePath}`); continue }
+  totalBytes += buffer.byteLength
+  if (buffer.byteLength === 0) errors.push(`Zero-byte asset: ${relativePath}`)
+  if (buffer.byteLength > asset.maximumBytes) errors.push(`Optimized derivative exceeds size budget: ${relativePath}`)
+  const metadata = await sharp(buffer).metadata()
+  if (metadata.format !== 'heif') errors.push(`Optimized derivative is not AVIF: ${relativePath}`)
+  if (metadata.width !== asset.width || metadata.height !== asset.height) {
+    errors.push(`Unexpected dimensions for ${relativePath}: ${metadata.width}x${metadata.height}, expected ${asset.width}x${asset.height}`)
+  }
+}
+
 const publicBrandFiles = await fs.readdir(brandModelDirectory)
 for (const file of publicBrandFiles) {
   if (/reference|anchor|contact|grid|sheet|source/i.test(file)) errors.push(`Reference-only file is present in public assets: ${file}`)
-  if (![...archivedV1Assets, ...v2Assets, ...motionAssets].some((asset) => asset.file === file) && !supersededMonthlyFiles.has(file)) errors.push(`Unregistered brand model asset: ${file}`)
+  if (![...archivedV1Assets, ...v2Assets, ...motionAssets, ...optimizedDerivatives].some((asset) => asset.file === file) && !supersededMonthlyFiles.has(file)) errors.push(`Unregistered brand model asset: ${file}`)
 }
 
 const placementSources = new Map()
