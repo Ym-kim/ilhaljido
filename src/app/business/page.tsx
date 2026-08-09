@@ -367,17 +367,19 @@ export default function BusinessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* ── 히어로 ── */}
-      <section className="dark-surface relative flex min-h-[36rem] items-end overflow-hidden border-b border-[#15384d] bg-[#071824] px-6 py-14 md:min-h-[41rem] md:items-center">
-        <ArtDirectedEditorialHero
-          desktopSrc={BUSINESS_DESKTOP.src}
-          mobileSrc={BUSINESS_MOBILE.src}
-          alt={BUSINESS_DESKTOP.alt[lang]}
-          desktopWidth={BUSINESS_DESKTOP.width!}
-          desktopHeight={BUSINESS_DESKTOP.height!}
-          mobileWidth={BUSINESS_MOBILE.width!}
-          mobileHeight={BUSINESS_MOBILE.height!}
-          className="absolute inset-0 h-full w-full object-cover object-[65%_50%] md:object-[72%_25%]"
-        />
+      <section className="dark-surface relative flex min-h-[36rem] items-end overflow-hidden border-b border-[#15384d] bg-[#071824] px-6 py-14 md:min-h-[48rem] md:items-center">
+        <div className="absolute inset-0 md:left-[22%]">
+          <ArtDirectedEditorialHero
+            desktopSrc={BUSINESS_DESKTOP.src}
+            mobileSrc={BUSINESS_MOBILE.src}
+            alt={BUSINESS_DESKTOP.alt[lang]}
+            desktopWidth={BUSINESS_DESKTOP.width!}
+            desktopHeight={BUSINESS_DESKTOP.height!}
+            mobileWidth={BUSINESS_MOBILE.width!}
+            mobileHeight={BUSINESS_MOBILE.height!}
+            className="absolute inset-0 h-full w-full object-cover object-[65%_50%] md:object-[68%_52%]"
+          />
+        </div>
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
         <div className="relative mx-auto w-full max-w-6xl">
