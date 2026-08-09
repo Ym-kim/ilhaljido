@@ -33,7 +33,7 @@ const COPY = {
     EN: 'Begin with a short stay that keeps travel and work in balance, then go farther when it feels right.',
     JP: 'まずは週末の韓国滞在から。街で過ごす時間と、仕事のリズムを無理なく組み合わせました。',
   },
-  primary: { KO: '국내 워케이션 보기', EN: 'Explore Korea workations', JP: '韓国ワーケーションを見る' },
+  primary: { KO: '국내 여행 살펴보기', EN: 'Explore travel in Korea', JP: '韓国の旅を見る' },
   secondary: { KO: '30초 여행 찾기', EN: 'Find my trip in 30 seconds', JP: '30秒で旅を探す' },
   open: { KO: '여행 구성 보기', EN: 'View the trip set', JP: '旅の構成を見る' },
   quick: { KO: '빠르게 고르기', EN: 'Choose by pace', JP: '過ごし方から選ぶ' },
@@ -75,10 +75,10 @@ const ENTRIES: Entry[] = [
   {
     slug: 'jeju',
     href: '/guide/jeju',
-    assetId: 'domestic-jeju-model-i-coastal-stay-v3',
-    modelId: 'WAK-MODEL-I',
-    image: '/media/brand-models/domestic-jeju-model-i-coastal-stay-v3.webp',
-    imagePosition: '68% 48%',
+    assetId: 'domestic-jeju-model-k-coastal-stay-v4',
+    modelId: 'WAK-MODEL-K',
+    image: '/media/brand-models/domestic-jeju-model-k-coastal-stay-v4.webp',
+    imagePosition: '70% 48%',
     name: { KO: '제주', EN: 'Jeju', JP: '済州' },
     description: {
       KO: '3박 이상 머물며 일상의 속도를 바꾸는 섬 체류 가이드',
