@@ -731,9 +731,9 @@ export const GUIDE_UI: Record<string, L> = {
   areasTitle: { KO: '일하기 좋은 동네', EN: 'Where to work', JP: '働きやすいエリア' },
   staysTitle: { KO: '에디터 추천 숙소', EN: 'Editor-picked stays', JP: 'エディター推薦の宿' },
   staysSub: {
-    KO: '리서치로 실존을 검증한 워케이션 특화 숙소입니다',
-    EN: 'Workation-ready stays, verified by our research',
-    JP: 'リサーチで実在を検証したワーケーション向きの宿',
+    KO: '공개 정보로 실존과 업무 관련 조건을 확인한 숙소입니다',
+    EN: 'Stays checked against public information for work-relevant conditions',
+    JP: '公開情報で実在と仕事に関する条件を確認した宿です',
   },
   searchCta: { KO: '이 도시 전체 숙소 검색', EN: 'Search all stays in this city', JP: 'この街の宿をすべて検索' },
   flightCta: { KO: '항공권 요금 비교', EN: 'Compare flights', JP: '航空券を比較' },

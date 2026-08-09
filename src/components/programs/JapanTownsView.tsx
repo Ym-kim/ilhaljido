@@ -35,7 +35,7 @@ const COPY: Record<string, L> = {
     JP: '大都市の喧騒の代わりに、富士山の湖畔や伝統の茶屋街で働くワーケーション。宿は今すぐ予約でき、Wakationの小都市プログラムは準備中です。',
   },
   stays_label: { KO: '소도시 숙소 바로 예약', EN: 'Book small-town stays now', JP: '小都市の宿を今すぐ予約' },
-  stays_sub: { KO: '가와구치코 · 가나자와 · 유후인 — 검증된 파트너에서 숙소를 검색하세요.', EN: 'Kawaguchiko, Kanazawa and Yufuin — search stays via verified partners.', JP: '河口湖・金沢・湯布院 — 検証済みパートナーで宿を検索。' },
+  stays_sub: { KO: '가와구치코 · 가나자와 · 유후인 — 외부 제휴사에서 현재 숙소 조건을 확인하세요.', EN: 'Kawaguchiko, Kanazawa and Yufuin — check current stay terms with external partners.', JP: '河口湖・金沢・湯布院 — 外部提携先で最新の宿泊条件を確認してください。' },
   prep_title: { KO: '소도시 가는 길, 미리 준비', EN: 'Getting there, sorted in advance', JP: '小都市への道のり、事前に準備' },
   prep_sub: { KO: '항공권과 일본 eSIM — 도착 전에 끝내두면 소도시에선 쉬기만 하면 됩니다.', EN: 'Flights and a Japan eSIM — sort them before you land, then just settle in.', JP: '航空券と日本eSIM — 到着前に済ませて、小都市ではゆっくり。' },
   notify_label: { KO: '료칸·온천 소도시 프로그램이 열리면 알려드릴게요', EN: "We'll tell you when the ryokan & onsen program opens", JP: '旅館・温泉の小都市プログラム開始時にお知らせ' },

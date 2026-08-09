@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
+import { VERIFICATION_LEVEL_COPY, type VerificationLevel } from '@/lib/verification'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // "어떤 기준으로 선정하나요?" — 마이리얼트립 투명성 모듈 벤치 (2026-07-18)
@@ -13,23 +14,15 @@ import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
 const T: Record<string, L> = {
-  q: { KO: 'Wakation 검증 노트', EN: 'Wakation verification notes', JP: 'Wakationの検証ノート' },
-  c1: {
-    KO: '판매 중인 상품 링크인지 게재 전 직접 확인합니다.',
-    EN: 'We check that every product link is live before publishing.',
-    JP: '販売中の商品リンクかを掲載前に確認しています。',
-  },
-  c2: {
-    KO: '지원사업·비자 정보는 정부와 운영사 공식 출처만 사용합니다.',
-    EN: 'Subsidy and visa guidance uses official government and operator sources.',
-    JP: '支援事業・ビザ情報は政府・運営会社の公式情報のみを使用します。',
-  },
-  c3: {
-    KO: '가격은 확인 가능한 경우에만 기준일과 함께 보여드립니다.',
-    EN: 'Prices appear only when they can be verified with an as-of date.',
-    JP: '価格は確認できる場合のみ、基準日とともに表示します。',
+  q: { KO: '정보를 어떻게 확인하나요?', EN: 'How is this information checked?', JP: '情報はどのように確認していますか？' },
+  note: {
+    KO: '가격은 확인 가능한 경우에만 기준일과 함께 표시하며, 예약 조건은 제휴사에서 최종 확인합니다.',
+    EN: 'Prices appear only with an as-of date when available; booking terms are confirmed with the partner.',
+    JP: '価格は確認できる場合のみ基準日とともに表示し、予約条件は提携先で最終確認します。',
   },
 }
+
+const LEVELS: VerificationLevel[] = ['research', 'partner', 'field', 'editorial']
 
 export function SelectionCriteria({ className = '' }: { className?: string }) {
   const { lang } = useLang()
@@ -47,14 +40,20 @@ export function SelectionCriteria({ className = '' }: { className?: string }) {
         <ChevronDown className={`w-3.5 h-3.5 transition-transform ${open ? 'rotate-180' : ''}`} strokeWidth={2} />
       </button>
       {open && (
-        <ul className="mt-3 grid max-w-2xl gap-3 rounded-2xl border border-[#dfe6e9] bg-white p-4 text-[0.75rem] leading-relaxed text-[#526370] shadow-[0_12px_35px_rgba(8,47,73,0.06)] sm:grid-cols-3 sm:p-5">
-          {(['c1', 'c2', 'c3'] as const).map((k, index) => (
-            <li key={k} className="flex items-start gap-2.5">
-              <span className="shrink-0 text-[0.58rem] font-black tracking-widest text-sky-700">0{index + 1}</span>
-              <span>{T[k][lang]}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-3 max-w-3xl rounded-2xl border border-[#dfe6e9] bg-white p-4 text-[0.75rem] leading-relaxed text-[#526370] shadow-[0_12px_35px_rgba(8,47,73,0.06)] sm:p-5">
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {LEVELS.map((level, index) => (
+              <li key={level} className="flex items-start gap-2.5">
+                <span className="shrink-0 text-[0.58rem] font-black tracking-widest text-sky-700">0{index + 1}</span>
+                <span>
+                  <strong className="block text-[0.75rem] text-[#213b48]">{VERIFICATION_LEVEL_COPY[level].label[lang]}</strong>
+                  <span className="mt-0.5 block">{VERIFICATION_LEVEL_COPY[level].description[lang]}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <span className="mt-4 block border-t border-[#e8edef] pt-3 text-[0.68rem] text-[#73838c]">{T.note[lang]}</span>
+        </div>
       )}
     </div>
   )

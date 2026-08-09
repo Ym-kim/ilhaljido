@@ -90,9 +90,9 @@ const T: Record<string, L> = {
   },
   how2_t: { KO: '기획안 제안', EN: 'Proposal', JP: '企画のご提案' },
   how2_d: {
-    KO: '검증된 숙소·업무 공간과 일정 구성, 활용 가능한 지원사업 정보를 정리해 제안합니다.',
-    EN: 'We propose verified stays, workspaces, an itinerary — plus applicable subsidy information.',
-    JP: '検証済みの宿・ワークスペースと日程構成、活用可能な支援事業情報をご提案。',
+    KO: '공식·파트너 정보로 확인한 숙소·업무 공간과 일정 구성, 활용 가능한 지원사업 정보를 정리해 제안합니다.',
+    EN: 'We propose stays and workspaces checked against official or partner information, an itinerary and applicable subsidy information.',
+    JP: '公式・パートナー情報で確認した宿・ワークスペース、日程構成、活用可能な支援事業情報をご提案します。',
   },
   how3_t: { KO: '실행', EN: 'Run', JP: '実行' },
   how3_d: {

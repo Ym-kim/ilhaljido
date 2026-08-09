@@ -669,7 +669,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   {
                     '@type': 'Question',
                     name: 'Hosted 프로그램과 Select 상품의 차이는?',
-                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 검증된 외부 파트너의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 제휴 서비스입니다.' },
+                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 공개 정보를 확인한 외부 제휴사의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 서비스입니다.' },
                   },
                   {
                     '@type': 'Question',

@@ -318,6 +318,7 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
                     key={item.id}
                     item={item}
                     reason={entry.reason[lang]}
+                    verificationLevel={entry.verificationLevel}
                     verifiedAt={entry.verifiedAt}
                     categoryLabel={COLLECTIONS_UI[`ts_category_${item.category}`][lang]}
                     lang={lang}

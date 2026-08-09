@@ -4,7 +4,7 @@ import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 export const metadata: Metadata = {
   title: '기업·팀 워케이션',
   description:
-    '팀 몰입과 리프레시를 동시에 — 기업·팀 단위 워케이션 기획 문의. 지자체 지원사업 연계 정보와 검증된 숙소·프로그램으로 도입을 돕습니다.',
+    '팀 몰입과 리프레시를 동시에 — 기업·팀 단위 워케이션 기획 문의. 지자체 지원사업과 공식·파트너 정보를 확인한 숙소·프로그램으로 도입을 돕습니다.',
   keywords: ['기업 워케이션', '팀 워케이션', '워케이션 도입', '워케이션 지원사업', '팀빌딩'],
   alternates: { canonical: 'https://www.wakation.kr/business' },
   openGraph: {
