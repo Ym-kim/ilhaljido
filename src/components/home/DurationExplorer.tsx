@@ -113,6 +113,7 @@ export function DurationExplorer({ forceLang }: { forceLang?: Lang } = {}) {
                   alt=""
                   fill
                   sizes="(max-width: 640px) 96px, 144px"
+                  unoptimized={row.photo.endsWith('.webp')}
                   className="object-cover saturate-[1.04] contrast-[1.04] transition-transform duration-700 group-hover:scale-[1.04]"
                 />
               </div>
