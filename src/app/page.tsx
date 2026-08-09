@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble } from 'lucide-react'
+import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble, CalendarDays } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { getDomesticCurrent, getDomesticThemedUpcoming, t } from '@/lib/i18n'
 import type { Lang } from '@/lib/i18n/types'
@@ -30,6 +30,7 @@ import { YangyangProof } from '@/components/home/YangyangProof'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { HomeSeasonalHeroMedia } from '@/components/home/HomeSeasonalHeroMedia'
 import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
+import { buildBookingStaySearchHref, getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -119,7 +120,7 @@ const HOME_HERO_ALT: Record<Lang, string> = {
 
 const HOME_HERO_ASSET = {
   id: 'home-seasonal-film-2026-08-v1',
-  modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J'] as const,
+  modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-K'] as const,
 } as const
 
 export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
@@ -146,13 +147,22 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
   // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
   const [heroDest, setHeroDest] = useState<(typeof HERO_DESTS)[number] | null>(null)
   const [heroQuery, setHeroQuery] = useState('')
+  const [heroCheckin, setHeroCheckin] = useState('')
+  const [heroCheckout, setHeroCheckout] = useState('')
+  const [heroSearchError, setHeroSearchError] = useState<string | null>(null)
 
   // 통합 검색 — 입력 도시로 Booking 검색결과 직행(aid 추적). 하나투어식 상단 검색.
-  const submitHeroSearch = () => {
-    const q = heroQuery.trim()
+  const submitHeroSearch = ({ destination, checkin, checkout }: { destination: string; checkin: string; checkout: string }) => {
+    const q = destination.trim()
     if (!q) return
+    const dateError = getStayDateRangeError(checkin, checkout)
+    if (dateError) {
+      setHeroSearchError(tr(dateError === 'incomplete' ? 'h3_date_incomplete' : 'h3_date_invalid'))
+      return
+    }
+    setHeroSearchError(null)
     try { trackAffiliateClick({ provider: 'Booking.com', status: 'active_affiliate', id: 'hero-search' }) } catch {}
-    window.open(`https://www.booking.com/searchresults.html?aid=7854081&ss=${encodeURIComponent(q)}`, '_blank', 'noopener,noreferrer')
+    window.open(buildBookingStaySearchHref({ destination: q, checkin, checkout }), '_blank', 'noopener,noreferrer')
   }
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
@@ -229,15 +239,24 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               </span>
             {/* 통합 검색창 — 도시 입력 → Booking 검색결과 직행(제휴 추적) */}
             <form
-              onSubmit={(e) => { e.preventDefault(); submitHeroSearch() }}
-              className="flex gap-2 mb-3"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const form = new FormData(e.currentTarget)
+                submitHeroSearch({
+                  destination: String(form.get('destination') ?? heroQuery),
+                  checkin: String(form.get('checkin') ?? heroCheckin),
+                  checkout: String(form.get('checkout') ?? heroCheckout),
+                })
+              }}
+              className="grid grid-cols-2 gap-2 mb-3 sm:grid-cols-[minmax(0,1fr)_9.5rem_9.5rem_auto]"
             >
               {/* min-w-0: input의 flex 기본 min-width:auto가 긴 placeholder 폭만큼 버텨
                   모바일에서 버튼이 카드 밖으로 밀려 짤리던 버그 수정 (375px 실측) */}
-              <div className="flex items-center gap-2 flex-1 min-w-0 bg-white/10 border border-white/20 rounded-2xl px-3.5 focus-within:border-sky-300/60 transition-colors">
+              <div className="col-span-2 flex min-w-0 items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3.5 transition-colors focus-within:border-sky-300/60 sm:col-span-1">
                 <Search className="w-4 h-4 text-white/60 shrink-0" strokeWidth={ICON_STROKE} />
                 <input
                   type="text"
+                  name="destination"
                   value={heroQuery}
                   onChange={(e) => setHeroQuery(e.target.value)}
                   placeholder={tr('h3_search_ph')}
@@ -245,21 +264,54 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   className="flex-1 min-w-0 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
                 />
               </div>
+              <label className="min-w-0 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 transition-colors focus-within:border-sky-300/60">
+                <span className="flex items-center gap-1 text-[0.62rem] font-bold text-white/60">
+                  <CalendarDays className="h-3 w-3" aria-hidden="true" /> {tr('h3_checkin')}
+                </span>
+                <input
+                  type="date"
+                  name="checkin"
+                  value={heroCheckin}
+                  onChange={(e) => { setHeroCheckin(e.target.value); setHeroSearchError(null) }}
+                  aria-label={tr('h3_checkin')}
+                  className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-white [color-scheme:dark] focus:outline-none"
+                />
+              </label>
+              <label className="min-w-0 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 transition-colors focus-within:border-sky-300/60">
+                <span className="flex items-center gap-1 text-[0.62rem] font-bold text-white/60">
+                  <CalendarDays className="h-3 w-3" aria-hidden="true" /> {tr('h3_checkout')}
+                </span>
+                <input
+                  type="date"
+                  name="checkout"
+                  value={heroCheckout}
+                  min={heroCheckin || undefined}
+                  onChange={(e) => { setHeroCheckout(e.target.value); setHeroSearchError(null) }}
+                  aria-label={tr('h3_checkout')}
+                  className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-white [color-scheme:dark] focus:outline-none"
+                />
+              </label>
               <button
                 type="submit"
-                className="shrink-0 inline-flex items-center justify-center gap-1.5 bg-brand-mid hover:bg-brand-light text-white font-bold text-sm min-w-12 px-4 sm:px-5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(2,132,199,0.4)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
+                className="col-span-2 inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-2xl bg-brand-mid px-4 text-sm font-bold text-white shadow-[0_6px_24px_rgba(2,132,199,0.4)] transition-all hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:col-span-1 sm:min-w-12 sm:px-5"
               >
-                <Search className="w-4 h-4 sm:hidden" strokeWidth={ICON_STROKE} />
-                <span className="hidden sm:inline">{tr('h3_search_go')}</span>
+                <Search className="h-4 w-4" strokeWidth={ICON_STROKE} />
+                <span>{tr('h3_search_go')}</span>
               </button>
             </form>
+            {heroSearchError && <span role="alert" className="mb-3 block text-xs font-semibold text-amber-200">{heroSearchError}</span>}
             <span className="block text-white/50 text-[0.7rem] font-medium mb-3">{tr('h3_search_or')}</span>
             <div className="flex flex-nowrap lg:flex-wrap gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden">
               {HERO_DESTS.map((d) => (
                 <button
                   key={d.labelKey}
                   type="button"
-                  onClick={() => setHeroDest(heroDest?.anchor === d.anchor ? null : d)}
+                  onClick={() => {
+                    const next = heroDest?.anchor === d.anchor ? null : d
+                    setHeroDest(next)
+                    if (next) setHeroQuery(tr(next.labelKey))
+                    setHeroSearchError(null)
+                  }}
                   className={`chip-dest shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 ${heroDest?.anchor === d.anchor ? 'chip-dest-active' : ''}`}
                 >
                   {tr(d.labelKey)}
@@ -512,7 +564,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* 데이터 없으면 자동 숨김. 운영자가 HELD에서 회차를 풀면 즉시 메인 노출됨 */}
       <UpcomingCohorts />
 
-      {/* ── 양양 1기 완료 증거 — 실운영 신뢰 + 리드 수집 ── */}
+      {/* ── 양양 워케이션 운영 기록 — 실운영 신뢰 + 리드 수집 ── */}
       <YangyangProof />
 
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}

@@ -69,9 +69,9 @@ const COPY: Record<HostedLeadVariant, { source: string; title: L; sub: L }> = {
       JP: '国内プログラム — オープン通知',
     },
     sub: {
-      KO: '양양 1기처럼 국내 거점에서 열리는 다음 회차 소식을 부담 없이 받아보세요.',
-      EN: "Be first to hear when the next Korea cohort opens — like our Yangyang pilot.",
-      JP: '襄陽1期のような国内回次のオープンをいち早くお知らせします。',
+      KO: '양양에서 운영한 워케이션처럼, 다음 국내 일정이 열리면 부담 없이 소식을 받아보세요.',
+      EN: 'Get an easy heads-up when the next domestic workation dates open.',
+      JP: '襄陽で実施したワーケーションのように、次の国内日程が決まり次第お知らせします。',
     },
   },
 }

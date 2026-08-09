@@ -81,7 +81,7 @@ export default function Footer() {
                   { l: { KO: '네트워킹', EN: 'Networking', JP: 'ネットワーキング' }, h: '/programs/networking' },
                   { l: { KO: '지자체 지원사업', EN: 'Gov-support programs', JP: '自治体支援' }, h: '/programs/support' },
                   { l: { KO: '오픈 알림 받기', EN: 'Get open alerts', JP: 'オープン通知を受け取る' }, h: '/hosted' },
-                  { l: { KO: '양양 1기 리포트', EN: 'Yangyang report', JP: '襄陽レポート' }, h: '/report/yangyang' },
+                  { l: { KO: '양양 워케이션 리포트', EN: 'Yangyang report', JP: '襄陽レポート' }, h: '/report/yangyang' },
                 ],
               },
               {

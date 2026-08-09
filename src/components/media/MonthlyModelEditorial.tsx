@@ -17,9 +17,9 @@ const COPY: Record<string, L> = {
     JP: '着いて、集中して、\nまた歩き出す時間',
   },
   description: {
-    KO: '도시의 첫 장면부터 해안의 리셋, 퇴근 뒤의 산책까지. 이번 달 Wakation이 고른 일과 여행 사이의 세 장면입니다.',
-    EN: 'From a first city arrival to a coastal reset and an evening walk: three scenes selected for life between work and travel.',
-    JP: '街に着く瞬間、海辺でのリセット、仕事終わりの散歩。仕事と旅の間にある今月の3つのシーンです。',
+    KO: '도시의 첫 장면부터 해안의 리셋, 북카페와 퇴근 뒤 산책까지. 이번 달 Wakation이 고른 일과 여행 사이의 네 장면입니다.',
+    EN: 'From a first city arrival to a coastal reset, a book café and an evening walk: four scenes selected for life between work and travel.',
+    JP: '街に着く瞬間、海辺でのリセット、ブックカフェ、仕事終わりの散歩。仕事と旅の間にある今月の4つのシーンです。',
   },
   disclosure: {
     KO: 'Wakation이 제작한 이미지와 무음 영상입니다. 실제 고객, 참가자, 장소 또는 프로그램 현장을 나타내지 않습니다.',
@@ -67,6 +67,16 @@ const PHOTOS: Array<{
     caption: { KO: '해안의 리셋', EN: 'Coastal reset', JP: '海辺でリセット' },
   },
   {
+    id: 'monthly-2026-08-model-g-coastal-book-cafe-v1',
+    src: '/media/brand-models/monthly-2026-08-model-g-coastal-book-cafe-v1.webp',
+    alt: {
+      KO: '이름 없는 해안 북카페를 나서며 노트를 든 성인 여행자',
+      EN: 'An adult traveller leaving an unnamed coastal book café with a notebook',
+      JP: '場所を特定しない海辺のブックカフェをノートを手に出る成人旅行者',
+    },
+    caption: { KO: '북카페를 나서며', EN: 'Leaving the book café', JP: 'ブックカフェを出て' },
+  },
+  {
     id: 'monthly-2026-08-model-j-blue-hour-v2',
     src: '/media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
     alt: {
@@ -107,7 +117,7 @@ export function MonthlyModelEditorial() {
           trackedRef.current = true
           trackEditorialAssetView({
             assetId: 'monthly-model-edit-2026-08-v2',
-            modelIds: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'],
+            modelIds: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'],
             route: '/about',
             section: 'monthly-model-editorial-2026-08',
             locale: lang,
@@ -186,7 +196,7 @@ export function MonthlyModelEditorial() {
             <h2 className="mt-4 max-w-2xl whitespace-pre-line text-3xl font-black leading-[1.08] md:text-5xl">{COPY.title[lang]}</h2>
             <span className="mt-5 block max-w-2xl text-base leading-relaxed text-white/68 md:text-lg">{COPY.description[lang]}</span>
 
-            <div className="mt-9 grid grid-cols-3 gap-2.5 sm:gap-4">
+            <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
               {PHOTOS.map((photo) => (
                 <figure key={photo.id} className="min-w-0">
                   <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-white/6 sm:rounded-2xl">

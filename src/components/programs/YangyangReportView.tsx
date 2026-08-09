@@ -10,8 +10,8 @@ import { HostedBadge } from '@/components/programs/HostedLeadSection'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 양양 1기 워케이션 결과 리포트 — 실운영 신뢰 페이지
-// 데이터: 1기 모집·설문 페이지(wakation-yangyang.vercel.app) 공개 실사값
+// 양양 워케이션 결과 리포트 — 실운영 신뢰 페이지
+// 데이터: 당시 모집·설문 페이지(wakation-yangyang.vercel.app) 공개 실사값
 //   만족도 4.7/5 · NPS 9.1/10 · 재참여 100% · 가성비 4.7/5 (2026-06-17~19 2박3일)
 // 후기는 설문 응답 요약(원문 한국어 정확본 미보유 → 반응 요약으로 정직 표기)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -19,25 +19,25 @@ import type { Lang } from '@/lib/i18n/types'
 type L = Record<Lang, string>
 
 const COPY: Record<string, L> = {
-  eyebrow: { KO: '양양 1기 · 결과 리포트', EN: 'YANGYANG BATCH 1 · REPORT', JP: '襄陽1期・結果レポート' },
+  eyebrow: { KO: '양양 워케이션 · 결과 리포트', EN: 'YANGYANG WORKATION · REPORT', JP: '襄陽ワーケーション・結果レポート' },
   title: {
     KO: '바다 앞에서 일한 2박 3일,\n숫자와 후기로 남겼습니다',
     EN: 'Two nights working by the sea —\nrecorded in numbers and reviews',
     JP: '海の前で働いた2泊3日、\n数字とレビューで残しました',
   },
   sub: {
-    KO: '2026년 6월 17–19일, 양양에서 첫 회차를 실제로 운영했습니다. 참가자 전원이 응답한 설문 결과를 그대로 공개합니다.',
-    EN: 'We ran the first cohort in Yangyang on June 17–19, 2026. Here is the participant survey — all responded — published as-is.',
-    JP: '2026年6月17〜19日、襄陽で初回を実際に運営。参加者全員が回答したアンケートをそのまま公開します。',
+    KO: '2026년 6월 17–19일, 양양에서 워케이션을 실제로 운영했습니다. 참가자 전원이 응답한 설문 결과를 그대로 공개합니다.',
+    EN: 'We hosted a Yangyang workation on June 17–19, 2026. Here is the participant survey — all responded — published as recorded.',
+    JP: '2026年6月17〜19日、襄陽でワーケーションを実際に運営。参加者全員が回答したアンケートをそのまま公開します。',
   },
-  stats_note: { KO: '1기 참가자 설문 · 전원 응답', EN: 'Batch 1 survey · all participants responded', JP: '1期参加者アンケート・全員回答' },
+  stats_note: { KO: '양양 참가자 설문 · 전원 응답', EN: 'Yangyang survey · all participants responded', JP: '襄陽参加者アンケート・全員回答' },
   prog_label: { KO: '프로그램 개요', EN: 'Program overview', JP: 'プログラム概要' },
   sched_label: { KO: '2박 3일 일정', EN: '2N3D schedule', JP: '2泊3日の日程' },
   voices_label: { KO: '참가자 설문에서 나온 반응', EN: 'What participants said in the survey', JP: 'アンケートに寄せられた声' },
-  voices_note: { KO: '설문 응답 요약 (원문 후기·사진은 1기 페이지에서)', EN: 'Summarized from survey responses (full reviews & photos on the batch-1 page)', JP: 'アンケート回答の要約（原文・写真は1期ページで）' },
+  voices_note: { KO: '설문 응답 요약 (원문 후기·사진은 당시 운영 페이지에서)', EN: 'Summarized from survey responses (full reviews and photos on the original program page)', JP: 'アンケート回答の要約（原文・写真は当時の運営ページで）' },
   incl_label: { KO: '참가비에 포함', EN: "What's included", JP: '参加費に含まれるもの' },
-  view_original: { KO: '1기 원본 페이지 — 후기·사진 전체 보기', EN: 'Batch-1 original page — full reviews & photos', JP: '1期の原本ページ — レビュー·写真をすべて見る' },
-  notify_title: { KO: '다음 회차가 열리면 가장 먼저 알려드릴게요', EN: 'Be the first to know when the next cohort opens', JP: '次回開催を最初にお知らせします' },
+  view_original: { KO: '당시 운영 페이지 — 후기·사진 전체 보기', EN: 'Original program page — full reviews and photos', JP: '当時の運営ページ — レビュー・写真をすべて見る' },
+  notify_title: { KO: '다음 일정이 정해지면 가장 먼저 알려드릴게요', EN: 'Be the first to know when new dates are set', JP: '次の日程が決まり次第、いち早くお知らせします' },
   back_programs: { KO: '전체 프로그램 보기', EN: 'See all programs', JP: 'すべてのプログラムを見る' },
 }
 

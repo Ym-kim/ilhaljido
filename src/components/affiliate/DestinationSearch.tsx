@@ -1,103 +1,130 @@
 'use client'
 
 import { useState } from 'react'
-import { Search, ArrowUpRight } from 'lucide-react'
+import { Search, ArrowUpRight, CalendarDays } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 목적지 검색창 — 입력한 도시로 파트너 사이트 검색결과에 직행 (어필리에이트 추적 유지)
-//
-// Booking.com: searchresults.html?aid=7854081&ss={도시} → 부킹 자체 검색결과 + aid 추적
-//   → 어떤 도시명이든 유효한 검색 파라미터라 딥링크 안전 + 수수료 귀속 (2026-07-13 검증)
-// Inflearn:    courses?s={주제} + 파트너스 UTM → 강의 검색 결과 (검색 도우미)
-// ⚠️ Trip.com hotels/list?searchWord=는 빈 결과(soft-404) 확인됨 → 숙소는 Booking 단일 채널
-// ─────────────────────────────────────────────────────────────────────────────
+import { buildBookingStaySearchHref, getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
 
 type L = Record<Lang, string>
-
 type Mode = 'hotel' | 'learn'
 
 const COPY: Record<string, L> = {
-  hotel_ph: { KO: '도시·지역으로 숙소 검색 (예: 도쿄, 치앙마이)', EN: 'Search stays by city (e.g. Tokyo, Chiang Mai)', JP: '都市名で宿を検索（例：東京、チェンマイ）' },
-  learn_ph: { KO: '배우고 싶은 주제 검색 (예: 파이썬, 마케팅)', EN: 'Search a topic (e.g. Python, marketing)', JP: '学びたいテーマを検索（例：Python、マーケ）' },
+  hotel_ph: { KO: '도시·지역으로 숙소 검색 (예: 도쿄, 치앙마이)', EN: 'Search stays by city (e.g. Tokyo, Chiang Mai)', JP: '都市・エリアから宿を検索（例：東京、チェンマイ）' },
+  learn_ph: { KO: '배우고 싶은 주제 검색 (예: 파이썬, 마케팅)', EN: 'Search a topic (e.g. Python, marketing)', JP: '学びたいテーマを検索（例：Python、マーケティング）' },
   search: { KO: 'Booking.com에서 검색', EN: 'Search on Booking.com', JP: 'Booking.comで検索' },
   inflearn: { KO: '인프런에서 강의 검색', EN: 'Search courses on Inflearn', JP: 'Inflearnで講座を検索' },
+  checkin: { KO: '체크인', EN: 'Check-in', JP: 'チェックイン' },
+  checkout: { KO: '체크아웃', EN: 'Check-out', JP: 'チェックアウト' },
+  date_incomplete: { KO: '체크인과 체크아웃 날짜를 모두 선택해 주세요.', EN: 'Select both check-in and check-out dates.', JP: 'チェックイン日とチェックアウト日を両方選択してください。' },
+  date_invalid: { KO: '체크아웃은 체크인 다음 날 이후로 선택해 주세요.', EN: 'Check-out must be after check-in.', JP: 'チェックアウト日はチェックイン日の翌日以降を選択してください。' },
   note: {
-    KO: '입력한 도시로 Booking.com 검색 페이지에 바로 연결됩니다. (제휴 추적 적용)',
-    EN: 'Opens Booking.com search results for your city. (affiliate tracked)',
-    JP: '入力した都市でBooking.comの検索ページにつながります。（提携追跡あり）',
+    KO: '선택한 도시와 날짜를 Booking.com 검색 결과에 그대로 연결합니다. 실제 요금과 객실 조건은 제휴사에서 확인하세요.',
+    EN: 'Your city and dates are passed directly to Booking.com. Check live rates and room conditions with the partner.',
+    JP: '選択した都市と日付をBooking.comの検索結果に引き継ぎます。料金と客室条件は提携先でご確認ください。',
   },
   note_learn: {
     KO: '입력한 주제로 인프런 검색 결과에 바로 연결됩니다.',
     EN: 'Opens Inflearn search results for your topic.',
-    JP: '入力したテーマでInflearnの検索結果につながります。',
+    JP: '入力したテーマでInflearnの検索結果を開きます。',
   },
 }
 
-function buildLink(mode: Mode, q: string): { provider: string; href: string } {
-  const query = encodeURIComponent(q.trim())
+function buildLink(mode: Mode, q: string, checkin: string, checkout: string): { provider: string; href: string } {
   if (mode === 'learn') {
     return {
       provider: '인프런',
-      // 인프런 검색 결과 + 파트너스 UTM (검색 도우미 — 커미션은 개별 강의 홍보링크에서 귀속)
-      href: `https://www.inflearn.com/courses?s=${query}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
+      href: `https://www.inflearn.com/courses?s=${encodeURIComponent(q.trim())}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
     }
   }
-  // hotel — Booking ss= 는 어떤 도시명이든 유효한 검색 파라미터 (aid 추적)
+
   return {
     provider: 'Booking.com',
-    href: `https://www.booking.com/searchresults.html?aid=7854081&ss=${query}`,
+    href: buildBookingStaySearchHref({ destination: q, checkin, checkout }),
   }
 }
 
 export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
   const { lang } = useLang()
   const [q, setQ] = useState('')
-
+  const [checkin, setCheckin] = useState('')
+  const [checkout, setCheckout] = useState('')
+  const [error, setError] = useState<string | null>(null)
+  const isHotel = mode === 'hotel'
   const canSearch = q.trim().length > 0
   const placeholder = mode === 'learn' ? COPY.learn_ph[lang] : COPY.hotel_ph[lang]
 
-  const open = () => {
-    if (!canSearch) return
-    const { provider, href } = buildLink(mode, q)
+  const open = ({ destination, arrival, departure }: { destination: string; arrival: string; departure: string }) => {
+    if (!destination.trim()) return
+    if (isHotel) {
+      const dateError = getStayDateRangeError(arrival, departure)
+      if (dateError) {
+        setError(COPY[dateError === 'incomplete' ? 'date_incomplete' : 'date_invalid'][lang])
+        return
+      }
+    }
+    setError(null)
+    const { provider, href } = buildLink(mode, destination, arrival, departure)
     trackAffiliateClick({ provider, status: 'active_affiliate', id: `search-${mode}` })
     window.open(href, '_blank', 'noopener,noreferrer')
   }
 
   return (
-    <div className="bg-white border border-[#dbeafe] rounded-2xl p-3 sm:p-4 shadow-sm">
+    <div className="rounded-2xl border border-[#dbeafe] bg-white p-3 shadow-sm sm:p-4">
       <form
         onSubmit={(e) => {
           e.preventDefault()
-          open()
+          const form = new FormData(e.currentTarget)
+          open({
+            destination: String(form.get('destination') ?? q),
+            arrival: String(form.get('checkin') ?? checkin),
+            departure: String(form.get('checkout') ?? checkout),
+          })
         }}
-        className="flex flex-col sm:flex-row gap-2.5"
+        className={isHotel
+          ? 'grid grid-cols-2 gap-2.5 lg:grid-cols-[minmax(0,1fr)_10.5rem_10.5rem_auto]'
+          : 'flex flex-col gap-2.5 sm:flex-row'}
       >
-        <div className="flex items-center gap-2.5 flex-1 min-w-0 bg-[#f8fafc] border border-[#e2e8f0] rounded-xl px-3.5 focus-within:border-[#7dd3fc] transition-colors">
-          <Search className="w-4 h-4 text-[#94a3b8] shrink-0" strokeWidth={ICON_STROKE} />
+        <div className={`${isHotel ? 'col-span-2 lg:col-span-1' : 'flex-1'} flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3.5 transition-colors focus-within:border-[#7dd3fc]`}>
+          <Search className="h-4 w-4 shrink-0 text-[#94a3b8]" strokeWidth={ICON_STROKE} />
           <input
             type="text"
+            name="destination"
             value={q}
-            onChange={(e) => setQ(e.target.value)}
+            onChange={(e) => { setQ(e.target.value); setError(null) }}
             placeholder={placeholder}
             aria-label={placeholder}
-            className="flex-1 min-w-0 bg-transparent py-3 text-sm text-[#111827] placeholder:text-[#94a3b8] focus:outline-none"
+            className="min-w-0 flex-1 bg-transparent py-3 text-sm text-[#111827] placeholder:text-[#94a3b8] focus:outline-none"
           />
         </div>
+
+        {isHotel && (
+          <>
+            <label className="min-w-0 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3 py-2 transition-colors focus-within:border-[#7dd3fc]">
+              <span className="flex items-center gap-1 text-[0.65rem] font-bold text-[#64748b]"><CalendarDays className="h-3 w-3" aria-hidden="true" />{COPY.checkin[lang]}</span>
+              <input type="date" name="checkin" value={checkin} onChange={(e) => { setCheckin(e.target.value); setError(null) }} aria-label={COPY.checkin[lang]} className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-[#1e293b] focus:outline-none" />
+            </label>
+            <label className="min-w-0 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3 py-2 transition-colors focus-within:border-[#7dd3fc]">
+              <span className="flex items-center gap-1 text-[0.65rem] font-bold text-[#64748b]"><CalendarDays className="h-3 w-3" aria-hidden="true" />{COPY.checkout[lang]}</span>
+              <input type="date" name="checkout" value={checkout} min={checkin || undefined} onChange={(e) => { setCheckout(e.target.value); setError(null) }} aria-label={COPY.checkout[lang]} className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-[#1e293b] focus:outline-none" />
+            </label>
+          </>
+        )}
+
         <button
           type="submit"
           disabled={!canSearch}
-          className="inline-flex items-center justify-center gap-1.5 bg-brand-mid text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-brand-light transition-all shadow-sm disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+          className={`${isHotel ? 'col-span-2 lg:col-span-1' : ''} inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-mid px-6 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-light disabled:cursor-not-allowed disabled:opacity-40`}
         >
           {mode === 'learn' ? COPY.inflearn[lang] : COPY.search[lang]}
-          <ArrowUpRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          <ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
         </button>
       </form>
 
-      <p className="text-[#a0a0a0] text-[0.7rem] mt-2.5 leading-relaxed">
+      {error && <p role="alert" className="mt-2.5 text-xs font-semibold text-amber-700">{error}</p>}
+      <p className="mt-2.5 text-[0.7rem] leading-relaxed text-[#7c8795]">
         {mode === 'learn' ? COPY.note_learn[lang] : COPY.note[lang]}
       </p>
     </div>

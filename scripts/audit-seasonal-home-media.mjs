@@ -42,7 +42,7 @@ assert(manifest.includes("id: 'late-summer-model-f-market-v1'"), 'seasonal still
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-desktop-v1'"), 'desktop film is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-mobile-v1'"), 'mobile film is registered in the media manifest')
 assert(manifest.includes("seasonalUsage: ['late-summer', 'autumn']"), 'seasonal usage metadata is present')
-assert(rotation.includes("modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-J']"), 'home film follows the model rotation roster')
+assert(rotation.includes("modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-K']"), 'home film follows the model rotation roster')
 
 const disallowedActiveIllustrations = [
   'support-cheongju-ai.jpeg',
