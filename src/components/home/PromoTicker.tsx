@@ -105,8 +105,8 @@ const ITEMS: TickerItem[] = [
   },
 ]
 
-function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
-  const cls = 'group/item flex w-[262px] shrink-0 items-center gap-3 border-r border-[#d8e1e5] px-4 py-2.5 transition-colors hover:bg-white/75 sm:w-[294px]'
+function TickerCard({ item, lang, duplicate = false }: { item: TickerItem; lang: Lang; duplicate?: boolean }) {
+  const cls = 'group/item flex min-h-[74px] w-[272px] shrink-0 items-center gap-3 rounded-2xl border border-white/80 bg-white/82 px-4 py-3 shadow-[0_5px_18px_rgba(12,45,58,0.07)] backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-sky-200 hover:bg-white hover:shadow-[0_10px_26px_rgba(12,45,58,0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 sm:w-[302px]'
   const inner = (
     <>
       {item.photo ? (
@@ -116,21 +116,22 @@ function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
           width={56}
           height={56}
           sizes="56px"
+          quality={78}
           className="h-12 w-12 shrink-0 rounded-xl object-cover ring-1 ring-black/5"
         />
       ) : (
-        <span className="h-9 w-px shrink-0 bg-gradient-to-b from-sky-400 to-sky-800" aria-hidden />
+        <span className="h-10 w-1 shrink-0 rounded-full bg-gradient-to-b from-sky-300 via-sky-500 to-[#075985]" aria-hidden />
       )}
       <span className="min-w-0 flex-1">
         <span className="flex items-center gap-2">
-          <span className="text-[0.58rem] font-extrabold uppercase tracking-[0.12em] text-sky-800/70">
+          <span className="text-[0.6rem] font-black uppercase tracking-[0.13em] text-[#167394]">
             {item.tag[lang]}
           </span>
-          {item.price && <span className="text-[0.68rem] font-extrabold text-[#9a6700]">{item.price}</span>}
+          {item.price && <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[0.65rem] font-black text-[#946100]">{item.price}</span>}
         </span>
-        <span className="mt-1 block truncate text-[0.78rem] font-bold text-[#152638]">{item.label[lang]}</span>
+        <span className="mt-1.5 block truncate text-[0.82rem] font-extrabold leading-5 text-[#132d39]">{item.label[lang]}</span>
       </span>
-      <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-[#8ca0ae] transition-transform group-hover/item:-translate-y-0.5 group-hover/item:translate-x-0.5" />
+      <ArrowUpRight className="h-4 w-4 shrink-0 text-[#91a6ae] transition-all group-hover/item:-translate-y-0.5 group-hover/item:translate-x-0.5 group-hover/item:text-[#087294]" />
     </>
   )
   const onClick = () => {
@@ -138,11 +139,11 @@ function TickerCard({ item, lang }: { item: TickerItem; lang: Lang }) {
   }
 
   return item.external ? (
-    <a href={item.href} target="_blank" rel={item.sponsored ? 'sponsored noopener noreferrer' : 'noopener noreferrer'} onClick={onClick} className={cls}>
+    <a href={item.href} target="_blank" rel={item.sponsored ? 'sponsored noopener noreferrer' : 'noopener noreferrer'} onClick={onClick} className={cls} tabIndex={duplicate ? -1 : undefined}>
       {inner}
     </a>
   ) : (
-    <Link href={localizeHref(item.href, lang)} onClick={onClick} className={cls}>
+    <Link href={localizeHref(item.href, lang)} onClick={onClick} className={cls} tabIndex={duplicate ? -1 : undefined}>
       {inner}
     </Link>
   )
@@ -159,30 +160,43 @@ export function PromoTicker() {
   }
 
   return (
-    <section className="flex overflow-hidden border-y border-[#d8e1e5] bg-[#f2f6f5]">
-      <div className="relative z-10 hidden w-[190px] shrink-0 flex-col justify-center border-r border-white/10 bg-[#082f49] px-6 text-white lg:flex">
-        <span className="text-[0.62rem] font-extrabold uppercase tracking-[0.18em] text-sky-300">{INTRO[lang].label}</span>
-        <span className="mt-1 text-[0.7rem] font-medium text-white/55">{INTRO[lang].sub}</span>
-      </div>
-      <button
-        type="button"
-        onClick={toggleMotion}
-        className="flex min-h-11 w-12 shrink-0 items-center justify-center border-r border-[#d8e1e5] text-[#526a76] transition-colors hover:bg-white hover:text-[#153846] focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-sky-600"
-        aria-label={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
-        title={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
-      >
-        {paused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
-      </button>
-      <div className="group/ticker min-w-0 flex-1 overflow-hidden">
-        <div
-          className="flex w-max animate-ticker motion-reduce:animate-none group-hover/ticker:[animation-play-state:paused] group-focus-within/ticker:[animation-play-state:paused]"
-          style={{ animationDuration: '76s', animationPlayState: paused ? 'paused' : undefined }}
+    <section className="overflow-hidden border-y border-[#d3e2e3] bg-[linear-gradient(105deg,#e6f1f0_0%,#edf5f4_45%,#e8f1f3_100%)] py-2 sm:py-3">
+      <div className="mx-auto flex max-w-[1920px] items-stretch gap-2 overflow-hidden px-2 sm:gap-3 sm:px-3">
+        <div className="relative z-10 hidden w-[218px] shrink-0 items-center justify-between rounded-[1.15rem] bg-[linear-gradient(135deg,#092f42,#0b4b5e)] px-5 text-white shadow-[0_10px_28px_rgba(8,47,73,0.16)] lg:flex">
+          <span className="min-w-0">
+            <span className="block text-[0.62rem] font-black uppercase tracking-[0.18em] text-sky-300">{INTRO[lang].label}</span>
+            <span className="mt-1 block truncate text-[0.7rem] font-semibold text-white/65">{INTRO[lang].sub}</span>
+          </span>
+          <button
+            type="button"
+            onClick={toggleMotion}
+            className="ml-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-white/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            aria-label={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
+            title={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
+          >
+            {paused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+          </button>
+        </div>
+        <button
+          type="button"
+          onClick={toggleMotion}
+          className="flex min-h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#0b3b4d] text-white shadow-sm transition-colors hover:bg-[#07506a] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 lg:hidden"
+          aria-label={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
+          title={paused ? MOTION_COPY[lang].play : MOTION_COPY[lang].pause}
         >
-          <div className="flex">
-            {ITEMS.map((item) => <TickerCard key={item.id} item={item} lang={lang} />)}
-          </div>
-          <div className="flex" aria-hidden>
-            {ITEMS.map((item) => <TickerCard key={`${item.id}-dup`} item={item} lang={lang} />)}
+          {paused ? <Play className="h-4 w-4" aria-hidden /> : <Pause className="h-4 w-4" aria-hidden />}
+        </button>
+        <div className="group/ticker min-w-0 flex-1 overflow-hidden rounded-[1.15rem] [mask-image:linear-gradient(to_right,transparent_0%,black_3%,black_97%,transparent_100%)]">
+          <div
+            className="flex w-max animate-ticker motion-reduce:animate-none group-hover/ticker:[animation-play-state:paused] group-focus-within/ticker:[animation-play-state:paused]"
+            style={{ animationDuration: '94s', animationPlayState: paused ? 'paused' : undefined }}
+          >
+            <div className="flex gap-2 pr-2 sm:gap-3 sm:pr-3">
+              {ITEMS.map((item) => <TickerCard key={item.id} item={item} lang={lang} />)}
+            </div>
+            <div className="flex gap-2 pr-2 sm:gap-3 sm:pr-3" aria-hidden>
+              {ITEMS.map((item) => <TickerCard key={`${item.id}-dup`} item={item} lang={lang} duplicate />)}
+            </div>
           </div>
         </div>
       </div>
