@@ -108,6 +108,27 @@ const T: Record<string, L> = {
     EN: 'Leave your details and we will reply by email.',
     JP: '以下をご記入いただければ、確認後メールで返信します。',
   },
+  f_purpose_legend: { KO: '어떤 워케이션을 계획하고 있나요?', EN: 'What are you planning?', JP: 'どのようなワーケーションを計画していますか？' },
+  f_purpose_help: {
+    KO: '가장 가까운 목적 하나를 선택해 주세요.',
+    EN: 'Choose the option closest to your goal.',
+    JP: '目的に最も近いものを一つ選んでください。',
+  },
+  f_purpose_need: { KO: '문의 목적을 선택해 주세요.', EN: 'Please choose an inquiry goal.', JP: 'お問い合わせの目的を選択してください。' },
+  f_contact_title: { KO: '연락받을 정보', EN: 'Contact details', JP: 'ご連絡先' },
+  f_contact_desc: {
+    KO: '기획 가능 여부와 필요한 다음 정보를 이메일로 안내합니다.',
+    EN: 'We will use these details to follow up on feasibility and next steps.',
+    JP: '実施可否と次に必要な情報をメールでご案内します。',
+  },
+  f_plan_title: { KO: '기본 일정', EN: 'Plan basics', JP: '基本日程' },
+  f_plan_desc: {
+    KO: '정해지지 않았다면 비워두셔도 됩니다.',
+    EN: 'Leave these blank if they are not decided yet.',
+    JP: '未定の場合は空欄でも構いません。',
+  },
+  f_optional_summary: { KO: '지원사업·지역·추가 요청 입력', EN: 'Add subsidy, region and other details', JP: '支援事業・地域・追加要望を入力' },
+  f_optional_hint: { KO: '선택 입력', EN: 'Optional', JP: '任意入力' },
   f_name: { KO: '담당자 성함', EN: 'Contact name', JP: 'ご担当者名' },
   f_phone: { KO: '연락처', EN: 'Phone', JP: '連絡先' },
   f_email: { KO: '이메일', EN: 'Email', JP: 'メール' },
@@ -137,7 +158,14 @@ const T: Record<string, L> = {
     JP: 'ご記入のメールアドレスへ返信いたします。ありがとうございます。',
   },
   f_fail: { KO: '전송에 실패했어요. 잠시 후 다시 시도해주세요.', EN: 'Failed to send — please try again shortly.', JP: '送信に失敗しました。しばらくして再度お試しください。' },
+  f_rate_limit: { KO: '문의가 연속으로 접수됐어요. 잠시 후 다시 시도해주세요.', EN: 'Too many inquiries were sent. Please try again shortly.', JP: 'お問い合わせが続けて送信されました。しばらくして再度お試しください。' },
   f_consent_need: { KO: '개인정보 수집·이용에 동의해주세요.', EN: 'Please agree to the privacy terms.', JP: '個人情報の収集・利用に同意してください。' },
+  f_done_next: {
+    KO: '문의 내용을 확인한 뒤 입력하신 이메일로 다음 단계를 안내합니다.',
+    EN: 'We will review your inquiry and send the next steps to your email.',
+    JP: 'お問い合わせ内容を確認し、ご入力のメールアドレスへ次の手順をご案内します。',
+  },
+  f_done_kakao: { KO: '추가 질문은 카카오톡으로', EN: 'Ask a follow-up on KakaoTalk', JP: '追加の質問はカカオトークで' },
 }
 
 const STATUS_STYLE: Record<string, string> = {
@@ -160,11 +188,19 @@ const BIZ_TYPES: { v: string; l: L }[] = [
   { v: 'solo', l: { KO: '개인사업자·프리랜서', EN: 'Solo / freelancer', JP: '個人事業主・フリーランス' } },
 ]
 
+const INQUIRY_PURPOSES: { v: string; l: L }[] = [
+  { v: 'team_offsite', l: { KO: '팀 워크숍·오프사이트', EN: 'Team offsite', JP: 'チーム合宿・オフサイト' } },
+  { v: 'founder_retreat', l: { KO: '창업팀·리더 리트릿', EN: 'Founder / leadership retreat', JP: '創業チーム・リーダー合宿' } },
+  { v: 'small_business', l: { KO: '소규모 기업 프로그램', EN: 'Small business program', JP: '小規模企業プログラム' } },
+  { v: 'subsidy_match', l: { KO: '지원사업 연계', EN: 'Subsidy-supported workation', JP: '支援事業との連携' } },
+  { v: 'custom', l: { KO: '맞춤 기획', EN: 'Custom program', JP: 'カスタム企画' } },
+]
+
 type FormState = {
   name: string; phone: string; email: string; company: string
-  bizType: string; location: string; size: string; region: string; when: string; message: string
+  purpose: string; bizType: string; location: string; size: string; region: string; when: string; message: string
 }
-const EMPTY: FormState = { name: '', phone: '', email: '', company: '', bizType: '', location: '', size: '', region: '', when: '', message: '' }
+const EMPTY: FormState = { name: '', phone: '', email: '', company: '', purpose: '', bizType: '', location: '', size: '', region: '', when: '', message: '' }
 
 export default function BusinessPage() {
   const { lang } = useLang()
@@ -178,6 +214,7 @@ export default function BusinessPage() {
   const [error, setError] = useState('')
   const [consent, setConsent] = useState(false)
   const inquiryStarted = useRef(false)
+  const optionalDetailsOpened = useRef(false)
 
   useEffect(() => {
     trackEvent('business_view', {
@@ -198,6 +235,8 @@ export default function BusinessPage() {
     setForm((p) => ({ ...p, [k]: e.target.value }))
 
   const bizTypeLabel = BIZ_TYPES.find((b) => b.v === form.bizType)?.l[lang] ?? form.bizType
+  const purposeLabel = INQUIRY_PURPOSES.find((purpose) => purpose.v === form.purpose)?.l[lang] ?? form.purpose
+  const selectedPurposeCode = form.purpose || 'not_selected'
 
   const trackInquiryStart = () => {
     if (inquiryStarted.current) return
@@ -208,15 +247,64 @@ export default function BusinessPage() {
     })
   }
 
+  const selectPurpose = (purpose: string) => {
+    trackInquiryStart()
+    setError('')
+    setForm((previous) => ({ ...previous, purpose }))
+    trackEvent('business_intent_select', {
+      locale: lang.toLowerCase(),
+      source_section: 'business_inquiry_form',
+      inquiry_purpose: purpose,
+    })
+  }
+
+  const trackOptionalDetailsOpen = (open: boolean) => {
+    if (!open || optionalDetailsOpened.current) return
+    optionalDetailsOpened.current = true
+    trackEvent('business_optional_details_open', {
+      locale: lang.toLowerCase(),
+      source_section: 'business_inquiry_form',
+      inquiry_purpose: selectedPurposeCode,
+    })
+  }
+
   async function submit(e: React.FormEvent) {
     e.preventDefault()
     setError('')
-    if (!consent) { setError(t('f_consent_need')); return }
+    const inquiryPurpose = form.purpose
+    if (!inquiryPurpose) {
+      setError(t('f_purpose_need'))
+      trackEvent('business_inquiry_error', {
+        locale: lang.toLowerCase(),
+        source_section: 'business_inquiry_form',
+        error_type: 'purpose_required',
+      })
+      return
+    }
+    if (!consent) {
+      setError(t('f_consent_need'))
+      trackEvent('business_inquiry_error', {
+        locale: lang.toLowerCase(),
+        source_section: 'business_inquiry_form',
+        error_type: 'consent_required',
+        inquiry_purpose: inquiryPurpose,
+      })
+      return
+    }
+    const optionalFieldsCount = [form.bizType, form.location, form.size, form.region, form.when, form.message]
+      .filter((value) => value.trim().length > 0).length
+    trackEvent('business_inquiry_attempt', {
+      locale: lang.toLowerCase(),
+      source_section: 'business_inquiry_form',
+      inquiry_purpose: inquiryPurpose,
+      optional_fields_count: String(optionalFieldsCount),
+    })
     setSending(true)
     // 구조화 직렬화 — admin 대시보드 message 필드에서 그대로 읽힘 (1000자 제한)
     const structured = [
       `[기업 워케이션 문의]`,
       `회사·팀: ${form.company}`,
+      `문의 목적: ${purposeLabel}`,
       form.bizType ? `기업 유형: ${bizTypeLabel}` : '',
       form.location ? `소재지: ${form.location}` : '',
       form.size ? `인원: ${form.size}` : '',
@@ -238,22 +326,42 @@ export default function BusinessPage() {
           message: structured,
         }),
       })
-      if (!res.ok) throw new Error('submit failed')
+      if (!res.ok) {
+        const errorType = res.status === 429 ? 'rate_limit' : 'server_error'
+        setError(res.status === 429 ? t('f_rate_limit') : t('f_fail'))
+        trackEvent('business_inquiry_error', {
+          locale: lang.toLowerCase(),
+          source_section: 'business_inquiry_form',
+          error_type: errorType,
+          status_code: String(res.status),
+          inquiry_purpose: inquiryPurpose,
+        })
+        return
+      }
       setDone(true)
       trackEvent('business_inquiry_submit', {
         locale: lang.toLowerCase(),
         source_section: 'business_inquiry_form',
+        inquiry_purpose: inquiryPurpose,
+        optional_fields_count: String(optionalFieldsCount),
+        contact_method: 'email_and_phone',
         legacy_event: 'business_inquiry_submitted',
       })
     } catch {
       setError(t('f_fail'))
+      trackEvent('business_inquiry_error', {
+        locale: lang.toLowerCase(),
+        source_section: 'business_inquiry_form',
+        error_type: 'network_error',
+        inquiry_purpose: inquiryPurpose,
+      })
     } finally {
       setSending(false)
     }
   }
 
   const inputCls =
-    'w-full bg-white border border-[#dbeafe] rounded-xl px-4 py-3 text-sm text-[#111827] placeholder-[#94a3b8] focus:outline-none focus:border-[#7dd3fc] focus:ring-2 focus:ring-sky-100 transition-all'
+    'min-w-0 w-full bg-white border border-[#dbeafe] rounded-xl px-4 py-3 text-sm text-[#111827] placeholder-[#94a3b8] focus:outline-none focus:border-[#7dd3fc] focus:ring-2 focus:ring-sky-100 transition-all'
   const labelCls = 'block text-[#475569] text-xs font-bold mb-1.5'
 
   return (
@@ -268,6 +376,7 @@ export default function BusinessPage() {
           desktopHeight={BUSINESS_DESKTOP.height!}
           mobileWidth={BUSINESS_MOBILE.width!}
           mobileHeight={BUSINESS_MOBILE.height!}
+          className="absolute inset-0 h-full w-full object-cover object-[65%_45%] md:object-[72%_15%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
@@ -463,74 +572,135 @@ export default function BusinessPage() {
             <div className="bg-white border border-[#bae6fd] rounded-2xl p-8 text-center">
               <CheckCircle2 className="w-10 h-10 text-brand-mid mx-auto mb-4" strokeWidth={ICON_STROKE} />
               <p className="text-[#111827] font-bold text-lg mb-2">{t('f_done_t')}</p>
-              <p className="text-[#64748b] text-sm">{t('f_done_d')}</p>
+              <p className="mx-auto max-w-md text-sm leading-6 text-[#64748b]">{t('f_done_next')}</p>
+              <a
+                href={KAKAO_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackEvent('business_kakao_click', {
+                  locale: lang.toLowerCase(),
+                  source_section: 'business_inquiry_success',
+                  inquiry_purpose: selectedPurposeCode,
+                })}
+                className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-[#b8d8e5] px-5 text-sm font-bold text-[#12556f] transition hover:bg-[#eff9fc] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+              >
+                {t('f_done_kakao')}
+              </a>
             </div>
           ) : (
-            <form onSubmit={submit} onFocusCapture={trackInquiryStart} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
+            <form onSubmit={submit} onFocusCapture={trackInquiryStart} className="space-y-7">
+              <fieldset>
+                <legend className="text-base font-bold text-[#173b4a]">{t('f_purpose_legend')} *</legend>
+                <p className="mt-1 text-xs leading-5 text-[#64748b]">{t('f_purpose_help')}</p>
+                <div className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {INQUIRY_PURPOSES.map((purpose) => {
+                    const selected = form.purpose === purpose.v
+                    return (
+                      <button
+                        key={purpose.v}
+                        type="button"
+                        aria-pressed={selected}
+                        onClick={() => selectPurpose(purpose.v)}
+                        className={`min-h-12 rounded-xl border px-4 py-3 text-left text-sm font-bold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600 ${selected ? 'border-[#1688b5] bg-[#e9f7fc] text-[#0b5674] shadow-[inset_0_0_0_1px_#1688b5]' : 'border-[#dbe7eb] bg-white text-[#475569] hover:border-[#9fc7d5] hover:bg-[#f7fbfc]'}`}
+                      >
+                        {purpose.l[lang]}
+                      </button>
+                    )
+                  })}
+                </div>
+              </fieldset>
+
+              <div className="border-t border-[#d9e8ee] pt-6">
+                <h3 className="text-base font-bold text-[#173b4a]">{t('f_contact_title')}</h3>
+                <p className="mt-1 text-xs leading-5 text-[#64748b]">{t('f_contact_desc')}</p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="business-name" className={labelCls}>{t('f_name')} *</label>
-                  <input id="business-name" required value={form.name} onChange={set('name')} className={inputCls} />
-                </div>
-                <div>
-                  <label htmlFor="business-phone" className={labelCls}>{t('f_phone')} *</label>
-                  <input id="business-phone" required type="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
-                </div>
-                <div>
-                  <label htmlFor="business-email" className={labelCls}>{t('f_email')} *</label>
-                  <input id="business-email" required type="email" value={form.email} onChange={set('email')} className={inputCls} />
+                  <input id="business-name" name="name" required autoComplete="name" value={form.name} onChange={set('name')} className={inputCls} />
                 </div>
                 <div>
                   <label htmlFor="business-company" className={labelCls}>{t('f_company')} *</label>
-                  <input id="business-company" required value={form.company} onChange={set('company')} className={inputCls} />
+                  <input id="business-company" name="organization" required autoComplete="organization" value={form.company} onChange={set('company')} className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="business-biztype" className={labelCls}>{t('f_biztype')}</label>
-                  <select id="business-biztype" value={form.bizType} onChange={set('bizType')} className={inputCls}>
-                    <option value="">{t('f_biztype_ph')}</option>
-                    {BIZ_TYPES.map((b) => (
-                      <option key={b.v} value={b.v}>{b.l[lang]}</option>
-                    ))}
-                  </select>
+                  <label htmlFor="business-email" className={labelCls}>{t('f_email')} *</label>
+                  <input id="business-email" name="email" required type="email" inputMode="email" autoComplete="email" autoCapitalize="none" value={form.email} onChange={set('email')} className={inputCls} />
                 </div>
-                <div className="sm:col-span-2">
-                  <label htmlFor="business-location" className={labelCls}>{t('f_location')}</label>
-                  <input id="business-location" value={form.location} onChange={set('location')} placeholder={t('f_location_ph')} className={inputCls} />
+                <div>
+                  <label htmlFor="business-phone" className={labelCls}>{t('f_phone')} *</label>
+                  <input id="business-phone" name="tel" required type="tel" inputMode="tel" autoComplete="tel" value={form.phone} onChange={set('phone')} className={inputCls} />
                 </div>
+              </div>
+
+              <div className="border-t border-[#d9e8ee] pt-6">
+                <h3 className="text-base font-bold text-[#173b4a]">{t('f_plan_title')}</h3>
+                <p className="mt-1 text-xs leading-5 text-[#64748b]">{t('f_plan_desc')}</p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="business-size" className={labelCls}>{t('f_size')}</label>
-                  <input id="business-size" value={form.size} onChange={set('size')} placeholder={t('f_size_ph')} className={inputCls} />
+                  <input id="business-size" name="team-size" value={form.size} onChange={set('size')} placeholder={t('f_size_ph')} className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="business-region" className={labelCls}>{t('f_region')}</label>
-                  <input id="business-region" value={form.region} onChange={set('region')} placeholder={t('f_region_ph')} className={inputCls} />
-                </div>
-                <div className="sm:col-span-2">
                   <label htmlFor="business-when" className={labelCls}>{t('f_when')}</label>
-                  <input id="business-when" value={form.when} onChange={set('when')} placeholder={t('f_when_ph')} className={inputCls} />
+                  <input id="business-when" name="preferred-dates" value={form.when} onChange={set('when')} placeholder={t('f_when_ph')} className={inputCls} />
                 </div>
               </div>
-              <div>
-                <label htmlFor="business-message" className={labelCls}>{t('f_msg')}</label>
-                <textarea
-                  id="business-message"
-                  rows={5}
-                  value={form.message}
-                  onChange={set('message')}
-                  placeholder={t('f_msg_ph')}
-                  maxLength={600}
-                  className={inputCls}
-                />
-              </div>
+
+              <details
+                className="group rounded-2xl border border-[#dbe7eb] bg-white"
+                onToggle={(event) => trackOptionalDetailsOpen(event.currentTarget.open)}
+              >
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-bold text-[#315766] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600">
+                  <span>{t('f_optional_summary')}</span>
+                  <span className="shrink-0 text-xs font-semibold text-[#78909a]">{t('f_optional_hint')}</span>
+                </summary>
+                <div className="grid gap-4 border-t border-[#e7eff1] bg-[#f8fbfb] p-4 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="business-biztype" className={labelCls}>{t('f_biztype')}</label>
+                    <select id="business-biztype" name="company-type" value={form.bizType} onChange={set('bizType')} className={inputCls}>
+                      <option value="">{t('f_biztype_ph')}</option>
+                      {BIZ_TYPES.map((b) => (
+                        <option key={b.v} value={b.v}>{b.l[lang]}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="business-location" className={labelCls}>{t('f_location')}</label>
+                    <input id="business-location" name="company-location" value={form.location} onChange={set('location')} placeholder={t('f_location_ph')} className={inputCls} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="business-region" className={labelCls}>{t('f_region')}</label>
+                    <input id="business-region" name="preferred-region" value={form.region} onChange={set('region')} placeholder={t('f_region_ph')} className={inputCls} />
+                  </div>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="business-message" className={labelCls}>{t('f_msg')}</label>
+                    <textarea
+                      id="business-message"
+                      name="message"
+                      rows={4}
+                      value={form.message}
+                      onChange={set('message')}
+                      placeholder={t('f_msg_ph')}
+                      maxLength={600}
+                      className={inputCls}
+                    />
+                  </div>
+                </div>
+              </details>
 
               <ConsentCheckbox checked={consent} onChange={setConsent} />
 
-              {error && <p className="text-red-500 text-sm font-semibold">{error}</p>}
+              <p role="alert" aria-live="assertive" className="min-h-5 text-sm font-semibold text-red-600">{error}</p>
 
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full inline-flex items-center justify-center gap-2 bg-brand-mid text-white text-sm font-bold px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50"
+                aria-busy={sending}
+                className="w-full inline-flex min-h-12 items-center justify-center gap-2 bg-brand-mid text-white text-sm font-bold px-6 py-3.5 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50"
               >
                 <Send className="w-4 h-4" strokeWidth={ICON_STROKE} />
                 {sending ? t('f_sending') : t('f_submit')}
