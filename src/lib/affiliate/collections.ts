@@ -1,5 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 import { TRIP_SET_CAMPAIGNS } from '@/lib/tripSetCampaign'
+import type { VerificationLevel } from '@/lib/verification'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 테마 기획전 (큐레이션 컬렉션) — 하나투어 '기획전' 벤치마크
@@ -17,6 +18,7 @@ type L = Record<Lang, string>
 export type TripSetConversionItem = {
   affiliateItemId: string
   reason: L
+  verificationLevel: VerificationLevel
   verifiedAt: string
 }
 
@@ -89,9 +91,9 @@ export const COLLECTIONS: Collection[] = [
     title: { KO: '추석 연휴 단거리 워케이션', EN: 'Chuseok long-weekend workation', JP: '秋夕連休 近場ワーケーション' },
     tagline: { KO: '나흘이면 충분한 일본 3거점', EN: 'Four days, three easy bases in Japan', JP: '4日で行ける日本の3拠点' },
     desc: {
-      KO: '2026 추석 연휴(9/24 목~9/27 일)는 나흘 — 시차 0시간, 직항 1~2시간대 일본이 정답입니다. 가까운 순서로 후쿠오카·오사카·도쿄의 검증 숙소를 골라, eSIM과 항공까지 한 번에 준비하세요. 9월 하순은 세 도시 모두 베스트 시즌입니다.',
-      EN: "Chuseok 2026 gives you four days (Sep 24–27) — zero jet lag and 1–2h flights make Japan the move. Pick a verified stay in Fukuoka, Osaka or Tokyo, then sort your eSIM and flights in one go. Late September is prime season in all three.",
-      JP: '2026年の秋夕連休は4日間（9/24木〜9/27日）。時差ゼロ・直行1〜2時間の日本が正解です。福岡・大阪・東京の検証済みの宿を選び、eSIMと航空券まで一度に準備。9月下旬は3都市ともベストシーズン。',
+      KO: '2026 추석 연휴(9/24 목~9/27 일)는 나흘 — 시차 0시간, 직항 1~2시간대 일본이 정답입니다. 가까운 순서로 후쿠오카·오사카·도쿄의 공개 조건을 확인한 숙소를 골라, eSIM과 항공까지 한 번에 준비하세요. 9월 하순은 세 도시 모두 베스트 시즌입니다.',
+      EN: "Chuseok 2026 gives you four days (Sep 24–27) — zero jet lag and 1–2h flights make Japan the move. Pick a stay in Fukuoka, Osaka or Tokyo whose public terms have been checked, then sort your eSIM and flights in one go. Late September is prime season in all three.",
+      JP: '2026年の秋夕連休は4日間（9/24木〜9/27日）。時差ゼロ・直行1〜2時間の日本が便利です。福岡・大阪・東京で公開条件を確認した宿を選び、eSIMと航空券まで一度に準備。9月下旬は3都市とも過ごしやすい時期です。',
     },
     itemIds: ['stay-webase-hakata', 'stay-lively-osaka', 'stay-millennials-shibuya', 'esim-klook-japan', 'feat-flight-tripcom'],
     // ── 추석 Trip Set 승격 (2026-08-02 v2) — ⚠️ 9/27 시즌 종료 후 spotlight·확장 필드 제거하고 배열 후퇴 ──
@@ -154,6 +156,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-webase-hakata',
+        verificationLevel: 'research',
         reason: {
           KO: '하카타를 거점으로 두면 도착일 이동과 오전 업무 동선을 짧게 잡을 수 있어요.',
           EN: 'A Hakata base keeps arrival transfers short and makes morning work blocks easier.',
@@ -163,6 +166,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-fukuoka-bustour',
+        verificationLevel: 'research',
         reason: {
           KO: '하루를 비울 수 있다면 다자이후·유후인·벳부를 한 동선으로 살펴보는 선택이에요.',
           EN: 'If you can spare a full day, this links Dazaifu, Yufuin and Beppu in one route.',
@@ -172,6 +176,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-klook-japan',
+        verificationLevel: 'research',
         reason: {
           KO: '출발 전에 설치해 두면 공항 도착 직후 지도와 업무 연락을 바로 확인할 수 있어요.',
           EN: 'Install it before departure so maps and work messages are ready as soon as you land.',
@@ -181,6 +186,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-flight-tripcom',
+        verificationLevel: 'research',
         reason: {
           KO: '3박 4일은 출도착 시간이 체류 시간을 좌우해 왕복 일정을 먼저 비교하는 편이 좋아요.',
           EN: 'On a 3N4D trip, flight times shape the stay, so compare the round trip first.',
@@ -245,6 +251,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-lively-osaka',
+        verificationLevel: 'research',
         reason: {
           KO: '친구와 쉬는 공간과 각자 일할 라운지를 한 숙소 안에서 함께 확보하는 선택이에요.',
           EN: 'It gives friends a shared base while keeping lounge space for separate work blocks.',
@@ -254,6 +261,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-osaka-usj',
+        verificationLevel: 'research',
         reason: {
           KO: '테마파크 하루를 일정의 중심에 두고 나머지 날을 가볍게 구성할 때 잘 맞아요.',
           EN: 'A good fit when the theme-park day is the anchor and the other days stay flexible.',
@@ -263,6 +271,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'act-klook-osaka-pass',
+        verificationLevel: 'research',
         reason: {
           KO: 'Day 3의 전망대·크루즈·도심 이동을 하나의 패스로 묶어 계획을 단순하게 해요.',
           EN: 'It simplifies Day 3 by grouping city transport, viewpoints and cruises into one pass.',
@@ -272,6 +281,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-klook-japan',
+        verificationLevel: 'research',
         reason: {
           KO: '친구와 흩어져 움직일 때도 지도와 메시지를 바로 확인할 수 있게 출발 전에 준비해요.',
           EN: 'Set it up before departure so maps and messages work even when the group splits up.',
@@ -334,6 +344,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-fraser-seoul',
+        verificationLevel: 'research',
         reason: {
           KO: '주방과 세탁이 있는 도심 거점은 3박 4일을 관광보다 생활에 가깝게 만들어줘요.',
           EN: 'A central base with a kitchen and laundry makes four days feel closer to city living.',
@@ -343,6 +354,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'theme-sports-seoul-baseball',
+        verificationLevel: 'research',
         reason: {
           KO: '낮의 성수·연남 산책 뒤에 서울의 저녁 문화를 경험하는 Day 3 선택이에요.',
           EN: 'A Day 3 evening option after daytime walks through Seongsu and Yeonnam.',
@@ -352,6 +364,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-airalo',
+        verificationLevel: 'research',
         reason: {
           KO: '해외에서 서울을 찾는 여행자라면 지도·번역·업무 연락을 위한 연결을 먼저 준비해요.',
           EN: 'For visitors arriving from abroad, sort maps, translation and work connectivity first.',
@@ -361,6 +374,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-transfer-klook',
+        verificationLevel: 'research',
         reason: {
           KO: '짐이 많거나 늦게 도착한다면 공항에서 숙소까지의 첫 이동을 미리 비교해 보세요.',
           EN: 'If you have luggage or land late, compare the first transfer to your stay in advance.',
@@ -424,6 +438,7 @@ export const COLLECTIONS: Collection[] = [
     conversionItems: [
       {
         affiliateItemId: 'stay-uh-busan',
+        verificationLevel: 'research',
         reason: {
           KO: '짧은 주말에는 해운대 산책과 휴식을 숙소 주변에서 해결할 수 있는 거점이 효율적이에요.',
           EN: 'For a short weekend, a Haeundae base keeps beach walks and downtime close together.',
@@ -433,6 +448,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'cruise-panstar-miracle',
+        verificationLevel: 'research',
         reason: {
           KO: '오사카에서 부산으로 들어오는 여행자라면 이동 자체를 하룻밤 여정으로 바꾸는 선택이에요.',
           EN: 'For travelers coming from Osaka, it turns the transfer itself into an overnight journey.',
@@ -442,6 +458,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'esim-airalo',
+        verificationLevel: 'research',
         reason: {
           KO: '해외에서 부산을 찾는 경우 지도와 번역을 위해 도착 전 연결을 준비해 두세요.',
           EN: 'Visitors arriving from abroad can set up maps and translation before landing.',
@@ -451,6 +468,7 @@ export const COLLECTIONS: Collection[] = [
       },
       {
         affiliateItemId: 'feat-transfer-klook',
+        verificationLevel: 'research',
         reason: {
           KO: '해운대까지 짐을 들고 이동하는 부담이 크다면 공항 이동 조건을 먼저 확인해 보세요.',
           EN: 'If luggage makes the trip to Haeundae difficult, check airport-transfer terms first.',
@@ -800,9 +818,9 @@ export const COLLECTIONS_UI: Record<string, L> = {
   count_label: { KO: '개 상품 구성', EN: ' items', JP: '点で構成' },
   included: { KO: '이 기획전 구성', EN: "What's in this collection", JP: 'この特集の構成' },
   disclosure: {
-    KO: '기획전은 검증된 제휴 상품의 큐레이션 묶음입니다. 요금·예약·환불 조건은 각 제휴사에서 최종 확인됩니다.',
-    EN: 'Collections are curated bundles of verified partner products. Prices, booking and refunds are confirmed on each partner site.',
-    JP: '特集は検証済み提携商品のキュレーションです。料金・予約・返金条件は各提携先で確認されます。',
+    KO: '기획전은 공개 정보를 확인한 제휴 상품의 편집 구성입니다. 요금·예약·환불 조건은 각 제휴사에서 최종 확인됩니다.',
+    EN: 'Collections are editorial bundles of partner products checked against public information. Prices, booking and refunds are confirmed on each partner site.',
+    JP: '特集は公開情報を確認した提携商品の編集構成です。料金・予約・返金条件は各提携先で確認してください。',
   },
   back: { KO: '기획전 전체', EN: 'All collections', JP: '特集一覧' },
   // ── Trip Set 전용 UI (2026-07-28) ──

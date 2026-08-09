@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     template: '%s | Wakation',
   },
   // 2026-07-28 라이프스타일 개편: 사업 나열형 → 브랜드 카피 정렬 (공유 미리보기가 첫인상)
-  description: '와케이션(Wakation) — 일도 여행도, 내 방식대로. 이번 주말의 제주부터 한 달의 치앙마이까지, 일하는 사람의 여행을 검증한 것만 골라 큐레이션합니다.',
+  description: '와케이션(Wakation) — 일도 여행도, 내 방식대로. 공개 정보와 실제 운영 기록을 구분해 일하는 사람의 여행을 큐레이션합니다.',
   keywords: ['와케이션', 'Wakation', '워케이션', '국내 워케이션', '글로벌 워케이션', '디지털 노마드', '리모트워크', '프리랜서 워케이션', '한달살기', '어학연수', '비자 정보', '장기체류', '코워킹', '성장캠프', '네트워킹'],
   authors: [{ name: 'Wakation', url: 'https://www.wakation.kr' }],
   creator: 'Wakation',
   publisher: 'Wakation',
   openGraph: {
     title: 'Wakation | 일도 여행도, 내 방식대로',
-    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 일하는 사람의 여행을, 검증한 것만 골라 큐레이션합니다.',
+    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 공개 정보와 실제 운영 기록을 구분해 여행을 큐레이션합니다.',
     url: 'https://www.wakation.kr',
     siteName: 'Wakation',
     locale: 'ko_KR',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Wakation | 일도 여행도, 내 방식대로',
-    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 일하는 사람의 여행을, 검증한 것만 골라 큐레이션합니다.',
+    description: '이번 주말의 제주부터 한 달의 치앙마이까지 — 공개 정보와 실제 운영 기록을 구분해 여행을 큐레이션합니다.',
     creator: '@wakation_kr',
     images: ['https://www.wakation.kr/og-wakation-ai.jpeg'],
   },

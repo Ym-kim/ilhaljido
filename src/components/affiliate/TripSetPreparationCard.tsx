@@ -8,9 +8,9 @@ import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import { useWishlist } from '@/hooks/useWishlist'
 import { recordRecentlyViewed } from '@/hooks/useRecentlyViewed'
+import { formatVerificationDate, verificationLabel, type VerificationLevel } from '@/lib/verification'
 
 const COPY = {
-  verified: { KO: '조건 확인', EN: 'Details checked', JP: '条件確認' },
   cta: { KO: '제휴사에서 조건 확인', EN: 'Check terms with partner', JP: '提携先で条件を確認' },
   save: { KO: '여행 준비에 저장', EN: 'Save for this trip', JP: '旅の準備に保存' },
   remove: { KO: '저장한 준비에서 삭제', EN: 'Remove from saved items', JP: '保存した準備から削除' },
@@ -29,13 +29,10 @@ const ITEM_EDITORIAL_FALLBACK: Record<string, string> = {
   'feat-transfer-klook': '/covers/airport-transfer-editorial-photo-v2.webp',
 }
 
-function formatVerifiedAt(value: string) {
-  return value.replaceAll('-', '.')
-}
-
 export function TripSetPreparationCard({
   item,
   reason,
+  verificationLevel,
   verifiedAt,
   categoryLabel,
   lang,
@@ -45,6 +42,7 @@ export function TripSetPreparationCard({
 }: {
   item: AffiliateItem
   reason: string
+  verificationLevel: VerificationLevel
   verifiedAt: string
   categoryLabel: string
   lang: Lang
@@ -110,7 +108,7 @@ export function TripSetPreparationCard({
         </span>
         <span className="mt-3 line-clamp-3 min-h-[3.9rem] text-[0.8125rem] leading-[1.6] text-[#516570]">{reason}</span>
         <span className="mt-3 text-[0.68rem] font-semibold text-[#829098]">
-          {COPY.verified[lang]} · <time dateTime={verifiedAt}>{formatVerifiedAt(verifiedAt)}</time>
+          {verificationLabel(verificationLevel, lang)} · <time dateTime={verifiedAt}>{formatVerificationDate(verifiedAt)}</time>
         </span>
         <a
           href={item.href}

@@ -27,7 +27,7 @@ import type { Lang } from '@/lib/i18n/types'
 // ─────────────────────────────────────────────────────────────────────────────
 // 카테고리 탭 상품 브라우저 — 하나투어형 탭 브라우징
 // 숙소·체험·eSIM·강의·크루즈·기획전을 탭으로 전환하며 실상품을 인라인 탐색.
-// 전부 검증된 제휴 상품(active만). 기획전 탭은 컬렉션 카드로 연결.
+// active 제휴 상품만 노출. 상품 조건은 공개된 제휴사 정보를 기준일과 함께 확인한다.
 // ─────────────────────────────────────────────────────────────────────────────
 
 type L = Record<Lang, string>
@@ -55,9 +55,9 @@ const COPY: Record<string, L> = {
   eyebrow: { KO: '전체 둘러보기', EN: 'BROWSE ALL', JP: 'すべて見る' },
   title: { KO: '카테고리로 골라보세요', EN: 'Browse by category', JP: 'カテゴリーで選ぶ' },
   sub: {
-    KO: '숙소부터 기획전까지 — 검증된 제휴 상품을 한 곳에서 둘러보세요.',
-    EN: 'From stays to collections — browse verified partner products in one place.',
-    JP: '宿から特集まで — 検証済み提携商品を一箇所で。',
+    KO: '숙소부터 기획전까지 — 공개 정보와 현재 링크를 확인한 제휴 상품을 둘러보세요.',
+    EN: 'From stays to collections — browse partner products checked against current public information.',
+    JP: '宿から特集まで — 公開情報と現在のリンクを確認した提携商品をまとめて見られます。',
   },
   view: { KO: '구성 보기', EN: 'View items', JP: '構成を見る' },
 }
