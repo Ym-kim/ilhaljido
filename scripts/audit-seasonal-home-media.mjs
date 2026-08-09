@@ -35,7 +35,12 @@ assert(stillMeta.width === 1536 && stillMeta.height === 864, `seasonal still is 
 assert(component.includes('prefers-reduced-motion: reduce'), 'home film respects reduced motion')
 assert(component.includes('saveData'), 'home film respects data saver')
 assert(component.includes('<Pause') && component.includes('<Play'), 'home film provides playback control')
-assert(component.includes('setTimeout(() => setShouldLoadVideo(true), 700)'), 'home film defers loading until after the LCP poster')
+assert(
+  component.includes("document.readyState === 'complete'")
+    && component.includes('requestIdleCallback')
+    && component.includes('preload="none"'),
+  'home film waits for window load and idle time before requesting video',
+)
 assert(component.includes('home-seasonal-film-2026-08-mobile-v1.mp4'), 'home film has a mobile-specific source')
 assert(component.includes('home-seasonal-film-2026-08-desktop-v1.mp4'), 'home film has a desktop-specific source')
 assert(manifest.includes("id: 'late-summer-model-f-market-v1'"), 'seasonal still is registered in the media manifest')

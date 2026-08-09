@@ -200,7 +200,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
           <div className="flex max-w-xl min-w-0 flex-col gap-7">
             <div className="min-w-0 lg:pb-2">
               {/* 실제 운영·제휴 신뢰 신호 */}
-              <div className="animate-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
+              <div className="home-hero-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
                 <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
                   <span className="w-1.5 h-1.5 rounded-full bg-sky-300 inline-block" />
                   {tr('h3_badge_pilot')}
@@ -212,7 +212,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
               </div>
 
               <h1
-                className="animate-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
+                className="home-hero-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
                 style={{ animationDelay: '0.15s' }}
               >
                 {tr('h3_title_pre')}
@@ -221,7 +221,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 {tr('h3_title_post')}
               </h1>
               <span
-                className="animate-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
+                className="home-hero-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
                 style={{ animationDelay: '0.25s' }}
               >
                 {tr('h3_sub')}
@@ -232,7 +232,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
             {/* 목적지 퀵서치 카드 */}
             <div
-              className="animate-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
+              className="home-hero-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
               style={{ animationDelay: '0.32s' }}
             >
               <span className="text-white/85 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">

@@ -559,7 +559,14 @@ export const COLLECTIONS: Collection[] = [
   {
     slug: 'tokyo-allinone',
     emoji: '🗼',
-    photo: '/covers/stay-tokyo-city-real.jpeg', // 도쿄 (검증 2026-07-19, curl 200+육안)
+    photo: '/media/trip-sets/tokyo-workation-editorial-v2.webp',
+    photoAlt: {
+      KO: '도쿄의 조용한 거리에서 노트북을 들고 이동하는 여행자',
+      EN: 'A traveler carrying a laptop through a quiet Tokyo neighborhood',
+      JP: '東京の静かな街でノートパソコンを持って移動する旅行者',
+    },
+    photoPosition: '62% 45%',
+    illustrative: true,
     title: { KO: '도쿄 워케이션 올인원', EN: 'Tokyo workation, all in one', JP: '東京ワーケーション オールインワン' },
     tagline: { KO: '숙소부터 eSIM까지 한 번에', EN: 'Stay, experiences and eSIM in one go', JP: '宿からeSIMまで一度に' },
     desc: {
