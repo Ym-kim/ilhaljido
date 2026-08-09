@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowLeftRight, ArrowRight, Check, ChevronLeft, ChevronRight } from 'lucide-react'
 import { track } from '@vercel/analytics/react'
 import { useLang } from '@/context/LanguageContext'
 import { localizeHref, isRouteVisibleIn } from '@/lib/i18n/localePath'
@@ -32,6 +32,9 @@ const UI: Record<string, Record<Lang, string>> = {
     JP: '迷っている2〜3都市を並べて、ネット・生活費・ビザ・時差を一度に比較。',
   },
   pickHint: { KO: '2~3개 도시를 선택하세요', EN: 'Pick 2–3 cities', JP: '2〜3都市を選択' },
+  swipeHint: { KO: '좌우로 밀어 도시를 비교하세요', EN: 'Swipe sideways to compare', JP: '左右にスワイプして比較' },
+  previousCity: { KO: '이전 도시', EN: 'Previous city', JP: '前の都市' },
+  nextCity: { KO: '다음 도시', EN: 'Next city', JP: '次の都市' },
   internet: { KO: '인터넷 속도', EN: 'Internet speed', JP: 'ネット速度' },
   cost: { KO: '월 생활비', EN: 'Monthly cost', JP: '月の生活費' },
   costBreakdown: { KO: '비용 구성', EN: 'Cost breakdown', JP: '費用の内訳' },
@@ -56,6 +59,7 @@ const UI: Record<string, Record<Lang, string>> = {
 const DEFAULT_IDS = ['tokyo', 'chiangmai']
 const MAX = 3
 const MIN = 2
+const SWIPE_HINT_KEY = 'wakation:city-compare-swipe-hint-seen'
 
 function Stars({ score }: { score: number }) {
   return (
@@ -72,7 +76,7 @@ function RowLabel({ children }: { children: React.ReactNode }) {
   return (
     <th
       scope="row"
-      className="sticky left-0 z-10 bg-[#fafaf8] text-left align-top px-3 py-3 text-xs font-bold text-[#888] w-28 min-w-28 border-t border-[#eee]"
+      className="sticky left-0 z-10 w-[5.5rem] min-w-[5.5rem] border-t border-[#eee] bg-[#fafaf8] px-2.5 py-3 text-left align-top text-xs font-bold text-[#888] sm:w-28 sm:min-w-28 sm:px-3"
     >
       {children}
     </th>
@@ -83,6 +87,10 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
   const { lang: ctxLang, setLang } = useLang()
   const lang = forceLang ?? ctxLang
   const [ids, setIds] = useState<string[]>(DEFAULT_IDS)
+  const tableScrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollLeft, setCanScrollLeft] = useState(false)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+  const [showSwipeHint, setShowSwipeHint] = useState(false)
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -119,6 +127,58 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
   const cities = ids
     .map((id) => CITY_INSIGHTS.find((c) => c.id === id))
     .filter((c): c is CityInsight => Boolean(c))
+
+  useEffect(() => {
+    const scroller = tableScrollRef.current
+    if (!scroller) return
+
+    const syncScrollState = () => {
+      const maxScroll = scroller.scrollWidth - scroller.clientWidth
+      setCanScrollLeft(scroller.scrollLeft > 4)
+      setCanScrollRight(maxScroll > 4 && scroller.scrollLeft < maxScroll - 4)
+    }
+    const onScroll = () => {
+      syncScrollState()
+      if (scroller.scrollLeft > 6) setShowSwipeHint(false)
+    }
+
+    const initializeDiscovery = () => {
+      syncScrollState()
+      try {
+        if (scroller.scrollWidth > scroller.clientWidth + 4 && sessionStorage.getItem(SWIPE_HINT_KEY) !== '1') {
+          setShowSwipeHint(true)
+          sessionStorage.setItem(SWIPE_HINT_KEY, '1')
+        }
+      } catch {
+        setShowSwipeHint(scroller.scrollWidth > scroller.clientWidth + 4)
+      }
+    }
+
+    const initTimer = window.setTimeout(initializeDiscovery, 180)
+    const resizeObserver = new ResizeObserver(initializeDiscovery)
+    resizeObserver.observe(scroller)
+    const timer = window.setTimeout(() => setShowSwipeHint(false), 6500)
+    scroller.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', syncScrollState)
+    return () => {
+      window.clearTimeout(initTimer)
+      window.clearTimeout(timer)
+      resizeObserver.disconnect()
+      scroller.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', syncScrollState)
+    }
+  }, [cities.length])
+
+  const moveComparison = (direction: -1 | 1) => {
+    const scroller = tableScrollRef.current
+    if (!scroller) return
+    setShowSwipeHint(false)
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    scroller.scrollBy({
+      left: direction * 176,
+      behavior: reduceMotion ? 'auto' : 'smooth',
+    })
+  }
 
   return (
     <div className="min-h-screen bg-[#fafaf8]">
@@ -160,13 +220,50 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
 
       {/* Comparison table */}
       <section className="max-w-5xl mx-auto px-6 py-8">
-        <div className="overflow-x-auto rounded-2xl border border-[#e8e4dc] bg-white">
-          <table className="w-full border-collapse">
+        <div className="mb-3 flex min-h-11 items-center justify-between gap-3 md:hidden">
+          <span
+            data-city-compare-swipe-hint
+            aria-live="polite"
+            aria-hidden={!showSwipeHint}
+            className={`inline-flex items-center gap-2 text-xs font-bold text-teal-700 transition-opacity duration-300 ${showSwipeHint ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+          >
+            <ArrowLeftRight className="h-4 w-4 shrink-0" aria-hidden="true" />
+            {UI.swipeHint[lang]}
+          </span>
+          <span className="ml-auto inline-flex shrink-0 gap-1.5">
+            <button
+              type="button"
+              onClick={() => moveComparison(-1)}
+              disabled={!canScrollLeft}
+              aria-label={UI.previousCity[lang]}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d9d5cd] bg-white text-[#34505b] transition-colors hover:border-teal-500 hover:text-teal-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 disabled:cursor-default disabled:opacity-25"
+            >
+              <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            </button>
+            <button
+              data-city-compare-next
+              type="button"
+              onClick={() => moveComparison(1)}
+              disabled={!canScrollRight}
+              aria-label={UI.nextCity[lang]}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-teal-600 bg-teal-600 text-white transition-colors hover:bg-teal-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-600 disabled:cursor-default disabled:border-[#d9d5cd] disabled:bg-white disabled:text-[#34505b] disabled:opacity-25"
+            >
+              <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </span>
+        </div>
+        <div className="relative">
+          <div
+            ref={tableScrollRef}
+            data-city-compare-scroll
+            className="overflow-x-auto rounded-2xl border border-[#e8e4dc] bg-white overscroll-x-contain"
+          >
+            <table className="w-full border-collapse">
             <thead>
               <tr>
-                <th className="sticky left-0 z-10 bg-[#fafaf8] w-28 min-w-28" aria-hidden="true" />
+                <th className="sticky left-0 z-10 w-[5.5rem] min-w-[5.5rem] bg-[#fafaf8] sm:w-28 sm:min-w-28" aria-hidden="true" />
                 {cities.map((c) => (
-                  <th key={c.id} scope="col" className="align-top px-3 pt-4 pb-3 min-w-52 text-left">
+                  <th key={c.id} scope="col" className="min-w-44 px-3 pb-3 pt-4 text-left align-top sm:min-w-52">
                     <Link href={`${prefix}/destinations/${c.id}`} className="group block">
                       <div className="relative h-24 rounded-xl overflow-hidden mb-2">
                         {/* 2026-07-21 성능: raw img(w=1200 원본을 h-24에 서빙) → next/image */}
@@ -341,7 +438,14 @@ export function CompareView({ forceLang }: { forceLang?: Lang }) {
                 ))}
               </tr>
             </tbody>
-          </table>
+            </table>
+          </div>
+          {canScrollRight && (
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-px right-px w-9 rounded-r-2xl bg-gradient-to-l from-[#0f766e]/12 to-transparent md:hidden"
+            />
+          )}
         </div>
         <p className="text-[0.6875rem] text-[#999] mt-3 max-w-2xl">{UI.note[lang]}</p>
 

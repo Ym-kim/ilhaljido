@@ -59,6 +59,13 @@ for (const marker of ['data-coupang-gear-grid', 'data-coupang-gear-card', 'data-
   }
 }
 
+const cityCompareSource = await readFile(path.join(root, 'src/components/destinations/CompareView.tsx'), 'utf8')
+for (const marker of ['data-city-compare-scroll', 'data-city-compare-swipe-hint', 'data-city-compare-next']) {
+  if (!cityCompareSource.includes(marker)) {
+    errors.push(`src/components/destinations/CompareView.tsx: missing ${marker} mobile discovery guard`)
+  }
+}
+
 const homeTripSetSource = await readFile(path.join(root, 'src/components/home/CollectionsSection.tsx'), 'utf8')
 for (const marker of ['data-trip-set-meta', 'data-trip-set-content', 'data-trip-set-accent']) {
   if (!homeTripSetSource.includes(marker)) {
