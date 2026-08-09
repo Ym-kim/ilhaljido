@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { TrainFront, Plug, Footprints, Bike, CalendarDays, MapPin, Battery, Waves } from 'lucide-react'
-import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
+import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /programs/domestic/jeongseon-train — 정선 아리랑열차(A-train) 워케이션 에디토리얼
@@ -16,15 +17,34 @@ import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
 
 const BOOKING_JEONGSEON = 'https://www.booking.com/searchresults.html?aid=7854081&ss=Jeongseon'
 const BOOKING_GANGNEUNG = 'https://www.booking.com/searchresults.html?aid=7854081&ss=Gangneung'
+const JEONGSEON_HERO = '/media/destinations/jeongseon-atrain-licensed-v1.webp'
+
+const HERO_COPY = {
+  eyebrow: {
+    KO: '정선 · SLOW-TRAIN WORKATION',
+    EN: 'JEONGSEON · SLOW-TRAIN WORKATION',
+    JP: '旌善 · スロートレイン・ワーケーション',
+  },
+  route: {
+    KO: '정선 아리랑 열차 · 제천 → 아우라지',
+    EN: 'Jeongseon Arirang Train · Jecheon → Auraji',
+    JP: '旌善アリラン列車 · 堤川 → アウラジ',
+  },
+  title: {
+    KO: '정선에서 느리게 달릴수록,\n일은 깊어진다',
+    EN: 'The slower the train through Jeongseon,\nthe deeper the work',
+    JP: '旌善をゆっくり走るほど、\n仕事は深まる',
+  },
+} satisfies Record<string, Record<Lang, string>>
 
 export const metadata: Metadata = {
   title: '느리게 달릴수록, 일은 깊어진다 — 정선 아리랑 열차 워케이션',
   description:
-    '2년 3개월 만에 돌아온 산악열차 A-train. 제천~아우라지, 토·일과 정선 5일장에만 달리는 달리는 오피스 — 아우라지 산책과 7.2km 레일바이크까지 국내 슬로우 워케이션 가이드.',
+    '2년 3개월 만에 돌아온 산악열차 A-train. 제천~아우라지, 토·일과 정선 5일장에만 달리는 오피스 — 아우라지 산책과 7.2km 레일바이크까지 국내 슬로우 워케이션 가이드.',
   alternates: { canonical: 'https://www.wakation.kr/programs/domestic/jeongseon-train' },
   openGraph: {
-    images: OG_DEFAULT_IMAGES,
-    title: '정선 아리랑 열차 워케이션 — 달리는 오피스 | Wakation',
+    images: [{ url: JEONGSEON_HERO, width: 1024, height: 613, alt: '정선역의 정선 아리랑 열차 A-train' }],
+    title: '정선 아리랑 열차 워케이션 — 달리는 오피스',
     description: '2년 3개월 만에 재개통한 A-train으로 떠나는 슬로우 트레인 워케이션 가이드.',
     url: 'https://www.wakation.kr/programs/domestic/jeongseon-train',
     siteName: 'Wakation',
@@ -35,23 +55,40 @@ export default function JeongseonTrainPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="dark-surface bg-gradient-to-b from-emerald-950 via-teal-950 to-slate-950 px-6 pt-20 pb-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="block text-teal-300 text-xs font-black tracking-widest uppercase mb-4">
-            Slow-train Workation · 제천 → 아우라지
-          </span>
-          <h1 className="text-4xl md:text-6xl font-black text-white leading-tight">
-            느리게 달릴수록,
-            <br />
-            일은 깊어진다
-          </h1>
-          <span className="block text-white/70 text-lg mt-5 max-w-xl mx-auto">
-            2년 3개월 만에 돌아온 산악열차, 정선 아리랑 열차(A-train).
-            창밖은 태백산맥의 절경, 책상 위엔 노트북 — 오전을 통째로 몰입에 쓰는 &lsquo;달리는 오피스&rsquo;.
-          </span>
-          <span className="block text-white/40 text-xs mt-6">
-            승차권은 코레일톡·레츠코레일에서 예매됩니다 (제휴 아님 · 정보성 안내)
-          </span>
+      <section className="dark-surface relative isolate min-h-[34rem] overflow-hidden bg-[#032f2d] lg:min-h-[38rem]">
+        <div className="absolute inset-y-0 right-0 w-full max-w-[1024px] lg:w-[58%]">
+          <Image
+            src={JEONGSEON_HERO}
+            alt="정선역 승강장의 정선 아리랑 열차 A-train"
+            fill
+            preload
+            sizes="(max-width: 1023px) 100vw, 1024px"
+            quality={78}
+            className="object-cover object-[58%_center] lg:object-center"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,31,31,0.98)_0%,rgba(2,47,45,0.93)_34%,rgba(2,47,45,0.58)_62%,rgba(2,25,31,0.35)_100%)] lg:bg-[linear-gradient(90deg,rgba(1,31,31,1)_0%,rgba(2,47,45,0.96)_33%,rgba(2,47,45,0.72)_50%,rgba(2,25,31,0.12)_82%)]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#021b21]/75 via-transparent to-[#063b36]/15" />
+
+        <div className="relative mx-auto flex min-h-[34rem] max-w-6xl items-end px-6 pb-14 pt-28 sm:items-center sm:pb-16 lg:min-h-[38rem]">
+          <div className="max-w-2xl text-left">
+            <span className="block text-xs font-black uppercase tracking-[0.16em] text-teal-200">
+              {HERO_COPY.eyebrow.KO}
+            </span>
+            <span className="mt-4 inline-flex rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white/86 backdrop-blur-sm">
+              {HERO_COPY.route.KO}
+            </span>
+            <h1 className="mt-5 whitespace-pre-line text-4xl font-black leading-[1.08] tracking-[-0.035em] text-white sm:text-5xl md:text-6xl">
+              {HERO_COPY.title.KO}
+            </h1>
+            <span className="mt-6 block max-w-xl text-base leading-7 text-white/78 sm:text-lg">
+              2년 3개월 만에 돌아온 산악열차, 정선 아리랑 열차(A-train). 창밖은 태백산맥의 절경,
+              책상 위엔 노트북 — 오전을 통째로 몰입에 쓰는 &lsquo;달리는 오피스&rsquo;.
+            </span>
+            <span className="mt-6 block text-xs text-white/52">
+              승차권은 코레일톡·레츠코레일에서 예매됩니다 (제휴 아님 · 정보성 안내)
+            </span>
+          </div>
         </div>
       </section>
 

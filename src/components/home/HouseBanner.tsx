@@ -40,6 +40,7 @@ export function HouseBanner() {
               alt=""
               fill
               sizes="(max-width: 768px) 100vw, 1152px"
+              quality={78}
               className="object-cover object-[62%_center] md:object-center transition-transform duration-700 group-hover:scale-[1.02]"
             />
           )}

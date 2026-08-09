@@ -54,6 +54,7 @@ export function MomentRail() {
               alt={`${m.dest[lang]} — ${m.title[lang].replace('\n', ' ')}`}
               fill
               sizes="220px"
+              quality={78}
               className="object-cover group-hover:scale-105 transition-transform duration-700"
             />
             {/* 그라디언트 오버레이 */}

@@ -115,6 +115,7 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
                   fill
                   loading="lazy"
                   sizes="(max-width: 519px) 100vw, (max-width: 1023px) 50vw, 288px"
+                  quality={78}
                   style={{ objectPosition: entry.imagePosition ?? '50% 50%' }}
                   className="object-cover transition duration-700 group-hover:scale-[1.025] motion-reduce:transition-none"
                 />
