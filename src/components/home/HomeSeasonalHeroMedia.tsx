@@ -98,7 +98,7 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
           alt={alt}
           fetchPriority="high"
           loading="eager"
-          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[68%_47%] md:object-[70%_48%]"
+          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[64%_34%] md:object-[70%_24%]"
         />
       </picture>
 
@@ -112,7 +112,7 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
           playsInline
           preload="metadata"
           poster={POSTER.desktop}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 h-full w-full object-cover object-[58%_38%] transition-opacity duration-700 md:object-[68%_24%] ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           onCanPlay={() => {
             setVideoReady(true)
             if (!userPausedRef.current) videoRef.current?.play().catch(() => undefined)

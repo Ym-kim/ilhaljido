@@ -74,9 +74,6 @@ const assetIds = (...ids) => ids.map((id) => {
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
 const v2Placements = [
   { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
-  { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: assetIds('domestic-seoul-model-j-city-noir-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-H'], assets: assetIds('domestic-busan-model-h-haeundae-v3'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-K'], assets: assetIds('domestic-jeju-model-k-coastal-stay-v4'), source: 'src/components/home/DomesticOnboarding.tsx' },
   { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: assetIds('trip-match-model-d-itinerary-choice-v2'), source: 'src/components/trip-match/TripMatchExperience.tsx' },
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v2', 'hosted-models-h-i-coastal-planning-mobile-v2'), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v2'), source: 'src/components/select/SelectHubView.tsx' },
@@ -89,6 +86,7 @@ const v2Placements = [
 ]
 
 const nonModelMajorSurfaces = [
+  'src/components/home/DomesticOnboarding.tsx',
   'src/components/home/MoodExplorer.tsx',
   'src/components/home/DurationExplorer.tsx',
   'src/components/home/CollectionsSection.tsx',
@@ -98,6 +96,7 @@ const nonModelMajorSurfaces = [
   'src/components/guide/GuideHubView.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
   'src/components/programs/GlobalProgramsView.tsx',
+  'src/components/programs/DomesticProgramsView.tsx',
   'src/components/programs/SupportProgramCard.tsx',
   'src/components/experiences/ExperienceEditorialView.tsx',
   'src/components/moments/MomentsView.tsx',

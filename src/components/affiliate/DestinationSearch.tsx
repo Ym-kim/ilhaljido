@@ -46,8 +46,9 @@ function buildLink(mode: Mode, q: string, checkin: string, checkout: string): { 
   }
 }
 
-export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
-  const { lang } = useLang()
+export function DestinationSearch({ mode = 'hotel', forceLang }: { mode?: Mode; forceLang?: Lang }) {
+  const { lang: contextLang } = useLang()
+  const lang = forceLang ?? contextLang
   const [q, setQ] = useState('')
   const [checkin, setCheckin] = useState('')
   const [checkout, setCheckout] = useState('')
@@ -84,10 +85,10 @@ export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
           })
         }}
         className={isHotel
-          ? 'grid grid-cols-2 gap-2.5 lg:grid-cols-[minmax(0,1fr)_10.5rem_10.5rem_auto]'
+          ? 'grid grid-cols-2 gap-2.5 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]'
           : 'flex flex-col gap-2.5 sm:flex-row'}
       >
-        <div className={`${isHotel ? 'col-span-2 lg:col-span-1' : 'flex-1'} flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3.5 transition-colors focus-within:border-[#7dd3fc]`}>
+        <div className={`${isHotel ? 'col-span-2 md:col-span-3' : 'flex-1'} flex min-w-0 items-center gap-2.5 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] px-3.5 transition-colors focus-within:border-[#7dd3fc]`}>
           <Search className="h-4 w-4 shrink-0 text-[#94a3b8]" strokeWidth={ICON_STROKE} />
           <input
             type="text"
@@ -116,7 +117,7 @@ export function DestinationSearch({ mode = 'hotel' }: { mode?: Mode }) {
         <button
           type="submit"
           disabled={!canSearch}
-          className={`${isHotel ? 'col-span-2 lg:col-span-1' : ''} inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-mid px-6 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-light disabled:cursor-not-allowed disabled:opacity-40`}
+          className={`${isHotel ? 'col-span-2 md:col-span-1' : ''} inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-brand-mid px-6 py-3 text-sm font-bold text-white shadow-sm transition-all hover:bg-brand-light disabled:cursor-not-allowed disabled:opacity-40`}
         >
           {mode === 'learn' ? COPY.inflearn[lang] : COPY.search[lang]}
           <ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
