@@ -565,7 +565,7 @@ export const COLLECTIONS: Collection[] = [
       EN: 'A traveler carrying a laptop through a quiet Tokyo neighborhood',
       JP: '東京の静かな街でノートパソコンを持って移動する旅行者',
     },
-    photoPosition: '62% 45%',
+    photoPosition: '62% 12%',
     illustrative: true,
     title: { KO: '도쿄 워케이션 올인원', EN: 'Tokyo workation, all in one', JP: '東京ワーケーション オールインワン' },
     tagline: { KO: '숙소부터 eSIM까지 한 번에', EN: 'Stay, experiences and eSIM in one go', JP: '宿からeSIMまで一度に' },

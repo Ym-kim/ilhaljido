@@ -639,7 +639,7 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     seasonalUsage: ['late-summer'],
     routeUsage: ['/', '/en', '/ja', '/collections/tokyo-allinone', '/en/collections/tokyo-allinone', '/ja/collections/tokyo-allinone'],
     sectionUsage: ['home-trip-sets', 'trip-set-hero'],
-    focalPoint: { x: 0.62, y: 0.45 },
+    focalPoint: { x: 0.62, y: 0.12 },
     source: 'OpenAI image generation; Wakation editorial direction',
     license: 'Wakation-owned generated editorial asset',
     createdAt: '2026-08-09',
