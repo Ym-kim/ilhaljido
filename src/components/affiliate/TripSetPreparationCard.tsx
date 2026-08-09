@@ -42,8 +42,6 @@ export function TripSetPreparationCard({
   tripSetSlug,
   destinationSlug,
   position,
-  anchorId,
-  onReadyCategoryClick,
 }: {
   item: AffiliateItem
   reason: string
@@ -53,8 +51,6 @@ export function TripSetPreparationCard({
   tripSetSlug: string
   destinationSlug: string
   position: number
-  anchorId?: string
-  onReadyCategoryClick?: (category: AffiliateItem['category'], itemId: string) => void
 }) {
   const { has, toggle } = useWishlist()
   const saved = has(item.id)
@@ -67,11 +63,9 @@ export function TripSetPreparationCard({
 
   return (
     <article
-      id={anchorId}
       data-ui-card="product"
       data-trip-conversion-item={item.id}
-      data-ready-category={item.category}
-      className="wak-card-product group flex h-full min-h-[26rem] min-w-0 scroll-mt-32 flex-col overflow-hidden border border-[#dfe6e9] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#9fc4cf] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)]"
+      className="wak-card-product group flex h-full min-h-[26rem] min-w-0 flex-col overflow-hidden border border-[#dfe6e9] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#9fc4cf] hover:shadow-[0_18px_42px_rgba(8,47,73,0.12)]"
     >
       <div className="relative aspect-[4/3] max-h-60 min-h-48 shrink-0 overflow-hidden bg-[#e9f0f2]">
         <Image
@@ -119,7 +113,6 @@ export function TripSetPreparationCard({
           {COPY.verified[lang]} · <time dateTime={verifiedAt}>{formatVerifiedAt(verifiedAt)}</time>
         </span>
         <a
-          data-ready-affiliate-cta={item.category}
           href={item.href}
           target="_blank"
           rel="sponsored noopener noreferrer"
@@ -139,7 +132,6 @@ export function TripSetPreparationCard({
               position: String(position),
             })
             recordRecentlyViewed(item.id)
-            onReadyCategoryClick?.(item.category, item.id)
           }}
           className="mt-auto inline-flex min-h-11 items-center justify-between gap-3 border-t border-[#e5ebed] pt-4 text-sm font-black text-[#036b95] transition hover:text-[#034f70] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-600"
         >

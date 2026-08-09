@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useRef, useSyncExternalStore } from 'react'
+import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
@@ -18,30 +18,6 @@ import { getTripSetCampaign } from '@/lib/tripSetCampaign'
 import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 import { TripSetPreparationCard } from '@/components/affiliate/TripSetPreparationCard'
-import { WakationReadyPanel } from '@/components/affiliate/WakationReadyPanel'
-import type { AffiliateCategory } from '@/lib/affiliate/types'
-
-const READY_CATEGORY_STORAGE_PREFIX = 'wakation_ready_categories:'
-const READY_COMPLETE_STORAGE_PREFIX = 'wakation_ready_complete:'
-const READY_PROGRESS_EVENT = 'wakation:ready-progress'
-const READY_CATEGORY_ORDER: AffiliateCategory[] = ['hotel', 'activity', 'transport', 'esim', 'insurance', 'education', 'visa']
-
-function isAffiliateCategory(value: unknown): value is AffiliateCategory {
-  return typeof value === 'string' && READY_CATEGORY_ORDER.includes(value as AffiliateCategory)
-}
-
-function subscribeReadyProgress(onStoreChange: () => void) {
-  window.addEventListener(READY_PROGRESS_EVENT, onStoreChange)
-  window.addEventListener('storage', onStoreChange)
-  return () => {
-    window.removeEventListener(READY_PROGRESS_EVENT, onStoreChange)
-    window.removeEventListener('storage', onStoreChange)
-  }
-}
-
-function getServerReadySnapshot() {
-  return '[]'
-}
 
 // 기획전 상세 — 히어로 + 구성 상품(숙소·체험·eSIM·항공) + 디스클로저 + 다음회차 알림
 export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: Lang }) {
@@ -49,32 +25,6 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
   const lang = forceLang ?? ctxLang
   const col = getCollection(slug)
   const conversionSectionRef = useRef<HTMLElement>(null)
-  const readyCompleteSentRef = useRef(false)
-  const readyStorageKey = col?.duration ? `${READY_CATEGORY_STORAGE_PREFIX}${col.slug}` : ''
-  const getReadySnapshot = useCallback(() => {
-    if (!readyStorageKey) return '[]'
-    try {
-      return window.localStorage.getItem(readyStorageKey) ?? '[]'
-    } catch {
-      return '[]'
-    }
-  }, [readyStorageKey])
-  const readySnapshot = useSyncExternalStore(subscribeReadyProgress, getReadySnapshot, getServerReadySnapshot)
-  const readyCompletedCategories = useMemo(() => {
-    try {
-      const stored = JSON.parse(readySnapshot) as unknown
-      return Array.isArray(stored) ? stored.filter(isAffiliateCategory) : []
-    } catch {
-      return []
-    }
-  }, [readySnapshot])
-  const readyCategoryKeys = useMemo(() => {
-    if (!col?.duration) return []
-    return Array.from(new Set((col.conversionItems ?? []).flatMap((entry) => {
-      const item = getCatalogItems([entry.affiliateItemId])[0]
-      return item?.status === 'active_affiliate' && item.href ? [item.category] : []
-    })))
-  }, [col])
 
   useEffect(() => {
     if (forceLang && forceLang !== ctxLang) setLang(forceLang)
@@ -111,68 +61,12 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
         locale: lang,
         item_count: String(col.conversionItems?.length ?? 0),
       })
-      trackEvent('ready_view', {
-        trip_set: col.slug,
-        destination: col.cityGuideSlug ?? col.slug,
-        locale: lang,
-        categories_total: String(readyCategoryKeys.length),
-      })
       observer.disconnect()
     }, { threshold: 0.2 })
 
     observer.observe(section)
     return () => observer.disconnect()
-  }, [col, lang, readyCategoryKeys.length])
-
-  const handleReadyCategoryClick = useCallback((category: AffiliateCategory, itemId: string) => {
-    if (!col?.duration) return
-    const next = readyCompletedCategories.includes(category)
-      ? readyCompletedCategories
-      : [...readyCompletedCategories, category]
-    try {
-      window.localStorage.setItem(readyStorageKey, JSON.stringify(next))
-      window.dispatchEvent(new Event(READY_PROGRESS_EVENT))
-    } catch {
-      // Progress is optional and must never interrupt an affiliate navigation.
-    }
-
-    trackEvent('ready_category_click', {
-      trip_set: col.slug,
-      destination: col.cityGuideSlug ?? col.slug,
-      locale: lang,
-      category,
-      item_id: itemId,
-      categories_clicked: String(next.length),
-      categories_total: String(readyCategoryKeys.length),
-      source_section: 'trip_set_preparation',
-    })
-
-    if (readyCategoryKeys.length > 0 && readyCategoryKeys.every((key) => next.includes(key))) {
-      try {
-        const completeKey = `${READY_COMPLETE_STORAGE_PREFIX}${col.slug}`
-        if (!readyCompleteSentRef.current && window.localStorage.getItem(completeKey) !== 'true') {
-          readyCompleteSentRef.current = true
-          window.localStorage.setItem(completeKey, 'true')
-          trackEvent('ready_complete_signal', {
-            trip_set: col.slug,
-            destination: col.cityGuideSlug ?? col.slug,
-            locale: lang,
-            categories_clicked: String(next.length),
-          })
-        }
-      } catch {
-        if (!readyCompleteSentRef.current) {
-          readyCompleteSentRef.current = true
-          trackEvent('ready_complete_signal', {
-            trip_set: col.slug,
-            destination: col.cityGuideSlug ?? col.slug,
-            locale: lang,
-            categories_clicked: String(next.length),
-          })
-        }
-      }
-    }
-  }, [col, lang, readyCategoryKeys, readyCompletedCategories, readyStorageKey])
+  }, [col, lang])
 
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
 
@@ -202,15 +96,6 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
   const categorySummary = categoryOrder
     .map((category) => ({ category, count: items.filter((item) => item.category === category).length }))
     .filter((entry) => entry.count > 0)
-  const readyCategories = categorySummary.map(({ category, count }) => {
-    const first = conversionItems.find(({ item }) => item.category === category)
-    return {
-      category,
-      count,
-      label: COLLECTIONS_UI[`ts_category_${category}`][lang],
-      targetId: `prepare-${category}-${first?.position ?? 1}`,
-    }
-  })
   const trackSection = (section: string, placement: 'intro' | 'sticky') => {
     trackEvent('trip_set_section_click', {
       slug: col.slug,
@@ -418,20 +303,14 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
           {col.duration && (
             <p className="mb-1 max-w-2xl text-xs leading-relaxed text-[#7a8a93]">{COLLECTIONS_UI.ts_prepare_note[lang]}</p>
           )}
-          {col.duration && readyCategories.length > 0 ? (
-            <WakationReadyPanel
-              categories={readyCategories}
-              completedCategories={readyCompletedCategories}
-              lang={lang}
-              tripSetSlug={col.slug}
-              destinationSlug={col.cityGuideSlug ?? col.slug}
-              allPreparationHref={`${prefix}/select`}
-            />
-          ) : (
-            <div className="mb-7 mt-4 flex flex-wrap items-center gap-2">
-              <span className="text-xs font-semibold text-[#8a989f]">{items.length}{COLLECTIONS_UI.count_label[lang]}</span>
-            </div>
-          )}
+          <div className="mb-7 mt-4 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold text-[#8a989f]">{items.length}{COLLECTIONS_UI.count_label[lang]}</span>
+            {col.duration && categorySummary.map(({ category, count }) => (
+              <span key={category} className="rounded-full border border-[#dce6e7] bg-[#f6f9f8] px-2.5 py-1 text-[0.6875rem] font-bold text-[#526a74]">
+                {COLLECTIONS_UI[`ts_category_${category}`][lang]} {count}
+              </span>
+            ))}
+          </div>
           <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-4">
             {col.duration && conversionItems.length > 0
               ? conversionItems.map(({ entry, item, position }) => (
@@ -445,8 +324,6 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
                     tripSetSlug={col.slug}
                     destinationSlug={col.cityGuideSlug ?? col.slug}
                     position={position}
-                    anchorId={`prepare-${item.category}-${position}`}
-                    onReadyCategoryClick={handleReadyCategoryClick}
                   />
                 ))
               : items.map((item) => (
