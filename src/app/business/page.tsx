@@ -21,7 +21,7 @@ import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 기업·팀 워케이션 B2B 랜딩 — 더휴일(thehyuil.co.kr) 벤치마크 2026-07-15
-// 훅: 지자체 지원사업 연계(실보유 SUPPORT_PROGRAMS 데이터) + 양양 1기 실측 실증
+// 훅: 지자체 지원사업 연계(실보유 SUPPORT_PROGRAMS 데이터) + 양양 운영 실측
 // 저장: /api/applications 재활용 (job_type='기업 워케이션 문의', message에 구조화)
 // 정직 원칙: 실데이터·실제 가능한 서비스 범위만. 컨설턴트·전담팀 등 허위 조직 표현 금지
 // ─────────────────────────────────────────────────────────────────────────────
@@ -38,11 +38,11 @@ const T: Record<string, L> = {
   },
   cta_form: { KO: '도입 문의하기', EN: 'Send an inquiry', JP: '導入を問い合わせる' },
   cta_kakao: { KO: '카카오톡 문의', EN: 'KakaoTalk chat', JP: 'カカオトーク相談' },
-  // 실증 스탯 (양양 1기 실측 — /report/yangyang)
-  proof_title: { KO: '1기 운영 실측 데이터', EN: 'Measured from our 1st cohort', JP: '第1期の実測データ' },
+  // 실증 스탯 (양양 운영 실측 — /report/yangyang)
+  proof_title: { KO: '양양 운영 실측 데이터', EN: 'Measured from our Yangyang workation', JP: '襄陽ワーケーションの実測データ' },
   proof_sat: { KO: '참가 만족도', EN: 'Satisfaction', JP: '参加満足度' },
   proof_again: { KO: '재참여 의향', EN: 'Would join again', JP: '再参加意向' },
-  proof_link: { KO: '양양 1기 결과 리포트 보기', EN: 'See the Yangyang cohort report', JP: '襄陽第1期レポートを見る' },
+  proof_link: { KO: '양양 워케이션 결과 보기', EN: 'See the Yangyang workation report', JP: '襄陽ワーケーションの結果を見る' },
   // 왜 팀 워케이션
   why_eyebrow: { KO: 'Why team workation', EN: 'Why team workation', JP: 'Why team workation' },
   why_title: { KO: '팀 워케이션이 만드는 것', EN: 'What a team workation builds', JP: 'チームワーケーションがつくるもの' },
@@ -96,9 +96,9 @@ const T: Record<string, L> = {
   },
   how3_t: { KO: '실행', EN: 'Run', JP: '実行' },
   how3_d: {
-    KO: '확정된 기획에 따라 진행합니다. 운영 실측 데이터는 1기 리포트에서 확인하실 수 있습니다.',
-    EN: 'We run the confirmed plan. See our measured results in the cohort report.',
-    JP: '確定した企画に沿って実行。運営実測データは第1期レポートでご確認いただけます。',
+    KO: '확정된 기획에 따라 진행합니다. 운영 실측 데이터는 양양 리포트에서 확인하실 수 있습니다.',
+    EN: 'We run the confirmed plan. See our measured results in the Yangyang report.',
+    JP: '確定した企画に沿って実行します。運営実測データは襄陽レポートでご確認いただけます。',
   },
   // 폼
   form_eyebrow: { KO: 'Inquiry', EN: 'Inquiry', JP: 'Inquiry' },
@@ -301,7 +301,7 @@ export default function BusinessPage() {
         </div>
       </section>
 
-      {/* ── 실증 스탯 (양양 1기 실측) ── */}
+      {/* ── 실증 스탯 (양양 운영 실측) ── */}
       <section className="px-6 py-10 border-b border-[#f1f5f9]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-12">
           <p className="text-[#94a3b8] text-xs font-bold uppercase tracking-wider shrink-0">{t('proof_title')}</p>

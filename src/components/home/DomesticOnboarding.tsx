@@ -33,7 +33,7 @@ const COPY = {
     EN: 'Begin with a short stay that keeps travel and work in balance, then go farther when it feels right.',
     JP: 'まずは週末の韓国滞在から。街で過ごす時間と、仕事のリズムを無理なく組み合わせました。',
   },
-  primary: { KO: '국내 여행 살펴보기', EN: 'Explore beginner-friendly stays', JP: '韓国の旅を見てみる' },
+  primary: { KO: '국내 여행 살펴보기', EN: 'Explore travel in Korea', JP: '韓国の旅を見る' },
   secondary: { KO: '30초 여행 찾기', EN: 'Find my trip in 30 seconds', JP: '30秒で旅を探す' },
   open: { KO: '여행 구성 보기', EN: 'View the trip set', JP: '旅の構成を見る' },
   quick: { KO: '빠르게 고르기', EN: 'Choose by pace', JP: '過ごし方から選ぶ' },
@@ -59,10 +59,10 @@ const ENTRIES: Entry[] = [
   {
     slug: 'busan-weekend',
     href: '/collections/busan-weekend',
-    assetId: 'domestic-busan-model-e-coastal-city-v2',
-    modelId: 'WAK-MODEL-E',
-    image: '/media/brand-models/domestic-busan-model-e-coastal-city-v2.webp',
-    imagePosition: '34% 48%',
+    assetId: 'domestic-busan-model-h-haeundae-v3',
+    modelId: 'WAK-MODEL-H',
+    image: '/media/brand-models/domestic-busan-model-h-haeundae-v3.webp',
+    imagePosition: '45% 48%',
     name: { KO: '부산', EN: 'Busan', JP: '釜山' },
     description: {
       KO: '바다와 도심을 오가며 쉬는 시간을 확보하는 주말 2박 3일',
@@ -70,15 +70,15 @@ const ENTRIES: Entry[] = [
       JP: '海と街を行き来しながら余白をつくる週末2泊3日',
     },
     tag: { KO: '주말 2박 3일', EN: 'Weekend · 2 nights', JP: '週末2泊3日' },
-    alt: { KO: '부산을 연상시키는 바다와 도시 사이 산책로를 걷는 여행자', EN: 'A traveler walking where an unnamed Busan-inspired city meets the sea', JP: '釜山をイメージした海と街のあいだの遊歩道を歩く旅人' },
+    alt: { KO: '해운대 해변과 마린시티를 배경으로 걷는 성인 여행자', EN: 'An adult traveler walking with Haeundae Beach and Marine City behind her', JP: '海雲台ビーチとマリンシティを背景に歩く大人の旅行者' },
   },
   {
     slug: 'jeju',
     href: '/guide/jeju',
-    assetId: 'domestic-jeju-model-g-slow-stay-v2',
-    modelId: 'WAK-MODEL-G',
-    image: '/media/brand-models/domestic-jeju-model-g-slow-stay-v2.webp',
-    imagePosition: '72% 50%',
+    assetId: 'domestic-jeju-model-k-coastal-stay-v4',
+    modelId: 'WAK-MODEL-K',
+    image: '/media/brand-models/domestic-jeju-model-k-coastal-stay-v4.webp',
+    imagePosition: '70% 48%',
     name: { KO: '제주', EN: 'Jeju', JP: '済州' },
     description: {
       KO: '3박 이상 머물며 일상의 속도를 바꾸는 섬 체류 가이드',
@@ -86,7 +86,7 @@ const ENTRIES: Entry[] = [
       JP: '3泊以上滞在し、日常のペースを整える島のガイド',
     },
     tag: { KO: '3박 이상', EN: '3+ nights', JP: '3泊以上' },
-    alt: { KO: '제주를 연상시키는 돌담과 억새 길에서 여행 일정을 적는 여행자', EN: 'A traveler writing beside a stone wall and silver grass in a Jeju-inspired landscape', JP: '済州をイメージした石垣とススキの道で旅の予定を書く旅人' },
+    alt: { KO: '산방산과 제주 바다가 보이는 길을 노트와 함께 걷는 성인 여행자', EN: 'An adult traveler walking with a notebook above the Jeju coast and Sanbangsan', JP: '山房山と済州の海を望む道をノートと歩く大人の旅行者' },
   },
   {
     slug: 'fukuoka-3n4d',
@@ -151,7 +151,7 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
           </div>
           <div className="flex flex-col gap-2 sm:flex-row">
             <Link
-              href={withLocale('/destinations', lang)}
+              href={withLocale('/programs/domestic', lang)}
               onClick={() => trackEvent('domestic_destination_click', { locale: lang, source: 'home', placement: 'section_cta', destinationSlug: 'all' })}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#123849] px-5 text-sm font-black text-white transition hover:bg-[#0d536b] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d536b]"
             >

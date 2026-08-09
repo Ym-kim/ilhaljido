@@ -16,7 +16,7 @@ import { ShareButton } from '@/components/share/ShareButton'
 // 예정"·함대 전체 2024-05까지 완료 목표 → "전 함대 완료 발표"로 쓰면 오보. 본문은
 // "2024년 초 설치(함대 전체는 2024년 5월까지)" / 패키지 Browse·Browse&Stream(무제한,
 // 사전 구매 할인) = msccruisesusa.com(본 도메인 403 우회) / 와이파이 일별 요금은
-// kr.trip.com 게재 참고가(카리브 2-13박 1기기 $8.44/일 등, "실제는 선내 공지 기준"
+// kr.trip.com 게재 참고가(카리브 2-13박 1인당 $8.44/일 등, "실제는 선내 공지 기준"
 // 문구 병기 조건으로 인용) / World Promenade 약 104m 선미 개방형+LED 스카이 스크린·
 // World Galleria 2,214㎡ LED 돔·다이닝 13(스페셜티 6)·바 20 = MSC 공식 프레스룸 /
 // The Venom Drop @ The Spiral = 11데크 '드라이 슬라이드'(약 76m, 워터슬라이드 아님) /

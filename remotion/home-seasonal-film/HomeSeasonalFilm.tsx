@@ -13,6 +13,8 @@ type SeasonalScene = {
   mobile: string
   desktopPosition: string
   mobilePosition: string
+  desktopScale: [number, number]
+  mobileScale: [number, number]
   warmth: string
 }
 
@@ -22,6 +24,8 @@ const SCENES: SeasonalScene[] = [
     mobile: 'media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
     desktopPosition: '70% 48%',
     mobilePosition: '69% 45%',
+    desktopScale: [1, 1.025],
+    mobileScale: [1, 1.02],
     warmth: 'rgba(238, 198, 137, 0.08)',
   },
   {
@@ -29,13 +33,17 @@ const SCENES: SeasonalScene[] = [
     mobile: 'media/seasonal/late-summer-model-f-market-v1.webp',
     desktopPosition: '64% 50%',
     mobilePosition: '68% 50%',
+    desktopScale: [1, 1.025],
+    mobileScale: [1, 1.02],
     warmth: 'rgba(241, 177, 91, 0.11)',
   },
   {
-    desktop: 'media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
-    mobile: 'media/brand-models/monthly-2026-08-model-j-blue-hour-v2.webp',
-    desktopPosition: '58% 45%',
-    mobilePosition: '52% 45%',
+    desktop: 'media/brand-models/programs-model-k-stay-planning-desktop-v1.webp',
+    mobile: 'media/brand-models/programs-model-k-stay-planning-mobile-v1.webp',
+    desktopPosition: '68% 43%',
+    mobilePosition: '58% 40%',
+    desktopScale: [1, 1.02],
+    mobileScale: [1, 1.015],
     warmth: 'rgba(54, 119, 179, 0.09)',
   },
 ]
@@ -51,17 +59,17 @@ function FilmFrame({ scene, progress, opacity, portrait }: {
 }) {
   const image = portrait ? scene.mobile : scene.desktop
   const objectPosition = portrait ? scene.mobilePosition : scene.desktopPosition
-  const driftX = interpolate(progress, [0, 1], portrait ? [-8, 8] : [-18, 18], {
+  const driftX = interpolate(progress, [0, 1], portrait ? [-3, 3] : [-7, 7], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.quad),
   })
-  const driftY = interpolate(progress, [0, 1], [8, -8], {
+  const driftY = interpolate(progress, [0, 1], [3, -3], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.quad),
   })
-  const scale = interpolate(progress, [0, 1], [1.035, 1.105], {
+  const scale = interpolate(progress, [0, 1], portrait ? scene.mobileScale : scene.desktopScale, {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.quad),
@@ -76,7 +84,8 @@ function FilmFrame({ scene, progress, opacity, portrait }: {
           height: '100%',
           objectFit: 'cover',
           objectPosition,
-          transform: `translate3d(${driftX}px, ${driftY}px, 0) scale(${scale})`,
+          translate: `${driftX}px ${driftY}px`,
+          scale,
           filter: 'saturate(1.04) contrast(1.035)',
         }}
       />

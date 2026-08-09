@@ -10,7 +10,7 @@
 
 Model K is a fictional, clearly adult 29-year-old editorial identity used to connect learning, trip planning, and longer-stay program discovery. The canonical reference is `Gemini_Generated_Image_7a6e8x7a6e8x7a6e.png`; it is not a production asset and `directPublish` remains `false`.
 
-The first production placements are deliberately limited to `/learn` and `/programs`. Growth uses the separate Model B identity; testimonials, Hosted proof, actual accommodation or activity products, staff profiles, and participant stories remain place-led or use verified photography. This prevents Model K from becoming a default face or being mistaken for a customer, participant, instructor, staff member, venue, or product.
+Production placements are limited to editorial discovery surfaces: `/learn`, `/programs`, the seasonal home film, and the Jeju domestic-discovery card. Growth uses the separate Model B identity; testimonials, Hosted proof, actual accommodation or activity products, staff profiles, and participant stories remain place-led or use verified photography. This prevents Model K from being mistaken for a customer, participant, instructor, staff member, venue, or product.
 
 ## Source archive audit
 
@@ -38,8 +38,9 @@ The first production placements are deliberately limited to `/learn` and `/progr
 | `learn-model-k-creative-focus-mobile-v1.webp` | `/learn` | Mobile portrait, upper-left copy-safe | 960×1280 |
 | `programs-model-k-stay-planning-desktop-v1.webp` | `/programs` | Desktop, subject right, deep-teal copy-safe | 1440×900 |
 | `programs-model-k-stay-planning-mobile-v1.webp` | `/programs` | Mobile portrait, upper-left copy-safe | 960×1280 |
+| `domestic-jeju-model-k-coastal-stay-v4.webp` | Home domestic discovery | Jeju coast, full-body late-summer walk | 1200×900 |
 
-All production files are optimized WebP derivatives, registered in the media manifest, localized in KO/EN/JA, labelled as editorial images in UI, and measured through the existing `visual_asset_view` event.
+All still production files are optimized WebP derivatives, registered in the media manifest, localized in KO/EN/JA, and measured through the existing `visual_asset_view` event. Customer-facing generated-image labels remain removed per the current presentation policy; provenance and restrictions stay in the internal manifest.
 
 ## Final generation prompts
 

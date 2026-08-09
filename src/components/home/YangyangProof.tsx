@@ -8,23 +8,23 @@ import { NotifySignup } from '@/components/home/NotifySignup'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 양양 1기 완료 증거 — 설문 수치는 1기 모집 페이지(wakation-yangyang.vercel.app)
+// 양양 워케이션 운영 기록 — 설문 수치는 당시 운영 페이지(wakation-yangyang.vercel.app)
 // 공개 데이터 실사값 (2026-07-15 확인: 만족도 4.7/5 · NPS 9.1/10 · 재참여 100%)
 // ─────────────────────────────────────────────────────────────────────────────
 
 type L = Record<Lang, string>
 
 const COPY: Record<string, L> = {
-  eyebrow: { KO: 'PILOT COMPLETED', EN: 'PILOT COMPLETED', JP: 'PILOT COMPLETED' },
-  title: { KO: '양양 1기, 숫자로 증명했습니다', EN: 'Yangyang batch 1 — proven in numbers', JP: '襄陽1期、数字で証明しました' },
+  eyebrow: { KO: 'YANGYANG FIELD NOTE', EN: 'YANGYANG FIELD NOTE', JP: 'YANGYANG FIELD NOTE' },
+  title: { KO: '양양에서 보낸 2박 3일, 결과를 공개합니다', EN: 'What we learned from three days in Yangyang', JP: '襄陽で過ごした2泊3日の結果' },
   sub: {
-    KO: '바다 앞에서 일하고 쉬는 2박 3일. 첫 회차를 실제로 운영했고, 참가자 설문 결과를 그대로 공개합니다.',
-    EN: 'Two nights of working and resting by the sea. We ran the first cohort — and published the participant survey as-is.',
-    JP: '海の前で働き休む2泊3日。初回を実際に運営し、参加者アンケートをそのまま公開しています。',
+    KO: '바다 앞에서 일하고 쉬는 2박 3일을 실제로 운영했습니다. 참가자 전원이 응답한 설문 결과를 그대로 공개합니다.',
+    EN: 'We hosted two nights of working and resting by the sea, and publish the all-participant survey results as recorded.',
+    JP: '海の前で働き、休む2泊3日を実際に運営しました。参加者全員のアンケート結果をそのまま公開します。',
   },
-  stat_note: { KO: '1기 참가자 설문 · 전원 응답', EN: 'Batch 1 participant survey · all responded', JP: '1期参加者アンケート・全員回答' },
-  view_page: { KO: '양양 1기 결과 리포트 보기', EN: 'View the batch-1 result report', JP: '襄陽1期の結果レポートを見る' },
-  notify_label: { KO: '다음 회차가 열리면 가장 먼저 알려드릴게요', EN: "Be the first to know when the next cohort opens", JP: '次回開催を最初にお知らせします' },
+  stat_note: { KO: '양양 참가자 설문 · 전원 응답', EN: 'Yangyang participant survey · all responded', JP: '襄陽参加者アンケート・全員回答' },
+  view_page: { KO: '양양 워케이션 결과 보기', EN: 'View the Yangyang workation report', JP: '襄陽ワーケーションの結果を見る' },
+  notify_label: { KO: '다음 일정이 정해지면 가장 먼저 알려드릴게요', EN: 'Be the first to know when new dates are set', JP: '次の日程が決まり次第、いち早くお知らせします' },
 }
 
 const STATS: { value: string; label: L }[] = [
@@ -37,7 +37,7 @@ const FACTS: { done: boolean; text: L }[] = [
   { done: true,  text: { KO: '2박 3일 소수 정예 운영 완료', EN: '2N3D small-group cohort completed', JP: '2泊3日の少人数運営を完了' } },
   { done: true,  text: { KO: '참가자 설문 결과 공개', EN: 'Participant survey published', JP: '参加者アンケートを公開' } },
   { done: true,  text: { KO: '현장 사진·후기 공개', EN: 'Photos and reviews published', JP: '現場写真・レビューを公開' } },
-  { done: false, text: { KO: '다음 회차 준비 중', EN: 'Next cohort in preparation', JP: '次回開催を準備中' } },
+  { done: false, text: { KO: '다음 일정 준비 중', EN: 'New dates in preparation', JP: '次の日程を準備中' } },
 ]
 
 export function YangyangProof() {
@@ -51,7 +51,7 @@ export function YangyangProof() {
           <h2 className="text-2xl md:text-3xl font-black text-white mb-3">{COPY.title[lang]}</h2>
           <p className="text-white/55 text-sm leading-relaxed mb-7">{COPY.sub[lang]}</p>
 
-          {/* 실측 설문 스탯 — 1기 페이지 공개 데이터 */}
+          {/* 실측 설문 스탯 — 당시 운영 페이지 공개 데이터 */}
           <div className="grid grid-cols-3 gap-3 mb-2">
             {STATS.map((s) => (
               <div key={s.value} className="bg-white/5 border border-sky-400/20 rounded-2xl px-3 py-4 text-center">

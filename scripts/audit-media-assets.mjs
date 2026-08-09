@@ -39,6 +39,8 @@ const v2Assets = [
   { id: 'domestic-seoul-model-j-city-noir-v2', file: 'domestic-seoul-model-j-city-noir-v2.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-J'] },
   { id: 'domestic-busan-model-e-coastal-city-v2', file: 'domestic-busan-model-e-coastal-city-v2.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-E'] },
   { id: 'domestic-jeju-model-g-slow-stay-v2', file: 'domestic-jeju-model-g-slow-stay-v2.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-G'] },
+  { id: 'domestic-busan-model-h-haeundae-v3', file: 'domestic-busan-model-h-haeundae-v3.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-H'] },
+  { id: 'domestic-jeju-model-k-coastal-stay-v4', file: 'domestic-jeju-model-k-coastal-stay-v4.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-K'] },
   { id: 'trip-match-model-d-itinerary-choice-v2', file: 'trip-match-model-d-itinerary-choice-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
   { id: 'hosted-models-h-i-coastal-planning-v2', file: 'hosted-models-h-i-coastal-planning-v2.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'hosted-models-h-i-coastal-planning-mobile-v2', file: 'hosted-models-h-i-coastal-planning-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
@@ -54,6 +56,7 @@ const v2Assets = [
   { id: 'campaign-model-f-japan-choice-desktop-v1', file: 'campaign-model-f-japan-choice-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
   { id: 'campaign-model-f-japan-choice-mobile-v1', file: 'campaign-model-f-japan-choice-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-F'] },
   { id: 'monthly-2026-08-model-e-city-arrival-v2', file: 'monthly-2026-08-model-e-city-arrival-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-E'] },
+  { id: 'monthly-2026-08-model-g-coastal-book-cafe-v1', file: 'monthly-2026-08-model-g-coastal-book-cafe-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-G'] },
   { id: 'monthly-2026-08-model-h-coastal-reset-v1', file: 'monthly-2026-08-model-h-coastal-reset-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-H'] },
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
 ]
@@ -72,8 +75,8 @@ const assetIds = (...ids) => ids.map((id) => {
 const v2Placements = [
   { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
   { route: 'home', section: 'domestic-seoul', models: ['WAK-MODEL-J'], assets: assetIds('domestic-seoul-model-j-city-noir-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-E'], assets: assetIds('domestic-busan-model-e-coastal-city-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
-  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-G'], assets: assetIds('domestic-jeju-model-g-slow-stay-v2'), source: 'src/components/home/DomesticOnboarding.tsx' },
+  { route: 'home', section: 'domestic-busan', models: ['WAK-MODEL-H'], assets: assetIds('domestic-busan-model-h-haeundae-v3'), source: 'src/components/home/DomesticOnboarding.tsx' },
+  { route: 'home', section: 'domestic-jeju', models: ['WAK-MODEL-K'], assets: assetIds('domestic-jeju-model-k-coastal-stay-v4'), source: 'src/components/home/DomesticOnboarding.tsx' },
   { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: assetIds('trip-match-model-d-itinerary-choice-v2'), source: 'src/components/trip-match/TripMatchExperience.tsx' },
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v2', 'hosted-models-h-i-coastal-planning-mobile-v2'), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v2'), source: 'src/components/select/SelectHubView.tsx' },
@@ -82,7 +85,7 @@ const v2Placements = [
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v1', 'growth-model-b-urban-learning-mobile-v1'), source: 'src/app/growth/page.tsx' },
   { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v1', 'campaign-model-f-japan-choice-mobile-v1'), source: 'src/data/campaign-landings.ts' },
-  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
+  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v1', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
