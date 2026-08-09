@@ -542,6 +542,38 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     restriction: { KO: '실제 고객·직원·컨설턴트·팀 프로그램·사업장 사진으로 표현하지 않는다.', EN: 'Do not present as a real client, employee, consultant, team program or business venue.', JP: '実在の顧客・従業員・コンサルタント・チームプログラム・事業所の写真として扱わない。' },
   },
   {
+    id: 'business-models-c-h-k-late-summer-team-desktop-v2',
+    src: '/media/brand-models/business-models-c-h-k-late-summer-team-desktop-v2.webp',
+    alt: {
+      KO: '늦여름의 시원한 해안 업무 라운지에서 일정표와 노트북을 펼쳐 놓고 워케이션을 기획하는 성인 팀',
+      EN: 'An adult team planning a workation with an itinerary and laptop in a cool late-summer coastal work lounge',
+      JP: '晩夏の涼しい海辺のワークラウンジで、旅程表とノートパソコンを広げてワーケーションを計画する大人のチーム',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1536, height: 1024, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-K'], localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['late-summer'],
+    routeUsage: ['/business'], sectionUsage: ['business-hero'],
+    generatedFromReferenceIds: ['wak-model-c-quiet-premium-identity-anchor', 'wak-model-h-soft-daylight-identity-anchor-v2-2', 'wak-model-k-creative-navigator-identity-reference-v1'], focalPoint: { x: 0.72, y: 0.25 },
+    source: 'OpenAI built-in image generation using the user-controlled Wakation model roster references',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: { KO: '실제 고객·직원·참가자·팀 프로그램·사업장의 현장 사진으로 표현하지 않는다.', EN: 'Do not present as a real client, employee, participant, team program or business venue.', JP: '実際の顧客・社員・参加者・チームプログラム・事業所の現場写真として表示しない。' },
+  },
+  {
+    id: 'business-models-c-h-k-late-summer-team-mobile-v2',
+    src: '/media/brand-models/business-models-c-h-k-late-summer-team-mobile-v2.webp',
+    alt: {
+      KO: '늦여름의 시원한 해안 업무 라운지에서 일정표를 함께 살펴보며 워케이션을 기획하는 성인 팀',
+      EN: 'An adult team reviewing an itinerary together in a cool late-summer coastal work lounge',
+      JP: '晩夏の涼しい海辺のワークラウンジで、旅程表を一緒に確認しながらワーケーションを計画する大人のチーム',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 960, height: 1280, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-K'], localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['late-summer'],
+    routeUsage: ['/business'], sectionUsage: ['business-hero-mobile'],
+    generatedFromReferenceIds: ['business-models-c-h-k-late-summer-team-desktop-v2', 'hosted-models-h-i-coastal-planning-mobile-v2'], focalPoint: { x: 0.65, y: 0.5 },
+    source: 'OpenAI built-in image generation using the user-controlled Wakation model roster references',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: { KO: '실제 고객·직원·참가자·팀 프로그램·사업장의 현장 사진으로 표현하지 않는다.', EN: 'Do not present as a real client, employee, participant, team program or business venue.', JP: '実際の顧客・社員・参加者・チームプログラム・事業所の現場写真として表示しない。' },
+  },
+  {
     id: 'campaign-model-f-japan-choice-desktop-v1',
     src: '/media/brand-models/campaign-model-f-japan-choice-desktop-v1.webp',
     alt: {
