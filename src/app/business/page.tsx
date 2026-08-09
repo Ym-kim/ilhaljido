@@ -176,8 +176,8 @@ const STATUS_STYLE: Record<string, string> = {
 }
 
 const BUSINESS_PLACEMENT = getEditorialModelPlacement('business-hero')
-const BUSINESS_DESKTOP = getMediaAsset('business-model-c-team-planning-desktop-v1')!
-const BUSINESS_MOBILE = getMediaAsset('business-model-c-team-planning-mobile-v1')!
+const BUSINESS_DESKTOP = getMediaAsset('business-models-c-h-k-late-summer-team-desktop-v2')!
+const BUSINESS_MOBILE = getMediaAsset('business-models-c-h-k-late-summer-team-mobile-v2')!
 
 // 기업 유형 — 지원사업 자격 판단에 실질적으로 쓰이는 구분 (더휴일 '지원금 연계' 벤치)
 const BIZ_TYPES: { v: string; l: L }[] = [
@@ -376,7 +376,7 @@ export default function BusinessPage() {
           desktopHeight={BUSINESS_DESKTOP.height!}
           mobileWidth={BUSINESS_MOBILE.width!}
           mobileHeight={BUSINESS_MOBILE.height!}
-          className="absolute inset-0 h-full w-full object-cover object-[65%_45%] md:object-[72%_15%]"
+          className="absolute inset-0 h-full w-full object-cover object-[65%_50%] md:object-[72%_25%]"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,20,31,.94)_0%,rgba(4,20,31,.72)_48%,rgba(4,20,31,.12)_100%)] md:bg-[linear-gradient(90deg,rgba(4,20,31,.92)_0%,rgba(4,20,31,.61)_49%,rgba(4,20,31,.08)_100%)]" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-[#071824]/95 to-transparent" />
