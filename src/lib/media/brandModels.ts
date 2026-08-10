@@ -96,7 +96,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['taupe', 'muted blue', 'charcoal'], preferredActions: ['choosing an itinerary', 'closing a laptop', 'leaving an exhibition'], preferredLocations: ['departure lounge', 'gallery district', 'evening city'],
     allowedSections: ['trip-match', 'exhibition-editorial', 'city-departure'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-d-refined-editorial-identity-anchor'], referenceAssetIds: ['model-d-source-reference'],
-    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3'],
+    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3', 'experience-tokyo-model-d-immersive-gallery-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Prioritize choice, movement and place rather than a close beauty composition.',
   },

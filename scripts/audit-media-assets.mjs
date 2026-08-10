@@ -59,6 +59,7 @@ const v2Assets = [
   { id: 'hosted-models-h-i-coastal-planning-mobile-v3', file: 'hosted-models-h-i-coastal-planning-mobile-v3.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'select-model-i-travel-prep-v3', file: 'select-model-i-travel-prep-v3.webp', width: 1440, height: 810, modelIds: ['WAK-MODEL-I'] },
   { id: 'experience-seoul-model-i-kpop-studio-v2', file: 'experience-seoul-model-i-kpop-studio-v2.webp', width: 1440, height: 1080, modelIds: ['WAK-MODEL-I'] },
+  { id: 'experience-tokyo-model-d-immersive-gallery-v1', file: 'experience-tokyo-model-d-immersive-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
   { id: 'learn-model-k-creative-focus-desktop-v1', file: 'learn-model-k-creative-focus-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-K'] },
   { id: 'learn-model-k-creative-focus-mobile-v1', file: 'learn-model-k-creative-focus-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
   { id: 'programs-model-k-stay-planning-desktop-v1', file: 'programs-model-k-stay-planning-desktop-v1.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-K'] },

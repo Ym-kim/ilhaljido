@@ -48,6 +48,7 @@ const CHECKS: Check[] = [
   { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
   { id: 'page:experience-busan', url: 'https://www.wakation.kr/experiences/busan-coastal-highlights-day-tour' },
   { id: 'page:experience-seoul-kpop', url: 'https://www.wakation.kr/experiences/hongdae-kpop-walk-dance' },
+  { id: 'page:experience-tokyo-teamlab', url: 'https://www.wakation.kr/experiences/teamlab-planets-tokyo-evening' },
   { id: 'page:media-credits', url: 'https://www.wakation.kr/media-credits' },
   // 허브 페이지 (2026-08-04 감사: 하위는 있는데 허브가 빠져 있던 4곳)
   { id: 'page:select-hub', url: 'https://www.wakation.kr/select' },
@@ -103,7 +104,12 @@ const CHECKS: Check[] = [
   { id: 'booking:lyf-bangkok', url: 'https://www.booking.com/hotel/th/lyf-sukhumvit-8-bangkok.html?aid=7854081', okStatuses: [200, 202, 403] },
 
   // Klook/KKday — 봇 차단 403이 정상. 404/5xx만 이상
-  { id: 'klook:teamlab', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', okStatuses: [200, 403] },
+  {
+    id: 'klook:teamlab',
+    url: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F25300-teamlab-planets-toyosu-tokyo-ticket%2F',
+    finalMustInclude: 'klook.com',
+    okStatuses: [200, 403],
+  },
   { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
   // 2026-08-06 신설 — KKday 발리 요가 소멸 대체분. 상품 소멸을 조기에 잡기 위해 감시 등록
   { id: 'klook:yoga-ubud', url: 'https://www.klook.com/ko/activity/23956-yoga-class-ubud-centre-bali/?aid=126848', okStatuses: [200, 403] },

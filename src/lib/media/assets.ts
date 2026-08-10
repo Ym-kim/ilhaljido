@@ -155,6 +155,36 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     },
   },
   {
+    id: 'experience-tokyo-model-d-immersive-gallery-v1',
+    src: '/media/brand-models/experience-tokyo-model-d-immersive-gallery-v1.webp',
+    alt: {
+      KO: '도쿄를 연상시키는 현대 미디어아트 공간에서 빛을 바라보는 여름 옷차림의 성인 여행자',
+      EN: 'An adult traveller in summer clothes looking at light inside a Tokyo-inspired contemporary media-art space',
+      JP: '東京をイメージした現代メディアアート空間で光を見つめる、夏服の大人の旅行者',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1536, height: 1024, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['summer', 'late-summer'],
+    routeUsage: [
+      '/select/activity', '/en/select/activity', '/ja/select/activity',
+      '/experiences/teamlab-planets-tokyo-evening',
+      '/en/experiences/teamlab-planets-tokyo-evening',
+      '/ja/experiences/teamlab-planets-tokyo-evening',
+      '/guide/tokyo', '/en/guide/tokyo', '/ja/guide/tokyo',
+      '/collections/tokyo-allinone', '/en/collections/tokyo-allinone', '/ja/collections/tokyo-allinone',
+    ],
+    sectionUsage: ['experience-editorial-tokyo', 'activity-card'],
+    generatedFromReferenceIds: ['trip-match-model-d-itinerary-choice-v3'],
+    focalPoint: { x: 0.7, y: 0.5 },
+    source: 'OpenAI built-in image editing using the approved WAK-MODEL-D reference; generic immersive-art gallery composition',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: {
+      KO: '실제 teamLab 작품·전시장·방문객 또는 Klook 상품 사진으로 표현하지 않는다.',
+      EN: 'Do not present as a photograph of a real teamLab artwork, venue, visitor or Klook product.',
+      JP: '実在のteamLab作品・会場・来場者・Klook商品の写真として表示しない。',
+    },
+  },
+  {
     id: 'domestic-busan-model-c-coastal-transition-v1',
     src: '/media/brand-models/domestic-busan-model-c-coastal-transition-v1.webp',
     alt: {
