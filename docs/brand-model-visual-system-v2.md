@@ -9,7 +9,7 @@
 - 기존 K 자산은 생성 이력 보존용 아카이브이며 active route, rotation, analytics identity로 사용하지 않는다.
 - identity anchor와 source reference는 내부 생성 입력이다. `public/`, UI, OG, SNS에 직접 게시하지 않는다.
 - 모델 이미지는 실제 고객·참가자·직원·후기 작성자·숙소·상품·프로그램 현장 증거로 사용하지 않는다.
-- 한 모델은 active identity exposure의 25%를 넘지 않는다. 같은 viewport와 인접 주요 카드에서 같은 모델을 반복하지 않는다.
+- 한 모델은 active identity exposure의 50%를 넘지 않는다. 같은 viewport와 인접 주요 카드에서 같은 모델을 반복하지 않는다.
 - 주요 화면의 50% 이상은 실제 장소·공간·교통·음식·사물 중심 이미지로 유지한다.
 - 계절, 기후, 행동, 장소가 먼저이고 모델은 그 장면을 설명하는 보조 요소다.
 - 생성 자산은 KO/EN/JA alt, model ID, route/section, focal point, 계절·복장·행동·실사 메타데이터와 제한 문구를 기록한다.

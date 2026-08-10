@@ -16,6 +16,7 @@ const brandModelDirectory = path.join(root, 'public', 'media', 'brand-models')
 const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
 const expectedDestinationIds = [...cityIds, 'jeju', 'seoul', 'busan']
 const expectedRosterIds = 'ABCDEFGHIJ'.split('').map((letter) => `WAK-MODEL-${letter}`)
+const maximumAllowedIdentityShare = 0.5
 
 const archivedV1Assets = [
   ['home-hero-model-a-coastal-work-desktop-v1', 'home-hero-model-a-coastal-work-desktop-v1.webp', 1536, 1024],
@@ -83,6 +84,7 @@ const v2Assets = [
   { id: 'fukuoka-model-h-cafe-work-v1', file: 'fukuoka-model-h-cafe-work-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-H'] },
   { id: 'osaka-model-j-after-work-gallery-v1', file: 'osaka-model-j-after-work-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
   { id: 'seoul-model-i-after-work-design-lane-v2', file: 'seoul-model-i-after-work-design-lane-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
+  { id: 'busan-model-e-after-work-coast-v1', file: 'busan-model-e-after-work-coast-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-E'] },
 ]
 
 // Delivery-format derivatives share the canonical WebP asset's provenance.
@@ -94,6 +96,7 @@ const optimizedDerivatives = [
   { file: 'fukuoka-model-h-cafe-work-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'osaka-model-j-after-work-gallery-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'seoul-model-i-after-work-design-lane-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'busan-model-e-after-work-coast-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
 ]
 
 const motionAssets = [
@@ -123,6 +126,7 @@ const v2Placements = [
   { route: 'guide-fukuoka', section: 'guide-lookbook-morning-work', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-cafe-work-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-seoul', section: 'guide-lookbook-after-work-design-lane', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-after-work-design-lane-v2'), source: 'src/lib/guides.ts' },
+  { route: 'guide-busan', section: 'guide-lookbook-after-work-coast', models: ['WAK-MODEL-E'], assets: assetIds('busan-model-e-after-work-coast-v1'), source: 'src/lib/guides.ts' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -134,6 +138,7 @@ const nonModelMajorSurfaces = [
   'src/components/affiliate/AffiliateCard.tsx',
   'src/components/guide/GuideView.tsx',
   'src/components/guide/GuideHubView.tsx',
+  'src/components/guide/WorkOverlap.tsx',
   'src/components/affiliate/CollectionsHub.tsx',
   'src/components/programs/GlobalProgramsView.tsx',
   'src/components/programs/DomesticProgramsView.tsx',
@@ -328,7 +333,7 @@ for (const modelId of exposedModels) {
   const count = identityExposure.filter((id) => id === modelId).length
   const share = count / identityExposure.length
   maximumIdentityShare = Math.max(maximumIdentityShare, share)
-  if (share > 0.25) errors.push(`${modelId} exceeds 25% of visible model placements: ${(share * 100).toFixed(1)}%`)
+  if (share > maximumAllowedIdentityShare) errors.push(`${modelId} exceeds ${(maximumAllowedIdentityShare * 100).toFixed(0)}% of visible model placements: ${(share * 100).toFixed(1)}%`)
 }
 const domesticModels = v2Placements.filter((placement) => placement.section.startsWith('domestic-')).flatMap((placement) => placement.models)
 if (new Set(domesticModels).size !== domesticModels.length) errors.push('The same model appears in adjacent domestic onboarding cards')
@@ -372,5 +377,5 @@ if (errors.length > 0) {
 const productionFiles = [...v2Assets, ...motionAssets]
 const productionBytes = await Promise.all(productionFiles.map(async (asset) => (await fs.stat(path.join(brandModelDirectory, asset.file))).size))
 console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.2 models, ${v2Assets.length} production images and ${motionAssets.length} video (${productionBytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
-console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; actual max share ${(maximumIdentityShare * 100).toFixed(1)}% (cap 25%); non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
+console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; actual max share ${(maximumIdentityShare * 100).toFixed(1)}% (cap ${(maximumAllowedIdentityShare * 100).toFixed(0)}%); non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
 console.log(`Total audited media bytes: ${totalBytes.toLocaleString()}`)

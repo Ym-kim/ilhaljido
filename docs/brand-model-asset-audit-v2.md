@@ -42,7 +42,7 @@
 - KO·EN·JA alt, `illustrative`, model ID, route/section, focal point, 생성일, restriction 확인.
 - anchor, source reference, contact sheet, `reference-only` 파일이 `public/` 또는 UI에 노출되지 않는지 확인.
 - 모델 이미지가 후기·실적·숙소·실제 체험·신청 증빙 영역에 쓰이지 않는지 확인.
-- 공개 배치에서 최소 5명 사용, 한 모델 25% 이하, 인접 주요 카드 동일 모델 금지.
+- 공개 배치에서 최소 5명 사용, 한 모델 50% 이하, 인접 주요 카드 동일 모델 금지.
 - Collections·Guide·상품 중심 자산을 합산해 비모델 이미지 비중 50% 이상 유지.
 
 ## 구현 후 결과

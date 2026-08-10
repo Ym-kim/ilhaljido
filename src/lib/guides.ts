@@ -691,6 +691,49 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: "Korea's official flagship workation city for 2026 (Korea Tourism Organization). The free base center by Busan Station runs 50 desks and 4 phone booths, and non-Busan workers staying 5+ nights get a ₩50,000-per-night lodging voucher. Seoul is 2h 17m away by KTX; Haeundae's ocean views and Jeonpo's café streets fill the evenings.",
       JP: '釜山は2026年、韓国観光公社のワーケーション優秀モデルに全国代表として選ばれた街。釜山駅横の拠点センター（50席・ブース4室）は無料で、福岡から直行便で約55分です。海雲台のオーシャンビューと田浦カフェ通り（NYT「行くべき52カ所」で釜山を代表する名所）が仕事の後を満たします。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN BUSAN', EN: 'A DAY IN BUSAN', JP: 'A DAY IN BUSAN' },
+      title: {
+        KO: '집중을 마치면 바다가 저녁을 여는 도시',
+        EN: 'A city where the sea opens the evening after work',
+        JP: '集中を終えると、海が夜をひらく街',
+      },
+      intro: {
+        KO: '낮에는 부산역 거점센터나 해운대·송정의 업무 공간에서 집중하고, 퇴근 뒤에는 해안 산책과 광안리 야경으로 이어갑니다. 업무와 바다 사이의 이동이 짧아 주말 체류도 두 장면으로 선명해집니다.',
+        EN: 'Focus at the Busan Station base or a Haeundae–Songjeong workspace, then connect the coast with Gwangalli after dark. Short transfers make even a weekend stay feel like two distinct chapters.',
+        JP: '昼は釜山駅の拠点センターや海雲台・松亭のワークスペースで集中し、仕事の後は海辺の散歩と広安里の夜景へ。仕事と海の移動が短く、週末滞在にも二つの表情が生まれます。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/busan-model-e-after-work-coast-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · COAST', EN: 'AFTER WORK · COAST', JP: 'AFTER WORK · COAST' },
+          title: {
+            KO: '노트북을 닫고 해안 산책로로',
+            EN: 'Close the laptop and take the coast',
+            JP: 'ノートPCを閉じて、海辺の散歩へ',
+          },
+          description: {
+            KO: '부산의 해안 업무 거점은 일을 마친 뒤 긴 환승 없이 바다 쪽으로 이동하기 좋습니다. 날씨와 현장 운영 정보는 방문 당일 공식 안내에서 확인하세요.',
+            EN: 'Busan’s coastal work bases make it easy to reach the water without another long transfer. Check weather and current operating details through official channels on the day.',
+            JP: '釜山の海辺のワーク拠点なら、仕事の後に長い乗り換えをせず海へ移動しやすい。天候と当日の運営情報は公式案内でご確認ください。',
+          },
+        },
+        {
+          src: '/media/destinations/busan-gwangalli-night-licensed-v1.webp',
+          eyebrow: { KO: 'NIGHT · GWANGALLI', EN: 'NIGHT · GWANGALLI', JP: 'NIGHT · GWANGALLI' },
+          title: {
+            KO: '광안대교의 불빛으로 하루를 마무리하기',
+            EN: 'Close the day with Gwangan Bridge lights',
+            JP: '広安大橋の灯りで一日を締めくくる',
+          },
+          description: {
+            KO: '광안리 해변은 야경과 수변 산책을 한 번에 묶기 좋은 퇴근 후 동선입니다. 조명·행사·해변 이용 안내는 방문 당일 부산시와 현지 시설 공지를 확인하세요.',
+            EN: 'Gwangalli pairs a waterfront walk with the city lights in one after-work route. Check current lighting, events and beach guidance with Busan and local venues on the day.',
+            JP: '広安里なら、夜景と海辺の散歩を一つの仕事後ルートにまとめられます。点灯・イベント・ビーチ利用情報は当日、釜山市と現地施設の案内をご確認ください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
       { label: F.flight, value: { KO: 'KTX-청룡 2시간 17분', EN: 'KTX 2h 17m · Fukuoka 55m', JP: '福岡から約55分（直行便）' } },

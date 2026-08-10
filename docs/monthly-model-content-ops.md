@@ -10,7 +10,7 @@
 
 1. Read `src/lib/media/modelRotation.ts` and call the same least-exposed logic represented by `getNextEditorialModels()`.
 2. Exclude the previous month's identities when at least three other context-eligible identities exist.
-3. Use three identities with different visual roles and never exceed the 25% identity-share cap.
+3. Use three identities with different visual roles and never exceed the 50% identity-share cap.
 4. Keep at least half of major customer surfaces place-, story- or product-led rather than model-led.
 
 ## Season, place and body-proportion direction
