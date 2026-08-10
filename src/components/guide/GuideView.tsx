@@ -51,7 +51,12 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
   // 로케일 라우트에서는 가이드 간 링크도 같은 로케일 유지 (크롤러가 EN/JA 그래프 순회)
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
   const heroAsset = getMediaAssetBySrc(guide.heroPhoto)
-  const flagshipExperience = guide.slug === 'fukuoka' ? getExperienceEditorial('itoshima-photo-bus-tour') : undefined
+  const flagshipSlug = guide.slug === 'fukuoka'
+    ? 'itoshima-photo-bus-tour'
+    : guide.slug === 'busan'
+      ? 'busan-coastal-highlights-day-tour'
+      : undefined
+  const flagshipExperience = flagshipSlug ? getExperienceEditorial(flagshipSlug) : undefined
 
   return (
     <div className="min-h-screen bg-white">
@@ -195,10 +200,10 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         <section className="border-t border-[#dfe7e7] bg-[#f7f5ef] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-5xl">
             <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#5d8290]">
-              {lang === 'KO' ? '반나절 근교 체험' : lang === 'JP' ? '半日の郊外体験' : 'HALF-DAY FROM THE CITY'}
+              {flagshipExperience.placementCopy.guide.eyebrow[lang]}
             </span>
             <h2 className="mb-6 mt-2 text-2xl font-black text-[#172a36] sm:text-3xl">
-              {lang === 'KO' ? '이토시마에서 보내는 오후' : lang === 'JP' ? '糸島で過ごす午後' : 'An afternoon in Itoshima'}
+              {flagshipExperience.placementCopy.guide.title[lang]}
             </h2>
             <ExperienceEditorialCard experience={flagshipExperience} lang={lang} source="guide" />
           </div>

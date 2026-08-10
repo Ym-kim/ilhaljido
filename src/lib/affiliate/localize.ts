@@ -202,6 +202,12 @@ const EN: Record<string, Overlay> = {
     desc: 'A roughly five-hour morning or afternoon coastal route with Korean guidance and a photo service.',
     cta: 'Check current details with Klook', badge: 'Half-day experience',
   },
+  'act-klook-busan-coastal-highlights': {
+    productTitle: 'Busan coastal highlights day tour',
+    destination: 'Busan · South Korea',
+    desc: 'A roughly 9–12 hour vehicle route linking Busan highlights such as Blue Line Park and Gamcheon. Recheck language and ticket inclusions for the selected option.',
+    cta: 'Check current details with Klook', badge: 'Busan day experience',
+  },
   'act-bali-ubud': {
     productTitle: 'Bali Ubud private tour (KR guide)',
     destination: 'Bali · Indonesia',
@@ -755,6 +761,12 @@ const JP: Record<string, Overlay> = {
     destination: '福岡 · 糸島',
     desc: '午前または午後の約5時間。韓国語案内と写真撮影サービスを含む海辺の半日コース。',
     cta: 'Klookで最新条件を確認', badge: '半日体験',
+  },
+  'act-klook-busan-coastal-highlights': {
+    productTitle: '釜山 海岸ハイライト日帰りツアー',
+    destination: '釜山 · 韓国',
+    desc: 'ブルーラインパークや甘川文化村などをつなぐ約9〜12時間の車両ツアー。言語とチケットの有無は選択プランで再確認してください。',
+    cta: 'Klookで最新条件を確認', badge: '釜山の日帰り体験',
   },
   'act-bali-ubud': {
     productTitle: 'バリ ウブド プライベートツアー',

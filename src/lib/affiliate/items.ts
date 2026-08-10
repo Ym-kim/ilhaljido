@@ -351,6 +351,32 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     operatorAction: 'Klook 공식 리다이렉트 형식 적용 완료 (aid=126848, 2026-07-30)',
   },
 
+  {
+    id: 'act-klook-busan-coastal-highlights',
+    name: 'Klook',
+    category: 'activity',
+    productType: 'activity',
+    status: 'active_affiliate',
+    emoji: 'camera',
+    productTitle: '부산 해안 하이라이트 일일투어',
+    destination: '부산 · 한국',
+    country: '한국',
+    desc: '해운대 블루라인파크와 감천문화마을 등 부산의 주요 지역을 잇는 약 9–12시간 차량 일정. 언어와 포함 티켓은 선택 옵션에서 확인하세요.',
+    cta: '제휴사에서 현재 조건 확인',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F74132-busan-oneday-tour-busan%2F',
+    deepLinks: {
+      KO: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F74132-busan-oneday-tour-busan%2F',
+      EN: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Factivity%2F74132-busan-oneday-tour-busan%2F',
+      JP: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fja%2Factivity%2F74132-busan-oneday-tour-busan%2F',
+    },
+    badge: '부산 일일체험',
+    trackingId: 'aid=126848',
+    coverPhoto: '/media/brand-models/domestic-busan-model-h-haeundae-v3.webp',
+    illustrative: true,
+    sourceNote: 'Klook activity 74132 실물 확인. 약 9–12시간·영어/중국어/일본어·4.9/5·후기 약 3.6천 건 (2026-08-10). 자체 제작 커버는 실제 투어 사진이 아니며 패키지별 방문지·티켓 포함 여부가 다름.',
+    operatorAction: 'Klook 공식 리다이렉트 3개 로케일 적용 완료 (aid=126848, 2026-08-10)',
+  },
+
   // ──────────────────────────────────────────────────────────────────────────
   // 홈 피처드 — 목적지별 추천 상품 (showOn: home)
   // ──────────────────────────────────────────────────────────────────────────
@@ -557,6 +583,11 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     desc: '짐 들고 헤매지 않게. 도착 즉시 기사 대기, 도시별 정찰가 프라이빗 픽업.',
     cta: '공항 픽업 예약',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fairport-transfers%2F',
+    deepLinks: {
+      KO: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Fairport-transfers%2F',
+      EN: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fairport-transfers%2F',
+      JP: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fja%2Fairport-transfers%2F',
+    },
     badge: '공항 이동',
     trackingId: 'aid=126848',
     coverPhoto: '/covers/airport-transfer-editorial-photo-v2.webp',

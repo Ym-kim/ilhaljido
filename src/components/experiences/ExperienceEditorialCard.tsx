@@ -18,10 +18,12 @@ export function ExperienceEditorialCard({
   experience,
   lang,
   source,
+  priority = false,
 }: {
   experience: ExperienceEditorial
   lang: Lang
   source: 'activity' | 'guide' | 'trip_set'
+  priority?: boolean
 }) {
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
   const media = getMediaAsset(experience.mediaAssetIds[0])
@@ -44,7 +46,7 @@ export function ExperienceEditorialCard({
           src={media.src}
           alt={media.alt[lang]}
           fill
-          priority={source === 'activity'}
+          priority={priority}
           sizes="(max-width: 767px) 100vw, 58vw"
           className="object-cover transition duration-700 group-hover:scale-[1.025]"
           style={{ objectPosition: `${(media.focalPoint?.x ?? 0.5) * 100}% ${(media.focalPoint?.y ?? 0.5) * 100}%` }}
