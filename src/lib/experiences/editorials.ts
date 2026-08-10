@@ -641,7 +641,7 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
         ),
       },
     ],
-    mediaAssetIds: ['experience-seoul-model-d-kpop-studio-v1'],
+    mediaAssetIds: ['experience-seoul-model-i-kpop-studio-v2'],
     verifiedAt: '2026-08-10',
     sources: [
       { name: 'KKday product 105485', url: 'https://www.kkday.com/ja/product/105485', verifiedAt: '2026-08-10', customerVisible: true },

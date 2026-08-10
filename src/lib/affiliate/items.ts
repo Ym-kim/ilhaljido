@@ -416,7 +416,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     },
     badge: '서울 반나절 체험',
     trackingId: 'cid=25833',
-    coverPhoto: '/media/brand-models/experience-seoul-model-d-kpop-studio-v1.webp',
+    coverPhoto: '/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp',
     illustrative: true,
     sourceNote: 'KKday product 105485 실물 확인. 약 4시간·영어/일본어/중국어·5.0/5·합정역 출발 (2026-08-10). 자체 제작 커버는 실제 체험·강사·장소 사진이 아님.',
     operatorAction: 'KKday cid=25833 추적 파라미터와 3개 로케일 상품 링크 적용 완료 (2026-08-10)',

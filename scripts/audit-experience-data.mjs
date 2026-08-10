@@ -36,7 +36,7 @@ const required = [
   ['Seoul KKday tracking', 'product/105485?cid=25833', items],
   ['Seoul Japanese guide fact', "value: L('영어·일본어·중국어'", data],
   ['Seoul eligibility notice', '한국 국적 구매 제한', data],
-  ['Seoul media manifest', "id: 'experience-seoul-model-d-kpop-studio-v1'", media],
+  ['Seoul media manifest', "id: 'experience-seoul-model-i-kpop-studio-v2'", media],
   ['Seoul health check', 'kkday:hongdae-kpop-walk', health],
 ]
 
@@ -47,7 +47,7 @@ for (const [label, needle, source] of required) {
 const assets = [
   path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp'),
   path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v3.webp'),
-  path.join(root, 'public/media/brand-models/experience-seoul-model-d-kpop-studio-v1.webp'),
+  path.join(root, 'public/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp'),
 ]
 for (const asset of assets) {
   if (!fs.existsSync(asset) || fs.statSync(asset).size === 0) failures.push(`editorial image missing or empty: ${asset}`)
