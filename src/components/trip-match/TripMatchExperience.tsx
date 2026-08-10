@@ -91,9 +91,9 @@ const COPY: Record<string, L> = {
 }
 
 const TRIP_MATCH_INTRO_ASSET = {
-  id: 'trip-match-model-d-itinerary-choice-v2',
+  id: 'trip-match-model-d-itinerary-choice-v3',
   modelId: 'WAK-MODEL-D',
-  src: '/media/brand-models/trip-match-model-d-itinerary-choice-v2.webp',
+  src: '/media/brand-models/trip-match-model-d-itinerary-choice-v3.webp',
   alt: {
     KO: '출발 라운지에서 두 여행 일정과 노트북을 정리하는 여행자',
     EN: 'A traveler choosing between two itineraries in an unnamed departure lounge',

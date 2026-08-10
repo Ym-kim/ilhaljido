@@ -50,8 +50,8 @@ const NEXT_STEPS: { icon: typeof GraduationCap; href: string; label: L; desc: L 
 const CAMP_STATUS: L = { KO: '모집 준비 중', EN: 'In preparation', JP: '募集準備中' }
 
 const GROWTH_PLACEMENT = getEditorialModelPlacement('growth-hero')
-const GROWTH_DESKTOP = getMediaAsset('growth-model-b-urban-learning-desktop-v1')!
-const GROWTH_MOBILE = getMediaAsset('growth-model-b-urban-learning-mobile-v1')!
+const GROWTH_DESKTOP = getMediaAsset('growth-model-b-urban-learning-desktop-v2')!
+const GROWTH_MOBILE = getMediaAsset('growth-model-b-urban-learning-mobile-v2')!
 
 const NEXT_UI: Record<string, L> = {
   title: { KO: '캠프를 기다리는 동안', EN: 'While you wait for the next camp', JP: '次のキャンプを待つあいだに' },

@@ -6,9 +6,10 @@ import sharp from 'sharp'
 
 const root = process.cwd()
 const month = '2026-08'
-const expectedModels = ['WAK-MODEL-E', 'WAK-MODEL-H', 'WAK-MODEL-J']
+const expectedModels = ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J']
 const imageFiles = [
   `monthly-${month}-model-e-city-arrival-v2.webp`,
+  `monthly-${month}-model-g-coastal-book-cafe-v2.webp`,
   `monthly-${month}-model-h-coastal-reset-v1.webp`,
   `monthly-${month}-model-j-blue-hour-v2.webp`,
 ]
@@ -53,7 +54,7 @@ for (const required of [
   `monthly-model-edit-${month}-v2`,
   'prefers-reduced-motion: reduce',
   'preload="none"',
-  'EditorialImageBadge',
+  'illustrative: true',
   '실제 고객, 참가자, 장소 또는 프로그램 현장',
 ]) {
   if (!(rotation + component + manifest).includes(required)) errors.push(`Monthly editorial contract is missing: ${required}`)

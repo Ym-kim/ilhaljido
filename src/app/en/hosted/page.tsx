@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     alternateLocale: ['ko_KR', 'ja_JP'],
     type: 'website',
-    images: [{ url: '/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp', width: 1440, height: 900, alt: 'Two travelers reviewing a shared stay plan in an unnamed coastal workspace' }],
+    images: [{ url: '/media/brand-models/hosted-models-h-i-coastal-planning-v3.webp', width: 1440, height: 900, alt: 'Two travelers reviewing a shared stay plan in an unnamed coastal workspace' }],
   },
   robots: { index: true, follow: true },
 }

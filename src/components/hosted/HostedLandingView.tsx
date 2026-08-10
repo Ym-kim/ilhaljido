@@ -128,10 +128,10 @@ const FAQ: { q: L; a: L }[] = [
 ]
 
 const HOSTED_HERO_ASSET = {
-  id: 'hosted-models-h-i-coastal-planning-v2',
+  id: 'hosted-models-h-i-coastal-planning-v3',
   modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] as const,
-  desktop: '/media/brand-models/hosted-models-h-i-coastal-planning-v2.webp',
-  mobile: '/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v2.webp',
+  desktop: '/media/brand-models/hosted-models-h-i-coastal-planning-v3.webp',
+  mobile: '/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v3.webp',
   alt: {
     KO: '해안 공동 작업 공간에서 함께 체류 일정을 살펴보는 두 여행자',
     EN: 'Two travelers reviewing a shared stay plan in an unnamed coastal workspace',

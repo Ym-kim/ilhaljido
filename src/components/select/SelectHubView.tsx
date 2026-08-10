@@ -87,9 +87,9 @@ const DEST_FILTERS = [
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
 const SELECT_HERO_ASSET = {
-  id: 'select-model-i-travel-prep-v2',
+  id: 'select-model-i-travel-prep-v3',
   modelId: 'WAK-MODEL-I',
-  src: '/media/brand-models/select-model-i-travel-prep-v2.webp',
+  src: '/media/brand-models/select-model-i-travel-prep-v3.webp',
   alt: {
     KO: '이동 전 라운지에서 일정표와 휴대전화를 확인하는 여행자',
     EN: 'A traveler checking an itinerary and phone in an unnamed intercity travel lounge',
