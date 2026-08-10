@@ -82,7 +82,7 @@ const v2Assets = [
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
   { id: 'fukuoka-model-h-cafe-work-v1', file: 'fukuoka-model-h-cafe-work-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-H'] },
   { id: 'osaka-model-j-after-work-gallery-v1', file: 'osaka-model-j-after-work-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
-  { id: 'seoul-model-b-after-work-design-lane-v1', file: 'seoul-model-b-after-work-design-lane-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
+  { id: 'seoul-model-i-after-work-design-lane-v2', file: 'seoul-model-i-after-work-design-lane-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
 ]
 
 // Delivery-format derivatives share the canonical WebP asset's provenance.
@@ -93,7 +93,7 @@ const optimizedDerivatives = [
   { file: 'home-hero-model-a-coastal-departure-mobile-v3.avif', width: 1080, height: 1440, maximumBytes: 90_000 },
   { file: 'fukuoka-model-h-cafe-work-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'osaka-model-j-after-work-gallery-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
-  { file: 'seoul-model-b-after-work-design-lane-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'seoul-model-i-after-work-design-lane-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
 ]
 
 const motionAssets = [
@@ -122,7 +122,7 @@ const v2Placements = [
   { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
   { route: 'guide-fukuoka', section: 'guide-lookbook-morning-work', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-cafe-work-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
-  { route: 'guide-seoul', section: 'guide-lookbook-after-work-design-lane', models: ['WAK-MODEL-B'], assets: assetIds('seoul-model-b-after-work-design-lane-v1'), source: 'src/lib/guides.ts' },
+  { route: 'guide-seoul', section: 'guide-lookbook-after-work-design-lane', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-after-work-design-lane-v2'), source: 'src/lib/guides.ts' },
 ]
 
 const nonModelMajorSurfaces = [

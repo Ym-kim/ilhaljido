@@ -8,12 +8,12 @@
 
 ## Assets
 
-### Model B — after-work design lane
+### Model I — after-work design lane
 
-- Canonical WebP: `/media/brand-models/seoul-model-b-after-work-design-lane-v1.webp`
-- Delivery derivative: `/media/brand-models/seoul-model-b-after-work-design-lane-v1.avif`
-- Generation: OpenAI built-in ImageGen, using the approved `growth-model-b-urban-learning-desktop-v2` production derivative as an identity reference.
-- Prompt direction: late-summer afternoon after rain, pale-blue short-sleeve cotton shirt, lightweight cream trousers, city sneakers, laptop sleeve and crossbody bag, full-body framing with at least 12% headroom and visible feet.
+- Canonical WebP: `/media/brand-models/seoul-model-i-after-work-design-lane-v2.webp`
+- Delivery derivative: `/media/brand-models/seoul-model-i-after-work-design-lane-v2.avif`
+- Generation: OpenAI built-in ImageGen, using the approved `select-model-i-travel-prep-v3` production asset as an identity reference.
+- Prompt direction: late-summer afternoon after rain, ice-blue sleeveless linen shell, lightweight ivory wide-leg trousers, flat leather sandals, laptop sleeve and shoulder bag, natural skin and fabric texture, full-body framing with at least 14% headroom and visible feet.
 - Safe framing: head, face, hands, device, bag and feet remain visible in the 3:2 crop.
 - Restriction: not a real Seoul venue, customer, participant or operating program.
 

@@ -616,7 +616,7 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/seoul-model-b-after-work-design-lane-v1.webp',
+          src: '/media/brand-models/seoul-model-i-after-work-design-lane-v2.webp',
           eyebrow: { KO: 'AFTER WORK · DESIGN LANE', EN: 'AFTER WORK · DESIGN LANE', JP: 'AFTER WORK · DESIGN LANE' },
           title: {
             KO: '노트북을 닫고 디자인 골목으로',
