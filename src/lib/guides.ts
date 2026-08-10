@@ -352,6 +352,49 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Domestic — no currency exchange, no roaming. An hour’s flight puts you near Seongsan Ilchulbong, where stays run dedicated workation packages with separate work desks. Zero friction from a weekend reset to a two-week stint.',
       JP: '国内（韓国）なので両替もローミングも不要。飛行機1時間で城山日出峰の前へ。ワークデスク分離型客室とワーケーション専用パッケージのある宿が待っています。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN JEJU', EN: 'A DAY IN JEJU', JP: 'A DAY IN JEJU' },
+      title: {
+        KO: '비가 그치면, 일의 속도도 섬의 리듬으로',
+        EN: 'After the rain, work settles into the island rhythm',
+        JP: '雨上がり、仕事の速さも島のリズムへ',
+      },
+      intro: {
+        KO: '오전에는 성산이나 애월의 업무 공간에서 집중하고, 한 차례 비가 지난 뒤에는 돌담길과 서쪽 바다로 나갑니다. 짧은 이동 안에서 업무와 산책, 제주의 선명한 해안을 한 날에 이어보세요.',
+        EN: 'Focus at a Seongsan or Aewol workspace in the morning, then step into a basalt lane and the western coast after a passing shower. Work, a quiet walk and Jeju’s vivid shoreline fit into one unhurried day.',
+        JP: '午前は城山や涯月のワークスペースで集中し、雨が通り過ぎたら石垣の道と西側の海へ。仕事と散歩、済州らしい鮮やかな海岸を、ゆったりした一日にまとめます。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/jeju-model-g-after-rain-coast-v1.webp',
+          eyebrow: { KO: 'AFTER RAIN · ISLAND LANE', EN: 'AFTER RAIN · ISLAND LANE', JP: 'AFTER RAIN · ISLAND LANE' },
+          title: {
+            KO: '노트북을 들고 비 갠 돌담길로',
+            EN: 'Take the laptop sleeve into a rain-cleared lane',
+            JP: 'ノートPCケースを手に、雨上がりの石垣道へ',
+          },
+          description: {
+            KO: '제주의 날씨는 짧은 시간에도 바뀔 수 있습니다. 업무를 마친 뒤에는 가까운 산책 동선을 고르고, 강풍·호우·해안 통제 여부를 당일 공식 안내에서 확인하세요.',
+            EN: 'Jeju weather can shift quickly. Choose a nearby walk after work and check same-day wind, rain and coastal access notices through official channels.',
+            JP: '済州の天候は短時間でも変わります。仕事の後は近い散歩ルートを選び、強風・大雨・海岸の立入情報を当日の公式案内で確認してください。',
+          },
+        },
+        {
+          src: '/media/destinations/jeju-hyeopjae-volcanic-coast-licensed-v1.webp',
+          eyebrow: { KO: 'WEST COAST · HYEOPJAE', EN: 'WEST COAST · HYEOPJAE', JP: 'WEST COAST · HYEOPJAE' },
+          title: {
+            KO: '검은 현무암 너머 비양도를 바라보기',
+            EN: 'Look toward Biyangdo beyond the black volcanic shore',
+            JP: '黒い火山岩の向こうに飛揚島を望む',
+          },
+          description: {
+            KO: '협재 해변에서는 검은 현무암과 비양도, 밝은 바다색이 한 장면에 겹칩니다. 파도·바람·입수 가능 여부는 방문 당일 제주도와 현지 안전 안내를 확인하세요.',
+            EN: 'At Hyeopjae, black volcanic rock, Biyangdo and bright water share the same frame. Check waves, wind and current swimming guidance with Jeju and local safety notices on the day.',
+            JP: '挟才海水浴場では、黒い火山岩と飛揚島、明るい海の色が一つの景色に重なります。波・風・遊泳情報は当日、済州道と現地の安全案内で確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '없음 (국내)', EN: 'None (domestic)', JP: 'なし（国内）' } },
       { label: F.flight, value: { KO: '약 1시간 10분', EN: '~1h 10m', JP: '約1時間10分' } },

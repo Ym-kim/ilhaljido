@@ -85,6 +85,7 @@ const v2Assets = [
   { id: 'osaka-model-j-after-work-gallery-v1', file: 'osaka-model-j-after-work-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
   { id: 'seoul-model-i-after-work-design-lane-v2', file: 'seoul-model-i-after-work-design-lane-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
   { id: 'busan-model-e-after-work-coast-v1', file: 'busan-model-e-after-work-coast-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-E'] },
+  { id: 'jeju-model-g-after-rain-coast-v1', file: 'jeju-model-g-after-rain-coast-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-G'] },
 ]
 
 // Delivery-format derivatives share the canonical WebP asset's provenance.
@@ -97,6 +98,7 @@ const optimizedDerivatives = [
   { file: 'osaka-model-j-after-work-gallery-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'seoul-model-i-after-work-design-lane-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'busan-model-e-after-work-coast-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'jeju-model-g-after-rain-coast-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
 ]
 
 const motionAssets = [
@@ -127,6 +129,7 @@ const v2Placements = [
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-seoul', section: 'guide-lookbook-after-work-design-lane', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-after-work-design-lane-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-busan', section: 'guide-lookbook-after-work-coast', models: ['WAK-MODEL-E'], assets: assetIds('busan-model-e-after-work-coast-v1'), source: 'src/lib/guides.ts' },
+  { route: 'guide-jeju', section: 'guide-lookbook-after-rain-island-lane', models: ['WAK-MODEL-G'], assets: assetIds('jeju-model-g-after-rain-coast-v1'), source: 'src/lib/guides.ts' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -146,6 +149,7 @@ const nonModelMajorSurfaces = [
   'src/components/experiences/ExperienceEditorialView.tsx',
   'src/components/moments/MomentsView.tsx',
   'src/components/destinations/DestinationsHubView.tsx',
+  'src/components/destinations/CompareView.tsx',
 ]
 
 const errors = []
