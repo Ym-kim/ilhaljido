@@ -602,6 +602,49 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'In a city ranked #2 worldwide for mobile internet (Ookla), any café becomes your office. Seongsu hosted 468 pop-ups in the first half of this year alone; Hongdae–Yeonnam runs on coworking hubs and late-night cafés. Even a short stay is dense with things to see, taste and finish.',
       JP: 'モバイル通信世界2位（Ookla基準）の都市では、どのカフェもオフィスになります。聖水洞は今年上半期だけでポップアップ468件が開かれたトレンドの震源地。いつもの韓国旅に、はたらく1日をプラスするのにいちばん近い街です。羽田から約2時間25分。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN SEOUL', EN: 'A DAY IN SEOUL', JP: 'A DAY IN SEOUL' },
+      title: {
+        KO: '집중을 마치면 동네의 저녁이 시작되는 도시',
+        EN: 'A city where neighborhood evenings begin after focused work',
+        JP: '集中を終えると、街の夜が始まる都市',
+      },
+      intro: {
+        KO: '낮에는 업무 동선을 짧게 잡고, 퇴근 뒤에는 디자인 골목과 낮은 동네의 카페 불빛을 천천히 잇습니다. 멀리 이동하지 않아도 서울의 하루는 서로 다른 두 장면으로 완성됩니다.',
+        EN: 'Keep the daytime work route compact, then connect design lanes with the glow of low-rise neighborhoods after log-off. A Seoul day can shift scenes without another long transfer.',
+        JP: '昼は仕事の動線を短く整え、仕事の後はデザイン街と低層の街並みに灯るカフェをゆっくりつなぐ。遠くへ移動しなくても、ソウルの一日は二つの表情を見せます。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/seoul-model-b-after-work-design-lane-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · DESIGN LANE', EN: 'AFTER WORK · DESIGN LANE', JP: 'AFTER WORK · DESIGN LANE' },
+          title: {
+            KO: '노트북을 닫고 디자인 골목으로',
+            EN: 'Close the laptop and step into the design lanes',
+            JP: 'ノートパソコンを閉じて、デザイン街へ',
+          },
+          description: {
+            KO: '작업 공간과 쇼룸이 가까운 동네에서는 퇴근 뒤 한두 블록만 걸어도 하루의 분위기가 달라집니다. 방문할 공간의 운영시간은 당일 공식 채널에서 확인하세요.',
+            EN: 'In neighborhoods where workspaces and showrooms sit close together, a block or two is enough to change the pace after work. Confirm opening hours with each venue on the day.',
+            JP: 'ワークスペースとショールームが近い街なら、仕事の後に一、二ブロック歩くだけで一日の空気が変わります。営業時間は当日、各施設の公式案内でご確認ください。',
+          },
+        },
+        {
+          src: '/media/destinations/seoul-evening-neighborhood-lane-v1.webp',
+          eyebrow: { KO: 'BLUE HOUR · LOCAL LANE', EN: 'BLUE HOUR · LOCAL LANE', JP: 'BLUE HOUR · LOCAL LANE' },
+          title: {
+            KO: '비 온 뒤, 낮은 골목의 불빛을 따라',
+            EN: 'Follow the low-rise lanes after the rain',
+            JP: '雨上がり、低層の路地に灯る光をたどる',
+          },
+          description: {
+            KO: '저녁에는 큰길보다 작은 카페와 식당이 이어지는 골목을 천천히 걷습니다. 한 곳을 길게 예약하기보다 그날의 컨디션에 맞춰 짧은 산책을 남겨두세요.',
+            EN: 'In the evening, slow down in lanes lined with small cafés and restaurants rather than staying on the main road. Leave room for a short walk that matches the day’s energy.',
+            JP: '夜は大通りを離れ、小さなカフェや食堂が続く路地をゆっくり歩く。予定を詰めすぎず、その日の調子に合う短い散歩の余白を残しておきましょう。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: 'KST (도쿄와 0시간)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
       { label: F.flight, value: { KO: '하네다발 약 2시간 25분', EN: 'Haneda ~2h 25m', JP: '羽田から約2時間25分' } },
