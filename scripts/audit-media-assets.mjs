@@ -80,6 +80,7 @@ const v2Assets = [
   { id: 'monthly-2026-08-model-g-coastal-book-cafe-v2', file: 'monthly-2026-08-model-g-coastal-book-cafe-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-G'] },
   { id: 'monthly-2026-08-model-h-coastal-reset-v1', file: 'monthly-2026-08-model-h-coastal-reset-v1.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-H'] },
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
+  { id: 'fukuoka-model-h-cafe-work-v1', file: 'fukuoka-model-h-cafe-work-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-H'] },
 ]
 
 // Delivery-format derivatives share the canonical WebP asset's provenance.
@@ -88,6 +89,7 @@ const v2Assets = [
 const optimizedDerivatives = [
   { file: 'home-hero-model-a-coastal-departure-desktop-v3.avif', width: 1536, height: 960, maximumBytes: 90_000 },
   { file: 'home-hero-model-a-coastal-departure-mobile-v3.avif', width: 1080, height: 1440, maximumBytes: 90_000 },
+  { file: 'fukuoka-model-h-cafe-work-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
 ]
 
 const motionAssets = [
@@ -114,6 +116,7 @@ const v2Placements = [
   { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2'), source: 'src/data/campaign-landings.ts' },
   { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
+  { route: 'guide-fukuoka', section: 'guide-lookbook-morning-work', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-cafe-work-v1'), source: 'src/lib/guides.ts' },
 ]
 
 const nonModelMajorSurfaces = [

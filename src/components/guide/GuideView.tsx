@@ -17,6 +17,7 @@ import { ShareButton } from '@/components/share/ShareButton'
 import { getMediaAssetBySrc } from '@/lib/media/assets'
 import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
+import { GuideLookbook } from '@/components/guide/GuideLookbook'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 목적지 가이드 뷰 — 라이트 커머스 톤, 3언어
@@ -156,8 +157,10 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         <WorkOverlap timeZone={guide.timeZone} cityName={guide.name[lang]} lang={lang} />
       </section>
 
+      {guide.lookbook && <GuideLookbook lookbook={guide.lookbook} lang={lang} />}
+
       {/* ── 일하기 좋은 동네 ── */}
-      <section className="max-w-5xl mx-auto px-6 pb-12 md:pb-16">
+      <section className="max-w-5xl mx-auto px-6 py-12 md:py-16">
         <h2 className="text-xl md:text-2xl font-bold text-[#111827] tracking-tight mb-6">
           {GUIDE_UI.areasTitle[lang]}
         </h2>

@@ -19,6 +19,17 @@ export type CityGuide = {
   name: L
   tagline: L
   intro: L
+  lookbook?: {
+    eyebrow: L
+    title: L
+    intro: L
+    items: Array<{
+      src: string
+      eyebrow: L
+      title: L
+      description: L
+    }>
+  }
   facts: { label: L; value: L }[]
   areas: { name: L; desc: L }[]
   /** featured.ts 아이템 id */
@@ -108,6 +119,49 @@ export const CITY_GUIDES: CityGuide[] = [
       KO: '인천에서 약 1시간 20분, 시차도 없어 주말 워케이션에 가장 부담 없는 해외 도시입니다. 투숙객 무료 코워킹을 갖춘 숙소가 있고, 컴팩트한 도심 덕분에 이동 시간이 짧아 짧은 체류의 밀도가 높습니다.',
       EN: 'About 1h 20m from Incheon with zero time difference — the lowest-friction overseas weekend workation. Stays with free guest coworking exist, and the compact city keeps travel time minimal.',
       JP: '仁川から約1時間20分、時差もなく、週末ワーケーションに最も気軽な海外都市。宿泊者無料のコワーキング付きの宿もあり、コンパクトな街で移動時間も短い。',
+    },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN FUKUOKA', EN: 'A DAY IN FUKUOKA', JP: 'A DAY IN FUKUOKA' },
+      title: {
+        KO: '낮의 집중과 저녁의 산책이 가까운 도시',
+        EN: 'A city where focused mornings and evening walks stay close',
+        JP: '昼の集中と夜の散歩が、すぐ近くにある街',
+      },
+      intro: {
+        KO: '오전에는 카페에서 일정을 정리하고, 퇴근 뒤에는 강변과 골목을 걷습니다. 근교가 필요한 날은 반나절만 비워 이토시마로 이어갈 수 있어 짧은 체류도 단조롭지 않습니다.',
+        EN: 'Use the morning to settle your plan at a café, then walk the riverside lanes after work. Leave half a day for Itoshima when the city needs a change of pace.',
+        JP: '午前はカフェで予定を整え、仕事の後は川沿いと路地を歩く。街を離れたい日は半日だけ空けて糸島へつなげられます。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/fukuoka-model-h-cafe-work-v1.webp',
+          eyebrow: { KO: 'MORNING · WORK', EN: 'MORNING · WORK', JP: 'MORNING · WORK' },
+          title: {
+            KO: '카페에서 하루의 동선을 먼저 정리하기',
+            EN: 'Map the day before leaving the café',
+            JP: 'カフェで一日の動線を先に整える',
+          },
+          description: {
+            KO: '컴팩트한 도심은 오전 업무와 오후 이동을 한 일정 안에 놓기 좋습니다. 노트북을 닫을 시간을 먼저 정해두면 짧은 체류도 여유가 생깁니다.',
+            EN: 'The compact center makes it easier to place morning work and afternoon movement in one plan. Set a laptop-off time first to keep a short stay unhurried.',
+            JP: 'コンパクトな中心部なら、午前の仕事と午後の移動を一つの予定にまとめやすい。先に仕事を終える時間を決めると、短い滞在にも余白が生まれます。',
+          },
+        },
+        {
+          src: '/media/destinations/fukuoka-after-work-riverside-v1.webp',
+          eyebrow: { KO: 'BLUE HOUR · WALK', EN: 'BLUE HOUR · WALK', JP: 'BLUE HOUR · WALK' },
+          title: {
+            KO: '강변의 푸른 시간에서 저녁 골목으로',
+            EN: 'From blue-hour riverside to evening lanes',
+            JP: '川辺の青い時間から、夜の路地へ',
+          },
+          description: {
+            KO: '퇴근 뒤에는 긴 이동보다 강변과 골목을 잇는 짧은 산책이 잘 맞습니다. 포장마차와 식당의 운영 여부는 당일 현지에서 확인하세요.',
+            EN: 'After work, choose a short riverside-to-lane walk over another long transfer. Check each stall or restaurant’s opening status locally that day.',
+            JP: '仕事の後は長い移動より、川沿いから路地へ続く短い散歩が似合います。屋台や飲食店の営業状況は当日に現地で確認してください。',
+          },
+        },
+      ],
     },
     facts: [
       { label: F.tz, value: { KO: '0시간', EN: '0 hours', JP: '0時間' } },

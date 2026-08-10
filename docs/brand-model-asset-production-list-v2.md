@@ -32,7 +32,7 @@
 | Seoul guide lookbook | B / J / I | backlog | 낮·저녁·업무 장면 분리, 같은 카드열 반복 금지 |
 | Busan guide lookbook | E / C / H | backlog | 실제 해안 자료 우선, 생성 컷은 편집 분위기만 |
 | Jeju guide lookbook | G / A / H | backlog | 실제 숙소·참가자처럼 보이는 생성 금지 |
-| Fukuoka lookbook | F / H / I | backlog | 카페·골목·근교 동선 분리 |
+| Fukuoka lookbook | H + 장소 이미지 | 완료 | 카페 업무·저녁 골목·근교 체험을 서로 다른 장면과 섹션으로 분리 |
 | Osaka lookbook | J / D / F / E | backlog | 전시·미식·야간 이동 분리 |
 | Business team | C + H + I | backlog | 실제 팀 증거가 아닌 편집 장면, desktop/mobile 별도 |
 
