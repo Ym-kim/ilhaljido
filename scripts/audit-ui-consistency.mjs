@@ -77,8 +77,8 @@ if (cardMarkers < 7) errors.push(`Expected at least 7 card variant markers; foun
 if (gridMarkers < 5) errors.push(`Expected at least 5 grid markers; found ${gridMarkers}`)
 
 for (const asset of [
-  'public/media/brand-models/programs-model-k-stay-planning-desktop-v1.webp',
-  'public/media/brand-models/programs-model-k-stay-planning-mobile-v1.webp',
+  'public/media/brand-models/hosted-models-h-i-coastal-planning-v3.webp',
+  'public/media/brand-models/hosted-models-h-i-coastal-planning-mobile-v3.webp',
 ]) {
   try {
     const info = await stat(path.join(root, asset))

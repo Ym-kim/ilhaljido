@@ -4,6 +4,7 @@ import { CARD_MEDIA_ASSETS } from '@/lib/media/cardMedia'
 import { PRODUCT_EDITORIAL_MEDIA_ASSETS } from '@/lib/media/productEditorial'
 
 export type MediaFocalPoint = { x: number; y: number }
+export type MediaModelId = BrandModelId | 'WAK-MODEL-K'
 
 export type MediaSafeFraming = {
   minHeadroomPercent?: number
@@ -20,17 +21,26 @@ export type MediaAsset = {
   mediaType?: 'image' | 'video'
   width?: number
   height?: number
-  modelId?: BrandModelId
-  modelIds?: BrandModelId[]
+  modelId?: MediaModelId
+  modelIds?: MediaModelId[]
   localeUsage?: Array<'ko' | 'en' | 'ja'>
   seasonalUsage?: Array<'spring' | 'summer' | 'late-summer' | 'autumn' | 'winter' | 'all-season'>
+  season?: 'spring' | 'summer' | 'late-summer' | 'autumn' | 'winter' | 'all-season'
   climateMood?: string
+  wardrobeFamily?: string
   wardrobeTags?: string[]
+  hairDirection?: string
   activityTags?: string[]
   travelContext?: string
   styleDirection?: string
   seasonalFit?: string
   activityMood?: string
+  destinationMood?: string
+  realismLevel?: 'high_photoreal' | 'photoreal_editorial' | 'graphic_editorial'
+  generationProvider?: 'openai_builtin_imagegen' | 'existing_asset' | 'partner' | 'licensed'
+  rejectedReason?: string
+  auditDisposition?: 'KEEP' | 'RECROP' | 'RESTYLE' | 'REGENERATE_REALISM' | 'REPLACE_MODEL' | 'REPLACE_WITH_PLACE' | 'REPLACE_WITH_DIAGRAM' | 'REMOVE' | 'REAL_PHOTO_REQUIRED'
+  adjacentModelRestrictions?: string[]
   realismTarget?: 'high_photoreal_editorial' | 'documentary_reference' | 'graphic_editorial'
   realismMethod?: string
   photorealReferenceUsed?: boolean
@@ -296,6 +306,68 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     source: 'OpenAI image generation in built-in imagegen mode using the user-provided v2.2 WAK-MODEL-A identity anchor',
     license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-01', verifiedAt: '2026-08-01',
     restriction: { KO: '특정 숙소·카페나 실제 Wakation 참가자 장면으로 단정하지 않는다.', EN: 'Do not identify this as a specific stay, café or real Wakation participant.', JP: '特定の宿・カフェ、または実際のWakation参加者として扱わない。' },
+  },
+  {
+    id: 'home-hero-model-a-coastal-departure-desktop-v3',
+    src: '/media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.webp',
+    alt: {
+      KO: '늦여름 해안 작업 공간에서 노트북을 닫고 여행 가방을 드는 성인 여행자',
+      EN: 'An adult traveler closing a laptop and lifting a weekender in an unnamed late-summer coastal workspace',
+      JP: '晩夏の海辺のワークスペースでノートPCを閉じ、旅行バッグを持つ大人の旅行者',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1536, height: 960, modelId: 'WAK-MODEL-A', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer'], season: 'late-summer',
+    climateMood: 'bright coastal humidity softened by an open sea breeze',
+    wardrobeFamily: 'coastal-smart-casual',
+    wardrobeTags: ['pale-blue linen short-sleeve overshirt', 'ivory cotton shell', 'cream straight trousers', 'low-profile loafers'],
+    hairDirection: 'loose natural layers with subtle sea-breeze flyaways',
+    activityTags: ['closing laptop', 'lifting canvas weekender', 'leaving after a short work block'],
+    travelContext: 'late-summer work-and-travel departure',
+    styleDirection: 'environment-led premium travel editorial with a generous copy-safe left field',
+    seasonalFit: 'late-summer coastal daylight', activityMood: 'calm transition from work to travel',
+    destinationMood: 'unnamed East Asian coastal town', realismLevel: 'high_photoreal',
+    realismTarget: 'high_photoreal_editorial', realismMethod: 'identity-anchored built-in generation with anatomy, fabric and copy-safe framing review',
+    photorealReferenceUsed: true, generationProvider: 'openai_builtin_imagegen', auditDisposition: 'KEEP',
+    adjacentModelRestrictions: ['Do not place WAK-MODEL-A on the next major home card', 'Keep the following major surface place-led'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-hero'],
+    generatedFromReferenceIds: ['wak-model-a-coastal-calm-identity-anchor', 'home-hero-model-a-coastal-work-desktop-v2'],
+    focalPoint: { x: 0.7, y: 0.45 },
+    safeFraming: { minHeadroomPercent: 6, preserve: ['head', 'face', 'hands', 'bag', 'device', 'feet'] },
+    source: 'OpenAI built-in image generation using the user-provided v2.2 WAK-MODEL-A identity anchor as an internal reference',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: { KO: '실제 숙소·카페·참가자·프로그램 현장 사진으로 표현하지 않는다.', EN: 'Do not present as a real stay, café, participant or operating program.', JP: '実在の宿・カフェ・参加者・運営中のプログラムとして扱わない。' },
+  },
+  {
+    id: 'home-hero-model-a-coastal-departure-mobile-v3',
+    src: '/media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.webp',
+    alt: {
+      KO: '늦여름 해안 작업 공간을 나서며 노트북과 여행 가방을 든 성인 여행자',
+      EN: 'An adult traveler leaving an unnamed late-summer coastal workspace with a laptop and weekender',
+      JP: '晩夏の海辺のワークスペースを出るため、ノートPCと旅行バッグを持つ大人の旅行者',
+    },
+    sourceType: 'generated', usage: 'hero', illustrative: true,
+    width: 1080, height: 1440, modelId: 'WAK-MODEL-A', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer'], season: 'late-summer',
+    climateMood: 'bright coastal humidity softened by an open sea breeze',
+    wardrobeFamily: 'coastal-smart-casual',
+    wardrobeTags: ['pale-blue linen short-sleeve overshirt', 'ivory cotton shell', 'cream straight trousers', 'low-profile loafers'],
+    hairDirection: 'loose natural layers with subtle sea-breeze flyaways',
+    activityTags: ['carrying laptop', 'lifting canvas weekender', 'leaving after a short work block'],
+    travelContext: 'late-summer work-and-travel departure',
+    styleDirection: 'mobile art direction with headroom, complete hands and a clear left copy field',
+    seasonalFit: 'late-summer coastal daylight', activityMood: 'calm transition from work to travel',
+    destinationMood: 'unnamed East Asian coastal town', realismLevel: 'high_photoreal',
+    realismTarget: 'high_photoreal_editorial', realismMethod: 'mobile-specific identity-anchored generation with anatomy and crop review',
+    photorealReferenceUsed: true, generationProvider: 'openai_builtin_imagegen', auditDisposition: 'KEEP',
+    adjacentModelRestrictions: ['Do not place WAK-MODEL-A on the next major home card', 'Keep the following major surface place-led'],
+    routeUsage: ['/', '/en', '/ja'], sectionUsage: ['home-hero-mobile'],
+    generatedFromReferenceIds: ['wak-model-a-coastal-calm-identity-anchor', 'home-hero-model-a-coastal-departure-desktop-v3'],
+    focalPoint: { x: 0.62, y: 0.42 },
+    safeFraming: { minHeadroomPercent: 8, preserve: ['head', 'face', 'hands', 'bag', 'device', 'feet'] },
+    source: 'OpenAI built-in image generation using the user-provided v2.2 WAK-MODEL-A identity anchor as an internal reference',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: { KO: '실제 숙소·카페·참가자·프로그램 현장 사진으로 표현하지 않는다.', EN: 'Do not present as a real stay, café, participant or operating program.', JP: '実在の宿・カフェ・参加者・運営中のプログラムとして扱わない。' },
   },
   {
     id: 'late-summer-model-f-market-v1',

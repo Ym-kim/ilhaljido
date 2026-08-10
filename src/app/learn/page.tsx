@@ -69,8 +69,8 @@ const PATHS: Array<{ label: L; title: L; desc: L }> = [
   },
 ]
 
-const LEARN_HERO_DESKTOP = getMediaAsset('learn-model-k-creative-focus-desktop-v1')
-const LEARN_HERO_MOBILE = getMediaAsset('learn-model-k-creative-focus-mobile-v1')
+const LEARN_HERO_DESKTOP = getMediaAsset('growth-model-b-urban-learning-desktop-v2')
+const LEARN_HERO_MOBILE = getMediaAsset('growth-model-b-urban-learning-mobile-v2')
 
 export default function LearnPage() {
   const { lang } = useLang()
@@ -80,9 +80,9 @@ export default function LearnPage() {
 
   useEffect(() => {
     trackEvent('visual_asset_view', {
-      assetId: LEARN_HERO_DESKTOP?.id ?? 'learn-model-k-creative-focus-desktop-v1',
-      mobileAssetId: LEARN_HERO_MOBILE?.id ?? 'learn-model-k-creative-focus-mobile-v1',
-      modelId: 'WAK-MODEL-K',
+      assetId: LEARN_HERO_DESKTOP?.id ?? 'growth-model-b-urban-learning-desktop-v2',
+      mobileAssetId: LEARN_HERO_MOBILE?.id ?? 'growth-model-b-urban-learning-mobile-v2',
+      modelId: 'WAK-MODEL-B',
       route: '/learn',
       section: 'learn_hero',
       locale: lang,

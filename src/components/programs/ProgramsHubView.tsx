@@ -24,8 +24,8 @@ const DIRECTION_NOTE: Record<Lang, string> = {
   JP: '今後のWakationプログラムは、宿泊・ワークスペース・ネットワーキングに加え、事前VOD学習・現地実習・参加者用Webツールを組み合わせた成長型プログラムへ拡張されます。',
 }
 
-const PROGRAMS_HERO_DESKTOP = getMediaAsset('programs-model-k-stay-planning-desktop-v1')
-const PROGRAMS_HERO_MOBILE = getMediaAsset('programs-model-k-stay-planning-mobile-v1')
+const PROGRAMS_HERO_DESKTOP = getMediaAsset('hosted-models-h-i-coastal-planning-v3')
+const PROGRAMS_HERO_MOBILE = getMediaAsset('hosted-models-h-i-coastal-planning-mobile-v3')
 
 const STATUS_COLOR = {
   recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
@@ -74,9 +74,9 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
 
   useEffect(() => {
     trackEvent('visual_asset_view', {
-      assetId: PROGRAMS_HERO_DESKTOP?.id ?? 'programs-model-k-stay-planning-desktop-v1',
-      mobileAssetId: PROGRAMS_HERO_MOBILE?.id ?? 'programs-model-k-stay-planning-mobile-v1',
-      modelId: 'WAK-MODEL-K',
+      assetId: PROGRAMS_HERO_DESKTOP?.id ?? 'hosted-models-h-i-coastal-planning-v3',
+      mobileAssetId: PROGRAMS_HERO_MOBILE?.id ?? 'hosted-models-h-i-coastal-planning-mobile-v3',
+      modelId: 'WAK-MODEL-H,WAK-MODEL-I',
       route: lang === 'JP' ? '/ja/programs' : lang === 'EN' ? '/en/programs' : '/programs',
       section: 'programs_hero',
       locale: lang,

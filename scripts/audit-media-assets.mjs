@@ -15,7 +15,7 @@ const destinationDirectory = path.join(root, 'public', 'media', 'destinations')
 const brandModelDirectory = path.join(root, 'public', 'media', 'brand-models')
 const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
 const expectedDestinationIds = [...cityIds, 'jeju', 'seoul', 'busan']
-const expectedRosterIds = 'ABCDEFGHIJK'.split('').map((letter) => `WAK-MODEL-${letter}`)
+const expectedRosterIds = 'ABCDEFGHIJ'.split('').map((letter) => `WAK-MODEL-${letter}`)
 
 const archivedV1Assets = [
   ['home-hero-model-a-coastal-work-desktop-v1', 'home-hero-model-a-coastal-work-desktop-v1.webp', 1536, 1024],
@@ -32,8 +32,17 @@ const supersededPublicFiles = new Set([
   'monthly-2026-08-model-e-city-arrival-v1.webp',
   'monthly-2026-08-model-j-blue-hour-v1.webp',
   'monthly-model-edit-2026-08-v1.mp4',
-  'business-model-c-team-planning-desktop-v1.webp',
-  'business-model-c-team-planning-mobile-v1.webp',
+  'home-hero-model-a-coastal-work-desktop-v2.webp',
+  'home-hero-model-a-coastal-work-mobile-v2.webp',
+  'home-hero-model-a-coastal-work-desktop-v2.avif',
+  'home-hero-model-a-coastal-work-mobile-v2.avif',
+  'domestic-jeju-model-k-coastal-stay-v4.webp',
+  'learn-model-k-creative-focus-desktop-v1.webp',
+  'learn-model-k-creative-focus-mobile-v1.webp',
+  'programs-model-k-stay-planning-desktop-v1.webp',
+  'programs-model-k-stay-planning-mobile-v1.webp',
+  'business-models-c-h-k-late-summer-team-desktop-v2.webp',
+  'business-models-c-h-k-late-summer-team-mobile-v2.webp',
   'domestic-seoul-model-j-city-noir-v2.webp',
   'domestic-busan-model-h-haeundae-v3.webp',
   'trip-match-model-d-itinerary-choice-v2.webp',
@@ -49,27 +58,22 @@ const supersededPublicFiles = new Set([
 ])
 
 const v2Assets = [
-  { id: 'home-hero-model-a-coastal-work-desktop-v2', file: 'home-hero-model-a-coastal-work-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-A'] },
-  { id: 'home-hero-model-a-coastal-work-mobile-v2', file: 'home-hero-model-a-coastal-work-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-A'] },
+  { id: 'home-hero-model-a-coastal-departure-desktop-v3', file: 'home-hero-model-a-coastal-departure-desktop-v3.webp', width: 1536, height: 960, modelIds: ['WAK-MODEL-A'] },
+  { id: 'home-hero-model-a-coastal-departure-mobile-v3', file: 'home-hero-model-a-coastal-departure-mobile-v3.webp', width: 1080, height: 1440, modelIds: ['WAK-MODEL-A'] },
   { id: 'domestic-seoul-model-j-city-noir-v3', file: 'domestic-seoul-model-j-city-noir-v3.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-J'] },
   { id: 'domestic-busan-model-e-coastal-city-v2', file: 'domestic-busan-model-e-coastal-city-v2.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-E'] },
   { id: 'domestic-jeju-model-g-slow-stay-v2', file: 'domestic-jeju-model-g-slow-stay-v2.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-G'] },
   { id: 'domestic-busan-model-h-haeundae-v4', file: 'domestic-busan-model-h-haeundae-v4.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-H'] },
-  { id: 'domestic-jeju-model-k-coastal-stay-v4', file: 'domestic-jeju-model-k-coastal-stay-v4.webp', width: 1200, height: 900, modelIds: ['WAK-MODEL-K'] },
   { id: 'trip-match-model-d-itinerary-choice-v3', file: 'trip-match-model-d-itinerary-choice-v3.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
   { id: 'hosted-models-h-i-coastal-planning-v3', file: 'hosted-models-h-i-coastal-planning-v3.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'hosted-models-h-i-coastal-planning-mobile-v3', file: 'hosted-models-h-i-coastal-planning-mobile-v3.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'select-model-i-travel-prep-v3', file: 'select-model-i-travel-prep-v3.webp', width: 1440, height: 810, modelIds: ['WAK-MODEL-I'] },
   { id: 'experience-seoul-model-i-kpop-studio-v2', file: 'experience-seoul-model-i-kpop-studio-v2.webp', width: 1440, height: 1080, modelIds: ['WAK-MODEL-I'] },
   { id: 'experience-tokyo-model-d-immersive-gallery-v2', file: 'experience-tokyo-model-d-immersive-gallery-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
-  { id: 'learn-model-k-creative-focus-desktop-v1', file: 'learn-model-k-creative-focus-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-K'] },
-  { id: 'learn-model-k-creative-focus-mobile-v1', file: 'learn-model-k-creative-focus-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
-  { id: 'programs-model-k-stay-planning-desktop-v1', file: 'programs-model-k-stay-planning-desktop-v1.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-K'] },
-  { id: 'programs-model-k-stay-planning-mobile-v1', file: 'programs-model-k-stay-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
   { id: 'growth-model-b-urban-learning-desktop-v2', file: 'growth-model-b-urban-learning-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
   { id: 'growth-model-b-urban-learning-mobile-v2', file: 'growth-model-b-urban-learning-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-B'] },
-  { id: 'business-models-c-h-k-late-summer-team-desktop-v2', file: 'business-models-c-h-k-late-summer-team-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-K'] },
-  { id: 'business-models-c-h-k-late-summer-team-mobile-v2', file: 'business-models-c-h-k-late-summer-team-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-K'] },
+  { id: 'business-model-c-team-planning-desktop-v1', file: 'business-model-c-team-planning-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-C'] },
+  { id: 'business-model-c-team-planning-mobile-v1', file: 'business-model-c-team-planning-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-C'] },
   { id: 'campaign-model-f-japan-choice-desktop-v2', file: 'campaign-model-f-japan-choice-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
   { id: 'campaign-model-f-japan-choice-mobile-v2', file: 'campaign-model-f-japan-choice-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-F'] },
   { id: 'monthly-2026-08-model-e-city-arrival-v2', file: 'monthly-2026-08-model-e-city-arrival-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-E'] },
@@ -82,8 +86,8 @@ const v2Assets = [
 // They are audited separately so the public directory stays fully accounted for
 // without duplicating one editorial asset in the semantic media manifest.
 const optimizedDerivatives = [
-  { file: 'home-hero-model-a-coastal-work-desktop-v2.avif', width: 1536, height: 1024, maximumBytes: 50_000 },
-  { file: 'home-hero-model-a-coastal-work-mobile-v2.avif', width: 960, height: 1280, maximumBytes: 50_000 },
+  { file: 'home-hero-model-a-coastal-departure-desktop-v3.avif', width: 1536, height: 960, maximumBytes: 90_000 },
+  { file: 'home-hero-model-a-coastal-departure-mobile-v3.avif', width: 1080, height: 1440, maximumBytes: 90_000 },
 ]
 
 const motionAssets = [
@@ -98,16 +102,16 @@ const assetIds = (...ids) => ids.map((id) => {
 
 // Desktop/mobile art-direction pairs are one visible placement, not separate model exposures.
 const v2Placements = [
-  { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
+  { route: 'home', section: 'hero-poster', models: ['WAK-MODEL-A'], assets: assetIds('home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3'), source: 'src/components/home/HomeSeasonalHeroMedia.tsx' },
   { route: 'trip-match', section: 'intro', models: ['WAK-MODEL-D'], assets: assetIds('trip-match-model-d-itinerary-choice-v3'), source: 'src/components/trip-match/TripMatchExperience.tsx' },
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v3'), source: 'src/components/select/SelectHubView.tsx' },
   { route: 'experience-hongdae-kpop-walk-dance', section: 'editorial-hero', models: ['WAK-MODEL-I'], assets: assetIds('experience-seoul-model-i-kpop-studio-v2'), source: 'src/lib/experiences/editorials.ts' },
   { route: 'experience-teamlab-planets-tokyo-evening', section: 'editorial-hero', models: ['WAK-MODEL-D'], assets: assetIds('experience-tokyo-model-d-immersive-gallery-v2'), source: 'src/lib/experiences/editorials.ts' },
-  { route: 'learn', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1'), source: 'src/app/learn/page.tsx' },
-  { route: 'programs', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1'), source: 'src/components/programs/ProgramsHubView.tsx' },
+  { route: 'learn', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2'), source: 'src/app/learn/page.tsx' },
+  { route: 'programs', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'), source: 'src/components/programs/ProgramsHubView.tsx' },
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2'), source: 'src/app/growth/page.tsx' },
-  { route: 'business', section: 'hero', models: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-K'], assets: assetIds('business-models-c-h-k-late-summer-team-desktop-v2', 'business-models-c-h-k-late-summer-team-mobile-v2'), source: 'src/app/business/page.tsx' },
+  { route: 'business', section: 'hero', models: ['WAK-MODEL-C'], assets: assetIds('business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2'), source: 'src/data/campaign-landings.ts' },
   { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
 ]
@@ -143,13 +147,28 @@ const [cityData, guideData, manifest, roster, rotation, experienceView] = await 
 if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) errors.push('src/lib/cities.ts still contains an Unsplash hotlink')
 if (/https?:\/\/images\.unsplash\.com/i.test(guideData)) errors.push('src/lib/guides.ts still contains an Unsplash hotlink')
 
-if (!roster.includes("BRAND_MODEL_ROSTER_VERSION = '2.3'")) errors.push('Brand model roster is not pinned to v2.3')
+if (!roster.includes("BRAND_MODEL_ROSTER_VERSION = '2.2'")) errors.push('Brand model roster is not pinned to v2.2')
 if (!roster.includes('BRAND_MODEL_STYLING_RULES')) errors.push('Brand model styling registry is missing')
 for (const id of expectedRosterIds) {
   if (!roster.includes(`id: '${id}'`)) errors.push(`Roster entry missing: ${id}`)
   if (!roster.includes(`'${id}': { styleDirection:`)) errors.push(`Styling rule missing: ${id}`)
 }
-for (const field of ['climateMood:', 'wardrobeTags:', 'activityTags:', 'travelContext:', 'realismTarget:', 'realismMethod:', 'photorealReferenceUsed:']) {
+for (const field of [
+  'season:',
+  'climateMood:',
+  'wardrobeFamily:',
+  'wardrobeTags:',
+  'hairDirection:',
+  'activityTags:',
+  'travelContext:',
+  'destinationMood:',
+  'realismLevel:',
+  'realismTarget:',
+  'realismMethod:',
+  'generationProvider:',
+  'auditDisposition:',
+  'photorealReferenceUsed:',
+]) {
   if (!manifest.includes(field)) errors.push(`Seasonal realism metadata missing from manifest: ${field}`)
 }
 for (const field of ["framingMode: 'full-subject-desktop'", 'minHeadroomPercent: 4', "preserve: ['head', 'face', 'hands', 'bag', 'feet']"]) {
@@ -170,15 +189,7 @@ for (const [id, nameCode, descriptor] of [
   if (!block.includes('supersedes and invalidates every previous')) errors.push(`Replacement record missing for ${id}`)
   if (!block.includes('directPublish: false')) errors.push(`Reference-only directPublish rule missing for ${id}`)
 }
-{
-  const start = roster.indexOf("id: 'WAK-MODEL-K'")
-  const next = roster.indexOf("\n  {", start + 1)
-  const block = start === -1 ? '' : roster.slice(start, next === -1 ? undefined : next)
-  if (!block.includes("nameCode: 'Creative Navigator'")) errors.push('Model K name code is missing')
-  if (!block.includes('age twenty-nine')) errors.push('Model K adult age descriptor is missing')
-  if (!block.includes("productionUse: 'generated_derivatives_only'")) errors.push('Model K derivative-only rule is missing')
-  if (!block.includes('directPublish: false')) errors.push('Model K reference-only directPublish rule is missing')
-}
+if (rotation.includes("'WAK-MODEL-K'")) errors.push('Retired WAK-MODEL-K remains in the active placement registry')
 
 const hashes = new Map()
 let totalBytes = 0
@@ -351,6 +362,6 @@ if (errors.length > 0) {
 
 const productionFiles = [...v2Assets, ...motionAssets]
 const productionBytes = await Promise.all(productionFiles.map(async (asset) => (await fs.stat(path.join(brandModelDirectory, asset.file))).size))
-console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.3 models, ${v2Assets.length} production images and ${motionAssets.length} video (${productionBytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
+console.log(`Media audit passed: ${expectedDestinationIds.length} destinations, ${expectedRosterIds.length} v2.2 models, ${v2Assets.length} production images and ${motionAssets.length} video (${productionBytes.reduce((sum, size) => sum + size, 0).toLocaleString()} bytes)`)
 console.log(`Visible identity mix: ${[...exposedModels].join(', ')}; actual max share ${(maximumIdentityShare * 100).toFixed(1)}% (cap 25%); non-model major surfaces ${(declaredNonModelShare * 100).toFixed(1)}%`)
 console.log(`Total audited media bytes: ${totalBytes.toLocaleString()}`)

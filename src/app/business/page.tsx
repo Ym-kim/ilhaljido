@@ -176,8 +176,8 @@ const STATUS_STYLE: Record<string, string> = {
 }
 
 const BUSINESS_PLACEMENT = getEditorialModelPlacement('business-hero')
-const BUSINESS_DESKTOP = getMediaAsset('business-models-c-h-k-late-summer-team-desktop-v2')!
-const BUSINESS_MOBILE = getMediaAsset('business-models-c-h-k-late-summer-team-mobile-v2')!
+const BUSINESS_DESKTOP = getMediaAsset('business-model-c-team-planning-desktop-v1')!
+const BUSINESS_MOBILE = getMediaAsset('business-model-c-team-planning-mobile-v1')!
 
 // 기업 유형 — 지원사업 자격 판단에 실질적으로 쓰이는 구분 (더휴일 '지원금 연계' 벤치)
 const BIZ_TYPES: { v: string; l: L }[] = [

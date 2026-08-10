@@ -121,8 +121,8 @@ const HOME_HERO_ALT: Record<Lang, string> = {
 }
 
 const HOME_HERO_ASSET = {
-  id: 'home-seasonal-film-2026-08-v1',
-  modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-K'] as const,
+  id: 'home-hero-model-a-coastal-departure-desktop-v3',
+  modelIds: ['WAK-MODEL-A'] as const,
 } as const
 
 export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
