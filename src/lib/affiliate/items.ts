@@ -390,7 +390,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     },
     badge: '부산 일일체험',
     trackingId: 'aid=126848',
-    coverPhoto: '/media/brand-models/domestic-busan-model-h-haeundae-v3.webp',
+    coverPhoto: '/media/brand-models/domestic-busan-model-h-haeundae-v4.webp',
     illustrative: true,
     sourceNote: 'Klook activity 74132 실물 확인. 약 9–12시간·영어/중국어/일본어·4.9/5·후기 약 3.6천 건 (2026-08-10). 자체 제작 커버는 실제 투어 사진이 아니며 패키지별 방문지·티켓 포함 여부가 다름.',
     operatorAction: 'Klook 공식 리다이렉트 3개 로케일 적용 완료 (aid=126848, 2026-08-10)',

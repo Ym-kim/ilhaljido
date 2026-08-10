@@ -28,7 +28,7 @@ const required = [
   ['Busan catalog item', "id: 'act-klook-busan-coastal-highlights'", items],
   ['Busan Klook product id', '74132-busan-oneday-tour-busan', items],
   ['Busan localized deep links', "JP: 'https://affiliate.klook.com/redirect?aid=126848", items],
-  ['Busan media manifest', "id: 'domestic-busan-model-h-haeundae-v3'", media],
+  ['Busan media manifest', "id: 'domestic-busan-model-h-haeundae-v4'", media],
   ['Busan health check', 'klook:busan-coastal-highlights', health],
   ['Seoul editorial slug', "slug: 'hongdae-kpop-walk-dance'", data],
   ['Seoul affiliate item reference', "affiliateItemId: 'act-kkday-hongdae-kpop-walk'", data],
@@ -46,7 +46,7 @@ for (const [label, needle, source] of required) {
 
 const assets = [
   path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp'),
-  path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v3.webp'),
+  path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v4.webp'),
   path.join(root, 'public/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp'),
 ]
 for (const asset of assets) {

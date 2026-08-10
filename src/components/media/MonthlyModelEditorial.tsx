@@ -67,8 +67,8 @@ const PHOTOS: Array<{
     caption: { KO: '해안의 리셋', EN: 'Coastal reset', JP: '海辺でリセット' },
   },
   {
-    id: 'monthly-2026-08-model-g-coastal-book-cafe-v1',
-    src: '/media/brand-models/monthly-2026-08-model-g-coastal-book-cafe-v1.webp',
+    id: 'monthly-2026-08-model-g-coastal-book-cafe-v2',
+    src: '/media/brand-models/monthly-2026-08-model-g-coastal-book-cafe-v2.webp',
     alt: {
       KO: '이름 없는 해안 북카페를 나서며 노트를 든 성인 여행자',
       EN: 'An adult traveller leaving an unnamed coastal book café with a notebook',

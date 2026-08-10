@@ -459,7 +459,7 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
         ),
       },
     ],
-    mediaAssetIds: ['domestic-busan-model-h-haeundae-v3'],
+    mediaAssetIds: ['domestic-busan-model-h-haeundae-v4'],
     verifiedAt: '2026-08-10',
     sources: [
       { name: 'Klook activity 74132', url: 'https://www.klook.com/ja/activity/74132-busan-oneday-tour-busan/', verifiedAt: '2026-08-10', customerVisible: true },
