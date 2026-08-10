@@ -20,10 +20,9 @@ const COPY: Record<'season' | 'play' | 'pause', L> = {
   pause: { KO: '배경 영상 일시정지', EN: 'Pause background film', JP: '背景映像を一時停止' },
 }
 
-// The previous seasonal film contains a retired roster identity. Keep the
-// deferred-video plumbing in place, but hold playback until a v2.2 A-J film is
-// produced. The art-directed poster remains the LCP surface in the meantime.
-const SEASONAL_FILM_ENABLED = false
+// The poster remains the LCP surface. The optional motion layer only loads
+// after the first paint and uses the approved v2.2 A-J roster.
+const SEASONAL_FILM_ENABLED = true
 
 const POSTER = {
   desktop: '/media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.webp',
@@ -131,7 +130,7 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
           fetchPriority="high"
           loading="eager"
           decoding="async"
-          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[62%_40%] md:object-center"
+          className="home-editorial-hero absolute inset-0 h-full w-full object-cover"
         />
       </picture>
 
@@ -144,7 +143,7 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
           muted
           playsInline
           preload="none"
-          className={`absolute inset-0 h-full w-full object-cover object-[58%_38%] transition-opacity duration-700 md:object-[68%_24%] ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          className={`home-editorial-hero-film absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           onCanPlay={() => {
             setVideoReady(true)
             if (!userPausedRef.current) videoRef.current?.play().catch(() => undefined)
