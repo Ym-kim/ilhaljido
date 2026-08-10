@@ -46,7 +46,8 @@ const required = [
   ['Tokyo Klook product id', '25300-teamlab-planets-toyosu-tokyo-ticket', featured],
   ['Tokyo localized deep links', 'https%3A%2F%2Fwww.klook.com%2Fja%2Factivity%2F25300-teamlab-planets-toyosu-tokyo-ticket%2F', featured],
   ['Tokyo review verified date', "verifiedAt: '2026-08-06'", data],
-  ['Tokyo media manifest', "id: 'experience-tokyo-model-d-immersive-gallery-v1'", media],
+  ['Tokyo media manifest', "id: 'experience-tokyo-model-d-immersive-gallery-v2'", media],
+  ['Tokyo seasonal styling metadata', "realismTarget: 'high_photoreal_editorial'", media],
   ['Tokyo health check', 'klook:teamlab', health],
   ['Tokyo public route health check', 'page:experience-tokyo-teamlab', health],
 ]
@@ -59,7 +60,7 @@ const assets = [
   path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp'),
   path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v4.webp'),
   path.join(root, 'public/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp'),
-  path.join(root, 'public/media/brand-models/experience-tokyo-model-d-immersive-gallery-v1.webp'),
+  path.join(root, 'public/media/brand-models/experience-tokyo-model-d-immersive-gallery-v2.webp'),
 ]
 for (const asset of assets) {
   if (!fs.existsSync(asset) || fs.statSync(asset).size === 0) failures.push(`editorial image missing or empty: ${asset}`)

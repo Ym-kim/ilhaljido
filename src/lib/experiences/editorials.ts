@@ -827,7 +827,7 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
         ),
       },
     ],
-    mediaAssetIds: ['experience-tokyo-model-d-immersive-gallery-v1'],
+    mediaAssetIds: ['experience-tokyo-model-d-immersive-gallery-v2'],
     verifiedAt: '2026-08-10',
     sources: [
       { name: 'Klook activity 25300', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/', verifiedAt: '2026-08-10', customerVisible: true },

@@ -32,16 +32,17 @@
 
 ## 미디어 출처와 사용 제한
 
-- 파일: `public/media/brand-models/experience-tokyo-model-d-immersive-gallery-v1.webp`
-- 규격: 1536 × 1024 WebP, 67,712 bytes
+- 파일: `public/media/brand-models/experience-tokyo-model-d-immersive-gallery-v2.webp`
+- 규격: 1536 × 1024 WebP, 130,362 bytes
 - 생성 방식: OpenAI 내장 ImageGen, identity-preserve 모드
 - 모델 ID: `WAK-MODEL-D`
 - 계절: 여름 / 늦여름
+- 스타일: 아이보리 슬리브리스 니트, 코발트 플리츠 미디 스커트, 플랫 샌들, 로우 포니테일, 자연스러운 걷기
 - 용도: 도쿄 몰입형 미디어아트 저녁 일정의 일반적인 편집 장면
 - 제한: 실제 teamLab 작품, 실제 전시장, 실제 관람객, Klook 상품 사진이 아님
 - 코드 표시: `sourceType: generated`, `illustrative: true`
 
-## 최종 생성 프롬프트
+## v1 생성 프롬프트 — superseded
 
 ```text
 Use case: identity-preserve
@@ -57,3 +58,21 @@ Constraints: no text, no logo, no watermark, no readable signage, no branded art
 ```
 
 참조 이미지는 `public/media/brand-models/trip-match-model-d-itinerary-choice-v3.webp`이며 얼굴 정체성에만 사용했다.
+
+## 최종 활성 v2 생성 프롬프트
+
+```text
+Use case: identity-preserve
+Asset type: wide website hero and editorial card for a Tokyo immersive-art evening guide
+Input images: Image 1 is the edit-target scene and composition reference. Image 2 is the approved fictional WAK-MODEL-D face and identity reference only.
+Primary request: rebuild the scene as a more lively, fashion-aware, high-photoreal summer travel-editorial moment. Preserve the same fictional adult woman’s recognizable face and natural proportions, but change her wardrobe, hairstyle, body movement and camera moment so she feels like a real traveler actively moving through an exhibition rather than a static office-styled model.
+Scene/backdrop: a believable contemporary immersive digital-art gallery with abstract indigo, cyan and warm amber light, subtle floor reflections and real museum architecture. It must remain generic and must not copy or recreate any identifiable teamLab artwork, room, logo, installation or composition.
+Subject: same fictional adult East Asian woman, late twenties to early thirties. She is walking naturally across the right third in a candid three-quarter full-body moment, turning slightly toward an abstract light field with a small relaxed smile, not looking at the camera. One step is visibly in motion and the skirt has a subtle natural sway.
+Fashion and hair: polished Tokyo summer travel style—cool ivory sleeveless fine-knit top with a refined high neckline, fluid deep-cobalt pleated midi skirt, flat black travel sandals, compact warm-tan crossbody bag. No exposed midriff and no body-emphasizing pose. Hair is gathered in a soft low ponytail with a few realistic loose strands, deliberately different from the long loose hairstyle in Image 2.
+Style/medium: high-end lifestyle and travel editorial photography, realistic skin texture and pores, natural minor asymmetry, authentic fabric weave and folds, believable anatomy, true-to-life hands, ears and hair, subtle imperfections, restrained magazine color grade, slight 35mm film grain, no glossy AI beauty filter.
+Composition/framing: 3:2 wide landscape. Keep generous dark negative space across the left 43–46% for white headline copy. Keep the woman’s head, both hands, bag, skirt hem, feet and walking gesture fully inside the frame. She must remain safe in a centered mobile crop.
+Lighting/mood: luminous summer evening indoors; cool gallery light mixed with soft warm practical light; airy, curious and alive rather than nightclub-like or solemn.
+Constraints: preserve identity only; replace the static pose, loose hair and blue blouse/charcoal-trouser outfit. No text, logo, watermark, readable signage, branded art, exact teamLab room, prominent extra people, winter clothing, blazer, coat, sweater, trousers, officewear, beauty-ad close-up, plastic skin, overly perfect face, distorted fingers, duplicated limbs, synthetic hair clumps or warped architecture.
+```
+
+v2의 입력 1은 `experience-tokyo-model-d-immersive-gallery-v1.webp` 구도, 입력 2는 `trip-match-model-d-itinerary-choice-v3.webp` 정체성 참조다. 생성 방식은 OpenAI built-in ImageGen `identity-preserve`이며 외부 API나 신규 secret을 사용하지 않았다.

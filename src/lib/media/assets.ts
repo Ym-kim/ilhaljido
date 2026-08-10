@@ -19,6 +19,16 @@ export type MediaAsset = {
   modelIds?: BrandModelId[]
   localeUsage?: Array<'ko' | 'en' | 'ja'>
   seasonalUsage?: Array<'spring' | 'summer' | 'late-summer' | 'autumn' | 'winter' | 'all-season'>
+  climateMood?: string
+  wardrobeTags?: string[]
+  activityTags?: string[]
+  travelContext?: string
+  styleDirection?: string
+  seasonalFit?: string
+  activityMood?: string
+  realismTarget?: 'high_photoreal_editorial' | 'documentary_reference' | 'graphic_editorial'
+  realismMethod?: string
+  photorealReferenceUsed?: boolean
   routeUsage?: string[]
   sectionUsage?: string[]
   generatedFromReferenceIds?: string[]
@@ -155,8 +165,8 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     },
   },
   {
-    id: 'experience-tokyo-model-d-immersive-gallery-v1',
-    src: '/media/brand-models/experience-tokyo-model-d-immersive-gallery-v1.webp',
+    id: 'experience-tokyo-model-d-immersive-gallery-v2',
+    src: '/media/brand-models/experience-tokyo-model-d-immersive-gallery-v2.webp',
     alt: {
       KO: '도쿄를 연상시키는 현대 미디어아트 공간에서 빛을 바라보는 여름 옷차림의 성인 여행자',
       EN: 'An adult traveller in summer clothes looking at light inside a Tokyo-inspired contemporary media-art space',
@@ -165,6 +175,16 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     sourceType: 'generated', usage: 'editorial', illustrative: true,
     width: 1536, height: 1024, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'],
     seasonalUsage: ['summer', 'late-summer'],
+    climateMood: 'luminous Tokyo summer evening indoors',
+    wardrobeTags: ['sleeveless fine-knit', 'pleated midi skirt', 'flat travel sandals', 'crossbody bag'],
+    activityTags: ['walking', 'exhibition visit', 'after-work city evening'],
+    travelContext: 'after-work immersive-art visit during a short Tokyo stay',
+    styleDirection: 'fashion-aware Tokyo summer editorial with movement',
+    seasonalFit: 'breathable sleeveless knit, fluid skirt and open sandals for August',
+    activityMood: 'curious, light and candid; walking rather than posing',
+    realismTarget: 'high_photoreal_editorial',
+    realismMethod: 'OpenAI built-in identity-preserve edit using production scene and approved WAK-MODEL-D reference',
+    photorealReferenceUsed: true,
     routeUsage: [
       '/select/activity', '/en/select/activity', '/ja/select/activity',
       '/experiences/teamlab-planets-tokyo-evening',
@@ -176,7 +196,7 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     sectionUsage: ['experience-editorial-tokyo', 'activity-card'],
     generatedFromReferenceIds: ['trip-match-model-d-itinerary-choice-v3'],
     focalPoint: { x: 0.7, y: 0.5 },
-    source: 'OpenAI built-in image editing using the approved WAK-MODEL-D reference; generic immersive-art gallery composition',
+    source: 'OpenAI built-in identity-preserve image editing using the approved WAK-MODEL-D reference; generic immersive-art gallery composition',
     license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
     restriction: {
       KO: '실제 teamLab 작품·전시장·방문객 또는 Klook 상품 사진으로 표현하지 않는다.',

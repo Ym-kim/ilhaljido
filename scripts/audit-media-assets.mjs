@@ -44,6 +44,7 @@ const supersededPublicFiles = new Set([
   'campaign-model-f-japan-choice-desktop-v1.webp',
   'campaign-model-f-japan-choice-mobile-v1.webp',
   'monthly-2026-08-model-g-coastal-book-cafe-v1.webp',
+  'experience-tokyo-model-d-immersive-gallery-v1.webp',
 ])
 
 const v2Assets = [
@@ -59,7 +60,7 @@ const v2Assets = [
   { id: 'hosted-models-h-i-coastal-planning-mobile-v3', file: 'hosted-models-h-i-coastal-planning-mobile-v3.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'] },
   { id: 'select-model-i-travel-prep-v3', file: 'select-model-i-travel-prep-v3.webp', width: 1440, height: 810, modelIds: ['WAK-MODEL-I'] },
   { id: 'experience-seoul-model-i-kpop-studio-v2', file: 'experience-seoul-model-i-kpop-studio-v2.webp', width: 1440, height: 1080, modelIds: ['WAK-MODEL-I'] },
-  { id: 'experience-tokyo-model-d-immersive-gallery-v1', file: 'experience-tokyo-model-d-immersive-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
+  { id: 'experience-tokyo-model-d-immersive-gallery-v2', file: 'experience-tokyo-model-d-immersive-gallery-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
   { id: 'learn-model-k-creative-focus-desktop-v1', file: 'learn-model-k-creative-focus-desktop-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-K'] },
   { id: 'learn-model-k-creative-focus-mobile-v1', file: 'learn-model-k-creative-focus-mobile-v1.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-K'] },
   { id: 'programs-model-k-stay-planning-desktop-v1', file: 'programs-model-k-stay-planning-desktop-v1.webp', width: 1440, height: 900, modelIds: ['WAK-MODEL-K'] },
@@ -101,6 +102,7 @@ const v2Placements = [
   { route: 'hosted', section: 'hero', models: ['WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'), source: 'src/components/hosted/HostedLandingView.tsx' },
   { route: 'select', section: 'hero-editorial', models: ['WAK-MODEL-I'], assets: assetIds('select-model-i-travel-prep-v3'), source: 'src/components/select/SelectHubView.tsx' },
   { route: 'experience-hongdae-kpop-walk-dance', section: 'editorial-hero', models: ['WAK-MODEL-I'], assets: assetIds('experience-seoul-model-i-kpop-studio-v2'), source: 'src/lib/experiences/editorials.ts' },
+  { route: 'experience-teamlab-planets-tokyo-evening', section: 'editorial-hero', models: ['WAK-MODEL-D'], assets: assetIds('experience-tokyo-model-d-immersive-gallery-v2'), source: 'src/lib/experiences/editorials.ts' },
   { route: 'learn', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1'), source: 'src/app/learn/page.tsx' },
   { route: 'programs', section: 'hero', models: ['WAK-MODEL-K'], assets: assetIds('programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1'), source: 'src/components/programs/ProgramsHubView.tsx' },
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-B'], assets: assetIds('growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2'), source: 'src/app/growth/page.tsx' },
@@ -140,8 +142,13 @@ if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) errors.push('src/lib/cit
 if (/https?:\/\/images\.unsplash\.com/i.test(guideData)) errors.push('src/lib/guides.ts still contains an Unsplash hotlink')
 
 if (!roster.includes("BRAND_MODEL_ROSTER_VERSION = '2.3'")) errors.push('Brand model roster is not pinned to v2.3')
+if (!roster.includes('BRAND_MODEL_STYLING_RULES')) errors.push('Brand model styling registry is missing')
 for (const id of expectedRosterIds) {
   if (!roster.includes(`id: '${id}'`)) errors.push(`Roster entry missing: ${id}`)
+  if (!roster.includes(`'${id}': { styleDirection:`)) errors.push(`Styling rule missing: ${id}`)
+}
+for (const field of ['climateMood:', 'wardrobeTags:', 'activityTags:', 'travelContext:', 'realismTarget:', 'realismMethod:', 'photorealReferenceUsed:']) {
+  if (!manifest.includes(field)) errors.push(`Seasonal realism metadata missing from manifest: ${field}`)
 }
 for (const [id, nameCode, descriptor] of [
   ['WAK-MODEL-H', 'Soft Daylight', 'softly rounded face'],

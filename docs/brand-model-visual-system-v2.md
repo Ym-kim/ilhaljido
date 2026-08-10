@@ -3,6 +3,8 @@
 기준일: 2026-08-08
 공식 입력: `Wakation_Diverse_Model_Roster_v2_2.zip`, `모델10.zip`
 
+2026-08-10 추가 규칙: 정체성 유지와 별개로 패션·헤어·활동·계절을 분화한다. 코드 기준은 `BRAND_MODEL_STYLING_RULES`, 제작·승인 기준은 `docs/model-styling-and-seasonality-rules.md`다.
+
 ## 운영 원칙
 
 - v2.3의 A–K만 공식 모델 ID로 사용한다. 이전 H/I/J는 폐기하며 생성 참조와 공개 자산 모두에서 사용하지 않는다.
@@ -11,6 +13,8 @@
 - 한 모델은 전체 모델 이미지 배치의 25%를 초과하지 않는다. 같은 모델을 한 viewport나 인접한 주요 카드에 반복하지 않는다.
 - 사이트 전체 이미지의 절반 이상은 장소·공간·교통·음식·상품 중심으로 유지한다.
 - 얼굴보다 행동과 장소를 먼저 설계한다. 모델은 여행·업무·이동·휴식·연결의 맥락을 설명할 때만 사용한다.
+- 동일 모델이라도 같은 흰 상의·긴 생머리·정면 포즈를 반복하지 않는다. 8월에는 통기성 소재, 걷기·대화·이동 동작, 자연광 또는 실제 실내광을 우선한다.
+- 신규 생성 모델 자산은 `climateMood`, `wardrobeTags`, `activityTags`, `travelContext`, `realismTarget`, `realismMethod`, `photorealReferenceUsed`를 manifest에 기록한다.
 
 ## v2.3 공식 로스터
 

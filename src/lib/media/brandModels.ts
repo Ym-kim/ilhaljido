@@ -44,6 +44,33 @@ export type BrandModelProfile = {
   notes: string
 }
 
+export type BrandModelStylingRule = {
+  styleDirection: string
+  summerWardrobe: string[]
+  seasonalFit: string[]
+  activityMood: string[]
+  hairVariation: string[]
+  realismLevel: 'high_photoreal_editorial'
+  photorealReferenceUsed: true
+}
+
+// Generation defaults for every new model derivative. These rules complement
+// identity fields above: face continuity never implies repeating one outfit,
+// hairstyle, pose or mood across adjacent routes.
+export const BRAND_MODEL_STYLING_RULES: Record<BrandModelId, BrandModelStylingRule> = {
+  'WAK-MODEL-A': { styleDirection: 'airy coastal slow-stay', summerWardrobe: ['linen shirt dress', 'sleeveless knit with relaxed shirt', 'travel sandals'], seasonalFit: ['bright coastal summer', 'breezy early autumn'], activityMood: ['packing up', 'walking toward the coast', 'quiet reset'], hairVariation: ['soft waves', 'low bun', 'wind-moved half-up hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-B': { styleDirection: 'bright urban café and social discovery', summerWardrobe: ['light blouse with denim', 'shirt with tailored shorts', 'minimal city sneakers'], seasonalFit: ['warm city summer', 'humid urban summer'], activityMood: ['walking with iced coffee', 'checking a route', 'talking with a friend'], hairVariation: ['natural C-curl', 'ponytail', 'medium layered hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-C': { styleDirection: 'quiet premium lounge and business stay', summerWardrobe: ['lightweight linen set', 'cap-sleeve knit with fluid skirt', 'refined loafers'], seasonalFit: ['air-conditioned summer lounge', 'breezy early autumn'], activityMood: ['reviewing a shared plan', 'moving after check-in', 'calm conversation'], hairVariation: ['polished low bun', 'soft waves', 'sleek half-up hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-D': { styleDirection: 'fashion-aware exhibition and Tokyo evening', summerWardrobe: ['sleeveless fine-knit with pleated midi skirt', 'minimal city dress', 'flat travel sandals'], seasonalFit: ['luminous city summer', 'blue-hour early autumn'], activityMood: ['walking through an exhibition', 'choosing an itinerary', 'leaving for the evening'], hairVariation: ['soft low ponytail', 'side-parted waves', 'sleek low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-E': { styleDirection: 'crisp coastal city short break', summerWardrobe: ['bright blouse with wide-leg linen trousers', 'relaxed shirt with tailored shorts', 'walking sneakers'], seasonalFit: ['humid coastal summer', 'clear late summer'], activityMood: ['starting a waterfront walk', 'laughing in transit', 'carrying a weekender'], hairVariation: ['high ponytail', 'wind-moved layers', 'low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-F': { styleDirection: 'warm market, café and Japan short stay', summerWardrobe: ['rolled-sleeve linen blouse', 'feminine top with denim', 'soft city flats'], seasonalFit: ['warm city summer', 'golden-hour late summer'], activityMood: ['browsing a market', 'walking to a café', 'meeting a friend'], hairVariation: ['soft C-curl', 'half-up hair', 'loose low ponytail'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-G': { styleDirection: 'clean romantic island and slow travel', summerWardrobe: ['light summer dress', 'sleeveless knit with long skirt', 'woven travel sandals'], seasonalFit: ['breezy island summer', 'soft early autumn'], activityMood: ['writing outdoors', 'walking beside a stone wall', 'pausing in the breeze'], hairVariation: ['natural waves', 'low braid', 'wind-moved half-up hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-H': { styleDirection: 'friendly local café and beginner trip', summerWardrobe: ['soft-blue linen blouse', 'shirt dress', 'light tote and sneakers'], seasonalFit: ['soft daylight summer', 'mild early autumn'], activityMood: ['planning together', 'pointing to a map', 'smiling in conversation'], hairVariation: ['airy curtain bangs with waves', 'low ponytail', 'casual half-up hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-I': { styleDirection: 'modern graceful business travel and social planning', summerWardrobe: ['ivory cap-sleeve knit', 'fluid resort set', 'minimal travel loafers'], seasonalFit: ['refined indoor summer', 'coastal late summer'], activityMood: ['collaborating at a table', 'preparing to depart', 'walking through a design district'], hairVariation: ['chestnut waves', 'polished low ponytail', 'side-parted low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-J': { styleDirection: 'sharp city night and Seoul discovery', summerWardrobe: ['white short-sleeve blouse', 'minimal summer dress', 'charcoal skirt with light scarf'], seasonalFit: ['urban summer evening', 'blue-hour early autumn'], activityMood: ['walking after work', 'leaving an exhibition', 'crossing a lively street'], hairVariation: ['sleek straight hair', 'low ponytail', 'tucked-behind-ear bob effect'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+  'WAK-MODEL-K': { styleDirection: 'creative navigation, learning and longer stays', summerWardrobe: ['soft-blue sleeveless blouse', 'relaxed linen set', 'practical travel sneakers'], seasonalFit: ['bright shared-space summer', 'calm early autumn'], activityMood: ['organizing visual notes', 'moving between work and rest', 'packing a practical weekender'], hairVariation: ['natural long layers', 'soft ponytail', 'relaxed low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
+}
+
 const COMMON_RESTRICTED_SECTIONS = [
   'reviews',
   'testimonials',
@@ -96,7 +123,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['taupe', 'muted blue', 'charcoal'], preferredActions: ['choosing an itinerary', 'closing a laptop', 'leaving an exhibition'], preferredLocations: ['departure lounge', 'gallery district', 'evening city'],
     allowedSections: ['trip-match', 'exhibition-editorial', 'city-departure'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-d-refined-editorial-identity-anchor'], referenceAssetIds: ['model-d-source-reference'],
-    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3', 'experience-tokyo-model-d-immersive-gallery-v1'],
+    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3', 'experience-tokyo-model-d-immersive-gallery-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Prioritize choice, movement and place rather than a close beauty composition.',
   },
