@@ -29,7 +29,7 @@
 
 | 대상 | 권장 모델/이미지 | 상태 | 제작 원칙 |
 | --- | --- | --- | --- |
-| Seoul guide lookbook | B / J / I | backlog | 낮·저녁·업무 장면 분리, 같은 카드열 반복 금지 |
+| Seoul guide lookbook | I + 장소 이미지 | 완료 | 시원한 늦여름 복장의 퇴근 후 디자인 골목과 비 온 뒤 저녁 동네를 모델·장소 장면으로 분리 |
 | Busan guide lookbook | E / C / H | backlog | 실제 해안 자료 우선, 생성 컷은 편집 분위기만 |
 | Jeju guide lookbook | G / A / H | backlog | 실제 숙소·참가자처럼 보이는 생성 금지 |
 | Fukuoka lookbook | H + 장소 이미지 | 완료 | 카페 업무·저녁 골목·근교 체험을 서로 다른 장면과 섹션으로 분리 |
