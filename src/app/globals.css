@@ -370,12 +370,27 @@ nav ul { list-style: none; }
 }
 
 .home-editorial-hero {
-  object-position: 62% center;
+  object-position: 62% 18%;
 }
 
-@media (min-width: 1024px) {
+.home-editorial-hero-film {
+  object-position: 60% 16%;
+}
+
+@media (min-width: 768px) {
   .home-editorial-hero {
-    object-position: center;
+    object-position: 50% 14%;
+  }
+
+  .home-editorial-hero-film {
+    object-position: 66% 14%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .home-editorial-hero,
+  .home-editorial-hero-film {
+    object-position-y: 18%;
   }
 }
 

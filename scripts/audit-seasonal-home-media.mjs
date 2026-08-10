@@ -55,12 +55,12 @@ assert(component.includes('home-seasonal-film-2026-08-mobile-v1.mp4'), 'home fil
 assert(component.includes('home-seasonal-film-2026-08-desktop-v1.mp4'), 'home film has a desktop-specific source')
 assert(component.includes('home-hero-model-a-coastal-departure-desktop-v3.avif'), 'home hero serves the v2.2 desktop AVIF poster')
 assert(component.includes('home-hero-model-a-coastal-departure-mobile-v3.avif'), 'home hero serves the v2.2 mobile AVIF poster')
-assert(component.includes('const SEASONAL_FILM_ENABLED = false'), 'retired-roster seasonal film remains disabled')
+assert(component.includes('const SEASONAL_FILM_ENABLED = true'), 'approved v2.2 seasonal film is enabled')
 assert(manifest.includes("id: 'late-summer-model-f-market-v1'"), 'seasonal still is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-desktop-v1'"), 'desktop film is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-mobile-v1'"), 'mobile film is registered in the media manifest')
 assert(manifest.includes("seasonalUsage: ['late-summer', 'autumn']"), 'seasonal usage metadata is present')
-assert(rotation.includes("modelIds: ['WAK-MODEL-A']"), 'home poster follows the official v2.2 roster')
+assert(rotation.includes("modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F']"), 'home film follows the official v2.2 roster')
 assert(!rotation.includes("'WAK-MODEL-K'"), 'retired model K is absent from active rotation')
 
 const disallowedActiveIllustrations = [

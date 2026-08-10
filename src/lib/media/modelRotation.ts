@@ -23,7 +23,7 @@ export const MODEL_ROTATION_POLICY = {
 } as const
 
 export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
-  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-seasonal-hero-2026-08', modelIds: ['WAK-MODEL-A'], assetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3'], primaryHref: '/trip-match', status: 'active' },
+  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-seasonal-hero-2026-08', modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'], assetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'], primaryHref: '/trip-match', status: 'active' },
   { id: 'trip-match-intro', routes: ['/trip-match', '/ja/trip-match'], section: 'trip-match-intro', modelIds: ['WAK-MODEL-D'], assetIds: ['trip-match-model-d-itinerary-choice-v3'], status: 'active' },
   { id: 'hosted-hero', routes: ['/hosted', '/en/hosted', '/ja/hosted'], section: 'hosted-hero', modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], assetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'], status: 'active' },
   { id: 'select-hero', routes: ['/select', '/en/select', '/ja/select'], section: 'select-hero-editorial', modelIds: ['WAK-MODEL-I'], assetIds: ['select-model-i-travel-prep-v3'], status: 'active' },

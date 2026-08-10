@@ -20,31 +20,31 @@ type SeasonalScene = {
 
 const SCENES: SeasonalScene[] = [
   {
-    desktop: 'media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
-    mobile: 'media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
-    desktopPosition: '70% 28%',
-    mobilePosition: '69% 45%',
-    desktopScale: [1, 1.015],
-    mobileScale: [1, 1.02],
+    desktop: 'media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.webp',
+    mobile: 'media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.webp',
+    desktopPosition: '68% 18%',
+    mobilePosition: '60% 16%',
+    desktopScale: [1, 1.006],
+    mobileScale: [1, 1.008],
     warmth: 'rgba(238, 198, 137, 0.08)',
   },
   {
-    desktop: 'media/seasonal/late-summer-model-f-market-v1.webp',
-    mobile: 'media/seasonal/late-summer-model-f-market-v1.webp',
-    desktopPosition: '64% 46%',
-    mobilePosition: '68% 50%',
-    desktopScale: [1, 1.015],
-    mobileScale: [1, 1.02],
+    desktop: 'media/brand-models/campaign-model-f-japan-choice-desktop-v2.webp',
+    mobile: 'media/brand-models/campaign-model-f-japan-choice-mobile-v2.webp',
+    desktopPosition: '68% 18%',
+    mobilePosition: '58% 14%',
+    desktopScale: [1, 1.006],
+    mobileScale: [1, 1.008],
     warmth: 'rgba(241, 177, 91, 0.11)',
   },
   {
-    desktop: 'media/brand-models/programs-model-k-stay-planning-desktop-v1.webp',
-    mobile: 'media/brand-models/programs-model-k-stay-planning-mobile-v1.webp',
-    desktopPosition: '68% 24%',
-    mobilePosition: '58% 40%',
-    desktopScale: [1, 1.012],
-    mobileScale: [1, 1.015],
-    warmth: 'rgba(54, 119, 179, 0.09)',
+    desktop: 'media/destinations/jeju-editorial-v1.webp',
+    mobile: 'media/destinations/jeju-editorial-v1.webp',
+    desktopPosition: '50% 44%',
+    mobilePosition: '50% 46%',
+    desktopScale: [1, 1.004],
+    mobileScale: [1, 1.006],
+    warmth: 'rgba(54, 119, 179, 0.07)',
   },
 ]
 
@@ -59,12 +59,12 @@ function FilmFrame({ scene, progress, opacity, portrait }: {
 }) {
   const image = portrait ? scene.mobile : scene.desktop
   const objectPosition = portrait ? scene.mobilePosition : scene.desktopPosition
-  const driftX = interpolate(progress, [0, 1], portrait ? [-3, 3] : [-7, 7], {
+  const driftX = interpolate(progress, [0, 1], portrait ? [-2, 2] : [-5, 5], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.quad),
   })
-  const driftY = interpolate(progress, [0, 1], [3, -3], {
+  const driftY = interpolate(progress, [0, 1], [1, -1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.inOut(Easing.quad),
