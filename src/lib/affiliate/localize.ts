@@ -236,7 +236,7 @@ const EN: Record<string, Overlay> = {
     productTitle: 'teamLab Planets TOKYO ticket',
     destination: 'Tokyo · Japan',
     desc: 'Immersive digital art in Toyosu — walk barefoot through water. Best in the evening.',
-    cta: 'View product', badge: 'Immersive art',
+    cta: 'Check current details on Klook', badge: 'Immersive art',
   },
   'act-klook-osaka-pass': {
     productTitle: 'Osaka Amazing Pass',
@@ -808,7 +808,7 @@ const JP: Record<string, Overlay> = {
     productTitle: 'チームラボプラネッツ TOKYO チケット',
     destination: '東京 · 日本',
     desc: '豊洲の没入型デジタルアート。水の中を裸足で歩く展示 — 夜がおすすめ。',
-    cta: '商品を見る', badge: '没入型アート',
+    cta: 'Klookで最新条件を確認', badge: '没入型アート',
   },
   'act-klook-osaka-pass': {
     productTitle: '大阪周遊パス',

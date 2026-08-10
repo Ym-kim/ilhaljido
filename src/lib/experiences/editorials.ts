@@ -647,6 +647,194 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
       { name: 'KKday product 105485', url: 'https://www.kkday.com/ja/product/105485', verifiedAt: '2026-08-10', customerVisible: true },
     ],
   },
+  {
+    slug: 'teamlab-planets-tokyo-evening',
+    affiliateItemId: 'act-klook-teamlab-tokyo',
+    destinationSlug: 'tokyo',
+    heroEyebrow: L('TOKYO · TOYOSU · AFTER WORK', 'TOKYO · TOYOSU · AFTER WORK', 'TOKYO · TOYOSU · AFTER WORK'),
+    heroContentSide: 'left',
+    title: L(
+      '퇴근 후 2시간, 도쿄의 빛 속으로',
+      'After work, step into Tokyo’s immersive light',
+      '仕事のあと、東京の光に入り込む',
+    ),
+    subtitle: L(
+      '도요스의 몰입형 미디어아트를 저녁 일정에 넣고, 낮의 업무 리듬은 그대로 지키는 도쿄 체류 구성입니다.',
+      'An evening in Toyosu’s immersive media art that keeps the daytime work rhythm of a Tokyo stay intact.',
+      '豊洲の没入型メディアアートを夜に組み込み、昼の仕事のリズムを崩さない東京滞在プランです。',
+    ),
+    metaDescription: L(
+      'teamLab Planets TOKYO를 퇴근 후 일정에 넣는 방법, 소요 시간, 신토요스 접근, 맨발·물 구역 준비와 Klook 후기 확인 포인트를 정리했습니다.',
+      'A Wakation guide to fitting teamLab Planets TOKYO after work, including duration, Shin-Toyosu access, barefoot water areas and Klook review checks.',
+      'teamLab Planets TOKYOを仕事後に組み込む流れ、所要時間、新豊洲からのアクセス、裸足・水エリアの準備、Klookの口コミ確認点をまとめました。',
+    ),
+    editorNote: L(
+      '도쿄 3박 4일에서 전시 때문에 하루 전체를 비우고 싶지 않은 사람에게 잘 맞습니다. Klook 상품 정보와 teamLab Planets 공식 이용 안내를 바탕으로 정리했으며, Wakation이 직접 이용한 후기는 아닙니다. 페이지 이미지는 특정 작품이나 실제 전시장을 재현하지 않은 편집 장면입니다.',
+      'This suits a three- or four-night Tokyo stay when you do not want an exhibition to take a whole day. It is based on Klook product information and official teamLab Planets visitor guidance, not a first-hand Wakation review. The page image is an editorial scene and does not reproduce a specific artwork or venue room.',
+      '東京3泊4日で、展示のために一日を丸ごと空けたくない人に合います。Klookの商品情報とteamLab Planets公式利用案内をもとに編集しており、Wakationの実体験レビューではありません。ページ画像は特定の作品や実際の展示室を再現したものではありません。',
+    ),
+    bestFor: [
+      L('낮에는 일하고 저녁에 도쿄다운 장면을 넣고 싶은 사람', 'Travelers who work by day and want a distinctly Tokyo evening', '昼は仕事をして、夜に東京らしい体験を入れたい人'),
+      L('긴 이동 없이 1–3시간 체험을 찾는 사람', 'Travelers looking for a one-to-three-hour experience with simple access', '長い移動をせず、1〜3時間の体験を探している人'),
+      L('사진보다 몸으로 느끼는 몰입형 전시에 관심 있는 사람', 'Travelers interested in a physical, immersive exhibition rather than only photographs', '写真を見るだけでなく、身体で感じる没入型展示に興味がある人'),
+    ],
+    facts: [
+      { label: L('권장 소요', 'Suggested duration', '推奨所要時間'), value: L('1–3시간', '1–3 hours', '1〜3時間') },
+      { label: L('장소', 'Area', 'エリア'), value: L('도쿄 · 도요스', 'Toyosu · Tokyo', '東京 · 豊洲') },
+      { label: L('가까운 역', 'Nearest station', '最寄り駅'), value: L('신토요스역 도보 1분', '1 minute from Shin-Toyosu', '新豊洲駅から徒歩1分') },
+      { label: L('입장', 'Admission', '入場'), value: L('선택 날짜·시간 확인', 'Confirm selected date and time', '選択日・時間を確認') },
+      { label: L('관람 방식', 'Format', '鑑賞方法'), value: L('맨발·물 구역 포함', 'Barefoot with water areas', '裸足・水のエリアあり') },
+      { label: L('일정 배치', 'Best timing', '入れどき'), value: L('업무 후 저녁', 'After work', '仕事後の夜') },
+    ],
+    reasons: [
+      L('Klook 권장 소요가 1–3시간이라 낮의 업무 블록을 그대로 남길 수 있습니다.', 'Klook’s suggested duration is one to three hours, leaving a daytime work block intact.', 'Klookの推奨所要時間は1〜3時間で、昼の仕事時間をそのまま残せます。'),
+      L('신토요스역에서 도보 1분이라 낯선 도시에서도 마지막 이동이 단순합니다.', 'The one-minute walk from Shin-Toyosu keeps the final transfer simple in an unfamiliar city.', '新豊洲駅から徒歩1分で、慣れない街でも最後の移動がシンプルです。'),
+      L('빛을 보는 전시를 넘어 맨발과 물 구역을 포함해 몸으로 경험하는 일정입니다.', 'It goes beyond viewing light: the visit includes barefoot and water-based spaces experienced with the body.', '光を見るだけでなく、裸足や水のエリアを含め、身体で体験する展示です。'),
+    ],
+    suggestedFlows: [
+      {
+        label: L('업무를 먼저', 'Work-first evening', '仕事を先に'),
+        title: L('낮에는 집중하고, 저녁은 도요스로', 'Focused daytime, Toyosu after log-off', '昼は集中、仕事後は豊洲へ'),
+        items: [
+          L('09:00–16:00 숙소 코워킹 또는 카페 업무', '09:00–16:00 Work from your stay or a café', '09:00–16:00 宿のコワーキングまたはカフェで仕事'),
+          L('17:00 도요스 이동·가벼운 식사', '17:00 Travel to Toyosu and have a light meal', '17:00 豊洲へ移動・軽めの食事'),
+          L('18:00 이후 선택 시간대 입장', 'From 18:00 Enter at the time selected on your ticket', '18:00以降 選択した時間枠で入場'),
+        ],
+      },
+      {
+        label: L('여유 있는 오후', 'Slower afternoon', 'ゆとりのある午後'),
+        title: L('회의를 일찍 끝내고 도요스의 밤까지', 'Finish calls early and stay for Toyosu after dark', '会議を早めに終え、豊洲の夜まで'),
+        items: [
+          L('15:30 업무 종료·큰 짐은 숙소에 두기', '15:30 Finish work and leave large luggage at your stay', '15:30 仕事を終え、大きな荷物は宿に置く'),
+          L('16:30 도요스 수변 산책', '16:30 Walk along the Toyosu waterfront', '16:30 豊洲の水辺を散歩'),
+          L('선택 시간대 관람 후 도요스 또는 긴자에서 저녁', 'Visit at the selected time, then dine in Toyosu or Ginza', '選択した時間に鑑賞し、豊洲または銀座で夕食'),
+        ],
+      },
+    ],
+    course: {
+      morning: [
+        { time: '09:00', title: L('업무 블록 시작', 'Start a focused work block', '仕事ブロックを開始'), note: L('온라인 회의와 마감은 낮에 배치', 'Keep calls and deadlines in the daytime', 'オンライン会議と締め切りは昼にまとめる') },
+        { time: '15:30', title: L('업무 종료·소지품 정리', 'Finish work and repack', '仕事を終え、荷物を整理'), note: L('큰 여행 가방은 숙소에 두는 편이 안전', 'It is safer to leave large suitcases at the stay', '大きなスーツケースは宿に置くのが安心') },
+        { time: '17:00', title: L('도요스로 이동', 'Travel to Toyosu', '豊洲へ移動'), note: L('선택 입장 시간에 맞춰 여유 있게 출발', 'Leave enough time for the selected admission slot', '選択した入場時間に合わせて余裕を持って出発') },
+      ],
+      afternoon: [
+        { time: '17:30', title: L('신토요스역 도착', 'Arrive at Shin-Toyosu', '新豊洲駅に到着'), note: L('공식 안내 기준 행사장까지 도보 약 1분', 'The official guide lists about a one-minute walk', '公式案内では会場まで徒歩約1分') },
+        { time: '18:00', title: L('선택 시간대 입장', 'Enter at the selected time', '選択した時間枠で入場'), note: L('18시는 예시이며 실제 판매 시간대를 확인', '18:00 is an example; confirm the available slot', '18:00は例。実際の販売時間枠を確認') },
+        { time: '19:30', title: L('관람 속도에 맞춰 마무리', 'Finish at your own pace', '自分のペースで鑑賞を終える'), note: L('권장 소요 1–3시간', 'Suggested duration: 1–3 hours', '推奨所要時間 1〜3時間') },
+        { time: '20:30', title: L('도요스·긴자 저녁', 'Dinner in Toyosu or Ginza', '豊洲・銀座で夕食') },
+      ],
+    },
+    courseLabels: {
+      morning: L('입장 전 업무 흐름', 'Before the visit', '入場前の仕事の流れ'),
+      afternoon: L('저녁 체험 흐름', 'Evening visit', '夜の体験の流れ'),
+    },
+    included: [
+      L('선택한 패키지에 표기된 teamLab Planets TOKYO 입장권', 'teamLab Planets TOKYO admission listed for the selected package', '選択したプランに記載されたteamLab Planets TOKYO入場券'),
+      L('선택 날짜·시간에 사용하는 모바일 바우처', 'Mobile voucher for the selected date and time', '選択した日時に使用するモバイルバウチャー'),
+      L('선택 입장권 범위 안의 전시 관람', 'Access to exhibitions covered by the selected ticket', '選択した入場券の範囲内での展示鑑賞'),
+    ],
+    prepareSeparately: [
+      L('맨발 관람과 무릎 높이까지 젖을 수 있는 물 구역에 맞는 복장', 'Clothing suitable for barefoot areas and water that may reach adult knee height', '裸足のエリアと、大人の膝ほどまで濡れる可能性がある水エリアに合う服装'),
+      L('거울 바닥을 고려한 옷차림과 걷기 편한 신발', 'Clothing mindful of mirrored floors and comfortable shoes for the journey', '鏡張りの床に配慮した服装と、移動用の歩きやすい靴'),
+      L('입장 시간·휴관일·취소 조건과 큰 짐 보관 가능 여부 재확인', 'Reconfirm admission time, closure dates, cancellation terms and large-luggage handling', '入場時間・休館日・キャンセル条件・大きな荷物の扱いを再確認'),
+    ],
+    reviewSnapshot: {
+      provider: 'Klook',
+      rating: 4.7,
+      reviewCount: 20941,
+      verifiedAt: '2026-08-06',
+      sourceUrl: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/',
+      localizedSourceUrls: {
+        KO: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/',
+        EN: 'https://www.klook.com/en-US/activity/25300-teamlab-planets-toyosu-tokyo-ticket/',
+        JP: 'https://www.klook.com/ja/activity/25300-teamlab-planets-toyosu-tokyo-ticket/',
+      },
+      summaryType: 'metrics_only',
+    },
+    reviewTopics: [
+      L('입장 대기 시간', 'Admission wait', '入場待ち時間'),
+      L('시간대별 혼잡도', 'Crowds by time slot', '時間帯別の混雑'),
+      L('맨발·물 구역 준비', 'Barefoot and water-area preparation', '裸足・水エリアの準備'),
+      L('전시 관람 속도', 'Pace through the exhibits', '展示を見るペース'),
+      L('신토요스 접근', 'Access from Shin-Toyosu', '新豊洲からのアクセス'),
+      L('사진 촬영 환경', 'Photography conditions', '写真撮影の環境'),
+    ],
+    operator: L('teamLab Planets TOKYO 행사장 운영 주체', 'The teamLab Planets TOKYO venue operator', 'teamLab Planets TOKYOの会場運営主体'),
+    providers: [
+      { provider: 'klook', status: 'active_affiliate', affiliateItemId: 'act-klook-teamlab-tokyo', verifiedAt: '2026-08-10' },
+    ],
+    checks: [
+      L('선택한 입장권의 날짜·시간과 입장 가능 범위', 'The date, time and admission scope of the selected ticket', '選択した入場券の日付・時間・入場範囲'),
+      L('현재 운영시간·휴관일과 현장 대기 가능성', 'Current opening hours, closure dates and possible entry wait', '現在の営業時間・休館日と入場待ちの可能性'),
+      L('맨발·물·거울 바닥 구역에 맞는 복장', 'Clothing for barefoot, water and mirrored-floor areas', '裸足・水・鏡張りの床に合う服装'),
+      L('무료 보관함 크기와 큰 여행 가방 처리 방식', 'Free-locker dimensions and handling for large suitcases', '無料ロッカーの大きさと大型スーツケースの扱い'),
+      L('선택 패키지의 변경·취소·환불 조건', 'Change, cancellation and refund terms for the selected package', '選択プランの変更・キャンセル・返金条件'),
+    ],
+    faq: [
+      { question: L('관람에는 얼마나 걸리나요?', 'How long should I allow?', 'どのくらい時間がかかりますか？'), answer: L('Klook은 권장 소요시간을 1–3시간으로 안내합니다. 혼잡도와 관람 속도에 따라 달라질 수 있어, 저녁 회의는 관람 직후에 두지 않는 편이 안전합니다.', 'Klook suggests one to three hours. Crowds and your pace can change this, so avoid scheduling a call immediately after the visit.', 'Klookでは推奨所要時間を1〜3時間と案内しています。混雑と鑑賞ペースで変わるため、鑑賞直後のオンライン会議は避けるのが安心です。') },
+      { question: L('정말 맨발로 들어가나요?', 'Do I really enter barefoot?', '本当に裸足で入りますか？'), answer: L('공식 이용 안내에는 행사장 내부를 맨발로 관람하고, 성인도 무릎 높이까지 젖을 수 있는 구역이 있다고 적혀 있습니다. 바지를 걷어 올릴 수 있는지와 거울 바닥에 맞는 옷차림을 확인하세요.', 'The official visitor guidance says guests enter barefoot and that some areas may wet adults up to knee height. Wear trousers that can be rolled up and consider the mirrored floors.', '公式利用案内では、館内は裸足で入り、大人でも膝ほどまで濡れる可能性があるエリアがあると案内されています。裾を上げられる服装と鏡張りの床への配慮が必要です。') },
+      { question: L('업무 후에 가도 무리가 없나요?', 'Does it work after a workday?', '仕事のあとでも無理なく行けますか？'), answer: L('소요시간과 신토요스역 접근성을 보면 저녁에 넣기 좋은 편입니다. 다만 실제 입장 시간대와 운영시간은 날짜마다 달라질 수 있으므로 티켓 선택 화면에서 먼저 확인하세요.', 'Its duration and access from Shin-Toyosu make it suitable for an evening. Actual admission slots and opening hours can vary, so check the ticket selection screen first.', '所要時間と新豊洲駅からのアクセスを考えると夜に入れやすい体験です。ただし入場時間枠と営業時間は日によって変わるため、チケット選択画面で先に確認してください。') },
+      { question: L('큰 여행 가방을 맡길 수 있나요?', 'Can I store a large suitcase?', '大きなスーツケースは預けられますか？'), answer: L('공식 안내의 무료 보관함은 폭 23cm·깊이 34cm·높이 37cm이며, 그보다 큰 짐을 수용하는 별도 클로크룸은 없다고 안내합니다. 큰 짐은 숙소에 두고 이동하는 편이 안전합니다.', 'The official guide lists free lockers at 23cm wide, 34cm deep and 37cm high, with no cloakroom for larger baggage. Leaving a large suitcase at your stay is the safer plan.', '公式案内の無料ロッカーは幅23cm・奥行34cm・高さ37cmで、それを超える荷物用のクロークはないと案内されています。大きな荷物は宿に置くのが安心です。') },
+      { question: L('취소와 환불은 어디에서 확인하나요?', 'Where do I check cancellation and refunds?', 'キャンセル・返金はどこで確認しますか？'), answer: L('선택한 Klook 패키지의 이용 조건에서 확인하고 Klook에서 처리합니다. 일부 입장권은 취소 불가로 표시될 수 있으므로 결제 직전 조건을 다시 확인하세요.', 'Check the terms of the selected Klook package and handle requests through Klook. Some admission options may be marked non-refundable, so reconfirm before payment.', '選択したKlookプランの利用条件で確認し、Klookで手続きします。キャンセル不可と表示される入場券もあるため、決済直前に再確認してください。') },
+      { question: L('Wakation에서 직접 예약하나요?', 'Do I book with Wakation?', 'Wakationで直接予約しますか？'), answer: L('아니요. Wakation은 일정 배치와 준비 정보를 편집해 소개합니다. 실제 예약·결제·변경·취소·환불은 Klook의 약관과 정책을 따릅니다.', 'No. Wakation editorially explains timing and preparation. Booking, payment, changes, cancellations and refunds follow Klook’s terms and policies.', 'いいえ。Wakationは旅程への入れ方と準備情報を編集して紹介します。予約・決済・変更・キャンセル・返金はKlookの規約とポリシーに従います。') },
+    ],
+    relatedTripSetSlugs: ['tokyo-allinone'],
+    relatedGuideSlugs: ['tokyo'],
+    relatedLabels: {
+      tripSet: L('도쿄 워케이션 올인원 구성', 'Tokyo all-in-one Trip Set', '東京ワーケーション オールインワン'),
+      guide: L('도쿄 여행지 가이드', 'Tokyo destination guide', '東京の旅行先ガイド'),
+    },
+    placementCopy: {
+      guide: {
+        eyebrow: L('퇴근 후 도쿄의 빛', 'TOKYO AFTER DARK', '仕事後の東京の光'),
+        title: L('낮의 업무를 지키고, 저녁은 몰입형 전시로', 'Keep the workday, use the evening for immersive art', '昼の仕事を守り、夜は没入型アートへ'),
+      },
+      tripSet: {
+        eyebrow: L('DAY 3 저녁', 'DAY 3 EVENING', 'DAY 3 の夜'),
+        title: L('도쿄 3박 4일의 저녁을 빛과 물로', 'Give one Tokyo evening to light and water', '東京3泊4日の夜を、光と水の体験に'),
+      },
+    },
+    preparationDescription: L(
+      '도쿄 체류 거점, 일본 eSIM, 항공편을 이 저녁 일정에 맞춰 확인할 순서로 모았습니다.',
+      'A short list for a Tokyo stay, Japan eSIM and flights around this evening itinerary.',
+      '東京の滞在拠点、日本eSIM、航空券を、この夜の体験につながる順番でまとめました。',
+    ),
+    preparationItems: [
+      {
+        itemId: 'stay-millennials-shibuya',
+        reason: L(
+          '낮에는 숙소 안 코워킹에서 일하고 저녁에 도요스로 이동할 수 있도록 현재 객실 조건을 먼저 비교해보세요.',
+          'Compare current room conditions for a stay where you can work in-house before traveling to Toyosu in the evening.',
+          '昼は宿のコワーキングで働き、夜に豊洲へ移動できるよう、現在の客室条件を比較しましょう。',
+        ),
+      },
+      {
+        itemId: 'esim-klook-japan',
+        reason: L(
+          '입장 바우처와 이동 경로를 현장에서 열 수 있도록 출국 전에 지원 단말과 데이터 조건을 확인하세요.',
+          'Check device support and data terms before departure so the voucher and route remain accessible on site.',
+          '現地で入場バウチャーと経路を開けるよう、出発前に対応端末とデータ条件を確認してください。',
+        ),
+      },
+      {
+        itemId: 'feat-flight-tripcom',
+        title: L('도쿄 항공편 비교', 'Compare flights to Tokyo', '東京行き航空券を比較'),
+        destinationLabel: L('인천·김포 · 도쿄', 'Seoul · Tokyo', 'ソウル · 東京'),
+        reason: L(
+          '마지막 날 저녁 체험과 귀국편이 충돌하지 않도록 도착·출발 시간을 함께 비교하세요.',
+          'Compare arrival and departure times so an evening visit does not conflict with the flight home.',
+          '夜の体験と帰国便が重ならないよう、到着・出発時刻をあわせて比較してください。',
+        ),
+      },
+    ],
+    mediaAssetIds: ['experience-tokyo-model-d-immersive-gallery-v2'],
+    verifiedAt: '2026-08-10',
+    sources: [
+      { name: 'Klook activity 25300', url: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/', verifiedAt: '2026-08-10', customerVisible: true },
+      { name: 'teamLab Planets TOKYO official guide', url: 'https://teamlabplanets.dmm.com/en/guide', verifiedAt: '2026-08-10', customerVisible: true },
+      { name: 'teamLab Planets TOKYO official visitor notices', url: 'https://teamlabplanets.dmm.com/en/group/ticket', verifiedAt: '2026-08-10', customerVisible: true },
+    ],
+  },
 ]
 
 export function getExperienceEditorial(slug: string): ExperienceEditorial | undefined {

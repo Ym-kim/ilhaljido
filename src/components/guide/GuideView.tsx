@@ -57,7 +57,9 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
       ? 'busan-coastal-highlights-day-tour'
       : guide.slug === 'seoul'
         ? 'hongdae-kpop-walk-dance'
-        : undefined
+        : guide.slug === 'tokyo'
+          ? 'teamlab-planets-tokyo-evening'
+          : undefined
   const flagshipExperience = flagshipSlug ? getExperienceEditorial(flagshipSlug) : undefined
 
   return (

@@ -145,7 +145,9 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       ? 'busan-coastal-highlights-day-tour'
       : col.slug === 'seoul-3n4d'
         ? 'hongdae-kpop-walk-dance'
-        : undefined
+        : col.slug === 'tokyo-allinone'
+          ? 'teamlab-planets-tokyo-evening'
+          : undefined
   const flagshipExperience = flagshipSlug ? getExperienceEditorial(flagshipSlug) : undefined
   const categorySummary = [...new Set(items.map((item) => item.category))]
     .map((category) => ({ category, count: items.filter((item) => item.category === category).length }))

@@ -5,6 +5,7 @@ const root = process.cwd()
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8')
 const data = read('src/lib/experiences/editorials.ts')
 const items = read('src/lib/affiliate/items.ts')
+const featured = read('src/lib/affiliate/featured.ts')
 const media = read('src/lib/media/assets.ts')
 const sitemap = read('src/app/sitemap.ts')
 const health = read('src/app/api/health/affiliates/route.ts')
@@ -38,6 +39,17 @@ const required = [
   ['Seoul eligibility notice', '한국 국적 구매 제한', data],
   ['Seoul media manifest', "id: 'experience-seoul-model-i-kpop-studio-v2'", media],
   ['Seoul health check', 'kkday:hongdae-kpop-walk', health],
+  ['Tokyo editorial slug', "slug: 'teamlab-planets-tokyo-evening'", data],
+  ['Tokyo affiliate item reference', "affiliateItemId: 'act-klook-teamlab-tokyo'", data],
+  ['Tokyo featured catalog item', "id: 'act-klook-teamlab-tokyo'", featured],
+  ['Tokyo Klook redirect', 'https://affiliate.klook.com/redirect?aid=126848&k_site=', featured],
+  ['Tokyo Klook product id', '25300-teamlab-planets-toyosu-tokyo-ticket', featured],
+  ['Tokyo localized deep links', 'https%3A%2F%2Fwww.klook.com%2Fja%2Factivity%2F25300-teamlab-planets-toyosu-tokyo-ticket%2F', featured],
+  ['Tokyo review verified date', "verifiedAt: '2026-08-06'", data],
+  ['Tokyo media manifest', "id: 'experience-tokyo-model-d-immersive-gallery-v2'", media],
+  ['Tokyo seasonal styling metadata', "realismTarget: 'high_photoreal_editorial'", media],
+  ['Tokyo health check', 'klook:teamlab', health],
+  ['Tokyo public route health check', 'page:experience-tokyo-teamlab', health],
 ]
 
 for (const [label, needle, source] of required) {
@@ -48,6 +60,7 @@ const assets = [
   path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp'),
   path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v4.webp'),
   path.join(root, 'public/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp'),
+  path.join(root, 'public/media/brand-models/experience-tokyo-model-d-immersive-gallery-v2.webp'),
 ]
 for (const asset of assets) {
   if (!fs.existsSync(asset) || fs.statSync(asset).size === 0) failures.push(`editorial image missing or empty: ${asset}`)
@@ -64,5 +77,5 @@ if (failures.length) {
 }
 
 const totalBytes = assets.reduce((total, asset) => total + fs.statSync(asset).size, 0)
-console.log(`Experience data audit passed: 3 editorials, ${totalBytes} total image bytes, Klook/KKday tracking and locale routes registered.`)
+console.log(`Experience data audit passed: 4 editorials, ${totalBytes} total image bytes, Klook/KKday tracking and locale routes registered.`)
 

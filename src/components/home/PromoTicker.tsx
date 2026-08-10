@@ -44,8 +44,8 @@ const ITEMS: TickerItem[] = [
     tag: { KO: '지원사업', EN: 'Support', JP: '支援事業' },
   },
   {
-    id: 'ticker-teamlab', price: '₩32,900~', category: 'activity', destination: 'tokyo',
-    href: 'https://www.klook.com/ko/activity/25300-teamlab-planets-toyosu-tokyo-ticket/?aid=126848', external: true, sponsored: true,
+    id: 'ticker-teamlab', price: 'JPY 3,600~', category: 'activity', destination: 'tokyo',
+    href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F25300-teamlab-planets-toyosu-tokyo-ticket%2F', external: true, sponsored: true,
     label: { KO: '팀랩 플래닛 도쿄 티켓', EN: 'teamLab Planets TOKYO ticket', JP: 'チームラボプラネッツTOKYO' },
     tag: { KO: 'Klook', EN: 'Klook', JP: 'Klook' },
   },
