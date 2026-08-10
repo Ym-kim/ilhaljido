@@ -29,6 +29,12 @@ const EN: Record<string, Overlay> = {
     cta: 'Get an eSIM',
     badge: 'eSIM',
   },
+  'esim-airalo-korea': {
+    productTitle: 'South Korea travel eSIM',
+    destination: 'Seoul · South Korea',
+    desc: 'A data eSIM to install before arrival. Check device support, data allowance and validity for the selected plan.',
+    cta: 'Check South Korea eSIM options', badge: 'South Korea eSIM',
+  },
   'edu-inflearn': {
     name: 'Inflearn',
     desc: 'IT, dev, design and business courses. Learn on the move, apply on arrival.',
@@ -207,6 +213,12 @@ const EN: Record<string, Overlay> = {
     destination: 'Busan · South Korea',
     desc: 'A roughly 9–12 hour vehicle route linking Busan highlights such as Blue Line Park and Gamcheon. Recheck language and ticket inclusions for the selected option.',
     cta: 'Check current details with Klook', badge: 'Busan day experience',
+  },
+  'act-kkday-hongdae-kpop-walk': {
+    productTitle: 'Hongdae K-pop walk and dance experience',
+    destination: 'Seoul · Hongdae',
+    desc: 'A roughly four-hour route from Hapjeong Station combining a K-pop dance class and a guided walk through Hongdae merchandise shops.',
+    cta: 'Check current details with KKday', badge: 'Seoul half-day experience',
   },
   'act-bali-ubud': {
     productTitle: 'Bali Ubud private tour (KR guide)',
@@ -589,6 +601,12 @@ const JP: Record<string, Overlay> = {
     cta: 'eSIMを購入',
     badge: 'eSIM',
   },
+  'esim-airalo-korea': {
+    productTitle: '韓国旅行eSIM',
+    destination: 'ソウル · 韓国',
+    desc: '韓国到着前に設定できるデータeSIM。対応端末、データ容量、利用期間は選択プランで確認してください。',
+    cta: '韓国eSIMの条件を確認', badge: '韓国eSIM',
+  },
   'edu-inflearn': {
     name: 'Inflearn',
     desc: 'IT・開発・デザイン・ビジネス講座。移動中に学び、到着後すぐ実践。',
@@ -767,6 +785,12 @@ const JP: Record<string, Overlay> = {
     destination: '釜山 · 韓国',
     desc: 'ブルーラインパークや甘川文化村などをつなぐ約9〜12時間の車両ツアー。言語とチケットの有無は選択プランで再確認してください。',
     cta: 'Klookで最新条件を確認', badge: '釜山の日帰り体験',
+  },
+  'act-kkday-hongdae-kpop-walk': {
+    productTitle: '弘大 K-POPウォーキング＆ダンス体験',
+    destination: 'ソウル · 弘大',
+    desc: '合井駅から始まり、K-POPダンスクラスと弘大のグッズショップ巡りを組み合わせた約4時間の体験。',
+    cta: 'KKdayで最新条件を確認', badge: 'ソウル半日体験',
   },
   'act-bali-ubud': {
     productTitle: 'バリ ウブド プライベートツアー',

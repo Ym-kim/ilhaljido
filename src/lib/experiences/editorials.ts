@@ -20,9 +20,9 @@ export type CourseStop = {
 }
 
 export type ReviewSnapshot = {
-  provider: 'Klook'
+  provider: 'Klook' | 'KKday'
   rating: number
-  reviewCount: number
+  reviewCount?: number
   verifiedAt: string
   sourceUrl: string
   localizedSourceUrls?: Partial<Record<Lang, string>>
@@ -463,6 +463,188 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     verifiedAt: '2026-08-10',
     sources: [
       { name: 'Klook activity 74132', url: 'https://www.klook.com/ja/activity/74132-busan-oneday-tour-busan/', verifiedAt: '2026-08-10', customerVisible: true },
+    ],
+  },
+  {
+    slug: 'hongdae-kpop-walk-dance',
+    affiliateItemId: 'act-kkday-hongdae-kpop-walk',
+    destinationSlug: 'seoul',
+    heroEyebrow: L('SEOUL · HONGDAE · HALF DAY', 'SEOUL · HONGDAE · HALF DAY', 'SEOUL · HONGDAE · HALF DAY'),
+    heroContentSide: 'left',
+    title: L(
+      '서울에서 반나절, 홍대의 리듬을 따라 걷고 춤추기',
+      'Half a day in Seoul, walking and dancing to Hongdae’s rhythm',
+      'ソウルで半日、弘大のリズムを歩いて踊る',
+    ),
+    subtitle: L(
+      '오전에는 내 일을 마치고, 오후 4시간은 K-POP 댄스 클래스와 홍대 굿즈 숍을 잇는 체험에 쓰는 일정입니다.',
+      'Finish your work in the morning, then use four afternoon hours for a K-pop dance class and a guided walk through Hongdae merchandise shops.',
+      '午前は自分の仕事を終え、午後の4時間をK-POPダンスクラスと弘大のグッズショップ巡りに使うプランです。',
+    ),
+    metaDescription: L(
+      '홍대 K-POP 워킹·댄스 체험의 시간, 일본어 안내, 합정역 미팅, 코스, 포함사항과 서울 3박 4일 배치를 Wakation 관점으로 정리했습니다.',
+      'A Wakation guide to the Hongdae K-pop walk and dance experience: timing, languages, Hapjeong meeting point, route, inclusions and how it fits a Seoul stay.',
+      '弘大K-POPウォーキング＆ダンス体験の時間、日本語案内、合井駅の集合場所、コース、含まれる内容、ソウル滞在への組み込み方をまとめました。',
+    ),
+    editorNote: L(
+      '서울 3박 4일 중 하루를 통째로 비우지 않고도 문화 체험을 넣고 싶은 해외 여행자에게 맞는 구성입니다. 공개된 KKday 상품 정보를 바탕으로 편집했으며 Wakation이 직접 이용한 후기는 아닙니다. 공식 페이지에는 한국 국적 구매 제한이 표시되어 있어 신청 자격을 먼저 확인해야 합니다.',
+      'This suits international visitors who want a cultural experience without giving up a full day of a three- or four-night Seoul stay. It is based on public KKday product details, not a first-hand Wakation review. The official page lists a purchase restriction for South Korean nationals, so eligibility should be checked first.',
+      'ソウル3泊4日で一日を丸ごと空けずに文化体験を入れたい海外旅行者に合う構成です。公開されているKKdayの商品情報をもとに編集しており、Wakationの実体験レビューではありません。公式ページには韓国籍の方の購入制限が記載されているため、先に参加資格を確認してください。',
+    ),
+    bestFor: [
+      L('일본어 안내가 가능한 서울 반나절 체험을 찾는 해외 여행자', 'International visitors looking for a half-day Seoul experience with Japanese guidance listed', '日本語案内が記載されたソウルの半日体験を探す海外旅行者'),
+      L('오전 업무 후 홍대 문화를 가볍게 경험하고 싶은 사람', 'Travelers who want Hongdae culture after a focused work morning', '午前の仕事を終えてから弘大の文化を気軽に体験したい人'),
+      L('혼자 계획하기 어려운 댄스 클래스와 굿즈 숍 동선을 함께 보고 싶은 사람', 'Travelers who want a dance class and merchandise-shop route arranged together', '自分で組みにくいダンスクラスとグッズショップ巡りをまとめたい人'),
+    ],
+    facts: [
+      { label: L('소요 시간', 'Duration', '所要時間'), value: L('약 4시간', 'About 4 hours', '約4時間') },
+      { label: L('미팅', 'Meeting point', '集合場所'), value: L('합정역 2번 출구', 'Hapjeong Station Exit 2', '合井駅 2番出口') },
+      { label: L('시작', 'Start', '開始'), value: L('12:30', '12:30', '12:30') },
+      { label: L('안내 언어', 'Languages', '案内言語'), value: L('영어·일본어·중국어', 'English, Japanese, Chinese', '英語・日本語・中国語') },
+      { label: L('이동 방식', 'Format', '移動'), value: L('도보 체험', 'Walking experience', 'ウォーキング体験') },
+      { label: L('판매 대상', 'Eligibility', '販売対象'), value: L('해외 여행자 대상', 'International visitors', '海外旅行者向け') },
+    ],
+    reasons: [
+      L('약 4시간이라 오전 업무와 저녁 일정을 모두 남길 수 있습니다.', 'The four-hour format leaves room for both a work morning and an evening plan.', '約4時間なので、午前の仕事と夜の予定をどちらも残せます。'),
+      L('합정역에서 만나 댄스 클래스와 홍대 워킹 코스를 한 번에 이어갑니다.', 'It connects a dance class and Hongdae walk from one Hapjeong meeting point.', '合井駅に集合し、ダンスクラスと弘大の街歩きを一つの流れで楽しめます。'),
+      L('일본어가 공식 안내 언어로 표기되어 있지만 날짜·참가자 구성에 따른 실제 배정은 재확인이 필요합니다.', 'Japanese is listed as a guided language, but actual assignment should be reconfirmed for the date and participant mix.', '日本語が案内言語として記載されていますが、日程と参加者構成による実際の手配は再確認が必要です。'),
+    ],
+    suggestedFlows: [
+      {
+        label: L('업무를 먼저', 'Work-first option', '仕事を先に'),
+        title: L('오전 집중, 오후에는 홍대', 'Focused morning, Hongdae afternoon', '午前は集中、午後は弘大へ'),
+        items: [
+          L('08:30–11:20 숙소 또는 카페 업무', '08:30–11:20 Work from your stay or a café', '08:30–11:20 宿またはカフェで仕事'),
+          L('12:20 합정역 도착·미팅 확인', '12:20 Arrive at Hapjeong and check the meeting point', '12:20 合井駅に到着・集合場所を確認'),
+          L('17:00 이후 홍대 저녁 또는 숙소 복귀', 'After 17:00 Dinner in Hongdae or return to your stay', '17:00以降 弘大で夕食、または宿へ戻る'),
+        ],
+      },
+      {
+        label: L('서울 3박 4일', 'Seoul 3N4D option', 'ソウル3泊4日'),
+        title: L('둘째 날 오후에 문화 체험', 'Use the second afternoon for culture', '2日目の午後を文化体験に'),
+        items: [
+          L('DAY 1 도착·체크인·가벼운 동네 산책', 'DAY 1 Arrive · check in · short neighborhood walk', 'DAY 1 到着 · チェックイン · 近所を散歩'),
+          L('DAY 2 오전 업무 · 홍대 반나절 체험', 'DAY 2 Morning work · Hongdae half-day experience', 'DAY 2 午前は仕事 · 弘大の半日体験'),
+          L('DAY 3 서울 도심 또는 자유 일정', 'DAY 3 Central Seoul or a free day', 'DAY 3 ソウル中心部または自由行動'),
+        ],
+      },
+    ],
+    course: {
+      morning: [
+        { time: '12:20', title: L('합정역 2번 출구 미팅', 'Meet at Hapjeong Station Exit 2', '合井駅 2番出口で集合'), note: L('출발 10분 전 도착 권장', 'Arrive ten minutes before departure', '出発10分前の到着を推奨') },
+        { time: '12:30', title: L('가이드와 출발', 'Depart with the guide', 'ガイドと出発') },
+        { time: '13:00', title: L('K-POP 댄스 클래스', 'K-pop dance class', 'K-POPダンスクラス'), note: L('공식 일정 기준 약 90분', 'About 90 minutes in the listed schedule', '公式日程では約90分') },
+      ],
+      afternoon: [
+        { time: '15:00', title: L('홍대 K-POP 워킹 코스', 'Hongdae K-pop walking route', '弘大 K-POPウォーキングコース'), note: L('굿즈 숍 등 방문지는 현장 상황에 따라 달라질 수 있음', 'Merchandise-shop stops may change with local conditions', 'グッズショップなどの訪問先は現地状況により変更の場合あり') },
+        { time: '17:00', title: L('홍대에서 종료·해산', 'Finish in Hongdae', '弘大で終了・解散') },
+      ],
+    },
+    courseLabels: {
+      morning: L('미팅과 댄스', 'Meeting and dance', '集合とダンス'),
+      afternoon: L('홍대 워킹 코스', 'Hongdae walking route', '弘大ウォーキング'),
+    },
+    included: [
+      L('선택한 패키지에 표기된 가이드 안내', 'Guide service listed in the selected package', '選択プランに記載されたガイド案内'),
+      L('K-POP 댄스 체험', 'K-pop dance experience', 'K-POPダンス体験'),
+      L('공식 일정에 표기된 홍대 워킹 코스', 'Hongdae walking route listed in the official schedule', '公式日程に記載された弘大ウォーキングコース'),
+    ],
+    prepareSeparately: [
+      L('식사·교통·굿즈 등 개인 비용', 'Meals, transport, merchandise and other personal costs', '食事・交通・グッズなどの個人費用'),
+      L('여행자 보험과 걷기 편한 신발', 'Travel insurance and comfortable walking shoes', '旅行保険と歩きやすい靴'),
+      L('참여 자격·최소 출발 인원·안내 언어 재확인', 'Reconfirm eligibility, minimum group size and guided language', '参加資格・最少催行人数・案内言語を再確認'),
+    ],
+    reviewSnapshot: {
+      provider: 'KKday',
+      rating: 5.0,
+      verifiedAt: '2026-08-10',
+      sourceUrl: 'https://www.kkday.com/ja/product/105485',
+      localizedSourceUrls: {
+        KO: 'https://www.kkday.com/ko/product/105485',
+        EN: 'https://www.kkday.com/en/product/105485',
+        JP: 'https://www.kkday.com/ja/product/105485',
+      },
+      summaryType: 'metrics_only',
+    },
+    reviewTopics: [
+      L('일본어 안내 배정', 'Japanese-language assignment', '日本語案内の手配'),
+      L('댄스 클래스 난이도', 'Dance-class difficulty', 'ダンスクラスの難易度'),
+      L('합정역 미팅 안내', 'Hapjeong meeting directions', '合井駅の集合案内'),
+      L('워킹 코스와 쇼핑 시간', 'Walking route and shopping time', '街歩きと買い物の時間'),
+      L('최소 출발 인원과 확정 시점', 'Minimum group size and confirmation timing', '最少催行人数と確定時期'),
+    ],
+    operator: L('KKday 오리지널 투어 운영 파트너', 'KKday original-tour operating partner', 'KKdayオリジナルツアー運営パートナー'),
+    providers: [
+      { provider: 'kkday', status: 'active_affiliate', affiliateItemId: 'act-kkday-hongdae-kpop-walk', verifiedAt: '2026-08-10' },
+    ],
+    checks: [
+      L('한국 국적 구매 제한과 본인의 참여 자격', 'The South Korean nationality restriction and your eligibility', '韓国籍の購入制限とご自身の参加資格'),
+      L('선택 날짜에 일본어 안내가 실제 배정되는지', 'Whether Japanese guidance is assigned on your selected date', '選択日に日本語案内が実際に手配されるか'),
+      L('최소 출발 인원 10명과 투어 확정 시점', 'The listed minimum of ten participants and confirmation timing', '最少催行人数10名と催行確定の時期'),
+      L('12:20 미팅·12:30 출발과 지각 시 처리', 'The 12:20 meeting, 12:30 departure and late-arrival policy', '12:20集合・12:30出発と遅刻時の扱い'),
+      L('취소 기한·날씨·코스 변경 조건', 'Cancellation deadline, weather and route-change terms', 'キャンセル期限・天候・コース変更条件'),
+    ],
+    faq: [
+      { question: L('일본어로 참여할 수 있나요?', 'Is Japanese guidance available?', '日本語で参加できますか？'), answer: L('공식 페이지에는 일본어가 안내 언어로 표시됩니다. 다만 참가자 국적 구성이 섞이면 영어로 진행될 수 있다고 안내하므로 선택 날짜의 실제 언어를 KKday에서 재확인하세요.', 'Japanese is listed as a guided language. The page also notes that mixed-nationality groups may be guided in English, so reconfirm the actual language for your date with KKday.', '公式ページでは日本語が案内言語として記載されています。ただし参加者の国籍が混在する場合は英語進行になる可能性があるため、選択日の実際の言語をKKdayで再確認してください。') },
+      { question: L('한국인도 신청할 수 있나요?', 'Can South Korean nationals book?', '韓国籍でも予約できますか？'), answer: L('2026년 8월 10일 확인한 공식 페이지에는 한국 국적 구매 제한이 표시되어 있습니다. 자격 조건은 변경될 수 있으므로 결제 전 최신 판매 대상 안내를 확인하세요.', 'The official page checked on 10 August 2026 lists a purchase restriction for South Korean nationals. Eligibility can change, so check the latest sales restrictions before payment.', '2026年8月10日に確認した公式ページには、韓国籍の方の購入制限が記載されています。条件は変更される場合があるため、決済前に最新の販売対象を確認してください。') },
+      { question: L('투어 전후에 일할 시간이 있나요?', 'Can I work before or after?', '体験の前後に仕事時間を取れますか？'), answer: L('공식 일정은 12:30–17:00 사이 약 4시간으로 표기되어 있어 오전 업무와 저녁 일정을 남기기 좋습니다. 미팅 이동과 종료 지연을 고려해 화상회의는 바로 앞뒤에 두지 마세요.', 'The listed schedule runs roughly four hours between 12:30 and 17:00, leaving a work morning and evening free. Allow transfer time and avoid calls immediately before or after.', '公式日程は12:30〜17:00の間の約4時間で、午前の仕事と夜の予定を残しやすい構成です。移動と終了遅延を考え、直前・直後のオンライン会議は避けてください。') },
+      { question: L('춤을 잘 추지 못해도 되나요?', 'Do I need dance experience?', 'ダンス初心者でも参加できますか？'), answer: L('공식 설명에는 수준에 맞춰 배울 수 있다고 안내되어 있습니다. 정확한 난이도와 신체 조건은 선택 날짜의 상품 안내에서 확인하세요.', 'The official description says the class can be adapted to participants’ level. Check the current product details for difficulty and physical requirements.', '公式説明ではレベルに合わせて学べると案内されています。難易度と身体条件は選択日の商品情報で確認してください。') },
+      { question: L('취소는 어디에서 처리하나요?', 'Where do I cancel?', 'キャンセルはどこで行いますか？'), answer: L('예약·결제한 KKday에서 처리합니다. Wakation은 예약·변경·취소·환불을 처리하지 않습니다.', 'Use KKday, where the booking and payment were made. Wakation does not process bookings, changes, cancellations or refunds.', '予約・決済を行ったKKdayで手続きします。Wakationでは予約・変更・キャンセル・返金を扱いません。') },
+      { question: L('Wakation에서 직접 예약하나요?', 'Do I book with Wakation?', 'Wakationで直接予約しますか？'), answer: L('아니요. Wakation은 여행 일정에 넣는 방법을 정리하고 외부 상품을 소개합니다. 최종 조건 확인과 예약·결제는 KKday에서 진행합니다.', 'No. Wakation explains how the experience fits your itinerary and introduces an external product. Final checks, booking and payment happen on KKday.', 'いいえ。Wakationは旅程への組み込み方を整理し、外部商品を紹介します。最終確認・予約・決済はKKdayで行います。') },
+    ],
+    relatedTripSetSlugs: ['seoul-3n4d'],
+    relatedGuideSlugs: ['seoul'],
+    relatedLabels: {
+      tripSet: L('서울 3박 4일 구성', 'Seoul 3N4D Trip Set', 'ソウル3泊4日 Trip Set'),
+      guide: L('서울 여행지 가이드', 'Seoul destination guide', 'ソウルの旅行先ガイド'),
+    },
+    placementCopy: {
+      guide: {
+        eyebrow: L('홍대 반나절 문화 체험', 'HALF-DAY HONGDAE CULTURE', '弘大の半日カルチャー体験'),
+        title: L('오전 업무 후, 홍대의 리듬으로', 'After a work morning, follow Hongdae’s rhythm', '午前の仕事のあと、弘大のリズムへ'),
+      },
+      tripSet: {
+        eyebrow: L('DAY 2 선택', 'DAY 2 OPTION', 'DAY 2 の選択肢'),
+        title: L('서울의 오후를 K-POP과 홍대 산책으로', 'Use a Seoul afternoon for K-pop and Hongdae', 'ソウルの午後をK-POPと弘大の街歩きに'),
+      },
+    },
+    preparationDescription: L(
+      '서울 숙소, 한국 eSIM, 공항에서 숙소로 오는 이동을 이 체험 전후 순서로 모았습니다.',
+      'A short list for a Seoul stay, South Korea eSIM and airport transfer around this experience.',
+      'ソウルの宿、韓国eSIM、空港から宿までの移動を、この体験につながる順番でまとめました。',
+    ),
+    preparationItems: [
+      {
+        itemId: 'stay-fraser-seoul',
+        reason: L(
+          '오전 업무를 마치고 합정으로 이동하기 쉽도록 서울 체류 거점의 현재 객실 조건을 먼저 비교해보세요.',
+          'Compare current Seoul stay conditions so you can finish morning work and reach Hapjeong without a rushed transfer.',
+          '午前の仕事を終えて合井へ移動しやすいよう、ソウルの滞在拠点と現在の客室条件を比較しましょう。',
+        ),
+      },
+      {
+        itemId: 'esim-airalo-korea',
+        reason: L(
+          '미팅 위치와 바우처를 이동 중에도 확인할 수 있도록 한국 도착 전에 지원 단말과 데이터 플랜을 확인하세요.',
+          'Check device support and a South Korea data plan before arrival so the meeting point and voucher stay accessible.',
+          '移動中も集合場所とバウチャーを確認できるよう、到着前に対応端末と韓国向けデータプランを確認してください。',
+        ),
+      },
+      {
+        itemId: 'feat-transfer-klook',
+        title: L('공항에서 서울 숙소까지 이동', 'Transfer from the airport to your Seoul stay', '空港からソウルの宿までの移動'),
+        destinationLabel: L('인천·김포공항 · 서울', 'Incheon or Gimpo Airport · Seoul', '仁川・金浦空港 · ソウル'),
+        reason: L(
+          '늦게 도착하거나 짐이 많다면 첫날 동선을 단순하게 만드는 현재 공항 이동 조건을 확인하세요.',
+          'If you arrive late or carry luggage, check current airport-transfer terms to simplify the first day.',
+          '到着が遅い、または荷物が多い場合は、初日の移動を簡単にする空港送迎の条件を確認してください。',
+        ),
+      },
+    ],
+    mediaAssetIds: ['experience-seoul-model-d-kpop-studio-v1'],
+    verifiedAt: '2026-08-10',
+    sources: [
+      { name: 'KKday product 105485', url: 'https://www.kkday.com/ja/product/105485', verifiedAt: '2026-08-10', customerVisible: true },
     ],
   },
 ]

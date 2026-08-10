@@ -155,6 +155,25 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     sourceNote: 'Impact 추적 링크 활성 (2026-07-15) — 커미션은 Impact 대시보드에서 확인',
   },
 
+  {
+    id: 'esim-airalo-korea',
+    coverPhoto: '/media/verified/unsplash/1512941937669-90a1b58e7e9c.webp', illustrative: true,
+    name: 'Airalo',
+    category: 'esim',
+    productType: 'esim',
+    status: 'active_affiliate',
+    emoji: 'signal',
+    productTitle: '한국 여행 eSIM',
+    destination: '서울 · 한국',
+    country: '한국',
+    desc: '한국 도착 전에 설치해 두는 데이터 eSIM. 지원 단말과 플랜별 데이터·기간을 확인하세요.',
+    cta: '한국 eSIM 조건 확인',
+    href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fsouth-korea-esim',
+    badge: '한국 eSIM',
+    trackingId: 'impact 7451946',
+    sourceNote: 'Airalo 한국 eSIM 랜딩과 Impact 추적 리다이렉트 200 확인 (2026-08-10). 체험 준비 전용 카탈로그 항목.',
+  },
+
   // ──────────────────────────────────────────────────────────────────────────
   // 강의 — 인프런
   // ──────────────────────────────────────────────────────────────────────────
@@ -375,6 +394,32 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     illustrative: true,
     sourceNote: 'Klook activity 74132 실물 확인. 약 9–12시간·영어/중국어/일본어·4.9/5·후기 약 3.6천 건 (2026-08-10). 자체 제작 커버는 실제 투어 사진이 아니며 패키지별 방문지·티켓 포함 여부가 다름.',
     operatorAction: 'Klook 공식 리다이렉트 3개 로케일 적용 완료 (aid=126848, 2026-08-10)',
+  },
+
+  {
+    id: 'act-kkday-hongdae-kpop-walk',
+    name: 'KKday',
+    category: 'activity',
+    productType: 'activity',
+    status: 'active_affiliate',
+    emoji: 'music',
+    productTitle: '홍대 K-POP 워킹·댄스 체험',
+    destination: '서울 · 홍대',
+    country: '한국',
+    desc: '합정역에서 출발해 K-POP 댄스 클래스와 홍대 굿즈 숍 워킹 코스를 잇는 약 4시간 체험.',
+    cta: 'KKday에서 현재 조건 확인',
+    href: 'https://www.kkday.com/ko/product/105485?cid=25833',
+    deepLinks: {
+      KO: 'https://www.kkday.com/ko/product/105485?cid=25833',
+      EN: 'https://www.kkday.com/en/product/105485?cid=25833',
+      JP: 'https://www.kkday.com/ja/product/105485?cid=25833',
+    },
+    badge: '서울 반나절 체험',
+    trackingId: 'cid=25833',
+    coverPhoto: '/media/brand-models/experience-seoul-model-d-kpop-studio-v1.webp',
+    illustrative: true,
+    sourceNote: 'KKday product 105485 실물 확인. 약 4시간·영어/일본어/중국어·5.0/5·합정역 출발 (2026-08-10). 자체 제작 커버는 실제 체험·강사·장소 사진이 아님.',
+    operatorAction: 'KKday cid=25833 추적 파라미터와 3개 로케일 상품 링크 적용 완료 (2026-08-10)',
   },
 
   // ──────────────────────────────────────────────────────────────────────────
