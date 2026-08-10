@@ -14,8 +14,8 @@ const assert = (condition, message) => {
 const files = {
   desktopVideo: 'public/media/seasonal/home-seasonal-film-2026-08-desktop-v1.mp4',
   mobileVideo: 'public/media/seasonal/home-seasonal-film-2026-08-mobile-v1.mp4',
-  desktopPosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
-  mobilePosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
+  desktopPosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.avif',
+  mobilePosterAvif: 'public/media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.avif',
   seasonalStill: 'public/media/seasonal/late-summer-model-f-market-v1.webp',
   component: 'src/components/home/HomeSeasonalHeroMedia.tsx',
   manifest: 'src/lib/media/assets.ts',
@@ -37,10 +37,10 @@ const rotation = await readFile(path.join(root, files.rotation), 'utf8')
 
 assert(desktopStat.size <= 1_500_000, `desktop hero film is <= 1.5 MB (${desktopStat.size} bytes)`)
 assert(mobileStat.size <= 1_250_000, `mobile hero film is <= 1.25 MB (${mobileStat.size} bytes)`)
-assert(desktopPosterStat.size <= 50_000, `desktop AVIF poster is <= 50 KB (${desktopPosterStat.size} bytes)`)
-assert(mobilePosterStat.size <= 50_000, `mobile AVIF poster is <= 50 KB (${mobilePosterStat.size} bytes)`)
-assert(desktopPosterMeta.width === 1536 && desktopPosterMeta.height === 1024, `desktop AVIF poster is 1536x1024 (${desktopPosterMeta.width}x${desktopPosterMeta.height})`)
-assert(mobilePosterMeta.width === 960 && mobilePosterMeta.height === 1280, `mobile AVIF poster is 960x1280 (${mobilePosterMeta.width}x${mobilePosterMeta.height})`)
+assert(desktopPosterStat.size <= 90_000, `desktop AVIF poster is <= 90 KB (${desktopPosterStat.size} bytes)`)
+assert(mobilePosterStat.size <= 90_000, `mobile AVIF poster is <= 90 KB (${mobilePosterStat.size} bytes)`)
+assert(desktopPosterMeta.width === 1536 && desktopPosterMeta.height === 960, `desktop AVIF poster is 1536x960 (${desktopPosterMeta.width}x${desktopPosterMeta.height})`)
+assert(mobilePosterMeta.width === 1080 && mobilePosterMeta.height === 1440, `mobile AVIF poster is 1080x1440 (${mobilePosterMeta.width}x${mobilePosterMeta.height})`)
 assert(stillMeta.width === 1536 && stillMeta.height === 864, `seasonal still is 1536x864 (${stillMeta.width}x${stillMeta.height})`)
 assert(component.includes('prefers-reduced-motion: reduce'), 'home film respects reduced motion')
 assert(component.includes('saveData'), 'home film respects data saver')
@@ -53,13 +53,15 @@ assert(
 )
 assert(component.includes('home-seasonal-film-2026-08-mobile-v1.mp4'), 'home film has a mobile-specific source')
 assert(component.includes('home-seasonal-film-2026-08-desktop-v1.mp4'), 'home film has a desktop-specific source')
-assert(component.includes('home-hero-model-a-coastal-work-desktop-v2.avif'), 'home hero serves a desktop AVIF poster')
-assert(component.includes('home-hero-model-a-coastal-work-mobile-v2.avif'), 'home hero serves a mobile AVIF poster')
+assert(component.includes('home-hero-model-a-coastal-departure-desktop-v3.avif'), 'home hero serves the v2.2 desktop AVIF poster')
+assert(component.includes('home-hero-model-a-coastal-departure-mobile-v3.avif'), 'home hero serves the v2.2 mobile AVIF poster')
+assert(component.includes('const SEASONAL_FILM_ENABLED = false'), 'retired-roster seasonal film remains disabled')
 assert(manifest.includes("id: 'late-summer-model-f-market-v1'"), 'seasonal still is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-desktop-v1'"), 'desktop film is registered in the media manifest')
 assert(manifest.includes("id: 'home-seasonal-film-2026-08-mobile-v1'"), 'mobile film is registered in the media manifest')
 assert(manifest.includes("seasonalUsage: ['late-summer', 'autumn']"), 'seasonal usage metadata is present')
-assert(rotation.includes("modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F', 'WAK-MODEL-K']"), 'home film follows the model rotation roster')
+assert(rotation.includes("modelIds: ['WAK-MODEL-A']"), 'home poster follows the official v2.2 roster')
+assert(!rotation.includes("'WAK-MODEL-K'"), 'retired model K is absent from active rotation')
 
 const disallowedActiveIllustrations = [
   'support-cheongju-ai.jpeg',

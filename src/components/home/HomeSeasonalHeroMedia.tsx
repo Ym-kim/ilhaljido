@@ -20,14 +20,19 @@ const COPY: Record<'season' | 'play' | 'pause', L> = {
   pause: { KO: '배경 영상 일시정지', EN: 'Pause background film', JP: '背景映像を一時停止' },
 }
 
+// The previous seasonal film contains a retired roster identity. Keep the
+// deferred-video plumbing in place, but hold playback until a v2.2 A-J film is
+// produced. The art-directed poster remains the LCP surface in the meantime.
+const SEASONAL_FILM_ENABLED = false
+
 const POSTER = {
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
+  desktop: '/media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.webp',
+  mobile: '/media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.webp',
 } as const
 
 const POSTER_AVIF = {
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
+  desktop: '/media/brand-models/home-hero-model-a-coastal-departure-desktop-v3.avif',
+  mobile: '/media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.avif',
 } as const
 
 export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }) {
@@ -45,7 +50,7 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
       const constrainedNetwork = connection?.effectiveType === 'slow-2g'
         || connection?.effectiveType === '2g'
         || connection?.effectiveType === '3g'
-      setCanAnimate(!motion.matches && !connection?.saveData && !constrainedNetwork)
+      setCanAnimate(SEASONAL_FILM_ENABLED && !motion.matches && !connection?.saveData && !constrainedNetwork)
     }
     sync()
     motion.addEventListener('change', sync)
@@ -121,12 +126,12 @@ export function HomeSeasonalHeroMedia({ alt, lang }: { alt: string; lang: Lang }
         <img
           src={POSTER.mobile}
           alt={alt}
-          width={960}
-          height={1280}
+          width={1080}
+          height={1440}
           fetchPriority="high"
           loading="eager"
           decoding="async"
-          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[64%_34%] md:object-[70%_24%]"
+          className="home-editorial-hero absolute inset-0 h-full w-full object-cover object-[62%_40%] md:object-center"
         />
       </picture>
 

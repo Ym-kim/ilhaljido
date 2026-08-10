@@ -1,6 +1,6 @@
 import type { Lang } from '@/lib/i18n/types'
 
-export const BRAND_MODEL_ROSTER_VERSION = '2.3' as const
+export const BRAND_MODEL_ROSTER_VERSION = '2.2' as const
 
 export const BRAND_MODEL_IDS = [
   'WAK-MODEL-A',
@@ -13,7 +13,6 @@ export const BRAND_MODEL_IDS = [
   'WAK-MODEL-H',
   'WAK-MODEL-I',
   'WAK-MODEL-J',
-  'WAK-MODEL-K',
 ] as const
 
 export type BrandModelId = (typeof BRAND_MODEL_IDS)[number]
@@ -68,7 +67,6 @@ export const BRAND_MODEL_STYLING_RULES: Record<BrandModelId, BrandModelStylingRu
   'WAK-MODEL-H': { styleDirection: 'friendly local café and beginner trip', summerWardrobe: ['soft-blue linen blouse', 'shirt dress', 'light tote and sneakers'], seasonalFit: ['soft daylight summer', 'mild early autumn'], activityMood: ['planning together', 'pointing to a map', 'smiling in conversation'], hairVariation: ['airy curtain bangs with waves', 'low ponytail', 'casual half-up hair'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
   'WAK-MODEL-I': { styleDirection: 'modern graceful business travel and social planning', summerWardrobe: ['ivory cap-sleeve knit', 'fluid resort set', 'minimal travel loafers'], seasonalFit: ['refined indoor summer', 'coastal late summer'], activityMood: ['collaborating at a table', 'preparing to depart', 'walking through a design district'], hairVariation: ['chestnut waves', 'polished low ponytail', 'side-parted low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
   'WAK-MODEL-J': { styleDirection: 'sharp city night and Seoul discovery', summerWardrobe: ['white short-sleeve blouse', 'minimal summer dress', 'charcoal skirt with light scarf'], seasonalFit: ['urban summer evening', 'blue-hour early autumn'], activityMood: ['walking after work', 'leaving an exhibition', 'crossing a lively street'], hairVariation: ['sleek straight hair', 'low ponytail', 'tucked-behind-ear bob effect'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
-  'WAK-MODEL-K': { styleDirection: 'creative navigation, learning and longer stays', summerWardrobe: ['soft-blue sleeveless blouse', 'relaxed linen set', 'practical travel sneakers'], seasonalFit: ['bright shared-space summer', 'calm early autumn'], activityMood: ['organizing visual notes', 'moving between work and rest', 'packing a practical weekender'], hairVariation: ['natural long layers', 'soft ponytail', 'relaxed low bun'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
 }
 
 const COMMON_RESTRICTED_SECTIONS = [
@@ -89,7 +87,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['ocean blue', 'ivory', 'sand'], preferredActions: ['closing a laptop', 'packing a weekender', 'looking toward the coast'], preferredLocations: ['coastal work lounge', 'island stay', 'quiet terrace'],
     allowedSections: ['home-hero', 'coastal-editorial', 'slow-stay'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-a-coastal-calm-identity-anchor'], referenceAssetIds: ['model-a-source-reference'],
-    productionAssetIds: ['home-hero-model-a-coastal-work-desktop-v2', 'home-hero-model-a-coastal-work-mobile-v2', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'],
+    productionAssetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Keep as one member of the roster, never the default face across adjacent sections.',
   },
@@ -111,7 +109,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     faceKeywords: ['composed', 'polished', 'quiet'], hairKeywords: ['long', 'dark', 'smooth'], moodKeywords: ['premium', 'focused', 'minimal'],
     wardrobePalette: ['ink', 'taupe', 'cream'], preferredActions: ['waiting before check-in', 'reviewing a schedule', 'quiet laptop work'], preferredLocations: ['hotel lounge', 'business stay', 'museum café'],
     allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1', 'business-models-c-h-k-late-summer-team-desktop-v2', 'business-models-c-h-k-late-summer-team-mobile-v2'],
+    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Vary wardrobe and camera distance; avoid repeating a white top and beauty-portrait composition.',
   },
@@ -145,7 +143,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     faceKeywords: ['warm', 'modern', 'open'], hairKeywords: ['brown', 'long', 'soft wave'], moodKeywords: ['daylight', 'city food', 'social'],
     wardrobePalette: ['camel', 'cream', 'terracotta'], preferredActions: ['walking to a café', 'browsing a market', 'meeting a friend'], preferredLocations: ['Fukuoka-inspired street', 'Osaka-inspired café', 'market lane'],
     allowedSections: ['japan-campaign', 'food-editorial', 'social-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: ['campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2', 'late-summer-model-f-market-v1', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'],
+    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: ['campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2', 'late-summer-model-f-market-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Use warm hair and natural daylight to diversify the roster without repeating glamour styling.',
   },
@@ -168,7 +166,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['sand', 'ivory', 'soft blue'], preferredActions: ['planning together', 'pointing to a map', 'organizing a day'], preferredLocations: ['local café', 'coastal shared lounge', 'quiet daytime street'],
     allowedSections: ['hosted-editorial', 'domestic-beginner', 'local-cafe'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-h-soft-daylight-identity-anchor-v2-2'], referenceAssetIds: ['model-h-source-reference-v2-2'],
-    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-model-edit-2026-08-v2', 'domestic-busan-model-h-haeundae-v4', 'business-models-c-h-k-late-summer-team-desktop-v2', 'business-models-c-h-k-late-summer-team-mobile-v2'],
+    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-model-edit-2026-08-v2', 'domestic-busan-model-h-haeundae-v4'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 H; supersedes and invalidates every previous H identity.',
     notes: 'Keep the rounded face and curtain bangs distinct; never blend with I or the rejected former H.',
@@ -197,18 +195,6 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 J; supersedes and invalidates every previous J identity.',
     notes: 'Keep the heart-shaped face, sleek black hair and urban restraint distinct from every prior J.',
-  },
-  {
-    id: 'WAK-MODEL-K', rosterVersion: BRAND_MODEL_ROSTER_VERSION, nameCode: 'Creative Navigator', adultAgeRange: 'late twenties',
-    visualRole: { KO: '학습·성장·체류 일정 설계', EN: 'Learning, growth and stay planning', JP: '学び・成長・滞在プラン' },
-    identityDescriptor: 'fictional adult East Asian woman, age twenty-nine, calm almond-shaped brown eyes, long chestnut-brown hair, composed approachable expression, practical contemporary work-travel styling',
-    faceKeywords: ['adult', 'calm almond eyes', 'approachable'], hairKeywords: ['long', 'chestnut brown', 'natural'], moodKeywords: ['curious', 'organized', 'grounded'],
-    wardrobePalette: ['ink navy', 'soft blue', 'ivory', 'stone'], preferredActions: ['organizing travel notes', 'planning a work-and-stay rhythm', 'packing a practical weekender'], preferredLocations: ['design library', 'coastal shared workspace', 'quiet learning lounge'],
-    allowedSections: ['learn-editorial', 'programs-editorial', 'growth-learning', 'domestic-onboarding', 'jeju-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-k-creative-navigator-identity-reference-v1'], referenceAssetIds: ['model-10-gemini-travel-lounge-reference-2026-08-05'],
-    productionAssetIds: ['learn-model-k-creative-focus-desktop-v1', 'learn-model-k-creative-focus-mobile-v1', 'programs-model-k-stay-planning-desktop-v1', 'programs-model-k-stay-planning-mobile-v1', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1', 'domestic-jeju-model-k-coastal-stay-v4', 'business-models-c-h-k-late-summer-team-desktop-v2', 'business-models-c-h-k-late-summer-team-mobile-v2'],
-    productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
-    notes: 'The supplied Model 10 pack remains reference-only. Publish only modest, action-led derivatives with clear editorial-image disclosure.',
   },
 ]
 
