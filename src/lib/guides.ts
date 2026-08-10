@@ -409,6 +409,49 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'No time difference and a roughly 1.5-hour flight — you can start with a Friday half-day. The Honmachi business district has stays with multiple work-friendly lounges, and Dotonbori and Shinsekai food streets wait after log-off.',
       JP: '時差がなく直行便も短時間、金曜半休からでも始められる街。本町ビジネス地区には作業できる共用ラウンジを備えた宿があり、仕事の後は道頓堀と新世界の食べ歩きが待っています。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN OSAKA', EN: 'A DAY IN OSAKA', JP: 'A DAY IN OSAKA' },
+      title: {
+        KO: '아침의 미식과 퇴근 뒤 전시를 한 동선에',
+        EN: 'Morning flavors and after-work culture in one city rhythm',
+        JP: '朝の味と、仕事帰りの展示を一つのリズムに',
+      },
+      intro: {
+        KO: '시장 골목이 문을 여는 시간에 가볍게 하루를 시작하고, 낮에는 업무에 집중합니다. 저녁에는 멀리 이동하기보다 전시와 도시 산책을 이어 짧은 체류에도 서로 다른 장면을 담아보세요.',
+        EN: 'Start lightly as the market lanes open, then settle into the workday. In the evening, connect an exhibition with a city walk instead of another long transfer.',
+        JP: '市場の路地が開き始める時間に軽く一日を始め、昼は仕事に集中。夜は遠くへ移動せず、展示と街歩きをつないで短い滞在にも異なる表情を。',
+      },
+      items: [
+        {
+          src: '/media/destinations/osaka-morning-food-lane-v1.webp',
+          eyebrow: { KO: 'MORNING · FOOD LANE', EN: 'MORNING · FOOD LANE', JP: 'MORNING · FOOD LANE' },
+          title: {
+            KO: '붐비기 전 골목에서 가볍게 시작하기',
+            EN: 'Begin in the lanes before the rush',
+            JP: '混み合う前の路地から軽やかに始める',
+          },
+          description: {
+            KO: '오전 일정이 있는 날에는 오래 머무는 식사보다 짧은 동네 산책을 먼저 두는 편이 좋습니다. 영업시간과 휴무는 방문 당일 각 매장에서 확인하세요.',
+            EN: 'On work mornings, choose a short neighborhood walk over a long meal. Confirm opening hours and closures with each shop on the day you visit.',
+            JP: '午前に仕事がある日は、長い食事より短い街歩きを先に。営業時間と休業日は、訪問当日に各店舗でご確認ください。',
+          },
+        },
+        {
+          src: '/media/brand-models/osaka-model-j-after-work-gallery-v1.webp',
+          eyebrow: { KO: 'BLUE HOUR · EXHIBITION', EN: 'BLUE HOUR · EXHIBITION', JP: 'BLUE HOUR · EXHIBITION' },
+          title: {
+            KO: '노트북을 닫고 도시의 저녁 장면으로',
+            EN: 'Close the laptop and step into the evening city',
+            JP: 'ノートパソコンを閉じて、夜の街へ',
+          },
+          description: {
+            KO: '퇴근 뒤에는 전시 한 곳과 주변 산책만 묶어도 충분합니다. 프로그램과 입장 조건은 방문 전 공식 운영 채널에서 확인하세요.',
+            EN: 'After work, one exhibition and a walk nearby can be enough. Check the current program and entry conditions with the venue’s official channel before visiting.',
+            JP: '仕事の後は、展示を一つと周辺の散歩を組み合わせるだけでも十分。開催内容と入場条件は、訪問前に公式案内でご確認ください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '0시간', EN: '0 hours', JP: '0時間' } },
       { label: F.flight, value: { KO: '약 1시간 40분', EN: '~1h 40m', JP: '約1時間40分' } },
