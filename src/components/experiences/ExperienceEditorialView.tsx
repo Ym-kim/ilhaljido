@@ -141,15 +141,20 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
 
   return (
     <div className={`min-h-screen overflow-x-clip bg-[#fbfaf7] ${lang === 'JP' ? 'font-jp [word-break:normal]' : ''}`}>
-      <section className="dark-surface relative flex min-h-[580px] items-end overflow-hidden sm:min-h-[650px] lg:min-h-[720px]">
+      <section className="dark-surface relative flex min-h-[580px] items-end overflow-hidden bg-[#071b27] sm:min-h-[650px] lg:min-h-[720px]">
         <Image
           src={media.src}
           alt={media.alt[lang]}
           fill
           priority
           sizes="100vw"
-          className="object-cover"
-          style={{ objectPosition: `${(media.focalPoint?.x ?? 0.5) * 100}% ${(media.focalPoint?.y ?? 0.5) * 100}%` }}
+          className={media.framingMode === 'full-subject-desktop'
+            ? 'object-cover object-[70%_50%] lg:object-contain lg:object-center'
+            : 'object-cover'}
+          style={media.framingMode === 'full-subject-desktop'
+            ? undefined
+            : { objectPosition: `${(media.focalPoint?.x ?? 0.5) * 100}% ${(media.focalPoint?.y ?? 0.5) * 100}%` }}
+          data-framing-mode={media.framingMode ?? 'cover'}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071b27]/95 via-[#071b27]/38 to-black/10" />
         <div className={`absolute inset-0 hidden lg:block ${experience.heroContentSide === 'right' ? 'bg-gradient-to-l from-[#071b27]/72 via-[#071b27]/18 to-transparent' : 'bg-gradient-to-r from-[#071b27]/64 via-[#071b27]/12 to-transparent'}`} />

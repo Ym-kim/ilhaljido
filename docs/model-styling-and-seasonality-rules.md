@@ -135,6 +135,9 @@ heavy off-season wardrobe, readable logos or signage
 - 선정적 노출이나 패션몰식 몸매 강조가 없는가
 - 생성 모델이 실제 상품 이용자나 후기 인물로 오인되지 않는가
 - desktop/mobile crop에서 얼굴·손·소품·동작이 보이는가
+- 모델 Hero는 머리 위 여백을 최소 4% 확보하고, 어떤 데스크톱 비율에서도 정수리·얼굴이 잘리지 않는가
+- 전신 또는 핵심 소품이 메시지인 Hero는 초광폭 화면에서 `cover`를 강제하지 않고 `full-subject-desktop` 프레이밍을 사용했는가
+- 머리·얼굴·손과 장면의 핵심 소품(가방·노트북·서류 등)은 crop 보존 목록에 기록했는가
 - 카피·CTA 안전 영역이 유지되는가
 - KO·EN·JA alt와 source/restriction metadata가 있는가
 

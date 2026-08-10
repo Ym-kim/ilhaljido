@@ -5,6 +5,11 @@ import { PRODUCT_EDITORIAL_MEDIA_ASSETS } from '@/lib/media/productEditorial'
 
 export type MediaFocalPoint = { x: number; y: number }
 
+export type MediaSafeFraming = {
+  minHeadroomPercent?: number
+  preserve?: Array<'head' | 'face' | 'hands' | 'bag' | 'device' | 'documents' | 'feet'>
+}
+
 export type MediaAsset = {
   id: string
   src: string
@@ -38,6 +43,8 @@ export type MediaAsset = {
     desktop?: MediaFocalPoint
     mobile?: MediaFocalPoint
   }
+  framingMode?: 'cover' | 'full-subject-desktop'
+  safeFraming?: MediaSafeFraming
   source?: string
   license?: string
   createdAt?: string
@@ -196,6 +203,11 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     sectionUsage: ['experience-editorial-tokyo', 'activity-card'],
     generatedFromReferenceIds: ['trip-match-model-d-itinerary-choice-v3'],
     focalPoint: { x: 0.7, y: 0.5 },
+    framingMode: 'full-subject-desktop',
+    safeFraming: {
+      minHeadroomPercent: 4,
+      preserve: ['head', 'face', 'hands', 'bag', 'feet'],
+    },
     source: 'OpenAI built-in identity-preserve image editing using the approved WAK-MODEL-D reference; generic immersive-art gallery composition',
     license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
     restriction: {

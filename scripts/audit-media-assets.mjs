@@ -10,6 +10,7 @@ const guideDataPath = path.join(root, 'src', 'lib', 'guides.ts')
 const manifestPath = path.join(root, 'src', 'lib', 'media', 'assets.ts')
 const rosterPath = path.join(root, 'src', 'lib', 'media', 'brandModels.ts')
 const rotationPath = path.join(root, 'src', 'lib', 'media', 'modelRotation.ts')
+const experienceViewPath = path.join(root, 'src', 'components', 'experiences', 'ExperienceEditorialView.tsx')
 const destinationDirectory = path.join(root, 'public', 'media', 'destinations')
 const brandModelDirectory = path.join(root, 'public', 'media', 'brand-models')
 const cityIds = ['tokyo', 'osaka', 'fukuoka', 'bali', 'danang', 'chiangmai', 'cebu', 'sydney']
@@ -130,12 +131,13 @@ const nonModelMajorSurfaces = [
 ]
 
 const errors = []
-const [cityData, guideData, manifest, roster, rotation] = await Promise.all([
+const [cityData, guideData, manifest, roster, rotation, experienceView] = await Promise.all([
   fs.readFile(cityDataPath, 'utf8'),
   fs.readFile(guideDataPath, 'utf8'),
   fs.readFile(manifestPath, 'utf8'),
   fs.readFile(rosterPath, 'utf8'),
   fs.readFile(rotationPath, 'utf8'),
+  fs.readFile(experienceViewPath, 'utf8'),
 ])
 
 if (/https?:\/\/images\.unsplash\.com/i.test(cityData)) errors.push('src/lib/cities.ts still contains an Unsplash hotlink')
@@ -150,6 +152,11 @@ for (const id of expectedRosterIds) {
 for (const field of ['climateMood:', 'wardrobeTags:', 'activityTags:', 'travelContext:', 'realismTarget:', 'realismMethod:', 'photorealReferenceUsed:']) {
   if (!manifest.includes(field)) errors.push(`Seasonal realism metadata missing from manifest: ${field}`)
 }
+for (const field of ["framingMode: 'full-subject-desktop'", 'minHeadroomPercent: 4', "preserve: ['head', 'face', 'hands', 'bag', 'feet']"]) {
+  if (!manifest.includes(field)) errors.push(`Safe model framing metadata missing from manifest: ${field}`)
+}
+if (!experienceView.includes("media.framingMode === 'full-subject-desktop'")) errors.push('Experience hero does not honor full-subject desktop framing')
+if (!experienceView.includes("lg:object-contain lg:object-center")) errors.push('Experience hero can crop or push models off-canvas on wide desktop screens')
 for (const [id, nameCode, descriptor] of [
   ['WAK-MODEL-H', 'Soft Daylight', 'softly rounded face'],
   ['WAK-MODEL-I', 'Modern Grace', 'elegant oval face'],
