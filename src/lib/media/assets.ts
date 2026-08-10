@@ -126,6 +126,35 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     restriction: { KO: '실제 서울 매장이나 참가자 사진이 아니다.', EN: 'Not a real Seoul venue or participant photograph.', JP: '実在のソウルの店舗や参加者の写真ではない。' },
   },
   {
+    id: 'experience-seoul-model-i-kpop-studio-v2',
+    src: '/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp',
+    alt: {
+      KO: '서울을 연상시키는 밝은 연습실에서 성인 여행자와 강사가 춤 동작을 맞추는 편집 장면',
+      EN: 'An editorial scene of an adult traveller learning dance movement with an instructor in a bright Seoul-inspired studio',
+      JP: 'ソウルをイメージした明るいスタジオで、大人の旅行者が講師とダンスの動きを練習する編集イメージ',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true,
+    width: 1440, height: 1080, modelId: 'WAK-MODEL-I', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['late-summer', 'autumn'],
+    routeUsage: [
+      '/select/activity', '/en/select/activity', '/ja/select/activity',
+      '/experiences/hongdae-kpop-walk-dance',
+      '/en/experiences/hongdae-kpop-walk-dance',
+      '/ja/experiences/hongdae-kpop-walk-dance',
+      '/guide/seoul', '/en/guide/seoul', '/ja/guide/seoul',
+      '/collections/seoul-3n4d', '/en/collections/seoul-3n4d', '/ja/collections/seoul-3n4d',
+    ],
+    sectionUsage: ['experience-editorial-seoul', 'activity-card'],
+    generatedFromReferenceIds: ['select-model-i-travel-prep-v2'], focalPoint: { x: 0.69, y: 0.5 },
+    source: 'OpenAI built-in image editing using the approved WAK-MODEL-I identity reference and the prior dance-studio composition',
+    license: 'User-controlled generated brand editorial asset', createdAt: '2026-08-10', verifiedAt: '2026-08-10',
+    restriction: {
+      KO: '실제 KKday 체험, 강사, 참가자, 연습실 또는 특정 서울 장소 사진으로 표현하지 않는다.',
+      EN: 'Do not present as a photograph of the real KKday experience, instructor, participant, studio or a specific Seoul venue.',
+      JP: '実際のKKday体験、講師、参加者、スタジオ、特定のソウルの場所の写真として表示しない。',
+    },
+  },
+  {
     id: 'domestic-busan-model-c-coastal-transition-v1',
     src: '/media/brand-models/domestic-busan-model-c-coastal-transition-v1.webp',
     alt: {

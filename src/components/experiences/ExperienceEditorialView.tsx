@@ -34,7 +34,7 @@ const COPY = {
   reviews: { KO: '후기를 볼 때 확인할 점', EN: 'What to check in reviews', JP: '口コミで確認したいこと' },
   providerMetrics: { KO: '제휴사 후기 지표', EN: 'Provider review metrics', JP: '提携先の口コミ指標' },
   metricsNote: { KO: 'Wakation 직접 후기가 아닙니다. 후기 원문과 사진은 제휴사에서 확인하세요.', EN: 'These are not Wakation reviews. Read the full reviews and see photos on the provider site.', JP: 'Wakationの口コミではありません。全文と写真は提携先で確認してください。' },
-  reviewSource: { KO: 'Klook에서 후기 전체 확인', EN: 'Read all reviews on Klook', JP: 'Klookで口コミ全文を確認' },
+  reviewSource: { KO: '제휴사에서 후기 전체 확인', EN: 'Read all reviews with the provider', JP: '提携先で口コミ全文を確認' },
   operator: { KO: '판매·운영 주체', EN: 'Operator and seller', JP: '運営・販売主体' },
   operatorLabel: { KO: '상품 운영사', EN: 'Experience operator', JP: '商品運営会社' },
   sellerLabel: { KO: '예약·결제 제휴사', EN: 'Booking and payment', JP: '予約・決済の提携先' },
@@ -51,7 +51,7 @@ const COPY = {
   guide: { KO: '후쿠오카 여행지 가이드', EN: 'Fukuoka destination guide', JP: '福岡の旅行先ガイド' },
   affiliate: { KO: '제휴사 상품', EN: 'Affiliate product', JP: '提携先商品' },
   cta: { KO: 'Klook에서 현재 조건 확인', EN: 'Check current details on Klook', JP: 'Klookで最新条件を確認' },
-  disclosure: { KO: '일부 외부 링크를 통해 Wakation이 수수료를 받을 수 있습니다. 이용 요금에는 영향이 없습니다. 실제 일정·가격·언어·포함사항은 변경될 수 있으며 예약·결제·변경·취소·환불은 Klook의 약관과 정책을 따릅니다.', EN: 'Wakation may earn a commission from some external links at no added cost to you. Schedules, prices, languages and inclusions may change; booking, payment, changes, cancellations and refunds follow Klook policies.', JP: '一部の外部リンク経由でWakationが手数料を受け取る場合がありますが、利用料金には影響しません。日程・価格・言語・含まれる内容は変更されることがあり、予約・決済・変更・キャンセル・返金はKlookの規約に従います。' },
+  disclosure: { KO: '일부 외부 링크를 통해 Wakation이 수수료를 받을 수 있습니다. 이용 요금에는 영향이 없습니다. 실제 일정·가격·언어·포함사항은 변경될 수 있으며 예약·결제·변경·취소·환불은 연결된 제휴사의 약관과 정책을 따릅니다.', EN: 'Wakation may earn a commission from some external links at no added cost to you. Schedules, prices, languages and inclusions may change; booking, payment, changes, cancellations and refunds follow the connected provider’s policies.', JP: '一部の外部リンク経由でWakationが手数料を受け取る場合がありますが、利用料金には影響しません。日程・価格・言語・含まれる内容は変更されることがあり、予約・決済・変更・キャンセル・返金は接続先の提携会社の規約に従います。' },
   verified: { KO: '정보 확인', EN: 'Verified', JP: '情報確認' },
   nav: {
     KO: '페이지 섹션', EN: 'Page sections', JP: 'ページ内メニュー',
@@ -87,7 +87,9 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
   const providerKey = activeProvider?.provider ?? experience.reviewSnapshot.provider.toLowerCase()
   const providerName = experience.reviewSnapshot.provider
   const reviewSourceUrl = experience.reviewSnapshot.localizedSourceUrls?.[lang] ?? experience.reviewSnapshot.sourceUrl
-  const reviewCount = new Intl.NumberFormat(lang === 'JP' ? 'ja-JP' : lang === 'EN' ? 'en-US' : 'ko-KR').format(experience.reviewSnapshot.reviewCount)
+  const reviewCount = experience.reviewSnapshot.reviewCount === undefined
+    ? undefined
+    : new Intl.NumberFormat(lang === 'JP' ? 'ja-JP' : lang === 'EN' ? 'en-US' : 'ko-KR').format(experience.reviewSnapshot.reviewCount)
   const affiliateHref = item?.deepLinks?.[lang] ?? item?.href
 
   useEffect(() => {
@@ -239,7 +241,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)]">
             <div className="rounded-[1.5rem] bg-[#143848] p-6 text-white">
               <span className="text-[0.68rem] font-black tracking-[0.13em] text-sky-200">{COPY.providerMetrics[lang]}</span>
-              <div className="mt-3 flex items-end gap-3"><span className="text-4xl font-black">{experience.reviewSnapshot.rating}</span><span className="pb-1 text-sm font-bold text-white/70">/ 5 · {reviewCount}</span></div>
+              <div className="mt-3 flex items-end gap-3"><span className="text-4xl font-black">{experience.reviewSnapshot.rating}</span><span className="pb-1 text-sm font-bold text-white/70">/ 5{reviewCount ? ` · ${reviewCount}` : ''}</span></div>
               <span className="mt-2 block text-xs text-white/55">{providerName} · {COPY.verified[lang]} {experience.reviewSnapshot.verifiedAt}</span>
               <p className="mt-5 text-xs leading-6 text-white/65">{COPY.metricsNote[lang]}</p>
               <a href={reviewSourceUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('experience_review_source_open', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, source: providerKey })} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-black text-sky-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.reviewSource[lang]} <ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} /></a>

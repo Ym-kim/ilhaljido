@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: experience.metaDescription.KO,
       url: canonical,
       type: 'article',
-      images: media ? [{ url: media.src, width: 1920, height: 1280, alt: media.alt.KO }] : undefined,
+      images: media ? [{ url: media.src, width: media.width ?? 1200, height: media.height ?? 800, alt: media.alt.KO }] : undefined,
     },
     robots: { index: true, follow: true },
   }

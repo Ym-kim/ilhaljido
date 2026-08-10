@@ -30,6 +30,14 @@ const required = [
   ['Busan localized deep links', "JP: 'https://affiliate.klook.com/redirect?aid=126848", items],
   ['Busan media manifest', "id: 'domestic-busan-model-h-haeundae-v3'", media],
   ['Busan health check', 'klook:busan-coastal-highlights', health],
+  ['Seoul editorial slug', "slug: 'hongdae-kpop-walk-dance'", data],
+  ['Seoul affiliate item reference', "affiliateItemId: 'act-kkday-hongdae-kpop-walk'", data],
+  ['Seoul catalog item', "id: 'act-kkday-hongdae-kpop-walk'", items],
+  ['Seoul KKday tracking', 'product/105485?cid=25833', items],
+  ['Seoul Japanese guide fact', "value: L('영어·일본어·중국어'", data],
+  ['Seoul eligibility notice', '한국 국적 구매 제한', data],
+  ['Seoul media manifest', "id: 'experience-seoul-model-i-kpop-studio-v2'", media],
+  ['Seoul health check', 'kkday:hongdae-kpop-walk', health],
 ]
 
 for (const [label, needle, source] of required) {
@@ -39,6 +47,7 @@ for (const [label, needle, source] of required) {
 const assets = [
   path.join(root, 'public/campaign/itoshima-coast-editorial-model-g-v2.webp'),
   path.join(root, 'public/media/brand-models/domestic-busan-model-h-haeundae-v3.webp'),
+  path.join(root, 'public/media/brand-models/experience-seoul-model-i-kpop-studio-v2.webp'),
 ]
 for (const asset of assets) {
   if (!fs.existsSync(asset) || fs.statSync(asset).size === 0) failures.push(`editorial image missing or empty: ${asset}`)
@@ -55,5 +64,5 @@ if (failures.length) {
 }
 
 const totalBytes = assets.reduce((total, asset) => total + fs.statSync(asset).size, 0)
-console.log(`Experience data audit passed: 2 editorials, ${totalBytes} total image bytes, Klook tracking and locale routes registered.`)
+console.log(`Experience data audit passed: 3 editorials, ${totalBytes} total image bytes, Klook/KKday tracking and locale routes registered.`)
 

@@ -47,6 +47,7 @@ const CHECKS: Check[] = [
   { id: 'page:campaign-korea-weekend', url: 'https://www.wakation.kr/ja/campaign/korea-weekend' },
   { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
   { id: 'page:experience-busan', url: 'https://www.wakation.kr/experiences/busan-coastal-highlights-day-tour' },
+  { id: 'page:experience-seoul-kpop', url: 'https://www.wakation.kr/experiences/hongdae-kpop-walk-dance' },
   { id: 'page:media-credits', url: 'https://www.wakation.kr/media-credits' },
   // 허브 페이지 (2026-08-04 감사: 하위는 있는데 허브가 빠져 있던 4곳)
   { id: 'page:select-hub', url: 'https://www.wakation.kr/select' },
@@ -70,6 +71,11 @@ const CHECKS: Check[] = [
   {
     id: 'airalo:japan',
     url: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
+    finalMustInclude: 'airalo.com',
+  },
+  {
+    id: 'airalo:south-korea',
+    url: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fsouth-korea-esim',
     finalMustInclude: 'airalo.com',
   },
 
@@ -115,6 +121,12 @@ const CHECKS: Check[] = [
     id: 'klook:busan-coastal-highlights',
     url: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F74132-busan-oneday-tour-busan%2F',
     finalMustInclude: 'klook.com',
+    okStatuses: [200, 403],
+  },
+  {
+    id: 'kkday:hongdae-kpop-walk',
+    url: 'https://www.kkday.com/ko/product/105485?cid=25833',
+    finalMustInclude: 'kkday.com',
     okStatuses: [200, 403],
   },
   { id: 'page:cruise-miracle', url: 'https://www.wakation.kr/cruise/miracle' },

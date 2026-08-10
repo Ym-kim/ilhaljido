@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${experience.title.EN} — Experience guide`,
     description: experience.metaDescription.EN,
     alternates: { canonical, languages: cityLanguageAlternates(`/experiences/${slug}`) },
-    openGraph: { title: experience.title.EN, description: experience.metaDescription.EN, url: canonical, type: 'article', locale: 'en_US', images: media ? [{ url: media.src, width: 1920, height: 1280, alt: media.alt.EN }] : undefined },
+    openGraph: { title: experience.title.EN, description: experience.metaDescription.EN, url: canonical, type: 'article', locale: 'en_US', images: media ? [{ url: media.src, width: media.width ?? 1200, height: media.height ?? 800, alt: media.alt.EN }] : undefined },
     robots: { index: true, follow: true },
   }
 }
