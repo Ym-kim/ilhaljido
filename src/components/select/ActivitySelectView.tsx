@@ -14,7 +14,7 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { FEATURED_ACTIVITIES, THEME_EXPERIENCES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { ACTIVITY_DESTINATIONS } from '@/lib/affiliate/destinations'
-import { getExperienceEditorial } from '@/lib/experiences/editorials'
+import { EXPERIENCE_EDITORIALS } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 
 export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
@@ -29,7 +29,7 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
   }, [forceLang])
 
   const prefix = forceLang === 'EN' ? '/en' : forceLang === 'JP' ? '/ja' : ''
-  const flagship = getExperienceEditorial('itoshima-photo-bus-tour')
+  const editorials = EXPERIENCE_EDITORIALS
 
   return (
     <div className="min-h-screen bg-white">
@@ -64,16 +64,26 @@ export function ActivitySelectView({ forceLang }: { forceLang?: Lang }) {
         </div>
       </section>
 
-      {flagship && (
+      {editorials.length > 0 && (
         <section className="border-t border-[#dce6e7] bg-[#f7f5ef] px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-6xl">
             <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#5d8290]">
-              {lang === 'KO' ? '에디터가 고른 반나절' : lang === 'JP' ? '編集部が選んだ半日体験' : 'EDITOR’S HALF-DAY PICK'}
+              {lang === 'KO' ? 'WAKATION 에디터 셀렉션' : lang === 'JP' ? 'WAKATION 編集部セレクション' : 'WAKATION EDITOR’S SELECTION'}
             </span>
             <h2 className="mb-6 mt-2 text-2xl font-black text-[#172a36] sm:text-3xl">
-              {lang === 'KO' ? '상품보다 먼저, 이 체험이 내 일정에 맞는지 확인하세요' : lang === 'JP' ? '商品を見る前に、自分の旅程に合うかを確認' : 'See how it fits your trip before opening the product page'}
+              {lang === 'KO' ? '상품을 열기 전에, 내 일정에 맞는 체험부터 고르세요' : lang === 'JP' ? '商品を開く前に、旅程に合う体験から選ぶ' : 'Choose an experience that fits before opening the product page'}
             </h2>
-            <ExperienceEditorialCard experience={flagship} lang={lang} source="activity" />
+            <div className="grid gap-6 lg:gap-8">
+              {editorials.map((experience, index) => (
+                <ExperienceEditorialCard
+                  key={experience.slug}
+                  experience={experience}
+                  lang={lang}
+                  source="activity"
+                  priority={index === 0}
+                />
+              ))}
+            </div>
           </div>
         </section>
       )}

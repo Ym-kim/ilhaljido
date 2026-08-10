@@ -57,7 +57,7 @@ export function ExperiencePreparationCard({
   const saved = has(item.id)
   const title = displayTitle ?? item.productTitle ?? item.displayTitle ?? item.name
   const destination = displayDestination ?? item.destination ?? item.name
-  const href = item.deepLinks?.[destinationSlug] ?? item.href
+  const href = item.deepLinks?.[lang] ?? item.deepLinks?.[destinationSlug] ?? item.href
   const coverPhoto = item.coverPhoto?.startsWith('/') ? item.coverPhoto : '/covers/trip-prep-allinone-ai.jpeg'
   const categoryLabel = CATEGORY_LABEL[item.category][lang]
   const ctaLabel = CATEGORY_CTA[item.category][lang]

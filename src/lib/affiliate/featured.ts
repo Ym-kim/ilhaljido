@@ -549,6 +549,11 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     priceFrom: '₩120,000~',
     priceAsOf: '2026-07-26',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+    deepLinks: {
+      KO: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+      EN: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+      JP: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fja%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
+    },
     badge: '뷔페 2식 포함',
     trackingId: 'aid=126848',
     coverPhoto: '/covers/cruise-panstar-real-v2.jpeg', illustrative: true,

@@ -46,6 +46,7 @@ const CHECKS: Check[] = [
   { id: 'page:compare', url: 'https://www.wakation.kr/destinations/compare' },
   { id: 'page:campaign-korea-weekend', url: 'https://www.wakation.kr/ja/campaign/korea-weekend' },
   { id: 'page:experience-itoshima', url: 'https://www.wakation.kr/experiences/itoshima-photo-bus-tour' },
+  { id: 'page:experience-busan', url: 'https://www.wakation.kr/experiences/busan-coastal-highlights-day-tour' },
   { id: 'page:media-credits', url: 'https://www.wakation.kr/media-credits' },
   // 허브 페이지 (2026-08-04 감사: 하위는 있는데 허브가 빠져 있던 4곳)
   { id: 'page:select-hub', url: 'https://www.wakation.kr/select' },
@@ -107,6 +108,12 @@ const CHECKS: Check[] = [
   {
     id: 'klook:itoshima-photo-bus',
     url: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F115689-fukuoka-itoshima-half-day-bus-tour%2F',
+    finalMustInclude: 'klook.com',
+    okStatuses: [200, 403],
+  },
+  {
+    id: 'klook:busan-coastal-highlights',
+    url: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F74132-busan-oneday-tour-busan%2F',
     finalMustInclude: 'klook.com',
     okStatuses: [200, 403],
   },

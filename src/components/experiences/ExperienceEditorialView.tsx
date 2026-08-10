@@ -83,6 +83,12 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
     .filter((entry): entry is NonNullable<typeof entry> => !!entry)
   const { has, toggle } = useWishlist()
   const saved = has(experience.affiliateItemId)
+  const activeProvider = experience.providers.find((provider) => provider.status === 'active_affiliate')
+  const providerKey = activeProvider?.provider ?? experience.reviewSnapshot.provider.toLowerCase()
+  const providerName = experience.reviewSnapshot.provider
+  const reviewSourceUrl = experience.reviewSnapshot.localizedSourceUrls?.[lang] ?? experience.reviewSnapshot.sourceUrl
+  const reviewCount = new Intl.NumberFormat(lang === 'JP' ? 'ja-JP' : lang === 'EN' ? 'en-US' : 'ko-KR').format(experience.reviewSnapshot.reviewCount)
+  const affiliateHref = item?.deepLinks?.[lang] ?? item?.href
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
@@ -115,7 +121,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
       locale: lang,
       experience_slug: experience.slug,
       destination: experience.destinationSlug,
-      provider: 'klook',
+      provider: providerKey,
     })
     trackAffiliateClick({
       id: item.id,
@@ -123,7 +129,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
       provider: item.name,
       status: item.status,
       sourceSection: 'experience_editorial_provider',
-      ctaLabel: COPY.cta[lang],
+      ctaLabel: item.cta,
       ctaPosition: 'provider_cta',
       destination: experience.destinationSlug,
       category: item.category,
@@ -144,14 +150,18 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           style={{ objectPosition: `${(media.focalPoint?.x ?? 0.5) * 100}% ${(media.focalPoint?.y ?? 0.5) * 100}%` }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#071b27]/95 via-[#071b27]/38 to-black/10" />
-        <div className="relative mx-auto w-full max-w-6xl px-5 pb-8 pt-28 sm:px-6 sm:pb-12 lg:pb-16">
-          <Link href={`${prefix}/select/activity`} className="mb-5 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 bg-black/20 px-4 text-xs font-bold text-white/85 backdrop-blur-sm hover:bg-black/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+        <div className={`absolute inset-0 hidden lg:block ${experience.heroContentSide === 'right' ? 'bg-gradient-to-l from-[#071b27]/72 via-[#071b27]/18 to-transparent' : 'bg-gradient-to-r from-[#071b27]/64 via-[#071b27]/12 to-transparent'}`} />
+        <Link href={`${prefix}/select/activity`} className="absolute left-5 top-5 z-20 inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 bg-black/35 px-4 text-xs font-bold text-white/90 backdrop-blur-sm hover:bg-black/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:hidden">
+          <ArrowLeft className="h-4 w-4" strokeWidth={ICON_STROKE} /> {COPY.back[lang]}
+        </Link>
+        <div className={`relative mx-auto w-full max-w-6xl px-5 pb-8 pt-28 sm:px-6 sm:pb-12 lg:pb-16 ${experience.heroContentSide === 'right' ? 'lg:flex lg:flex-col lg:items-end lg:text-right' : ''}`}>
+          <Link href={`${prefix}/select/activity`} className="mb-5 hidden min-h-11 items-center gap-2 rounded-full border border-white/25 bg-black/20 px-4 text-xs font-bold text-white/85 backdrop-blur-sm hover:bg-black/35 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:inline-flex">
             <ArrowLeft className="h-4 w-4" strokeWidth={ICON_STROKE} /> {COPY.back[lang]}
           </Link>
-          <span className="mb-3 block text-[0.7rem] font-black tracking-[0.17em] text-sky-200">FUKUOKA · ITOSHIMA · HALF DAY</span>
+          <span className="mb-3 block text-[0.7rem] font-black tracking-[0.17em] text-sky-200">{experience.heroEyebrow[lang]}</span>
           <h1 className="max-w-4xl text-balance text-[2.25rem] font-black leading-[1.06] text-white sm:text-5xl lg:text-6xl">{experience.title[lang]}</h1>
           <span className="mt-4 block max-w-2xl text-sm font-semibold leading-6 text-white/85 sm:text-base sm:leading-7">{experience.subtitle[lang]}</span>
-          <div className="mt-6 flex flex-wrap items-center gap-2.5">
+          <div className={`mt-6 flex flex-wrap items-center gap-2.5 ${experience.heroContentSide === 'right' ? 'lg:justify-end' : ''}`}>
             <button type="button" onClick={handleSave} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 bg-black/25 px-5 text-sm font-bold text-white backdrop-blur-sm hover:bg-black/45 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
               <Heart className={`h-4 w-4 ${saved ? 'fill-rose-400 text-rose-400' : ''}`} strokeWidth={ICON_STROKE} />
               {saved ? COPY.saved[lang] : COPY.save[lang]}
@@ -213,7 +223,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           <div className="mx-auto max-w-5xl">
             <h2 className="text-2xl font-black text-white sm:text-3xl">{COPY.course[lang]}</h2>
             <div className="mt-7 grid gap-5 lg:grid-cols-2">
-              {([['morning', COPY.morning[lang]], ['afternoon', COPY.afternoon[lang]]] as const).map(([period, title]) => <div key={period} className="rounded-[1.5rem] border border-white/12 bg-white/[0.055] p-5 sm:p-6"><h3 className="text-lg font-black text-white">{title}</h3><ol className="mt-5 space-y-0">{experience.course[period].map((stop, index) => <li key={`${stop.time}-${stop.title[lang]}`} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-3"><span className="pt-0.5 text-xs font-black text-sky-300">{stop.time}</span><div className={`relative pb-5 pl-4 ${index < experience.course[period].length - 1 ? 'border-l border-white/18' : ''}`}><span className="absolute -left-1.5 top-0 h-3 w-3 rounded-full border-2 border-[#0b2938] bg-sky-300" /><span className="block text-sm font-bold text-white/92">{stop.title[lang]}</span>{stop.note && <span className="mt-1 block text-xs leading-5 text-white/58">{stop.note[lang]}</span>}</div></li>)}</ol></div>)}
+              {([['morning', experience.courseLabels.morning[lang]], ['afternoon', experience.courseLabels.afternoon[lang]]] as const).map(([period, title]) => <div key={period} className="rounded-[1.5rem] border border-white/12 bg-white/[0.055] p-5 sm:p-6"><h3 className="text-lg font-black text-white">{title}</h3><ol className="mt-5 space-y-0">{experience.course[period].map((stop, index) => <li key={`${stop.time}-${stop.title[lang]}`} className="grid grid-cols-[3.5rem_minmax(0,1fr)] gap-3"><span className="pt-0.5 text-xs font-black text-sky-300">{stop.time}</span><div className={`relative pb-5 pl-4 ${index < experience.course[period].length - 1 ? 'border-l border-white/18' : ''}`}><span className="absolute -left-1.5 top-0 h-3 w-3 rounded-full border-2 border-[#0b2938] bg-sky-300" /><span className="block text-sm font-bold text-white/92">{stop.title[lang]}</span>{stop.note && <span className="mt-1 block text-xs leading-5 text-white/58">{stop.note[lang]}</span>}</div></li>)}</ol></div>)}
             </div>
             <p className="mt-5 text-xs leading-6 text-white/58">{COPY.courseNote[lang]}</p>
           </div>
@@ -229,10 +239,10 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[minmax(16rem,0.75fr)_minmax(0,1.25fr)]">
             <div className="rounded-[1.5rem] bg-[#143848] p-6 text-white">
               <span className="text-[0.68rem] font-black tracking-[0.13em] text-sky-200">{COPY.providerMetrics[lang]}</span>
-              <div className="mt-3 flex items-end gap-3"><span className="text-4xl font-black">{experience.reviewSnapshot.rating}</span><span className="pb-1 text-sm font-bold text-white/70">/ 5 · {experience.reviewSnapshot.reviewCount}</span></div>
-              <span className="mt-2 block text-xs text-white/55">Klook · {COPY.verified[lang]} {experience.reviewSnapshot.verifiedAt}</span>
+              <div className="mt-3 flex items-end gap-3"><span className="text-4xl font-black">{experience.reviewSnapshot.rating}</span><span className="pb-1 text-sm font-bold text-white/70">/ 5 · {reviewCount}</span></div>
+              <span className="mt-2 block text-xs text-white/55">{providerName} · {COPY.verified[lang]} {experience.reviewSnapshot.verifiedAt}</span>
               <p className="mt-5 text-xs leading-6 text-white/65">{COPY.metricsNote[lang]}</p>
-              <a href={experience.reviewSnapshot.sourceUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('experience_review_source_open', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, source: 'klook' })} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-black text-sky-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.reviewSource[lang]} <ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} /></a>
+              <a href={reviewSourceUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('experience_review_source_open', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, source: providerKey })} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-black text-sky-200 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.reviewSource[lang]} <ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} /></a>
             </div>
             <div>
               <h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.reviews[lang]}</h2>
@@ -243,7 +253,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
 
         <section id="checks" data-motion="reveal" className="scroll-mt-32 border-b border-[#e1e8e7] bg-white px-5 py-12 sm:px-6 sm:py-16">
           <div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-2">
-            <div><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.operator[lang]}</h2><dl className="mt-6 divide-y divide-[#e7eceb] border-y border-[#e7eceb]">{[[COPY.operatorLabel[lang], experience.operator[lang]], [COPY.sellerLabel[lang], 'Klook'], [COPY.roleLabel[lang], COPY.role[lang]]].map(([term, description]) => <div key={term} className="grid grid-cols-[8rem_minmax(0,1fr)] gap-3 py-4"><dt className="text-xs font-black text-[#7b8a90]">{term}</dt><dd className="text-sm font-semibold leading-6 text-[#334c57]">{description}</dd></div>)}</dl></div>
+            <div><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.operator[lang]}</h2><dl className="mt-6 divide-y divide-[#e7eceb] border-y border-[#e7eceb]">{[[COPY.operatorLabel[lang], experience.operator[lang]], [COPY.sellerLabel[lang], providerName], [COPY.roleLabel[lang], COPY.role[lang]]].map(([term, description]) => <div key={term} className="grid grid-cols-[8rem_minmax(0,1fr)] gap-3 py-4"><dt className="text-xs font-black text-[#7b8a90]">{term}</dt><dd className="text-sm font-semibold leading-6 text-[#334c57]">{description}</dd></div>)}</dl></div>
             <div><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.checks[lang]}</h2><ul className="mt-6 space-y-3">{experience.checks.map((entry) => <li key={entry[lang]} className="flex gap-3 rounded-2xl bg-[#f4f8f7] px-4 py-3.5 text-sm leading-6 text-[#53666d]"><Check className="mt-1 h-4 w-4 shrink-0 text-[#4c8a99]" strokeWidth={ICON_STROKE} />{entry[lang]}</li>)}</ul></div>
           </div>
         </section>
@@ -257,7 +267,7 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
             <span className="text-[0.68rem] font-black tracking-[0.15em] text-[#3d8298]">{COPY.preparationEyebrow[lang]}</span>
             <div className="mt-2 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(16rem,0.55fr)] lg:items-end">
               <h2 className="max-w-3xl text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.preparation[lang]}</h2>
-              <span className="text-sm leading-6 text-[#5d7077] lg:text-right">{COPY.preparationDesc[lang]}</span>
+              <span className="text-sm leading-6 text-[#5d7077] lg:text-right">{experience.preparationDescription[lang]}</span>
             </div>
             <div className="mt-7 grid auto-rows-fr gap-4 md:grid-cols-3">
               {preparationItems.map((entry, index) => (
@@ -278,9 +288,9 @@ export function ExperienceEditorialView({ experience, forceLang }: { experience:
           </div>
         </section>
 
-        <section className="bg-white px-5 py-12 sm:px-6 sm:py-16"><div className="mx-auto max-w-5xl"><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.related[lang]}</h2><div className="mt-6 grid gap-4 sm:grid-cols-2">{experience.relatedTripSetSlugs.map((slug) => <Link key={slug} href={`${prefix}/collections/${slug}`} onClick={() => trackEvent('experience_related_trip_click', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, trip_set: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{COPY.tripSet[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}{experience.relatedGuideSlugs.map((slug) => <Link key={slug} href={`${prefix}/guide/${slug}`} onClick={() => trackEvent('experience_related_guide_click', { locale: lang, experience_slug: experience.slug, destination: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{COPY.guide[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}</div></div></section>
+        <section className="bg-white px-5 py-12 sm:px-6 sm:py-16"><div className="mx-auto max-w-5xl"><h2 className="text-2xl font-black text-[#172a36] sm:text-3xl">{COPY.related[lang]}</h2><div className="mt-6 grid gap-4 sm:grid-cols-2">{experience.relatedTripSetSlugs.map((slug) => <Link key={slug} href={`${prefix}/collections/${slug}`} onClick={() => trackEvent('experience_related_trip_click', { locale: lang, experience_slug: experience.slug, destination: experience.destinationSlug, trip_set: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{experience.relatedLabels.tripSet[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}{experience.relatedGuideSlugs.map((slug) => <Link key={slug} href={`${prefix}/guide/${slug}`} onClick={() => trackEvent('experience_related_guide_click', { locale: lang, experience_slug: experience.slug, destination: slug })} className="group flex min-h-24 items-center justify-between rounded-[1.35rem] border border-[#dce5e5] bg-[#f7faf9] px-5 py-4 text-sm font-black text-[#244755] hover:border-[#95bbc6]">{experience.relatedLabels.guide[lang]}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" strokeWidth={ICON_STROKE} /></Link>)}</div></div></section>
 
-        <section className="dark-surface bg-[#071c29] px-5 py-12 sm:px-6 sm:py-16"><div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"><div><span className="text-[0.68rem] font-black tracking-[0.15em] text-sky-300">{COPY.affiliate[lang]}</span><h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">{experience.title[lang]}</h2><span className="mt-3 block max-w-2xl text-sm leading-6 text-white/65">{COPY.disclosure[lang]}</span><span className="mt-3 block text-xs font-bold text-white/45">{COPY.verified[lang]} {experience.verifiedAt}</span></div><a href={item.href} target="_blank" rel="sponsored noopener noreferrer" onClick={handleAffiliate} className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-black text-[#083b52] transition hover:bg-sky-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.cta[lang]}<ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} /></a></div></section>
+        <section className="dark-surface bg-[#071c29] px-5 py-12 sm:px-6 sm:py-16"><div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center"><div><span className="text-[0.68rem] font-black tracking-[0.15em] text-sky-300">{COPY.affiliate[lang]}</span><h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">{experience.title[lang]}</h2><span className="mt-3 block max-w-2xl text-sm leading-6 text-white/65">{COPY.disclosure[lang]}</span><span className="mt-3 block text-xs font-bold text-white/45">{COPY.verified[lang]} {experience.verifiedAt}</span></div><a href={affiliateHref} target="_blank" rel="sponsored noopener noreferrer" onClick={handleAffiliate} className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-black text-[#083b52] transition hover:bg-sky-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{item.cta}<ArrowUpRight className="h-4 w-4" strokeWidth={ICON_STROKE} /></a></div></section>
       </main>
     </div>
   )

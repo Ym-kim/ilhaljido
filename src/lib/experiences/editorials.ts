@@ -25,6 +25,7 @@ export type ReviewSnapshot = {
   reviewCount: number
   verifiedAt: string
   sourceUrl: string
+  localizedSourceUrls?: Partial<Record<Lang, string>>
   summaryType: 'metrics_only'
 }
 
@@ -54,6 +55,8 @@ export type ExperienceEditorial = {
   slug: string
   affiliateItemId: string
   destinationSlug: string
+  heroEyebrow: LocalizedText
+  heroContentSide: 'left' | 'right'
   title: LocalizedText
   subtitle: LocalizedText
   metaDescription: LocalizedText
@@ -63,6 +66,7 @@ export type ExperienceEditorial = {
   reasons: LocalizedText[]
   suggestedFlows: SuggestedFlow[]
   course: { morning: CourseStop[]; afternoon: CourseStop[] }
+  courseLabels: { morning: LocalizedText; afternoon: LocalizedText }
   included: LocalizedText[]
   prepareSeparately: LocalizedText[]
   reviewSnapshot: ReviewSnapshot
@@ -73,6 +77,12 @@ export type ExperienceEditorial = {
   faq: { question: LocalizedText; answer: LocalizedText }[]
   relatedTripSetSlugs: string[]
   relatedGuideSlugs: string[]
+  relatedLabels: { tripSet: LocalizedText; guide: LocalizedText }
+  placementCopy: {
+    guide: { eyebrow: LocalizedText; title: LocalizedText }
+    tripSet: { eyebrow: LocalizedText; title: LocalizedText }
+  }
+  preparationDescription: LocalizedText
   preparationItems: ExperiencePreparationItem[]
   mediaAssetIds: string[]
   verifiedAt: string
@@ -86,6 +96,8 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     slug: 'itoshima-photo-bus-tour',
     affiliateItemId: 'act-klook-itoshima-photo-bus',
     destinationSlug: 'fukuoka',
+    heroEyebrow: L('FUKUOKA · ITOSHIMA · HALF DAY', 'FUKUOKA · ITOSHIMA · HALF DAY', 'FUKUOKA · ITOSHIMA · HALF DAY'),
+    heroContentSide: 'left',
     title: L(
       '후쿠오카에서 반나절, 바다와 사진을 남기는 이토시마',
       'A half-day from Fukuoka for Itoshima coast and photographs',
@@ -160,6 +172,10 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
         { time: '18:30', title: L('하카타역 최종 하차', 'Final drop-off at Hakata Station', '博多駅で最終降車') },
       ],
     },
+    courseLabels: {
+      morning: L('오전 출발', 'Morning departure', '午前出発'),
+      afternoon: L('오후 출발', 'Afternoon departure', '午後出発'),
+    },
     included: [
       L('왕복 버스 이동', 'Round-trip bus transport', '往復バス移動'),
       L('한국어 안내', 'Korean-language guidance', '韓国語案内'),
@@ -209,6 +225,25 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     ],
     relatedTripSetSlugs: ['fukuoka-3n4d'],
     relatedGuideSlugs: ['fukuoka'],
+    relatedLabels: {
+      tripSet: L('후쿠오카 3박 4일 구성', 'Fukuoka 3N4D Trip Set', '福岡3泊4日 Trip Set'),
+      guide: L('후쿠오카 여행지 가이드', 'Fukuoka destination guide', '福岡の旅行先ガイド'),
+    },
+    placementCopy: {
+      guide: {
+        eyebrow: L('반나절 근교 체험', 'HALF-DAY FROM THE CITY', '半日の郊外体験'),
+        title: L('이토시마에서 보내는 오후', 'An afternoon in Itoshima', '糸島で過ごす午後'),
+      },
+      tripSet: {
+        eyebrow: L('DAY 3 대안', 'DAY 3 OPTION', 'DAY 3 の選択肢'),
+        title: L('하루를 비우기 어렵다면, 이토시마 반나절', 'If a full day is too much, take half a day for Itoshima', '一日を空けにくいなら、糸島を半日で'),
+      },
+    },
+    preparationDescription: L(
+      '하카타 숙소와 이동, 현지 연결 수단을 따로 헤매지 않도록 이 일정에 필요한 순서로 모았습니다.',
+      'A short, itinerary-led list for the stay, journey and connectivity around this experience.',
+      '博多の宿、移動、現地での通信を、この体験に合わせた順番でまとめました。',
+    ),
     preparationItems: [
       {
         itemId: 'feat-fukuoka-hotel',
@@ -242,6 +277,192 @@ export const EXPERIENCE_EDITORIALS: ExperienceEditorial[] = [
     sources: [
       { name: 'Klook activity 115689', url: 'https://www.klook.com/ko/activity/115689-fukuoka-itoshima-half-day-bus-tour/', verifiedAt: '2026-07-30', customerVisible: true },
       { name: 'MyRealTrip product 3196704', url: 'https://experiences.myrealtrip.com/products/3196704', verifiedAt: '2026-07-30', customerVisible: false },
+    ],
+  },
+  {
+    slug: 'busan-coastal-highlights-day-tour',
+    affiliateItemId: 'act-klook-busan-coastal-highlights',
+    destinationSlug: 'busan',
+    heroEyebrow: L('BUSAN · COASTAL HIGHLIGHTS · FULL DAY', 'BUSAN · COASTAL HIGHLIGHTS · FULL DAY', 'BUSAN · COASTAL HIGHLIGHTS · FULL DAY'),
+    heroContentSide: 'right',
+    title: L(
+      '부산의 바다와 마을을 하루에 잇는 해안 하이라이트',
+      'One day across Busan’s coast, villages and sea views',
+      '釜山の海と街を一日でつなぐ、海岸ハイライト',
+    ),
+    subtitle: L(
+      '해운대 블루라인파크와 감천문화마을 등 멀리 떨어진 부산의 주요 지점을 차량으로 묶어 보는 하루 일정입니다.',
+      'A full-day vehicle itinerary connecting far-apart Busan highlights such as Blue Line Park and Gamcheon Culture Village.',
+      '海雲台ブルーラインパークや甘川文化村など、離れた釜山の見どころを車でつなぐ一日プランです。',
+    ),
+    metaDescription: L(
+      '부산 해안 하이라이트 일일투어의 소요시간, 언어 옵션, 주요 동선, 후기 확인 포인트와 2박 3일 일정 배치를 Wakation 관점으로 정리했습니다.',
+      'A Wakation guide to the Busan coastal highlights day tour: duration, language options, route, review checks and how it fits a 2N3D stay.',
+      '釜山海岸ハイライト日帰りツアーの所要時間、言語、主な動線、口コミの確認点、2泊3日への組み込み方をまとめました。',
+    ),
+    editorNote: L(
+      '부산은 해운대와 감천문화마을처럼 주요 지점 사이 이동 거리가 큽니다. 업무가 없는 하루를 확보할 수 있고 여러 장소를 직접 환승하며 다니는 부담을 줄이고 싶을 때 맞는 선택입니다. 공개된 Klook 상품 정보와 후기 지표를 바탕으로 편집했으며 Wakation의 직접 체험 후기는 아닙니다.',
+      'Busan’s key sights are spread widely across the city. This option suits travelers with one work-free day who want to reduce the burden of planning transfers. It is based on public Klook details and provider review metrics, not a first-hand Wakation review.',
+      '釜山は海雲台と甘川文化村など、見どころ同士の距離が離れています。仕事を入れない一日を確保でき、乗り換えを自分で組む負担を減らしたい人に合う選択です。公開されているKlookの商品情報と口コミ指標をもとに編集しており、Wakationの実体験レビューではありません。',
+    ),
+    bestFor: [
+      L('부산 첫 여행에서 주요 해안 명소를 한 번에 보고 싶은 사람', 'First-time visitors who want several coastal highlights in one day', '初めての釜山で海辺の主要スポットをまとめて見たい人'),
+      L('일본어 가이드 옵션을 우선 확인하고 싶은 여행자', 'Travelers who want to check a Japanese-guide option first', '日本語ガイドの選択肢を優先して確認したい人'),
+      L('2박 3일 중 하루는 관광, 나머지는 일과 휴식에 쓰고 싶은 사람', 'Travelers keeping one day for sightseeing and the rest for work and rest', '2泊3日の一日を観光、残りを仕事と休息に使いたい人'),
+    ],
+    facts: [
+      { label: L('소요 시간', 'Duration', '所要時間'), value: L('약 9–12시간', 'About 9–12 hours', '約9〜12時間') },
+      { label: L('출발 지역', 'Departure', '出発地'), value: L('부산 시내 지정 지점', 'Designated points in Busan', '釜山市内の指定場所') },
+      { label: L('이동 방식', 'Transport', '移動'), value: L('가이드 동행 차량', 'Guided vehicle tour', 'ガイド同行の車両ツアー') },
+      { label: L('언어 옵션', 'Language options', '言語'), value: L('영어·중국어·일본어', 'English, Chinese, Japanese', '英語・中国語・日本語') },
+      { label: L('참여 방식', 'Format', '参加形態'), value: L('조인 또는 프라이빗', 'Join-in or private', '混乗またはプライベート') },
+      { label: L('주요 지역', 'Key areas', '主なエリア'), value: L('해운대·감천 일대', 'Haeundae and Gamcheon areas', '海雲台・甘川エリア') },
+    ],
+    reasons: [
+      L('부산 동서로 떨어진 해안·마을 명소를 개별 환승 없이 묶어 볼 수 있습니다.', 'It links coastal and village sights spread across Busan without planning each transfer.', '東西に離れた海辺と街の見どころを、乗り換えを組まずに巡れます。'),
+      L('일본어 가이드가 표기된 옵션을 선택 날짜와 패키지에서 확인할 수 있습니다.', 'A Japanese-guide option is listed and can be checked for the selected date and package.', '日本語ガイド表記のあるプランを、利用日とパッケージで確認できます。'),
+      L('관광을 하루에 모아 나머지 체류일에 업무와 해운대 산책 시간을 남기기 좋습니다.', 'Putting sightseeing into one day leaves the remaining stay open for work and Haeundae walks.', '観光を一日にまとめ、残りの日を仕事や海雲台の散歩に使いやすくなります。'),
+    ],
+    suggestedFlows: [
+      {
+        label: L('2박 3일', '2N3D option', '2泊3日'),
+        title: L('둘째 날을 부산 해안에', 'Keep day two for the coast', '2日目を釜山の海辺へ'),
+        items: [
+          L('DAY 1 해운대 체크인 · 짧은 업무 · 저녁 산책', 'DAY 1 Check in at Haeundae · short work block · evening walk', 'DAY 1 海雲台にチェックイン · 軽く仕事 · 夜の散歩'),
+          L('DAY 2 해안 하이라이트 일일투어', 'DAY 2 Coastal highlights day tour', 'DAY 2 海岸ハイライト日帰りツアー'),
+          L('DAY 3 늦은 오전 업무 또는 카페 · 이동', 'DAY 3 Late-morning work or café · depart', 'DAY 3 午前は仕事かカフェ · 移動'),
+        ],
+      },
+      {
+        label: L('워케이션', 'Workation option', 'ワーケーション'),
+        title: L('회의 없는 날에만 배치', 'Use a meeting-free day', '会議のない日に入れる'),
+        items: [
+          L('전날 중요한 업무와 화상회의 마무리', 'Finish important work and calls the day before', '前日に重要な仕事とオンライン会議を終える'),
+          L('투어 당일 9–12시간을 비워두기', 'Keep 9–12 hours open on the tour day', 'ツアー当日は9〜12時間空ける'),
+          L('다음 날 오전은 여유 있게 시작', 'Start the next morning without a tight schedule', '翌朝は余裕のある予定にする'),
+        ],
+      },
+    ],
+    course: {
+      morning: [
+        { time: 'AM', title: L('지정 미팅 지점에서 출발', 'Depart from the selected meeting point', '指定の集合場所から出発'), note: L('정확한 장소는 선택 패키지와 바우처에서 확인', 'Confirm the exact point in the selected package and voucher', '正確な場所は選択プランとバウチャーで確認') },
+        { time: 'AM', title: L('부산 해안의 사찰·전망 지점', 'Coastal temple or viewpoint stop', '海辺の寺院・展望スポット'), note: L('방문지는 패키지에 따라 달라질 수 있음', 'Stops vary by package', '訪問先はプランにより異なる') },
+        { time: 'NOON', title: L('개별 점심과 다음 지역 이동', 'Lunch and transfer to the next area', '各自昼食と次のエリアへ移動') },
+      ],
+      afternoon: [
+        { time: 'PM', title: L('블루라인파크 또는 스카이캡슐 구간', 'Blue Line Park or Sky Capsule segment', 'ブルーラインパークまたはスカイカプセル区間'), note: L('티켓 포함 여부는 선택 옵션별 확인', 'Ticket inclusion depends on the selected option', 'チケットの有無は選択プランで確認') },
+        { time: 'PM', title: L('감천문화마을 등 마을 산책', 'Village walk such as Gamcheon Culture Village', '甘川文化村などを散策') },
+        { time: 'PM', title: L('지정 하차 지점으로 복귀', 'Return to the designated drop-off point', '指定の降車場所へ戻る'), note: L('교통 상황에 따라 종료 시각 변동 가능', 'Finish time can shift with traffic', '交通状況により終了時刻が変わる場合あり') },
+      ],
+    },
+    courseLabels: {
+      morning: L('오전 동선', 'Morning route', '午前の流れ'),
+      afternoon: L('오후 동선', 'Afternoon route', '午後の流れ'),
+    },
+    included: [
+      L('선택한 패키지에 표기된 차량 이동과 가이드', 'Vehicle transport and guide listed for the selected package', '選択プランに記載された車両移動とガイド'),
+      L('선택 옵션에 포함으로 표시된 블루라인파크·스카이캡슐 티켓', 'Blue Line Park or Sky Capsule tickets only when listed in the selected option', '選択プランで「含む」と表示されたブルーラインパーク・スカイカプセルのチケット'),
+      L('패키지별 지정 방문지', 'Stops listed in the selected package', '選択プランに記載された訪問先'),
+    ],
+    prepareSeparately: [
+      L('점심·간식과 개인 쇼핑 비용', 'Lunch, snacks and personal shopping', '昼食・軽食・個人の買い物代'),
+      L('걷기 편한 신발과 계절별 날씨 준비', 'Walking shoes and seasonal weather gear', '歩きやすい靴と季節に合う天候対策'),
+      L('정확한 미팅 장소·언어·티켓 포함 여부 재확인', 'Reconfirm meeting point, language and ticket inclusions', '集合場所・言語・チケットの有無を再確認'),
+    ],
+    reviewSnapshot: {
+      provider: 'Klook',
+      rating: 4.9,
+      reviewCount: 3600,
+      verifiedAt: '2026-08-10',
+      sourceUrl: 'https://www.klook.com/ko/activity/74132-busan-oneday-tour-busan/',
+      localizedSourceUrls: {
+        KO: 'https://www.klook.com/ko/activity/74132-busan-oneday-tour-busan/',
+        EN: 'https://www.klook.com/en-US/activity/74132-busan-oneday-tour-busan/',
+        JP: 'https://www.klook.com/ja/activity/74132-busan-oneday-tour-busan/',
+      },
+      summaryType: 'metrics_only',
+    },
+    reviewTopics: [
+      L('가이드 언어와 설명', 'Guide language and commentary', 'ガイドの言語と案内'),
+      L('미팅 장소 안내', 'Meeting-point directions', '集合場所の案内'),
+      L('장소별 자유시간', 'Free time at each stop', '各スポットの自由時間'),
+      L('차량 이동과 일정 속도', 'Vehicle transfers and pace', '車両移動と進行ペース'),
+      L('더위·비 등 날씨 대응', 'Weather preparation for heat or rain', '暑さ・雨など天候への備え'),
+    ],
+    operator: L('Klook 상품 페이지의 선택 패키지별 운영사', 'The operator shown for the selected Klook package', 'Klookで選択したプランに表示される運営会社'),
+    providers: [
+      { provider: 'klook', status: 'active_affiliate', affiliateItemId: 'act-klook-busan-coastal-highlights', verifiedAt: '2026-08-10' },
+    ],
+    checks: [
+      L('선택 날짜에 일본어 가이드 옵션이 실제 제공되는지', 'Whether a Japanese-guide option is offered on your selected date', '選択日に日本語ガイドのプランが実際にあるか'),
+      L('블루라인파크·스카이캡슐 티켓 포함 여부', 'Whether Blue Line Park or Sky Capsule tickets are included', 'ブルーラインパーク・スカイカプセルのチケットが含まれるか'),
+      L('정확한 미팅·하차 장소와 종료 예상 시각', 'Exact meeting and drop-off points and estimated finish time', '正確な集合・降車場所と終了予定時刻'),
+      L('짐 보관 가능 여부와 차량 제한', 'Luggage capacity and vehicle restrictions', '荷物の積載可否と車両の制限'),
+      L('취소·변경 기한과 날씨에 따른 운영 정책', 'Cancellation, change and weather-operation policies', 'キャンセル・変更期限と天候時の運営方針'),
+    ],
+    faq: [
+      { question: L('일본어로 참여할 수 있나요?', 'Is a Japanese guide available?', '日本語で参加できますか？'), answer: L('공식 Klook 페이지에는 일본어가 언어 옵션으로 표시됩니다. 다만 모든 날짜·패키지에 동일하게 제공된다고 단정할 수 없으므로 선택 단계에서 일본어 옵션을 다시 확인하세요.', 'Klook lists Japanese as a language option, but availability may differ by date and package. Reconfirm it during option selection.', 'Klookでは日本語が言語オプションとして表示されています。ただし日程・プランにより異なる可能性があるため、選択画面で日本語プランを再確認してください。') },
+      { question: L('워케이션 중에 넣기에는 너무 길지 않나요?', 'Is it too long for a workation?', 'ワーケーションに入れるには長すぎませんか？'), answer: L('약 9–12시간이어서 업무와 같은 날 병행하기보다는 회의가 없는 하루에 배치하는 편이 안전합니다. 전날과 다음 날에 업무 블록을 나누어 두세요.', 'At roughly 9–12 hours, it is safer to use a meeting-free day rather than combine it with work. Split work blocks across the day before and after.', '約9〜12時間のため、仕事と同日に組み合わせず、会議のない日に入れるのが安心です。仕事は前日と翌日に分けてください。') },
+      { question: L('스카이캡슐 티켓이 항상 포함되나요?', 'Is the Sky Capsule ticket always included?', 'スカイカプセルのチケットは必ず含まれますか？'), answer: L('아니요. 공식 페이지에는 여러 패키지가 있으며 블루라인파크·스카이캡슐 티켓 포함 여부가 옵션별로 다르게 표시됩니다. 결제 전 패키지명을 확인하세요.', 'No. The page lists several packages, and Blue Line Park or Sky Capsule ticket inclusion differs by option. Check the package name before payment.', 'いいえ。複数のプランがあり、ブルーラインパーク・スカイカプセルのチケット有無はプランごとに異なります。決済前にプラン名を確認してください。') },
+      { question: L('혼자 참여할 수 있나요?', 'Can I join alone?', 'ひとりでも参加できますか？'), answer: L('조인 투어 옵션이 표시되지만 선택 날짜의 최소 인원과 확정 조건은 달라질 수 있습니다. 제휴사 옵션에서 최종 확인하세요.', 'Join-in options are listed, but minimum participant and confirmation conditions can vary. Confirm them in the provider option.', '混乗プランが表示されていますが、最少催行人数や確定条件は日程により異なる場合があります。提携先の選択画面で確認してください。') },
+      { question: L('큰 짐을 가지고 탈 수 있나요?', 'Can I bring large luggage?', '大きな荷物を持ち込めますか？'), answer: L('차량과 참여 인원에 따라 적재 공간이 달라질 수 있습니다. 여행 가방이 있다면 예약 전 제휴사에 보관 가능 여부를 확인하세요.', 'Vehicle storage varies with the group and vehicle. Ask the provider before booking if you have a suitcase.', '車両や参加人数により荷物スペースが異なります。スーツケースがある場合は予約前に提携先へ確認してください。') },
+      { question: L('Wakation에서 직접 예약하나요?', 'Do I book with Wakation?', 'Wakationで直接予約しますか？'), answer: L('아니요. Wakation은 일정 판단을 돕고 외부 상품을 소개합니다. 최종 조건 확인과 예약·결제·변경·취소·환불은 Klook에서 진행합니다.', 'No. Wakation helps you judge how the activity fits and introduces an external product. Final checks, booking, payment, changes, cancellations and refunds are handled by Klook.', 'いいえ。Wakationは旅程への組み込み方を整理し、外部商品を紹介します。最終確認・予約・決済・変更・キャンセル・返金はKlookで行います。') },
+    ],
+    relatedTripSetSlugs: ['busan-weekend'],
+    relatedGuideSlugs: ['busan'],
+    relatedLabels: {
+      tripSet: L('부산 주말 2박 3일 구성', 'Busan weekend 2N3D Trip Set', '釜山週末2泊3日 Trip Set'),
+      guide: L('부산 여행지 가이드', 'Busan destination guide', '釜山の旅行先ガイド'),
+    },
+    placementCopy: {
+      guide: {
+        eyebrow: L('하루로 잇는 부산 해안', 'A FULL DAY ACROSS BUSAN', '一日でつなぐ釜山の海辺'),
+        title: L('해운대부터 감천까지, 이동 부담을 줄인 하루', 'Haeundae to Gamcheon with fewer transfer decisions', '海雲台から甘川まで、移動の迷いを減らす一日'),
+      },
+      tripSet: {
+        eyebrow: L('DAY 2 선택', 'DAY 2 OPTION', 'DAY 2 の選択肢'),
+        title: L('업무 없는 하루에 부산의 바다와 마을을 한 번에', 'Use a work-free day for Busan’s coast and villages', '仕事を入れない一日に、釜山の海と街をまとめて'),
+      },
+    },
+    preparationDescription: L(
+      '해운대 숙소, 일본에서 부산으로 오는 이동, 도착 후 공항 이동을 이 일정과 이어지는 순서로 모았습니다.',
+      'A short list for a Haeundae stay, travel into Busan and the airport transfer around this itinerary.',
+      '海雲台の宿、日本から釜山への移動、到着後の空港送迎を、この旅程につながる順番でまとめました。',
+    ),
+    preparationItems: [
+      {
+        itemId: 'stay-uh-busan',
+        reason: L(
+          '긴 투어 전후 이동을 줄이려면 해운대 해변과 가까운 체류 거점의 현재 객실 조건을 먼저 확인해보세요.',
+          'To reduce travel before and after a long tour, check current stay conditions near Haeundae Beach.',
+          '長いツアーの前後移動を減らすなら、海雲台ビーチ近くの宿泊条件を先に確認しましょう。',
+        ),
+      },
+      {
+        itemId: 'cruise-panstar-miracle',
+        title: L('오사카에서 부산으로 오는 밤바다 이동', 'Overnight sea route from Osaka to Busan', '大阪から釜山へ向かう夜の船旅'),
+        destinationLabel: L('오사카 출발 · 부산 도착', 'Osaka to Busan', '大阪発 · 釜山着'),
+        reason: L(
+          '일본에서 출발한다면 이동 자체를 하룻밤 여정으로 바꾸는 부산 입국 동선도 비교해보세요.',
+          'If arriving from Japan, compare an overnight sea route that turns the transfer into part of the trip.',
+          '日本から出発するなら、移動そのものを一泊の旅に変える釜山への航路も比較してみましょう。',
+        ),
+      },
+      {
+        itemId: 'feat-transfer-klook',
+        title: L('김해공항에서 숙소까지 이동', 'Transfer from Gimhae Airport to your stay', '金海空港から宿までの移動'),
+        destinationLabel: L('김해공항 · 부산 시내', 'Gimhae Airport · Busan', '金海空港 · 釜山市内'),
+        reason: L(
+          '짐이 많거나 늦게 도착한다면 공항에서 숙소까지의 현재 픽업 조건을 미리 확인하세요.',
+          'If you have luggage or arrive late, check current airport-transfer terms before departure.',
+          '荷物が多い、または到着が遅い場合は、空港から宿までの送迎条件を事前に確認してください。',
+        ),
+      },
+    ],
+    mediaAssetIds: ['domestic-busan-model-h-haeundae-v3'],
+    verifiedAt: '2026-08-10',
+    sources: [
+      { name: 'Klook activity 74132', url: 'https://www.klook.com/ja/activity/74132-busan-oneday-tour-busan/', verifiedAt: '2026-08-10', customerVisible: true },
     ],
   },
 ]

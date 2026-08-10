@@ -16,9 +16,16 @@ const requiredItems = [
   ['esim-klook-japan', 'aid=126848'],
 ]
 
+const busanRequiredItems = [
+  ['stay-uh-busan', 'aid=7854081'],
+  ['cruise-panstar-miracle', 'aid=126848'],
+  ['feat-transfer-klook', 'aid=126848'],
+]
+
 const checks = [
   ['preparation model', data.includes('preparationItems: ExperiencePreparationItem[]')],
   ['three itinerary-led preparation items', requiredItems.every(([id]) => data.includes(`itemId: '${id}'`))],
+  ['three Busan itinerary-led preparation items', busanRequiredItems.every(([id]) => data.includes(`itemId: '${id}'`))],
   ['KO/EN/JA reasons', (data.match(/reason: L\(/g)?.length ?? 0) >= 3],
   ['Fukuoka flight deep link', items.includes('seoul-to-fukuoka/airfares-sel-fuk/?Allianceid=9024807')],
   ['preparation section', view.includes('id="prepare"') && view.includes('ExperiencePreparationCard')],
@@ -34,6 +41,12 @@ const checks = [
       && (items + featured).includes(tracking)
       && (items + featured).includes("status: 'active_affiliate'"),
   ]),
+  ...busanRequiredItems.map(([id, tracking]) => [
+    `${id} active with tracking`,
+    (items + featured).includes(`id: '${id}'`)
+      && (items + featured).includes(tracking)
+      && (items + featured).includes("status: 'active_affiliate'"),
+  ]),
 ]
 
 const failures = checks.filter(([, passed]) => !passed).map(([label]) => label)
@@ -43,4 +56,4 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log('[experience-conversion] PASS — 3 active preparation categories, localized rationale, attribution, save and disclosure invariants present.')
+console.log('[experience-conversion] PASS — Fukuoka and Busan preparation flows, localized rationale, attribution, save and disclosure invariants present.')
