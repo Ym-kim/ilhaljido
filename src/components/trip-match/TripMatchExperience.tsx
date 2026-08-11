@@ -91,13 +91,13 @@ const COPY: Record<string, L> = {
 }
 
 const TRIP_MATCH_INTRO_ASSET = {
-  id: 'trip-match-model-d-itinerary-choice-v3',
+  id: 'trip-match-model-d-ribbon-choice-v4',
   modelId: 'WAK-MODEL-D',
-  src: '/media/brand-models/trip-match-model-d-itinerary-choice-v3.webp',
+  src: '/media/brand-models/trip-match-model-d-ribbon-choice-v4.webp',
   alt: {
-    KO: '출발 라운지에서 두 여행 일정과 노트북을 정리하는 여행자',
-    EN: 'A traveler choosing between two itineraries in an unnamed departure lounge',
-    JP: '出発ラウンジで2つの旅程とノートパソコンを整理する旅人',
+    KO: '여행가방 앞에 앉아 리본을 묶으며 출발을 준비하는 여행자',
+    EN: 'A traveler tying a ribbon onto her suitcase before departure',
+    JP: 'スーツケースにリボンを結び、出発の準備をする旅人',
   } satisfies L,
 } as const
 
@@ -282,7 +282,7 @@ export function TripMatchExperience({
             fill
             preload
             sizes="100vw"
-            className="object-cover object-[72%_48%]"
+            className="object-cover object-[71%_52%]"
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(3,18,29,.94)_0%,rgba(3,18,29,.73)_55%,rgba(3,18,29,.25)_100%)]" />
           <div className="relative mx-auto w-full max-w-6xl px-5 pb-12 pt-24 sm:px-8 md:pb-20">

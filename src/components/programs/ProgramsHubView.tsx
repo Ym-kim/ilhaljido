@@ -24,8 +24,8 @@ const DIRECTION_NOTE: Record<Lang, string> = {
   JP: '今後のWakationプログラムは、宿泊・ワークスペース・ネットワーキングに加え、事前VOD学習・現地実習・参加者用Webツールを組み合わせた成長型プログラムへ拡張されます。',
 }
 
-const PROGRAMS_HERO_DESKTOP = getMediaAsset('hosted-models-h-i-coastal-planning-v3')
-const PROGRAMS_HERO_MOBILE = getMediaAsset('hosted-models-h-i-coastal-planning-mobile-v3')
+const PROGRAMS_HERO_DESKTOP = getMediaAsset('programs-model-b-coastal-arrival-desktop-v3')
+const PROGRAMS_HERO_MOBILE = getMediaAsset('programs-model-b-coastal-arrival-mobile-v2')
 
 const STATUS_COLOR = {
   recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
@@ -74,9 +74,9 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
 
   useEffect(() => {
     trackEvent('visual_asset_view', {
-      assetId: PROGRAMS_HERO_DESKTOP?.id ?? 'hosted-models-h-i-coastal-planning-v3',
-      mobileAssetId: PROGRAMS_HERO_MOBILE?.id ?? 'hosted-models-h-i-coastal-planning-mobile-v3',
-      modelId: 'WAK-MODEL-H,WAK-MODEL-I',
+      assetId: PROGRAMS_HERO_DESKTOP?.id ?? 'programs-model-b-coastal-arrival-desktop-v3',
+      mobileAssetId: PROGRAMS_HERO_MOBILE?.id ?? 'programs-model-b-coastal-arrival-mobile-v2',
+      modelId: 'WAK-MODEL-B',
       route: lang === 'JP' ? '/ja/programs' : lang === 'EN' ? '/en/programs' : '/programs',
       section: 'programs_hero',
       locale: lang,
@@ -98,11 +98,11 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
               desktopSrc={PROGRAMS_HERO_DESKTOP.src}
               mobileSrc={PROGRAMS_HERO_MOBILE.src}
               alt={PROGRAMS_HERO_DESKTOP.alt[lang]}
-              desktopWidth={1440}
-              desktopHeight={900}
+              desktopWidth={1915}
+              desktopHeight={821}
               mobileWidth={960}
               mobileHeight={1280}
-              className="absolute inset-0 h-full w-full object-cover object-[62%_54%] md:object-[73%_3%]"
+              className="absolute inset-0 h-full w-full object-cover object-[68%_52%] md:object-[center_74%]"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />

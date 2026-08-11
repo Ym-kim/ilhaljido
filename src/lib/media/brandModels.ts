@@ -69,6 +69,32 @@ export const BRAND_MODEL_STYLING_RULES: Record<BrandModelId, BrandModelStylingRu
   'WAK-MODEL-J': { styleDirection: 'sharp city night and Seoul discovery', summerWardrobe: ['white short-sleeve blouse', 'minimal summer dress', 'charcoal skirt with light scarf'], seasonalFit: ['urban summer evening', 'blue-hour early autumn'], activityMood: ['walking after work', 'leaving an exhibition', 'crossing a lively street'], hairVariation: ['sleek straight hair', 'low ponytail', 'tucked-behind-ear bob effect'], realismLevel: 'high_photoreal_editorial', photorealReferenceUsed: true },
 }
 
+export type ModelVisualDirectionRule = {
+  signatureSilhouettes: string[]
+  poseFamilies: string[]
+  cameraFamilies: string[]
+  colorStories: string[]
+  avoidRepeating: string[]
+}
+
+// Identity continuity is only one layer of art direction. Every new production
+// prompt must also choose a silhouette, pose, camera family and color story that
+// differs from the adjacent major surface. These options intentionally include
+// dresses, skirts, shorts and tactile actions so "woman with paper/laptop" can
+// never become Wakation's default visual shorthand again.
+export const BRAND_MODEL_VISUAL_DIRECTIONS: Record<BrandModelId, ModelVisualDirectionRule> = {
+  'WAK-MODEL-A': { signatureSilhouettes: ['draped coastal dress', 'layered travel set'], poseFamilies: ['turning from a balcony', 'kneeling beside luggage'], cameraFamilies: ['back-view environmental wide', 'side-on low wide'], colorStories: ['ocean-blue and citrus', 'ivory and sea-glass'], avoidRepeating: ['seated laptop', 'neutral linen portrait'] },
+  'WAK-MODEL-B': { signatureSilhouettes: ['tailored Bermuda shorts', 'sporty shirt dress'], poseFamilies: ['descending steps', 'reaching into transit storage'], cameraFamilies: ['low-angle motion', 'architectural wide'], colorStories: ['cobalt, coral and teal', 'lime and navy'], avoidRepeating: ['desk writing', 'map reading'] },
+  'WAK-MODEL-C': { signatureSilhouettes: ['bias midi skirt', 'sculptural culotte set'], poseFamilies: ['floor packing', 'standing presentation'], cameraFamilies: ['overhead diagonal', 'waist-height layered'], colorStories: ['raspberry and cobalt', 'ink and chartreuse'], avoidRepeating: ['white blouse portrait', 'paper folio close-up'] },
+  'WAK-MODEL-D': { signatureSilhouettes: ['sleeveless shirt dress', 'graphic pleated skirt'], poseFamilies: ['crouched luggage prep', 'turning through an installation'], cameraFamilies: ['low wide departure', 'immersive off-axis'], colorStories: ['tomato, teal and sky blue', 'ultraviolet and silver'], avoidRepeating: ['standing itinerary choice', 'taupe lounge scene'] },
+  'WAK-MODEL-E': { signatureSilhouettes: ['pleated midi skirt', 'tailored shorts'], poseFamilies: ['seated scarf tie', 'laughing mid-transit'], cameraFamilies: ['low side wide', 'long-lens candid'], colorStories: ['cobalt, coral and yellow', 'mint and vermilion'], avoidRepeating: ['straight promenade walk', 'beige trousers'] },
+  'WAK-MODEL-F': { signatureSilhouettes: ['creative midi dress and apron', 'printed wrap skirt'], poseFamilies: ['hands-on craft', 'leaning into a food stall'], cameraFamilies: ['tactile side view', 'counter-height candid'], colorStories: ['violet and ultramarine', 'terracotta and jade'], avoidRepeating: ['map at table', 'beige linen shirt'] },
+  'WAK-MODEL-G': { signatureSilhouettes: ['A-line midi skirt', 'flowing island dress'], poseFamilies: ['seated camera pause', 'wind-turn on a coastal path'], cameraFamilies: ['environmental wide', 'rear three-quarter'], colorStories: ['marigold, navy and turquoise', 'lavender and moss'], avoidRepeating: ['straight walking pose', 'dark denim trousers'] },
+  'WAK-MODEL-H': { signatureSilhouettes: ['belted shirt dress', 'cropped top with full skirt'], poseFamilies: ['crouching to browse', 'reaching across a shared display'], cameraFamilies: ['vendor-eye medium wide', 'high-angle social'], colorStories: ['sunflower, cobalt and red', 'aqua and tangerine'], avoidRepeating: ['pointing at map', 'soft-blue blouse portrait'] },
+  'WAK-MODEL-I': { signatureSilhouettes: ['jewel-tone belted dress', 'fluid resort set'], poseFamilies: ['seated reading', 'moving through a team session'], cameraFamilies: ['elevated layered view', 'architectural profile'], colorStories: ['emerald and burgundy', 'plum and warm silver'], avoidRepeating: ['walking with laptop sleeve', 'ivory knit portrait'] },
+  'WAK-MODEL-J': { signatureSilhouettes: ['graphic monochrome skirt', 'minimal city dress'], poseFamilies: ['crossing through light', 'perching after an exhibition'], cameraFamilies: ['compressed night street', 'asymmetric gallery wide'], colorStories: ['charcoal and electric blue', 'cream and acid green'], avoidRepeating: ['generic straight walk', 'white blouse with map'] },
+}
+
 const COMMON_RESTRICTED_SECTIONS = [
   'reviews',
   'testimonials',
@@ -97,8 +123,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with a soft urban presence and long dark hair',
     faceKeywords: ['soft', 'urban', 'approachable'], hairKeywords: ['long', 'dark', 'natural'], moodKeywords: ['daylight', 'social', 'easy'],
     wardrobePalette: ['stone', 'soft blue', 'charcoal'], preferredActions: ['taking notes', 'walking between cafés', 'checking a route'], preferredLocations: ['city café', 'design district', 'local street'],
-    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work', 'growth-learning'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: ['growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2'],
+    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work', 'growth-learning', 'programs-hero'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: ['growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2', 'programs-model-b-coastal-arrival-desktop-v3', 'programs-model-b-coastal-arrival-mobile-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Regenerate environment-led scenes; never publish the source pose or synthetic lettering.',
   },
@@ -108,8 +134,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with a composed premium presence and polished long dark hair',
     faceKeywords: ['composed', 'polished', 'quiet'], hairKeywords: ['long', 'dark', 'smooth'], moodKeywords: ['premium', 'focused', 'minimal'],
     wardrobePalette: ['ink', 'taupe', 'cream'], preferredActions: ['waiting before check-in', 'reviewing a schedule', 'quiet laptop work'], preferredLocations: ['hotel lounge', 'business stay', 'museum café'],
-    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1'],
+    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial', 'select-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1', 'select-model-c-packing-flatlay-v4', 'business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Vary wardrobe and camera distance; avoid repeating a white top and beauty-portrait composition.',
   },
@@ -121,7 +147,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['taupe', 'muted blue', 'charcoal'], preferredActions: ['choosing an itinerary', 'closing a laptop', 'leaving an exhibition'], preferredLocations: ['departure lounge', 'gallery district', 'evening city'],
     allowedSections: ['trip-match', 'exhibition-editorial', 'city-departure'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-d-refined-editorial-identity-anchor'], referenceAssetIds: ['model-d-source-reference'],
-    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3', 'experience-tokyo-model-d-immersive-gallery-v2'],
+    productionAssetIds: ['trip-match-model-d-itinerary-choice-v3', 'trip-match-model-d-ribbon-choice-v4', 'experience-tokyo-model-d-immersive-gallery-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Prioritize choice, movement and place rather than a close beauty composition.',
   },
@@ -132,7 +158,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     faceKeywords: ['confident', 'defined', 'modern'], hairKeywords: ['long', 'dark', 'sleek'], moodKeywords: ['coastal city', 'fresh', 'active'],
     wardrobePalette: ['navy', 'muted coral', 'beige'], preferredActions: ['starting a coastal walk', 'adjusting a travel bag', 'moving between city and sea'], preferredLocations: ['coastal promenade', 'harbor district', 'short city break'],
     allowedSections: ['busan-editorial', 'select-editorial', 'short-break', 'busan-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-e-city-chic-identity-anchor'], referenceAssetIds: ['model-e-source-reference'], productionAssetIds: ['domestic-busan-model-e-coastal-city-v2', 'monthly-2026-08-model-e-city-arrival-v2', 'monthly-model-edit-2026-08-v2', 'busan-model-e-after-work-coast-v1'],
+    identityAnchorAssetIds: ['wak-model-e-city-chic-identity-anchor'], referenceAssetIds: ['model-e-source-reference'], productionAssetIds: ['domestic-busan-model-e-coastal-city-v2', 'monthly-2026-08-model-e-city-arrival-v2', 'monthly-model-edit-2026-08-v2', 'busan-model-e-after-work-coast-v1', 'busan-model-e-harbor-steps-skirt-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Restyle into practical travel clothing and show movement rather than a fashion pose.',
   },
@@ -142,8 +168,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with warm brown hair and a modern feminine presence',
     faceKeywords: ['warm', 'modern', 'open'], hairKeywords: ['brown', 'long', 'soft wave'], moodKeywords: ['daylight', 'city food', 'social'],
     wardrobePalette: ['camel', 'cream', 'terracotta'], preferredActions: ['walking to a café', 'browsing a market', 'meeting a friend'], preferredLocations: ['Fukuoka-inspired street', 'Osaka-inspired café', 'market lane'],
-    allowedSections: ['japan-campaign', 'food-editorial', 'social-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: ['campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2', 'late-summer-model-f-market-v1', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'],
+    allowedSections: ['japan-campaign', 'food-editorial', 'social-editorial', 'growth-learning'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-f-warm-modern-identity-anchor'], referenceAssetIds: ['model-f-source-reference'], productionAssetIds: ['campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2', 'late-summer-model-f-market-v1', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1', 'growth-model-f-pottery-learning-desktop-v3', 'growth-model-f-pottery-learning-mobile-v3'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Use warm hair and natural daylight to diversify the roster without repeating glamour styling.',
   },
@@ -153,8 +179,8 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     identityDescriptor: 'fictional adult East Asian woman with a clean gentle presence and long straight dark hair',
     faceKeywords: ['clean', 'gentle', 'focused'], hairKeywords: ['long', 'straight', 'dark'], moodKeywords: ['slow', 'windy', 'quiet'],
     wardrobePalette: ['sage', 'ivory', 'dark denim'], preferredActions: ['writing in a notebook', 'walking by a stone wall', 'pausing in the wind'], preferredLocations: ['island lane', 'coastal field', 'quiet café'],
-    allowedSections: ['jeju-editorial', 'domestic-onboarding', 'slow-stay'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-g-clean-romantic-identity-anchor'], referenceAssetIds: ['model-g-source-reference'], productionAssetIds: ['domestic-jeju-model-g-slow-stay-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2'],
+    allowedSections: ['jeju-editorial', 'domestic-onboarding', 'slow-stay', 'jeju-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-g-clean-romantic-identity-anchor'], referenceAssetIds: ['model-g-source-reference'], productionAssetIds: ['domestic-jeju-model-g-slow-stay-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'jeju-model-g-after-rain-coast-v1', 'jeju-model-g-summer-camera-skirt-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Create environmental travel poses; the portrait anchor itself is never a publication asset.',
   },
@@ -166,7 +192,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['sand', 'ivory', 'soft blue'], preferredActions: ['planning together', 'pointing to a map', 'organizing a day'], preferredLocations: ['local café', 'coastal shared lounge', 'quiet daytime street'],
     allowedSections: ['hosted-editorial', 'domestic-beginner', 'local-cafe', 'fukuoka-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-h-soft-daylight-identity-anchor-v2-2'], referenceAssetIds: ['model-h-source-reference-v2-2'],
-    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-model-edit-2026-08-v2', 'domestic-busan-model-h-haeundae-v4', 'fukuoka-model-h-cafe-work-v1'],
+    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-model-edit-2026-08-v2', 'domestic-busan-model-h-haeundae-v4', 'fukuoka-model-h-cafe-work-v1', 'fukuoka-model-h-market-dress-v2', 'business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 H; supersedes and invalidates every previous H identity.',
     notes: 'Keep the rounded face and curtain bangs distinct; never blend with I or the rejected former H.',
@@ -179,7 +205,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     wardrobePalette: ['chestnut', 'cream', 'deep navy'], preferredActions: ['checking an itinerary', 'writing a shared plan', 'preparing to depart'], preferredLocations: ['travel lounge', 'coastal shared workspace', 'exhibition district'],
     allowedSections: ['select-editorial', 'hosted-editorial', 'business-travel', 'seoul-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-i-modern-grace-identity-anchor-v2-2'], referenceAssetIds: ['model-i-source-reference-v2-2'],
-    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'select-model-i-travel-prep-v3', 'seoul-model-i-after-work-design-lane-v2'],
+    productionAssetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3', 'select-model-i-travel-prep-v3', 'seoul-model-i-after-work-design-lane-v2', 'seoul-model-i-design-book-dress-v3', 'business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     replacementRecord: 'New v2.2 I; supersedes and invalidates every previous I identity.',
     notes: 'Keep the mature oval face and chestnut waves distinct; never blend with H or the rejected former I.',

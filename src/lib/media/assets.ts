@@ -62,6 +62,77 @@ export type MediaAsset = {
   restriction?: Record<Lang, string>
 }
 
+const MODEL_DIVERSITY_RESTRICTION: Record<Lang, string> = {
+  KO: '실제 고객·참가자·프로그램·상품 또는 특정 장소의 현장 사진으로 표현하지 않는다.',
+  EN: 'Do not present as a photograph of real customers, participants, programs, products or a specific venue.',
+  JP: '実在の顧客・参加者・プログラム・商品、または特定の場所の現場写真として扱わない。',
+}
+
+const MODEL_DIVERSITY_ASSETS: MediaAsset[] = [
+  {
+    id: 'trip-match-model-d-ribbon-choice-v4', src: '/media/brand-models/trip-match-model-d-ribbon-choice-v4.webp',
+    alt: { KO: '여행가방 앞에 앉아 리본을 묶으며 출발을 준비하는 여행자', EN: 'A traveler tying a ribbon onto her suitcase before departure', JP: 'スーツケースにリボンを結び、出発の準備をする旅人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-D', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'],
+    wardrobeFamily: 'vivid sleeveless shirt dress', wardrobeTags: ['tomato-red midi dress', 'sky-blue shoulder knit', 'cream sneakers'], activityTags: ['crouching', 'tying luggage ribbon', 'departure preparation'], styleDirection: 'low-angle departure editorial', routeUsage: ['/trip-match', '/ja/trip-match'], sectionUsage: ['trip-match-intro'], generatedFromReferenceIds: ['trip-match-model-d-itinerary-choice-v3'], focalPoint: { x: 0.72, y: 0.54 }, safeFraming: { minHeadroomPercent: 10, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-D production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'select-model-c-packing-flatlay-v4', src: '/media/brand-models/select-model-c-packing-flatlay-v4.webp',
+    alt: { KO: '열린 여행가방 옆에 앉아 워케이션 준비물을 정리하는 여행자', EN: 'A traveler organizing workation essentials beside an open suitcase', JP: '開いたスーツケースの側でワーケーションの持ち物を整える旅人' },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image', width: 1440, height: 810, modelId: 'WAK-MODEL-C', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'],
+    wardrobeFamily: 'graphic travel separates', wardrobeTags: ['raspberry bias midi skirt', 'black sleeveless top', 'green earrings'], activityTags: ['floor packing', 'sorting essentials', 'overhead action'], styleDirection: 'high three-quarter packing editorial', routeUsage: ['/select', '/en/select', '/ja/select'], sectionUsage: ['select-hero-editorial'], generatedFromReferenceIds: ['select-model-i-travel-prep-v3', 'wak-model-c-quiet-premium-identity-anchor'], focalPoint: { x: 0.56, y: 0.52 }, safeFraming: { minHeadroomPercent: 8, preserve: ['head', 'face', 'hands', 'bag'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-C identity reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'programs-model-b-coastal-arrival-desktop-v3', src: '/media/brand-models/programs-model-b-coastal-arrival-desktop-v3.webp',
+    alt: { KO: '해안 지역 역의 계단을 여행가방과 함께 내려오는 여행자', EN: 'A traveler descending the steps of a coastal regional station with a weekender', JP: '海辺のローカル駅の階段を旅行バッグとともに下りる旅人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 1915, height: 821, modelId: 'WAK-MODEL-B', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'sporty tailored travel', wardrobeTags: ['cobalt camp shirt', 'cream Bermuda shorts', 'coral belt', 'teal sneakers'], activityTags: ['stair descent', 'coastal arrival', 'carrying weekender'], styleDirection: 'ultra-wide active-arrival editorial', routeUsage: ['/programs', '/en/programs', '/ja/programs'], sectionUsage: ['programs-hero'], generatedFromReferenceIds: ['wak-model-b-soft-urban-identity-anchor'], focalPoint: { x: 0.75, y: 0.74 }, safeFraming: { minHeadroomPercent: 18, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen panoramic safe-crop edit using the approved WAK-MODEL-B production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'programs-model-b-coastal-arrival-mobile-v2', src: '/media/brand-models/programs-model-b-coastal-arrival-mobile-v2.webp',
+    alt: { KO: '해안 지역 역의 계단을 여행가방과 함께 내려오는 여행자', EN: 'A traveler descending coastal station steps with a weekender', JP: '海辺の駅の階段を旅行バッグとともに下りる旅人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 960, height: 1280, modelId: 'WAK-MODEL-B', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'sporty tailored travel', wardrobeTags: ['cobalt camp shirt', 'cream Bermuda shorts', 'coral belt', 'teal sneakers'], activityTags: ['stair descent', 'coastal arrival', 'carrying weekender'], styleDirection: 'portrait active-arrival editorial', routeUsage: ['/programs', '/en/programs', '/ja/programs'], sectionUsage: ['programs-hero-mobile'], generatedFromReferenceIds: ['programs-model-b-coastal-arrival-desktop-v3'], focalPoint: { x: 0.68, y: 0.54 }, safeFraming: { minHeadroomPercent: 14, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen native mobile recomposition', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'business-models-c-h-i-rooftop-session-desktop-v3', src: '/media/brand-models/business-models-c-h-i-rooftop-session-desktop-v3.webp',
+    alt: { KO: '해안 루프톱에서 각자 다른 역할로 기획 세션을 진행하는 세 명의 성인 팀', EN: 'Three adults taking distinct roles in a planning session on a coastal rooftop', JP: '海辺のルーフトップで異なる役割を担いながら企画する3人の大人のチーム' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 1536, height: 960, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-I'], localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'mixed team silhouettes', wardrobeTags: ['cobalt vest and culottes', 'yellow blouse and coral floral midi skirt', 'red polo and olive Bermuda shorts'], activityTags: ['pinning', 'photographing', 'presenting'], styleDirection: 'triangular group-action rooftop editorial', routeUsage: ['/business'], sectionUsage: ['business-hero'], generatedFromReferenceIds: ['business-models-c-h-k-late-summer-team-desktop-v2'], focalPoint: { x: 0.72, y: 0.52 }, safeFraming: { minHeadroomPercent: 10, preserve: ['head', 'face', 'hands', 'device', 'feet'] }, source: 'OpenAI built-in ImageGen with Wakation multi-model art direction', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'business-models-c-h-i-rooftop-session-mobile-v3', src: '/media/brand-models/business-models-c-h-i-rooftop-session-mobile-v3.webp',
+    alt: { KO: '해안 루프톱에서 보드와 카메라를 활용해 함께 기획하는 세 명의 성인 팀', EN: 'Three adults collaborating with a board and camera on a coastal rooftop', JP: '海辺のルーフトップでボードとカメラを使い共同企画する3人の大人のチーム' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 960, height: 1280, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-I'], localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'mixed team silhouettes', wardrobeTags: ['cobalt vest and culottes', 'yellow blouse and coral floral midi skirt', 'red polo and olive Bermuda shorts'], activityTags: ['pinning', 'photographing', 'presenting'], styleDirection: 'portrait triangular group-action editorial', routeUsage: ['/business'], sectionUsage: ['business-hero-mobile'], generatedFromReferenceIds: ['business-models-c-h-i-rooftop-session-desktop-v3'], focalPoint: { x: 0.68, y: 0.58 }, safeFraming: { minHeadroomPercent: 14, preserve: ['head', 'face', 'hands', 'device', 'feet'] }, source: 'OpenAI built-in ImageGen native mobile recomposition', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'growth-model-f-pottery-learning-desktop-v3', src: '/media/brand-models/growth-model-f-pottery-learning-desktop-v3.webp',
+    alt: { KO: '햇빛이 드는 도예 공방에서 물레로 그릇을 빚는 여행자', EN: 'A traveler shaping clay at a pottery wheel in a sunlit studio', JP: '光の入る陶芸工房で、ろくろを使い器を作る旅人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-F', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'creative workshop dress', wardrobeTags: ['violet sleeveless midi dress', 'cobalt work apron', 'green earrings'], activityTags: ['pottery wheel', 'hands-on learning', 'craft practice'], styleDirection: 'tactile side-view learning editorial', routeUsage: ['/growth'], sectionUsage: ['growth-hero'], generatedFromReferenceIds: ['campaign-model-f-japan-choice-desktop-v2'], focalPoint: { x: 0.74, y: 0.55 }, safeFraming: { minHeadroomPercent: 10, preserve: ['head', 'face', 'hands', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-F production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'growth-model-f-pottery-learning-mobile-v3', src: '/media/brand-models/growth-model-f-pottery-learning-mobile-v3.webp',
+    alt: { KO: '도예 공방에서 물레의 흙을 빚으며 배우는 여행자', EN: 'A traveler learning by shaping clay at a pottery wheel', JP: '陶芸工房でろくろの土を形にしながら学ぶ旅人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 960, height: 1280, modelId: 'WAK-MODEL-F', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'creative workshop dress', wardrobeTags: ['violet sleeveless midi dress', 'cobalt work apron', 'green earrings'], activityTags: ['pottery wheel', 'hands-on learning', 'craft practice'], styleDirection: 'portrait tactile learning editorial', routeUsage: ['/growth'], sectionUsage: ['growth-hero-mobile'], generatedFromReferenceIds: ['growth-model-f-pottery-learning-desktop-v3'], focalPoint: { x: 0.7, y: 0.62 }, safeFraming: { minHeadroomPercent: 16, preserve: ['head', 'face', 'hands', 'feet'] }, source: 'OpenAI built-in ImageGen native mobile recomposition', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'fukuoka-model-h-market-dress-v2', src: '/media/brand-models/fukuoka-model-h-market-dress-v2.webp',
+    alt: { KO: '도심 마켓에서 도자기를 살펴보는 노란 셔츠드레스 차림의 여행자', EN: 'A traveler in a yellow shirt dress browsing ceramics at a city market', JP: '黄色のシャツワンピースで街のマーケットの器を見る旅人' },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-H', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'bright belted shirt dress', wardrobeTags: ['sunflower-yellow shirt dress', 'forest-green sneakers', 'red hair ribbon'], activityTags: ['crouching', 'ceramic browsing', 'market discovery'], styleDirection: 'vendor-eye market editorial', routeUsage: ['/guide/fukuoka', '/en/guide/fukuoka', '/ja/guide/fukuoka'], sectionUsage: ['guide-lookbook-local-market'], generatedFromReferenceIds: ['fukuoka-model-h-cafe-work-v1'], focalPoint: { x: 0.66, y: 0.58 }, safeFraming: { minHeadroomPercent: 10, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-H production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'seoul-model-i-design-book-dress-v3', src: '/media/brand-models/seoul-model-i-design-book-dress-v3.webp',
+    alt: { KO: '비 온 뒤 디자인 서점에서 초록 원피스를 입고 아트북을 읽는 여행자', EN: 'A traveler in an emerald dress reading an art book in a design bookstore after rain', JP: '雨上がりのデザイン書店で緑のワンピースを着てアートブックを読む旅人' },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-I', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'jewel-tone belted midi dress', wardrobeTags: ['emerald sleeveless dress', 'burgundy bag', 'silver flats'], activityTags: ['seated reading', 'design bookstore', 'after-work culture'], styleDirection: 'elevated layered indoor editorial', routeUsage: ['/guide/seoul', '/en/guide/seoul', '/ja/guide/seoul'], sectionUsage: ['guide-lookbook-design-book'], generatedFromReferenceIds: ['seoul-model-i-after-work-design-lane-v2'], focalPoint: { x: 0.69, y: 0.55 }, safeFraming: { minHeadroomPercent: 12, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-I production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'busan-model-e-harbor-steps-skirt-v2', src: '/media/brand-models/busan-model-e-harbor-steps-skirt-v2.webp',
+    alt: { KO: '항구 계단에 앉아 스카프를 묶는 플리츠 스커트 차림의 여행자', EN: 'A traveler in a pleated skirt tying her scarf on harbor steps', JP: '港の階段に座り、プリーツスカート姿でスカーフを結ぶ旅人' },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-E', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'coastal pleated skirt', wardrobeTags: ['cobalt pleated midi skirt', 'coral striped top', 'yellow bag'], activityTags: ['seated scarf tie', 'harbor steps', 'golden-hour pause'], styleDirection: 'low side-view harbor editorial', routeUsage: ['/guide/busan', '/en/guide/busan', '/ja/guide/busan'], sectionUsage: ['guide-lookbook-harbor-steps'], generatedFromReferenceIds: ['busan-model-e-after-work-coast-v1'], focalPoint: { x: 0.43, y: 0.57 }, safeFraming: { minHeadroomPercent: 12, preserve: ['head', 'face', 'hands', 'bag', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-E production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    id: 'jeju-model-g-summer-camera-skirt-v2', src: '/media/brand-models/jeju-model-g-summer-camera-skirt-v2.webp',
+    alt: { KO: '제주를 연상시키는 현무암 해안에 앉아 카메라를 든 스커트 차림의 여행자', EN: 'A traveler in a skirt seated with a camera on a Jeju-inspired basalt coast', JP: '済州を思わせる玄武岩の海辺に座り、カメラを持つスカート姿の旅人' },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image', width: 1536, height: 1024, modelId: 'WAK-MODEL-G', localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'island A-line skirt', wardrobeTags: ['marigold midi skirt', 'navy sleeveless top', 'turquoise scarf'], activityTags: ['seated camera pause', 'basalt coast', 'silver grass'], styleDirection: 'environmental wide coastal editorial', routeUsage: ['/guide/jeju', '/en/guide/jeju', '/ja/guide/jeju'], sectionUsage: ['guide-lookbook-photo-pause'], generatedFromReferenceIds: ['jeju-model-g-after-rain-coast-v1'], focalPoint: { x: 0.68, y: 0.58 }, safeFraming: { minHeadroomPercent: 12, preserve: ['head', 'face', 'hands', 'bag', 'device', 'feet'] }, source: 'OpenAI built-in ImageGen using the approved WAK-MODEL-G production reference', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+]
+
 export const MEDIA_ASSETS: MediaAsset[] = [
   {
     id: 'home-workation-editorial-v1-legacy',
@@ -507,6 +578,43 @@ export const MEDIA_ASSETS: MediaAsset[] = [
       KO: '실제 부산 장소·고객·참가자·숙소 또는 운영 프로그램 현장 사진으로 표시하지 않는다.',
       EN: 'Do not present as a real Busan venue, customer, participant, stay or operating program scene.',
       JP: '実在の釜山の場所・顧客・参加者・宿泊施設・運営中のプログラム写真として扱わない。',
+    },
+  },
+  {
+    id: 'jeju-model-g-after-rain-coast-v1',
+    src: '/media/brand-models/jeju-model-g-after-rain-coast-v1.webp',
+    alt: {
+      KO: '늦여름 비가 갠 해안 돌담길을 노트북 슬리브와 가벼운 가방을 들고 걷는 성인 여행자',
+      EN: 'An adult traveller walking a rain-cleared late-summer coastal stone-wall lane with a laptop sleeve and light bag',
+      JP: '晩夏の雨上がり、海辺の石垣道をノートPCケースと軽いバッグで歩く大人の旅行者',
+    },
+    sourceType: 'generated', usage: 'editorial', illustrative: true, mediaType: 'image',
+    width: 1536, height: 1024, modelId: 'WAK-MODEL-G', localeUsage: ['ko', 'en', 'ja'],
+    seasonalUsage: ['summer', 'late-summer'], season: 'late-summer',
+    climateMood: 'clear coastal daylight after a short late-summer shower',
+    wardrobeFamily: 'breathable refined island travel',
+    wardrobeTags: ['ivory sleeveless linen blouse', 'sage wide-leg linen trousers', 'flat leather sandals'],
+    hairDirection: 'long straight dark hair softly controlled for coastal breeze',
+    activityTags: ['after-work island walk', 'carrying laptop sleeve', 'moving from focus to the coast'],
+    travelContext: 'Jeju guide lookbook; generic island-lane editorial scene',
+    styleDirection: 'high-photoreal travel editorial with full-body environmental framing',
+    seasonalFit: 'late-summer island workation after rain',
+    activityMood: 'calm transition from focused work to an open-air walk',
+    destinationMood: 'Jeju-inspired basalt-and-sea rhythm without a real venue claim',
+    realismLevel: 'high_photoreal', realismTarget: 'high_photoreal_editorial',
+    realismMethod: 'identity-anchored generation with anatomy, wardrobe and full-body crop review',
+    photorealReferenceUsed: true, generationProvider: 'openai_builtin_imagegen', auditDisposition: 'KEEP',
+    routeUsage: ['/guide/jeju', '/en/guide/jeju', '/ja/guide/jeju'],
+    sectionUsage: ['guide-lookbook-after-rain-island-lane'],
+    generatedFromReferenceIds: ['domestic-jeju-model-g-slow-stay-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2'],
+    focalPoint: { x: 0.31, y: 0.51 },
+    safeFraming: { minHeadroomPercent: 12, preserve: ['head', 'face', 'hands', 'bag', 'device', 'feet'] },
+    source: 'OpenAI built-in ImageGen using approved WAK-MODEL-G production references',
+    license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11',
+    restriction: {
+      KO: '실제 제주 장소·고객·참가자·숙소 또는 운영 프로그램 현장 사진으로 표시하지 않는다.',
+      EN: 'Do not present as a real Jeju venue, customer, participant, stay or operating program scene.',
+      JP: '実在の済州の場所・顧客・参加者・宿泊施設・運営中のプログラム写真として扱わない。',
     },
   },
   {
@@ -1297,6 +1405,34 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     },
   },
   {
+    id: 'jeju-hyeopjae-volcanic-coast-licensed-v1',
+    src: '/media/destinations/jeju-hyeopjae-volcanic-coast-licensed-v1.webp',
+    alt: {
+      KO: '제주 협재 해변의 검은 현무암 해안과 비양도',
+      EN: 'Black volcanic shoreline and Biyangdo seen from Hyeopjae Beach, Jeju',
+      JP: '済州・挟才海水浴場の黒い火山岩海岸と飛揚島',
+    },
+    sourceType: 'licensed', usage: 'destination', illustrative: false, mediaType: 'image',
+    width: 1536, height: 1024, localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['all-season'], season: 'all-season',
+    climateMood: 'clear March day at Hyeopjae Beach',
+    activityTags: ['coastal view', 'volcanic shoreline', 'after-work reset'],
+    travelContext: 'Jeju guide lookbook; real Hyeopjae Beach destination photograph',
+    styleDirection: 'licensed documentary destination photography, cropped and optimized for 3:2 editorial use',
+    realismLevel: 'high_photoreal', realismTarget: 'documentary_reference',
+    realismMethod: 'licensed real-location photograph with crop, exposure and delivery-format optimization only',
+    photorealReferenceUsed: true, generationProvider: 'licensed', auditDisposition: 'KEEP',
+    routeUsage: ['/guide/jeju', '/en/guide/jeju', '/ja/guide/jeju'],
+    sectionUsage: ['guide-lookbook-west-coast-hyeopjae'], focalPoint: { x: 0.5, y: 0.54 },
+    source: 'https://commons.wikimedia.org/wiki/File:Volcanic_Coastline.jpg',
+    license: 'CC BY-SA 4.0; photo by Lcarrion88; cropped and color-adjusted by Wakation',
+    createdAt: '2014-03-03', verifiedAt: '2026-08-11',
+    restriction: {
+      KO: '저작자 표시와 CC BY-SA 4.0 조건을 유지하며, 원 저작자가 Wakation을 후원한다고 표현하지 않는다.',
+      EN: 'Keep creator credit and CC BY-SA 4.0 terms; do not imply the creator endorses Wakation.',
+      JP: '作者表示とCC BY-SA 4.0の条件を維持し、作者がWakationを推薦しているように表現しない。',
+    },
+  },
+  {
     id: 'monthly-2026-08-model-e-city-arrival-v2',
     src: '/media/brand-models/monthly-2026-08-model-e-city-arrival-v2.webp',
     alt: {
@@ -1436,6 +1572,7 @@ export const MEDIA_ASSETS: MediaAsset[] = [
     source: 'https://commons.wikimedia.org/wiki/File:A-Train_(Korail),_Jeongseon_Arirang_Train,_2015.jpg',
     license: 'CC BY-SA 2.0 — Korea.net / Jeon Han; converted to WebP', createdAt: '2026-08-09', verifiedAt: '2026-08-09',
   },
+  ...MODEL_DIVERSITY_ASSETS,
   ...CARD_MEDIA_ASSETS,
   ...PRODUCT_EDITORIAL_MEDIA_ASSETS,
 ]

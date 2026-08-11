@@ -76,3 +76,17 @@ winter clothing in summer, body-focused pose, identifiable hotel or participant 
 - 공개: 최적화한 WebP/AVIF만 `public/media/brand-models/`에 둔다.
 - 원본 PNG와 앵커는 저장소에 커밋하지 않는다.
 - manifest에 `season`, `climateMood`, `wardrobeFamily`, `wardrobeTags`, `hairDirection`, `activityMood`, `destinationMood`, `realismLevel`, `generationProvider`, `auditDisposition`을 기록한다.
+# Scene-first diversity gate (2026-08-11)
+
+Identity consistency does not permit repeated art direction. Before generating a model image, select all four fields below from `BRAND_MODEL_VISUAL_DIRECTIONS` and compare them with the adjacent major surface:
+
+1. silhouette family — dress, skirt, shorts, layered set and trousers must rotate;
+2. pose family — walking, sitting, crouching, reaching, making and group interaction must rotate;
+3. camera family — overhead, low angle, side view, rear view, layered wide and environmental framing must rotate;
+4. color story — every route gets a deliberate palette rather than another neutral linen scene.
+
+Laptop, notebook, paper and maps are task props only. They may appear when the page actually explains planning or learning, but they must not be used as a generic sign for “workation.” A prompt is rejected when it repeats three of the following from the adjacent major surface: pose, silhouette, camera, primary action or color story.
+
+Every six new major model surfaces must contain at least four pose families, four silhouette families, four color stories and three camera families. Dresses and skirts are part of the normal roster mix, alongside shorts and trousers; no single silhouette family may exceed 40% of active placements.
+
+Run `npm run audit:model-diversity` before Preview. The active placement record is `src/lib/media/modelVisualDirection.json`.
