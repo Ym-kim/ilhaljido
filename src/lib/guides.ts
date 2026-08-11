@@ -658,6 +658,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Just one hour behind Korea, so real-time collaboration barely changes. Cebu City has co-living with hot desks included — a proper nomad base — and Mactan’s sea is right there for weekends. Dec–May dry season is prime.',
       JP: '韓国·日本より1時間遅いだけで、リアルタイム協業にほぼ支障なし。セブシティにはホットデスク込みのコワーキング＋コリビングがあり、週末はマクタンの海へ。12〜5月の乾季がベスト。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN CEBU', EN: 'A DAY IN CEBU', JP: 'A DAY IN CEBU' },
+      title: {
+        KO: '업무를 닫으면, 바다 쪽으로 짐을 가볍게',
+        EN: 'Close the workday, then pack light for the water',
+        JP: '仕事を終えたら、身軽に海の方へ',
+      },
+      intro: {
+        KO: '오전에는 세부 시티나 막탄의 업무 거점에서 집중하고, 오후에는 바다 가까운 동선으로 전환해 보세요. 섬 이동이 있는 날에는 장비를 늘리기보다 출발·복귀 시간과 날씨를 먼저 확인하면 업무 리듬을 덜 흔듭니다.',
+        EN: 'Focus from a Cebu City or Mactan base in the morning, then shift closer to the water in the afternoon. On island-transfer days, checking departure, return and weather conditions first protects the work rhythm better than overpacking gear.',
+        JP: '午前はセブシティやマクタンの拠点で集中し、午後は海に近い動線へ。島へ移動する日は、道具を増やすより出発・帰着時刻と天候を先に確認すると仕事のリズムを保ちやすくなります。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/cebu-model-f-island-prep-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · ISLAND PREP', EN: 'AFTER WORK · ISLAND PREP', JP: 'AFTER WORK · ISLAND PREP' },
+          title: {
+            KO: '마른 가방 하나, 돌아올 시간까지 가볍게',
+            EN: 'One dry bag, packed around the return time',
+            JP: 'ドライバッグ一つ、帰る時間まで身軽に',
+          },
+          description: {
+            KO: '섬 이동이나 해변 일정 전에는 방수 수납과 복귀 동선을 함께 준비하세요. 선박·투어·날씨·장비 조건은 이용 당일 운영사에서 최종 확인합니다.',
+            EN: 'Before an island transfer or beach outing, prepare dry storage and the return route together. Confirm boat, tour, weather and equipment conditions with the operator on the day.',
+            JP: '島への移動や海辺の予定の前に、防水収納と帰りの動線を一緒に準備しましょう。船、ツアー、天候、装備条件は当日に運営会社で最終確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '-1시간', EN: '−1 hour', JP: '−1時間' } },
       { label: F.flight, value: { KO: '약 4시간 30분', EN: '~4h 30m', JP: '約4時間30分' } },
