@@ -5,14 +5,27 @@ import process from 'node:process'
 const root = process.cwd()
 const directionPath = path.join(root, 'src', 'lib', 'media', 'modelVisualDirection.json')
 const rotationPath = path.join(root, 'src', 'lib', 'media', 'modelRotation.ts')
+const modelPolicyPath = path.join(root, 'src', 'lib', 'media', 'brandModels.ts')
 const directions = JSON.parse(await fs.readFile(directionPath, 'utf8'))
 const rotation = await fs.readFile(rotationPath, 'utf8')
+const modelPolicy = await fs.readFile(modelPolicyPath, 'utf8')
 const errors = []
 
 const requiredFields = ['placementId', 'assetIds', 'poseCategory', 'poseFamily', 'silhouetteFamily', 'cameraFamily', 'colorStory', 'primaryAction', 'workProp']
 const counts = (field) => directions.reduce((map, item) => map.set(item[field], (map.get(item[field]) ?? 0) + 1), new Map())
 const maximumShare = (field) => Math.max(...counts(field).values()) / directions.length
 const activePlacementIds = [...rotation.matchAll(/\{ id: '([^']+)'.+status: 'active' \}/g)].map((match) => match[1])
+const requiredAppealPolicyMarkers = [
+  'BRAND_MODEL_APPEAL_POLICY',
+  "skinRendering: 'natural_luminous'",
+  "bodyDirection: 'realistic_balanced_volume'",
+  "wardrobeDirection: 'context_led_wardrobe'",
+  "environmentDirection: 'environment_palette_rotation'",
+]
+
+for (const marker of requiredAppealPolicyMarkers) {
+  if (!modelPolicy.includes(marker)) errors.push(`Missing model appeal policy marker: ${marker}`)
+}
 
 for (const item of directions) {
   for (const field of requiredFields) if (item[field] === undefined || item[field] === '') errors.push(`${item.placementId}: missing ${field}`)

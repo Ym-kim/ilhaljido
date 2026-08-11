@@ -53,6 +53,36 @@ export type BrandModelStylingRule = {
   photorealReferenceUsed: true
 }
 
+// Global casting and styling defaults for every new derivative. “Attractive”
+// means healthy, expressive and editorially polished; it never means whitening
+// a model, exaggerating anatomy or sexualizing an otherwise ordinary journey.
+export const BRAND_MODEL_APPEAL_POLICY = {
+  adultCastingOnly: true,
+  appearanceGoal: 'aspirational, photogenic and recognizably human',
+  skinRendering: 'natural_luminous',
+  bodyDirection: 'realistic_balanced_volume',
+  wardrobeDirection: 'context_led_wardrobe',
+  environmentDirection: 'environment_palette_rotation',
+  rules: [
+    'Cast clearly adult models with expressive eyes, distinctive facial character and natural camera presence.',
+    'Render healthy luminous skin with pores, texture and light-accurate color; never whiten identity or use plastic beauty retouching.',
+    'Keep realistic anatomy and balanced natural body volume; create an appealing silhouette through posture, tailoring and fabric rather than exaggerated curves or extreme thinness.',
+    'Choose season-, place- and activity-appropriate fashion that flatters the individual model and rotates dresses, skirts, shorts, layered sets and trousers.',
+    'Align gaze, hands and body weight with one clear action so the scene reads as a candid travel moment rather than a fashion pose.',
+    'Rotate background brightness, color temperature, materials and cultural atmosphere alongside the model; wardrobe color alone is not visual diversity.',
+    'Preserve enough headroom and action context for responsive crops, with the head, face and active hands kept visible.',
+    'Generated models remain illustrative and must never imply a real customer, participant, hotel, product or program outcome.',
+  ],
+  avoid: [
+    'artificially pale or bleached skin',
+    'sexualized body emphasis',
+    'anatomical exaggeration',
+    'generic influencer pose',
+    'off-screen gaze unrelated to the action',
+    'repeated beige or dark-amber environments',
+  ],
+} as const
+
 // Generation defaults for every new model derivative. These rules complement
 // identity fields above: face continuity never implies repeating one outfit,
 // hairstyle, pose or mood across adjacent routes.
