@@ -20,6 +20,10 @@ const requiredAppealPolicyMarkers = [
   "skinRendering: 'naturally_bright_luminous'",
   "bodyDirection: 'realistic_attractive_volume'",
   "appearanceEnhancement: 'subtle_editorial_polish'",
+  "bodyProportion: 'balanced_seven_to_eight_head_editorial'",
+  "legLine: 'naturally_lengthened_balanced'",
+  "physiqueDirection: 'healthy_toned_natural'",
+  "beautyCharacter: 'model_specific_beautiful_refined_cute_mix'",
   "wardrobeDirection: 'context_led_wardrobe'",
   "environmentDirection: 'environment_palette_rotation'",
 ]
