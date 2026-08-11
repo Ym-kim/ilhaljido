@@ -73,6 +73,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'No time difference from Korea means your meetings and deadlines stay untouched. Some hotels have coworking floors built in, and after log-off one of the world’s great cities is waiting. Works for a long weekend or a two-week stay.',
       JP: '韓国と時差がなく、会議や締め切りのスケジュールをそのまま維持できます。コワーキングを備えたホテルもあり、仕事の後は世界有数の都市の夜が待っています。週末プラスの3〜4日から2週間滞在まで。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN TOKYO', EN: 'A DAY IN TOKYO', JP: 'A DAY IN TOKYO' },
+      title: {
+        KO: '낮의 리듬 뒤에, 취향으로 이어지는 도쿄',
+        EN: 'A Tokyo day that moves from rhythm to taste',
+        JP: '昼のリズムから、好みへつながる東京',
+      },
+      intro: {
+        KO: '낮에는 익숙한 업무 리듬을 지키고, 저녁에는 한 동네를 천천히 파고듭니다. 멀리 이동하기보다 레코드숍과 작은 식당처럼 취향이 선명한 장소를 이어보세요.',
+        EN: 'Keep your familiar work rhythm by day, then spend the evening going deeper into one neighborhood. Link places with a point of view — a record shop, a small restaurant — instead of adding another long transfer.',
+        JP: '昼はいつもの仕事のリズムを守り、夜はひとつの街をゆっくり深掘り。長い移動を増やすより、レコードショップや小さな店など、好みの見える場所をつないでみてください。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/tokyo-model-a-vinyl-dress-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · RECORD DIG', EN: 'AFTER WORK · RECORD DIG', JP: 'AFTER WORK · RECORD DIG' },
+          title: {
+            KO: '퇴근 뒤, 한 장의 음악을 고르는 시간',
+            EN: 'Choose one record after work',
+            JP: '仕事の後に、一枚の音楽を選ぶ',
+          },
+          description: {
+            KO: '업무를 마친 저녁에는 숙소와 가까운 한 동네만 정해 레코드숍과 식당을 이어보세요. 매장 운영시간과 재고는 방문 전 각 매장에서 확인하는 것이 좋습니다.',
+            EN: 'After work, stay within one neighborhood and connect a record shop with dinner nearby. Check each shop’s opening hours and stock before visiting.',
+            JP: '仕事を終えた夜は、宿の近くのひとつの街に絞り、レコードショップと食事をつなげて。営業時間と在庫は訪問前に各店舗で確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '0시간', EN: '0 hours', JP: '0時間' } },
       { label: F.flight, value: { KO: '약 2시간 20분', EN: '~2h 20m', JP: '約2時間20分' } },
