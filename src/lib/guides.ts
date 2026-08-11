@@ -87,7 +87,7 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/tokyo-model-a-vinyl-dress-v1.webp',
+          src: '/media/brand-models/tokyo-model-b-record-shop-v2.webp',
           eyebrow: { KO: 'AFTER WORK · RECORD DIG', EN: 'AFTER WORK · RECORD DIG', JP: 'AFTER WORK · RECORD DIG' },
           title: {
             KO: '퇴근 뒤, 한 장의 음악을 고르는 시간',

@@ -6,19 +6,19 @@ Extend the Tokyo guide with a single high-impact editorial scene that shows what
 
 ## Art direction
 
-- Model: `WAK-MODEL-A`, selected because she had the lowest active placement exposure before this addition.
-- Scene: an unnamed Tokyo-inspired independent record shop at late-summer blue hour.
-- Action: reaching through a record rack and choosing one vinyl sleeve.
-- Silhouette: asymmetrical indigo wrap midi dress with vermilion and chrome accents.
-- Camera: low diagonal view through foreground record sleeves.
-- Safe crop: head, face, both hands, bag and shoes preserved with 14% minimum headroom.
+- Model: `WAK-MODEL-B`, replacing the first draft after gaze, gesture and art-direction review.
+- Scene: an unnamed Tokyo-inspired independent record shop in bright late-summer daylight, with mint plaster, vermilion shelving, saffron acoustic panels and restrained cobalt accents.
+- Action: holding one record sleeve naturally in both hands and looking directly at it.
+- Silhouette: teal sleeveless knit with a cream graphic A-line midi skirt, mustard bag and ivory sneakers.
+- Camera: eye-level environmental view from the end of the aisle.
+- Safe crop: head, face, both hands, selected sleeve, bag and shoes preserved with 15% minimum headroom.
 
 ## Provenance and use
 
-- Generated with OpenAI built-in ImageGen from the approved `WAK-MODEL-A` production reference.
+- Generated with OpenAI built-in ImageGen from the approved `WAK-MODEL-B` production reference.
 - The image is illustrative and must not be presented as a real customer, participant, program, product or identifiable record shop.
-- Public asset: `public/media/brand-models/tokyo-model-a-vinyl-dress-v1.webp`.
-- Optimized derivative: `public/media/brand-models/tokyo-model-a-vinyl-dress-v1.avif`.
+- Public asset: `public/media/brand-models/tokyo-model-b-record-shop-v2.webp`.
+- Optimized derivative: `public/media/brand-models/tokyo-model-b-record-shop-v2.avif`.
 - Routes: `/guide/tokyo`, `/en/guide/tokyo`, `/ja/guide/tokyo`.
 
 ## Copy direction
