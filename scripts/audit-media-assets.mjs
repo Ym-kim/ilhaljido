@@ -99,6 +99,7 @@ const v2Assets = [
   { id: 'monthly-2026-08-model-j-blue-hour-v2', file: 'monthly-2026-08-model-j-blue-hour-v2.webp', width: 1200, height: 1500, modelIds: ['WAK-MODEL-J'] },
   { id: 'tokyo-model-b-record-shop-v2', file: 'tokyo-model-b-record-shop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
   { id: 'danang-model-c-tropical-market-v1', file: 'danang-model-c-tropical-market-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-C'] },
+  { id: 'bali-model-a-tropical-cycle-v1', file: 'bali-model-a-tropical-cycle-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-A'] },
   { id: 'fukuoka-model-h-market-dress-v2', file: 'fukuoka-model-h-market-dress-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-H'] },
   { id: 'osaka-model-j-after-work-gallery-v1', file: 'osaka-model-j-after-work-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
   { id: 'seoul-model-i-design-book-dress-v3', file: 'seoul-model-i-design-book-dress-v3.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
@@ -122,6 +123,7 @@ const optimizedDerivatives = [
   { file: 'business-models-c-h-i-rooftop-session-mobile-v3.avif', width: 960, height: 1280, maximumBytes: 90_000 },
   { file: 'tokyo-model-b-record-shop-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'danang-model-c-tropical-market-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'bali-model-a-tropical-cycle-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'fukuoka-model-h-market-dress-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'osaka-model-j-after-work-gallery-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'seoul-model-i-design-book-dress-v3.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
@@ -155,6 +157,7 @@ const v2Placements = [
   { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
   { route: 'guide-tokyo', section: 'guide-lookbook-record-dig', models: ['WAK-MODEL-B'], assets: assetIds('tokyo-model-b-record-shop-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-danang', section: 'guide-lookbook-tropical-market', models: ['WAK-MODEL-C'], assets: assetIds('danang-model-c-tropical-market-v1'), source: 'src/lib/guides.ts' },
+  { route: 'guide-bali', section: 'guide-lookbook-tropical-cycle', models: ['WAK-MODEL-A'], assets: assetIds('bali-model-a-tropical-cycle-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-fukuoka', section: 'guide-lookbook-local-market', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-market-dress-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-seoul', section: 'guide-lookbook-design-book', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-design-book-dress-v3'), source: 'src/lib/guides.ts' },
@@ -182,6 +185,7 @@ const nonModelMajorSurfaces = [
   'src/components/moments/MomentsView.tsx',
   'src/components/destinations/DestinationsHubView.tsx',
   'src/components/destinations/CompareView.tsx',
+  'src/components/home/SupportPromoBanner.tsx',
 ]
 
 const errors = []

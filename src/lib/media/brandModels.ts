@@ -115,7 +115,7 @@ export type ModelVisualDirectionRule = {
 // dresses, skirts, shorts and tactile actions so "woman with paper/laptop" can
 // never become Wakation's default visual shorthand again.
 export const BRAND_MODEL_VISUAL_DIRECTIONS: Record<BrandModelId, ModelVisualDirectionRule> = {
-  'WAK-MODEL-A': { signatureSilhouettes: ['draped coastal dress', 'layered travel set', 'asymmetrical wrap dress'], poseFamilies: ['turning from a balcony', 'kneeling beside luggage', 'reaching through a record rack'], cameraFamilies: ['back-view environmental wide', 'side-on low wide', 'through-rack low diagonal'], colorStories: ['ocean-blue and citrus', 'ivory and sea-glass', 'indigo, vermilion and chrome'], avoidRepeating: ['seated laptop', 'neutral linen portrait'] },
+  'WAK-MODEL-A': { signatureSilhouettes: ['draped coastal dress', 'layered travel set', 'asymmetrical wrap dress'], poseFamilies: ['turning from a balcony', 'kneeling beside luggage', 'reaching through a record rack', 'walking a bicycle'], cameraFamilies: ['back-view environmental wide', 'side-on low wide', 'through-rack low diagonal', 'slightly elevated curved-lane wide'], colorStories: ['ocean-blue and citrus', 'ivory and sea-glass', 'indigo, vermilion and chrome', 'hibiscus, banana green, cobalt and wet stone'], avoidRepeating: ['seated laptop', 'neutral linen portrait', 'bicycle on a wet tropical road', 'magenta wrap dress'] },
   'WAK-MODEL-B': { signatureSilhouettes: ['tailored Bermuda shorts', 'sporty shirt dress', 'graphic A-line midi skirt'], poseFamilies: ['descending steps', 'reaching into transit storage', 'two-hand record inspection'], cameraFamilies: ['low-angle motion', 'architectural wide', 'eye-level shop aisle'], colorStories: ['cobalt, coral and teal', 'lime and navy', 'mint, vermilion, saffron and cobalt'], avoidRepeating: ['desk writing', 'map reading', 'looking away from the active object'] },
   'WAK-MODEL-C': { signatureSilhouettes: ['bias midi skirt', 'sculptural culotte set'], poseFamilies: ['floor packing', 'standing presentation'], cameraFamilies: ['overhead diagonal', 'waist-height layered'], colorStories: ['raspberry and cobalt', 'ink and chartreuse'], avoidRepeating: ['white blouse portrait', 'paper folio close-up'] },
   'WAK-MODEL-D': { signatureSilhouettes: ['sleeveless shirt dress', 'graphic pleated skirt'], poseFamilies: ['crouched luggage prep', 'turning through an installation'], cameraFamilies: ['low wide departure', 'immersive off-axis'], colorStories: ['tomato, teal and sky blue', 'ultraviolet and silver'], avoidRepeating: ['standing itinerary choice', 'taupe lounge scene'] },
@@ -142,12 +142,12 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     visualRole: { KO: '홈 히어로·해안 업무·차분한 체류', EN: 'Home hero, coastal work and calm stays', JP: 'ホーム・海辺の仕事・穏やかな滞在' },
     identityDescriptor: 'fictional adult East Asian woman with a calm natural presence and softly textured long dark hair',
     faceKeywords: ['calm', 'natural', 'balanced'], hairKeywords: ['long', 'dark', 'soft texture'], moodKeywords: ['coastal', 'quiet', 'grounded'],
-    wardrobePalette: ['ocean blue', 'ivory', 'sand', 'indigo', 'vermilion'], preferredActions: ['closing a laptop', 'packing a weekender', 'looking toward the coast'], preferredLocations: ['coastal work lounge', 'island stay', 'quiet terrace'],
-    allowedSections: ['home-hero', 'coastal-editorial', 'slow-stay'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    wardrobePalette: ['ocean blue', 'ivory', 'sand', 'indigo', 'vermilion', 'hibiscus magenta', 'cobalt', 'banana green'], preferredActions: ['closing a laptop', 'packing a weekender', 'looking toward the coast', 'walking a bicycle after work'], preferredLocations: ['coastal work lounge', 'island stay', 'quiet terrace', 'Bali-inspired tropical lane'],
+    allowedSections: ['home-hero', 'coastal-editorial', 'slow-stay', 'bali-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-a-coastal-calm-identity-anchor'], referenceAssetIds: ['model-a-source-reference'],
-    productionAssetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'],
+    productionAssetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1', 'bali-model-a-tropical-cycle-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
-    notes: 'Keep as one member of the roster, never the default face across adjacent sections.',
+    notes: 'Keep as one member of the roster, never the default face across adjacent sections. Do not repeat the Bali bicycle, wet tropical road or magenta wrap-dress direction on the next major surface.',
   },
   {
     id: 'WAK-MODEL-B', rosterVersion: BRAND_MODEL_ROSTER_VERSION, nameCode: 'Soft Urban', adultAgeRange: 'late twenties',

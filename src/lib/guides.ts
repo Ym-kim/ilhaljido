@@ -316,6 +316,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Only one hour behind — real-time collaboration stays intact — with purpose-built coworking stays and a mature nomad community. Split a month between surfy Canggu and terraced, yoga-centric Ubud.',
       JP: '時差1時間でリアルタイム協業に支障なく、コワーキング特化型の宿とノマドコミュニティが成熟した島。サーフィンとカフェのチャングー、ライステラスとヨガのウブド — 雰囲気の違う2拠点で1カ月を。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN BALI', EN: 'A DAY IN BALI', JP: 'A DAY IN BALI' },
+      title: {
+        KO: '집중이 끝나면, 바람이 있는 길로',
+        EN: 'When focus ends, follow the breezy road',
+        JP: '集中を終えたら、風のある道へ',
+      },
+      intro: {
+        KO: '낮에는 한곳에 머물러 깊게 일하고, 늦은 오후에는 자전거나 산책으로 동네의 반경을 넓혀보세요. 짱구의 활기와 우붓의 고요함은 서로 다른 주에 나눠 머물 때 더 선명해집니다.',
+        EN: 'Stay in one place for deep work by day, then widen your neighborhood by bicycle or on foot in the late afternoon. Canggu’s energy and Ubud’s quiet make more sense when you give each its own week.',
+        JP: '昼はひとつの場所で集中し、夕方は自転車や散歩で行動範囲を少し広げてみてください。チャングーの活気とウブドの静けさは、それぞれに一週間を使うとより鮮明になります。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/bali-model-a-tropical-cycle-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · TROPICAL RIDE', EN: 'AFTER WORK · TROPICAL RIDE', JP: 'AFTER WORK · TROPICAL RIDE' },
+          title: {
+            KO: '비가 스친 늦은 오후, 초록 사이를 천천히',
+            EN: 'After a passing shower, take the green road slowly',
+            JP: '雨上がりの夕方、緑の道をゆっくり',
+          },
+          description: {
+            KO: '업무를 마친 뒤 숙소 주변의 한적한 길을 자전거로 둘러보세요. 출발 전 대여 조건과 도로 상태·교통량·일몰 시간을 확인하는 것이 좋습니다.',
+            EN: 'After work, explore quieter roads near your stay by bicycle. Check rental conditions, road surfaces, traffic and sunset time before setting out.',
+            JP: '仕事のあと、宿の近くの静かな道を自転車で巡ってみてください。出発前にレンタル条件、路面、交通量、日没時刻を確認しましょう。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '-1시간', EN: '−1 hour', JP: '−1時間' } },
       { label: F.flight, value: { KO: '약 7시간', EN: '~7h', JP: '約7時間' } },
