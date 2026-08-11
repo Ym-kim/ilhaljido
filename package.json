@@ -11,6 +11,7 @@
     "social:trip-sets:validate": "node scripts/validate-trip-set-social.mjs",
     "audit:ui": "node scripts/audit-ui-consistency.mjs",
     "audit:media": "node scripts/audit-media-assets.mjs",
+    "audit:model-diversity": "node scripts/audit-model-diversity.mjs",
     "audit:support-data": "node scripts/audit-support-data.mjs",
     "audit:support-freshness": "node scripts/audit-support-freshness.mjs",
     "audit:visa-freshness": "node scripts/audit-visa-freshness.mjs",

@@ -134,17 +134,17 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/fukuoka-model-h-cafe-work-v1.webp',
-          eyebrow: { KO: 'MORNING · WORK', EN: 'MORNING · WORK', JP: 'MORNING · WORK' },
+          src: '/media/brand-models/fukuoka-model-h-market-dress-v2.webp',
+          eyebrow: { KO: 'LOCAL MARKET · DISCOVERY', EN: 'LOCAL MARKET · DISCOVERY', JP: 'LOCAL MARKET · DISCOVERY' },
           title: {
-            KO: '카페에서 하루의 동선을 먼저 정리하기',
-            EN: 'Map the day before leaving the café',
-            JP: 'カフェで一日の動線を先に整える',
+            KO: '시장에서 오늘의 여행 색을 고르기',
+            EN: 'Find the color of the day at a local market',
+            JP: 'ローカルマーケットで、今日の旅の色を選ぶ',
           },
           description: {
-            KO: '컴팩트한 도심은 오전 업무와 오후 이동을 한 일정 안에 놓기 좋습니다. 노트북을 닫을 시간을 먼저 정해두면 짧은 체류도 여유가 생깁니다.',
-            EN: 'The compact center makes it easier to place morning work and afternoon movement in one plan. Set a laptop-off time first to keep a short stay unhurried.',
-            JP: 'コンパクトな中心部なら、午前の仕事と午後の移動を一つの予定にまとめやすい。先に仕事を終える時間を決めると、短い滞在にも余白が生まれます。',
+            KO: '오전 업무를 짧게 끝낸 날은 도심 마켓에서 도자기나 계절 소품을 천천히 골라보세요. 작은 발견 하나가 짧은 체류의 기억을 선명하게 만듭니다.',
+            EN: 'After a compact morning work block, browse ceramics and seasonal finds at a city market. One small discovery can give a short stay its own clear memory.',
+            JP: '午前の仕事を短く終えたら、街のマーケットで器や季節の小物をゆっくり選ぶ。小さな発見が、短い滞在を鮮やかな記憶に変えてくれます。',
           },
         },
         {
@@ -366,17 +366,17 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/jeju-model-g-after-rain-coast-v1.webp',
-          eyebrow: { KO: 'AFTER RAIN · ISLAND LANE', EN: 'AFTER RAIN · ISLAND LANE', JP: 'AFTER RAIN · ISLAND LANE' },
+          src: '/media/brand-models/jeju-model-g-summer-camera-skirt-v2.webp',
+          eyebrow: { KO: 'COAST · PHOTO PAUSE', EN: 'COAST · PHOTO PAUSE', JP: 'COAST · PHOTO PAUSE' },
           title: {
-            KO: '노트북을 들고 비 갠 돌담길로',
-            EN: 'Take the laptop sleeve into a rain-cleared lane',
-            JP: 'ノートPCケースを手に、雨上がりの石垣道へ',
+            KO: '현무암에 앉아 바람과 장면을 남기기',
+            EN: 'Sit with the basalt coast and frame the breeze',
+            JP: '玄武岩の海辺に座り、風の場面を残す',
           },
           description: {
-            KO: '제주의 날씨는 짧은 시간에도 바뀔 수 있습니다. 업무를 마친 뒤에는 가까운 산책 동선을 고르고, 강풍·호우·해안 통제 여부를 당일 공식 안내에서 확인하세요.',
-            EN: 'Jeju weather can shift quickly. Choose a nearby walk after work and check same-day wind, rain and coastal access notices through official channels.',
-            JP: '済州の天候は短時間でも変わります。仕事の後は近い散歩ルートを選び、強風・大雨・海岸の立入情報を当日の公式案内で確認してください。',
+            KO: '일정 사이에 잠시 앉아 바다와 억새를 카메라에 담아보세요. 제주의 바람·호우·해안 통제 여부는 방문 당일 공식 안내에서 확인합니다.',
+            EN: 'Pause between plans to photograph the sea and silver grass. Check same-day wind, rain and coastal access notices through official Jeju channels.',
+            JP: '予定の合間に少し座り、海とススキをカメラに収める。風・大雨・海岸の立入情報は、当日の公式案内で確認してください。',
           },
         },
         {
@@ -659,17 +659,17 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/seoul-model-i-after-work-design-lane-v2.webp',
-          eyebrow: { KO: 'AFTER WORK · DESIGN LANE', EN: 'AFTER WORK · DESIGN LANE', JP: 'AFTER WORK · DESIGN LANE' },
+          src: '/media/brand-models/seoul-model-i-design-book-dress-v3.webp',
+          eyebrow: { KO: 'AFTER WORK · DESIGN BOOK', EN: 'AFTER WORK · DESIGN BOOK', JP: 'AFTER WORK · DESIGN BOOK' },
           title: {
-            KO: '노트북을 닫고 디자인 골목으로',
-            EN: 'Close the laptop and step into the design lanes',
-            JP: 'ノートパソコンを閉じて、デザイン街へ',
+            KO: '퇴근 뒤, 디자인 북을 한 장면씩 넘기기',
+            EN: 'Turn through a design book after work',
+            JP: '仕事の後、デザインブックを一ページずつめくる',
           },
           description: {
-            KO: '작업 공간과 쇼룸이 가까운 동네에서는 퇴근 뒤 한두 블록만 걸어도 하루의 분위기가 달라집니다. 방문할 공간의 운영시간은 당일 공식 채널에서 확인하세요.',
-            EN: 'In neighborhoods where workspaces and showrooms sit close together, a block or two is enough to change the pace after work. Confirm opening hours with each venue on the day.',
-            JP: 'ワークスペースとショールームが近い街なら、仕事の後に一、二ブロック歩くだけで一日の空気が変わります。営業時間は当日、各施設の公式案内でご確認ください。',
+            KO: '비 온 뒤의 서점이나 작은 갤러리에서 아트북을 펼쳐보세요. 운영시간과 관람 조건은 방문 당일 각 공간의 공식 채널에서 확인합니다.',
+            EN: 'Open an art book in a bookstore or small gallery after the rain. Confirm hours and visitor conditions with the venue on the day.',
+            JP: '雨上がりの書店や小さなギャラリーでアートブックを開く。営業時間と入場条件は、当日各施設の公式案内で確認してください。',
           },
         },
         {
@@ -748,17 +748,17 @@ export const CITY_GUIDES: CityGuide[] = [
       },
       items: [
         {
-          src: '/media/brand-models/busan-model-e-after-work-coast-v1.webp',
-          eyebrow: { KO: 'AFTER WORK · COAST', EN: 'AFTER WORK · COAST', JP: 'AFTER WORK · COAST' },
+          src: '/media/brand-models/busan-model-e-harbor-steps-skirt-v2.webp',
+          eyebrow: { KO: 'GOLDEN HOUR · HARBOR STEPS', EN: 'GOLDEN HOUR · HARBOR STEPS', JP: 'GOLDEN HOUR · HARBOR STEPS' },
           title: {
-            KO: '노트북을 닫고 해안 산책로로',
-            EN: 'Close the laptop and take the coast',
-            JP: 'ノートPCを閉じて、海辺の散歩へ',
+            KO: '항구 계단에 앉아 저녁 바람을 맞기',
+            EN: 'Take a harbor-step pause in the evening breeze',
+            JP: '港の階段に座り、夕方の風を受ける',
           },
           description: {
-            KO: '부산의 해안 업무 거점은 일을 마친 뒤 긴 환승 없이 바다 쪽으로 이동하기 좋습니다. 날씨와 현장 운영 정보는 방문 당일 공식 안내에서 확인하세요.',
-            EN: 'Busan’s coastal work bases make it easy to reach the water without another long transfer. Check weather and current operating details through official channels on the day.',
-            JP: '釜山の海辺のワーク拠点なら、仕事の後に長い乗り換えをせず海へ移動しやすい。天候と当日の運営情報は公式案内でご確認ください。',
+            KO: '해안 업무 거점에서 나온 뒤, 항구가 보이는 계단에 잠시 앉아 여행의 속도를 낮춰보세요. 날씨와 현장 이용 정보는 방문 당일 공식 안내에서 확인합니다.',
+            EN: 'After leaving a coastal workspace, slow the trip down on steps overlooking the harbor. Check weather and current access details through official channels on the day.',
+            JP: '海辺のワーク拠点を出たら、港を望む階段で少し座り、旅のテンポを落とす。天候と当日の利用情報は公式案内で確認してください。',
           },
         },
         {

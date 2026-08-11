@@ -87,13 +87,13 @@ const DEST_FILTERS = [
 type DestFilter = typeof DEST_FILTERS[number]['id']
 
 const SELECT_HERO_ASSET = {
-  id: 'select-model-i-travel-prep-v3',
-  modelId: 'WAK-MODEL-I',
-  src: '/media/brand-models/select-model-i-travel-prep-v3.webp',
+  id: 'select-model-c-packing-flatlay-v4',
+  modelId: 'WAK-MODEL-C',
+  src: '/media/brand-models/select-model-c-packing-flatlay-v4.webp',
   alt: {
-    KO: '이동 전 라운지에서 일정표와 휴대전화를 확인하는 여행자',
-    EN: 'A traveler checking an itinerary and phone in an unnamed intercity travel lounge',
-    JP: '移動前のラウンジで旅程とスマートフォンを確認する旅人',
+    KO: '열린 여행가방 옆에 앉아 워케이션 준비물을 정리하는 여행자',
+    EN: 'A traveler organizing workation essentials beside an open suitcase',
+    JP: '開いたスーツケースの旁でワーケーションの持ち物を整える旅人',
   } satisfies L,
 } as const
 
@@ -240,7 +240,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
               fill
               preload
               sizes="(max-width: 1023px) 100vw, 52vw"
-              className="object-cover object-[72%_45%]"
+              className="object-cover object-center"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#102532]/20 via-transparent to-transparent" />
             <span className="absolute bottom-4 left-4 rounded-full border border-white/35 bg-[#102532]/78 px-3 py-1.5 text-[0.65rem] font-black text-white backdrop-blur-sm">
