@@ -53,6 +53,36 @@ export type BrandModelStylingRule = {
   photorealReferenceUsed: true
 }
 
+// Global casting and styling defaults for every new derivative. “Attractive”
+// means healthy, expressive and editorially polished; it never means whitening
+// a model, exaggerating anatomy or sexualizing an otherwise ordinary journey.
+export const BRAND_MODEL_APPEAL_POLICY = {
+  adultCastingOnly: true,
+  appearanceGoal: 'aspirational, photogenic and recognizably human',
+  skinRendering: 'natural_luminous',
+  bodyDirection: 'realistic_balanced_volume',
+  wardrobeDirection: 'context_led_wardrobe',
+  environmentDirection: 'environment_palette_rotation',
+  rules: [
+    'Cast clearly adult models with expressive eyes, distinctive facial character and natural camera presence.',
+    'Render healthy luminous skin with pores, texture and light-accurate color; never whiten identity or use plastic beauty retouching.',
+    'Keep realistic anatomy and balanced natural body volume; create an appealing silhouette through posture, tailoring and fabric rather than exaggerated curves or extreme thinness.',
+    'Choose season-, place- and activity-appropriate fashion that flatters the individual model and rotates dresses, skirts, shorts, layered sets and trousers.',
+    'Align gaze, hands and body weight with one clear action so the scene reads as a candid travel moment rather than a fashion pose.',
+    'Rotate background brightness, color temperature, materials and cultural atmosphere alongside the model; wardrobe color alone is not visual diversity.',
+    'Preserve enough headroom and action context for responsive crops, with the head, face and active hands kept visible.',
+    'Generated models remain illustrative and must never imply a real customer, participant, hotel, product or program outcome.',
+  ],
+  avoid: [
+    'artificially pale or bleached skin',
+    'sexualized body emphasis',
+    'anatomical exaggeration',
+    'generic influencer pose',
+    'off-screen gaze unrelated to the action',
+    'repeated beige or dark-amber environments',
+  ],
+} as const
+
 // Generation defaults for every new model derivative. These rules complement
 // identity fields above: face continuity never implies repeating one outfit,
 // hairstyle, pose or mood across adjacent routes.
@@ -83,8 +113,8 @@ export type ModelVisualDirectionRule = {
 // dresses, skirts, shorts and tactile actions so "woman with paper/laptop" can
 // never become Wakation's default visual shorthand again.
 export const BRAND_MODEL_VISUAL_DIRECTIONS: Record<BrandModelId, ModelVisualDirectionRule> = {
-  'WAK-MODEL-A': { signatureSilhouettes: ['draped coastal dress', 'layered travel set'], poseFamilies: ['turning from a balcony', 'kneeling beside luggage'], cameraFamilies: ['back-view environmental wide', 'side-on low wide'], colorStories: ['ocean-blue and citrus', 'ivory and sea-glass'], avoidRepeating: ['seated laptop', 'neutral linen portrait'] },
-  'WAK-MODEL-B': { signatureSilhouettes: ['tailored Bermuda shorts', 'sporty shirt dress'], poseFamilies: ['descending steps', 'reaching into transit storage'], cameraFamilies: ['low-angle motion', 'architectural wide'], colorStories: ['cobalt, coral and teal', 'lime and navy'], avoidRepeating: ['desk writing', 'map reading'] },
+  'WAK-MODEL-A': { signatureSilhouettes: ['draped coastal dress', 'layered travel set', 'asymmetrical wrap dress'], poseFamilies: ['turning from a balcony', 'kneeling beside luggage', 'reaching through a record rack'], cameraFamilies: ['back-view environmental wide', 'side-on low wide', 'through-rack low diagonal'], colorStories: ['ocean-blue and citrus', 'ivory and sea-glass', 'indigo, vermilion and chrome'], avoidRepeating: ['seated laptop', 'neutral linen portrait'] },
+  'WAK-MODEL-B': { signatureSilhouettes: ['tailored Bermuda shorts', 'sporty shirt dress', 'graphic A-line midi skirt'], poseFamilies: ['descending steps', 'reaching into transit storage', 'two-hand record inspection'], cameraFamilies: ['low-angle motion', 'architectural wide', 'eye-level shop aisle'], colorStories: ['cobalt, coral and teal', 'lime and navy', 'mint, vermilion, saffron and cobalt'], avoidRepeating: ['desk writing', 'map reading', 'looking away from the active object'] },
   'WAK-MODEL-C': { signatureSilhouettes: ['bias midi skirt', 'sculptural culotte set'], poseFamilies: ['floor packing', 'standing presentation'], cameraFamilies: ['overhead diagonal', 'waist-height layered'], colorStories: ['raspberry and cobalt', 'ink and chartreuse'], avoidRepeating: ['white blouse portrait', 'paper folio close-up'] },
   'WAK-MODEL-D': { signatureSilhouettes: ['sleeveless shirt dress', 'graphic pleated skirt'], poseFamilies: ['crouched luggage prep', 'turning through an installation'], cameraFamilies: ['low wide departure', 'immersive off-axis'], colorStories: ['tomato, teal and sky blue', 'ultraviolet and silver'], avoidRepeating: ['standing itinerary choice', 'taupe lounge scene'] },
   'WAK-MODEL-E': { signatureSilhouettes: ['pleated midi skirt', 'tailored shorts'], poseFamilies: ['seated scarf tie', 'laughing mid-transit'], cameraFamilies: ['low side wide', 'long-lens candid'], colorStories: ['cobalt, coral and yellow', 'mint and vermilion'], avoidRepeating: ['straight promenade walk', 'beige trousers'] },
@@ -110,7 +140,7 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     visualRole: { KO: '홈 히어로·해안 업무·차분한 체류', EN: 'Home hero, coastal work and calm stays', JP: 'ホーム・海辺の仕事・穏やかな滞在' },
     identityDescriptor: 'fictional adult East Asian woman with a calm natural presence and softly textured long dark hair',
     faceKeywords: ['calm', 'natural', 'balanced'], hairKeywords: ['long', 'dark', 'soft texture'], moodKeywords: ['coastal', 'quiet', 'grounded'],
-    wardrobePalette: ['ocean blue', 'ivory', 'sand'], preferredActions: ['closing a laptop', 'packing a weekender', 'looking toward the coast'], preferredLocations: ['coastal work lounge', 'island stay', 'quiet terrace'],
+    wardrobePalette: ['ocean blue', 'ivory', 'sand', 'indigo', 'vermilion'], preferredActions: ['closing a laptop', 'packing a weekender', 'looking toward the coast'], preferredLocations: ['coastal work lounge', 'island stay', 'quiet terrace'],
     allowedSections: ['home-hero', 'coastal-editorial', 'slow-stay'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
     identityAnchorAssetIds: ['wak-model-a-coastal-calm-identity-anchor'], referenceAssetIds: ['model-a-source-reference'],
     productionAssetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'],
@@ -122,9 +152,9 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     visualRole: { KO: '서울·카페 업무·도시 발견', EN: 'Seoul, café work and urban discovery', JP: 'ソウル・カフェワーク・街の発見' },
     identityDescriptor: 'fictional adult East Asian woman with a soft urban presence and long dark hair',
     faceKeywords: ['soft', 'urban', 'approachable'], hairKeywords: ['long', 'dark', 'natural'], moodKeywords: ['daylight', 'social', 'easy'],
-    wardrobePalette: ['stone', 'soft blue', 'charcoal'], preferredActions: ['taking notes', 'walking between cafés', 'checking a route'], preferredLocations: ['city café', 'design district', 'local street'],
-    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work', 'growth-learning', 'programs-hero'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: ['growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2', 'programs-model-b-coastal-arrival-desktop-v3', 'programs-model-b-coastal-arrival-mobile-v2'],
+    wardrobePalette: ['stone', 'soft blue', 'charcoal', 'teal', 'vermilion', 'mustard'], preferredActions: ['taking notes', 'walking between cafés', 'checking a route', 'examining a record sleeve'], preferredLocations: ['city café', 'design district', 'local street', 'Tokyo-inspired record shop'],
+    allowedSections: ['seoul-editorial', 'social-discovery', 'cafe-work', 'growth-learning', 'programs-hero', 'tokyo-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-b-soft-urban-identity-anchor'], referenceAssetIds: ['model-b-source-reference'], productionAssetIds: ['growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2', 'programs-model-b-coastal-arrival-desktop-v3', 'programs-model-b-coastal-arrival-mobile-v2', 'tokyo-model-b-record-shop-v2'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
     notes: 'Regenerate environment-led scenes; never publish the source pose or synthetic lettering.',
   },

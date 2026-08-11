@@ -23,6 +23,7 @@ export const MODEL_ROTATION_POLICY = {
     'Balance dresses, skirts, shorts, layered sets and trousers; no single silhouette family may exceed 40 percent of active placements.',
     'Laptop, map and paper are task props only, never the default shorthand for workation.',
     'Do not repeat neutral linen styling on consecutive surfaces; give every destination a deliberate color story.',
+    'Vary environment tone, light quality and material palette with the model direction; never treat wardrobe color alone as sufficient visual diversity.',
     'Never use generated models as customer, participant, review, product, hotel or program proof.',
   ],
 } as const
@@ -39,6 +40,7 @@ export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
   { id: 'japan-short-stay-hero', routes: ['/campaign/japan-short-stay'], section: 'campaign-japan-short-stay-hero', modelIds: ['WAK-MODEL-F'], assetIds: ['campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2'], primaryHref: '/trip-match?campaign=japan-short-stay', status: 'active' },
   { id: 'fukuoka-trip-set-editorial', routes: ['/', '/en', '/ja', '/collections/fukuoka-3n4d', '/en/collections/fukuoka-3n4d', '/ja/collections/fukuoka-3n4d'], section: 'fukuoka-trip-set-editorial', modelIds: ['WAK-MODEL-G'], assetIds: ['trip-set-fukuoka-model-g-cafe-v2'], primaryHref: '/collections/fukuoka-3n4d', status: 'active' },
   { id: 'itoshima-experience-editorial', routes: ['/experiences/itoshima-photo-bus-tour', '/en/experiences/itoshima-photo-bus-tour', '/ja/experiences/itoshima-photo-bus-tour', '/select/activity'], section: 'itoshima-experience-editorial', modelIds: ['WAK-MODEL-G'], assetIds: ['itoshima-coast-editorial-model-g-v2'], primaryHref: '/experiences/itoshima-photo-bus-tour', status: 'active' },
+  { id: 'tokyo-guide-lookbook', routes: ['/guide/tokyo', '/en/guide/tokyo', '/ja/guide/tokyo'], section: 'guide-lookbook-record-dig', modelIds: ['WAK-MODEL-B'], assetIds: ['tokyo-model-b-record-shop-v2'], primaryHref: '/collections/tokyo-allinone', status: 'active' },
   { id: 'fukuoka-guide-lookbook', routes: ['/guide/fukuoka', '/en/guide/fukuoka', '/ja/guide/fukuoka'], section: 'guide-lookbook-local-market', modelIds: ['WAK-MODEL-H'], assetIds: ['fukuoka-model-h-market-dress-v2'], primaryHref: '/collections/fukuoka-3n4d', status: 'active' },
   { id: 'osaka-guide-lookbook', routes: ['/guide/osaka', '/en/guide/osaka', '/ja/guide/osaka'], section: 'guide-lookbook-after-work-exhibition', modelIds: ['WAK-MODEL-J'], assetIds: ['osaka-model-j-after-work-gallery-v1'], primaryHref: '/collections/osaka-friends', status: 'active' },
   { id: 'seoul-guide-lookbook', routes: ['/guide/seoul', '/en/guide/seoul', '/ja/guide/seoul'], section: 'guide-lookbook-design-book', modelIds: ['WAK-MODEL-I'], assetIds: ['seoul-model-i-design-book-dress-v3'], primaryHref: '/collections/seoul-3n4d', status: 'active' },

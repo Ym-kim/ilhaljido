@@ -12,6 +12,8 @@ export function GuideLookbook({
   lookbook: GuideLookbookData
   lang: Lang
 }) {
+  const isSingleFeature = lookbook.items.length === 1
+
   return (
     <section
       className="border-y border-[#dce7e8] bg-[#f4f1e9] px-5 py-12 sm:px-6 sm:py-16"
@@ -38,9 +40,15 @@ export function GuideLookbook({
             return (
               <figure
                 key={item.src}
-                className="group overflow-hidden rounded-[1.75rem] border border-[#d2dcdb] bg-white shadow-[0_16px_42px_rgba(26,50,59,0.08)]"
+                className={`group overflow-hidden rounded-[1.75rem] border border-[#d2dcdb] bg-white shadow-[0_16px_42px_rgba(26,50,59,0.08)] ${
+                  isSingleFeature
+                    ? 'md:col-span-2 md:grid md:grid-cols-[minmax(0,1.45fr)_minmax(18rem,0.75fr)]'
+                    : ''
+                }`}
               >
-                <div className="relative aspect-[3/2] overflow-hidden bg-[#dce6e5]">
+                <div className={`relative aspect-[3/2] overflow-hidden bg-[#dce6e5] ${
+                  isSingleFeature ? 'md:aspect-auto md:min-h-[26rem]' : ''
+                }`}>
                   <Image
                     src={item.src}
                     alt={asset?.alt[lang] ?? item.title[lang]}
@@ -53,7 +61,9 @@ export function GuideLookbook({
                     } : undefined}
                   />
                 </div>
-                <figcaption className="min-h-40 px-5 py-5 sm:px-6 sm:py-6">
+                <figcaption className={`min-h-40 px-5 py-5 sm:px-6 sm:py-6 ${
+                  isSingleFeature ? 'md:flex md:min-h-full md:flex-col md:justify-center md:px-8' : ''
+                }`}>
                   <span className="text-[0.64rem] font-black tracking-[0.14em] text-[#6f8b93]">
                     {item.eyebrow[lang]}
                   </span>
