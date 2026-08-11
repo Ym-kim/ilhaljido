@@ -239,6 +239,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Two hours behind Korea, so mornings feel unhurried. Café-style lounges line My Khe beach, and the An Thuong nomad quarter is dense with laptop-friendly cafés. Fits anything from two weeks to a month.',
       JP: '韓国·日本より2時間遅く、朝に余裕が生まれる街。ミーケビーチ沿いにカフェ風ラウンジ付きの宿が並び、ノマドが集まるアントゥオン地区にはPC作業向きのカフェが密集。2週間〜1カ月滞在に。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN DA NANG', EN: 'A DAY IN DA NANG', JP: 'A DAY IN DA NANG' },
+      title: {
+        KO: '느린 오전 뒤, 로컬의 색을 만나는 다낭',
+        EN: 'After a slow morning, meet Da Nang in full color',
+        JP: 'ゆるやかな朝のあと、ダナンの色に出会う',
+      },
+      intro: {
+        KO: '한국보다 두 시간 느린 오전은 업무에 쓰고, 해가 기울면 시장과 해변 사이를 가볍게 걸어보세요. 한 동네 안에서 집중과 여행의 온도를 바꾸는 구성입니다.',
+        EN: 'Use the two-hour time difference for a calmer work morning, then move between a local market and the beach as the heat eases. It is an easy way to change pace without changing neighborhoods.',
+        JP: '2時間の時差を生かして朝は落ち着いて働き、暑さがやわらぐ頃に市場と海辺へ。ひとつのエリアで仕事と旅の温度を切り替える過ごし方です。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/danang-model-c-tropical-market-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · LOCAL MARKET', EN: 'AFTER WORK · LOCAL MARKET', JP: 'AFTER WORK · LOCAL MARKET' },
+          title: {
+            KO: '오후의 더위가 누그러지면, 시장의 색 속으로',
+            EN: 'When the afternoon cools, step into the market colors',
+            JP: '午後の暑さがやわらいだら、市場の色の中へ',
+          },
+          description: {
+            KO: '업무를 마친 뒤 가까운 시장에서 제철 과일과 간단한 먹거리를 살펴보세요. 영업시간과 판매 품목은 방문 전 현지에서 다시 확인하는 것이 좋습니다.',
+            EN: 'After work, browse seasonal fruit and simple local snacks at a nearby market. Opening hours and available produce can change, so check locally before you go.',
+            JP: '仕事のあと、近くの市場で旬の果物や気軽なローカルフードを見て回ってみてください。営業時間や品揃えは訪問前に現地で確認しましょう。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '-2시간', EN: '−2 hours', JP: '−2時間' } },
       { label: F.flight, value: { KO: '약 4시간 30분', EN: '~4h 30m', JP: '約4時間30分' } },

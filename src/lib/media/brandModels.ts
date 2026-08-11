@@ -54,19 +54,21 @@ export type BrandModelStylingRule = {
 }
 
 // Global casting and styling defaults for every new derivative. “Attractive”
-// means healthy, expressive and editorially polished; it never means whitening
-// a model, exaggerating anatomy or sexualizing an otherwise ordinary journey.
+// means healthy, expressive and editorially polished. A subtly brighter skin
+// grade and softly enhanced silhouette are welcome when they stay coherent
+// with the model's identity, natural anatomy, scene lighting and travel context.
 export const BRAND_MODEL_APPEAL_POLICY = {
   adultCastingOnly: true,
   appearanceGoal: 'aspirational, photogenic and recognizably human',
-  skinRendering: 'natural_luminous',
-  bodyDirection: 'realistic_balanced_volume',
+  skinRendering: 'naturally_bright_luminous',
+  bodyDirection: 'realistic_attractive_volume',
+  appearanceEnhancement: 'subtle_editorial_polish',
   wardrobeDirection: 'context_led_wardrobe',
   environmentDirection: 'environment_palette_rotation',
   rules: [
     'Cast clearly adult models with expressive eyes, distinctive facial character and natural camera presence.',
-    'Render healthy luminous skin with pores, texture and light-accurate color; never whiten identity or use plastic beauty retouching.',
-    'Keep realistic anatomy and balanced natural body volume; create an appealing silhouette through posture, tailoring and fabric rather than exaggerated curves or extreme thinness.',
+    'Render clear, softly bright and luminous skin while preserving pores, texture, undertone and the model identity; gentle editorial brightening must remain believable under the scene light.',
+    'Keep realistic anatomy while adding understated, attractive body volume and dimensionality through posture, proportion, tailoring and fabric drape; the whole silhouette matters more than one emphasized body part.',
     'Choose season-, place- and activity-appropriate fashion that flatters the individual model and rotates dresses, skirts, shorts, layered sets and trousers.',
     'Align gaze, hands and body weight with one clear action so the scene reads as a candid travel moment rather than a fashion pose.',
     'Rotate background brightness, color temperature, materials and cultural atmosphere alongside the model; wardrobe color alone is not visual diversity.',
@@ -74,9 +76,9 @@ export const BRAND_MODEL_APPEAL_POLICY = {
     'Generated models remain illustrative and must never imply a real customer, participant, hotel, product or program outcome.',
   ],
   avoid: [
-    'artificially pale or bleached skin',
-    'sexualized body emphasis',
-    'anatomical exaggeration',
+    'chalky, mask-like or identity-changing whitening',
+    'explicit or isolated sexualized body emphasis',
+    'distorted anatomy or extreme proportions',
     'generic influencer pose',
     'off-screen gaze unrelated to the action',
     'repeated beige or dark-amber environments',
@@ -163,11 +165,11 @@ export const BRAND_MODELS: BrandModelProfile[] = [
     visualRole: { KO: '라운지·프리미엄 체류·도시 업무', EN: 'Premium lounges, stays and city work', JP: 'ラウンジ・上質な滞在・都市の仕事' },
     identityDescriptor: 'fictional adult East Asian woman with a composed premium presence and polished long dark hair',
     faceKeywords: ['composed', 'polished', 'quiet'], hairKeywords: ['long', 'dark', 'smooth'], moodKeywords: ['premium', 'focused', 'minimal'],
-    wardrobePalette: ['ink', 'taupe', 'cream'], preferredActions: ['waiting before check-in', 'reviewing a schedule', 'quiet laptop work'], preferredLocations: ['hotel lounge', 'business stay', 'museum café'],
-    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial', 'select-editorial'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
-    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1', 'select-model-c-packing-flatlay-v4', 'business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3'],
+    wardrobePalette: ['ink', 'taupe', 'cream', 'coral', 'jade', 'turquoise'], preferredActions: ['waiting before check-in', 'reviewing a schedule', 'quiet laptop work', 'examining local produce'], preferredLocations: ['hotel lounge', 'business stay', 'museum café', 'tropical market arcade'],
+    allowedSections: ['premium-stay-editorial', 'business-travel', 'lounge', 'team-business-editorial', 'select-editorial', 'danang-guide-lookbook'], restrictedSections: COMMON_RESTRICTED_SECTIONS,
+    identityAnchorAssetIds: ['wak-model-c-quiet-premium-identity-anchor'], referenceAssetIds: ['model-c-source-reference'], productionAssetIds: ['business-model-c-team-planning-desktop-v1', 'business-model-c-team-planning-mobile-v1', 'select-model-c-packing-flatlay-v4', 'business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3', 'danang-model-c-tropical-market-v1'],
     productionUse: 'generated_derivatives_only', sourceType: 'generated_reference', illustrative: true, directPublish: false,
-    notes: 'Vary wardrobe and camera distance; avoid repeating a white top and beauty-portrait composition.',
+    notes: 'Vary wardrobe and camera distance; avoid repeating a white top, fruit-market action, coral dress, jade-coral arcade or beauty-portrait composition.',
   },
   {
     id: 'WAK-MODEL-D', rosterVersion: BRAND_MODEL_ROSTER_VERSION, nameCode: 'Refined Editorial', adultAgeRange: 'late twenties to early thirties',

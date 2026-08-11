@@ -17,8 +17,9 @@ const maximumShare = (field) => Math.max(...counts(field).values()) / directions
 const activePlacementIds = [...rotation.matchAll(/\{ id: '([^']+)'.+status: 'active' \}/g)].map((match) => match[1])
 const requiredAppealPolicyMarkers = [
   'BRAND_MODEL_APPEAL_POLICY',
-  "skinRendering: 'natural_luminous'",
-  "bodyDirection: 'realistic_balanced_volume'",
+  "skinRendering: 'naturally_bright_luminous'",
+  "bodyDirection: 'realistic_attractive_volume'",
+  "appearanceEnhancement: 'subtle_editorial_polish'",
   "wardrobeDirection: 'context_led_wardrobe'",
   "environmentDirection: 'environment_palette_rotation'",
 ]
