@@ -392,6 +392,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Serviced apartments with kitchenettes are common, keeping month-stay living costs low. Base yourself in café-dense Nimman and work, meals and walks all happen on foot. Nov–Feb dry season is the sweet spot.',
       JP: 'キッチン付きサービスアパートが豊富で、1カ月滞在の生活コストを抑えられる街。カフェ密度の高いニマンヘミンを拠点にすれば、仕事も食事も散歩も徒歩圏内。11〜2月の乾季が最も快適。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN CHIANG MAI', EN: 'A DAY IN CHIANG MAI', JP: 'A DAY IN CHIANG MAI' },
+      title: {
+        KO: '집중을 마치면, 빨간 차를 타고 오래된 도시로',
+        EN: 'After focus time, take the red ride into the old city',
+        JP: '集中を終えたら、赤い車で旧市街へ',
+      },
+      intro: {
+        KO: '낮에는 님만의 카페와 숙소에서 집중하고, 더위가 누그러지는 오후에는 올드시티로 반경을 넓혀보세요. 한 달 체류라면 매일 먼 곳을 더하기보다 일과 후의 짧은 이동을 생활 리듬으로 만드는 편이 편안합니다.',
+        EN: 'Focus in Nimman by day, then widen your radius toward the Old City when the heat eases. On a month-long stay, a short after-work ride often creates a better rhythm than adding a distant stop every day.',
+        JP: '昼はニマンのカフェや宿で集中し、暑さがやわらぐ夕方に旧市街へ。1カ月滞在なら、毎日遠出を増やすより、仕事後の短い移動を生活のリズムにする方が快適です。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/chiangmai-model-e-red-ride-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · RED RIDE', EN: 'AFTER WORK · RED RIDE', JP: 'AFTER WORK · RED RIDE' },
+          title: {
+            KO: '해가 낮아지면, 올드시티까지 가볍게',
+            EN: 'When the sun drops, ride lightly toward the Old City',
+            JP: '日差しが傾いたら、旧市街まで軽やかに',
+          },
+          description: {
+            KO: '빨간 썽태우는 짧은 도심 이동에 활용할 수 있습니다. 타기 전 목적지·요금·합승 여부와 저녁 시간대 운행 가능 여부를 현장에서 확인하세요.',
+            EN: 'Red songthaews can work for short city hops. Confirm the destination, fare, shared-ride arrangement and later-evening availability locally before boarding.',
+            JP: '赤いソンテウは市内の短い移動に使えます。乗車前に行き先、運賃、乗り合い条件、夕方以降の運行状況を現地で確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '-2시간', EN: '−2 hours', JP: '−2時間' } },
       { label: F.flight, value: { KO: '약 5시간 30분', EN: '~5h 30m', JP: '約5時間30分' } },
