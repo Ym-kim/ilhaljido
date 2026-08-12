@@ -26,6 +26,7 @@ const SHARED_EXACT = new Set<string>([
   '/destinations',
   '/destinations/compare',
   '/collections',
+  '/cruise',
   '/guide',
   '/stories',
   '/moments',
@@ -35,7 +36,7 @@ const SHARED_EXACT = new Set<string>([
 ])
 
 /** Dynamic route families with dedicated English and Japanese pages. */
-const SHARED_FAMILIES = ['/guide/', '/collections/', '/destinations/', '/experiences/', '/moments/', '/programs/support/']
+const SHARED_FAMILIES = ['/guide/', '/collections/', '/cruise/', '/destinations/', '/experiences/', '/moments/', '/programs/support/']
 
 /** Korean-only pages that sit under an otherwise localized route family. */
 const FAMILY_EXCLUDES = new Set<string>(['/programs/support/register'])
