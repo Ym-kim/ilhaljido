@@ -22,14 +22,8 @@
       "PowerShell(Remove-Item -Recurse -Force*)",
       "PowerShell(rm -rf *)",
 
-      "Bash(git push origin main-local:main*)",
-      "Bash(git push origin main*)",
-      "Bash(git push origin HEAD:main*)",
       "Bash(vercel --prod*)",
       "Bash(vercel deploy --prod*)",
-      "PowerShell(git push origin main-local:main*)",
-      "PowerShell(git push origin main*)",
-      "PowerShell(git push origin HEAD:main*)",
       "PowerShell(vercel --prod*)",
       "PowerShell(vercel deploy --prod*)",
 
