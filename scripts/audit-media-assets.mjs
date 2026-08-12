@@ -68,6 +68,8 @@ const supersededPublicFiles = new Set([
   'busan-model-e-after-work-coast-v1.avif',
   'jeju-model-g-after-rain-coast-v1.webp',
   'jeju-model-g-after-rain-coast-v1.avif',
+  'sydney-model-d-winter-harbor-v1.webp',
+  'sydney-model-d-winter-harbor-v1.avif',
 ])
 
 const v2Assets = [
@@ -102,7 +104,7 @@ const v2Assets = [
   { id: 'bali-model-a-tropical-cycle-v1', file: 'bali-model-a-tropical-cycle-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-A'] },
   { id: 'chiangmai-model-e-red-ride-v1', file: 'chiangmai-model-e-red-ride-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-E'] },
   { id: 'cebu-model-f-island-prep-v1', file: 'cebu-model-f-island-prep-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-F'] },
-  { id: 'sydney-model-d-winter-harbor-v1', file: 'sydney-model-d-winter-harbor-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
+  { id: 'sydney-model-d-clear-winter-skirt-v2', file: 'sydney-model-d-clear-winter-skirt-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
   { id: 'fukuoka-model-h-market-dress-v2', file: 'fukuoka-model-h-market-dress-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-H'] },
   { id: 'osaka-model-j-after-work-gallery-v1', file: 'osaka-model-j-after-work-gallery-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
   { id: 'seoul-model-i-design-book-dress-v3', file: 'seoul-model-i-design-book-dress-v3.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
@@ -129,7 +131,7 @@ const optimizedDerivatives = [
   { file: 'bali-model-a-tropical-cycle-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'chiangmai-model-e-red-ride-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'cebu-model-f-island-prep-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
-  { file: 'sydney-model-d-winter-harbor-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'sydney-model-d-clear-winter-skirt-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'fukuoka-model-h-market-dress-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'osaka-model-j-after-work-gallery-v1.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'seoul-model-i-design-book-dress-v3.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
@@ -166,7 +168,7 @@ const v2Placements = [
   { route: 'guide-bali', section: 'guide-lookbook-tropical-cycle', models: ['WAK-MODEL-A'], assets: assetIds('bali-model-a-tropical-cycle-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-chiangmai', section: 'guide-lookbook-red-ride', models: ['WAK-MODEL-E'], assets: assetIds('chiangmai-model-e-red-ride-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-cebu', section: 'guide-lookbook-island-prep', models: ['WAK-MODEL-F'], assets: assetIds('cebu-model-f-island-prep-v1'), source: 'src/lib/guides.ts' },
-  { route: 'guide-sydney', section: 'guide-lookbook-winter-harbour', models: ['WAK-MODEL-D'], assets: assetIds('sydney-model-d-winter-harbor-v1'), source: 'src/lib/guides.ts' },
+  { route: 'guide-sydney', section: 'guide-lookbook-clear-winter-harbour', models: ['WAK-MODEL-D'], assets: assetIds('sydney-model-d-clear-winter-skirt-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-fukuoka', section: 'guide-lookbook-local-market', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-market-dress-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-seoul', section: 'guide-lookbook-design-book', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-design-book-dress-v3'), source: 'src/lib/guides.ts' },
