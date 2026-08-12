@@ -110,6 +110,8 @@ const v2Assets = [
   { id: 'seoul-model-i-design-book-dress-v3', file: 'seoul-model-i-design-book-dress-v3.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-I'] },
   { id: 'busan-model-e-harbor-steps-skirt-v2', file: 'busan-model-e-harbor-steps-skirt-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-E'] },
   { id: 'jeju-model-g-summer-camera-skirt-v2', file: 'jeju-model-g-summer-camera-skirt-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-G'] },
+  { id: 'jeonju-model-j-hanok-fan-v1', file: 'jeonju-model-j-hanok-fan-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-J'] },
+  { id: 'yeosu-model-a-harbor-breeze-v1', file: 'yeosu-model-a-harbor-breeze-v1.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-A'] },
 ]
 
 // Delivery-format derivatives share the canonical WebP asset's provenance.
@@ -137,6 +139,8 @@ const optimizedDerivatives = [
   { file: 'seoul-model-i-design-book-dress-v3.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'busan-model-e-harbor-steps-skirt-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
   { file: 'jeju-model-g-summer-camera-skirt-v2.avif', width: 1536, height: 1024, maximumBytes: 90_000 },
+  { file: 'jeonju-model-j-hanok-fan-v1.avif', width: 1536, height: 1024, maximumBytes: 150_000 },
+  { file: 'yeosu-model-a-harbor-breeze-v1.avif', width: 1536, height: 1024, maximumBytes: 150_000 },
 ]
 
 const motionAssets = [
@@ -169,6 +173,8 @@ const v2Placements = [
   { route: 'guide-chiangmai', section: 'guide-lookbook-red-ride', models: ['WAK-MODEL-E'], assets: assetIds('chiangmai-model-e-red-ride-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-cebu', section: 'guide-lookbook-island-prep', models: ['WAK-MODEL-F'], assets: assetIds('cebu-model-f-island-prep-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-sydney', section: 'guide-lookbook-clear-winter-harbour', models: ['WAK-MODEL-D'], assets: assetIds('sydney-model-d-clear-winter-skirt-v2'), source: 'src/lib/guides.ts' },
+  { route: 'guide-jeonju', section: 'guide-lookbook-hanok-shade', models: ['WAK-MODEL-J'], assets: assetIds('jeonju-model-j-hanok-fan-v1'), source: 'src/lib/guides.ts' },
+  { route: 'guide-yeosu', section: 'guide-lookbook-harbour-breeze', models: ['WAK-MODEL-A'], assets: assetIds('yeosu-model-a-harbor-breeze-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-fukuoka', section: 'guide-lookbook-local-market', models: ['WAK-MODEL-H'], assets: assetIds('fukuoka-model-h-market-dress-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-osaka', section: 'guide-lookbook-after-work-exhibition', models: ['WAK-MODEL-J'], assets: assetIds('osaka-model-j-after-work-gallery-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-seoul', section: 'guide-lookbook-design-book', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-design-book-dress-v3'), source: 'src/lib/guides.ts' },
@@ -177,6 +183,8 @@ const v2Placements = [
 ]
 
 const nonModelMajorSurfaces = [
+  'src/components/destinations/CityInsightView.tsx',
+  'src/components/affiliate/TripSetPreparationCard.tsx',
   'src/components/home/DomesticOnboarding.tsx',
   'src/components/home/MoodExplorer.tsx',
   'src/components/home/DurationExplorer.tsx',

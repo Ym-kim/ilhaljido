@@ -1011,6 +1011,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: "Korea's largest urban cluster of some 700 hanok houses — mornings at a hanok-stay desk or café, afternoons wandering the lanes. Designated a UNESCO Creative City of Gastronomy in 2012, so dinner is the day's reward. About 1h 40m from Seoul (Yongsan) by KTX — built for a slow 2–4 day workation.",
       JP: '約700棟の韓屋が路地を成す韓国最大の都心韓屋群。午前は韓屋ステイやカフェのデスクで働き、午後は路地歩きへ。2012年ユネスコ食文化創造都市に指定された美食の都で、仕事終わりの一食が一日のご褒美になります。仁川空港から直行リムジンバスで約3時間半、ソウルからKTXで約1時間40分。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN JEONJU', EN: 'A DAY IN JEONJU', JP: 'A DAY IN JEONJU' },
+      title: {
+        KO: '그늘이 머무는 한옥 골목에서 천천히',
+        EN: 'A slower morning in the shade of hanok eaves',
+        JP: '韓屋の軒下、日陰を選んでゆっくりと',
+      },
+      intro: {
+        KO: '8월 전주는 햇볕과 습도가 강합니다. 오전에는 조용한 골목과 실내 작업 공간을 이어 걷고, 한낮에는 충분히 쉬어가는 흐름으로 구성해 보세요.',
+        EN: 'August in Jeonju is sunny and humid. Link quiet lanes with an indoor work stop in the morning, then leave generous room to rest through the hottest hours.',
+        JP: '8月の全州は日差しと湿度が高めです。午前は静かな路地と屋内の作業場所をつなぎ、暑い時間帯は余裕を持って休みましょう。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/jeonju-model-j-hanok-fan-v1.webp',
+          eyebrow: { KO: 'SLOW MORNING · HANOK SHADE', EN: 'SLOW MORNING · HANOK SHADE', JP: 'SLOW MORNING · HANOK SHADE' },
+          title: {
+            KO: '부채를 펴고, 다음 골목은 서두르지 않게',
+            EN: 'Open a fan and let the next lane wait',
+            JP: '扇子を開いて、次の路地へは急がずに',
+          },
+          description: {
+            KO: '그늘이 긴 오전에 한옥 골목을 걷고, 더워지기 전 카페나 작업 공간으로 이동하는 여름 동선입니다. 한옥 내부와 촬영 가능 구역은 현장 안내를 확인하세요.',
+            EN: 'Walk the hanok lanes while the morning shade is long, then move indoors before the heat builds. Check on-site guidance for interior access and photography rules.',
+            JP: '朝の長い日陰を選んで韓屋の路地を歩き、暑くなる前にカフェや作業場所へ移る夏の流れです。建物内の利用や撮影は現地案内を確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
       { label: F.flight, value: { KO: 'KTX 약 1시간 40분 (용산발)', EN: 'KTX ~1h 40m from Seoul', JP: '仁川空港からバス約3時間半' } },
@@ -1068,6 +1097,35 @@ export const CITY_GUIDES: CityGuide[] = [
       KO: '남해안을 마주한 해양 도시 여수는 용산에서 KTX 약 3시간이면 닿습니다. 낮에는 종포해양공원의 1.5km 해안 산책로와 웅천 카페거리 사이에서 일하고, 밤에는 거북선대교 아래 낭만포차 거리가 하루를 닫아줍니다. 전남블루 워케이션 지원사업 대상 지역이라 체류 비용을 줄일 길도 열려 있습니다.',
       EN: "Yeosu faces Korea's southern sea, about three hours from Seoul (Yongsan) by KTX. Work between the 1.5km waterfront promenade at Jongpo Marine Park and Ungcheon's café district, then let the pocha street under Geobukseon Bridge close out the day. The Jeonnam Blue workation support program covers the city, too.",
       JP: '南海岸に面した港町・麗水は、ソウル（龍山）からKTXで約3時間。昼は鍾浦海洋公園の1.5kmの海辺遊歩道やウンチョンのカフェ街で働き、夜は亀甲船大橋の下のポチャ（屋台）通りが一日を締めくくります。全南ブルーワーケーション支援の対象地域でもあります。',
+    },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN YEOSU', EN: 'A DAY IN YEOSU', JP: 'A DAY IN YEOSU' },
+      title: {
+        KO: '바닷바람을 따라, 업무 뒤의 여수',
+        EN: 'Follow the sea breeze after work in Yeosu',
+        JP: '仕事のあと、海風を追って麗水へ',
+      },
+      intro: {
+        KO: '오전 업무를 마친 뒤 해가 조금 기울 때 항구 산책을 시작해 보세요. 여름의 여수는 덥고 습하지만, 물가에서는 바람이 하루의 속도를 가볍게 바꿔줍니다.',
+        EN: 'Finish a focused morning, then begin the harbour walk as the light starts to soften. Yeosu is hot and humid in summer, but the waterfront breeze changes the pace of the day.',
+        JP: '午前の仕事を終え、日差しが少し和らぐころに港の散歩へ。夏の麗水は暑く湿度も高いものの、水辺の風が一日のテンポを軽く変えてくれます。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/yeosu-model-a-harbor-breeze-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · HARBOUR BREEZE', EN: 'AFTER WORK · HARBOUR BREEZE', JP: 'AFTER WORK · HARBOUR BREEZE' },
+          title: {
+            KO: '모자를 붙잡는 바람도 여행의 장면으로',
+            EN: 'Let the harbour breeze become part of the trip',
+            JP: '帽子を押さえる海風も、旅の一場面に',
+          },
+          description: {
+            KO: '볕이 강한 시간은 실내에 머물고, 늦은 오후 해안 산책과 저녁 식사를 연결해 보세요. 강풍과 자외선, 선박 운항 여부는 당일 현지 정보를 확인하는 편이 안전합니다.',
+            EN: 'Stay indoors through the strongest sun, then link a late-afternoon waterfront walk with dinner. Check local updates for wind, UV and vessel operations on the day.',
+            JP: '日差しの強い時間は屋内で過ごし、夕方の海辺散歩から夕食へつなげましょう。強風、紫外線、船の運航状況は当日の現地情報を確認してください。',
+          },
+        },
+      ],
     },
     facts: [
       { label: F.tz, value: { KO: '없음 (국내)', EN: 'KST (UTC+9)', JP: '日本と時差なし' } },
