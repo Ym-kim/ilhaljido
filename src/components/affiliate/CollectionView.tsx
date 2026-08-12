@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
-import { getCollection, COLLECTIONS_UI } from '@/lib/affiliate/collections'
+import { getCollection, COLLECTIONS_UI, localizeComfortSource } from '@/lib/affiliate/collections'
 import { getCatalogItems } from '@/lib/affiliate/catalog'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
@@ -20,16 +20,6 @@ import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEdit
 import { TripSetPreparationCard } from '@/components/affiliate/TripSetPreparationCard'
 
 const PREPARATION_PROGRESS_EVENT = 'wakation:trip-preparation-progress'
-
-const COMFORT_SOURCE_COPY: Record<string, Record<Lang, string>> = {
-  '가이드 검증': { KO: '가이드 공개 정보 확인', EN: 'Guide sources checked', JP: 'ガイド公開情報を確認' },
-  '공식 발표': { KO: '공식 발표', EN: 'Official announcement', JP: '公式発表' },
-  '부산시 보도자료': { KO: '부산시 보도자료', EN: 'Busan City release', JP: '釜山市報道資料' },
-}
-
-function localizeComfortSource(source: string, lang: Lang) {
-  return COMFORT_SOURCE_COPY[source]?.[lang] ?? source
-}
 
 function subscribePreparationProgress(onStoreChange: () => void) {
   window.addEventListener(PREPARATION_PROGRESS_EVENT, onStoreChange)
