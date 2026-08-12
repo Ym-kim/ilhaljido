@@ -714,6 +714,23 @@ export const COLLECTIONS: Collection[] = [
       JP: '大都市の喧騒の代わりに博多のコワーキング宿で働き、福岡近郊の温泉町へ日帰り。日本eSIMと航空券も。旅館・温泉の小都市は専用ページで。',
     },
     itemIds: ['stay-webase-hakata', 'act-fukuoka-bustour', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // 2026-08-13 비자 실사 — 외교부 0404 사증면제 목록(일본 90일)·주일본 대한민국 대사관 공지 원문으로
+    // 확인한 항목만 기재(신규 주장 0). 공항 접근은 후쿠오카 세트 검증분(07-28) 재사용.
+    comfortFacts: [
+      {
+        type: 'visa',
+        label: { KO: '무비자 체류', EN: 'Visa-free stay', JP: 'ビザ免除滞在' },
+        value: {
+          KO: '한국 여권은 90일 이내 무비자 — 관광 등 일시 방문에 한하며, 입국 허가를 보장하지는 않습니다',
+          EN: 'Up to 90 days visa-free on a Korean passport — for short visits such as tourism; entry itself is not guaranteed',
+          JP: '韓国旅券は90日以内ビザ免除 — 観光など一時訪問に限られ、入国許可を保証するものではありません',
+        },
+        source: 'MOFA Korea',
+        verifiedAt: '2026-08-13',
+      },
+      { type: 'airport_access', label: { KO: '공항 접근', EN: 'Airport access', JP: '空港アクセス' }, value: { KO: '후쿠오카공항—하카타역 지하철 공항선 직결', EN: 'Subway links the airport straight to Hakata Station', JP: '福岡空港—博多駅は地下鉄空港線で直結' }, source: '가이드 검증', verifiedAt: '2026-07-28' },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
+    ],
     // 2026-08-04 막다른 페이지 해소 — 거점이 하카타라 후쿠오카 가이드 연결
     cityGuideSlug: 'fukuoka',
   },
@@ -730,6 +747,24 @@ export const COLLECTIONS: Collection[] = [
       JP: '時差ゼロ·直行1時間台の大阪。ラウンジの広い宿で働き、周遊パスで40カ所以上へ。日本eSIMと航空券も。',
     },
     itemIds: ['stay-lively-osaka', 'act-klook-osaka-pass', 'esim-klook-japan', 'feat-flight-tripcom'],
+    // 2026-08-13 비자 실사 — 외교부 0404 사증면제 목록(일본 90일)·주일본 대한민국 대사관 공지 원문으로
+    // 확인한 항목만 기재(신규 주장 0). 공항·주유패스는 오사카 세트 기존 문구 재사용(보수 서술·제휴 상품 실문구).
+    comfortFacts: [
+      {
+        type: 'visa',
+        label: { KO: '무비자 체류', EN: 'Visa-free stay', JP: 'ビザ免除滞在' },
+        value: {
+          KO: '한국 여권은 90일 이내 무비자 — 관광 등 일시 방문에 한하며, 입국 허가를 보장하지는 않습니다',
+          EN: 'Up to 90 days visa-free on a Korean passport — for short visits such as tourism; entry itself is not guaranteed',
+          JP: '韓国旅券は90日以内ビザ免除 — 観光など一時訪問に限られ、入国許可を保証するものではありません',
+        },
+        source: 'MOFA Korea',
+        verifiedAt: '2026-08-13',
+      },
+      { type: 'airport_access', label: { KO: '공항 접근', EN: 'Airport access', JP: '空港アクセス' }, value: { KO: '간사이공항—난바 난카이선 직결 노선 운행', EN: 'Nankai line runs direct from KIX to Namba', JP: '関西空港—難波は南海線で直結' } },
+      { type: 'transit_pass', label: { KO: '교통 패스', EN: 'Transit pass', JP: '交通パス' }, value: { KO: '주유패스 하나로 교통+40여 시설 입장', EN: 'One Amazing Pass covers transit + 40+ spots', JP: '周遊パス1枚で交通＋40カ所以上' } },
+      { type: 'esim', label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, value: { KO: '출국 전 설치하면 도착 즉시 연결', EN: 'Install before departure, connect on arrival', JP: '出発前に設定すれば到着後すぐ接続' } },
+    ],
     // 2026-08-04 막다른 페이지 해소 (싱가포르·타이베이는 가이드 미존재라 제외)
     cityGuideSlug: 'osaka',
   },
