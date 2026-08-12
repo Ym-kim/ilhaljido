@@ -734,6 +734,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Just 1–2 hours ahead of Korea (with DST), so team rhythms stay intact while you live the opposite season. Full-kitchen aparthotels in the CBD make long stays easy, and harbour-view cafés become your afternoon desks.',
       JP: '韓国·日本との時差は1〜2時間（サマータイム基準）。チームのリズムを保ったまま南半球の逆の季節を暮らせます。CBDのフルキッチン付きアパートホテルで長期滞在も快適。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN SYDNEY', EN: 'A DAY IN SYDNEY', JP: 'A DAY IN SYDNEY' },
+      title: {
+        KO: '햇살이 맑은 날, 하버의 겨울 산책',
+        EN: 'A clear winter day by the harbour',
+        JP: '晴れた冬の日、ハーバーを歩く',
+      },
+      intro: {
+        KO: '8월의 시드니는 남반구의 겨울이지만 맑은 낮에는 햇살이 가볍습니다. CBD에서 한국·일본과 가까운 업무 리듬을 유지한 뒤, 얇은 재킷을 챙겨 하버 산책으로 전환해 보세요. 아침저녁의 기온과 바람은 당일 예보에서 확인합니다.',
+        EN: 'August is winter in Sydney, yet a clear midday can feel bright and mild. Keep a work rhythm close to Korea and Japan in the CBD, then carry a light jacket into a harbour walk. Check same-day temperatures and wind before heading out.',
+        JP: '8月のシドニーは南半球の冬ですが、晴れた昼は明るく穏やか。CBDで韓国・日本と近い仕事のリズムを保ち、薄手のジャケットを持ってハーバーの散歩へ。朝夕の気温と風は当日の予報で確認します。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/sydney-model-d-clear-winter-skirt-v2.webp',
+          eyebrow: { KO: 'AFTER WORK · CLEAR WINTER HARBOUR', EN: 'AFTER WORK · CLEAR WINTER HARBOUR', JP: 'AFTER WORK · CLEAR WINTER HARBOUR' },
+          title: {
+            KO: '가벼운 재킷을 들고, 물가 계단을 천천히',
+            EN: 'Carry a light jacket down to the waterfront',
+            JP: '薄手のジャケットを持って、水辺の階段へ',
+          },
+          description: {
+            KO: '맑은 낮에는 가볍게 걸을 수 있지만 8월의 아침저녁과 하버 바람은 서늘할 수 있습니다. 얇은 재킷과 걷기 편한 신발을 챙기고, 강풍·산책로 상황은 당일 공식 안내에서 확인하세요.',
+            EN: 'A clear August midday can feel mild, while mornings, evenings and harbour wind may stay cool. Carry a light jacket, wear walkable shoes and check same-day wind and path-access notices.',
+            JP: '晴れた8月の昼は軽やかに歩けても、朝夕やハーバーの風は涼しく感じることがあります。薄手のジャケットと歩きやすい靴を用意し、強風や遊歩道の状況は当日の公式案内で確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '+1~2시간', EN: '+1–2 hours', JP: '+1〜2時間' } },
       { label: F.flight, value: { KO: '약 10시간 30분', EN: '~10h 30m', JP: '約10時間30分' } },
