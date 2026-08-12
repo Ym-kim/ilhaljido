@@ -734,6 +734,35 @@ export const CITY_GUIDES: CityGuide[] = [
       EN: 'Just 1–2 hours ahead of Korea (with DST), so team rhythms stay intact while you live the opposite season. Full-kitchen aparthotels in the CBD make long stays easy, and harbour-view cafés become your afternoon desks.',
       JP: '韓国·日本との時差は1〜2時間（サマータイム基準）。チームのリズムを保ったまま南半球の逆の季節を暮らせます。CBDのフルキッチン付きアパートホテルで長期滞在も快適。',
     },
+    lookbook: {
+      eyebrow: { KO: 'A DAY IN SYDNEY', EN: 'A DAY IN SYDNEY', JP: 'A DAY IN SYDNEY' },
+      title: {
+        KO: '비가 그치면, 하버의 겨울빛으로',
+        EN: 'After the rain, step into the harbour’s winter light',
+        JP: '雨が上がったら、ハーバーの冬の光へ',
+      },
+      intro: {
+        KO: '8월의 시드니는 남반구의 겨울입니다. 낮에는 CBD에서 한국·일본과 가까운 업무 리듬을 유지하고, 비가 갠 오후에는 가벼운 방수 아우터를 챙겨 하버 산책으로 전환해 보세요. 일교차와 바람은 당일 예보에서 확인합니다.',
+        EN: 'August is winter in Sydney. Keep a work rhythm close to Korea and Japan in the CBD by day, then switch to a harbour walk with a light waterproof layer once the rain clears. Check same-day wind and temperature changes before heading out.',
+        JP: '8月のシドニーは南半球の冬。昼はCBDで韓国・日本と近い仕事のリズムを保ち、雨上がりの午後は軽い防水アウターを持ってハーバーの散歩へ。風と寒暖差は当日の予報で確認します。',
+      },
+      items: [
+        {
+          src: '/media/brand-models/sydney-model-d-winter-harbor-v1.webp',
+          eyebrow: { KO: 'AFTER WORK · WINTER HARBOUR', EN: 'AFTER WORK · WINTER HARBOUR', JP: 'AFTER WORK · WINTER HARBOUR' },
+          title: {
+            KO: '후드를 내리고, 비 갠 물가를 한 바퀴',
+            EN: 'Lower the hood and walk the waterfront after rain',
+            JP: 'フードを下ろして、雨上がりの水辺を一周',
+          },
+          description: {
+            KO: '8월의 시드니는 아침저녁으로 서늘하고 하버 바람이 강할 수 있습니다. 가벼운 방수 아우터와 미끄럽지 않은 신발을 챙기고, 산책로 통제·강수·강풍 여부는 당일 공식 안내에서 확인하세요.',
+            EN: 'Sydney mornings and evenings can feel cool in August, with stronger wind around the harbour. Bring a light waterproof layer and grippy footwear, and check same-day rain, wind and path-access notices.',
+            JP: '8月のシドニーは朝夕が涼しく、ハーバーでは風が強まることがあります。軽い防水アウターと滑りにくい靴を用意し、雨・強風・遊歩道の状況は当日の公式案内で確認してください。',
+          },
+        },
+      ],
+    },
     facts: [
       { label: F.tz, value: { KO: '+1~2시간', EN: '+1–2 hours', JP: '+1〜2時間' } },
       { label: F.flight, value: { KO: '약 10시간 30분', EN: '~10h 30m', JP: '約10時間30分' } },
