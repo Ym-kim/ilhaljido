@@ -92,6 +92,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       { url: `${BASE}/${locale}/moments`, lastModified: now, changeFrequency: 'weekly' as const, priority: 0.6 },
       { url: `${BASE}/${locale}/tools/diagnosis`, lastModified: now, changeFrequency: 'monthly' as const, priority: 0.6 },
     ]),
+    // 2026-08-13 cruise-articles-i18n-v1 — 크루즈 허브·아티클 4편 EN/JA 라우트 신설분
+    ...['en', 'ja'].flatMap((locale) =>
+      ['/cruise', '/cruise/miracle', '/cruise/bellissima', '/cruise/serena', '/cruise/world-europa'].map((p) => ({
+        url: `${BASE}/${locale}${p}`,
+        lastModified: now,
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+    ),
     // 여행자 노트 상세 — 에디터 소개와 검수 완료 회원 후기만 색인
     ...['', '/en', '/ja'].flatMap((localePrefix) => TRAVELER_NOTES.map((note) => ({
       url: `${BASE}${localePrefix}/moments/${note.slug}`,
