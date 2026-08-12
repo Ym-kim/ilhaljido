@@ -75,8 +75,31 @@ for (const item of decorativePulse) {
 const transitionAllCount = (combinedSource.match(/transition-all/g) ?? []).length
 if (transitionAllCount > 180) warnings.push(`transition-all remains broad in ${transitionAllCount} places; migrate incrementally`)
 
+const imageDelivery = {
+  fillImageCount: 0,
+  fillImagesMissingSizes: [],
+}
+for (const record of sourceRecords.filter((entry) => entry.relative.endsWith('.tsx'))) {
+  for (const match of record.source.matchAll(/<Image\b[\s\S]*?\/>/g)) {
+    if (!/\sfill(?:\s|=|\/>)/.test(match[0])) continue
+    imageDelivery.fillImageCount += 1
+    if (/\ssizes\s*=/.test(match[0])) continue
+    const line = record.source.slice(0, match.index).split('\n').length
+    imageDelivery.fillImagesMissingSizes.push({ file: record.relative, line })
+  }
+}
+if (imageDelivery.fillImagesMissingSizes.length) {
+  failures.push(`${imageDelivery.fillImagesMissingSizes.length} next/image fill usages are missing sizes`)
+}
+
 const localReferences = new Map()
 const remoteImageReferences = []
+const provenanceOnlyFiles = new Set([
+  'src/components/legal/MediaCreditsView.tsx',
+  'src/lib/media/assets.ts',
+  'src/lib/media/productEditorial.ts',
+  'src/lib/media/verifiedRemoteSources.json',
+])
 for (const record of sourceRecords) {
   for (const match of record.source.matchAll(/["'`](\/[^"'`?]+\.(?:avif|gif|jpe?g|png|svg|webp))(?:\?[^"'`]*)?["'`]/gi)) {
     const ref = match[1]
@@ -85,10 +108,17 @@ for (const record of sourceRecords) {
   }
   for (const match of record.source.matchAll(/https?:\/\/(?:images\.unsplash\.com\/[^\s"'`)]+|[^\s"'`)]+\.(?:avif|gif|jpe?g|png|svg|webp)(?:\?[^\s"'`)]*)?)/gi)) {
     if (!/^https:\/\/(?:www\.)?wakation\.kr\//.test(match[0])) {
-      remoteImageReferences.push({ file: record.relative, url: match[0] })
+      remoteImageReferences.push({
+        file: record.relative,
+        url: match[0],
+        usage: provenanceOnlyFiles.has(record.relative) ? 'provenance' : 'runtime',
+      })
     }
   }
 }
+
+const remoteRuntimeImageReferences = remoteImageReferences.filter((record) => record.usage === 'runtime')
+const remoteProvenanceReferences = remoteImageReferences.filter((record) => record.usage === 'provenance')
 
 const missingReferences = []
 for (const [ref, files] of localReferences) {
@@ -104,7 +134,7 @@ for (const [ref, files] of localReferences) {
   }
 }
 if (missingReferences.length) failures.push(`${missingReferences.length} local image references are missing`)
-if (remoteImageReferences.length) warnings.push(`${remoteImageReferences.length} remote image URL references remain in source`)
+if (remoteRuntimeImageReferences.length) warnings.push(`${remoteRuntimeImageReferences.length} runtime remote image URL references remain in source`)
 
 const imageRecords = []
 for (const file of publicImages) {
@@ -117,7 +147,8 @@ for (const file of publicImages) {
     record.width = metadata.width ?? null
     record.height = metadata.height ?? null
     record.format = metadata.format ?? record.format
-    if ((metadata.width ?? 0) < 320 || (metadata.height ?? 0) < 180) {
+    const isPurposeSizedInterfaceAsset = relative.startsWith('/icons/')
+    if (!isPurposeSizedInterfaceAsset && ((metadata.width ?? 0) < 320 || (metadata.height ?? 0) < 180)) {
       warnings.push(`${relative}: low raster dimensions ${metadata.width ?? 0}x${metadata.height ?? 0}`)
     }
   }
@@ -142,7 +173,10 @@ const imageSummary = {
   largest: [...imageRecords].sort((a, b) => b.bytes - a.bytes).slice(0, 20),
   duplicateGroups,
   remoteImageReferences,
+  remoteRuntimeImageReferences,
+  remoteProvenanceReferences,
   missingReferences,
+  delivery: imageDelivery,
 }
 
 function imageDecision(record) {
@@ -197,8 +231,13 @@ const suitabilityCsv = [
 ].join('\n')
 await writeFile(path.join(docsAuditDir, 'full-site-image-suitability-2026-08.csv'), `${suitabilityCsv}\n`)
 const remoteCsv = [
-  'file,url,decision',
-  ...remoteImageReferences.map((record) => [record.file, record.url, 'MIGRATE_TO_VERIFIED_LOCAL_ASSET'].map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(',')),
+  'file,url,usage,decision',
+  ...remoteImageReferences.map((record) => [
+    record.file,
+    record.url,
+    record.usage,
+    record.usage === 'provenance' ? 'REFERENCE_ONLY_LOCAL_DELIVERY' : 'MIGRATE_TO_VERIFIED_LOCAL_ASSET',
+  ].map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(',')),
 ].join('\n')
 await writeFile(path.join(docsAuditDir, 'full-site-remote-image-sources-2026-08.csv'), `${remoteCsv}\n`)
 
@@ -209,5 +248,6 @@ if (failures.length) {
 }
 
 console.log(`Full-site motion/visual audit passed: ${motionGroups.length} priority route groups, ${result.motion.revealTargetCount} reveal targets, ${imageRecords.length} public images`)
-console.log(`Image bytes: ${imageSummary.totalBytes.toLocaleString()} · remote refs: ${remoteImageReferences.length} · missing refs: ${missingReferences.length}`)
+console.log(`Image bytes: ${imageSummary.totalBytes.toLocaleString()} · runtime remote refs: ${remoteRuntimeImageReferences.length} · provenance refs: ${remoteProvenanceReferences.length} · missing refs: ${missingReferences.length}`)
+console.log(`Image delivery: ${imageDelivery.fillImageCount} fill images · ${imageDelivery.fillImagesMissingSizes.length} missing sizes`)
 if (warnings.length) console.log(`Advisories: ${warnings.length} (see artifacts/full-site-audit/source-motion-visual-audit.json)`)
