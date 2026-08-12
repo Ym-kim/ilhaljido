@@ -25,6 +25,7 @@ import {
   type TripMatchMood,
 } from '@/lib/tripMatch'
 import type { TripMatchTripContent } from '@/lib/tripMatchContent'
+import { localizeComfortSource } from '@/lib/affiliate/collections'
 import type { Lang } from '@/lib/i18n/types'
 import { campaignEventFields, rememberCampaignContext, sanitizeCampaignUtm, withCampaignUtm } from '@/lib/campaignTracking'
 import { ICON_STROKE } from '@/lib/icons'
@@ -518,7 +519,8 @@ export function TripMatchExperience({
                   {/* 2026-08-04: 매핑만 되고 렌더가 없어 검증일 표기가 소실되던 것 복구 (CollectionView와 동일 표기) */}
                   {note.verifiedAt && (
                     <span className="block text-[0.65rem] font-medium text-[#a3b0b6] mt-0.5">
-                      {note.source ? `${note.source} · ` : ''}{note.verifiedAt}
+                      {/* 2026-08-13: source 원문 렌더로 EN/JP에 한국어('가이드 검증') 누출 → 공용 사전 경유 */}
+                      {note.source ? `${localizeComfortSource(note.source, lang)} · ` : ''}{note.verifiedAt}
                     </span>
                   )}
                 </dd>

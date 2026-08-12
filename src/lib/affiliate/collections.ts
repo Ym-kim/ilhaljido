@@ -47,6 +47,19 @@ export type ComfortFact = {
   verifiedAt?: string
 }
 
+// comfortFacts의 source는 단일 문자열 — 렌더 시 반드시 localizeComfortSource를 거칠 것.
+// (2026-08-13: trip-match가 이 사전 없이 원문을 렌더해 EN/JP에 한국어가 누출됐던 결함의 재발 방지.
+//  기관 약어 출처(ICA·BOCA·MOFA Korea)는 사전에 없어도 원문 그대로 3언어에서 안전)
+export const COMFORT_SOURCE_COPY: Record<string, L> = {
+  '가이드 검증': { KO: '가이드 공개 정보 확인', EN: 'Guide sources checked', JP: 'ガイド公開情報を確認' },
+  '공식 발표': { KO: '공식 발표', EN: 'Official announcement', JP: '公式発表' },
+  '부산시 보도자료': { KO: '부산시 보도자료', EN: 'Busan City release', JP: '釜山市報道資料' },
+}
+
+export function localizeComfortSource(source: string, lang: Lang): string {
+  return COMFORT_SOURCE_COPY[source]?.[lang] ?? source
+}
+
 export type Collection = {
   slug: string
   emoji: string
