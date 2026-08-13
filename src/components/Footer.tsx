@@ -93,6 +93,7 @@ export default function Footer() {
                   { l: { KO: '성장 캠프', EN: 'Growth camp', JP: '成長キャンプ' }, h: '/growth' },
                   { l: { KO: '어학 체류', EN: 'Language stays', JP: '語学滞在' }, h: '/language' },
                   { l: { KO: '기업 워케이션 (B2B)', EN: 'Corporate (B2B)', JP: '企業向け (B2B)' }, h: '/business' },
+                  { l: { KO: '호스트 등록', EN: 'Become a host', JP: 'ホスト登録' }, h: '/host' },
                   { l: { KO: '파트너십', EN: 'Partnership', JP: 'パートナーシップ' }, h: '/partnership' },
                   { l: { KO: '문의', EN: 'Contact', JP: 'お問い合わせ' }, h: '/contact' },
                 ],
