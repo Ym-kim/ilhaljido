@@ -61,6 +61,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/moments',                   priority: 0.7, freq: 'weekly' },
   // 문의·정책
   { path: '/apply',                    priority: 0.8, freq: 'monthly' },
+  { path: '/host',                     priority: 0.7, freq: 'monthly' },
   { path: '/business',                 priority: 0.8, freq: 'monthly' },
   { path: '/contact',                  priority: 0.7, freq: 'monthly' },
   { path: '/partnership',              priority: 0.7, freq: 'monthly' },
@@ -101,6 +102,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.6,
       })),
     ),
+    // 2026-08-13 host-onboarding-p0-v1 — 호스트 모집·등록 EN/JA 라우트
+    ...['en', 'ja'].map((locale) => ({
+      url: `${BASE}/${locale}/host`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    })),
     // 여행자 노트 상세 — 에디터 소개와 검수 완료 회원 후기만 색인
     ...['', '/en', '/ja'].flatMap((localePrefix) => TRAVELER_NOTES.map((note) => ({
       url: `${BASE}${localePrefix}/moments/${note.slug}`,

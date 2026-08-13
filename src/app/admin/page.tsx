@@ -63,6 +63,7 @@ export default function AdminPage() {
   useEffect(() => {
     let result = apps
     if (filter === 'traveler_note') result = result.filter((a) => a.job_type === 'traveler_note')
+    else if (filter === 'host_apply') result = result.filter((a) => a.job_type === '호스트 등록')
     else if (filter !== 'all') result = result.filter((a) => a.status === filter)
     if (search) {
       result = result.filter(
@@ -157,6 +158,7 @@ export default function AdminPage() {
     confirmed: apps.filter((a) => a.status === 'confirmed').length,
     cancelled: apps.filter((a) => a.status === 'cancelled').length,
     traveler_note: apps.filter((a) => a.job_type === 'traveler_note').length,
+    host_apply: apps.filter((a) => a.job_type === '호스트 등록').length,
   }
 
   if (authLoading) {
@@ -239,6 +241,7 @@ export default function AdminPage() {
                 { key: 'confirmed', label: `확정 (${counts.confirmed})` },
                 { key: 'cancelled', label: `취소 (${counts.cancelled})` },
                 { key: 'traveler_note', label: `여행자 노트 (${counts.traveler_note})` },
+                { key: 'host_apply', label: `호스트 등록 (${counts.host_apply})` },
               ].map((f) => (
                 <button
                   key={f.key}
@@ -315,7 +318,7 @@ export default function AdminPage() {
                         <td className="px-4 py-3 font-bold text-dark">{app.name}</td>
                         <td className="px-4 py-3 text-muted">{app.phone}</td>
                         <td className="px-4 py-3 text-muted hidden md:table-cell truncate max-w-[160px]">
-                          {app.job_type === 'traveler_note' ? '여행자 노트' : app.programs?.title ?? app.program_id ?? '미정'}
+                          {app.job_type === 'traveler_note' ? '여행자 노트' : app.job_type === '호스트 등록' ? '호스트 등록' : app.programs?.title ?? app.program_id ?? '미정'}
                         </td>
                         <td className="px-4 py-3 text-muted hidden lg:table-cell">{app.job_type}</td>
                         <td className="px-4 py-3">
