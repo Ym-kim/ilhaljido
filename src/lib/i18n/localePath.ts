@@ -3,6 +3,7 @@ import type { Lang } from '@/lib/i18n/types'
 /** Routes with dedicated English and Japanese pages. */
 const SHARED_EXACT = new Set<string>([
   '/',
+  '/host',
   '/hosted',
   '/media-credits',
   '/select',

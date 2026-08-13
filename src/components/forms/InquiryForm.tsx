@@ -68,14 +68,24 @@ type Props = {
   onCategoryChange: (id: string) => void
   /** 폴백 mailto 의 subject */
   mailSubject: string
+  // ── 2026-08-13 호스트 등록(P0) 확장 — 전부 선택적·하위호환. 기존 폼 무영향 ──
+  /** URL 전용 필수 입력(예: 에어비앤비 리스팅 링크). message에 '링크:' 줄로 직렬화 */
+  urlField?: { label: L; placeholder: string }
+  /** message 라벨 오버라이드 (기본: 문의 내용) */
+  messageLabel?: L
+  /** message 플레이스홀더 오버라이드 */
+  messagePlaceholder?: L
+  /** 접수 완료 안내문 오버라이드 (자동 다음 단계 안내용) */
+  doneDesc?: L
 }
 
-export function InquiryForm({ formId, jobType, categories, categoryId, onCategoryChange, mailSubject }: Props) {
+export function InquiryForm({ formId, jobType, categories, categoryId, onCategoryChange, mailSubject, urlField, messageLabel, messagePlaceholder, doneDesc }: Props) {
   const { lang } = useLang()
   const [name, setName] = useState('')
   const [org, setOrg] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [link, setLink] = useState('')
   const [message, setMessage] = useState('')
   const [consent, setConsent] = useState(false)
   const [sending, setSending] = useState(false)
@@ -95,6 +105,8 @@ export function InquiryForm({ formId, jobType, categories, categoryId, onCategor
       // 유형 라벨은 KO 고정 — 운영자가 읽는 관리 화면 값이라 언어 혼재를 막는다
       `유형: ${selected.label.KO}`,
       org ? `소속: ${org}` : '',
+      // '링크:' 접두사는 자동화 파싱 앵커 — 바꾸면 admin·후속 자동화가 못 읽는다
+      urlField && link ? `링크: ${link}` : '',
       `내용: ${message}`,
     ]
       .filter(Boolean)
@@ -126,7 +138,7 @@ export function InquiryForm({ formId, jobType, categories, categoryId, onCategor
       <div className="bg-[#f0f9ff] border border-[#bae6fd] rounded-2xl p-8 text-center">
         <CheckCircle2 className="w-10 h-10 text-brand-mid mx-auto mb-4" strokeWidth={ICON_STROKE} />
         <p className="text-[#111827] font-black text-lg mb-2">{T.doneT[lang]}</p>
-        <p className="text-[#64748b] text-sm">{T.doneD[lang]}</p>
+        <p className="text-[#64748b] text-sm">{(doneDesc ?? T.doneD)[lang]}</p>
       </div>
     )
   }
@@ -179,9 +191,27 @@ export function InquiryForm({ formId, jobType, categories, categoryId, onCategor
         </div>
       </div>
 
+      {urlField && (
+        <div>
+          <label htmlFor={idFor('link')} className={labelCls}>
+            {urlField.label[lang]} *
+          </label>
+          <input
+            id={idFor('link')}
+            required
+            type="url"
+            inputMode="url"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
+            placeholder={urlField.placeholder}
+            className={inputCls}
+          />
+        </div>
+      )}
+
       <div>
         <label htmlFor={idFor('message')} className={labelCls}>
-          {T.message[lang]} *
+          {(messageLabel ?? T.message)[lang]} *
         </label>
         <textarea
           id={idFor('message')}
@@ -190,7 +220,7 @@ export function InquiryForm({ formId, jobType, categories, categoryId, onCategor
           maxLength={800}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder={T.messagePh[lang]}
+          placeholder={(messagePlaceholder ?? T.messagePh)[lang]}
           className={inputCls}
         />
       </div>
