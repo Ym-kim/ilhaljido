@@ -195,6 +195,9 @@ export default function AdminPage() {
           <Link href="/admin/support" className="flex min-h-11 items-center rounded-lg border border-border px-3 text-sm font-bold text-muted transition-colors hover:border-brand hover:text-brand">
             지원사업 검증
           </Link>
+          <Link href="/admin/hosts" className="flex min-h-11 items-center rounded-lg border border-border px-3 text-sm font-bold text-muted transition-colors hover:border-brand hover:text-brand">
+            호스트 검수
+          </Link>
           {checkedIds.size > 0 && (
             <button
               onClick={deleteChecked}

@@ -19,6 +19,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'picsum.photos' },
+      // 호스트 셀프서비스 P2 (2026-08-13) — 승인 리스팅 사진(host-listings 공개 버킷)만 허용
+      { protocol: 'https', hostname: 'wxwaydjevymrxxxkxvet.supabase.co', pathname: '/storage/v1/object/public/host-listings/**' },
     ],
     // WebP 유지(기본) — 2026-07-21 실측: Vercel AVIF 인코더가 이 사이트 사진 커버(q75)에서
     // WebP보다 3~20% 더 큼(도쿄 118KB AVIF vs 98KB WebP 등) → AVIF 미채택. 측정 기반 결정
