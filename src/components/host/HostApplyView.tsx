@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Home, Link2, Search, Globe2, ShieldCheck, MessageCircle } from 'lucide-react'
+import Link from 'next/link'
+import { Home, LayoutDashboard, Link2, Search, Globe2, ShieldCheck, MessageCircle } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { InquiryForm, type InquiryCategory } from '@/components/forms/InquiryForm'
@@ -110,6 +111,17 @@ const C: Record<string, L> = {
   cityBali: { KO: '발리 (우선 모집)', EN: 'Bali (priority)', JP: 'バリ（優先募集）' },
   cityOsaka: { KO: '오사카 (우선 모집)', EN: 'Osaka (priority)', JP: '大阪（優先募集）' },
   cityOther: { KO: '기타 도시', EN: 'Other city', JP: 'その他の都市' },
+  selfService: { KO: '가입하고 직접 등록하기', EN: 'Sign up & register yourself', JP: '登録して自分で掲載する' },
+  selfServiceNote: {
+    KO: '가입 후 호스트 대시보드에서 숙소 정보와 사진을 직접 올리고, 검수 결과를 실시간으로 확인할 수 있습니다.',
+    EN: 'After signing up, upload your stay details and photos in the host dashboard and track review status in real time.',
+    JP: '登録後、ホストダッシュボードで宿の情報と写真を直接アップロードし、審査状況をリアルタイムで確認できます。',
+  },
+  orSimple: {
+    KO: '또는, 가입 없이 리스팅 링크만 남기셔도 됩니다 — 아래 간편 신청 폼을 이용하세요.',
+    EN: 'Or skip the sign-up and just leave your listing link with the quick form below.',
+    JP: 'または、登録なしでリスティングのリンクだけ残してもOK — 下の簡単フォームをご利用ください。',
+  },
 }
 
 export function HostApplyView({ forceLang }: { forceLang?: Lang } = {}) {
@@ -141,16 +153,25 @@ export function HostApplyView({ forceLang }: { forceLang?: Lang } = {}) {
             {C.heroTitle2[lang]}
           </h1>
           <span className="block text-white/70 text-lg mt-5 max-w-xl mx-auto">{C.heroLead[lang]}</span>
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            {/* P2 셀프서비스 (2026-08-13): 가입→대시보드 직접 등록이 1순위 경로 */}
+            <Link
+              href="/host/dashboard"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm transition-all bg-brand-mid text-white hover:bg-brand-light shadow-md"
+            >
+              <LayoutDashboard className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              {C.selfService[lang]}
+            </Link>
             <a
               href="#host-apply"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm transition-all bg-brand-mid text-white hover:bg-brand-light shadow-md"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-bold text-sm transition-all border border-white/30 text-white hover:border-white/60"
             >
               <Link2 className="w-4 h-4" strokeWidth={ICON_STROKE} />
               {C.formTitle[lang]}
             </a>
           </div>
           <span className="block text-white/50 text-xs mt-4">{C.pilotNote[lang]}</span>
+          <span className="block text-white/50 text-xs mt-1.5">{C.selfServiceNote[lang]}</span>
         </div>
       </section>
 
@@ -238,7 +259,8 @@ export function HostApplyView({ forceLang }: { forceLang?: Lang } = {}) {
             {C.formEyebrow[lang]}
           </span>
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{C.formTitle[lang]}</h2>
-          <p className="text-[#64748b] text-sm mb-8">{C.formDesc[lang]}</p>
+          <p className="text-[#64748b] text-sm mb-2">{C.formDesc[lang]}</p>
+          <p className="text-[#94a3b8] text-xs mb-8">{C.orSimple[lang]}</p>
           <InquiryForm
             formId="host-apply"
             jobType={JOB_TYPE}
