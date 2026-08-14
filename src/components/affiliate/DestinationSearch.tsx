@@ -36,7 +36,9 @@ function buildLink(mode: Mode, q: string, checkin: string, checkout: string): { 
   if (mode === 'learn') {
     return {
       provider: '인프런',
-      href: `https://www.inflearn.com/courses?s=${encodeURIComponent(q.trim())}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
+      // 2026-08-14: /ko 명시 — 인프런이 저장된 언어 설정(ja 등)으로 렌더하던 문제를 경로로 강제 해결.
+      // 구 /courses?s=는 /search로 307되며, utm 파라미터(파트너 집계)는 그대로 유지된다
+      href: `https://www.inflearn.com/ko/search?s=${encodeURIComponent(q.trim())}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
     }
   }
 
