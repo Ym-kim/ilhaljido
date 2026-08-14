@@ -1,0 +1,34 @@
+<!-- ─────────────────────────────────────────────────────────────────────────
+  Supabase Auth 이메일 템플릿: Change Email Address (이메일 주소 변경)
+  적용 위치: Supabase 대시보드 → Authentication → Email Templates → Change Email Address
+  제목(Subject): [Wakation] 이메일 주소 변경 확인
+  변수: {{ .ConfirmationURL }} = 확인 링크 / {{ .Email }} = 기존 주소 / {{ .NewEmail }} = 새 주소
+───────────────────────────────────────────────────────────────────────── -->
+<div style="margin:0;padding:32px 16px;background-color:#f8fafc;font-family:'Apple SD Gothic Neo','Malgun Gothic','Segoe UI',sans-serif;">
+  <div style="max-width:480px;margin:0 auto;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:16px;padding:36px 32px;">
+    <p style="margin:0 0 24px;font-size:20px;font-weight:800;color:#0284c7;">Wakation</p>
+    <h1 style="margin:0 0 12px;font-size:22px;font-weight:800;color:#111827;">이메일 주소 변경 확인</h1>
+    <p style="margin:0 0 24px;font-size:15px;line-height:1.7;color:#475569;">
+      와케이션(Wakation) 계정의 이메일 주소를<br />
+      <strong>{{ .Email }}</strong> 에서 <strong>{{ .NewEmail }}</strong> (으)로 변경하는 요청을 받았습니다.<br />
+      본인이 맞다면 아래 버튼으로 변경을 완료해 주세요.
+    </p>
+    <a href="{{ .ConfirmationURL }}"
+       style="display:inline-block;background-color:#0284c7;color:#ffffff;font-size:15px;font-weight:700;text-decoration:none;padding:14px 32px;border-radius:999px;">
+      이메일 변경 확인하기
+    </a>
+    <p style="margin:24px 0 0;font-size:12px;line-height:1.6;color:#94a3b8;">
+      버튼이 눌리지 않으면 아래 주소를 브라우저에 붙여넣어 주세요.<br />
+      <a href="{{ .ConfirmationURL }}" style="color:#0284c7;word-break:break-all;">{{ .ConfirmationURL }}</a>
+    </p>
+    <hr style="margin:28px 0;border:none;border-top:1px solid #e2e8f0;" />
+    <p style="margin:0 0 6px;font-size:12px;line-height:1.6;color:#94a3b8;">
+      본인이 요청하지 않았다면 이 메일을 무시하고, 계정 보안을 위해 비밀번호를 변경해 주세요.
+    </p>
+    <p style="margin:20px 0 0;font-size:11px;line-height:1.7;color:#94a3b8;">
+      와케이션 Wakation · <a href="https://www.wakation.kr" style="color:#0284c7;text-decoration:none;">www.wakation.kr</a><br />
+      주식회사 스테이포워드 · 대표 김용민 · 사업자등록번호 812-86-04005<br />
+      문의: wakation.sf@gmail.com
+    </p>
+  </div>
+</div>
