@@ -14,6 +14,7 @@ import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { getCruiseFeatures, getCruiseRoutes, t } from '@/lib/i18n'
 import { Anchor, Wifi, Globe } from 'lucide-react'
 import { EditorialBanner } from '@/components/editorial/EditorialBanner'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 
 const FEAT_ICONS = { wifi: Wifi, ports: Globe, all: Anchor } as const
 
@@ -79,7 +80,7 @@ export function CruiseHubView({ forceLang }: { forceLang?: Lang } = {}) {
                   {/* 고정가 노출 제거 — 가격표현 금지 방침 (요금은 파트너사에서 최종 확인) */}
                   <div className="flex flex-wrap gap-2 mt-4">
                     <a
-                      href="https://kr.trip.com/cruises/?Allianceid=9024807"
+                      href={localizeOutboundHref('https://kr.trip.com/cruises/?Allianceid=9024807', lang)}
                       target="_blank"
                       rel="sponsored noopener noreferrer"
                       className="inline-flex items-center gap-1.5 bg-brand-mid text-white px-4 py-2 rounded-full text-xs font-bold hover:bg-brand-light transition-all shadow-sm"

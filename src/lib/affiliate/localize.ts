@@ -1,5 +1,6 @@
 import type { AffiliateItem } from './types'
 import type { Lang } from '@/lib/i18n'
+import { localizeOutboundHref } from './linkLocale'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 제휴 상품 EN/JP 오버레이 — items.ts(KO 원본)를 건드리지 않고 표시 필드만 덮어씀
@@ -1155,5 +1156,11 @@ const JP: Record<string, Overlay> = {
 export function localizeAffiliateItem(item: AffiliateItem, lang: Lang): AffiliateItem {
   if (lang === 'KO') return item
   const overlay = (lang === 'EN' ? EN : JP)[item.id]
-  return overlay ? { ...item, ...overlay } : item
+  const merged = overlay ? { ...item, ...overlay } : item
+  // 2026-08-14: 파트너 링크도 사이트 언어에 매칭 — 검증된 패턴만 변환(linkLocale.ts)
+  const href = localizeOutboundHref(merged.href, lang)
+  const deepLinks = merged.deepLinks
+    ? Object.fromEntries(Object.entries(merged.deepLinks).map(([k, v]) => [k, localizeOutboundHref(v, lang)]))
+    : merged.deepLinks
+  return { ...merged, href, deepLinks }
 }
