@@ -1,5 +1,6 @@
 import type { Lang } from '@/lib/i18n'
 import type { DestinationEntry, LearnCategory, ServiceLink } from './destinations'
+import { localizeOutboundHref } from './linkLocale'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // /select/* 목적지·강의 데이터 EN/JP 오버레이
@@ -156,6 +157,8 @@ export function localizeDestination(entry: DestinationEntry, lang: Lang): Destin
   const links: ServiceLink[] = entry.links.map((l) => ({
     ...l,
     label: LINK_LABEL[l.label]?.[lang] ?? l.label,
+    // 2026-08-14: Trip 시티 딥링크 등 파트너 링크를 사이트 언어에 매칭(검증 패턴만)
+    href: localizeOutboundHref(l.href, lang),
   }))
   return {
     ...entry,
@@ -197,5 +200,7 @@ const LEARN: Record<string, { EN: { title: string; desc: string }; JP: { title: 
 export function localizeLearnCategory(cat: LearnCategory, lang: Lang): LearnCategory {
   if (lang === 'KO') return cat
   const o = LEARN[cat.id]?.[lang]
-  return o ? { ...cat, ...o } : cat
+  const merged = o ? { ...cat, ...o } : cat
+  // 2026-08-14: 인프런 카테고리 링크 /ko → /en·/ja (검증 패턴만)
+  return { ...merged, href: localizeOutboundHref(merged.href, lang) }
 }

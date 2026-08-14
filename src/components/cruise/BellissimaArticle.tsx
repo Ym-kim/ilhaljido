@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Ship, Wifi, Utensils, Anchor, Clock, AlertCircle, Users } from 'lucide-react'
 import { ShareButton } from '@/components/share/ShareButton'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -143,7 +144,7 @@ function BookingCtas({ lang, compact = false }: { lang: Lang; compact?: boolean 
   return (
     <div className={`flex flex-col sm:flex-row gap-3 ${compact ? '' : 'justify-center'}`}>
       <a
-        href={TRIP_HREF}
+        href={localizeOutboundHref(TRIP_HREF, lang)}
         target="_blank"
         rel="sponsored noopener noreferrer"
         className={`${CTA_CLS} bg-brand-mid text-white hover:bg-brand-light shadow-md`}

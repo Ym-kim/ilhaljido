@@ -7,6 +7,7 @@ import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
 import { buildBookingStaySearchHref, getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 
 type L = Record<Lang, string>
 type Mode = 'hotel' | 'learn'
@@ -69,7 +70,9 @@ export function DestinationSearch({ mode = 'hotel', forceLang }: { mode?: Mode; 
       }
     }
     setError(null)
-    const { provider, href } = buildLink(mode, destination, arrival, departure)
+    // 2026-08-14: 파트너 검색 링크도 사이트 언어 매칭(검증 패턴만 — linkLocale.ts)
+    const { provider, href: koHref } = buildLink(mode, destination, arrival, departure)
+    const href = localizeOutboundHref(koHref, lang)
     trackAffiliateClick({
       provider,
       status: 'active_affiliate',
