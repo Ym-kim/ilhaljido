@@ -1276,7 +1276,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
         provider: 'Airalo',
         status: 'active_affiliate',
         // Impact 추적 딥링크 — ?u= 형식 리다이렉트 실물검증 (japan-esim 랜딩 + irclickid 확인, 2026-07-15)
-        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fjapan-esim',
+        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Fjapan-esim',
         label: 'eSIM 구매',
         emoji: '📡',
       },
@@ -1296,7 +1296,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'Airalo',
         status: 'active_affiliate',
-        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fvietnam-esim',
+        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Fvietnam-esim',
         label: 'eSIM 구매',
         emoji: '📡',
       },
@@ -1316,7 +1316,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'Airalo',
         status: 'active_affiliate',
-        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Findonesia-esim',
+        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Findonesia-esim',
         label: 'eSIM 구매',
         emoji: '📡',
       },
@@ -1336,7 +1336,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'Airalo',
         status: 'active_affiliate',
-        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fportugal-esim',
+        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Fportugal-esim',
         label: 'eSIM 구매',
         emoji: '📡',
       },
@@ -1356,7 +1356,7 @@ export const ESIM_DESTINATIONS: DestinationEntry[] = [
       {
         provider: 'Airalo',
         status: 'active_affiliate',
-        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fsouth-korea-esim',
+        href: 'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Fsouth-korea-esim',
         label: 'eSIM 구매',
         emoji: '📡',
       },
