@@ -30,7 +30,7 @@ const ACTIVE_STATUSES = new Set(['active_affiliate', 'api_ready'])
 const PRODUCT_ORDER = ['stay', 'esim', 'activity', 'transport'] as const
 const KLOOK_REDIRECT = 'https://affiliate.klook.com/redirect?aid=126848&k_site='
 const AIRALO_KOREA_DEEP_LINK =
-  'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fsouth-korea-esim'
+  'https://airalo.pxf.io/c/7451946/1268485/15608?u=https%3A%2F%2Fwww.airalo.com%2Fko%2Fsouth-korea-esim'
 
 function withTripMatchTracking(item: AffiliateItem, slug: TripMatchSlug): AffiliateItem {
   if (item.id === 'esim-airalo' && (slug === 'seoul-3n4d' || slug === 'busan-weekend')) {

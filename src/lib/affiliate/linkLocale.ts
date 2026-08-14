@@ -14,14 +14,60 @@ import type { Lang } from '@/lib/i18n/types'
 //   나트랑 딥링크 + 크루즈 ship URL + cruises 루트가 www/jp 전부 200,
 //   쿼리 파라미터(Allianceid 포함) 보존 확인
 //
-// 미검증 → 변환 제외(원본 KO 링크 유지): KKday·Klook·Booking·Airalo·inf.run
-// (봇월로 curl 실측 불가 — 실브라우저 검증 후 여기에 규칙만 추가하면 전 카드 반영)
+// 2차 검증 추가 (2026-08-14):
+// - klook.com: /ko/ ↔ /en-US/ ↔ /ja/ — 운영자 검증 선례(teamlab deepLinks 3로케일,
+//   featured.ts operatorAction 2026-08-10) + affiliate.klook.com/redirect가 en-US
+//   k_site를 302로 통과시키며 aid=126848 자동 부착하는 것 curl 실측
+// - airalo.com(pxf.io u= 내부): /ko|/ja 프리픽스, 무프리픽스=영어 —
+//   8개 랜딩 전부 × ko/ja 200 + <html lang> 실측. 소스 KO 링크에 /ko 명시 완료
+//
+// 미검증 → 변환 제외(원본 KO 링크 유지): KKday·Booking·inf.run
+// (봇월로 실측 불가 — 검증 후 여기에 규칙만 추가하면 전 카드 반영)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function localizeOutboundHref(href: string, lang: Lang): string {
   if (lang === 'KO') return href
   try {
     const u = new URL(href)
+
+    // Klook 직링크 — /ko/ 프리픽스 로케일 스왑 (activity·insurance 등 전 경로)
+    if (u.hostname === 'www.klook.com') {
+      const target = lang === 'EN' ? '/en-US' : '/ja'
+      if (u.pathname === '/ko') u.pathname = target
+      else if (u.pathname.startsWith('/ko/')) u.pathname = target + u.pathname.slice(3)
+      else return href
+      return u.toString()
+    }
+
+    // Klook 공식 리다이렉트 — k_site 내부 URL에 직링크 규칙 재귀 적용 (aid 등 무변경)
+    if (u.hostname === 'affiliate.klook.com' && u.pathname === '/redirect') {
+      const inner = u.searchParams.get('k_site')
+      if (inner) {
+        const swapped = localizeOutboundHref(inner, lang)
+        if (swapped !== inner) {
+          u.searchParams.set('k_site', swapped)
+          return u.toString()
+        }
+      }
+      return href
+    }
+
+    // Airalo(Impact 추적) — u= 내부 랜딩의 /ko 프리픽스를 언어에 맞게 (EN=무프리픽스)
+    if (u.hostname === 'airalo.pxf.io') {
+      const inner = u.searchParams.get('u')
+      if (inner) {
+        try {
+          const iu = new URL(inner)
+          if (iu.hostname === 'www.airalo.com' && (iu.pathname === '/ko' || iu.pathname.startsWith('/ko/'))) {
+            const rest = iu.pathname === '/ko' ? '' : iu.pathname.slice(3)
+            iu.pathname = lang === 'EN' ? (rest || '/') : `/ja${rest}`
+            u.searchParams.set('u', iu.toString())
+            return u.toString()
+          }
+        } catch { /* 내부 URL 이상 시 원본 유지 */ }
+      }
+      return href
+    }
 
     // 인프런 — /ko 프리픽스가 명시된 경로만 언어 스왑
     if (u.hostname === 'www.inflearn.com') {
