@@ -7,6 +7,7 @@ import { Mail, Calendar, LogOut, ArrowRight, FileText } from 'lucide-react'
 import { useAuth } from '@/context/AuthContext'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n'
+import { AccountSettings } from '@/components/mypage/AccountSettings'
 
 type Application = {
   id: string
@@ -151,6 +152,9 @@ export default function MyPage() {
             </div>
           )}
         </div>
+
+        {/* 계정 설정 — 회원 정보·비밀번호 변경·탈퇴 (2026-08-13) */}
+        <AccountSettings user={user} />
       </div>
     </div>
   )
