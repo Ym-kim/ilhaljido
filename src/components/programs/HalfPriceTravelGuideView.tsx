@@ -4,6 +4,18 @@ import { ICON_STROKE } from '@/lib/icons'
 import type { Lang } from '@/lib/i18n/types'
 
 const OFFICIAL_SOURCE = 'https://www.mcst.go.kr/site/s_notice/press/pressView.jsp?pAction=&pCntPerPage=10&pCurrentPage=1&pMenuCD=0302010000&pSearchType=01&pSearchWord=&pSeq=22267&pTypeDept='
+// 구석구석 반값여행 공식 허브 — 지역별 모집 상태·차수 일정이 실시간 게시되는 유일한 공식 페이지 (2026-08-14 판독)
+const OFFICIAL_HUB = 'https://korean.visitkorea.or.kr/dgtourcard/tour50.do'
+
+// 2026 상반기 선정 16개 지자체 — 정책브리핑(korea.kr 148960071 외)·구석구석 공식 페이지 교차 확인 2026-08-14.
+// 차수별 선착순 접수라 개별 지역의 모집 상태는 여기 하드코딩하지 않는다(공식 허브로 안내).
+const REGIONS_2026_H1: { area: Record<Lang, string>; items: Record<Lang, string> }[] = [
+  { area: { KO: '강원', EN: 'Gangwon', JP: '江原' }, items: { KO: '평창 · 영월 · 횡성', EN: 'Pyeongchang · Yeongwol · Hoengseong', JP: '平昌 · 寧越 · 横城' } },
+  { area: { KO: '충북', EN: 'Chungbuk', JP: '忠北' }, items: { KO: '제천', EN: 'Jecheon', JP: '堤川' } },
+  { area: { KO: '전북', EN: 'Jeonbuk', JP: '全北' }, items: { KO: '고창', EN: 'Gochang', JP: '高敞' } },
+  { area: { KO: '전남', EN: 'Jeonnam', JP: '全南' }, items: { KO: '강진 · 영광 · 해남 · 고흥 · 완도 · 영암', EN: 'Gangjin · Yeonggwang · Haenam · Goheung · Wando · Yeongam', JP: '康津 · 霊光 · 海南 · 高興 · 莞島 · 霊岩' } },
+  { area: { KO: '경남', EN: 'Gyeongnam', JP: '慶南' }, items: { KO: '밀양 · 하동 · 합천 · 거창 · 남해', EN: 'Miryang · Hadong · Hapcheon · Geochang · Namhae', JP: '密陽 · 河東 · 陜川 · 居昌 · 南海' } },
+]
 
 const COPY = {
   back: { KO: '지원 프로그램', EN: 'Support programs', JP: '支援プログラム' },
@@ -11,7 +23,25 @@ const COPY = {
   title: { KO: '반값여행, 이름보다 조건부터', EN: 'Half-price travel starts with the conditions', JP: '「半額」より先に、制度の条件を確認' },
   desc: { KO: '지역사랑 휴가지원은 여행 전 신청하고, 승인된 조건에 맞춰 지출한 뒤 증빙을 제출해 일부를 지역화폐로 돌려받는 제도입니다. 모든 지역·비용이 자동으로 50% 환급되는 것은 아닙니다.', EN: 'Korea’s regional travel-support scheme generally requires advance application, eligible spending and proof before part of the cost is reimbursed in local currency. It is not an automatic 50% refund everywhere.', JP: '韓国の地域旅行支援は、旅行前の申請、条件に沿った支出、証明書類の提出後に地域通貨などで一部が還付される制度です。どの地域・費用でも自動的に50％還付されるわけではありません。' },
   official: { KO: '문화체육관광부 공식 안내', EN: 'Official MCST announcement', JP: '韓国文化体育観光部の公式案内' },
-  checked: { KO: '제도 기본 구조 확인일 2026-07-30', EN: 'Framework checked Jul 30, 2026', JP: '制度の基本構造を2026-07-30に確認' },
+  officialHub: { KO: '현재 모집 상태 확인 (구석구석 공식)', EN: 'Check current openings (official)', JP: '現在の募集状況を確認（公式）' },
+  checked: { KO: '제도 기본 구조 확인 2026-07-30 · 지역·모집 현황 확인 2026-08-14', EN: 'Framework checked Jul 30 · regions and status checked Aug 14, 2026', JP: '制度構造2026-07-30・地域と募集状況2026-08-14確認' },
+  regionsTitle: { KO: '2026 상반기 참여 16개 지역', EN: '16 regions in the 2026 first-half round', JP: '2026年上半期の参加16地域' },
+  regionsDesc: {
+    KO: '문화체육관광부·한국관광공사가 상반기 16개 지자체를 선정했습니다. 차수별 선착순 접수라 조기 마감이 잦고, 마감된 지역도 다음 차수에 모집이 재개될 수 있습니다. 하반기에는 4개 지자체가 추가 선정될 예정입니다(문체부 발표 기준).',
+    EN: 'MCST and the Korea Tourism Organization selected 16 local governments for the first half of 2026. Applications open in first-come rounds and close early; closed regions may reopen in a later round. Four more regions are due to be added in the second half, per the ministry.',
+    JP: '韓国文化体育観光部と韓国観光公社が2026年上半期の16自治体を選定。回次ごとの先着受付のため早期締切が多く、締切後も次回募集が再開される場合があります。下半期には4自治体が追加選定される予定です（同部発表基準）。',
+  },
+  regionsNote: {
+    KO: '개별 지역의 모집 중·마감 여부는 수시로 바뀝니다 — 위 공식 페이지에서 오늘 날짜 기준으로 확인하세요.',
+    EN: 'Open/closed status changes frequently — always confirm today’s status on the official page above.',
+    JP: '各地域の募集状況は随時変わります。必ず上の公式ページで当日の状況をご確認ください。',
+  },
+  factsTitle: { KO: '공식 확인된 조건 요약', EN: 'Verified key terms', JP: '公式確認済みの条件' },
+  facts: {
+    KO: ['여행경비 50% 환급 — 개인 최대 10만원, 2인 이상 최대 20만원', '청년(19~34세)은 환급률 70% — 1인 최대 14만원', '환급은 모바일 지역사랑상품권, 사용기한 2026-12-31', '여행 전 사전신청·승인 필수, 사후 신청 불인정 가능'],
+    EN: ['50% of travel costs back — up to KRW 100,000 per person, 200,000 for 2+', 'Ages 19–34: 70% refund rate, up to KRW 140,000', 'Paid in mobile local currency, valid until Dec 31, 2026', 'Advance application and approval required before travelling'],
+    JP: ['旅行経費の50％還付 — 個人最大10万ウォン、2人以上最大20万ウォン', '19～34歳は還付率70％・最大14万ウォン', 'モバイル地域商品券で支給、使用期限2026-12-31', '旅行前の事前申請・承認が必須（事後申請は不可の場合あり）'],
+  },
   flowTitle: { KO: '보통의 진행 순서', EN: 'Typical process', JP: '一般的な流れ' },
   flow: {
     KO: ['지역별 공식 사업 확인', '여행 전 사전신청', '선정·참여 승인 확인', '지정 조건에 맞춰 여행', '영수증·사진 등 증빙 제출', '정산 심사', '지역화폐·상품권 등으로 지급'],
@@ -78,7 +108,8 @@ export function HalfPriceTravelGuideView({ lang }: { lang: Lang }) {
           <h1 className="mt-4 max-w-4xl text-[clamp(2.35rem,7vw,5.4rem)] font-bold leading-[1.02] tracking-[-0.045em] text-[#17313b] text-balance">{COPY.title[lang]}</h1>
           <p className="mt-7 max-w-3xl text-base leading-8 text-[#5f737b] sm:text-lg">{COPY.desc[lang]}</p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a href={OFFICIAL_SOURCE} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#153a49] px-6 text-sm font-bold text-white hover:bg-[#0e4d67]">{COPY.official[lang]} <ExternalLink className="h-4 w-4" /></a>
+            <a href={OFFICIAL_HUB} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#153a49] px-6 text-sm font-bold text-white hover:bg-[#0e4d67]">{COPY.officialHub[lang]} <ExternalLink className="h-4 w-4" /></a>
+            <a href={OFFICIAL_SOURCE} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-full border border-[#c8d4d2] bg-white px-6 text-sm font-bold text-[#17647f] hover:border-[#317b98]">{COPY.official[lang]} <ExternalLink className="h-4 w-4" /></a>
             <span className="text-xs text-[#7a898e]">{COPY.checked[lang]}</span>
           </div>
         </div>
@@ -101,7 +132,36 @@ export function HalfPriceTravelGuideView({ lang }: { lang: Lang }) {
         </div>
       </section>
 
+      {/* 2026 상반기 16개 지역 + 공식 확인 조건 — korea.kr·구석구석 교차 확인 2026-08-14 */}
       <section className="px-5 py-12 sm:px-6 md:py-16">
+        <div className="mx-auto grid min-w-0 max-w-5xl gap-10 lg:grid-cols-[1.1fr_.9fr]">
+          <div className="min-w-0">
+            <h2 className="text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.regionsTitle[lang]}</h2>
+            <p className="mt-4 text-sm leading-7 text-[#61747b]">{COPY.regionsDesc[lang]}</p>
+            <div className="mt-6 grid gap-3">
+              {REGIONS_2026_H1.map((r) => (
+                <div key={r.area.KO} className="flex items-start gap-3 rounded-xl border border-[#dfe6e5] bg-white p-4">
+                  <span className="inline-flex h-8 shrink-0 items-center rounded-full bg-[#eef4f3] px-3 text-xs font-bold text-[#17647f]">{r.area[lang]}</span>
+                  <span className="pt-1 text-sm font-semibold leading-6 text-[#465d66]">{r.items[lang]}</span>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs leading-6 text-[#7a898e]">{COPY.regionsNote[lang]}</p>
+          </div>
+          <div className="min-w-0">
+            <h2 className="text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.factsTitle[lang]}</h2>
+            <ul className="mt-6 grid gap-3">
+              {COPY.facts[lang].map((item) => (
+                <li key={item} className="flex items-start gap-2 rounded-xl bg-[#f5f8f7] p-4 text-sm leading-6 text-[#496069]">
+                  <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#317b98]" strokeWidth={ICON_STROKE} />{item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-[#e3e8e6] px-5 py-12 sm:px-6 md:py-16">
         <div className="mx-auto max-w-5xl">
           <div className="flex items-center gap-3"><ReceiptText className="h-6 w-6 text-[#317b98]" strokeWidth={ICON_STROKE} /><h2 className="text-2xl font-bold tracking-[-0.025em] text-[#203943]">{COPY.checkTitle[lang]}</h2></div>
           <ul className="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
