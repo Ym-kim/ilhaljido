@@ -14,7 +14,8 @@ type L = Record<Lang, string>
 
 const COPY = {
   eyebrow: { KO: 'START CLOSE TO HOME', EN: 'TRAVEL IN KOREA', JP: '韓国で過ごす旅' },
-  title: { KO: '서울보다 먼저, 지금 떠나고 싶은 국내 8곳', EN: 'Eight ways to travel and work around Korea', JP: '韓国で旅とはたらく、8つの行き先' },
+  // 2026-08-14 운영자 지적: 서울이 8곳에 포함돼 '서울보다 먼저'가 모순 → '멀리 가기 전에'로 교체
+  title: { KO: '멀리 가기 전에, 지금 떠나고 싶은 국내 8곳', EN: 'Eight ways to travel and work around Korea', JP: '韓国で旅とはたらく、8つの行き先' },
   lead: {
     KO: '바다·한옥·기차·도시의 리듬을 기준으로 골랐어요. 지역 정보부터 여행 구성, 날짜를 넣은 숙소 검색까지 한 번에 이어집니다.',
     EN: 'Choose by coast, city, hanok lanes or a slower train. Each route links practical city notes with a ready-to-search stay.',
