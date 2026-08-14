@@ -283,10 +283,14 @@ export function HostDashboardView() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] px-4 py-10 sm:px-6">
+    <div className="min-h-screen bg-[#f1f5f9] px-4 py-10 sm:px-6">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-2xl md:text-3xl font-black text-gray-900">{C.title[lang]}</h1>
-        <p className="text-[#94a3b8] text-xs mt-1">{userEmail}</p>
+        {/* 헤더 밴드 (2026-08-14 UI 리프레시) */}
+        <div className="rounded-3xl bg-gradient-to-br from-sky-600 via-sky-700 to-slate-800 px-7 py-8 text-white shadow-lg shadow-sky-900/10">
+          <span className="block text-[11px] font-black tracking-[0.2em] uppercase text-sky-200">Wakation Host</span>
+          <h1 className="mt-1.5 text-2xl md:text-3xl font-black">{C.title[lang]}</h1>
+          <p className="text-sky-100/70 text-xs mt-1.5">{userEmail}</p>
+        </div>
 
         {error && <p className="mt-4 text-red-500 text-sm">{error}</p>}
 

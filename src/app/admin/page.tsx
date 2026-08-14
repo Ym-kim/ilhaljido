@@ -184,32 +184,38 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-cream">
+    <div className="min-h-screen bg-[#f1f5f9]">
       {/* Top Bar */}
-      <div className="bg-white border-b border-border px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <span className="w-8 h-8 rounded-[9px] bg-gradient-to-br from-brand-mid to-brand flex items-center justify-center text-white text-sm font-black">일</span>
-          <span className="font-black text-dark">Wakation 관리자</span>
-        </div>
+      <div className="sticky top-0 z-20 bg-white/90 backdrop-blur border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Link href="/admin/support" className="flex min-h-11 items-center rounded-lg border border-border px-3 text-sm font-bold text-muted transition-colors hover:border-brand hover:text-brand">
-            지원사업 검증
-          </Link>
-          <Link href="/admin/hosts" className="flex min-h-11 items-center rounded-lg border border-border px-3 text-sm font-bold text-muted transition-colors hover:border-brand hover:text-brand">
-            호스트 검수
-          </Link>
+          <span className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-sky-700 flex items-center justify-center text-white text-sm font-black shadow-sm">W</span>
+          <div>
+            <span className="block font-black text-slate-900 leading-tight">Wakation 관리자</span>
+            <span className="block text-[11px] text-slate-400 leading-tight">신청 · 문의 관리</span>
+          </div>
+          <nav className="ml-4 hidden md:flex items-center gap-1 bg-slate-100 rounded-full p-1">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-white text-sky-700 shadow-sm">신청 목록</span>
+            <Link href="/admin/hosts" className="px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-500 hover:text-sky-700 transition-colors">
+              호스트 검수
+            </Link>
+            <Link href="/admin/support" className="px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-500 hover:text-sky-700 transition-colors">
+              지원사업 검증
+            </Link>
+          </nav>
+        </div>
+        <div className="flex items-center gap-2.5">
           {checkedIds.size > 0 && (
             <button
               onClick={deleteChecked}
-              className="flex items-center gap-1.5 text-sm font-bold text-red-500 border border-red-200 rounded-lg px-3 py-1.5 hover:bg-red-50 hover:border-red-300 transition-colors"
+              className="flex items-center gap-1.5 text-xs font-bold text-red-500 border border-red-200 rounded-full px-3.5 py-2 hover:bg-red-50 hover:border-red-300 transition-colors"
             >
               <Trash2 size={13} /> 선택 삭제 ({checkedIds.size})
             </button>
           )}
-          <span className="text-sm text-muted">총 신청 {counts.all}건</span>
+          <span className="hidden sm:block text-xs font-medium text-slate-400">총 {counts.all}건</span>
           <button
             onClick={loadApps}
-            className="flex items-center gap-1.5 text-sm text-muted hover:text-brand border border-border rounded-lg px-3 py-1.5 hover:border-brand transition-colors"
+            className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-sky-700 bg-white border border-slate-200 rounded-full px-3.5 py-2 hover:border-sky-300 shadow-sm transition-all"
           >
             <RefreshCw size={13} /> 새로고침
           </button>
@@ -219,14 +225,19 @@ export default function AdminPage() {
       {/* Stats */}
       <div className="px-6 py-5 grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { key: 'pending',   label: '신규 접수', num: counts.pending,   color: 'text-amber-600',   bg: 'bg-amber-50 border-amber-200' },
-          { key: 'contacted', label: '연락 완료', num: counts.contacted, color: 'text-blue-600',    bg: 'bg-blue-50 border-blue-200' },
-          { key: 'confirmed', label: '확정',      num: counts.confirmed, color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200' },
-          { key: 'cancelled', label: '취소',      num: counts.cancelled, color: 'text-red-600',     bg: 'bg-red-50 border-red-200' },
+          { key: 'pending',   label: '신규 접수', num: counts.pending,   icon: Clock,        chip: 'bg-amber-50 text-amber-600',   num2: 'text-amber-600' },
+          { key: 'contacted', label: '연락 완료', num: counts.contacted, icon: PhoneCall,    chip: 'bg-blue-50 text-blue-600',     num2: 'text-blue-600' },
+          { key: 'confirmed', label: '확정',      num: counts.confirmed, icon: CheckCircle2, chip: 'bg-emerald-50 text-emerald-600', num2: 'text-emerald-600' },
+          { key: 'cancelled', label: '취소',      num: counts.cancelled, icon: XCircle,      chip: 'bg-red-50 text-red-500',       num2: 'text-red-500' },
         ].map((s) => (
-          <div key={s.key} className={`rounded-xl border p-4 ${s.bg}`}>
-            <div className={`text-2xl font-black ${s.color}`}>{s.num}</div>
-            <div className="text-xs font-medium text-gray-600 mt-1">{s.label}</div>
+          <div key={s.key} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
+            <span className={`w-11 h-11 rounded-xl flex items-center justify-center ${s.chip}`}>
+              <s.icon size={20} />
+            </span>
+            <div>
+              <div className={`text-2xl font-black leading-none ${s.num2}`}>{s.num}</div>
+              <div className="text-xs font-semibold text-slate-400 mt-1.5">{s.label}</div>
+            </div>
           </div>
         ))}
       </div>
@@ -235,8 +246,8 @@ export default function AdminPage() {
         {/* List */}
         <div className="flex-1">
           {/* Filters + Search */}
-          <div className="bg-white rounded-xl border border-border p-4 mb-3 flex flex-wrap gap-3 items-center justify-between">
-            <div className="flex gap-2 flex-wrap">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5 mb-3 flex flex-wrap gap-3 items-center justify-between">
+            <div className="flex gap-1.5 flex-wrap">
               {[
                 { key: 'all',       label: `전체 (${counts.all})` },
                 { key: 'pending',   label: `신규 (${counts.pending})` },
@@ -249,10 +260,10 @@ export default function AdminPage() {
                 <button
                   key={f.key}
                   onClick={() => setFilter(f.key)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-all ${
+                  className={`px-3.5 py-2 rounded-full text-xs font-bold transition-all ${
                     filter === f.key
-                      ? 'bg-brand border-brand text-white'
-                      : 'bg-white border-border text-muted hover:border-brand'
+                      ? 'bg-sky-600 text-white shadow-sm'
+                      : 'bg-slate-50 text-slate-500 hover:bg-sky-50 hover:text-sky-700'
                   }`}
                 >
                   {f.label}
@@ -260,41 +271,44 @@ export default function AdminPage() {
               ))}
             </div>
             <div className="relative">
-              <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
+              <Search size={13} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="이름·연락처·이메일 검색"
-                className="pl-8 pr-3 py-1.5 border border-border rounded-lg text-xs outline-none focus:border-brand-mid w-48"
+                className="pl-9 pr-4 py-2 bg-slate-50 border border-transparent rounded-full text-xs outline-none focus:bg-white focus:border-sky-300 transition-all w-52"
               />
             </div>
           </div>
 
           {/* Table */}
-          <div className="bg-white rounded-xl border border-border overflow-hidden">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             {loading ? (
-              <div className="py-16 text-center text-sm text-muted">로딩 중…</div>
+              <div className="py-20 text-center text-sm text-slate-400">로딩 중…</div>
             ) : filtered.length === 0 ? (
-              <div className="py-16 text-center text-sm text-muted">신청 내역이 없습니다.</div>
+              <div className="py-20 text-center">
+                <Users size={28} className="mx-auto text-slate-200 mb-3" />
+                <p className="text-sm text-slate-400">신청 내역이 없습니다.</p>
+              </div>
             ) : (
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-border bg-cream">
+                  <tr className="border-b border-slate-100 bg-slate-50/70">
                     <th className="px-4 py-3 w-10">
                       <input
                         type="checkbox"
                         aria-label="전체 선택"
                         checked={filtered.length > 0 && checkedIds.size === filtered.length}
                         onChange={toggleCheckAll}
-                        className="w-3.5 h-3.5 accent-brand cursor-pointer align-middle"
+                        className="w-3.5 h-3.5 accent-sky-600 cursor-pointer align-middle"
                       />
                     </th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted">이름</th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted">연락처</th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted hidden md:table-cell">프로그램</th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted hidden lg:table-cell">직업</th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted">상태</th>
-                    <th className="text-left px-4 py-3 text-xs font-bold text-muted hidden md:table-cell">신청일</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">이름</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">연락처</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden md:table-cell">프로그램</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden lg:table-cell">유형</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400">상태</th>
+                    <th className="text-left px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-slate-400 hidden md:table-cell">신청일</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -304,35 +318,35 @@ export default function AdminPage() {
                     return (
                       <tr
                         key={app.id}
-                        className={`border-b border-border hover:bg-cream cursor-pointer transition-colors ${
-                          selected?.id === app.id ? 'bg-brand-pale' : ''
+                        className={`border-b border-slate-100 hover:bg-sky-50/50 cursor-pointer transition-colors ${
+                          selected?.id === app.id ? 'bg-sky-50' : ''
                         } ${i === filtered.length - 1 ? 'border-b-0' : ''}`}
                         onClick={() => { setSelected(app); setMemo(app.admin_memo || '') }}
                       >
-                        <td className="px-4 py-3 w-10" onClick={(e) => e.stopPropagation()}>
+                        <td className="px-4 py-3.5 w-10" onClick={(e) => e.stopPropagation()}>
                           <input
                             type="checkbox"
                             aria-label={`${app.name} 선택`}
                             checked={checkedIds.has(app.id)}
                             onChange={() => toggleCheck(app.id)}
-                            className="w-3.5 h-3.5 accent-brand cursor-pointer align-middle"
+                            className="w-3.5 h-3.5 accent-sky-600 cursor-pointer align-middle"
                           />
                         </td>
-                        <td className="px-4 py-3 font-bold text-dark">{app.name}</td>
-                        <td className="px-4 py-3 text-muted">{app.phone}</td>
-                        <td className="px-4 py-3 text-muted hidden md:table-cell truncate max-w-[160px]">
+                        <td className="px-4 py-3.5 font-bold text-slate-900">{app.name}</td>
+                        <td className="px-4 py-3.5 text-slate-500">{app.phone}</td>
+                        <td className="px-4 py-3.5 text-slate-500 hidden md:table-cell truncate max-w-[160px]">
                           {app.job_type === 'traveler_note' ? '여행자 노트' : app.job_type === '호스트 등록' ? '호스트 등록' : app.programs?.title ?? app.program_id ?? '미정'}
                         </td>
-                        <td className="px-4 py-3 text-muted hidden lg:table-cell">{app.job_type}</td>
-                        <td className="px-4 py-3">
-                          <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold ${s.color}`}>
+                        <td className="px-4 py-3.5 text-slate-500 hidden lg:table-cell">{app.job_type}</td>
+                        <td className="px-4 py-3.5">
+                          <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${s.color}`}>
                             <s.icon size={10} /> {s.label}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-muted text-xs hidden md:table-cell">
+                        <td className="px-4 py-3.5 text-slate-400 text-xs hidden md:table-cell">
                           {new Date(app.created_at).toLocaleDateString('ko-KR')}
                         </td>
-                        <td className="px-4 py-3"><ChevronRight size={14} className="text-muted" /></td>
+                        <td className="px-4 py-3.5"><ChevronRight size={14} className="text-slate-300" /></td>
                       </tr>
                     )
                   })}
@@ -345,57 +359,62 @@ export default function AdminPage() {
         {/* Detail Panel */}
         {selected && (
           <div className="w-80 flex-shrink-0">
-            <div className="bg-white rounded-xl border border-border p-5 sticky top-20">
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <div className="font-black text-dark text-lg">{selected.name}</div>
-                  <div className="text-sm text-muted">{selected.email}</div>
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-lg shadow-slate-200/50 p-6 sticky top-20">
+              <div className="flex items-start justify-between mb-5">
+                <div className="flex items-center gap-3">
+                  <span className="w-11 h-11 rounded-full bg-gradient-to-br from-sky-400 to-sky-600 flex items-center justify-center text-white font-black text-base">
+                    {selected.name?.[0] ?? '?'}
+                  </span>
+                  <div>
+                    <div className="font-black text-slate-900 leading-tight">{selected.name}</div>
+                    <div className="text-xs text-slate-400 mt-0.5 break-all">{selected.email}</div>
+                  </div>
                 </div>
-                <button onClick={() => setSelected(null)} className="text-muted hover:text-dark text-lg leading-none">×</button>
+                <button onClick={() => setSelected(null)} aria-label="닫기" className="w-7 h-7 rounded-full bg-slate-100 text-slate-400 hover:bg-slate-200 hover:text-slate-600 text-sm leading-none transition-colors">×</button>
               </div>
 
-              <div className="space-y-2 mb-4">
+              <div className="space-y-1.5 mb-5">
                 {[
                   { icon: <PhoneCall size={13} />, val: selected.phone },
                   { icon: <Briefcase size={13} />, val: selected.job_type },
                   { icon: <Calendar size={13} />, val: selected.duration_preference ?? '미정' },
                   { icon: <Users size={13} />, val: selected.budget_range ?? '미정' },
                 ].map(({ icon, val }) => (
-                  <div key={val} className="flex items-center gap-2 text-sm text-muted">
-                    <span className="text-brand">{icon}</span> {val}
+                  <div key={val} className="flex items-center gap-2.5 text-sm text-slate-600">
+                    <span className="w-6 h-6 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center shrink-0">{icon}</span> {val}
                   </div>
                 ))}
               </div>
 
               {selected.interests.length > 0 && (
-                <div className="mb-3">
-                  <div className="text-xs font-bold text-dark mb-1.5">관심 분야</div>
+                <div className="mb-4">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">관심 분야</div>
                   <div className="flex flex-wrap gap-1">
                     {selected.interests.map((t) => (
-                      <span key={t} className="bg-brand-pale text-brand text-xs font-medium px-2 py-0.5 rounded-full">{t}</span>
+                      <span key={t} className="bg-sky-50 text-sky-700 text-xs font-semibold px-2.5 py-1 rounded-full">{t}</span>
                     ))}
                   </div>
                 </div>
               )}
 
               {selected.message && (
-                <div className="mb-4 p-3 bg-cream rounded-lg text-xs text-muted leading-relaxed">
+                <div className="mb-5 p-3.5 bg-slate-50 rounded-xl text-xs text-slate-600 leading-relaxed whitespace-pre-line max-h-48 overflow-y-auto">
                   {selected.message}
                 </div>
               )}
 
               {/* Status Change */}
-              <div className="mb-4">
-                <div className="text-xs font-bold text-dark mb-2">상태 변경</div>
+              <div className="mb-5">
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">상태 변경</div>
                 <div className="grid grid-cols-2 gap-1.5">
                   {Object.entries(STATUS_MAP).map(([key, s]) => (
                     <button
                       key={key}
                       onClick={() => updateStatus(selected.id, key)}
-                      className={`flex items-center justify-center gap-1 py-1.5 rounded-lg text-xs font-bold border transition-all ${
+                      className={`flex items-center justify-center gap-1 py-2 rounded-xl text-xs font-bold transition-all ${
                         selected.status === key
-                          ? 'bg-brand border-brand text-white'
-                          : 'border-border text-muted hover:border-brand hover:text-brand'
+                          ? 'bg-sky-600 text-white shadow-sm'
+                          : 'bg-slate-50 text-slate-500 hover:bg-sky-50 hover:text-sky-700'
                       }`}
                     >
                       <s.icon size={11} /> {s.label}
@@ -406,27 +425,27 @@ export default function AdminPage() {
 
               {/* Memo */}
               <div>
-                <div className="text-xs font-bold text-dark mb-1.5">관리자 메모</div>
+                <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2">관리자 메모</div>
                 <textarea
                   value={memo}
                   onChange={(e) => setMemo(e.target.value)}
                   rows={3}
                   placeholder="상담 내용, 특이사항 등..."
-                  className="w-full border border-border rounded-lg px-3 py-2 text-xs outline-none focus:border-brand-mid resize-none"
+                  className="w-full bg-slate-50 border border-transparent rounded-xl px-3.5 py-2.5 text-xs outline-none focus:bg-white focus:border-sky-300 resize-none transition-all"
                 />
                 <button
                   onClick={() => saveMemo(selected.id)}
-                  className="w-full mt-1.5 bg-brand text-white rounded-lg py-2 text-xs font-bold hover:bg-brand-dark transition-colors"
+                  className="w-full mt-2 bg-sky-600 text-white rounded-xl py-2.5 text-xs font-bold hover:bg-sky-500 shadow-sm transition-colors"
                 >
                   메모 저장
                 </button>
               </div>
 
               {/* 삭제 — 영구 삭제(확인 프롬프트) */}
-              <div className="mt-5 pt-4 border-t border-border">
+              <div className="mt-5 pt-4 border-t border-slate-100">
                 <button
                   onClick={() => deleteApp(selected.id)}
-                  className="w-full flex items-center justify-center gap-1.5 border border-red-200 text-red-500 rounded-lg py-2 text-xs font-bold hover:bg-red-50 hover:border-red-300 transition-colors"
+                  className="w-full flex items-center justify-center gap-1.5 border border-red-200 text-red-500 rounded-xl py-2.5 text-xs font-bold hover:bg-red-50 hover:border-red-300 transition-colors"
                 >
                   <Trash2 size={12} /> 신청 건 삭제
                 </button>
