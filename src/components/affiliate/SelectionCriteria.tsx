@@ -24,9 +24,11 @@ const T: Record<string, L> = {
 
 const LEVELS: VerificationLevel[] = ['research', 'partner', 'field', 'editorial']
 
-export function SelectionCriteria({ className = '' }: { className?: string }) {
+// 2026-08-14 운영자 결정: 기본 펼침 — 검증 기준이 신뢰 신호라 접혀 있으면 놓치기 아쉬움.
+// 접기 토글은 유지. 좁은 배치에서 기본 접힘이 필요하면 defaultOpen={false}로.
+export function SelectionCriteria({ className = '', defaultOpen = true }: { className?: string; defaultOpen?: boolean }) {
   const { lang } = useLang()
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(defaultOpen)
 
   return (
     <div className={className}>
