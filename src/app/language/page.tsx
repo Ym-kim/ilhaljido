@@ -85,7 +85,7 @@ export default function LanguagePage() {
             const Icon = FEAT_ICONS[f.id as keyof typeof FEAT_ICONS] ?? BookOpen
             return (
               <div key={f.id} className="bg-white rounded-2xl p-7 shadow-sm border border-gray-100">
-                <div className="w-12 h-12 bg-rose-50 rounded-2xl flex items-center justify-center text-rose-500 mb-4">
+                <div className="w-12 h-12 bg-sky-50 rounded-2xl flex items-center justify-center text-brand-mid mb-4">
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="font-black text-gray-900 mb-2">{f.title}</h3>
@@ -115,7 +115,7 @@ export default function LanguagePage() {
                   <p className="text-gray-400 text-sm mb-3">{p.duration}</p>
                   <div className="flex flex-wrap gap-1.5 mb-4">
                     {p.tags.map((t) => (
-                      <span key={t} className="text-xs bg-rose-50 text-rose-600 px-2 py-0.5 rounded-full font-medium">
+                      <span key={t} className="text-xs bg-sky-50 text-sky-700 px-2 py-0.5 rounded-full font-medium">
                         {t}
                       </span>
                     ))}
@@ -142,7 +142,7 @@ export default function LanguagePage() {
       {/* 온라인 1:1 어학 파트너 — AmazingTalker */}
       <section className="py-16 px-6 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
-          <p className="text-rose-500 text-xs font-black tracking-widest uppercase mb-3">{TUTOR_COPY.eyebrow[lang]}</p>
+          <p className="text-brand-mid text-xs font-black tracking-widest uppercase mb-3">{TUTOR_COPY.eyebrow[lang]}</p>
           <h2 className="text-2xl md:text-3xl font-black text-gray-900 mb-2">{TUTOR_COPY.title[lang]}</h2>
           <p className="text-gray-500 text-sm leading-relaxed max-w-2xl mb-8">{TUTOR_COPY.sub[lang]}</p>
           {/* 언어별 트랙 카드 — 실존 확인 경로만 */}
@@ -165,15 +165,15 @@ export default function LanguagePage() {
                   category: 'education',
                   locale: lang,
                 })}
-                className="group bg-rose-50/60 border border-rose-100 rounded-3xl p-6 hover:border-rose-300 hover:shadow-md transition-all"
+                className="group bg-sky-50/60 border border-sky-100 rounded-3xl p-6 hover:border-sky-300 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-3xl">{t.emoji}</span>
-                  <ArrowUpRight className="w-4 h-4 text-rose-300 group-hover:text-rose-500 transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-sky-300 group-hover:text-brand-mid transition-colors" />
                 </div>
                 <p className="text-gray-900 font-black mb-1">{t.name[lang]}</p>
                 <p className="text-gray-500 text-xs leading-relaxed mb-4">{t.desc[lang]}</p>
-                <span className="inline-flex items-center gap-1.5 text-rose-500 text-xs font-bold">
+                <span className="inline-flex items-center gap-1.5 text-brand-mid text-xs font-bold">
                   <MessagesSquare className="w-3.5 h-3.5" strokeWidth={1.75} />
                   AmazingTalker · {TUTOR_COPY.cta[lang]}
                 </span>

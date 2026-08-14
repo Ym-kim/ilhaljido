@@ -35,6 +35,12 @@ const LINKS: { href: string; label: L; desc: L }[] = [
     desc: { KO: 'VOD·현장 실습·네트워킹', EN: 'VOD, workshops, networking', JP: 'VOD・実習・交流' },
   },
   {
+    // 2026-08-14 복원: 내비 개편 때 끊겼던 어학연수 홈 진입로
+    href: '/language',
+    label: { KO: '어학연수·유학', EN: 'Language study & stays', JP: '語学研修・留学' },
+    desc: { KO: '원어민 1:1 수업·연계 프로그램', EN: '1:1 tutoring & study programs', JP: 'ネイティブ1:1・研修プログラム' },
+  },
+  {
     href: '/programs/support',
     label: { KO: '지자체 지원사업 20곳', EN: '20 gov-support programs', JP: '自治体支援20件' },
     desc: { KO: '숙박비 지원 한달살기까지', EN: 'Subsidized month-stays', JP: '宿泊費支援の1カ月暮らしも' },
