@@ -37,7 +37,8 @@ export const AFFILIATE_BASE = {
   kkday:      'https://www.kkday.com/ko?cid=25833',
 
   // 🔶 approved_needs_course_links — 강의별 링크 생성 전
-  inflearn:   'https://www.inflearn.com',
+  // 2026-08-14: /ko 명시 — 저장된 언어 설정(ja 등)으로 렌더되는 문제 방지
+  inflearn:   'https://www.inflearn.com/ko',
 
   // ✅ active_affiliate — Impact 추적 링크 (2026-07-15, ?u= 딥링크 실물검증)
   airalo:     'https://airalo.pxf.io/c/7451946/1268485/15608',

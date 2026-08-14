@@ -1395,7 +1395,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: 'AI·업무 자동화',
     desc: 'ChatGPT, n8n, Make.com, Python 자동화. 워케이션 중 생산성을 높이는 AI 도구.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&s=AI+자동화',
+    href: 'https://www.inflearn.com/ko/search?types=ONLINE&s=AI+자동화',
     tags: ['ChatGPT', 'n8n', 'Python', 'Make.com'],
   },
   {
@@ -1405,7 +1405,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: '창업·마케팅·브랜딩',
     desc: '퍼포먼스 마케팅, 브랜드 전략, SNS 운영. 이동 중에 사업을 키우는 실전 강의.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&s=마케팅',
+    href: 'https://www.inflearn.com/ko/search?types=ONLINE&s=마케팅',
     tags: ['퍼포먼스 마케팅', 'SNS', '브랜딩', '광고'],
   },
   {
@@ -1415,7 +1415,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: '생산성·노션·자동화',
     desc: '노션, Obsidian, 제텔카스텐. 워케이션 라이프스타일에 맞는 업무 시스템 구축.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&s=노션',
+    href: 'https://www.inflearn.com/ko/search?types=ONLINE&s=노션',
     tags: ['노션', 'Obsidian', '업무 시스템', 'GTD'],
   },
   {
@@ -1425,7 +1425,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: '개발·프로그래밍',
     desc: '웹 개발, 앱 개발, 클라우드. 기술로 워케이션을 더 자유롭게.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&tag=개발',
+    href: 'https://www.inflearn.com/ko/courses?types=ONLINE&tag=개발',
     tags: ['웹 개발', '앱 개발', 'AWS', 'React'],
   },
   {
@@ -1435,7 +1435,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: '언어·커뮤니케이션',
     desc: '영어, 일어, 베트남어. 워케이션 현지에서 바로 쓸 수 있는 언어 강의.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&s=영어',
+    href: 'https://www.inflearn.com/ko/search?types=ONLINE&s=영어',
     tags: ['영어', '일본어', '베트남어', '비즈니스 영어'],
   },
   {
@@ -1445,7 +1445,7 @@ export const LEARN_CATEGORIES: LearnCategory[] = [
     title: '재무·투자·세금',
     desc: '프리랜서·1인 기업 세금, 해외 소득 신고, 투자. 워케이션 비용을 영리하게.',
     status: 'approved_needs_course_links',
-    href: 'https://www.inflearn.com/courses?types=ONLINE&s=세금',
+    href: 'https://www.inflearn.com/ko/search?types=ONLINE&s=세금',
     tags: ['세금', '프리랜서 재무', '투자', '회계'],
   },
 ]
