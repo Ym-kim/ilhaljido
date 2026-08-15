@@ -21,8 +21,16 @@ import type { Lang } from '@/lib/i18n/types'
 // - airalo.com(pxf.io u= 내부): /ko|/ja 프리픽스, 무프리픽스=영어 —
 //   8개 랜딩 전부 × ko/ja 200 + <html lang> 실측. 소스 KO 링크에 /ko 명시 완료
 //
-// 미검증 → 변환 제외(원본 KO 링크 유지): KKday·Booking·inf.run
-// (봇월로 실측 불가 — 검증 후 여기에 규칙만 추가하면 전 카드 반영)
+// 3차 검증 추가 (2026-08-15):
+// - kkday.com: /ko|/en|/ja 경로 프리픽스 — 운영자 폰 실측(/en/product/284256 영어
+//   렌더 확인) + 소스 내 선례(items.ts 105485 deepLinks가 3로케일 KKday 링크로
+//   운영 중). cid 파라미터 무변경
+// - booking.com: `lang` 쿼리 파라미터 — 운영자 폰 실측(searchresults aid=7854081
+//   &lang=en-us 영어 렌더 확인). aid 등 기존 파라미터 무변경, lang만 추가/교체.
+//   ⚠️ JP(lang=ja)·호텔 상세 경로는 동일 메커니즘 적용이나 개별 실측은 대기
+//   (봇월로 원격 검증 불가 — 운영자 폰 스팟 체크 요청됨 2026-08-15)
+//
+// 미검증 → 변환 제외(원본 KO 링크 유지): inf.run(파트너 토큰 리다이렉트)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export function localizeOutboundHref(href: string, lang: Lang): string {
@@ -81,6 +89,21 @@ export function localizeOutboundHref(href: string, lang: Lang): string {
     // Trip.com — 서브도메인 = 로케일 (경로·쿼리 무변경 → 제휴 파라미터 보존)
     if (u.hostname === 'kr.trip.com') {
       u.hostname = lang === 'EN' ? 'www.trip.com' : 'jp.trip.com'
+      return u.toString()
+    }
+
+    // KKday — /ko 프리픽스 로케일 스왑 (product·destination 등 전 경로, cid 무변경)
+    if (u.hostname === 'www.kkday.com') {
+      const target = lang === 'EN' ? '/en' : '/ja'
+      if (u.pathname === '/ko') u.pathname = target
+      else if (u.pathname.startsWith('/ko/')) u.pathname = target + u.pathname.slice(3)
+      else return href
+      return u.toString()
+    }
+
+    // Booking — lang 쿼리 파라미터만 추가/교체 (aid 등 기존 파라미터 무변경)
+    if (u.hostname === 'www.booking.com') {
+      u.searchParams.set('lang', lang === 'EN' ? 'en-us' : 'ja')
       return u.toString()
     }
   } catch {
