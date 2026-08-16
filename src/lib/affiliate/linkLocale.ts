@@ -22,13 +22,14 @@ import type { Lang } from '@/lib/i18n/types'
 //   8개 랜딩 전부 × ko/ja 200 + <html lang> 실측. 소스 KO 링크에 /ko 명시 완료
 //
 // 3차 검증 추가 (2026-08-15):
-// - kkday.com: /ko|/en|/ja 경로 프리픽스 — 운영자 폰 실측(/en/product/284256 영어
-//   렌더 확인) + 소스 내 선례(items.ts 105485 deepLinks가 3로케일 KKday 링크로
-//   운영 중). cid 파라미터 무변경
-// - booking.com: `lang` 쿼리 파라미터 — 운영자 폰 실측(searchresults aid=7854081
-//   &lang=en-us 영어 렌더 확인). aid 등 기존 파라미터 무변경, lang만 추가/교체.
-//   ⚠️ JP(lang=ja)·호텔 상세 경로는 동일 메커니즘 적용이나 개별 실측은 대기
-//   (봇월로 원격 검증 불가 — 운영자 폰 스팟 체크 요청됨 2026-08-15)
+// - kkday.com: **/en만 변환** — 운영자 폰 실측(/en/product/284256 영어 렌더 확인).
+//   ⚠️ /ja는 폐기(재시도 금지): 같은 상품이 일본어판에서 **UI만 뜨고 상품이 비어
+//   있음**을 운영자 폰 실측(2026-08-15). KKday 상품은 로케일별 재고가 달라
+//   일괄 /ja 변환은 JP 사용자를 빈 페이지로 보냄 → JP는 원본(KO) 유지, 상품별로
+//   검증된 것만 deepLinks.JP에 개별 등재(선례: items.ts 105485). cid 무변경
+// - booking.com: `lang` 쿼리 파라미터 — 운영자 폰 실측 EN(searchresults aid=
+//   7854081&lang=en-us 영어 렌더)·JP(lang=ja 일본어 렌더, 2026-08-15) 모두 확인.
+//   aid 등 기존 파라미터 무변경, lang만 추가/교체
 //
 // 미검증 → 변환 제외(원본 KO 링크 유지): inf.run(파트너 토큰 리다이렉트)
 // ─────────────────────────────────────────────────────────────────────────────
@@ -92,11 +93,11 @@ export function localizeOutboundHref(href: string, lang: Lang): string {
       return u.toString()
     }
 
-    // KKday — /ko 프리픽스 로케일 스왑 (product·destination 등 전 경로, cid 무변경)
+    // KKday — EN만 /ko→/en 스왑. JP는 원본 유지(일본어판 상품 미노출 실측 — 헤더 주석 참조)
     if (u.hostname === 'www.kkday.com') {
-      const target = lang === 'EN' ? '/en' : '/ja'
-      if (u.pathname === '/ko') u.pathname = target
-      else if (u.pathname.startsWith('/ko/')) u.pathname = target + u.pathname.slice(3)
+      if (lang !== 'EN') return href
+      if (u.pathname === '/ko') u.pathname = '/en'
+      else if (u.pathname.startsWith('/ko/')) u.pathname = '/en' + u.pathname.slice(3)
       else return href
       return u.toString()
     }
