@@ -70,8 +70,9 @@ export default function LanguagePage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        {/* 2026-08-17 자체 제작 에디토리얼로 교체 — 기존 사진이 하단 인프런 카드와 중복이었음 */}
-        <Image src="/media/brand-models/language-study-lounge-editorial-v1.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+        {/* 2026-08-17 자체 제작 에디토리얼로 교체 — 기존 사진이 하단 인프런 카드와 중복이었음.
+            object-[42%_15%]: 인물 얼굴이 좌측 상단(x≈38%·y≈8~49%)에 있어 와이드 화면 상하 크롭 시 머리가 잘리지 않도록 크롭 기준점 고정 */}
+        <Image src="/media/brand-models/language-study-lounge-editorial-v1.webp" alt="" fill priority sizes="100vw" className="object-cover object-[42%_15%]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('lang_badge')}</SectionEyebrow>
