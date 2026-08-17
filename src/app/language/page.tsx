@@ -70,7 +70,8 @@ export default function LanguagePage() {
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        <Image src="/media/verified/unsplash/1503676260728-1c00da094a0b.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+        {/* 2026-08-17 자체 제작 에디토리얼로 교체 — 기존 사진이 하단 인프런 카드와 중복이었음 */}
+        <Image src="/media/brand-models/language-study-lounge-editorial-v1.webp" alt="" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('lang_badge')}</SectionEyebrow>

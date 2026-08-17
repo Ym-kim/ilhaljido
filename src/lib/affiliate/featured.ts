@@ -50,7 +50,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('jp/the-lively-osaka.html'),
     badge: '라운지 워크',
     trackingId: 'aid=7854081',
-    coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
+    coverPhoto: '/media/product-editorial/japanese-ryokan-work-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-webase-hakata',
@@ -958,7 +958,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '3,452',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
+    badge: '서비스드 레지던스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/bright-loft-workspace-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-uh-busan', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1015,7 +1015,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '718',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
+    badge: '도심 비즈니스', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-pool-villa-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-seaside-nhatrang', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1106,7 +1106,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '5,635',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/city-highrise-apartment-editorial-v1.webp', illustrative: true,
+    badge: '풀키친 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/bright-loft-workspace-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-adina-melbourne', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',

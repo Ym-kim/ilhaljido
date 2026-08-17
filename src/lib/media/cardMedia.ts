@@ -24,6 +24,23 @@ function generatedCardMedia(seed: CardMediaSeed): MediaAsset {
   }
 }
 
+// Higgsfield Soul 생성분 — 크기 가변(히어로 1920×1080 포함)이라 width/height 오버라이드 허용
+function higgsfieldCardMedia(seed: CardMediaSeed & Partial<Pick<MediaAsset, 'width' | 'height'>>): MediaAsset {
+  return {
+    width: 1200,
+    height: 900,
+    ...seed,
+    sourceType: 'generated',
+    illustrative: true,
+    localeUsage: ['ko', 'en', 'ja'],
+    source: 'Higgsfield Soul image generation from a Wakation art-direction prompt',
+    license: 'Wakation-owned generated editorial asset',
+    createdAt: '2026-08-17',
+    verifiedAt: '2026-08-17',
+    restriction: GENERATED_RESTRICTION,
+  }
+}
+
 export const CARD_MEDIA_ASSETS: MediaAsset[] = [
   generatedCardMedia({ id: 'support-namhae-photo-v2', src: '/covers/support-namhae-photo-v2.webp', usage: 'editorial', alt: { KO: '남해의 다랭이논과 푸른 해안', EN: 'Terraced fields and blue coastline in the Namhae area', JP: '南海エリアの棚田と青い海岸' }, routeUsage: ['/programs/support'], sectionUsage: ['support-program-card'], focalPoint: { x: 0.55, y: 0.53 } }),
   generatedCardMedia({ id: 'support-hamyang-photo-v2', src: '/covers/support-hamyang-photo-v2.webp', usage: 'editorial', alt: { KO: '산 안개와 전통 가옥이 어우러진 함양 산촌', EN: 'A misty mountain village in the Hamyang area', JP: '山霧と伝統家屋が調和する咸陽エリアの山村' }, routeUsage: ['/programs/support'], sectionUsage: ['support-program-card'], focalPoint: { x: 0.58, y: 0.52 } }),
@@ -49,4 +66,9 @@ export const CARD_MEDIA_ASSETS: MediaAsset[] = [
   generatedCardMedia({ id: 'course-python-photo-v2', src: '/covers/course-python-photo-v2.webp', usage: 'product', alt: { KO: '차분한 작업 공간에서 코딩을 배우는 입문자', EN: 'A beginner learning to code in a calm workspace', JP: '落ち着いた作業空間でコーディングを学ぶ初心者' }, routeUsage: ['/select/learn'], sectionUsage: ['product-card'], focalPoint: { x: 0.54, y: 0.52 } }),
   generatedCardMedia({ id: 'cruise-caribbean-editorial-photo-v2', src: '/covers/cruise-caribbean-editorial-photo-v2.webp', usage: 'product', alt: { KO: '카리브해 항구에 정박한 무브랜드 대형 크루즈선', EN: 'An unbranded cruise ship in a Caribbean port', JP: 'カリブ海の港に停泊する無ブランド大型クルーズ船' }, routeUsage: ['/select'], sectionUsage: ['product-card'], focalPoint: { x: 0.55, y: 0.48 } }),
   generatedCardMedia({ id: 'cruise-transatlantic-editorial-photo-v2', src: '/covers/cruise-transatlantic-editorial-photo-v2.webp', usage: 'product', alt: { KO: '해 질 무렵 남미 항구를 떠나는 무브랜드 크루즈선', EN: 'An unbranded cruise ship departing a South American port at sunset', JP: '夕暮れの南米の港を出航する無ブランドクルーズ船' }, routeUsage: ['/select'], sectionUsage: ['product-card'], focalPoint: { x: 0.54, y: 0.5 } }),
+  // 2026-08-17 확충분 — Higgsfield Soul 2K 생성 (숙소 카드 사진 반복 해소 + /language 히어로)
+  higgsfieldCardMedia({ id: 'japanese-ryokan-work-editorial-v1', src: '/media/product-editorial/japanese-ryokan-work-editorial-v1.webp', usage: 'editorial', alt: { KO: '쇼지 창으로 빛이 드는 다다미 방의 좌식 작업 테이블', EN: 'A low work table in a tatami room lit through shoji screens', JP: '障子越しの光が差す畳の間のローテーブル' }, routeUsage: ['/select/hotel'], sectionUsage: ['product-card'], focalPoint: { x: 0.5, y: 0.55 } }),
+  higgsfieldCardMedia({ id: 'tropical-pool-villa-editorial-v1', src: '/media/product-editorial/tropical-pool-villa-editorial-v1.webp', usage: 'editorial', alt: { KO: '풀장이 보이는 열대 빌라의 밝은 작업 테이블', EN: 'A bright work table in a tropical villa overlooking a plunge pool', JP: 'プールを望むトロピカルヴィラの明るいワークテーブル' }, routeUsage: ['/select/hotel'], sectionUsage: ['product-card'], focalPoint: { x: 0.45, y: 0.5 } }),
+  higgsfieldCardMedia({ id: 'bright-loft-workspace-editorial-v1', src: '/media/product-editorial/bright-loft-workspace-editorial-v1.webp', usage: 'editorial', alt: { KO: '창가에 책상을 둔 밝은 아파트 작업 공간', EN: 'A bright apartment workspace with a desk by the window', JP: '窓際にデスクを置いた明るいアパートの作業空間' }, routeUsage: ['/select/hotel'], sectionUsage: ['product-card'], focalPoint: { x: 0.45, y: 0.5 } }),
+  higgsfieldCardMedia({ id: 'language-study-lounge-editorial-v1', src: '/media/brand-models/language-study-lounge-editorial-v1.webp', usage: 'editorial', alt: { KO: '라운지 창가에서 노트북과 노트로 공부하는 사람', EN: 'A person studying with a laptop and notebook by a lounge window', JP: 'ラウンジの窓際でノートパソコンとノートで学ぶ人' }, routeUsage: ['/language'], sectionUsage: ['hero'], focalPoint: { x: 0.42, y: 0.45 }, width: 1920, height: 1080 }),
 ]

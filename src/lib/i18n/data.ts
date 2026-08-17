@@ -339,7 +339,8 @@ const CRUISE_ROUTES: CruiseRoute[] = [
   {
     id: 'east-asia',
     portQuery: 'Busan',
-    img: '/media/verified/unsplash/1548574505-5e239809ee19.webp',
+    // 2026-08-17 /cruise 페이지 내 사진 3중복 해소 — 부산→후쿠오카 항로라 후쿠오카 에디토리얼로 교체
+    img: '/media/destinations/fukuoka-editorial-v1.webp',
     price: '1,200,000',
     name: loc('동아시아 크루즈 워케이션', 'East Asia cruise workation', '東アジアクルーズ'),
     ports: loc('부산 → 후쿠오카 → 나가사키 → 상하이', 'Busan → Fukuoka → Nagasaki → Shanghai', '釜山→福岡→長崎→上海'),
