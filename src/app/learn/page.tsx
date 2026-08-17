@@ -6,7 +6,7 @@ import { ArrowRight, Mail } from 'lucide-react'
 import { SectionEyebrow } from '@/components/brand/SectionEyebrow'
 import { ArtDirectedEditorialHero } from '@/components/media/ArtDirectedEditorialHero'
 import { useLang } from '@/context/LanguageContext'
-import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
+import { CourseCard } from '@/components/affiliate/CourseCard'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeHref } from '@/lib/i18n/localePath'
@@ -74,8 +74,8 @@ const LEARN_HERO_MOBILE = getMediaAsset('growth-model-b-urban-learning-mobile-v2
 
 export default function LearnPage() {
   const { lang } = useLang()
+  // 2026-08-18 slice(0,6) 제거 — 신규 강의(n8n·리액트·GA4)가 잘려 나가던 것 수정. 9강의 = 3×3 정렬
   const activeCourses = FEATURED_COURSES.filter((course) => course.status === 'active_affiliate')
-    .slice(0, 6)
     .map((course) => localizeAffiliateItem(course, lang))
 
   useEffect(() => {
@@ -140,12 +140,19 @@ export default function LearnPage() {
         </div>
       </section>
 
-      <AffiliateSection
-        eyebrow="WAKATION SELECT"
-        title={COPY.courses_title[lang]}
-        subtitle={COPY.courses_sub[lang]}
-        items={activeCourses}
-      />
+      {/* 2026-08-18 클래스101풍 강의 그리드로 교체(운영자 지시) — select/learn과 동일 카드 */}
+      <section className="border-t border-white/10 bg-[#111] px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+          <span className="text-eyebrow-on-dark mb-3 block">WAKATION SELECT</span>
+          <h2 className="text-2xl font-bold leading-tight text-white md:text-3xl">{COPY.courses_title[lang]}</h2>
+          <span className="mt-3 block max-w-2xl text-sm leading-relaxed text-white/55">{COPY.courses_sub[lang]}</span>
+          <div className="mt-8 grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+            {activeCourses.map((item) => (
+              <CourseCard key={item.id} item={item} lang={lang} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="border-t border-white/10 bg-[#0d0d0d] px-6 py-16">
         <div className="mx-auto flex max-w-6xl flex-col justify-between gap-8 md:flex-row md:items-end">

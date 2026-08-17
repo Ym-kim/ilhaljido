@@ -432,6 +432,13 @@ const EN: Record<string, Overlay> = {
     desc: 'From JavaScript basics to a real React project — a 17-hour all-in-one intro.',
     cta: 'View course', badge: 'Beginner to project',
   },
+  'course-ga4-masterclass': {
+    name: 'Inflearn',
+    productTitle: 'Google Analytics GA4 hands-on masterclass',
+    destination: 'Marketing · Data',
+    desc: 'From GA4 setup to reports and real analysis — read your growth with data.',
+    cta: 'View course', badge: 'Data marketing',
+  },
   'act-klook-gardens-singapore': {
     productTitle: 'Gardens by the Bay ticket',
     destination: 'Singapore',
@@ -1051,6 +1058,13 @@ const JP: Record<string, Overlay> = {
     destination: '開発 · フロントエンド',
     desc: 'JavaScriptの基礎からReact実践プロジェクトまで、17時間のオールインワン入門。',
     cta: '講座を見る', badge: '入門〜実践',
+  },
+  'course-ga4-masterclass': {
+    name: 'Inflearn',
+    productTitle: 'Google Analytics GA4 実務マスタークラス',
+    destination: 'マーケティング · データ',
+    desc: 'GA4のセットアップからレポート・実務分析まで — データで成果を読む基本。',
+    cta: '講座を見る', badge: 'データマーケ',
   },
   'act-klook-gardens-singapore': {
     productTitle: 'ガーデンズ・バイ・ザ・ベイ入場券',

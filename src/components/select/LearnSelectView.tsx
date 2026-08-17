@@ -11,7 +11,7 @@ import { t } from '@/lib/i18n'
 import type { Lang } from '@/lib/i18n/types'
 import { localizeLearnCategory } from '@/lib/affiliate/localizeDest'
 import { LEARN_CATEGORIES } from '@/lib/affiliate/destinations'
-import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { CourseCard } from '@/components/affiliate/CourseCard'
 import { AffiliateSection } from '@/components/affiliate/AffiliateSection'
 import { DestinationSearch } from '@/components/affiliate/DestinationSearch'
 import { FEATURED_COURSES } from '@/lib/affiliate/featured'
@@ -78,8 +78,9 @@ export function LearnSelectView({ forceLang }: { forceLang?: Lang }) {
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('learn_featured_d')}</p>
           <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
+            {/* 2026-08-18 클래스101풍 강의 카드로 교체(운영자 지시) — 3열 그리드, 9강의 = 3행 정렬 */}
             {FEATURED_COURSES.map((item) => (
-              <AffiliateCard key={item.id} item={localizeAffiliateItem(item, lang)} visual />
+              <CourseCard key={item.id} item={localizeAffiliateItem(item, lang)} lang={lang} />
             ))}
           </div>
         </div>
