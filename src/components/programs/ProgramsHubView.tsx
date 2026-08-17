@@ -93,6 +93,8 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[50vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
+          {/* 2026-08-17 md 크롭 74%→45%: 하단 기준 크롭이 일반 데스크톱 높이(50vh)에서 모델 머리(상단 28% 지점)를 잘랐음.
+              45% = 보이는 세로 구간 ≈19~77%로 머리 여유 ~9%p 확보. 발끝은 하단 그라디언트·타이틀 뒤라 우선순위 낮음 */}
           {PROGRAMS_HERO_DESKTOP && PROGRAMS_HERO_MOBILE && (
             <ArtDirectedEditorialHero
               desktopSrc={PROGRAMS_HERO_DESKTOP.src}
@@ -102,7 +104,7 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
               desktopHeight={821}
               mobileWidth={960}
               mobileHeight={1280}
-              className="absolute inset-0 h-full w-full object-cover object-[68%_52%] md:object-[center_74%]"
+              className="absolute inset-0 h-full w-full object-cover object-[68%_52%] md:object-[center_45%]"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
