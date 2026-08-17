@@ -417,27 +417,68 @@ const EN: Record<string, Overlay> = {
     desc: 'A practical course on keywords and product SEO for independent online sellers.',
     cta: 'View course', badge: 'Online selling',
   },
-  // 2026-08-04 감사: 오버레이 누락 4건 마감 (course-*-free 3 + activity-klook)
-  'course-notion-free': {
+  // 2026-08-17 교체: course-*-free → 파트너 링크 강의 2종 + Klook 피드 확충 8종
+  'course-n8n-automation': {
     name: 'Inflearn',
-    productTitle: 'Notion, fully explained',
-    destination: 'Productivity · Collaboration',
-    desc: 'Run your workation tasks and schedule in Notion — a free productivity setup course.',
-    cta: 'View free course', badge: 'Free',
+    productTitle: 'AI automation without code — the n8n guide',
+    destination: 'AI · Automation',
+    desc: 'Connect GPT and Claude to n8n and automate repetitive work — a hands-on, no-code course.',
+    cta: 'View course', badge: 'Automation',
   },
-  'course-excel-free': {
+  'course-react-onebite': {
     name: 'Inflearn',
-    productTitle: 'Excel from basics to real work',
-    destination: 'Data · Office skills',
-    desc: 'Tables, formulas and automation in 190 lessons — remote-work fundamentals, free.',
-    cta: 'View free course', badge: 'Free',
+    productTitle: 'React.js, one bite at a time',
+    destination: 'Dev · Frontend',
+    desc: 'From JavaScript basics to a real React project — a 17-hour all-in-one intro.',
+    cta: 'View course', badge: 'Beginner to project',
   },
-  'course-python-free': {
-    name: 'Inflearn',
-    productTitle: 'Python basics in six hours',
-    destination: 'Intro to coding',
-    desc: 'A hugely popular free Python intro — the first step into automation and data.',
-    cta: 'View free course', badge: 'Free',
+  'act-klook-gardens-singapore': {
+    productTitle: 'Gardens by the Bay ticket',
+    destination: 'Singapore',
+    desc: 'Supertrees and the Flower Dome — a great after-work evening walk in the city.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-umeda-osaka': {
+    productTitle: 'Umeda Sky Building observatory',
+    destination: 'Osaka · Japan',
+    desc: 'Osaka from an open rooftop deck — best at blue hour as the city lights up.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-taipei101': {
+    productTitle: 'Taipei 101 observatory ticket',
+    destination: 'Taipei · Taiwan',
+    desc: 'The landmark view over Taipei — skip cloudy days for the best visibility.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-mahanakhon-bangkok': {
+    productTitle: 'King Power Mahanakhon SkyWalk',
+    destination: 'Bangkok · Thailand',
+    desc: 'A glass-floor skywalk over Bangkok — sunset hour is spectacular.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-ngongping-hongkong': {
+    productTitle: 'Ngong Ping 360 cable car',
+    destination: 'Hong Kong',
+    desc: 'Glide over Lantau’s mountains and sea — the Crystal cabin has a glass floor.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-landmark81-hcmc': {
+    productTitle: 'Landmark 81 Saigon SkyView',
+    destination: 'Ho Chi Minh City · Vietnam',
+    desc: 'Vietnam’s tallest tower over the Saigon River — go for the evening views.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-teamlab-fukuoka': {
+    productTitle: 'teamLab Forest Fukuoka ticket',
+    destination: 'Fukuoka · Japan',
+    desc: 'A forest-like immersive digital art space inside BOSS E·ZO Fukuoka.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
+  },
+  'act-klook-hanbok-seoul': {
+    productTitle: 'Hanbok rental at Gyeongbokgung',
+    destination: 'Seoul · Korea',
+    desc: 'Stroll the palace in hanbok — time enough for Gyeongbokgung and Bukchon.',
+    cta: 'Check current details on Klook', badge: 'Instant confirmation',
   },
   'activity-klook': {
     name: 'Klook',
@@ -996,27 +1037,68 @@ const JP: Record<string, Overlay> = {
     desc: 'Claude Codeとバイブコーディングで業務を自動化し、実用ツールを作るための講座。',
     cta: '講座を見る', badge: '実務AI',
   },
-  // 2026-08-04 감사: 오버레이 누락 4건 마감 (course-*-free 3 + activity-klook)
-  'course-notion-free': {
+  // 2026-08-17 교체: course-*-free → 파트너 링크 강의 2종 + Klook 피드 확충 8종
+  'course-n8n-automation': {
     name: 'Inflearn',
-    productTitle: 'Notion完全活用法',
-    destination: '生産性 · コラボ',
-    desc: 'ワーケーションのタスクと日程をNotionひとつで。無料で始める生産性セットアップ。',
-    cta: '無料講座を見る', badge: '無料',
+    productTitle: 'コーディング不要のAI自動化 — n8n完全ガイド',
+    destination: 'AI · 自動化',
+    desc: 'GPT・Claudeをn8nにつなぎ、繰り返し業務を自動化。ノーコードの実務講座。',
+    cta: '講座を見る', badge: '自動化実務',
   },
-  'course-excel-free': {
+  'course-react-onebite': {
     name: 'Inflearn',
-    productTitle: 'Excel 基礎から実務まで',
-    destination: 'データ · 実務',
-    desc: '表・関数・自動化まで190レッスン。リモートワークの基本を無料で。',
-    cta: '無料講座を見る', badge: '無料',
+    productTitle: 'ひと口サイズで学ぶReact.js',
+    destination: '開発 · フロントエンド',
+    desc: 'JavaScriptの基礎からReact実践プロジェクトまで、17時間のオールインワン入門。',
+    cta: '講座を見る', badge: '入門〜実践',
   },
-  'course-python-free': {
-    name: 'Inflearn',
-    productTitle: '6時間でPython基本編',
-    destination: 'コーディング入門',
-    desc: '大人気の無料Python入門。自動化・データの第一歩に最適。',
-    cta: '無料講座を見る', badge: '無料',
+  'act-klook-gardens-singapore': {
+    productTitle: 'ガーデンズ・バイ・ザ・ベイ入場券',
+    destination: 'シンガポール',
+    desc: 'スーパーツリーとフラワードーム — 仕事終わりの夕方散歩にぴったり。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-umeda-osaka': {
+    productTitle: '梅田スカイビル空中庭園展望台',
+    destination: '大阪 · 日本',
+    desc: '屋上デッキから大阪の夜景を。ブルーアワーの時間帯がおすすめ。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-taipei101': {
+    productTitle: '台北101展望台チケット',
+    destination: '台北 · 台湾',
+    desc: '台北を一望するランドマーク展望台。曇りの日は避けるのがおすすめ。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-mahanakhon-bangkok': {
+    productTitle: 'キングパワー・マハナコーン スカイウォーク',
+    destination: 'バンコク · タイ',
+    desc: 'ガラス床のスカイウォークからバンコクの全景を。夕暮れ時が圧巻。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-ngongping-hongkong': {
+    productTitle: 'ゴンピン360ケーブルカー',
+    destination: '香港',
+    desc: 'ランタオ島の山と海の上を渡るケーブルカー。クリスタルキャビンは床までガラス。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-landmark81-hcmc': {
+    productTitle: 'ランドマーク81 サイゴンスカイビュー',
+    destination: 'ホーチミン · ベトナム',
+    desc: 'ベトナム最高層からサイゴン川と街並みを。夜景の時間帯がおすすめ。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-teamlab-fukuoka': {
+    productTitle: 'チームラボフォレスト福岡チケット',
+    destination: '福岡 · 日本',
+    desc: '森を歩くように没入するデジタルアート。BOSS E・ZO FUKUOKA内。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
+  },
+  'act-klook-hanbok-seoul': {
+    productTitle: '景福宮 韓服(ハンボク)レンタル体験',
+    destination: 'ソウル · 韓国',
+    desc: '韓服を着て古宮を散策。レンタル時間内に景福宮と北村まで回れます。',
+    cta: 'Klookで現在の条件を確認', badge: '即時確定',
   },
   'activity-klook': {
     name: 'Klook',

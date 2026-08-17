@@ -12,11 +12,13 @@ const expected = [
   'carhire-editorial-photo-v2.webp', 'airport-transfer-editorial-photo-v2.webp',
   'airport-taxi-editorial-photo-v2.webp', 'airport-lounge-editorial-photo-v2.webp',
   'course-midjourney-photo-v2.webp', 'course-smartstore-photo-v2.webp', 'course-claude-photo-v2.webp',
-  'course-notion-photo-v2.webp', 'course-excel-photo-v2.webp', 'course-python-photo-v2.webp',
+  'course-notion-photo-v2.webp', 'course-python-photo-v2.webp',
   'cruise-caribbean-editorial-photo-v2.webp', 'cruise-transatlantic-editorial-photo-v2.webp',
 ]
 
 const retired = [
+  // 2026-08-17 운영자 지시로 엑셀 무료 강의 카드 제거 — 커버도 참조 금지 목록으로 이동
+  'course-excel-photo-v2.webp',
   'support-namhae-ai.jpeg', 'support-hamyang-ai.jpeg', 'support-tongyeong-ai.jpeg', 'support-gimhae-ai.jpeg',
   'support-yeongdeok-ai.jpeg', 'support-gangjin-ai.jpeg', 'support-cheongju-ai.jpeg',
   'esim-japan-ai.jpeg', 'esim-asia-ai.jpeg', 'wifi-klook-japan-ai.jpeg', 'wifi-klook-taiwan-ai.jpeg',

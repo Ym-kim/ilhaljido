@@ -659,7 +659,9 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     destination: '전 세계 공항 ↔ 시내',
     desc: '도착 공항에서 숙소까지 사전 확정 요금 택시. 항공편 지연 시 무료 대기.',
     cta: '공항 택시 예약',
-    href: 'https://www.booking.com/taxi/index.html?aid=7854081',
+    // 2026-08-17 한국어판 랜딩으로 개선(+KRW). 운영자 전달 링크의 aid=304142는 Booking 자체
+    // 마케팅 aid라 미사용 — 수수료 귀속을 위해 우리 aid=7854081 유지(제휴 ID 변경 금지 룰)
+    href: 'https://www.booking.com/taxi/index.ko.html?aid=7854081&selected_currency=KRW',
     badge: '공항 택시',
     trackingId: 'aid=7854081',
     coverPhoto: '/covers/airport-taxi-editorial-photo-v2.webp',
