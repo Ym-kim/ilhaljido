@@ -130,7 +130,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('kr/playce-camp-jeju.html'),
     badge: '워케이션 특화',
     trackingId: 'aid=7854081',
-    coverPhoto: '/media/product-editorial/coastal-apartment-editorial-v1.webp', illustrative: true,
+    coverPhoto: '/media/product-editorial/hanok-stay-work-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-kantary-chiangmai',
@@ -150,7 +150,7 @@ export const FEATURED_STAYS: AffiliateItem[] = [
     href: B('th/kantary-hills-chiang-mai.html'),
     badge: '장기체류',
     trackingId: 'aid=7854081',
-    coverPhoto: '/media/product-editorial/tropical-boutique-room-editorial-v1.webp', illustrative: true,
+    coverPhoto: '/media/product-editorial/forest-cabin-desk-editorial-v1.webp', illustrative: true,
   },
 ]
 
@@ -969,7 +969,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '423',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coastal-residence-editorial-v1.webp', illustrative: true,
+    badge: '오션뷰', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/oceanview-balcony-desk-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-skybay-gangneung', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1071,7 +1071,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '36',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/tropical-coliving-editorial-v1.webp', illustrative: true,
+    badge: '아파트형', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/mediterranean-room-editorial-v1.webp', illustrative: true,
   },
   // 아시아 (+2)
   {
@@ -1083,7 +1083,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '8,529',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/social-stay-lounge-editorial-v1.webp', illustrative: true,
+    badge: '코워킹 내장', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/coliving-work-lounge-editorial-v1.webp', illustrative: true,
   },
   {
     id: 'stay-gloria-taipei', name: 'Booking.com', category: 'hotel', productType: 'stay', status: 'active_affiliate',
@@ -1094,7 +1094,7 @@ export const FEATURED_STAYS_V3: AffiliateItem[] = [
     ratingAsOf: '2026-08-06',
     reviews: '370',
     sourceNote: 'Booking.com 게스트 평점·리뷰수 실브라우저 실측 (기준 2026-08-06)',
-    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/design-hotel-lobby-editorial-v1.webp', illustrative: true,
+    badge: '서비스드 아파트', trackingId: 'aid=7854081', coverPhoto: '/media/product-editorial/city-dusk-lounge-editorial-v1.webp', illustrative: true,
   },
   // 오세아니아 (+3)
   {
