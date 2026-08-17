@@ -86,7 +86,7 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
   // ──────────────────────────────────────────────────────────────────────────
   {
     id: 'hotel-tripcom',
-    coverPhoto: '/media/product-editorial/serviced-apartment-editorial-v1.webp', illustrative: true,
+    coverPhoto: '/media/product-editorial/tropical-pool-villa-editorial-v1.webp', illustrative: true,
     name: 'Trip.com',
     category: 'hotel',
     productType: 'stay',

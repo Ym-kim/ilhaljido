@@ -69,8 +69,12 @@ export default function LanguagePage() {
 
   return (
     <div className="min-h-screen bg-[#FAFAF8]">
-      <section className="relative h-[60vh] flex items-end overflow-hidden dark-surface">
-        <Image src="/media/verified/unsplash/1503676260728-1c00da094a0b.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+      {/* md 72vh: 60vh에서는 히어로 인물 아래 노트북·데스크가 크롭돼 보이지 않음(운영자 지적 2026-08-17) — 데스크톱만 확장 */}
+      <section className="relative h-[60vh] md:h-[72vh] flex items-end overflow-hidden dark-surface">
+        {/* 2026-08-17 자체 제작 에디토리얼로 교체 — 기존 사진이 하단 인프런 카드와 중복이었음.
+            object-[45%_15%] + md:72vh: 인물 머리(y≈7.8%~)와 노트북·손(y≈55~75%)이 함께 보이도록 크롭 기준점·높이 동시 조정.
+            데스크톱(16:9) 보이는 세로 구간 ≈4~76% — 크롭 수학 검증 2026-08-17. 모바일은 세로 크롭 없음(가로만, 얼굴 x30~46% 포함) */}
+        <Image src="/media/brand-models/language-study-lounge-editorial-v1.webp" alt="" fill priority sizes="100vw" className="object-cover object-[45%_15%]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 to-black/20" />
         <div className="relative max-w-6xl mx-auto px-6 pb-16 w-full">
           <SectionEyebrow onDark>{tr('lang_badge')}</SectionEyebrow>
