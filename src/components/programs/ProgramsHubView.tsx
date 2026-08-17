@@ -24,8 +24,10 @@ const DIRECTION_NOTE: Record<Lang, string> = {
   JP: '今後のWakationプログラムは、宿泊・ワークスペース・ネットワーキングに加え、事前VOD学習・現地実習・参加者用Webツールを組み合わせた成長型プログラムへ拡張されます。',
 }
 
-const PROGRAMS_HERO_DESKTOP = getMediaAsset('programs-model-b-coastal-arrival-desktop-v3')
-const PROGRAMS_HERO_MOBILE = getMediaAsset('programs-model-b-coastal-arrival-mobile-v2')
+// 2026-08-17 운영자 결정: 모델 B(계단 도착 컷)보다 이전 모델 K 스테이 플래닝이 낫다고 판단 — 8/8~8/10 사용분 복원.
+// 향후 모델 생성은 기존 로스터(WAK-MODEL-*) 기준으로 잡고, 신규 모델·강조 인물은 운영자가 추가 지시.
+const PROGRAMS_HERO_DESKTOP = getMediaAsset('programs-model-k-stay-planning-desktop-v1')
+const PROGRAMS_HERO_MOBILE = getMediaAsset('programs-model-k-stay-planning-mobile-v1')
 
 const STATUS_COLOR = {
   recruiting: 'bg-sky-50 text-sky-700 border-sky-200',
@@ -93,18 +95,17 @@ export function ProgramsHubView({ forceLang }: { forceLang?: Lang }) {
     <div className="min-h-screen bg-[#FAFAF8]">
       <section className="relative h-[50vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
-          {/* 2026-08-17 md 크롭 74%→45%: 하단 기준 크롭이 일반 데스크톱 높이(50vh)에서 모델 머리(상단 28% 지점)를 잘랐음.
-              45% = 보이는 세로 구간 ≈19~77%로 머리 여유 ~9%p 확보. 발끝은 하단 그라디언트·타이틀 뒤라 우선순위 낮음 */}
+          {/* 크롭은 모델 K 시절 원본 그대로(md 상단 3% 앵커 — 머리 잘림 없음, 8/8~8/10 검증 프레이밍) */}
           {PROGRAMS_HERO_DESKTOP && PROGRAMS_HERO_MOBILE && (
             <ArtDirectedEditorialHero
               desktopSrc={PROGRAMS_HERO_DESKTOP.src}
               mobileSrc={PROGRAMS_HERO_MOBILE.src}
               alt={PROGRAMS_HERO_DESKTOP.alt[lang]}
-              desktopWidth={1915}
-              desktopHeight={821}
+              desktopWidth={1440}
+              desktopHeight={900}
               mobileWidth={960}
               mobileHeight={1280}
-              className="absolute inset-0 h-full w-full object-cover object-[68%_52%] md:object-[center_45%]"
+              className="absolute inset-0 h-full w-full object-cover object-[62%_54%] md:object-[73%_3%]"
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
