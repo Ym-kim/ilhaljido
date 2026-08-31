@@ -27,6 +27,7 @@ import { PromoTicker } from '@/components/home/PromoTicker'
 import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
 import { MoreExplore } from '@/components/home/MoreExplore'
 import { YangyangProof } from '@/components/home/YangyangProof'
+import { ReviewRail } from '@/components/home/ReviewRail'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { HomeSeasonalHeroMedia } from '@/components/home/HomeSeasonalHeroMedia'
 import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
@@ -578,6 +579,9 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
       {/* ── 양양 워케이션 운영 기록 — 실운영 신뢰 + 리드 수집 ── */}
       <YangyangProof />
+
+      {/* 참가자 실후기 레일 (2026-08-31, 더휴일 벤치마크) — lib/reviews.ts 0건이면 미렌더 */}
+      <ReviewRail />
 
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
       <SupportPromoBanner />
