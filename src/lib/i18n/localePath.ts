@@ -48,8 +48,9 @@ const JA_ONLY = new Set<string>(['/campaign/korea-weekend'])
 /** Locale-specific visibility exceptions for customer navigation. */
 const HIDDEN_BY_LANG: Record<Lang, readonly string[]> = {
   KO: [],
-  EN: [],
-  JP: [],
+  // /stories: 아티클은 의도적 KO 전용 — EN/JP 사용자에게 KO 화면 링크를 노출하지 않는다 (구조결정③ 선례)
+  EN: ['/stories'],
+  JP: ['/stories'],
 }
 
 export function isRouteVisibleIn(href: string, lang: Lang): boolean {

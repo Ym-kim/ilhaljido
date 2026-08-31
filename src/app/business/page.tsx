@@ -32,9 +32,9 @@ const T: Record<string, L> = {
   title_pre: { KO: '팀이 함께 떠나는 ', EN: 'Workations that ', JP: 'チームで行く' },
   title_accent: { KO: '워케이션', EN: 'move your team', JP: 'ワーケーション' },
   sub: {
-    KO: '몰입 워크와 리프레시를 한 번에. 팀 규모·일정에 맞춰 기획하고, 활용 가능한 지자체 지원사업 정보까지 함께 정리해 드립니다.',
-    EN: 'Deep work and recovery in one trip. We plan around your team size and schedule, and map out applicable local subsidy programs.',
-    JP: '集中ワークとリフレッシュを一度に。チーム規模・日程に合わせて企画し、活用できる自治体支援事業の情報もまとめてご案内します。',
+    KO: '몰입 워크와 리프레시를 한 번에. 일정과 인원만 정해 주시면 기획·숙소·업무 공간 준비는 저희가 맡고, 활용 가능한 지자체 지원사업 정보까지 함께 정리해 드립니다.',
+    EN: 'Deep work and recovery in one trip. Set the dates and headcount — we handle the planning, stays and workspaces, and map out applicable local subsidy programs.',
+    JP: '集中ワークとリフレッシュを一度に。日程と人数を決めるだけで、企画・宿・ワークスペースの準備は私たちが担当。活用できる自治体支援事業の情報もまとめてご案内します。',
   },
   cta_form: { KO: '도입 문의하기', EN: 'Send an inquiry', JP: '導入を問い合わせる' },
   cta_kakao: { KO: '카카오톡 문의', EN: 'KakaoTalk chat', JP: 'カカオトーク相談' },
