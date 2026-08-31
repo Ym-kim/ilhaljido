@@ -1014,9 +1014,12 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     name: loc('충남 한달살기', 'Chungnam Month-Stay', '忠南1カ月暮らし'),
     benefit: loc('6~29박 숙박비 + 식비·교통비 일부 + 체험활동비 + 여행자보험 (시군별 상이)', '6–29 nights lodging + meals/transport aid + activities + insurance', '6〜29泊宿泊費＋食費・交通一部＋体験費＋保険'),
     maxBenefit: loc('최대 29박 지원', 'Up to 29 nights', '最大29泊支援'),
-    // 2026-07-26 점검: 상반기 ~6/30 종료, 하반기 9/1~12/12 운영(참여 시군 확대) — 현재 공백기라 upcoming
-    status: 'upcoming',
-    deadline: loc('하반기 9.1~12.12 운영 — 모집 공고 확인', '2nd half Sep 1–Dec 12 — check notices', '下半期9/1〜12/12 — 公告確認'),
+    // 2026-09-01 재점검(공식 원문): 도 단위가 아니라 참여 8개 시군(보령·서산·논산·부여·청양·홍성·예산·태안)이
+    //   각자 고시공고로 모집한다. 하반기 공고가 확인된 곳은 보령 1곳 — 보령시 공고 제2026-1581호(관광과, 8/14 게시,
+    //   여행기간 9.18~11.30, 내국인 10팀+외국인 5팀). 예산=4/21 공고 1건뿐 / 홍성·태안=2026년 공고 없음(태안은 2021년분만).
+    //   구 표기 '9.1~12.12'는 출처를 찾지 못해 삭제. 접수기간은 공고문 첨부(.hwpx)에 있어 미확인 → 'check'로 전환.
+    status: 'check',
+    deadline: loc('시군별 개별 공고 — 보령 하반기 여행 9.18~11.30 (접수기간 공고 확인)', 'Each county posts separately — Boryeong 2H travel Sep 18–Nov 30 (check application dates)', '市郡別に個別公告 — 保寧の下半期は旅行9/18〜11/30（受付期間は公告で確認）'),
     conditions: loc(['충남 외 거주 성인', '시군별 정원제'], ['Non-Chungnam adults', 'Quota per county'], ['忠南外居住の成人']),
     href: 'https://tour.chungnam.go.kr',
   },
