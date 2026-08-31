@@ -97,6 +97,13 @@ const FIND_LINKS: NavigationGroup[] = [
         { KO: '/destinations/compare', EN: '/en/destinations/compare', JP: '/ja/destinations/compare' },
         { KO: '비용·인터넷·계절을 한눈에', EN: 'Cost, connectivity and seasons', JP: '費用・通信環境・季節を比較' },
       ),
+      // 2026-08-31 진입로 복원 — 아티클 허브(KO 전용 콘텐츠라 EN/JP는 localePath에서 숨김)
+      link(
+        'stories',
+        { KO: '여행 이야기', EN: 'Stories', JP: '旅の読みもの' },
+        '/stories',
+        { KO: '크루즈·체류 심층 아티클', EN: 'Long-form travel stories', JP: 'クルーズ・滞在の特集記事' },
+      ),
     ],
   },
 ]
@@ -178,6 +185,8 @@ const PLAN_LINKS: NavigationGroup[] = [
       link('activity', { KO: '현지 체험', EN: 'Local experiences', JP: '現地体験' }, { KO: '/select/activity', EN: '/en/select/activity', JP: '/ja/select/activity' }),
       link('esim', { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' }, { KO: '/select/esim', EN: '/en/select/esim', JP: '/ja/select/esim' }),
       link('transport', { KO: '항공·교통', EN: 'Flights & transport', JP: '航空券・移動' }, { KO: '/select#transport', EN: '/en/select#transport', JP: '/ja/select#transport' }),
+      // 2026-08-31 진입로 복원 — 07-30 내비 개편 때 빠졌던 크루즈(아티클 4편·카드 5종 보유 수익 섹션)
+      link('cruise', { KO: '크루즈 여행', EN: 'Cruise travel', JP: 'クルーズ旅' }, { KO: '/cruise', EN: '/en/cruise', JP: '/ja/cruise' }),
     ],
   },
 ]
