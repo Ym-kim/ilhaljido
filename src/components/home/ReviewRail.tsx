@@ -1,28 +1,50 @@
 'use client'
 import { useLang } from '@/context/LanguageContext'
-import { PARTICIPANT_REVIEWS } from '@/lib/reviews'
+import { PARTICIPANT_REVIEWS, EDITOR_NOTES } from '@/lib/reviews'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 홈 실후기 레일 (2026-08-31, 더휴일 벤치마크) — PARTICIPANT_REVIEWS 0건이면 미렌더.
-// 가짜 후기·별점 금지 원칙: 실참가·동의 확인분만 lib/reviews.ts에 등재된다.
+// 홈 실후기·에디터 노트 레일 (2026-08-31, 더휴일 벤치마크)
+// - 참가자 후기(실참가·동의 확인분)와 에디터 노트(저자 명시 소개 콘텐츠)를
+//   칩으로 구분해 함께 진열. 참가자 후기가 먼저.
+// - 가짜 후기 금지 원칙 유지 — 노트는 '후기' 라벨을 절대 쓰지 않는다.
 // ─────────────────────────────────────────────────────────────────────────────
 
 type L = Record<Lang, string>
 
 const UI: Record<string, L> = {
-  eyebrow: { KO: 'REAL VOICES', EN: 'REAL VOICES', JP: 'REAL VOICES' },
-  title: { KO: '참가자들이 남긴 이야기', EN: 'What participants said', JP: '参加者の声' },
+  eyebrow: { KO: 'REAL VOICES & NOTES', EN: 'REAL VOICES & NOTES', JP: 'REAL VOICES & NOTES' },
+  title: { KO: '현장에서 확인한 이야기', EN: 'Stories from the field', JP: '現場で確かめた話' },
   note: {
-    KO: '실제 참가자가 남긴 후기입니다 — 게재 동의를 받아 원문 그대로 싣습니다.',
-    EN: 'Reviews from real participants, published verbatim with their consent.',
-    JP: '実際の参加者のレビューです。掲載同意を得て原文のまま掲載しています。',
+    KO: '참가자 후기는 게재 동의를 받아 원문 그대로, 에디터 노트는 저자를 밝히고 싣습니다.',
+    EN: 'Participant reviews run verbatim with consent; editor notes are clearly authored by us.',
+    JP: '参加者レビューは同意を得て原文のまま、エディターノートは著者を明記して掲載します。',
   },
+  chipReview: { KO: '참가자 후기', EN: 'Participant review', JP: '参加者レビュー' },
+  chipNote: { KO: '에디터 노트', EN: 'Editor note', JP: 'エディターノート' },
 }
 
 export function ReviewRail() {
   const { lang } = useLang()
-  if (PARTICIPANT_REVIEWS.length === 0) return null
+  const cards = [
+    ...PARTICIPANT_REVIEWS.map((r) => ({
+      id: r.id,
+      chip: UI.chipReview[lang],
+      chipTone: 'bg-brand-mid/10 text-brand-mid' as string,
+      quote: r.quote[lang],
+      author: r.author,
+      source: `${r.program[lang]} · ${r.stayedAt}`,
+    })),
+    ...EDITOR_NOTES.map((n) => ({
+      id: n.id,
+      chip: UI.chipNote[lang],
+      chipTone: 'bg-[#f1f5f9] text-[#64748b]' as string,
+      quote: n.quote[lang],
+      author: n.author[lang],
+      source: n.source[lang],
+    })),
+  ]
+  if (cards.length === 0) return null
   return (
     <section className="border-y border-[#dbeafe] bg-white px-4 py-14 sm:px-6 md:py-20">
       <div className="mx-auto max-w-6xl">
@@ -30,15 +52,16 @@ export function ReviewRail() {
         <h2 className="text-xl font-bold leading-snug tracking-tight text-[#111827] md:text-2xl">{UI.title[lang]}</h2>
         <p className="mt-2 text-xs text-[#94a3b8]">{UI.note[lang]}</p>
         <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {PARTICIPANT_REVIEWS.map((r) => (
+          {cards.map((c) => (
             <figure
-              key={r.id}
-              className="w-[85%] max-w-sm shrink-0 snap-start rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-6 sm:w-[46%] lg:w-[31%]"
+              key={c.id}
+              className="flex w-[85%] max-w-sm shrink-0 snap-start flex-col rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-6 sm:w-[46%] lg:w-[31%]"
             >
-              <blockquote className="text-[0.9375rem] leading-7 text-[#334155]">“{r.quote[lang]}”</blockquote>
-              <figcaption className="mt-4 flex items-baseline justify-between gap-3">
-                <span className="text-sm font-bold text-[#111827]">{r.author}</span>
-                <span className="text-xs text-[#64748b]">{r.program[lang]} · {r.stayedAt}</span>
+              <span className={`mb-3 inline-flex w-fit rounded-full px-2.5 py-1 text-[0.65rem] font-bold ${c.chipTone}`}>{c.chip}</span>
+              <blockquote className="text-[0.9375rem] leading-7 text-[#334155]">“{c.quote}”</blockquote>
+              <figcaption className="mt-auto flex items-baseline justify-between gap-3 pt-4">
+                <span className="text-sm font-bold text-[#111827]">{c.author}</span>
+                <span className="text-right text-xs text-[#64748b]">{c.source}</span>
               </figcaption>
             </figure>
           ))}
