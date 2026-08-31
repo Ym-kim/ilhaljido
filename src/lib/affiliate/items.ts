@@ -35,6 +35,8 @@ export const AFFILIATE_BASE = {
   // ✅ active_affiliate — Allianceid=9024807 적용 완료
   tripcom:    'https://kr.trip.com/?Allianceid=9024807',
   kkday:      'https://www.kkday.com/ko?cid=25833',
+  // ✅ active_affiliate — 2026-08-31 아고다 파트너 승인(Site ID 1968994 = cid). /ko-kr 랜딩 curl 200 실측
+  agoda:      'https://www.agoda.com/ko-kr/?cid=1968994',
 
   // 🔶 approved_needs_course_links — 강의별 링크 생성 전
   // 2026-08-14: /ko 명시 — 저장된 언어 설정(ja 등)으로 렌더되는 문제 방지
@@ -106,6 +108,34 @@ export const ALL_AFFILIATE_ITEMS: AffiliateItem[] = [
     priority: 3,
     showOn: ['global', 'select', 'esim'],
     sourceNote: 'affiliate tracking active — Allianceid=9024807',
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // 숙소 — Agoda (2026-08-31 파트너 승인 활성화. 도시 딥링크 33곳 검증 대장은
+  // 메모리 affiliate-system 참조 — 카드 단일 CTA 정책 결정 전까지 범용 카드만)
+  // ──────────────────────────────────────────────────────────────────────────
+  {
+    id: 'hotel-agoda',
+    coverPhoto: '/media/product-editorial/japanese-ryokan-work-editorial-v1.webp', illustrative: true,
+    name: 'Agoda',
+    category: 'hotel',
+    productType: 'stay',
+    status: 'active_affiliate',
+    emoji: '🛏',
+    desc: '아시아 중심 호텔·리조트 요금 비교. 도시명으로 검색해 장기체류 숙소까지 찾아보세요.',
+    cta: '아고다에서 검색',
+    href: 'https://www.agoda.com/ko-kr/?cid=1968994',
+    badge: '호텔·리조트',
+    trackingId: 'cid=1968994',
+    deepLinks: {
+      tokyo:     'https://www.agoda.com/ko-kr/city/tokyo-jp.html?cid=1968994',
+      bangkok:   'https://www.agoda.com/ko-kr/city/bangkok-th.html?cid=1968994',
+      danang:    'https://www.agoda.com/ko-kr/city/da-nang-vn.html?cid=1968994',
+      bali:      'https://www.agoda.com/ko-kr/city/bali-id.html?cid=1968994',
+    },
+    priority: 4,
+    showOn: ['global', 'select'],
+    sourceNote: 'affiliate tracking active — cid=1968994 (2026-08-31 승인). 도시 페이지 33곳 curl 200+본문 실도시 검증',
   },
 
   // ──────────────────────────────────────────────────────────────────────────

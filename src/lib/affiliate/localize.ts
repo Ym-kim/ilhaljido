@@ -20,6 +20,11 @@ const EN: Record<string, Overlay> = {
     cta: 'Find stays',
     badge: 'Stay · Flight',
   },
+  'hotel-agoda': {
+    desc: 'Asia-strong hotel and resort deals. Search by city — long stays included.',
+    cta: 'Search on Agoda',
+    badge: 'Hotels · Resorts',
+  },
   'activity-kkday': {
     desc: 'Local tours, activities, tickets and transit passes across Japan, Taiwan and SEA.',
     cta: 'Book activities',
@@ -639,6 +644,11 @@ const JP: Record<string, Overlay> = {
     desc: '宿・航空券・ツアーをひとつに。目的地別の長期滞在ホテルを検索。',
     cta: '宿を探す',
     badge: '宿 · 航空',
+  },
+  'hotel-agoda': {
+    desc: 'アジアに強いホテル・リゾート料金比較。都市名で検索、長期滞在にも。',
+    cta: 'アゴダで検索',
+    badge: 'ホテル · リゾート',
   },
   'activity-kkday': {
     desc: '現地ツアー・アクティビティ・入場券・交通パス。日本・台湾・東南アジアが充実。',
