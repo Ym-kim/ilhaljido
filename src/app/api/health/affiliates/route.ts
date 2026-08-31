@@ -113,6 +113,8 @@ const CHECKS: Check[] = [
   { id: 'klook:eurail', url: 'https://www.klook.com/ko/activity/9868-eurail-global-rail-pass/?aid=126848', okStatuses: [200, 403] },
   // 2026-08-06 신설 — KKday 발리 요가 소멸 대체분. 상품 소멸을 조기에 잡기 위해 감시 등록
   { id: 'klook:yoga-ubud', url: 'https://www.klook.com/ko/activity/23956-yoga-class-ubud-centre-bali/?aid=126848', okStatuses: [200, 403] },
+  // 2026-08-31 아고다 활성화 — cid 유실 감지용 대표 감시
+  { id: 'agoda:home-kr', url: 'https://www.agoda.com/ko-kr/?cid=1968994', okStatuses: [200, 403] },
   // 2026-08-17 Klook 피드 확충 8종 대표 감시(가든스) — 나머지 7종은 동일 redirect 인프라
   {
     id: 'klook:gardens-sg',

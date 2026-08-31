@@ -19,9 +19,9 @@ import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3 } from '@/lib/affi
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
 
-// 숙소 관련 파트너 카드만 추출
+// 숙소 관련 파트너 카드만 추출 (2026-08-31 아고다 승인으로 3파트너)
 const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
-  ['hotel-booking', 'hotel-tripcom'].includes(i.id)
+  ['hotel-booking', 'hotel-tripcom', 'hotel-agoda'].includes(i.id)
 )
 
 // 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
