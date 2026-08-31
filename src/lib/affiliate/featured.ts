@@ -276,7 +276,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '도쿄 · 일본',
     country: '일본',
     desc: '도요스의 몰입형 미디어아트. 물에 발을 담그고 걷는 전시 — 저녁 시간대 추천.',
-    cta: 'Klook에서 현재 조건 확인',
+    cta: 'Klook에서 현재 조건 확인',
     priceFrom: 'JPY 3,600~',
     priceAsOf: '2026-08-10',
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F25300-teamlab-planets-toyosu-tokyo-ticket%2F',
@@ -302,7 +302,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '오사카 · 일본',
     country: '일본',
     desc: '지하철·버스 무제한 + 우메다 공중정원 등 40여 곳 입장. 오사카 워케이션 주말 필수템.',
-    cta: '패스 보기',
+    cta: '패스 보기',
     priceFrom: '₩33,100~',
     priceAsOf: '2026-08-06',
     href: 'https://www.klook.com/ko/activity/82312-amazing-pass-osaka/?aid=126848',
@@ -323,7 +323,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '타이베이 · 대만',
     country: '대만',
     desc: '타이베이 근교 3대 명소를 하루에. 스펀 천등 날리기 포함, 한국어 가이드 동행.',
-    cta: '투어 보기',
+    cta: '투어 보기',
     priceFrom: '₩15,100~',
     priceAsOf: '2026-08-06',
     href: 'https://www.klook.com/ko/activity/3521-jiufen-full-day-tour-taipei/?aid=126848',
@@ -344,7 +344,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '싱가포르',
     country: '싱가포르',
     desc: '센토사의 7개 테마존. 싱가포르 워케이션 주말을 채우는 정석 코스.',
-    cta: '티켓 보기',
+    cta: '티켓 보기',
     priceFrom: '₩75,600~',
     priceAsOf: '2026-08-06',
     href: 'https://www.klook.com/ko/activity/117-universal-studios-singapore/?aid=126848',
@@ -365,7 +365,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '발리 · 인도네시아',
     country: '인도네시아',
     desc: '켈링킹 절벽·브로큰 비치·크리스탈 베이. 발리에서 꼭 한 번은 가는 섬.',
-    cta: '투어 보기',
+    cta: '투어 보기',
     priceFrom: '₩22,000~',
     priceAsOf: '2026-08-06',
     href: 'https://www.klook.com/ko/activity/15758-nusa-penida-full-day-trip-bali/?aid=126848',
@@ -386,7 +386,7 @@ export const FEATURED_ACTIVITIES: AffiliateItem[] = [
     destination: '치앙마이 · 태국',
     country: '태국',
     desc: '타지 않고 먹이 주며 돌보는 생추어리형 코끼리 체험. 오전 반나절 코스.',
-    cta: '체험 보기',
+    cta: '체험 보기',
     priceFrom: '₩29,800~',
     priceAsOf: '2026-08-06',
     href: 'https://www.klook.com/ko/activity/3631-elephant-jungle-sanctuary-chiang-mai/?aid=126848',
@@ -546,7 +546,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     desc: '노트북·폰 동시 연결, 무제한 데이터에 보조배터리 포함. 일본 공항에서 수령·반납.',
     cta: '와이파이 보기',
     priceFrom: '1일 ₩3,200~',
-    priceAsOf: '2026-07-26',
+    priceAsOf: '2026-08-31',
     rating: '4.7',
     ratingAsOf: '2026-07-26',
     reviews: '11,544',
@@ -556,7 +556,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     coverPhoto: '/covers/wifi-japan-photo-v2.webp',
     illustrative: true,
     coverGradient: 'from-red-900 via-rose-950 to-[#0d0d0d]',
-    sourceNote: 'Klook 16399 실브라우저 이중검증 2026-07-26 — 상품페이지 og:title+meta price 3200, 검색 리스팅 ★4.7(11,544)·200K+ 선택·1일 ₩3,200부터·무료취소·즉시확정',
+    sourceNote: 'Klook 상품 페이지 운영자 실기기 확인 (기준 2026-08-31)',
   },
   {
     id: 'wifi-klook-taiwan',
@@ -571,7 +571,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     desc: '타이베이 워케이션의 안정 회선. 대만 공항 수령, 다중 기기 동시 연결.',
     cta: '와이파이 보기',
     priceFrom: '1일 ₩4,500~',
-    priceAsOf: '2026-07-26',
+    priceAsOf: '2026-08-31',
     rating: '4.7',
     ratingAsOf: '2026-07-26',
     reviews: '22,937',
@@ -581,7 +581,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     coverPhoto: '/covers/wifi-taiwan-photo-v2.webp',
     illustrative: true,
     coverGradient: 'from-teal-900 via-cyan-950 to-[#0d0d0d]',
-    sourceNote: 'Klook 16960 실브라우저 이중검증 2026-07-26 — 상품페이지 meta price 4500, 검색 리스팅 ★4.7(22,937)·1M+ 선택·1일 ₩4,500부터·무료취소·즉시확정',
+    sourceNote: 'Klook 상품 페이지 운영자 실기기 확인 (기준 2026-08-31)',
   },
   {
     id: 'wifi-klook-thailand',
@@ -596,7 +596,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     desc: '방콕·치앙마이 장기 체류의 백업 회선. 무제한 데이터, 카운터 픽업.',
     cta: '와이파이 보기',
     priceFrom: '1일 ₩6,600~',
-    priceAsOf: '2026-07-26',
+    priceAsOf: '2026-08-31',
     rating: '4.3',
     ratingAsOf: '2026-07-26',
     reviews: '588',
@@ -606,7 +606,7 @@ export const FEATURED_ESIM: AffiliateItem[] = [
     coverPhoto: '/covers/wifi-thailand-photo-v2.webp',
     illustrative: true,
     coverGradient: 'from-emerald-900 via-teal-950 to-[#0d0d0d]',
-    sourceNote: 'Klook 81348 실브라우저 이중검증 2026-07-26 — 상품페이지 meta price 6600, 검색 리스팅 ★4.3(588)·7K+ 선택·1일 ₩6,600부터·무료취소·즉시확정',
+    sourceNote: 'Klook 상품 페이지 운영자 실기기 확인 (기준 2026-08-31)',
   },
 ]
 
@@ -624,8 +624,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     country: '한국 출발',
     desc: '뷔페 2식 포함 승선권으로 하룻밤 만에 오사카. 위성 와이파이·사우나를 갖춘 국내 첫 럭셔리 크루즈페리.',
     cta: '승선권 보기',
-    priceFrom: '₩120,000~',
-    priceAsOf: '2026-07-26',
+    // 2026-08-31 운영자 실기기 확인: 매진 — 정직성 원칙(매진 시 가격 표기 제외)로 가격 제거. 재판매 확인 시 재실측 후 복원
     href: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
     deepLinks: {
       KO: 'https://affiliate.klook.com/redirect?aid=126848&k_site=https%3A%2F%2Fwww.klook.com%2Fko%2Factivity%2F150798-busan-osaka-ferry-ticket%2F',
@@ -637,7 +636,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     coverPhoto: '/covers/cruise-panstar-real-v2.jpeg', illustrative: true,
     coverGradient: 'from-sky-900 via-blue-950 to-[#0d0d0d]',
     sourceNote:
-      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 ₩120,000~=KKday 상세 price 위젯 실브라우저 실측(기준 2026-07-26 재검, 정가 ₩200,000 병기 표시·유류할증료 등 별도) — Klook 상세는 옵션 선택 전 가격 미노출 구조',
+      'Klook activity/150798(403=생존)·KKday 284256 병행 확인 2026-07-18. 취항 2025-04-13·사우나·야외수영장·저궤도 위성 와이파이=팬스타 공식 보도자료. 뷔페 2식(조·석식) 포함=판매처 3사(Klook·KKday·NOL) 상품 구성 일치. 가격 비표기: KKday 284256 운영자 실기기 확인 2026-08-31 매진(구 실측 ₩120,000은 KKday 기준) — Klook 상세는 옵션 선택 전 가격 미노출 구조라 실측 불가. 재판매 확인 시 재실측 후 복원',
   },
   {
     id: 'cruise-rci-singapore',
