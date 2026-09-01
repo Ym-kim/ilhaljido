@@ -136,81 +136,79 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 인증 형식 탐색 (2026-09-01)
+// 키 후보 탐색 (2026-09-01)
 //
-// 문서대로 `Authorization: {siteid}:{apikey}`를 보냈더니 401이 계속 나온다.
-// 담당자 회신을 기다리지 않고 진행하라는 운영자 지시에 따라, **근거가 있는 변형만**
-// 한정해서 시도한다. 무작정 조합을 늘리면 계정에 401만 쌓이므로 3개로 못박는다.
+// 헤더 형식 문제는 배제됐다: 문서형식·HTTP Basic·본문동봉 3종이 모두 같은 에러를 냈다
+//   → 108: Site ID or API key is invalid or missing in the header
+// 그리고 아고다 파트너 대시보드의 'API 액세스 키 확인하기'는 **CID별로 키를 발급**하는데,
+// CID 드롭다운에 라벨·번호가 같은 항목이 2개 있다(Approval Site (1968994) x2).
+// 라벨이 같아도 뒤에 붙은 키는 다를 수 있으므로 **키 후보 2개를 한 번에** 시험해 왕복을 줄인다.
+// 헤더는 문서 형식 하나만 쓴다(형식 검증은 이미 끝).
 //
-//  1) documented : 문서 그대로. 대조군
-//  2) basic      : 문서의 `siteid:apikey` 콜론 형식은 HTTP Basic 자격증명 그 자체다.
-//                  게이트웨이가 표준 Basic을 기대할 가능성이 높다
-//  3) body       : 문서에 "siteid와 apikey가 **요청 본문의 값과 일치해야 한다**"는 문장이
-//                  있는데 예시 본문에는 두 필드가 없다. 가장 자연스러운 최상위 배치로 시도
+// 운영자는 두 키를 각각 AGODA_API_KEY / AGODA_API_KEY_2로 등록한다.
+// 성공한 슬롯이 확인되면 그 값을 AGODA_API_KEY로 일원화하고 이 탐색 코드는 제거한다.
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type AuthVariant = 'documented' | 'basic' | 'body'
-export const AUTH_VARIANTS: AuthVariant[] = ['documented', 'basic', 'body']
+export type KeySlot = 'AGODA_API_KEY' | 'AGODA_API_KEY_2'
 
-function buildAuth(variant: AuthVariant, apiKey: string) {
-  const raw = `${SITE_ID}:${apiKey}`
-  if (variant === 'basic') return { header: `Basic ${Buffer.from(raw).toString('base64')}`, inBody: false }
-  return { header: raw, inBody: variant === 'body' }
-}
-
-/** 변형별 HTTP 상태만 확인한다. 키·응답 본문은 반환하지 않는다. */
-export async function probeAuthVariants(
+/** 슬롯별 HTTP 상태와 아고다 에러 메시지만 반환한다. 키 값은 절대 담지 않는다. */
+export async function probeKeySlots(
   input: Pick<SearchInput, 'cityId' | 'checkInDate' | 'checkOutDate'>,
-): Promise<{ variant: AuthVariant; status: number | 'network' | 'missing_key'; detail?: string | null }[]> {
-  const apiKey = process.env.AGODA_API_KEY?.trim()
-  if (!apiKey) return AUTH_VARIANTS.map((variant) => ({ variant, status: 'missing_key' as const }))
+): Promise<{ slot: KeySlot; status: number | 'network' | 'missing_key'; detail?: string | null }[]> {
+  const slots: { slot: KeySlot; key?: string }[] = [
+    { slot: 'AGODA_API_KEY', key: process.env.AGODA_API_KEY?.trim() },
+    { slot: 'AGODA_API_KEY_2', key: process.env.AGODA_API_KEY_2?.trim() },
+  ]
 
-  const out: { variant: AuthVariant; status: number | 'network' | 'missing_key'; detail?: string | null }[] = []
-  for (const variant of AUTH_VARIANTS) {
-    const { header, inBody } = buildAuth(variant, apiKey)
-    const criteria: Record<string, unknown> = {
-      additional: {
-        currency: 'KRW',
-        discountOnly: false,
-        language: 'ko-kr',
-        maxResult: 5,
-        minimumReviewScore: 0,
-        minimumStarRating: 0,
-        occupancy: { numberOfAdult: 2, numberOfChildren: 0 },
-        sortBy: 'PriceAsc',
+  const out: { slot: KeySlot; status: number | 'network' | 'missing_key'; detail?: string | null }[] = []
+  for (const { slot, key } of slots) {
+    if (!key) { out.push({ slot, status: 'missing_key' }); continue }
+
+    const payload = {
+      criteria: {
+        additional: {
+          currency: 'KRW',
+          discountOnly: false,
+          language: 'ko-kr',
+          maxResult: 5,
+          minimumReviewScore: 0,
+          minimumStarRating: 0,
+          occupancy: { numberOfAdult: 2, numberOfChildren: 0 },
+          sortBy: 'PriceAsc',
+        },
+        checkInDate: input.checkInDate,
+        checkOutDate: input.checkOutDate,
+        cityId: input.cityId,
       },
-      checkInDate: input.checkInDate,
-      checkOutDate: input.checkOutDate,
-      cityId: input.cityId,
     }
-    const payload: Record<string, unknown> = inBody
-      ? { criteria, siteId: Number(SITE_ID), apiKey }
-      : { criteria }
 
     const controller = new AbortController()
     const timer = setTimeout(() => controller.abort(), 12_000)
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
-        headers: { authorization: header, 'content-type': 'application/json', accept: 'application/json' },
+        headers: {
+          authorization: `${SITE_ID}:${key}`,
+          'content-type': 'application/json',
+          accept: 'application/json',
+        },
         body: JSON.stringify(payload),
         signal: controller.signal,
         cache: 'no-store',
       })
-      // 문서 응답표: 401 = "ApiKey not found **또는 IP 제한 위반**".
-      // 둘 중 무엇인지는 아고다가 보내는 error.message가 알려준다. 그 두 필드만 뽑아 쓴다.
-      // 🔐 혹시라도 본문에 키가 반향될 경우를 대비해, 반환 직전에 키 문자열을 제거한다.
+      // 🔐 본문에 키가 반향될 경우를 대비해 반환 직전 키 문자열을 치환한다
       let detail: string | null = null
       try {
-        const raw = await res.text()
-        const parsed: unknown = JSON.parse(raw)
+        const rawBody = await res.text()
+        const parsed: unknown = JSON.parse(rawBody)
         const err = (parsed as { error?: { id?: unknown; message?: unknown } })?.error
         if (err) detail = `${err.id ?? '?'}: ${String(err.message ?? '').slice(0, 120)}`
-      } catch { /* 본문이 JSON이 아니면 상태코드만 쓴다 */ }
-      if (detail) detail = detail.split(apiKey).join('[redacted]')
-      out.push({ variant, status: res.status, detail })
+        else if (res.ok) detail = 'OK'
+      } catch { /* JSON이 아니면 상태코드만 */ }
+      if (detail) detail = detail.split(key).join('[redacted]')
+      out.push({ slot, status: res.status, detail })
     } catch {
-      out.push({ variant, status: 'network' })
+      out.push({ slot, status: 'network' })
     } finally {
       clearTimeout(timer)
     }
