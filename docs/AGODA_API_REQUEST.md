@@ -169,6 +169,29 @@
 **→ 코드로 더 할 수 있는 일이 없다.** 여기서부터는 아고다가 올바른 (Site ID, API key) 쌍을 알려주거나
 계정에 API 접근을 열어줘야 한다.
 
+## 5-3. 최종 판정 (2026-09-01) — **코드로 할 수 있는 시도 종료**
+
+대시보드 실물 확인 결과, `도구 > API`의 **'API 액세스 키 확인하기'는 CID별로 키를 발급**하고
+CID 드롭다운에 **라벨·번호가 같은 항목이 2개**였다(`Approval Site (1968994)` x2).
+라벨이 같아도 키가 다를 수 있어 **두 키를 각각 시험**했다.
+
+| 시험 축 | 시도 | 결과 |
+|---|---|---|
+| 헤더 형식 | 문서형식 / HTTP Basic / 본문동봉 | 3종 전부 **401 · 108** |
+| 키 후보 | 대시보드 항목 ①과 ② | 2개 전부 **401 · 108** |
+
+전부 동일: `108: Site ID or API key is invalid or missing in the header`
+
+**배제된 원인** — 헤더 형식 / IP 제한 / 환경변수 미설정 / 값 앞뒤 공백 / HTTPS 차단
+**남은 원인** — 계정에 **Affiliate Lite API 접근이 실제로 열려 있지 않음**(대시보드에 키 조회 UI가
+보이는 것과 백엔드 권한 부여는 별개일 수 있다), 또는 API용 Site ID가 제휴 cid와 다름.
+
+🔑 강한 힌트: 대시보드가 주는 키는 **44자 non-UUID**인데, 공식 v2.0 가이드의 apikey 예시는
+**UUID 36자**다. 키 체계 자체가 다를 가능성이 있다.
+
+**→ 더 시험할 근거가 없다.** 아고다 문의가 유일한 경로이며, 창구는
+`도구 > API` 화면 하단의 **'문의 사항 보내기'** 링크다(별도 이메일보다 이 경로가 정확하다).
+
 ### 담당자에게 보낼 후속 메시지 (그대로 복사)
 
 > Hello,
@@ -181,9 +204,15 @@
 >
 > Note the HTTPS endpoint itself is reachable — only authentication fails.
 >
-> The API returns **error 108 — "Site ID or API key is invalid or missing in the header"**.
-> We tested three header forms (`{siteid}:{apikey}`, HTTP Basic, and with the credentials also
-> in the request body); all three return the same error 108, so this is not a header-format issue.
+> The Affiliate Lite API consistently returns **error 108 — "Site ID or API key is invalid or
+> missing in the header"** for site ID **1968994**.
+>
+> We have already ruled out the obvious causes:
+> - Three header forms tested (`{siteid}:{apikey}`, HTTP Basic, credentials also in the body) —
+>   all return the same error 108, so this is not a header-format problem.
+> - Both API keys listed under **Tools > API** were tested. The CID dropdown shows two entries with
+>   the identical label `Approval Site (1968994)`; **both keys return error 108**.
+> - The HTTPS endpoint is reachable, so this is not an IP or connectivity problem.
 >
 > Could you please provide or confirm:
 > 1. The **correct Site ID and API key pair** for the Affiliate Lite API. Is the Site ID for API
