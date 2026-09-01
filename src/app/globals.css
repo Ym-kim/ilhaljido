@@ -115,7 +115,12 @@ html[lang='ja'] .wak-card-title {
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth;
+  /* 2026-09-01: smooth → auto.
+     전역 smooth였을 때, 페이지 이동·뒤로가기·앵커 버튼에서 스크롤이 맨 아래부터 위까지
+     '흘러가는' 애니메이션이 그대로 보였다(운영자 보고). Next 16의 data-scroll-behavior는
+     라우터 전환만 순간이동으로 덮어주고 브라우저 뒤로가기·페이지 내 앵커는 커버하지 않는다.
+     → 전역을 auto로 두고, 부드러운 이동이 필요한 곳만 스크립트에서 명시적으로 지정한다. */
+  scroll-behavior: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
