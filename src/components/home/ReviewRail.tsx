@@ -51,11 +51,15 @@ export function ReviewRail() {
         <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2">{UI.eyebrow[lang]}</p>
         <h2 className="text-xl font-bold leading-snug tracking-tight text-[#111827] md:text-2xl">{UI.title[lang]}</h2>
         <p className="mt-2 text-xs text-[#94a3b8]">{UI.note[lang]}</p>
-        <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {/* 2026-09-02: 데스크톱에서 카드가 31% 폭인 가로 레일이라 4번째가 잘려 보였다(운영자 보고).
+            모바일은 스와이프가 자연스러우니 레일을 유지하고, md 이상은 격자로 전환해 전부 보이게 한다.
+            자동으로 흘러가는 마퀴는 쓰지 않았다 — 이 카드는 '읽는' 콘텐츠라 저절로 움직이면 읽기 어렵고,
+            모션 축소 설정(prefers-reduced-motion) 대응도 따로 필요해진다. */}
+        <div className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:pb-0 xl:grid-cols-4">
           {cards.map((c) => (
             <figure
               key={c.id}
-              className="flex w-[85%] max-w-sm shrink-0 snap-start flex-col rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-6 sm:w-[46%] lg:w-[31%]"
+              className="flex w-[85%] max-w-sm shrink-0 snap-start flex-col rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-6 sm:w-[46%] md:w-auto md:max-w-none"
             >
               <span className={`mb-3 inline-flex w-fit rounded-full px-2.5 py-1 text-[0.65rem] font-bold ${c.chipTone}`}>{c.chip}</span>
               <blockquote className="text-[0.9375rem] leading-7 text-[#334155]">“{c.quote}”</blockquote>
