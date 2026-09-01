@@ -6,8 +6,10 @@ import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
-import { buildBookingStaySearchHref, getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
+import { getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
 import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
+import { trackStayEvent } from '@/lib/stays/analytics'
+import { resolveStaySearchPlan } from '@/lib/stays/providerRegistry'
 
 type L = Record<Lang, string>
 type Mode = 'hotel' | 'learn'
@@ -21,6 +23,7 @@ const COPY: Record<string, L> = {
   checkout: { KO: '체크아웃', EN: 'Check-out', JP: 'チェックアウト' },
   date_incomplete: { KO: '체크인과 체크아웃 날짜를 모두 선택해 주세요.', EN: 'Select both check-in and check-out dates.', JP: 'チェックイン日とチェックアウト日を両方選択してください。' },
   date_invalid: { KO: '체크아웃은 체크인 다음 날 이후로 선택해 주세요.', EN: 'Check-out must be after check-in.', JP: 'チェックアウト日はチェックイン日の翌日以降を選択してください。' },
+  search_unavailable: { KO: '지금은 숙소 검색을 열 수 없습니다. 잠시 후 다시 시도해 주세요.', EN: 'Stay search is temporarily unavailable. Please try again shortly.', JP: '現在、宿泊検索を開けません。しばらくしてからもう一度お試しください。' },
   note: {
     KO: '선택한 도시와 날짜를 Booking.com 검색 결과에 그대로 연결합니다. 실제 요금과 객실 조건은 제휴사에서 확인하세요.',
     EN: 'Your city and dates are passed directly to Booking.com. Check live rates and room conditions with the partner.',
@@ -33,19 +36,12 @@ const COPY: Record<string, L> = {
   },
 }
 
-function buildLink(mode: Mode, q: string, checkin: string, checkout: string): { provider: string; href: string } {
-  if (mode === 'learn') {
-    return {
-      provider: '인프런',
-      // 2026-08-14: /ko 명시 — 인프런이 저장된 언어 설정(ja 등)으로 렌더하던 문제를 경로로 강제 해결.
-      // 구 /courses?s=는 /search로 307되며, utm 파라미터(파트너 집계)는 그대로 유지된다
-      href: `https://www.inflearn.com/ko/search?s=${encodeURIComponent(q.trim())}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
-    }
-  }
-
+function buildLearnLink(q: string): { provider: string; href: string } {
   return {
-    provider: 'Booking.com',
-    href: buildBookingStaySearchHref({ destination: q, checkin, checkout }),
+    provider: '인프런',
+    // 2026-08-14: /ko 명시 — 인프런이 저장된 언어 설정(ja 등)으로 렌더하던 문제를 경로로 강제 해결.
+    // 구 /courses?s=는 /search로 307되며, utm 파라미터(파트너 집계)는 그대로 유지된다
+    href: `https://www.inflearn.com/ko/search?s=${encodeURIComponent(q.trim())}&utm_source=partners&utm_medium=referral&utm_campaign=1771445`,
   }
 }
 
@@ -70,19 +66,63 @@ export function DestinationSearch({ mode = 'hotel', forceLang }: { mode?: Mode; 
       }
     }
     setError(null)
+    if (isHotel) {
+      const plan = resolveStaySearchPlan({
+        destination,
+        checkin: arrival,
+        checkout: departure,
+        locale: lang,
+      })
+      if (plan.mode === 'unavailable') {
+        setError(COPY.search_unavailable[lang])
+        return
+      }
+      const href = localizeOutboundHref(plan.redirect.href, lang)
+      const outcome = plan.fallbackFrom ? 'fallback' : 'redirect'
+      trackStayEvent('stay_search', {
+        locale: lang,
+        sourceSection: 'destination_search',
+        provider: plan.redirect.provider,
+        capability: 'search_redirect',
+        datesSupplied: Boolean(arrival && departure),
+        outcome,
+      })
+      trackStayEvent('affiliate_redirect', {
+        locale: lang,
+        sourceSection: 'destination_search',
+        provider: plan.redirect.provider,
+        capability: 'search_redirect',
+        datesSupplied: Boolean(arrival && departure),
+        outcome,
+      })
+      trackAffiliateClick({
+        provider: plan.redirect.providerLabel,
+        status: 'active_affiliate',
+        id: 'search-hotel',
+        itemName: 'stay_search',
+        sourceSection: 'destination_search',
+        ctaLabel: COPY.search[lang],
+        ctaPosition: 'search_form',
+        destination: 'custom_search',
+        category: 'hotel',
+        locale: lang,
+      })
+      window.open(href, '_blank', 'noopener,noreferrer')
+      return
+    }
     // 2026-08-14: 파트너 검색 링크도 사이트 언어 매칭(검증 패턴만 — linkLocale.ts)
-    const { provider, href: koHref } = buildLink(mode, destination, arrival, departure)
+    const { provider, href: koHref } = buildLearnLink(destination)
     const href = localizeOutboundHref(koHref, lang)
     trackAffiliateClick({
       provider,
       status: 'active_affiliate',
-      id: `search-${mode}`,
-      itemName: destination,
+      id: 'search-learn',
+      itemName: 'education_search',
       sourceSection: 'destination_search',
-      ctaLabel: mode === 'hotel' ? COPY.search[lang] : COPY.inflearn[lang],
+      ctaLabel: COPY.inflearn[lang],
       ctaPosition: 'search_form',
-      destination,
-      category: mode === 'hotel' ? 'hotel' : 'education',
+      destination: 'custom_topic',
+      category: 'education',
       locale: lang,
     })
     window.open(href, '_blank', 'noopener,noreferrer')
