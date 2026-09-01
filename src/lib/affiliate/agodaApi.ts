@@ -1,5 +1,7 @@
 import 'server-only'
 
+import { buildAgodaAuthorization } from '@/lib/affiliate/agodaAuth'
+
 // ─────────────────────────────────────────────────────────────────────────────
 // 아고다 Affiliate Lite (Long Tail Search) API 클라이언트 — 서버 전용
 //
@@ -43,7 +45,13 @@ export type AgodaSearchOutcome =
   | { ok: true; hotels: AgodaHotel[] }
   | {
       ok: false
-      reason: 'missing_site_id' | 'missing_key' | 'http_error' | 'bad_payload' | 'network'
+      reason:
+        | 'missing_site_id'
+        | 'missing_key'
+        | 'configuration_error'
+        | 'http_error'
+        | 'bad_payload'
+        | 'network'
       status?: number
       error?: AgodaErrorSummary
     }
@@ -142,11 +150,10 @@ async function readAgodaError(
 }
 
 export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOutcome> {
-  // 붙여넣기 과정에서 앞뒤 공백·줄바꿈이 딸려오는 일이 잦고, 그러면 인증이 조용히 실패한다
   const siteId = process.env.AGODA_SITE_ID?.trim()
-  const apiKey = process.env.AGODA_API_KEY?.trim()
-  if (!siteId) return { ok: false, reason: 'missing_site_id' }
-  if (!apiKey) return { ok: false, reason: 'missing_key' }
+  const storedKey = process.env.AGODA_API_KEY?.trim()
+  const auth = buildAgodaAuthorization(siteId, storedKey)
+  if (!auth.ok) return auth
 
   const body = {
     criteria: {
@@ -172,8 +179,7 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
     const res = await fetch(ENDPOINT, {
       method: 'POST',
       headers: {
-        // 문서: Authorization 헤더에 siteid와 apikey를 콜론으로 이어 넣는다
-        Authorization: `${siteId}:${apiKey}`,
+        Authorization: auth.authorization,
         'content-type': 'application/json',
         accept: 'application/json',
         'accept-encoding': 'gzip,deflate',
@@ -183,7 +189,7 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
       cache: 'no-store',
     })
     if (!res.ok) {
-      const error = await readAgodaError(res, [siteId, apiKey])
+      const error = await readAgodaError(res, [siteId ?? '', storedKey ?? '', auth.authorization])
       return { ok: false, reason: 'http_error', status: res.status, error }
     }
 
