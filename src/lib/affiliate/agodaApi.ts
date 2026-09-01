@@ -161,11 +161,11 @@ function buildAuth(variant: AuthVariant, apiKey: string) {
 /** 변형별 HTTP 상태만 확인한다. 키·응답 본문은 반환하지 않는다. */
 export async function probeAuthVariants(
   input: Pick<SearchInput, 'cityId' | 'checkInDate' | 'checkOutDate'>,
-): Promise<{ variant: AuthVariant; status: number | 'network' | 'missing_key' }[]> {
+): Promise<{ variant: AuthVariant; status: number | 'network' | 'missing_key'; detail?: string | null }[]> {
   const apiKey = process.env.AGODA_API_KEY?.trim()
   if (!apiKey) return AUTH_VARIANTS.map((variant) => ({ variant, status: 'missing_key' as const }))
 
-  const out: { variant: AuthVariant; status: number | 'network' | 'missing_key' }[] = []
+  const out: { variant: AuthVariant; status: number | 'network' | 'missing_key'; detail?: string | null }[] = []
   for (const variant of AUTH_VARIANTS) {
     const { header, inBody } = buildAuth(variant, apiKey)
     const criteria: Record<string, unknown> = {
@@ -197,7 +197,18 @@ export async function probeAuthVariants(
         signal: controller.signal,
         cache: 'no-store',
       })
-      out.push({ variant, status: res.status })
+      // 문서 응답표: 401 = "ApiKey not found **또는 IP 제한 위반**".
+      // 둘 중 무엇인지는 아고다가 보내는 error.message가 알려준다. 그 두 필드만 뽑아 쓴다.
+      // 🔐 혹시라도 본문에 키가 반향될 경우를 대비해, 반환 직전에 키 문자열을 제거한다.
+      let detail: string | null = null
+      try {
+        const raw = await res.text()
+        const parsed: unknown = JSON.parse(raw)
+        const err = (parsed as { error?: { id?: unknown; message?: unknown } })?.error
+        if (err) detail = `${err.id ?? '?'}: ${String(err.message ?? '').slice(0, 120)}`
+      } catch { /* 본문이 JSON이 아니면 상태코드만 쓴다 */ }
+      if (detail) detail = detail.split(apiKey).join('[redacted]')
+      out.push({ variant, status: res.status, detail })
     } catch {
       out.push({ variant, status: 'network' })
     } finally {
