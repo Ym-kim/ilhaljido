@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { useLang } from '@/context/LanguageContext'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 type LogoProps = {
   className?: string
@@ -10,10 +12,15 @@ type LogoProps = {
 
 export function Logo({ className, variant = 'dark' }: LogoProps) {
   const light = variant === 'light'
+  const { lang } = useLang()
+
+  // 2026-09-01: href가 '/'로 하드코딩돼 있어 /en·/ja에서 홈 버튼을 누르면 한국어 홈으로 갔다
+  // (언어가 바뀌어 버림). '/'는 3언어 공통 라우트라 localizeHref가 /en·/ja로 정확히 매핑한다.
+  const homeHref = localizeHref('/', lang)
 
   return (
     <Link
-      href="/"
+      href={homeHref}
       // 홈 버튼은 항상 최상단으로 (2026-09-01 운영자 요청).
       // 이미 홈에 있으면 라우터가 같은 경로라 아무것도 하지 않아 스크롤 위치가 그대로 남는다.
       // 다른 페이지에서 눌러도 즉시 위로 올려 두면 전환 후 깜빡임이 없다. behavior 미지정 = 순간이동.
