@@ -15,7 +15,7 @@
 | Vercel Production | 정상 | GitHub commit status `success` |
 | Affiliate health | 정상 | `/api/health/affiliates`: 70건, failures 0 |
 | Agoda external redirect | 정상 | Agoda 홈·도쿄 도시 링크 HTTP 200 |
-| Agoda Affiliate Lite API | 차단 | `/api/health/agoda`: HTTP 401, error 108 기록 |
+| Agoda Affiliate Lite API | 차단 | Site ID 분리 후에도 HTTP 401, error 108. Vercel 고정 송신 IP 미구성으로 IP 허용목록 또는 계정 API 접근 확인 필요 |
 | KO/EN/JA 문서 언어 | 정상 | Production `/`, `/en`, `/ja` 렌더 확인 |
 | 모바일 overflow / broken image | 정상 | 주요 18개 경로에서 0건 |
 | Working tree | clean에서 시작 | 외부 업데이트 fast-forward 후 감사 시작 |

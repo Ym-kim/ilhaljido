@@ -12,14 +12,14 @@ export const AGODA_STAY_PROVIDER = {
     search_redirect: { status: 'active' },
     live_search: {
       status: 'unavailable',
-      reason: 'authentication_blocked_401',
+      reason: 'ip_allowlist_or_account_access_401',
       verifiedAt: '2026-09-02',
     },
     property_redirect: { status: 'active' },
     live_property: NOT_SUPPORTED,
     availability: {
       status: 'unavailable',
-      reason: 'authentication_blocked_401',
+      reason: 'ip_allowlist_or_account_access_401',
       verifiedAt: '2026-09-02',
     },
     booking: NOT_SUPPORTED,

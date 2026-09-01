@@ -36,7 +36,7 @@ const checks = [
   ...requiredCapabilities.map((capability) => [`stay capability contract: ${capability}`, files.domain.includes(`'${capability}'`)]),
   ['Booking affiliate ID preserved', files.booking.includes("publicTrackingId: '7854081'")],
   ['Agoda public CID preserved', files.agoda.includes("publicTrackingId: '1968994'")],
-  ['Agoda live search is unavailable after 401', files.agoda.includes("reason: 'authentication_blocked_401'")],
+  ['Agoda live search is unavailable after 401', files.agoda.includes("reason: 'ip_allowlist_or_account_access_401'")],
   ['Agoda unavailable path falls back to Booking redirect', files.registry.includes("isStayCapabilityActive('booking', 'search_redirect')") && files.registry.includes('buildBookingStayRedirect(request)')],
   ['Agoda API remains server-only', files.agodaApi.startsWith("import 'server-only'")],
   ['Agoda API reads the dedicated Site ID', files.agodaApi.includes('process.env.AGODA_SITE_ID')],
