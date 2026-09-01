@@ -37,7 +37,8 @@ export type MediaAsset = {
   activityMood?: string
   destinationMood?: string
   realismLevel?: 'high_photoreal' | 'photoreal_editorial' | 'graphic_editorial'
-  generationProvider?: 'openai_builtin_imagegen' | 'existing_asset' | 'partner' | 'licensed'
+  // 'higgsfield_soul_v2' — 2026-08-31 운영자 지시로 이미지 생성 엔진이 힉스필드 Soul 2.0으로 고정됨
+  generationProvider?: 'openai_builtin_imagegen' | 'higgsfield_soul_v2' | 'existing_asset' | 'partner' | 'licensed'
   rejectedReason?: string
   auditDisposition?: 'KEEP' | 'RECROP' | 'RESTYLE' | 'REGENERATE_REALISM' | 'REPLACE_MODEL' | 'REPLACE_WITH_PLACE' | 'REPLACE_WITH_DIAGRAM' | 'REMOVE' | 'REAL_PHOTO_REQUIRED'
   adjacentModelRestrictions?: string[]
@@ -112,6 +113,13 @@ const MODEL_DIVERSITY_ASSETS: MediaAsset[] = [
     id: 'business-models-c-h-i-rooftop-session-mobile-v3', src: '/media/brand-models/business-models-c-h-i-rooftop-session-mobile-v3.webp',
     alt: { KO: '해안 루프톱에서 보드와 카메라를 활용해 함께 기획하는 세 명의 성인 팀', EN: 'Three adults collaborating with a board and camera on a coastal rooftop', JP: '海辺のルーフトップでボードとカメラを使い共同企画する3人の大人のチーム' },
     sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 960, height: 1280, modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-I'], localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'mixed team silhouettes', wardrobeTags: ['cobalt vest and culottes', 'yellow blouse and coral floral midi skirt', 'red polo and olive Bermuda shorts'], activityTags: ['pinning', 'photographing', 'presenting'], styleDirection: 'portrait triangular group-action editorial', routeUsage: ['/business'], sectionUsage: ['business-hero-mobile'], generatedFromReferenceIds: ['business-models-c-h-i-rooftop-session-desktop-v3'], focalPoint: { x: 0.68, y: 0.58 }, safeFraming: { minHeadroomPercent: 14, preserve: ['head', 'face', 'hands', 'device', 'feet'] }, source: 'OpenAI built-in ImageGen native mobile recomposition', generationProvider: 'openai_builtin_imagegen', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-08-11', verifiedAt: '2026-08-11', restriction: MODEL_DIVERSITY_RESTRICTION,
+  },
+  {
+    // 운영자 커스텀 Soul 모델('테미', Higgsfield soul_2) 컷 — 로스터 WAK-MODEL-* 정체성이 아니라
+    // modelId를 부여하지 않는다(다양성·회전 계산 제외). 2026-09-01 운영자 지시로 /infrastructure 히어로 교체.
+    id: 'infrastructure-model-temi-coastal-desk-v1', src: '/media/brand-models/infrastructure-model-temi-coastal-desk-v1.webp',
+    alt: { KO: '바다가 보이는 창가 책상에서 노트북으로 일하는 사람', EN: 'A person working on a laptop at a desk by an ocean-view window', JP: '海が見える窓辺のデスクでノートパソコンで働く人' },
+    sourceType: 'generated', usage: 'hero', illustrative: true, mediaType: 'image', width: 1920, height: 1080, localeUsage: ['ko', 'en', 'ja'], seasonalUsage: ['summer', 'late-summer'], wardrobeFamily: 'relaxed linen loungewear', wardrobeTags: ['cream sleeveless top'], activityTags: ['laptop work', 'focused typing', 'ocean-view desk'], styleDirection: 'calm coastal work editorial', routeUsage: ['/infrastructure'], sectionUsage: ['infrastructure-hero'], generatedFromReferenceIds: [], focalPoint: { x: 0.5, y: 0.45 }, safeFraming: { minHeadroomPercent: 12, preserve: ['head', 'face', 'hands'] }, source: 'Higgsfield Soul 2.0 generation using the operator-owned custom Soul model', generationProvider: 'higgsfield_soul_v2', license: 'User-controlled generated Wakation editorial asset', createdAt: '2026-09-01', verifiedAt: '2026-09-01', restriction: MODEL_DIVERSITY_RESTRICTION,
   },
   {
     id: 'growth-model-f-pottery-learning-desktop-v3', src: '/media/brand-models/growth-model-f-pottery-learning-desktop-v3.webp',
