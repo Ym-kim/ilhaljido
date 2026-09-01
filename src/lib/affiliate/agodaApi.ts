@@ -16,9 +16,6 @@ import 'server-only'
 
 const ENDPOINT = 'https://affiliateapi7643.agoda.com/affiliateservice/lt_v1'
 
-/** 링크에 쓰는 cid와 동일한 값이 siteId다 (문서상 Authorization은 `siteid:apikey`) */
-const SITE_ID = '1968994'
-
 export type AgodaHotel = {
   hotelId: number
   hotelName: string
@@ -37,9 +34,19 @@ export type AgodaHotel = {
   landingURL: string
 }
 
+export type AgodaErrorSummary = {
+  id?: string
+  message?: string
+}
+
 export type AgodaSearchOutcome =
   | { ok: true; hotels: AgodaHotel[] }
-  | { ok: false; reason: 'missing_key' | 'http_error' | 'bad_payload' | 'network'; status?: number }
+  | {
+      ok: false
+      reason: 'missing_site_id' | 'missing_key' | 'http_error' | 'bad_payload' | 'network'
+      status?: number
+      error?: AgodaErrorSummary
+    }
 
 type SearchInput = {
   cityId: number
@@ -79,9 +86,66 @@ function toHotel(raw: unknown): AgodaHotel | null {
   }
 }
 
+function stringField(record: Record<string, unknown>, keys: string[]): string | undefined {
+  for (const key of keys) {
+    const value = record[key]
+    if (typeof value === 'string' || typeof value === 'number') return String(value)
+  }
+  return undefined
+}
+
+function sanitiseErrorText(value: string | undefined, redactions: string[], maxLength: number): string | undefined {
+  if (!value) return undefined
+  let safe = value.replace(/[\r\n\t]+/g, ' ').trim()
+  for (const secret of redactions) {
+    if (secret) safe = safe.replaceAll(secret, '[redacted]')
+  }
+  safe = safe.replace(/\b[A-Za-z0-9+/_=-]{24,}\b/g, '[redacted]')
+  return safe ? safe.slice(0, maxLength) : undefined
+}
+
+async function readAgodaError(
+  response: Response,
+  redactions: string[],
+): Promise<AgodaErrorSummary | undefined> {
+  let payload: unknown
+  try {
+    payload = await response.json()
+  } catch {
+    return undefined
+  }
+  if (typeof payload !== 'object' || payload === null) return undefined
+
+  const root = (Array.isArray(payload) ? payload[0] : payload) as Record<string, unknown>
+  if (typeof root !== 'object' || root === null) return undefined
+  const errorValue = root.error
+  const nested =
+    Array.isArray(errorValue) && typeof errorValue[0] === 'object' && errorValue[0] !== null
+      ? (errorValue[0] as Record<string, unknown>)
+      : typeof errorValue === 'object' && errorValue !== null
+        ? (errorValue as Record<string, unknown>)
+      : Array.isArray(root.errors) && typeof root.errors[0] === 'object' && root.errors[0] !== null
+        ? (root.errors[0] as Record<string, unknown>)
+        : root
+
+  const id = sanitiseErrorText(
+    stringField(nested, ['id', 'errorId', 'errorID', 'errorCode', 'code']),
+    redactions,
+    64,
+  )
+  const message = sanitiseErrorText(
+    stringField(nested, ['message', 'errorMessage', 'description', 'detail']),
+    redactions,
+    240,
+  )
+  return id || message ? { id, message } : undefined
+}
+
 export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOutcome> {
   // 붙여넣기 과정에서 앞뒤 공백·줄바꿈이 딸려오는 일이 잦고, 그러면 인증이 조용히 실패한다
+  const siteId = process.env.AGODA_SITE_ID?.trim()
   const apiKey = process.env.AGODA_API_KEY?.trim()
+  if (!siteId) return { ok: false, reason: 'missing_site_id' }
   if (!apiKey) return { ok: false, reason: 'missing_key' }
 
   const body = {
@@ -109,15 +173,19 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
       method: 'POST',
       headers: {
         // 문서: Authorization 헤더에 siteid와 apikey를 콜론으로 이어 넣는다
-        authorization: `${SITE_ID}:${apiKey}`,
+        Authorization: `${siteId}:${apiKey}`,
         'content-type': 'application/json',
         accept: 'application/json',
+        'accept-encoding': 'gzip,deflate',
       },
       body: JSON.stringify(body),
       signal: controller.signal,
       cache: 'no-store',
     })
-    if (!res.ok) return { ok: false, reason: 'http_error', status: res.status }
+    if (!res.ok) {
+      const error = await readAgodaError(res, [siteId, apiKey])
+      return { ok: false, reason: 'http_error', status: res.status, error }
+    }
 
     const payload: unknown = await res.json()
     const results =

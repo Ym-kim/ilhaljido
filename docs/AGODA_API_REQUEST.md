@@ -160,11 +160,10 @@
 **이 메시지로 확정된 것**
 
 - ❌ **헤더 형식 문제가 아니다.** 세 형식이 같은 에러 → 형식은 더 시험할 게 없다
-- ❌ **IP 제한도 아니다.** 문서 응답표상 401은 "ApiKey not found **또는 IP 제한 위반**" 두 가지인데,
-  에러 본문이 IP가 아니라 **Site ID/API key 자체가 invalid**라고 명시했다
-  (IP 제한이었다면 Vercel 서버리스의 유동 IP 때문에 영구 401이었을 것 — 그 시나리오는 배제됨)
-- ✅ 남은 원인은 **자격증명 쌍 그 자체**다: `siteId=1968994`이 API용이 아니거나, 대시보드의 그 키가
-  Affiliate Lite API용 키가 아니다
+- ⚠️ **IP 제한 여부는 이 응답만으로 배제할 수 없다.** 문서 응답표상 401은 "ApiKey not found
+  **또는 IP 제한 위반**" 두 경우를 함께 다루며, error 108 문구만으로 둘을 구분할 수 없다.
+- ✅ 남은 원인은 **자격증명·계정 권한·IP 정책**이다: `siteId=1968994`이 API용이 아니거나,
+  대시보드의 키가 Affiliate Lite API용이 아니거나, 송신 IP가 허용되지 않았을 수 있다.
 
 **→ 코드로 더 할 수 있는 일이 없다.** 여기서부터는 아고다가 올바른 (Site ID, API key) 쌍을 알려주거나
 계정에 API 접근을 열어줘야 한다.
@@ -182,9 +181,9 @@ CID 드롭다운에 **라벨·번호가 같은 항목이 2개**였다(`Approval 
 
 전부 동일: `108: Site ID or API key is invalid or missing in the header`
 
-**배제된 원인** — 헤더 형식 / IP 제한 / 환경변수 미설정 / 값 앞뒤 공백 / HTTPS 차단
-**남은 원인** — 계정에 **Affiliate Lite API 접근이 실제로 열려 있지 않음**(대시보드에 키 조회 UI가
-보이는 것과 백엔드 권한 부여는 별개일 수 있다), 또는 API용 Site ID가 제휴 cid와 다름.
+**배제된 원인** — 문서 외 헤더 조합 필요 / 환경변수 미설정 / 값 앞뒤 공백 / HTTPS 차단
+**남은 원인** — 계정에 **Affiliate Lite API 접근이 실제로 열려 있지 않음**, API용 Site ID·키 쌍이
+다름, 또는 호출 원본 IP가 Agoda 허용목록 조건을 충족하지 않음.
 
 🔑 강한 힌트: 대시보드가 주는 키는 **44자 non-UUID**인데, 공식 v2.0 가이드의 apikey 예시는
 **UUID 36자**다. 키 체계 자체가 다를 가능성이 있다.
@@ -233,3 +232,19 @@ CID 드롭다운에 **라벨·번호가 같은 항목이 2개**였다(`Approval 
 - [ ] ⛔ **401 해소 — 위 5-1의 후속 메시지 발송 필요(운영자)**. 이게 풀리기 전에는 다음 단계 불가
 - [ ] rate limit·캐싱 규정 회신 확인
 - [ ] (이후) 도시 카드 실시간 요금 렌더
+
+## 7. Site ID 분리 후 재검증 (2026-09-02)
+
+- Vercel Production과 Preview에 `AGODA_SITE_ID=1968994`를 별도 변수로 설정했다.
+- 서버는 `AGODA_SITE_ID`와 `AGODA_API_KEY`만 읽고, 공식 형식
+  `Authorization: <SITE_ID>:<API_KEY>`로 요청한다.
+- `AGODA_API_KEY_2`는 Site ID로 사용하거나 다른 키와 조합하지 않는다.
+- 새 Preview에서 도쿄 `cityId=5085`, 30일 뒤 1박, 최대 5건으로 실제 Search API를 호출했다.
+- 결과: HTTP `401`, Agoda error `108`,
+  `Site ID or API key is invalid or missing in the header`.
+- Vercel 팀의 Secure Compute 네트워크 목록은 비어 있고, 프로젝트에도 Static IP 활성화 흔적이
+  확인되지 않았다. Vercel 공식 문서상 기본 Functions 송신 IP는 동적 범위이므로 Agoda가 고정 IP
+  허용목록을 요구하면 현재 구성은 그 조건을 안정적으로 충족할 수 없다.
+- 유료 Static IP 또는 Secure Compute는 구매·활성화하지 않았다. Agoda 측에 API 접근 활성화 여부,
+  API용 Site ID·키 쌍, 허용해야 할 송신 IP 정책을 먼저 확인한다.
+- 인증과 prototype QA가 끝날 때까지 Booking.com 검색을 기본 경로로 유지한다.
