@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -12,6 +14,10 @@ export function Logo({ className, variant = 'dark' }: LogoProps) {
   return (
     <Link
       href="/"
+      // 홈 버튼은 항상 최상단으로 (2026-09-01 운영자 요청).
+      // 이미 홈에 있으면 라우터가 같은 경로라 아무것도 하지 않아 스크롤 위치가 그대로 남는다.
+      // 다른 페이지에서 눌러도 즉시 위로 올려 두면 전환 후 깜빡임이 없다. behavior 미지정 = 순간이동.
+      onClick={() => window.scrollTo({ top: 0, left: 0 })}
       aria-label="Wakation home"
       className={cn(
         'group inline-flex shrink-0 items-center gap-2.5 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400',
