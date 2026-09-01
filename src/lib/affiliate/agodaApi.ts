@@ -135,6 +135,78 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 인증 형식 탐색 (2026-09-01)
+//
+// 문서대로 `Authorization: {siteid}:{apikey}`를 보냈더니 401이 계속 나온다.
+// 담당자 회신을 기다리지 않고 진행하라는 운영자 지시에 따라, **근거가 있는 변형만**
+// 한정해서 시도한다. 무작정 조합을 늘리면 계정에 401만 쌓이므로 3개로 못박는다.
+//
+//  1) documented : 문서 그대로. 대조군
+//  2) basic      : 문서의 `siteid:apikey` 콜론 형식은 HTTP Basic 자격증명 그 자체다.
+//                  게이트웨이가 표준 Basic을 기대할 가능성이 높다
+//  3) body       : 문서에 "siteid와 apikey가 **요청 본문의 값과 일치해야 한다**"는 문장이
+//                  있는데 예시 본문에는 두 필드가 없다. 가장 자연스러운 최상위 배치로 시도
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type AuthVariant = 'documented' | 'basic' | 'body'
+export const AUTH_VARIANTS: AuthVariant[] = ['documented', 'basic', 'body']
+
+function buildAuth(variant: AuthVariant, apiKey: string) {
+  const raw = `${SITE_ID}:${apiKey}`
+  if (variant === 'basic') return { header: `Basic ${Buffer.from(raw).toString('base64')}`, inBody: false }
+  return { header: raw, inBody: variant === 'body' }
+}
+
+/** 변형별 HTTP 상태만 확인한다. 키·응답 본문은 반환하지 않는다. */
+export async function probeAuthVariants(
+  input: Pick<SearchInput, 'cityId' | 'checkInDate' | 'checkOutDate'>,
+): Promise<{ variant: AuthVariant; status: number | 'network' | 'missing_key' }[]> {
+  const apiKey = process.env.AGODA_API_KEY?.trim()
+  if (!apiKey) return AUTH_VARIANTS.map((variant) => ({ variant, status: 'missing_key' as const }))
+
+  const out: { variant: AuthVariant; status: number | 'network' | 'missing_key' }[] = []
+  for (const variant of AUTH_VARIANTS) {
+    const { header, inBody } = buildAuth(variant, apiKey)
+    const criteria: Record<string, unknown> = {
+      additional: {
+        currency: 'KRW',
+        discountOnly: false,
+        language: 'ko-kr',
+        maxResult: 5,
+        minimumReviewScore: 0,
+        minimumStarRating: 0,
+        occupancy: { numberOfAdult: 2, numberOfChildren: 0 },
+        sortBy: 'PriceAsc',
+      },
+      checkInDate: input.checkInDate,
+      checkOutDate: input.checkOutDate,
+      cityId: input.cityId,
+    }
+    const payload: Record<string, unknown> = inBody
+      ? { criteria, siteId: Number(SITE_ID), apiKey }
+      : { criteria }
+
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 12_000)
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { authorization: header, 'content-type': 'application/json', accept: 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal,
+        cache: 'no-store',
+      })
+      out.push({ variant, status: res.status })
+    } catch {
+      out.push({ variant, status: 'network' })
+    } finally {
+      clearTimeout(timer)
+    }
+  }
+  return out
+}
+
 /** 오늘 기준 N일 뒤 1박 — 진단·시세 조회에 쓰는 고정 창 */
 export function nightWindow(daysAhead: number): { checkInDate: string; checkOutDate: string } {
   const start = new Date(Date.now() + daysAhead * 86_400_000)

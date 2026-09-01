@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { searchAgodaCity, nightWindow } from '@/lib/affiliate/agodaApi'
+import { searchAgodaCity, nightWindow, probeAuthVariants } from '@/lib/affiliate/agodaApi'
 import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -34,11 +34,15 @@ export async function GET() {
   const checkedAt = new Date().toISOString()
 
   if (!outcome.ok) {
+    // 문서 형식이 401이면, 근거 있는 인증 변형 3종의 HTTP 상태만 함께 보고한다.
+    // 어느 변형이 200을 내는지 확인되면 그 형식으로 고정하고 이 탐색은 제거한다.
+    const variants = outcome.reason === 'http_error' ? await probeAuthVariants({ cityId, ...window }) : null
     return NextResponse.json({
       ok: false,
       reason: outcome.reason,
       status: outcome.status ?? null,
       cityId,
+      authVariants: variants,
       checkedAt,
     })
   }
