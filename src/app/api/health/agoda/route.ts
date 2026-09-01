@@ -16,26 +16,16 @@ import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 //   missing_key            → Vercel 환경변수 AGODA_API_KEY 미설정(또는 배포 전)
 //   http_error 401/403     → 키가 틀렸거나 이 사이트에 권한이 없음
 //   network                → HTTPS 엔드포인트가 막힘 → 담당 매니저에게 HTTPS 승인 요청 필요
+//
+// ⚠️ 2026-09-01: 키의 '모양'(길이·UUID 여부)을 반환하던 keyShape 필드를 제거했다.
+//    Preview 디버깅용으로 넣었는데 프로덕션에 함께 올라가 공개 노출됐다. 키 값 자체는
+//    담기지 않았지만, 진단용 정보를 공개 엔드포인트에 남길 이유가 없다.
+//    다시 필요하면 Preview 브랜치에서만 임시로 넣고 머지하지 말 것.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const dynamic = 'force-static'
 export const revalidate = 900
 export const maxDuration = 30
-
-// 401이 났을 때 원인을 좁히기 위한 키 '모양' 진단.
-// 🔐 키 값·앞뒤 일부 문자를 포함해 **내용은 일절 노출하지 않는다.** 길이와 형식 판정만 반환한다.
-// 공식 문서의 apikey 예시는 UUID 형태(00000000-0000-0000-0000-000000000000)다.
-function describeKeyShape() {
-  const raw = process.env.AGODA_API_KEY
-  if (!raw) return { present: false }
-  const trimmed = raw.trim()
-  return {
-    present: true,
-    length: trimmed.length,
-    hasSurroundingWhitespace: raw !== trimmed,
-    looksLikeUuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(trimmed),
-  }
-}
 
 export async function GET() {
   const cityId = AGODA_CITY_IDS['japan-tokyo']
@@ -49,7 +39,6 @@ export async function GET() {
       reason: outcome.reason,
       status: outcome.status ?? null,
       cityId,
-      keyShape: describeKeyShape(),
       checkedAt,
     })
   }
