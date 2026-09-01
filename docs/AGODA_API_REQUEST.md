@@ -140,6 +140,35 @@
 문서에 `siteid`·`apikey`를 본문에도 넣으라는 문장이 있으나 **예시 본문에는 두 필드가 없어**
 필드명·위치를 알 수 없다. 근거 없는 시도 대신 담당자 확인이 필요하다.
 
+## 5-2. 원인 확정 (2026-09-01) — **error 108: Site ID 또는 API key가 유효하지 않음**
+
+담당자 회신을 기다리지 않고 진행하라는 지시에 따라, **근거 있는 인증 변형 3종**을 시험했다.
+(무작정 조합을 늘리면 계정에 401만 쌓이므로 3개로 제한)
+
+| 변형 | 근거 | 결과 |
+|---|---|---|
+| documented | 문서 그대로 `Authorization: {siteid}:{apikey}` | **401** |
+| basic | 콜론 형식은 HTTP Basic 자격증명 형태 → `Basic base64(...)` | **401** |
+| body | 문서의 "본문 값과 일치" 문장 → 최상위에 siteId·apiKey 동봉 | **401** |
+
+세 변형 모두 아고다가 **동일한 에러 본문**을 돌려줬다:
+
+```
+108: Site ID or API key is invalid or missing in the header
+```
+
+**이 메시지로 확정된 것**
+
+- ❌ **헤더 형식 문제가 아니다.** 세 형식이 같은 에러 → 형식은 더 시험할 게 없다
+- ❌ **IP 제한도 아니다.** 문서 응답표상 401은 "ApiKey not found **또는 IP 제한 위반**" 두 가지인데,
+  에러 본문이 IP가 아니라 **Site ID/API key 자체가 invalid**라고 명시했다
+  (IP 제한이었다면 Vercel 서버리스의 유동 IP 때문에 영구 401이었을 것 — 그 시나리오는 배제됨)
+- ✅ 남은 원인은 **자격증명 쌍 그 자체**다: `siteId=1968994`이 API용이 아니거나, 대시보드의 그 키가
+  Affiliate Lite API용 키가 아니다
+
+**→ 코드로 더 할 수 있는 일이 없다.** 여기서부터는 아고다가 올바른 (Site ID, API key) 쌍을 알려주거나
+계정에 API 접근을 열어줘야 한다.
+
 ### 담당자에게 보낼 후속 메시지 (그대로 복사)
 
 > Hello,
@@ -152,14 +181,17 @@
 >
 > Note the HTTPS endpoint itself is reachable — only authentication fails.
 >
-> Could you confirm:
-> 1. Is the key shown in our partner dashboard the **Affiliate Lite (Long Tail Search) API key**,
->    or is a separate API key issued for this? Ours is a 44-character non-UUID string, while the
->    v2.0 guide shows a UUID-format example.
-> 2. Is **API access activated** for site ID 1968994? If it needs to be enabled, please enable it.
-> 3. Is `Authorization: {siteid}:{apikey}` still the correct header format, and should `siteid`
->    and `apikey` also be included **in the request body**? The guide mentions this but the
->    example request bodies do not contain those fields.
+> The API returns **error 108 — "Site ID or API key is invalid or missing in the header"**.
+> We tested three header forms (`{siteid}:{apikey}`, HTTP Basic, and with the credentials also
+> in the request body); all three return the same error 108, so this is not a header-format issue.
+>
+> Could you please provide or confirm:
+> 1. The **correct Site ID and API key pair** for the Affiliate Lite API. Is the Site ID for API
+>    calls the same as our affiliate **cid 1968994**, or is a separate API Site ID issued?
+> 2. Whether the key shown in our partner dashboard is the **Affiliate Lite (Long Tail Search)
+>    API key** at all. Ours is a 44-character non-UUID string, while the v2.0 guide shows a
+>    UUID-format example.
+> 3. Whether **API access is activated** for our account — and if not, please enable it.
 >
 > Thank you.
 
