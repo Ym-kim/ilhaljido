@@ -113,10 +113,62 @@
 
 ---
 
+## 5-1. 실제 연동 시도 결과 (2026-09-01) — **401에서 막힘**
+
+운영자가 대시보드에서 키를 찾아 Vercel에 등록한 뒤, Preview에서 실제로 호출해 봤다.
+진단 라우트: `/api/health/agoda` (도쿄 cityId 5085, 1박, maxResult 5)
+
+```json
+{"ok":false,"reason":"http_error","status":401,
+ "keyShape":{"present":true,"length":44,"hasSurroundingWhitespace":false,"looksLikeUuid":false}}
+```
+
+**이 결과로 확정된 것**
+
+| 항목 | 판정 | 근거 |
+|---|---|---|
+| Vercel 환경변수 등록 | ✅ 정상 | 미설정이면 `missing_key`가 나온다 |
+| **HTTPS 엔드포인트** | ✅ **열려 있다** | 막혀 있으면 `network`(연결 실패). **매니저 HTTPS 승인 요청은 불필요해졌다** |
+| 값 오염(공백·줄바꿈) | ✅ 아님 | `hasSurroundingWhitespace: false` |
+| 인증 | ❌ **거부(401)** | 서버 도달은 했고 자격증명만 거절됨 |
+
+**키 형태**: 44자 · UUID 아님.
+공식 문서(v1.0, 2018)의 apikey 예시는 UUID 36자다. 44자는 base64로 인코딩한 32바이트 토큰의 전형적인
+길이라, **키 형식이 문서 이후에 바뀌었을 가능성**과 **API용 키가 아닐 가능성**이 둘 다 남는다.
+
+**여기서 멈춘 이유**: 인증 형식을 추측으로 바꿔가며 재시도하면 계정에 401만 쌓인다.
+문서에 `siteid`·`apikey`를 본문에도 넣으라는 문장이 있으나 **예시 본문에는 두 필드가 없어**
+필드명·위치를 알 수 없다. 근거 없는 시도 대신 담당자 확인이 필요하다.
+
+### 담당자에게 보낼 후속 메시지 (그대로 복사)
+
+> Hello,
+>
+> Following up on API access for site ID **1968994** (https://www.wakation.kr).
+>
+> We are calling `https://affiliateapi7643.agoda.com/affiliateservice/lt_v1` (City Search,
+> cityId 5085) with the header `Authorization: 1968994:<our key>` as described in the
+> Affiliate Lite API guide v2.0, and consistently receive **HTTP 401**.
+>
+> Note the HTTPS endpoint itself is reachable — only authentication fails.
+>
+> Could you confirm:
+> 1. Is the key shown in our partner dashboard the **Affiliate Lite (Long Tail Search) API key**,
+>    or is a separate API key issued for this? Ours is a 44-character non-UUID string, while the
+>    v2.0 guide shows a UUID-format example.
+> 2. Is **API access activated** for site ID 1968994? If it needs to be enabled, please enable it.
+> 3. Is `Authorization: {siteid}:{apikey}` still the correct header format, and should `siteid`
+>    and `apikey` also be included **in the request body**? The guide mentions this but the
+>    example request bodies do not contain those fields.
+>
+> Thank you.
+
 ## 6. 진행 상태
 
-- [ ] 아고다 담당자에게 위 메시지 발송 — **운영자**
-- [ ] apikey 수령
-- [ ] HTTPS 엔드포인트 승인 확인
+- [x] apikey 수령 — 운영자가 대시보드에서 확보, Vercel 환경변수 `AGODA_API_KEY` 등록 완료
+- [x] **HTTPS 엔드포인트 — 승인 요청 불필요.** 실호출로 열려 있음을 확인(2026-09-01)
+- [x] 도시 ID 매핑 — **담당자 요청 불필요.** 도시 페이지에서 33곳 자체 수집(`src/lib/affiliate/agodaCities.ts`)
+- [x] 연동 1단계 착수 — 서버 클라이언트 + 진단 라우트 (`feat/agoda-api-integration-v1`)
+- [ ] ⛔ **401 해소 — 위 5-1의 후속 메시지 발송 필요(운영자)**. 이게 풀리기 전에는 다음 단계 불가
 - [ ] rate limit·캐싱 규정 회신 확인
-- [ ] (이후) 연동 브랜치 착수
+- [ ] (이후) 도시 카드 실시간 요금 렌더
