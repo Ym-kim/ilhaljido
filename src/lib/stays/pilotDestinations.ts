@@ -28,4 +28,3 @@ export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
 export function getStayPilotDestination(id: string): StayPilotDestination | undefined {
   return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === id)
 }
-

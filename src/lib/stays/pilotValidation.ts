@@ -67,4 +67,3 @@ export function validateStayPilotRequest(payload: unknown): StayPilotValidationR
     },
   }
 }
-
