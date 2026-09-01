@@ -147,6 +147,7 @@ const LINK_LABEL: Record<string, { EN: string; JP: string }> = {
   '발리 체험 보기': { EN: 'Bali activities', JP: 'バリの体験' },
   'eSIM 구매': { EN: 'Get eSIM', JP: 'eSIM購入' },
   '전체 eSIM 보기': { EN: 'All eSIMs', JP: '全eSIMを見る' },
+  '가격 비교': { EN: 'Compare prices', JP: '料金を比較' },
 }
 
 export function localizeDestination(entry: DestinationEntry, lang: Lang): DestinationEntry {
@@ -160,12 +161,21 @@ export function localizeDestination(entry: DestinationEntry, lang: Lang): Destin
     // 2026-08-14: Trip 시티 딥링크 등 파트너 링크를 사이트 언어에 매칭(검증 패턴만)
     href: localizeOutboundHref(l.href, lang),
   }))
+  // 비교 보조 링크(아고다)도 동일 규칙으로 라벨·로케일 매칭
+  const compare: ServiceLink | undefined = entry.compare
+    ? {
+        ...entry.compare,
+        label: LINK_LABEL[entry.compare.label]?.[lang] ?? entry.compare.label,
+        href: localizeOutboundHref(entry.compare.href, lang),
+      }
+    : undefined
   return {
     ...entry,
     city,
     country: COUNTRY[entry.country]?.[lang] ?? entry.country,
     tags: entry.tags.map((t) => TAG[t]?.[lang] ?? t),
     links,
+    compare,
   }
 }
 

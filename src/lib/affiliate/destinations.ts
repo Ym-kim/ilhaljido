@@ -16,7 +16,7 @@ import type { AffiliateStatus } from './types'
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface ServiceLink {
-  provider: 'Booking.com' | 'Trip.com' | 'KKday' | 'Klook' | 'Airalo' | '인프런'
+  provider: 'Booking.com' | 'Trip.com' | 'KKday' | 'Klook' | 'Airalo' | '인프런' | 'Agoda'
   status: AffiliateStatus
   href: string
   label: string     // CTA 텍스트: "숙소 예약" | "체험 보기" | "eSIM 구매"
@@ -37,6 +37,13 @@ export interface DestinationEntry {
   photo?: string     // 목적지 실사진 URL (카드 헤더)
   tags: string[]     // 최대 2개
   links: ServiceLink[]
+  /**
+   * 가격 비교용 보조 링크 (2026-09-01, 아고다 Phase 2 · 운영자 결정 '정책 C').
+   * 대표 CTA는 links에서 뽑은 1개를 유지하고, 이 링크는 카드 하단에 작은 텍스트 링크로만 렌더한다.
+   * → 단일 CTA 원칙(2026-07-15)을 깨지 않으면서 비교 파트너 노출을 확보하는 절충안.
+   * pickPrimaryLink 대상이 아니며 hasActive 판정에도 넣지 않는다(카드 테두리 강조는 대표 CTA 기준 유지).
+   */
+  compare?: ServiceLink
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -68,6 +75,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['장기체류 특화', 'Wi-Fi 완비'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/tokyo-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -94,6 +108,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['미식 도시', '교통 편리'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/osaka-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -120,6 +141,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['한국 근거리', '라멘·포장마차'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/fukuoka-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -146,6 +174,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '베트남',
     gradient: 'from-yellow-900/25 to-[#1a1a1a]',
     tags: ['해변 코워킹', '무비자 45일'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/da-nang-vn.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -172,6 +207,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '베트남',
     gradient: 'from-yellow-900/25 to-[#1a1a1a]',
     tags: ['스타트업 허브', '카페 문화'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/ho-chi-minh-city-vn.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -199,6 +241,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '인도네시아',
     gradient: 'from-green-900/25 to-[#1a1a1a]',
     tags: ['노마드 메카', '디지털 비자'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/bali-id.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -227,6 +276,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '포르투갈',
     gradient: 'from-blue-900/25 to-[#1a1a1a]',
     tags: ['D8 비자', '유럽 게이트웨이'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/lisbon-pt.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -253,6 +309,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '국내',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
     tags: ['국내 워케이션 추천', '자연+카페'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/jeju-kr.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -279,6 +342,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '국내',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
     tags: ['서퍼 성지', '동해 뷰'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/yangyang-kr.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -333,6 +403,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['전통+카페', '조용한 몰입'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/kyoto-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -359,6 +436,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['휴양+골프', '비치 워크'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/okinawa-main-island-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -386,6 +470,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '태국',
     gradient: 'from-amber-900/25 to-[#1a1a1a]',
     tags: ['노마드 클래식', '카페 천국'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/chiang-mai-th.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -412,6 +503,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '태국',
     gradient: 'from-amber-900/25 to-[#1a1a1a]',
     tags: ['코워킹 허브', '미식 천국'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/bangkok-th.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -438,6 +536,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '베트남',
     gradient: 'from-yellow-900/25 to-[#1a1a1a]',
     tags: ['해변 리조트', '가성비'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/nha-trang-vn.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -466,6 +571,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '필리핀',
     gradient: 'from-cyan-900/25 to-[#1a1a1a]',
     tags: ['어학+워케이션', '다이빙'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/cebu-ph.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -494,6 +606,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '대만',
     gradient: 'from-emerald-900/25 to-[#1a1a1a]',
     tags: ['야시장', '한국 근거리'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/taipei-tw.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -520,6 +639,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '싱가포르',
     gradient: 'from-indigo-900/25 to-[#1a1a1a]',
     tags: ['비즈니스 허브', '크루즈 출항'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/singapore-sg.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -546,6 +672,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '국내',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
     tags: ['도심+바다', '해운대 코워킹'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/busan-kr.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -572,6 +705,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['여름 시원한 워크', '수프카레'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/sapporo-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -599,6 +739,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['항구 야경', '온천 근교'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/kobe-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -657,6 +804,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-amber-900/25 to-[#1a1a1a]',
     tags: ['전통 거리', '미식 도시'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/kanazawa-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -768,6 +922,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '호주',
     gradient: 'from-sky-900/25 to-[#1a1a1a]',
     tags: ['하버 뷰', '프리미엄 인프라'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/sydney-au.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -796,6 +957,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '호주',
     gradient: 'from-sky-900/25 to-[#1a1a1a]',
     tags: ['커피 문화', '도심 코워킹'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/melbourne-au.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -824,6 +992,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '호주',
     gradient: 'from-sky-900/25 to-[#1a1a1a]',
     tags: ['서퍼 비치', '휴양 워크'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/gold-coast-au.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -851,6 +1026,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '중국',
     gradient: 'from-rose-900/25 to-[#1a1a1a]',
     tags: ['비즈니스 허브', '와이탄 야경'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/shanghai-cn.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -877,6 +1059,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '홍콩',
     gradient: 'from-rose-900/25 to-[#1a1a1a]',
     tags: ['금융 허브', '미식 천국'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/hong-kong-hk.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -904,6 +1093,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '중국',
     gradient: 'from-rose-900/25 to-[#1a1a1a]',
     tags: ['캔톤페어', '소싱 거점'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/guangzhou-cn.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -934,6 +1130,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '국내',
     gradient: 'from-teal-900/25 to-[#1a1a1a]',
     tags: ['도심 코워킹', '카페 문화'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/seoul-kr.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -1044,6 +1247,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '태국',
     gradient: 'from-cyan-900/25 to-[#1a1a1a]',
     tags: ['해변 리조트', '휴양 워크'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/phuket-th.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -1070,6 +1280,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['미식 도시', '교통 편리'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/nagoya-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -1097,6 +1314,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '일본',
     gradient: 'from-red-900/25 to-[#1a1a1a]',
     tags: ['전통 거리', '미식 도시'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/hiroshima-jp.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -1124,6 +1348,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '포르투갈',
     gradient: 'from-blue-900/25 to-[#1a1a1a]',
     tags: ['유럽 게이트웨이', '커피 문화'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/porto-pt.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
@@ -1151,6 +1382,13 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
     country: '포르투갈',
     gradient: 'from-blue-900/25 to-[#1a1a1a]',
     tags: ['해변 뷰', 'D8 비자'],
+    compare: {
+      provider: 'Agoda',
+      status: 'active_affiliate',
+      href: 'https://www.agoda.com/ko-kr/city/faro-pt.html?cid=1968994',
+      label: '가격 비교',
+      emoji: '🔎',
+    },
     links: [
       {
         provider: 'Booking.com',
