@@ -50,9 +50,12 @@
 > Intended use: displaying live nightly rates, review scores and star ratings on our destination
 > pages, with all booking traffic sent to Agoda through our affiliate links.
 >
-> Could you also confirm:
-> - any **rate limit** on requests (the v2.0 guide does not state one), and
-> - the **caching policy** — how long we may cache a returned rate before re-querying.
+> Could you also provide / confirm:
+> - the **city ID mapping list** (the guide's City Search takes a numeric `cityId`, e.g. 9395,
+>   and we currently only have Agoda city URL slugs),
+> - any **rate limit** on requests (the v2.0 guide does not state one),
+> - the **caching policy** — how long we may cache a returned rate before re-querying, and
+> - whether a **newer version** of the Affiliate Lite API guide exists (ours is v1.0, 07 Feb 2018).
 >
 > Thank you.
 
@@ -73,6 +76,29 @@
 - rate limit (호출 빈도 제한)
 - 캐싱 허용 기간 — 가격을 얼마나 오래 저장해 두고 재사용해도 되는지
 - apikey 발급 절차·자격 요건 자체가 문서에 없음
+
+### 4-1. 문서 전문 재판독으로 추가 확인한 것 (2026-09-01)
+
+**① 등록/가입 링크는 문서에 없다.** PDF 안의 URL을 전량 추출했으나 회원가입·API 신청 페이지·지원 이메일이 **하나도 없다.**
+문서에 있는 URL은 API 엔드포인트, 예시 호텔 이미지, 예시 landingURL, 그리고 폰트·인증서 관련 마이크로소프트 URL뿐이다.
+→ **키는 파트너 대시보드에서 받는다: https://partners.agoda.com/ (로그인 후 계정/도구 영역).**
+   대시보드에 키가 이미 있다면 그게 이 API의 apikey다. 별도 신청 페이지는 존재하지 않고, 그 외 요청(HTTPS 등)은 담당 매니저 문의가 유일한 경로다.
+
+**② 지원 언어에 우리 3개 언어가 전부 있다** — 요청 본문 `language` 필드에 넣는 값:
+`ko-kr`(한국어) · `en-us`(영어) · `ja-jp`(일본어)
+그 외: fr-fr, de-de, it-it, es-es, zh-hk, zh-cn, zh-tw, el-gr, ru-ru, pt-pt, nl-nl, en-gb, en-ca, en-in, en-au, en-sg, en-za
+→ **사이트 언어 그대로 API에 넘길 수 있다.** 별도 매핑 테이블이 필요 없다.
+
+**③ ⚠️ City Search는 슬러그가 아니라 숫자 `cityId`를 쓴다.**
+문서 예시: `"cityId": 9395`
+우리가 링크용으로 검증해 둔 33개 도시 **슬러그(`tokyo-jp` 등)는 API에 쓸 수 없다.**
+→ **담당자에게 도시 ID 매핑 파일(city list / destination mapping)을 함께 요청해야 한다.** 이게 없으면 City Search를 못 쓰고 Hotel List Search(호텔 ID 기반)만 가능하다.
+
+**④ 응답의 `landingURL` 형식** — 예약 링크는 이 형태로 돌아온다:
+`https://www.agoda.com/partners/partnersearch.aspx?cid={우리cid}&hid={호텔ID}&currency=&checkin=&checkout=&NumberofAdults=&NumberofChildren=&Rooms=`
+→ 우리 cid가 박혀서 오므로 **링크를 직접 조립하지 말고 응답값을 그대로 쓰는 것이 안전**하다(수수료 유실 방지).
+
+**⑤ 문서 자체는 2018-02-07 v1.0**이다. 현행성 확인이 필요하며, 매니저에게 최신 버전 문서가 있는지 함께 물을 것.
 
 ---
 
