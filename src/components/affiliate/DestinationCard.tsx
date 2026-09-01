@@ -61,6 +61,37 @@ function PrimaryButton({ link, entry, category, locale }: { link: ServiceLink; e
   )
 }
 
+// 비교 보조 링크 — 대표 CTA 아래 작은 텍스트 링크 1줄 (2026-09-01, 아고다 Phase 2 '정책 C')
+// 버튼으로 만들지 않는다: 단일 CTA 원칙을 유지하면서 비교 파트너 노출만 확보하는 것이 목적
+function CompareLink({ link, entry, category, locale }: { link: ServiceLink; entry: DestinationEntry; category: string; locale: Lang }) {
+  const isActive = link.status === 'active_affiliate' || link.status === 'api_ready'
+
+  return (
+    <a
+      href={link.href}
+      target="_blank"
+      rel={isActive ? 'sponsored noopener noreferrer' : 'noopener noreferrer'}
+      onClick={() => trackAffiliateClick({
+        id: `${entry.id}-${link.provider.toLowerCase()}-compare`,
+        itemName: `${entry.city} · ${link.label}`,
+        provider: link.provider,
+        status: link.status,
+        sourceSection: 'destination_card',
+        ctaLabel: link.label,
+        ctaPosition: 'card_compare',
+        destination: entry.id,
+        category,
+        locale,
+      })}
+      className="mt-2 flex w-full items-center justify-center gap-1 rounded-lg px-2 py-1.5 text-[0.75rem] font-semibold text-[#64748b] transition-colors hover:text-[#0369a1] hover:underline"
+    >
+      {link.label}
+      <span className="font-bold text-[#94a3b8]">· {link.provider}</span>
+      <ArrowUpRight className="h-3 w-3" />
+    </a>
+  )
+}
+
 function pickPrimaryLink(links: ServiceLink[]): ServiceLink | null {
   if (links.length === 0) return null
   const actives = links.filter((l) => l.status === 'active_affiliate' || l.status === 'api_ready')
@@ -135,9 +166,12 @@ export function DestinationCard({ entry, category = 'travel', className = '' }: 
         </div>
       </div>
 
-      {/* 대표 파트너 단일 CTA */}
+      {/* 대표 파트너 단일 CTA + 비교 보조 링크 */}
       <div className="mt-auto p-4">
         {primary && <PrimaryButton link={primary} entry={entry} category={category} locale={lang} />}
+        {entry.compare && (
+          <CompareLink link={entry.compare} entry={entry} category={category} locale={lang} />
+        )}
       </div>
     </div>
   )

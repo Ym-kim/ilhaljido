@@ -115,6 +115,9 @@ const CHECKS: Check[] = [
   { id: 'klook:yoga-ubud', url: 'https://www.klook.com/ko/activity/23956-yoga-class-ubud-centre-bali/?aid=126848', okStatuses: [200, 403] },
   // 2026-08-31 아고다 활성화 — cid 유실 감지용 대표 감시
   { id: 'agoda:home-kr', url: 'https://www.agoda.com/ko-kr/?cid=1968994', okStatuses: [200, 403] },
+  // 도시 비교 링크 대표 1건 — 슬러그가 죽으면 302로 떨어지므로 200만 정상으로 본다
+  // (가짜 슬러그=302 판별법, 2026-09-01 33곳 실측으로 확인)
+  { id: 'agoda:city-tokyo', url: 'https://www.agoda.com/ko-kr/city/tokyo-jp.html?cid=1968994', okStatuses: [200] },
   // 2026-08-17 Klook 피드 확충 8종 대표 감시(가든스) — 나머지 7종은 동일 redirect 인프라
   {
     id: 'klook:gardens-sg',
