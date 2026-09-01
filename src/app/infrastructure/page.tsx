@@ -29,7 +29,7 @@ export default function InfrastructurePage() {
     <div className="min-h-screen bg-white">
       <section className="relative h-[55vh] flex items-end overflow-hidden dark-surface">
         <div className="absolute inset-0">
-          <Image src="/media/verified/unsplash/1497366216548-37526070297c.webp" alt="" fill priority sizes="100vw" className="object-cover" />
+          <Image src="/media/brand-models/infrastructure-model-temi-coastal-desk-v1.webp" alt="" fill priority sizes="100vw" className="object-cover object-[50%_20%]" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/10" />
         </div>
         <div className="relative w-full max-w-6xl mx-auto px-6 pb-16">

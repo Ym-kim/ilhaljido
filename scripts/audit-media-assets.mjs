@@ -85,6 +85,9 @@ const v2Assets = [
   { id: 'select-model-c-packing-flatlay-v4', file: 'select-model-c-packing-flatlay-v4.webp', width: 1440, height: 810, modelIds: ['WAK-MODEL-C'] },
   { id: 'experience-seoul-model-i-kpop-studio-v2', file: 'experience-seoul-model-i-kpop-studio-v2.webp', width: 1440, height: 1080, modelIds: ['WAK-MODEL-I'] },
   { id: 'experience-tokyo-model-d-immersive-gallery-v2', file: 'experience-tokyo-model-d-immersive-gallery-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-D'] },
+  // 운영자 커스텀 Soul 모델('테미') 컷 — 로스터(WAK-MODEL-*) 정체성이 아니므로 modelIds는 비운다.
+  // 로스터 다양성·회전 계산에 들어가지 않고, 자산 등재만 받는다.
+  { id: 'infrastructure-model-temi-coastal-desk-v1', file: 'infrastructure-model-temi-coastal-desk-v1.webp', width: 1920, height: 1080, modelIds: [] },
   { id: 'growth-model-b-urban-learning-desktop-v2', file: 'growth-model-b-urban-learning-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
   { id: 'growth-model-b-urban-learning-mobile-v2', file: 'growth-model-b-urban-learning-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-B'] },
   { id: 'programs-model-b-coastal-arrival-desktop-v3', file: 'programs-model-b-coastal-arrival-desktop-v3.webp', width: 1915, height: 821, modelIds: ['WAK-MODEL-B'] },
@@ -180,6 +183,7 @@ const v2Placements = [
   { route: 'guide-seoul', section: 'guide-lookbook-design-book', models: ['WAK-MODEL-I'], assets: assetIds('seoul-model-i-design-book-dress-v3'), source: 'src/lib/guides.ts' },
   { route: 'guide-busan', section: 'guide-lookbook-harbor-steps', models: ['WAK-MODEL-E'], assets: assetIds('busan-model-e-harbor-steps-skirt-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-jeju', section: 'guide-lookbook-photo-pause', models: ['WAK-MODEL-G'], assets: assetIds('jeju-model-g-summer-camera-skirt-v2'), source: 'src/lib/guides.ts' },
+  { route: 'infrastructure', section: 'hero', models: [], assets: assetIds('infrastructure-model-temi-coastal-desk-v1'), source: 'src/app/infrastructure/page.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
@@ -404,8 +408,13 @@ for (const relativePath of nonModelMajorSurfaces) {
   const content = await fs.readFile(path.join(root, relativePath), 'utf8')
   if (content.includes('/media/brand-models/')) errors.push(`Place/product-led surface unexpectedly uses a brand model: ${relativePath}`)
 }
+// 2026-09-01 운영자 결정: "모델 제한 풀어 — 최대한 보기 좋고 사람들이 끌리는 이미지면 된다".
+// 기존에는 비모델 주요화면 비중이 50% 미만이면 감사를 실패시켰다(사람보다 장소·상품 중심으로
+// 화면을 유지하려는 정책). 전환율을 우선하기로 하여 **실패 조건은 해제하되 측정은 유지**한다.
+// 되돌리려면 아래 상수를 0.5로 올리면 원래 정책으로 복구된다.
+const MINIMUM_NON_MODEL_SHARE = 0
 const declaredNonModelShare = nonModelMajorSurfaces.length / (nonModelMajorSurfaces.length + v2Placements.length)
-if (declaredNonModelShare < 0.5) errors.push(`Declared non-model major surface share is below 50%: ${(declaredNonModelShare * 100).toFixed(1)}%`)
+if (declaredNonModelShare < MINIMUM_NON_MODEL_SHARE) errors.push(`Declared non-model major surface share is below ${(MINIMUM_NON_MODEL_SHARE * 100).toFixed(0)}%: ${(declaredNonModelShare * 100).toFixed(1)}%`)
 
 async function collectSourceFiles(directory) {
   const entries = await fs.readdir(directory, { withFileTypes: true })
