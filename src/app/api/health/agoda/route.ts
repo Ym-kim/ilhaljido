@@ -22,6 +22,21 @@ export const dynamic = 'force-static'
 export const revalidate = 900
 export const maxDuration = 30
 
+// 401이 났을 때 원인을 좁히기 위한 키 '모양' 진단.
+// 🔐 키 값·앞뒤 일부 문자를 포함해 **내용은 일절 노출하지 않는다.** 길이와 형식 판정만 반환한다.
+// 공식 문서의 apikey 예시는 UUID 형태(00000000-0000-0000-0000-000000000000)다.
+function describeKeyShape() {
+  const raw = process.env.AGODA_API_KEY
+  if (!raw) return { present: false }
+  const trimmed = raw.trim()
+  return {
+    present: true,
+    length: trimmed.length,
+    hasSurroundingWhitespace: raw !== trimmed,
+    looksLikeUuid: /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(trimmed),
+  }
+}
+
 export async function GET() {
   const cityId = AGODA_CITY_IDS['japan-tokyo']
   const window = nightWindow(30)
@@ -34,6 +49,7 @@ export async function GET() {
       reason: outcome.reason,
       status: outcome.status ?? null,
       cityId,
+      keyShape: describeKeyShape(),
       checkedAt,
     })
   }

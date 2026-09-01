@@ -80,7 +80,8 @@ function toHotel(raw: unknown): AgodaHotel | null {
 }
 
 export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOutcome> {
-  const apiKey = process.env.AGODA_API_KEY
+  // 붙여넣기 과정에서 앞뒤 공백·줄바꿈이 딸려오는 일이 잦고, 그러면 인증이 조용히 실패한다
+  const apiKey = process.env.AGODA_API_KEY?.trim()
   if (!apiKey) return { ok: false, reason: 'missing_key' }
 
   const body = {
