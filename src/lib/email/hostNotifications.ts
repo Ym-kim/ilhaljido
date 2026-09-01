@@ -32,11 +32,18 @@ function shell(title: string, bodyHtml: string, cta?: { label: string; href: str
 </div>`
 }
 
-async function send(to: string, subject: string, html: string) {
+/**
+ * 발송 결과를 반환한다(2026-09-01 추가). 동작은 그대로 **fail-open** —
+ * 호출부는 반환값을 무시해도 되고, 실패해도 예외를 던지지 않아 검수 처리에 영향이 없다.
+ * 진단 라우트에서 실제 Resend 응답 코드를 확인하기 위해 필요했다.
+ */
+export type SendResult = { ok: boolean; skipped?: true; status?: number }
+
+async function send(to: string, subject: string, html: string): Promise<SendResult> {
   const key = process.env.RESEND_API_KEY
   if (!key) {
     console.warn('[hostNotifications] RESEND_API_KEY 미설정 — 메일 발송 스킵:', subject)
-    return
+    return { ok: false, skipped: true }
   }
   try {
     const res = await fetch('https://api.resend.com/emails', {
@@ -47,8 +54,10 @@ async function send(to: string, subject: string, html: string) {
     if (!res.ok) {
       console.error('[hostNotifications] Resend 발송 실패', res.status, await res.text().catch(() => ''))
     }
+    return { ok: res.ok, status: res.status }
   } catch (e) {
     console.error('[hostNotifications] Resend 발송 예외', e)
+    return { ok: false }
   }
 }
 
@@ -57,7 +66,7 @@ export async function sendHostApprovedEmail(to: string, displayName: string) {
     ${esc(displayName)}님, 호스트 등록이 <strong>승인</strong>되었습니다.<br />
     이제 대시보드에서 숙소 리스팅을 등록하실 수 있어요. 등록하신 리스팅은 검수 후 와케이션에 공개됩니다.
   </p>`
-  await send(to, '[Wakation] 호스트 등록이 승인되었습니다', shell('호스트 승인 완료', body, { label: '리스팅 등록하러 가기', href: `${SITE}/host/dashboard` }))
+  return send(to, '[Wakation] 호스트 등록이 승인되었습니다', shell('호스트 승인 완료', body, { label: '리스팅 등록하러 가기', href: `${SITE}/host/dashboard` }))
 }
 
 export async function sendListingApprovedEmail(to: string, displayName: string, listingTitle: string, slug: string) {
@@ -69,7 +78,7 @@ export async function sendListingApprovedEmail(to: string, displayName: string, 
     공개 주소: <a href="${url}" style="color:#0284c7;word-break:break-all;">${url}</a><br />
     예약·문의는 리스팅에 연결된 에어비앤비 페이지에서 진행됩니다.
   </p>`
-  await send(to, '[Wakation] 리스팅이 공개되었습니다', shell('리스팅 공개 완료', body, { label: '내 리스팅 보기', href: url }))
+  return send(to, '[Wakation] 리스팅이 공개되었습니다', shell('리스팅 공개 완료', body, { label: '내 리스팅 보기', href: url }))
 }
 
 export async function sendListingRejectedEmail(to: string, displayName: string, listingTitle: string, memo?: string) {
@@ -80,5 +89,5 @@ export async function sendListingRejectedEmail(to: string, displayName: string, 
   <p style="margin:0 0 24px;font-size:13px;line-height:1.7;color:#64748b;">
     대시보드에서 내용을 수정해 다시 제출하시면 재검수해 드립니다.
   </p>`
-  await send(to, '[Wakation] 리스팅 보완 요청 안내', shell('리스팅 보완 요청', body, { label: '대시보드에서 수정하기', href: `${SITE}/host/dashboard` }))
+  return send(to, '[Wakation] 리스팅 보완 요청 안내', shell('리스팅 보완 요청', body, { label: '대시보드에서 수정하기', href: `${SITE}/host/dashboard` }))
 }
