@@ -15,6 +15,7 @@ import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 //   ok:true                → 키·엔드포인트 정상. 연동 진행 가능
 //   missing_site_id        → Vercel 환경변수 AGODA_SITE_ID 미설정(또는 배포 전)
 //   missing_key            → Vercel 환경변수 AGODA_API_KEY 미설정(또는 배포 전)
+//   configuration_error    → 완성형 키의 Site ID prefix가 현재 설정과 불일치
 //   http_error 401/403     → 자격증명·계정 API 권한·IP 허용목록 확인 필요
 //   network                → HTTPS 엔드포인트가 막힘 → 담당 매니저에게 HTTPS 승인 요청 필요
 //

@@ -12,6 +12,8 @@ const files = {
   search: read('src/components/affiliate/DestinationSearch.tsx'),
   home: read('src/app/page.tsx'),
   agodaApi: read('src/lib/affiliate/agodaApi.ts'),
+  agodaAuth: read('src/lib/affiliate/agodaAuth.ts'),
+  agodaAuthCore: read('src/lib/affiliate/agodaAuthCore.ts'),
 }
 
 const requiredEvents = [
@@ -42,7 +44,10 @@ const checks = [
   ['Agoda API reads the dedicated Site ID', files.agodaApi.includes('process.env.AGODA_SITE_ID')],
   ['Agoda API reads the primary API key', files.agodaApi.includes('process.env.AGODA_API_KEY')],
   ['Agoda API never treats the second key as Site ID', !files.agodaApi.includes('AGODA_API_KEY_2')],
-  ['Agoda Authorization uses Site ID and API key', files.agodaApi.includes('Authorization: `${siteId}:${apiKey}`')],
+  ['Agoda auth helper remains server-only', files.agodaAuth.startsWith("import 'server-only'")],
+  ['Agoda Authorization uses the normalized value', files.agodaApi.includes('Authorization: auth.authorization')],
+  ['Agoda complete Authorization is not prefixed twice', files.agodaAuthCore.includes('storedKey.startsWith(expectedPrefix)') && files.agodaAuthCore.includes('authorization: storedKey')],
+  ['Agoda mismatched Site ID fails closed', files.agodaAuthCore.includes("reason: 'configuration_error'")],
   ['search form emits PII-safe Stay events', files.search.includes("trackStayEvent('stay_search'") && files.search.includes("trackStayEvent('affiliate_redirect'")],
   ['home hero emits PII-safe Stay events', files.home.includes("trackStayEvent('stay_search'") && files.home.includes("trackStayEvent('affiliate_redirect'")],
   ['free-form destination is not a Stay analytics field', !files.analytics.includes('destination: input.') && !files.analytics.includes('destination_text')],
