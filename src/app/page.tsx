@@ -31,7 +31,10 @@ import { ReviewRail } from '@/components/home/ReviewRail'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
 import { HomeSeasonalHeroMedia } from '@/components/home/HomeSeasonalHeroMedia'
 import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
-import { buildBookingStaySearchHref, getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
+import { getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
+import { trackStayEvent } from '@/lib/stays/analytics'
+import { resolveStaySearchPlan } from '@/lib/stays/providerRegistry'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
 const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
@@ -164,19 +167,46 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       return
     }
     setHeroSearchError(null)
+    const plan = resolveStaySearchPlan({
+      destination: q,
+      destinationId: heroDest?.anchor,
+      checkin,
+      checkout,
+      locale: lang,
+    })
+    if (plan.mode === 'unavailable') return
+    const outcome = plan.fallbackFrom ? 'fallback' : 'redirect'
+    trackStayEvent('stay_search', {
+      locale: lang,
+      sourceSection: 'home_hero_stay_search',
+      provider: plan.redirect.provider,
+      destinationId: heroDest?.anchor,
+      capability: 'search_redirect',
+      datesSupplied: Boolean(checkin && checkout),
+      outcome,
+    })
+    trackStayEvent('affiliate_redirect', {
+      locale: lang,
+      sourceSection: 'home_hero_stay_search',
+      provider: plan.redirect.provider,
+      destinationId: heroDest?.anchor,
+      capability: 'search_redirect',
+      datesSupplied: Boolean(checkin && checkout),
+      outcome,
+    })
     trackAffiliateClick({
-      provider: 'Booking.com',
+      provider: plan.redirect.providerLabel,
       status: 'active_affiliate',
       id: 'hero-search',
-      itemName: q,
+      itemName: 'stay_search',
       sourceSection: 'home_hero_stay_search',
       ctaLabel: tr('h3_search_go'),
       ctaPosition: 'hero',
-      destination: q,
+      destination: heroDest?.anchor ?? 'custom_search',
       category: 'hotel',
       locale: lang,
     })
-    window.open(buildBookingStaySearchHref({ destination: q, checkin, checkout }), '_blank', 'noopener,noreferrer')
+    window.open(localizeOutboundHref(plan.redirect.href, lang), '_blank', 'noopener,noreferrer')
   }
   const recruitingPrograms = getDomesticCurrent(lang)
   const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
@@ -272,7 +302,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                   type="text"
                   name="destination"
                   value={heroQuery}
-                  onChange={(e) => setHeroQuery(e.target.value)}
+                  onChange={(e) => { setHeroQuery(e.target.value); setHeroDest(null); setHeroSearchError(null) }}
                   placeholder={tr('h3_search_ph')}
                   aria-label={tr('h3_search_ph')}
                   className="flex-1 min-w-0 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
