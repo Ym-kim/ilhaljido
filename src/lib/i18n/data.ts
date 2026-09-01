@@ -1021,7 +1021,8 @@ const SUPPORT_PROGRAMS: SupportProgram[] = [
     status: 'check',
     deadline: loc('시군별 개별 공고 — 보령 하반기 여행 9.18~11.30 (접수기간 공고 확인)', 'Each county posts separately — Boryeong 2H travel Sep 18–Nov 30 (check application dates)', '市郡別に個別公告 — 保寧の下半期は旅行9/18〜11/30（受付期間は公告で確認）'),
     conditions: loc(['충남 외 거주 성인', '시군별 정원제'], ['Non-Chungnam adults', 'Quota per county'], ['忠南外居住の成人']),
-    href: 'https://tour.chungnam.go.kr',
+    // 도 관광 첫 화면(tour.chungnam.go.kr)에는 한달살기가 안 나온다 — 8개 시군 '신청하러 가기'가 모인 이 페이지가 실제 진입점
+    href: 'https://tour.chungnam.go.kr/prog/bbsArticle/BBSMSTR_000000000200/list.do?kind=a5',
   },
   {
     id: 'ulsan-ucation',
