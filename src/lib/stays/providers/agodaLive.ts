@@ -1,0 +1,91 @@
+import 'server-only'
+
+import { searchAgodaCity } from '@/lib/affiliate/agodaApi'
+import type { AgodaHotel, AgodaSearchOutcome } from '@/lib/affiliate/agodaApi'
+import type { StayLiveSearchFailureReason, StaySearchRequest, StaySearchResult } from '@/lib/stays/domain'
+import { getStayPilotDestination } from '@/lib/stays/pilotDestinations'
+
+export type StayAdapterOutcome =
+  | { ok: true; results: StaySearchResult[]; latencyMs: number }
+  | { ok: false; reason: StayLiveSearchFailureReason; latencyMs: number }
+
+function safeHttpsUrl(value: string | undefined, agodaOnly = false): string | undefined {
+  if (!value) return undefined
+  try {
+    const url = new URL(value)
+    if (url.protocol !== 'https:') return undefined
+    if (agodaOnly && url.hostname !== 'agoda.com' && !url.hostname.endsWith('.agoda.com')) return undefined
+    return value
+  } catch {
+    return undefined
+  }
+}
+
+function safeMetric(value: number | undefined, min: number, max: number): number | undefined {
+  return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max ? value : undefined
+}
+
+function toStayResult(hotel: AgodaHotel): StaySearchResult | null {
+  const bookingHref = safeHttpsUrl(hotel.landingURL, true)
+  if (!bookingHref || !Number.isFinite(hotel.dailyRate) || hotel.dailyRate < 0) return null
+
+  const crossedOutAmount = typeof hotel.crossedOutRate === 'number'
+    && Number.isFinite(hotel.crossedOutRate)
+    && hotel.crossedOutRate > 0
+    ? hotel.crossedOutRate
+    : undefined
+
+  const amenities = hotel.freeWifi === true || hotel.includeBreakfast === true
+    ? { freeWifi: hotel.freeWifi === true || undefined, breakfastIncluded: hotel.includeBreakfast === true || undefined }
+    : undefined
+
+  return {
+    provider: 'agoda',
+    propertyId: String(hotel.hotelId),
+    name: hotel.hotelName.slice(0, 200),
+    bookingHref,
+    imageUrl: safeHttpsUrl(hotel.imageURL),
+    starRating: safeMetric(hotel.starRating, 0, 5),
+    reviewScore: safeMetric(hotel.reviewScore, 0, 10),
+    rate: {
+      amount: hotel.dailyRate,
+      currency: hotel.currency.slice(0, 8),
+      crossedOutAmount,
+      discountPercentage: safeMetric(hotel.discountPercentage, 0, 100),
+    },
+    amenities,
+  }
+}
+
+function failureReason(outcome: Extract<AgodaSearchOutcome, { ok: false }>): StayLiveSearchFailureReason {
+  if (outcome.reason === 'missing_site_id' || outcome.reason === 'missing_key' || outcome.reason === 'configuration_error') {
+    return 'configuration_error'
+  }
+  return outcome.reason
+}
+
+export async function searchAgodaStays(request: StaySearchRequest): Promise<StayAdapterOutcome> {
+  const startedAt = performance.now()
+  const destination = request.destinationId ? getStayPilotDestination(request.destinationId) : undefined
+  if (!destination || !request.checkin || !request.checkout) {
+    return { ok: false, reason: 'configuration_error', latencyMs: Math.round(performance.now() - startedAt) }
+  }
+
+  const outcome = await searchAgodaCity({
+    cityId: destination.cityId,
+    checkInDate: request.checkin,
+    checkOutDate: request.checkout,
+    language: request.locale === 'KO' ? 'ko-kr' : request.locale === 'JP' ? 'ja-jp' : 'en-us',
+    currency: request.locale === 'KO' ? 'KRW' : request.locale === 'JP' ? 'JPY' : 'USD',
+    maxResult: 8,
+    adults: request.adults,
+    children: request.children,
+  })
+  const latencyMs = Math.round(performance.now() - startedAt)
+  if (!outcome.ok) return { ok: false, reason: failureReason(outcome), latencyMs }
+
+  const results = outcome.hotels.map(toStayResult).filter((hotel): hotel is StaySearchResult => hotel !== null)
+  return results.length > 0
+    ? { ok: true, results, latencyMs }
+    : { ok: false, reason: 'empty_result', latencyMs }
+}

@@ -25,6 +25,16 @@ export function isStayCapabilityActive(providerId: StayProviderId, capability: S
   return getStayProvider(providerId).capabilities[capability].status === 'active'
 }
 
+type RedirectOnlySearchPlan = Exclude<StaySearchPlan, { mode: 'live' }>
+
+export function resolveStaySearchPlan(
+  request: StaySearchRequest,
+  options?: { preferredProvider?: StayProviderId; requestedCapability?: 'search_redirect' },
+): RedirectOnlySearchPlan
+export function resolveStaySearchPlan(
+  request: StaySearchRequest,
+  options: { preferredProvider?: StayProviderId; requestedCapability: 'live_search' },
+): StaySearchPlan
 export function resolveStaySearchPlan(
   request: StaySearchRequest,
   options: { preferredProvider?: StayProviderId; requestedCapability?: 'search_redirect' | 'live_search' } = {},
@@ -32,6 +42,14 @@ export function resolveStaySearchPlan(
   const requestedProvider = options.preferredProvider ?? 'booking'
   const requestedCapability = options.requestedCapability ?? 'search_redirect'
   const capability = getStayProvider(requestedProvider).capabilities[requestedCapability]
+
+  if (requestedCapability === 'live_search' && capability.status === 'active') {
+    return {
+      mode: 'live',
+      requestedProvider,
+      capability: 'live_search',
+    }
+  }
 
   if (requestedProvider === 'booking' && requestedCapability === 'search_redirect' && capability.status === 'active') {
     return {
@@ -41,8 +59,7 @@ export function resolveStaySearchPlan(
     }
   }
 
-  // Live Agoda results stay dark until the API health check is genuinely healthy.
-  // The existing Booking redirect is the only generic search adapter currently verified end-to-end.
+  // Any unavailable live provider fails over to the verified Booking redirect.
   if (isStayCapabilityActive('booking', 'search_redirect')) {
     return {
       mode: 'redirect',

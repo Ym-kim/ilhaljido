@@ -45,7 +45,54 @@ export type StaySearchRedirect = {
   rel: 'sponsored noopener noreferrer'
 }
 
+export type StayRate = {
+  amount: number
+  currency: string
+  crossedOutAmount?: number
+  discountPercentage?: number
+}
+
+export type StayAmenities = {
+  freeWifi?: boolean
+  breakfastIncluded?: boolean
+}
+
+/** Wakation-owned research only. Provider data must never populate these fields. */
+export type StayIntelligence = {
+  workNote?: string
+  longStayNote?: string
+  access?: string
+  verifiedAt?: string
+}
+
+export type StaySearchResult = {
+  provider: StayProviderId
+  propertyId: string
+  name: string
+  bookingHref: string
+  imageUrl?: string
+  starRating?: number
+  reviewScore?: number
+  rate: StayRate
+  amenities?: StayAmenities
+  intelligence?: StayIntelligence
+}
+
+export type StayLiveSearchFailureReason =
+  | 'configuration_error'
+  | 'timeout'
+  | 'network'
+  | 'http_error'
+  | 'bad_payload'
+  | 'empty_result'
+  | 'adapter_unavailable'
+
 export type StaySearchPlan =
+  | {
+      mode: 'live'
+      requestedProvider: StayProviderId
+      capability: 'live_search'
+    }
   | {
       mode: 'redirect'
       requestedProvider: StayProviderId
