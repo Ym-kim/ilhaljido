@@ -22,6 +22,24 @@ function safeHttpsUrl(value: string | undefined, agodaOnly = false): string | un
   }
 }
 
+function safeProviderImageUrl(value: string | undefined): string | undefined {
+  if (!value) return undefined
+  try {
+    const url = new URL(value)
+    const trustedHost = url.hostname === 'agoda.net'
+      || url.hostname.endsWith('.agoda.net')
+      || url.hostname === 'agoda.com'
+      || url.hostname.endsWith('.agoda.com')
+    if (!trustedHost || (url.protocol !== 'https:' && url.protocol !== 'http:')) return undefined
+    // Affiliate Lite can still return legacy http://pix*.agoda.net image URLs.
+    // Upgrade only Agoda-owned hosts; never proxy or rewrite the booking URL.
+    url.protocol = 'https:'
+    return url.toString()
+  } catch {
+    return undefined
+  }
+}
+
 function safeMetric(value: number | undefined, min: number, max: number): number | undefined {
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max ? value : undefined
 }
@@ -55,7 +73,7 @@ function toStayResult(hotel: AgodaHotel, request: StaySearchRequest): StaySearch
     propertyId,
     name: hotel.hotelName.slice(0, 200),
     bookingHref,
-    imageUrl: safeHttpsUrl(hotel.imageURL),
+    imageUrl: safeProviderImageUrl(hotel.imageURL),
     starRating: safeMetric(hotel.starRating, 0, 5),
     reviewScore: safeMetric(hotel.reviewScore, 0, 10),
     rate: {

@@ -39,6 +39,8 @@ const checks = [
   ['Booking fallback preserves affiliate ID and guests', files.booking.includes("aid: '7854081'") && files.booking.includes('group_adults') && files.booking.includes('group_children')],
   ['Booking fallback preserves the active site language', files.bookingProvider.includes('localizeOutboundHref(href, request.locale)')],
   ['Landing URL remains provider-returned', files.adapter.includes('hotel.landingURL') && !files.adapter.includes('URLSearchParams')],
+  ['Legacy Agoda image URLs are upgraded only on Agoda-owned hosts', files.adapter.includes('safeProviderImageUrl') && files.adapter.includes("url.hostname.endsWith('.agoda.net')") && files.adapter.includes("url.hostname.endsWith('.agoda.com')") && files.adapter.includes("url.protocol = 'https:'")],
+  ['Image fallback is visually complete without impersonating a hotel photo', files.view.includes('DESTINATION_VISUALS') && files.view.includes('result.imageUrl ? c.actualImage : c.provider') && files.view.includes('aspect-[4/3]')],
   ['No API secret enters public pilot modules', !/AGODA_API_KEY|Authorization/.test(`${files.api}\n${files.view}\n${files.destinations}`)],
   ['KO EN JA routes are noindex', [files.ko, files.en, files.ja].every((source) => source.includes('index: false') && source.includes('follow: false'))],
   ['Exact pilot events are emitted', ['stay_search', 'stay_result_view', 'stay_property_click', 'stay_booking_click'].every((event) => files.view.includes(`'${event}'`))],

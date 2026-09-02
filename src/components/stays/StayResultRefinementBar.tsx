@@ -69,12 +69,15 @@ export function StayResultRefinementBar({
   ]
 
   return (
-    <div className="mb-6 rounded-[1.5rem] border border-[#d5dfdf] bg-white p-4 shadow-[0_12px_35px_rgba(8,43,56,0.06)] sm:p-5">
-      <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+    <div className="mb-7 border-y border-[#d9dfdc] py-4 sm:py-5">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(15rem,17rem)] lg:items-end">
         <div className="min-w-0 flex-1">
-          <div className="mb-2 flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#49616b]">
+          <div className="mb-2.5 flex items-center justify-between gap-3">
+            <p className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#49616b]">
             <SlidersHorizontal className="h-4 w-4 text-[#078db6]" aria-hidden="true" />
             {copy.filter}
+            </p>
+            <p className="text-xs font-semibold text-[#647983]" aria-live="polite">{copy.visible(visibleCount, totalCount)}</p>
           </div>
           <div className="flex flex-wrap gap-2">
             {filterOptions.filter(({ key }) => availability[key]).map(({ key, label }) => (
@@ -91,12 +94,12 @@ export function StayResultRefinementBar({
           </div>
         </div>
 
-        <label className="block min-w-0 lg:w-64">
+        <label className="block min-w-0">
           <span className="mb-2 block text-xs font-black uppercase tracking-[0.12em] text-[#49616b]">{copy.sort}</span>
           <select
             value={sort}
             onChange={(event) => onSortChange(event.target.value as StayResultSort)}
-            className="min-h-11 w-full rounded-full border border-[#cdd9dc] bg-white px-4 text-sm font-bold text-[#183744] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]"
+            className="min-h-11 w-full rounded-xl border border-[#cdd9dc] bg-white px-4 text-sm font-bold text-[#183744] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]"
           >
             <option value="provider_order">{copy.providerOrder}</option>
             <option value="rate_asc">{copy.rateAsc}</option>
@@ -105,14 +108,11 @@ export function StayResultRefinementBar({
         </label>
       </div>
 
-      <div className="mt-4 flex min-h-11 items-center justify-between gap-3 border-t border-[#e6ecee] pt-3">
-        <p className="text-xs font-semibold text-[#647983]" aria-live="polite">{copy.visible(visibleCount, totalCount)}</p>
-        {hasRefinement ? (
-          <button type="button" onClick={onReset} className="inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-xs font-bold text-[#087c9e] hover:bg-[#eef8fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
-            <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />{copy.reset}
-          </button>
-        ) : null}
-      </div>
+      {hasRefinement ? (
+        <button type="button" onClick={onReset} className="mt-3 inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-xs font-bold text-[#087c9e] hover:bg-[#eef8fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
+          <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />{copy.reset}
+        </button>
+      ) : null}
     </div>
   )
 }
