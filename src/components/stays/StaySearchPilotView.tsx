@@ -90,10 +90,24 @@ const COPY = {
   },
 } satisfies Record<Lang, Record<string, string>>
 
-const DESTINATION_VISUALS: Record<string, string> = {
-  'japan-fukuoka': '/media/destinations/fukuoka-editorial-v1.webp',
-  'japan-osaka': '/media/destinations/osaka-editorial-v1.webp',
-  'japan-tokyo': '/media/destinations/tokyo-editorial-v1.webp',
+const DESTINATION_VISUALS: Record<string, string[]> = {
+  'japan-fukuoka': [
+    '/media/destinations/fukuoka-editorial-v1.webp',
+    '/media/destinations/fukuoka-after-work-riverside-v1.webp',
+    '/media/brand-models/fukuoka-model-h-cafe-work-v1.webp',
+    '/media/brand-models/fukuoka-model-h-market-dress-v2.webp',
+  ],
+  'japan-osaka': [
+    '/media/destinations/osaka-editorial-v1.webp',
+    '/media/destinations/osaka-morning-food-lane-v1.webp',
+    '/media/brand-models/osaka-model-j-after-work-gallery-v1.webp',
+  ],
+  'japan-tokyo': [
+    '/media/destinations/tokyo-editorial-v1.webp',
+    '/media/trip-sets/tokyo-workation-editorial-v2.webp',
+    '/media/brand-models/tokyo-model-b-record-shop-v2.webp',
+    '/media/brand-models/experience-tokyo-model-d-immersive-gallery-v2.webp',
+  ],
 }
 
 function localeCode(lang: Lang): string {
@@ -114,7 +128,7 @@ function ResultCard({
   lang,
   destinationId,
   destinationLabel,
-  destinationImage,
+  destinationImages,
   sourceSection,
 }: {
   result: StaySearchResult
@@ -122,10 +136,11 @@ function ResultCard({
   lang: Lang
   destinationId: string
   destinationLabel: string
-  destinationImage: string
+  destinationImages: string[]
   sourceSection: string
 }) {
   const c = COPY[lang]
+  const destinationImage = destinationImages[index % destinationImages.length]
   const positiveDiscount = typeof result.rate.discountPercentage === 'number' && result.rate.discountPercentage > 0
     ? result.rate.discountPercentage
     : null
@@ -184,13 +199,13 @@ function ResultCard({
           {typeof result.reviewScore === 'number' ? <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-sm font-black text-[#0a4054] shadow-lg">{result.reviewScore.toFixed(1)}</span> : null}
         </div>
         <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4 text-white">
-          <span className="text-[0.68rem] font-bold text-white/78">{result.imageUrl ? c.actualImage : c.provider}</span>
-          {typeof result.starRating === 'number' ? <span className="text-xs font-black">{result.starRating.toFixed(1)} ★</span> : null}
+          {result.imageUrl ? <span className="text-[0.68rem] font-bold text-white/78">{c.actualImage}</span> : null}
+          {typeof result.starRating === 'number' ? <span className="ml-auto text-xs font-black">{result.starRating.toFixed(1)} ★</span> : null}
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
         <p className="text-[0.66rem] font-black uppercase tracking-[0.14em] text-[#1682a4]">{c.provider}</p>
-        <h2 className="mt-2 line-clamp-2 min-h-[3.25rem] break-words text-[1.08rem] font-black leading-[1.45] text-[#172a36]">{result.name}</h2>
+        <h2 className="mt-2 line-clamp-2 h-[3.25rem] overflow-hidden break-words text-[1.08rem] font-black leading-[1.45] text-[#172a36]">{result.name}</h2>
         <div className="mt-3 flex min-h-8 flex-wrap content-start gap-2 text-[0.7rem] font-bold text-[#31505e]">
           {result.amenities?.freeWifi ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Wifi className="h-3.5 w-3.5" />{c.wifi}</span> : null}
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
@@ -275,7 +290,8 @@ export function StaySearchPilotView({
   const autoSearchStarted = useRef(false)
   const activeDestination = STAY_PILOT_DESTINATIONS.find((destination) => destination.id === destinationId) ?? STAY_PILOT_DESTINATIONS[0]
   const activeDestinationLabel = activeDestination.label[lang]
-  const activeDestinationImage = DESTINATION_VISUALS[activeDestination.id]
+  const activeDestinationImages = DESTINATION_VISUALS[activeDestination.id]
+  const activeDestinationImage = activeDestinationImages[0]
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
   const resultSourceSection = sourceSection === 'home_hero_stay_search'
     ? 'home_hero_stay_results'
@@ -428,7 +444,7 @@ export function StaySearchPilotView({
         <div className="mx-auto max-w-7xl">
           <form onSubmit={submit} className="relative -mt-14 rounded-[var(--wak-radius-editorial)] border border-[#d8e0df] bg-white p-5 shadow-[0_22px_64px_rgba(8,38,52,0.14)] sm:p-6 lg:-mt-16">
             <div className="grid grid-cols-2 gap-3 lg:grid-cols-[minmax(12rem,1.2fr)_minmax(9.5rem,1fr)_minmax(9.5rem,1fr)_minmax(6.5rem,.55fr)_minmax(6.5rem,.55fr)_auto] lg:items-end">
-              <label className="block">
+              <label className="col-span-2 block lg:col-span-1">
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.destination}</span>
                 <span className="relative block"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6c7f86]" /><select value={destinationId} onChange={(event) => setDestinationId(event.target.value)} className="min-h-12 w-full rounded-xl border border-[#c8d5d8] bg-white pl-10 pr-4 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
                   {STAY_PILOT_DESTINATIONS.map((destination) => <option key={destination.id} value={destination.id}>{destination.label[lang]}</option>)}
@@ -478,7 +494,7 @@ export function StaySearchPilotView({
                 />
                 {refinedResults.length > 0 ? (
                   <div className="wak-card-grid grid auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
-                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} destinationLabel={activeDestinationLabel} destinationImage={activeDestinationImage} sourceSection={resultSourceSection} />)}
+                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} destinationLabel={activeDestinationLabel} destinationImages={activeDestinationImages} sourceSection={resultSourceSection} />)}
                   </div>
                 ) : (
                   <div className="rounded-[1.75rem] border border-dashed border-[#b9cacc] bg-white px-6 py-12 text-center">
