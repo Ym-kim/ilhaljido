@@ -26,7 +26,10 @@ export function TripMatchHomeCta({ forceLang }: { forceLang?: Lang }) {
   const href = lang === 'JP' ? '/ja/trip-match' : lang === 'EN' ? '/en/trip-match' : '/trip-match'
 
   return (
-    <section className="border-b border-[#dbe4e3] bg-[#edf5f4] px-5 py-7 sm:px-8 md:py-9">
+    <section
+      className="border-b border-[#dbe4e3] bg-[#edf5f4] px-5 py-7 sm:px-8 md:py-9"
+      data-home-secondary-action="trip-match"
+    >
       <div className="mx-auto flex max-w-6xl flex-col gap-5 rounded-[1.6rem] border border-[#cddcdb] bg-white px-5 py-6 shadow-[0_12px_36px_rgba(24,67,78,.06)] sm:flex-row sm:items-center sm:justify-between sm:px-7">
         <div className="min-w-0">
           <span className="block text-[0.65rem] font-extrabold tracking-[0.18em] text-[#317b98]">{COPY.eyebrow[lang]}</span>

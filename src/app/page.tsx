@@ -230,8 +230,12 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
   return (
     <div className="home-performance-surface min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
 
-      {/* ── 히어로 — 목적지 결정 → 예약/프로그램의 두 갈래 전환 구조 ── */}
-      <section className="relative min-h-[94svh] flex items-center overflow-hidden dark-surface pt-24 pb-10 md:pt-28 md:pb-14" data-season="late-summer-early-autumn-2026">
+      {/* ── 히어로 — 목적지·날짜 검색을 유일한 주 행동으로 둔다 ── */}
+      <section
+        className="relative flex min-h-[92svh] items-center overflow-hidden dark-surface pt-24 pb-10 md:min-h-[94svh] md:pt-28 md:pb-14"
+        data-season="late-summer-early-autumn-2026"
+        data-home-primary-action="stay-search"
+      >
         <div className="absolute inset-0">
           {/* Next 16 art direction: mobile/desktop 별도 소스로 얼굴 crop과 LCP 전송량을 제어한다. */}
           <HomeSeasonalHeroMedia alt={HOME_HERO_ALT[lang]} lang={lang} />
@@ -362,38 +366,19 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
                 </button>
               ))}
             </div>
-            <div className="h-px bg-white/10 my-4" />
-            <div className="grid grid-cols-2 gap-2.5">
-              <Link
-                href={localizeHref(heroDest ? `/select/hotel#${heroDest.anchor}` : '/select/hotel', lang)}
-                onClick={() => trackEvent('hero_cta_click', { cta: 'stay', dest: heroDest?.anchor ?? 'none', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
-                className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-2xl bg-brand-mid px-3 py-3.5 text-center text-xs font-bold leading-tight text-white shadow-[0_6px_24px_rgba(2,132,199,0.45)] transition-all hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:gap-2 sm:px-4 sm:text-sm"
-              >
-                <BedDouble className="h-4 w-4 shrink-0" strokeWidth={ICON_STROKE} />
-                {tr('h3_cta_stay')}
-              </Link>
-              <Link
-                href={localizeHref('/programs', lang)}
-                onClick={() => trackEvent('hero_cta_click', { cta: 'programs', assetId: HOME_HERO_ASSET.id, modelIds: HOME_HERO_ASSET.modelIds.join(',') })}
-                className="inline-flex min-w-0 items-center justify-center gap-1.5 rounded-2xl border border-white/18 bg-white/8 px-3 py-3 text-center text-xs font-bold leading-tight text-white/90 transition-all hover:bg-white/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:gap-2 sm:px-4 sm:text-sm"
-              >
-                {tr('h3_cta_programs')}
-                <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={ICON_STROKE} />
-              </Link>
-            </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ── 프로모 티커 — 제휴 상품 롤링 배너 (호버 시 정지) ── */}
-      <PromoTicker />
 
       {/* ── 국가 지정 노출: 일본 접속자 전용 컨텍스트 배너 (그 외 국가엔 미노출) ── */}
       <GeoJapanBanner />
 
       {/* 한 번의 명확한 진입점 — 기존 Mood·Duration을 뒤집지 않고 매칭 경험으로 연결 */}
       <TripMatchHomeCta forceLang={forceLang} />
+
+      {/* ── 프로모 티커 — 검색·매칭 진입 뒤 실상품으로 연결해 첫 화면의 광고성 소음을 줄인다 ── */}
+      <PromoTicker />
 
       {/* 입문 동선 — KO·JA는 국내 3곳, EN은 한국·일본 4곳을 해외 탐색보다 먼저 제안 */}
       <DomesticOnboarding lang={lang} />

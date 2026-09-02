@@ -177,7 +177,10 @@ export function PromoTicker() {
   }
 
   return (
-    <section className="overflow-hidden border-y border-[#d3e2e3] bg-[linear-gradient(105deg,#e6f1f0_0%,#edf5f4_45%,#e8f1f3_100%)] py-2 sm:py-3">
+    <section
+      className="overflow-hidden border-y border-[#d3e2e3] bg-[linear-gradient(105deg,#e6f1f0_0%,#edf5f4_45%,#e8f1f3_100%)] py-2 sm:py-3"
+      data-home-monetization-after-intent="true"
+    >
       <div className="mx-auto flex max-w-[1920px] items-stretch gap-2 overflow-hidden px-2 sm:gap-3 sm:px-3">
         <div className="relative z-10 hidden w-[218px] shrink-0 items-center justify-between rounded-[1.15rem] bg-[linear-gradient(135deg,#092f42,#0b4b5e)] px-5 text-white shadow-[0_10px_28px_rgba(8,47,73,0.16)] lg:flex">
           <span className="min-w-0">
