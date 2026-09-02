@@ -506,8 +506,8 @@ export function StaySearchPilotView({
       <section className="px-5 pb-14 sm:px-8 lg:pb-20">
         <div className="mx-auto max-w-7xl">
           <form onSubmit={submit} className="relative -mt-14 rounded-[var(--wak-radius-editorial)] border border-[#d8e0df] bg-white p-5 shadow-[0_22px_64px_rgba(8,38,52,0.14)] sm:p-6 lg:-mt-16">
-            <div className="grid grid-cols-2 gap-3 lg:grid-cols-[minmax(12rem,1.2fr)_minmax(9.5rem,1fr)_minmax(9.5rem,1fr)_minmax(6.5rem,.55fr)_minmax(6.5rem,.55fr)_auto] lg:items-end">
-              <label className="col-span-2 block lg:col-span-1">
+            <div className="grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 lg:grid-cols-[minmax(12rem,1.2fr)_minmax(9.5rem,1fr)_minmax(9.5rem,1fr)_minmax(6.5rem,.55fr)_minmax(6.5rem,.55fr)_auto] lg:items-end">
+              <label className="block min-[360px]:col-span-2 lg:col-span-1">
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.destination}</span>
                 <span className="relative block"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6c7f86]" /><select value={destinationId} onChange={(event) => setDestinationId(event.target.value)} className="min-h-12 w-full rounded-xl border border-[#c8d5d8] bg-white pl-10 pr-4 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
                   {STAY_PILOT_DESTINATIONS.map((destination) => <option key={destination.id} value={destination.id}>{destination.label[lang]}</option>)}
@@ -529,7 +529,7 @@ export function StaySearchPilotView({
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.children}</span>
                 <input type="number" required min={0} max={6} value={children} onChange={(event) => setChildren(Number(event.target.value))} className="min-h-12 w-full rounded-xl border border-[#c8d5d8] px-3 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]" />
               </label>
-              <button disabled={loading} className="col-span-2 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0b4b69] px-5 text-sm font-black text-white transition hover:bg-[#073c55] disabled:cursor-wait disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#073b4c] lg:col-span-1 lg:w-auto">
+              <button disabled={loading} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-[#0b4b69] px-5 text-sm font-black text-white transition hover:bg-[#073c55] disabled:cursor-wait disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#073b4c] min-[360px]:col-span-2 lg:col-span-1 lg:w-auto">
                 <Search className="h-4 w-4" />{loading ? c.searching : c.search}
               </button>
             </div>
