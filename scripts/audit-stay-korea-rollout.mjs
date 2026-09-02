@@ -10,7 +10,9 @@ const koPage = read('src/app/select/hotel/pilot/page.tsx')
 const enPage = read('src/app/en/select/hotel/pilot/page.tsx')
 const jaPage = read('src/app/ja/select/hotel/pilot/page.tsx')
 
-assert.ok(destinations.includes("return value === '1' || value === 'true'"), 'Rollout flag must default to off')
+assert.ok(destinations.includes("process.env.NEXT_PUBLIC_VERCEL_ENV"), 'Vercel Preview fallback is missing')
+assert.ok(destinations.includes("if (value === '0' || value === 'false') return false"), 'Explicit rollout kill-switch is missing')
+assert.ok(destinations.includes("environment.vercelEnvironment?.trim().toLowerCase() === 'preview'"), 'Korea pilot must default on only in Preview')
 assert.ok(destinations.includes('...(isKoreaStayPilotRolloutEnabled() ? KOREA_STAY_PILOT_DESTINATIONS : [])'), 'Korea list is not gated')
 
 for (const id of ['korea-busan', 'korea-jeju', 'korea-seoul']) {
@@ -24,4 +26,4 @@ for (const page of [koPage, enPage, jaPage]) {
 
 assert.ok(view.includes('includesKoreaPilot ? c.introExpanded : c.intro'), 'Localized scope copy does not follow rollout flag')
 
-console.log('[stay-korea-rollout] PASS — Korea candidates are localized, image-backed and default-off behind one provider-neutral flag.')
+console.log('[stay-korea-rollout] PASS — Korea candidates are localized, image-backed, Preview-on and Production-off behind one provider-neutral flag.')

@@ -53,10 +53,30 @@ const KOREA_STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
   },
 ] as const
 
-/** Provider-neutral Korea rollout switch. Undefined, 0 and false all remain off. */
-export function isKoreaStayPilotRolloutEnabled(): boolean {
-  const value = process.env.NEXT_PUBLIC_STAY_KOREA_PILOT?.trim().toLowerCase()
-  return value === '1' || value === 'true'
+type KoreaStayPilotEnvironment = {
+  stayPilot?: string
+  vercelEnvironment?: string
+}
+
+/**
+ * Provider-neutral Korea rollout switch.
+ *
+ * The pilot is available by default only in Vercel Preview builds. Production
+ * remains off unless it is explicitly enabled, and an explicit false is a
+ * kill-switch in every environment.
+ */
+export function isKoreaStayPilotRolloutEnabled(
+  environment: KoreaStayPilotEnvironment = {
+    stayPilot: process.env.NEXT_PUBLIC_STAY_KOREA_PILOT,
+    vercelEnvironment: process.env.NEXT_PUBLIC_VERCEL_ENV,
+  },
+): boolean {
+  const value = environment.stayPilot?.trim().toLowerCase()
+
+  if (value === '1' || value === 'true') return true
+  if (value === '0' || value === 'false') return false
+
+  return environment.vercelEnvironment?.trim().toLowerCase() === 'preview'
 }
 
 export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [

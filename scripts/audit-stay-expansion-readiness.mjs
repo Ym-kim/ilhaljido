@@ -32,9 +32,11 @@ for (const candidate of STAY_EXPANSION_CANDIDATES) {
 }
 
 assert.ok(publicPilot.includes('NEXT_PUBLIC_STAY_KOREA_PILOT'), 'Korea rollout flag missing')
+assert.ok(publicPilot.includes('NEXT_PUBLIC_VERCEL_ENV'), 'Preview-only rollout fallback missing')
+assert.ok(publicPilot.includes("if (value === '0' || value === 'false') return false"), 'Explicit Korea kill-switch missing')
 assert.ok(publicPilot.includes('isKoreaStayPilotRolloutEnabled() ? KOREA_STAY_PILOT_DESTINATIONS : []'), 'Korea destinations are not flag-gated')
 
 assert.ok(destinations.includes("id: 'korea-jeju'") && destinations.includes("photo: '/media/destinations/jeju-editorial-v1.webp'"))
 assert.ok(!destinations.includes("photo: '/covers/dest-jeju-ai.jpeg'"), 'legacy Jeju AI cover remains')
 
-console.log('[stay-expansion-readiness] PASS — 3 candidates score 100/100 and remain behind the default-off Korea rollout flag.')
+console.log('[stay-expansion-readiness] PASS — 3 candidates score 100/100 and remain Preview-only unless the Korea rollout flag explicitly overrides them.')
