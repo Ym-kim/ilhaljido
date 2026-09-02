@@ -59,10 +59,13 @@ export type StayAmenities = {
 
 /** Wakation-owned research only. Provider data must never populate these fields. */
 export type StayIntelligence = {
-  workNote?: string
+  workNote: string
   longStayNote?: string
   access?: string
-  verifiedAt?: string
+  sourceLabel: string
+  sourceUrl: string
+  sourceItemId: string
+  verifiedAt: string
 }
 
 export type StaySearchResult = {

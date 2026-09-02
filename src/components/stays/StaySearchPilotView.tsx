@@ -50,7 +50,8 @@ const COPY = {
     fallbackBody: 'Agoda 결과가 지연되거나 비어 있어 기존 Booking.com 검색으로 안전하게 연결합니다.',
     fallbackCta: 'Booking.com에서 숙소 확인', error: '검색 조건을 다시 확인해주세요.',
     disclosure: '외부 제휴 상품입니다. Wakation은 검색을 돕고, 예약·결제·취소·환불은 연결된 제휴사의 정책을 따릅니다. 요금과 조건은 제휴사 화면에서 최종 확인해주세요.',
-    provider: 'Agoda 제공 결과', noEditorial: 'Wakation 자체 조사 메모가 없는 숙소에는 별도 점수나 추천 문구를 붙이지 않습니다.',
+    provider: 'Agoda 제공 결과', noEditorial: '공식 출처와 숙소 ID가 확인된 경우에만 Wakation 조사 메모를 표시합니다.',
+    intelligence: 'Wakation 조사 메모', workNote: '일하기', longStayNote: '머물기', accessNote: '이동', source: '근거 보기', verifiedAt: '확인일',
     emptyRefinedTitle: '선택한 조건에 맞는 결과가 없습니다', emptyRefinedBody: '조건을 하나씩 해제하거나 기본 순서로 돌아가 다시 확인해 보세요.', resetRefined: '필터 초기화',
   },
   EN: {
@@ -64,7 +65,8 @@ const COPY = {
     fallbackBody: 'Agoda results were delayed or empty, so the existing Booking.com search remains available.',
     fallbackCta: 'Check stays on Booking.com', error: 'Please check your search details.',
     disclosure: 'This is an external affiliate product. Wakation helps with discovery; booking, payment, cancellation and refunds follow the partner’s terms. Confirm final rates and conditions on the partner site.',
-    provider: 'Results provided by Agoda', noEditorial: 'Wakation does not add scores or notes where it has no original research.',
+    provider: 'Results provided by Agoda', noEditorial: 'Wakation notes appear only when an official source and exact property ID are confirmed.',
+    intelligence: 'Wakation research note', workNote: 'Work', longStayNote: 'Stay', accessNote: 'Access', source: 'View source', verifiedAt: 'Checked',
     emptyRefinedTitle: 'No results match these filters', emptyRefinedBody: 'Remove a filter or return to the partner order to see more stays.', resetRefined: 'Reset filters',
   },
   JP: {
@@ -78,7 +80,8 @@ const COPY = {
     fallbackBody: 'Agodaの結果が遅延または空だったため、既存のBooking.com検索へ安全に案内します。',
     fallbackCta: 'Booking.comで宿を確認', error: '検索条件を確認してください。',
     disclosure: '外部のアフィリエイト商品です。Wakationは検索をサポートし、予約・決済・キャンセル・返金は提携先の規約に従います。最終料金と条件は提携先でご確認ください。',
-    provider: 'Agoda提供の検索結果', noEditorial: 'Wakation独自調査がない宿には、独自スコアや評価文を追加しません。',
+    provider: 'Agoda提供の検索結果', noEditorial: '公式情報と宿IDを確認できた場合のみWakation調査メモを表示します。',
+    intelligence: 'Wakation調査メモ', workNote: '仕事', longStayNote: '滞在', accessNote: 'アクセス', source: '根拠を見る', verifiedAt: '確認日',
     emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、提携先の基本順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
   },
 } satisfies Record<Lang, Record<string, string>>
@@ -169,6 +172,22 @@ function ResultCard({
           {result.amenities?.freeWifi ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Wifi className="h-3.5 w-3.5" />{c.wifi}</span> : null}
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
         </div>
+        {result.intelligence ? (
+          <aside className="mt-5 rounded-2xl border border-[#bfe3ea] bg-[#f0fbfd] p-4 text-sm text-[#173f4d]">
+            <p className="flex items-center gap-2 font-black text-[#086f8f]"><ShieldCheck className="h-4 w-4" />{c.intelligence}</p>
+            <dl className="mt-3 space-y-2 leading-6">
+              <div><dt className="inline font-bold">{c.workNote} · </dt><dd className="inline">{result.intelligence.workNote}</dd></div>
+              {result.intelligence.longStayNote ? <div><dt className="inline font-bold">{c.longStayNote} · </dt><dd className="inline">{result.intelligence.longStayNote}</dd></div> : null}
+              {result.intelligence.access ? <div><dt className="inline font-bold">{c.accessNote} · </dt><dd className="inline">{result.intelligence.access}</dd></div> : null}
+            </dl>
+            <p className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-[#59717a]">
+              <span>{c.verifiedAt} {result.intelligence.verifiedAt}</span>
+              <a href={result.intelligence.sourceUrl} target="_blank" rel="noopener noreferrer" className="font-bold text-[#087fa2] underline decoration-[#7bc7d9] underline-offset-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
+                {c.source} · {result.intelligence.sourceLabel}
+              </a>
+            </p>
+          </aside>
+        ) : null}
         <div className="mt-auto pt-6">
           {meaningfulCrossedOutRate !== null ? (
             <p className="text-sm text-[#71838b] line-through">{formatRate(meaningfulCrossedOutRate, result.rate.currency, lang)}</p>

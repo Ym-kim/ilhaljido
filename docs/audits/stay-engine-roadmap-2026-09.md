@@ -8,8 +8,8 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 | 2 | Provider-neutral Search Pilot for Fukuoka, Osaka and Tokyo | Complete | KO/EN/JA, mobile, redirect and fallback QA |
 | 3 | Home → dated Stay Pilot entry | Complete | Production destination/date handoff |
 | 4 | Guide and Trip Set → dated Stay Pilot entry | Complete | Production source attribution and affiliate QA |
-| 5 | Result discovery controls | In progress | Actual-field-only filters, deterministic sorting, mobile accessibility |
-| 6 | Verified Wakation Stay Intelligence | Planned | Original research source and `verifiedAt` required; no provider data repackaging |
+| 5 | Result discovery controls | Complete | Actual-field-only filters, deterministic sorting, mobile accessibility |
+| 6 | Verified Wakation Stay Intelligence | In progress | Original research source and `verifiedAt` required; no provider data repackaging |
 | 7 | Conversion measurement and rollout decision | Planned | Search/result/click funnel sample, latency and fallback-rate review |
 | 8 | Destination expansion | Conditional | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
 | 9 | Multi-provider comparison | Conditional | A second live-search contract, comparable terms and tracking permission |
@@ -27,3 +27,10 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 - Price alerts, direct booking, payment, refund handling and database migrations.
 - Site-wide Agoda primary placement before pilot evidence supports graduation.
 - Provider comparison until a second provider has verified live-search data.
+
+## Phase 6 boundary
+
+- Join editorial notes only through explicit provider property ID and destination ID mappings.
+- Require an official research source, localized copy and `verifiedAt` for every entry.
+- Do not infer a match from a similar hotel name or populate notes from Agoda rate, rating, review or amenity fields.
+- The note may be absent from a valid search result; absence is safer than an unverified claim.

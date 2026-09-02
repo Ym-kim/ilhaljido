@@ -3,6 +3,7 @@ import 'server-only'
 import { searchAgodaCity } from '@/lib/affiliate/agodaApi'
 import type { AgodaHotel, AgodaSearchOutcome } from '@/lib/affiliate/agodaApi'
 import type { StayLiveSearchFailureReason, StaySearchRequest, StaySearchResult } from '@/lib/stays/domain'
+import { getVerifiedStayIntelligence } from '@/lib/stays/intelligence'
 import { getStayPilotDestination } from '@/lib/stays/pilotDestinations'
 
 export type StayAdapterOutcome =
@@ -25,7 +26,7 @@ function safeMetric(value: number | undefined, min: number, max: number): number
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max ? value : undefined
 }
 
-function toStayResult(hotel: AgodaHotel): StaySearchResult | null {
+function toStayResult(hotel: AgodaHotel, request: StaySearchRequest): StaySearchResult | null {
   const bookingHref = safeHttpsUrl(hotel.landingURL, true)
   if (!bookingHref || !Number.isFinite(hotel.dailyRate) || hotel.dailyRate < 0) return null
 
@@ -39,9 +40,19 @@ function toStayResult(hotel: AgodaHotel): StaySearchResult | null {
     ? { freeWifi: hotel.freeWifi === true || undefined, breakfastIncluded: hotel.includeBreakfast === true || undefined }
     : undefined
 
+  const propertyId = String(hotel.hotelId)
+  const intelligence = request.destinationId
+    ? getVerifiedStayIntelligence({
+        provider: 'agoda',
+        propertyId,
+        destinationId: request.destinationId,
+        locale: request.locale,
+      })
+    : undefined
+
   return {
     provider: 'agoda',
-    propertyId: String(hotel.hotelId),
+    propertyId,
     name: hotel.hotelName.slice(0, 200),
     bookingHref,
     imageUrl: safeHttpsUrl(hotel.imageURL),
@@ -54,6 +65,7 @@ function toStayResult(hotel: AgodaHotel): StaySearchResult | null {
       discountPercentage: safeMetric(hotel.discountPercentage, 0, 100),
     },
     amenities,
+    intelligence,
   }
 }
 
@@ -84,7 +96,7 @@ export async function searchAgodaStays(request: StaySearchRequest): Promise<Stay
   const latencyMs = Math.round(performance.now() - startedAt)
   if (!outcome.ok) return { ok: false, reason: failureReason(outcome), latencyMs }
 
-  const results = outcome.hotels.map(toStayResult).filter((hotel): hotel is StaySearchResult => hotel !== null)
+  const results = outcome.hotels.map((hotel) => toStayResult(hotel, request)).filter((hotel): hotel is StaySearchResult => hotel !== null)
   return results.length > 0
     ? { ok: true, results, latencyMs }
     : { ok: false, reason: 'empty_result', latencyMs }

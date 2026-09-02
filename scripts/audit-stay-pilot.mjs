@@ -15,6 +15,7 @@ const files = {
   view: read('src/components/stays/StaySearchPilotView.tsx'),
   refinementBar: read('src/components/stays/StayResultRefinementBar.tsx'),
   refinement: read('src/lib/stays/resultRefinement.ts'),
+  intelligence: read('src/lib/stays/intelligence.ts'),
   contextual: read('src/components/stays/ContextualStaySearch.tsx'),
   guide: read('src/components/guide/GuideView.tsx'),
   collection: read('src/components/affiliate/CollectionView.tsx'),
@@ -59,6 +60,9 @@ const checks = [
   ['Result refinement preserves provider order by default', files.refinement.includes("sort === 'provider_order'") && files.refinementBar.includes('Partner order')],
   ['Refinement controls are accessible and localized', files.refinementBar.includes('aria-pressed') && files.refinementBar.includes('min-h-11') && files.refinementBar.includes('KO:') && files.refinementBar.includes('EN:') && files.refinementBar.includes('JP:')],
   ['Refinement never rewrites provider landing links', !/bookingHref\s*=|landingURL|cid=/.test(`${files.refinement}\n${files.refinementBar}`)],
+  ['Stay intelligence is joined by explicit provider property and destination IDs', files.intelligence.includes('item.propertyId === propertyId') && files.intelligence.includes('item.destinationId === destinationId') && files.adapter.includes('getVerifiedStayIntelligence')],
+  ['Stay intelligence requires source evidence and a verification date', files.intelligence.includes('sourceUrl:') && files.intelligence.includes('verifiedAt:') && files.view.includes('result.intelligence.verifiedAt')],
+  ['Provider fields never populate Wakation intelligence', !/hotelName|reviewScore|dailyRate|amenities/.test(files.intelligence)],
 ]
 
 const failures = checks.filter(([, passed]) => !passed).map(([name]) => name)
