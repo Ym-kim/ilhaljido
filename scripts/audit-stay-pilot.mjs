@@ -13,6 +13,9 @@ const files = {
   api: read('src/app/api/stays/search/route.ts'),
   entry: read('src/app/api/stays/entry/route.ts'),
   view: read('src/components/stays/StaySearchPilotView.tsx'),
+  contextual: read('src/components/stays/ContextualStaySearch.tsx'),
+  guide: read('src/components/guide/GuideView.tsx'),
+  collection: read('src/components/affiliate/CollectionView.tsx'),
   initial: read('src/lib/stays/pilotInitialState.ts'),
   home: read('src/app/page.tsx'),
   booking: read('src/lib/affiliate/bookingSearch.ts'),
@@ -46,6 +49,10 @@ const checks = [
   ['Home-attributed results remain distinguishable', files.initial.includes("'home_hero_stay_search'") && files.view.includes("'home_hero_stay_results'") && files.view.includes("'home_hero_stay_fallback'")],
   ['KO EN JA pilot pages accept sanitized initial state', [files.ko, files.en, files.ja].every((source) => source.includes('getStayPilotInitialState') && source.includes('searchParams'))],
   ['Pilot entry modules expose no Agoda secret', !/AGODA_API_KEY|Authorization/.test(`${files.entry}\n${files.initial}\n${files.home}`)],
+  ['Guide and Trip Set entries use the reusable contextual search', files.guide.includes('<ContextualStaySearch') && files.guide.includes('source="guide"') && files.collection.includes('<ContextualStaySearch') && files.collection.includes('source="trip_set"')],
+  ['Contextual entry keeps dates and bounded guest controls', files.contextual.includes('type="date"') && files.contextual.includes('min={1} max={8}') && files.contextual.includes('min={0} max={6}') && files.destinations.includes('adults: String(input.adults ?? 2)')],
+  ['Contextual sources are allowlisted and attributed through results', files.destinations.includes("['home_hero', 'guide', 'trip_set']") && files.entry.includes('isStayPilotEntrySource(source)') && files.initial.includes("'guide_stay_search'") && files.initial.includes("'trip_set_stay_search'") && files.view.includes("'guide_stay_results'") && files.view.includes("'trip_set_stay_results'")],
+  ['Contextual module exposes no provider credential', !/AGODA_API_KEY|Authorization/.test(files.contextual)],
 ]
 
 const failures = checks.filter(([, passed]) => !passed).map(([name]) => name)

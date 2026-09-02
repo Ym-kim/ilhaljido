@@ -7,6 +7,9 @@ export type StayPilotDestination = {
   label: Record<Lang, string>
 }
 
+export const STAY_PILOT_ENTRY_SOURCES = ['home_hero', 'guide', 'trip_set'] as const
+export type StayPilotEntrySource = (typeof STAY_PILOT_ENTRY_SOURCES)[number]
+
 export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
   {
     id: 'japan-fukuoka',
@@ -29,12 +32,22 @@ export function getStayPilotDestination(id: string): StayPilotDestination | unde
   return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === id)
 }
 
+export function getStayPilotDestinationByGuideSlug(slug: string): StayPilotDestination | undefined {
+  return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === `japan-${slug}`)
+}
+
+export function isStayPilotEntrySource(value: string | null): value is StayPilotEntrySource {
+  return typeof value === 'string' && STAY_PILOT_ENTRY_SOURCES.some((source) => source === value)
+}
+
 export function buildStayPilotEntryHref(input: {
   destinationId?: string
   checkin?: string
   checkout?: string
+  adults?: number
+  children?: number
   locale: Lang
-  source: 'home_hero'
+  source: StayPilotEntrySource
 }): string | null {
   if (!input.destinationId || !getStayPilotDestination(input.destinationId)) return null
   if (!input.checkin || !input.checkout || input.checkout <= input.checkin) return null
@@ -43,8 +56,8 @@ export function buildStayPilotEntryHref(input: {
     destination: input.destinationId,
     checkin: input.checkin,
     checkout: input.checkout,
-    adults: '2',
-    children: '0',
+    adults: String(input.adults ?? 2),
+    children: String(input.children ?? 0),
     auto: '1',
     source: input.source,
     locale: input.locale,

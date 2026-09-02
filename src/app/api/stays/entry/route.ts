@@ -4,7 +4,7 @@ import { buildBookingStaySearchHref } from '@/lib/affiliate/bookingSearch'
 import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
-import { getStayPilotDestination } from '@/lib/stays/pilotDestinations'
+import { getStayPilotDestination, isStayPilotEntrySource } from '@/lib/stays/pilotDestinations'
 import { isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
 import { validateStayPilotRequest } from '@/lib/stays/pilotValidation'
 
@@ -25,6 +25,10 @@ export function GET(request: Request) {
   const localeValue = url.searchParams.get('locale')
   if (!isLang(localeValue)) {
     return NextResponse.json({ error: 'invalid_locale' }, { status: 400 })
+  }
+  const source = url.searchParams.get('source')
+  if (!isStayPilotEntrySource(source)) {
+    return NextResponse.json({ error: 'invalid_source' }, { status: 400 })
   }
 
   const destinationId = url.searchParams.get('destination') ?? ''
@@ -50,7 +54,7 @@ export function GET(request: Request) {
       adults: String(validated.value.adults),
       children: String(validated.value.children),
       auto: '1',
-      source: 'home_hero',
+      source,
     })
     const pilotHref = `${localizeHref('/select/hotel/pilot', localeValue)}?${params.toString()}`
     return NextResponse.redirect(new URL(pilotHref, request.url), { status: 307 })

@@ -220,10 +220,18 @@ export function StaySearchPilotView({
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
   const resultSourceSection = sourceSection === 'home_hero_stay_search'
     ? 'home_hero_stay_results'
-    : 'stay_search_pilot_results'
+    : sourceSection === 'guide_stay_search'
+      ? 'guide_stay_results'
+      : sourceSection === 'trip_set_stay_search'
+        ? 'trip_set_stay_results'
+        : 'stay_search_pilot_results'
   const fallbackSourceSection = sourceSection === 'home_hero_stay_search'
     ? 'home_hero_stay_fallback'
-    : 'stay_search_pilot_fallback'
+    : sourceSection === 'guide_stay_search'
+      ? 'guide_stay_fallback'
+      : sourceSection === 'trip_set_stay_search'
+        ? 'trip_set_stay_fallback'
+        : 'stay_search_pilot_fallback'
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)

@@ -5,7 +5,11 @@ import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { getStayPilotDateDefaults } from '@/lib/stays/pilotFlag'
 import { validateStayPilotRequest } from '@/lib/stays/pilotValidation'
 
-export type StayPilotSourceSection = 'stay_search_pilot_form' | 'home_hero_stay_search'
+export type StayPilotSourceSection =
+  | 'stay_search_pilot_form'
+  | 'home_hero_stay_search'
+  | 'guide_stay_search'
+  | 'trip_set_stay_search'
 export type StayPilotPageSearchParams = Record<string, string | string[] | undefined>
 
 export type StayPilotInitialState = {
@@ -36,9 +40,14 @@ export function getStayPilotInitialState(
   const defaults = getStayPilotDateDefaults()
   const fallbackDestination = STAY_PILOT_DESTINATIONS[0]
   const requestedAutoSearch = scalar(searchParams.auto) === '1'
-  const sourceSection: StayPilotSourceSection = scalar(searchParams.source) === 'home_hero'
+  const requestedSource = scalar(searchParams.source)
+  const sourceSection: StayPilotSourceSection = requestedSource === 'home_hero'
     ? 'home_hero_stay_search'
-    : 'stay_search_pilot_form'
+    : requestedSource === 'guide'
+      ? 'guide_stay_search'
+      : requestedSource === 'trip_set'
+        ? 'trip_set_stay_search'
+        : 'stay_search_pilot_form'
   const validated = validateStayPilotRequest({
     destinationId: scalar(searchParams.destination),
     checkin: scalar(searchParams.checkin),

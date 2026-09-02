@@ -18,6 +18,8 @@ import { getMediaAssetBySrc } from '@/lib/media/assets'
 import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 import { GuideLookbook } from '@/components/guide/GuideLookbook'
+import { ContextualStaySearch } from '@/components/stays/ContextualStaySearch'
+import { getStayPilotDestinationByGuideSlug } from '@/lib/stays/pilotDestinations'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 목적지 가이드 뷰 — 라이트 커머스 톤, 3언어
@@ -62,6 +64,7 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
           ? 'teamlab-planets-tokyo-evening'
           : undefined
   const flagshipExperience = flagshipSlug ? getExperienceEditorial(flagshipSlug) : undefined
+  const stayPilotDestination = getStayPilotDestinationByGuideSlug(guide.slug)
 
   return (
     <div className="min-h-screen bg-white">
@@ -231,17 +234,32 @@ export function GuideView({ guide, forceLang }: { guide: CityGuide; forceLang?: 
         </div>
       )}
 
+      {stayPilotDestination ? (
+        <section className="border-t border-[#dbe7e8] bg-[#f5f2eb] px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-5xl">
+            <ContextualStaySearch
+              destinationId={stayPilotDestination.id}
+              lang={lang}
+              source="guide"
+              secondaryHref={`${prefix}/select/hotel#${guide.anchor}`}
+            />
+          </div>
+        </section>
+      ) : null}
+
       {/* ── 도시 전체 검색 + 항공권 CTA ── */}
       <section className="max-w-5xl mx-auto px-6 pb-12 md:pb-16">
         <div className="flex flex-col sm:flex-row gap-2.5">
-          <Link
-            href={`${prefix}/select/hotel#${guide.anchor}`}
-            className="btn-primary justify-center"
-          >
-            <Search className="w-4 h-4" strokeWidth={ICON_STROKE} />
-            {GUIDE_UI.searchCta[lang]}
-            <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-          </Link>
+          {!stayPilotDestination ? (
+            <Link
+              href={`${prefix}/select/hotel#${guide.anchor}`}
+              className="btn-primary justify-center"
+            >
+              <Search className="w-4 h-4" strokeWidth={ICON_STROKE} />
+              {GUIDE_UI.searchCta[lang]}
+              <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+            </Link>
+          ) : null}
           {guide.flightUrl && (
             <a
               href={guide.flightUrl}

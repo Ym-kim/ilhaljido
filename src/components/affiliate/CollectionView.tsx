@@ -18,6 +18,8 @@ import { getTripSetCampaign } from '@/lib/tripSetCampaign'
 import { getExperienceEditorial } from '@/lib/experiences/editorials'
 import { ExperienceEditorialCard } from '@/components/experiences/ExperienceEditorialCard'
 import { TripSetPreparationCard } from '@/components/affiliate/TripSetPreparationCard'
+import { ContextualStaySearch } from '@/components/stays/ContextualStaySearch'
+import { getStayPilotDestinationByGuideSlug } from '@/lib/stays/pilotDestinations'
 
 const PREPARATION_PROGRESS_EVENT = 'wakation:trip-preparation-progress'
 
@@ -114,6 +116,10 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       </div>
     )
   }
+
+  const stayPilotDestination = col.cityGuideSlug
+    ? getStayPilotDestinationByGuideSlug(col.cityGuideSlug)
+    : undefined
 
   const conversionItems = (col.conversionItems ?? []).flatMap((entry, sourceIndex) => {
     const item = getCatalogItems([entry.affiliateItemId])[0]
@@ -354,6 +360,15 @@ export function CollectionView({ slug, forceLang }: { slug: string; forceLang?: 
       {/* 구성 상품 */}
       <section ref={col.duration ? conversionSectionRef : undefined} id={col.duration ? 'trip-prepare' : undefined} data-trip-section={col.duration ? 'prepare' : undefined} className="scroll-mt-32 bg-white px-4 py-14 sm:px-6 sm:py-20">
         <div className="max-w-6xl mx-auto">
+          {stayPilotDestination ? (
+            <div className="mb-12">
+              <ContextualStaySearch
+                destinationId={stayPilotDestination.id}
+                lang={lang}
+                source="trip_set"
+              />
+            </div>
+          ) : null}
           <h2 className="mb-2 text-2xl font-black text-[var(--wak-ink)] sm:text-3xl">
             {col.duration ? COLLECTIONS_UI.ts_prepare[lang] : COLLECTIONS_UI.included[lang]}
           </h2>
