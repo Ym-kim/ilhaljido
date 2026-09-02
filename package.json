@@ -51,6 +51,8 @@
     "audit:stay-results": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-result-refinement.mjs",
     "audit:stay-intelligence": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-intelligence.mjs",
     "audit:stay-measurement": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-measurement.mjs",
+    "audit:stay-operations-report": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-operations-report.mjs",
+    "report:stay-pilot": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/report-stay-pilot-operations.mjs",
     "audit:stay-expansion": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-expansion-readiness.mjs",
     "audit:stay-expansion-measurement": "node scripts/audit-stay-expansion-measurement.mjs",
     "audit:stay-korea-rollout": "node scripts/audit-stay-korea-rollout.mjs",

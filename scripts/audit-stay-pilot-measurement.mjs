@@ -23,7 +23,7 @@ for (const forbidden of ['Authorization', 'AGODA_API_KEY', 'bookingHref', 'redir
   assert.ok(!telemetry.includes(forbidden), `operational log must not accept or emit ${forbidden}`)
 }
 assert.ok(roadmap.includes('| 6 | Verified Wakation Stay Intelligence | Complete |'))
-assert.ok(roadmap.includes('| 7 | Conversion measurement and rollout decision | In progress |'))
+assert.ok(roadmap.includes('| 7 | Conversion measurement and rollout decision | In progress'))
 
 const collecting = evaluateStayPilotRollout({
   observationDays: 2, searches: 40, successfulResultViews: 38, fallbackViews: 2,
