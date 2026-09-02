@@ -95,6 +95,13 @@ function ResultCard({
   destinationId: string
 }) {
   const c = COPY[lang]
+  const positiveDiscount = typeof result.rate.discountPercentage === 'number' && result.rate.discountPercentage > 0
+    ? result.rate.discountPercentage
+    : null
+  const meaningfulCrossedOutRate = typeof result.rate.crossedOutAmount === 'number'
+    && result.rate.crossedOutAmount > result.rate.amount
+    ? result.rate.crossedOutAmount
+    : null
   const trackOutbound = () => {
     const common = {
       locale: lang,
@@ -149,14 +156,14 @@ function ResultCard({
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
         </div>
         <div className="mt-auto pt-6">
-          {typeof result.rate.crossedOutAmount === 'number' ? (
-            <p className="text-sm text-[#71838b] line-through">{formatRate(result.rate.crossedOutAmount, result.rate.currency, lang)}</p>
+          {meaningfulCrossedOutRate !== null ? (
+            <p className="text-sm text-[#71838b] line-through">{formatRate(meaningfulCrossedOutRate, result.rate.currency, lang)}</p>
           ) : null}
           <div className="flex flex-wrap items-end gap-x-2 gap-y-1">
             <p className="text-2xl font-black text-[#0b3140]">{formatRate(result.rate.amount, result.rate.currency, lang)}</p>
             <span className="pb-1 text-xs text-[#637780]">{c.perNight}</span>
-            {typeof result.rate.discountPercentage === 'number' ? (
-              <span className="mb-1 rounded-full bg-[#fff1eb] px-2 py-1 text-xs font-bold text-[#d95632]">-{Math.round(result.rate.discountPercentage)}%</span>
+            {positiveDiscount !== null ? (
+              <span className="mb-1 rounded-full bg-[#fff1eb] px-2 py-1 text-xs font-bold text-[#d95632]">-{Math.round(positiveDiscount)}%</span>
             ) : null}
           </div>
           <a
@@ -274,8 +281,8 @@ export function StaySearchPilotView({
       <section className="px-5 py-8 sm:px-8 lg:py-12">
         <div className="mx-auto max-w-6xl">
           <form onSubmit={submit} className="rounded-[2rem] border border-[#d5dfdf] bg-white p-5 shadow-[0_20px_60px_rgba(11,43,56,0.09)] sm:p-7">
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
-              <label className="block lg:col-span-1">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-[1.15fr_1fr_1fr_.68fr_.68fr_auto] xl:items-end">
+              <label className="block">
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.destination}</span>
                 <select value={destinationId} onChange={(event) => setDestinationId(event.target.value)} className="min-h-12 w-full rounded-2xl border border-[#c8d5d8] bg-white px-4 text-sm font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
                   {STAY_PILOT_DESTINATIONS.map((destination) => <option key={destination.id} value={destination.id}>{destination.label[lang]}</option>)}
@@ -297,10 +304,10 @@ export function StaySearchPilotView({
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.children}</span>
                 <input type="number" required min={0} max={6} value={children} onChange={(event) => setChildren(Number(event.target.value))} className="min-h-12 w-full rounded-2xl border border-[#c8d5d8] px-4 text-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]" />
               </label>
+              <button disabled={loading} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#079ecb] px-6 text-sm font-bold text-white transition hover:bg-[#057fa5] disabled:cursor-wait disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#073b4c] md:col-span-2 xl:col-span-1 xl:w-auto">
+                <Search className="h-4 w-4" />{loading ? c.searching : c.search}
+              </button>
             </div>
-            <button disabled={loading} className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#079ecb] px-6 text-sm font-bold text-white transition hover:bg-[#057fa5] disabled:cursor-wait disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#073b4c] sm:w-auto">
-              <Search className="h-4 w-4" />{loading ? c.searching : c.search}
-            </button>
             <p role="alert" className="mt-3 text-sm font-semibold text-[#b43d2b]">{error}</p>
           </form>
 

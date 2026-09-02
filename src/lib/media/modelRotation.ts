@@ -21,6 +21,8 @@ export const MODEL_ROTATION_POLICY = {
     'Do not repeat the same pose family, camera family, silhouette or primary action on adjacent major surfaces.',
     'Across every six new model surfaces, use at least four pose families, four silhouette families, four color stories and three camera families.',
     'Balance dresses, skirts, shorts, layered sets and trousers; no single silhouette family may exceed 40 percent of active placements.',
+    'Treat a believable eight-head fashion-model balance as the default for full-body generation; reject any frame where perspective, pose or garment line makes the legs read short.',
+    'Escalate identity-preserving full-body generation to Higgsfield Soul 2.0 when the primary generator cannot pass proportion, anatomy and identity checks.',
     'Laptop, map and paper are task props only, never the default shorthand for workation.',
     'Do not repeat neutral linen styling on consecutive surfaces; give every destination a deliberate color story.',
     'Vary environment tone, light quality and material palette with the model direction; never treat wardrobe color alone as sufficient visual diversity.',
