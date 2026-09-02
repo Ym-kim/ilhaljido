@@ -105,6 +105,15 @@ const UI: Record<string, Record<Lang, string>> = {
   back: { KO: '← 다른 도시 보기', EN: '← Back to destinations', JP: '← 他の都市を見る' },
 }
 
+function formatRatingAsOf(asOf: string, lang: Lang): string {
+  const [year, month, day] = asOf.split('-')
+  const mm = Number(month)
+  const dd = Number(day)
+  if (lang === 'EN') return `checked ${year}-${month}-${day}`
+  if (lang === 'JP') return `確認日 ${year}.${mm}.${dd}`
+  return `확인일 ${year}.${mm}.${dd}`
+}
+
 function Stars({ score }: { score: number }) {
   return (
     <span className="flex gap-0.5 text-lg">
@@ -451,7 +460,7 @@ export function CityInsightView({ city, forceLang }: { city: CityInsight; forceL
                       {featuredStay.reviews && <span className="text-[#888]"> ({featuredStay.reviews} {UI.reviews[lang]})</span>}
                       {/* 2026-08-04: 기준일 없는 평점 렌더가 정직성 타입 구멍이었음 — ratingAsOf 강제와 함께 노출 */}
                       {featuredStay.ratingAsOf && (
-                        <span className="text-[#b0bcc4] text-xs"> · {(() => { const [, m, d] = featuredStay.ratingAsOf.split('-'); return lang === 'EN' ? `as of ${Number(m)}/${Number(d)}` : lang === 'JP' ? `${Number(m)}.${Number(d)}基準` : `${Number(m)}.${Number(d)} 기준` })()}</span>
+                        <span className="text-[#b0bcc4] text-xs"> · {formatRatingAsOf(featuredStay.ratingAsOf, lang)}</span>
                       )}
                     </p>
                   )}
