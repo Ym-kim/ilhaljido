@@ -302,7 +302,7 @@ export const HOTEL_DESTINATIONS: DestinationEntry[] = [
   },
   {
     id: 'korea-jeju',
-    photo: '/covers/dest-jeju-ai.jpeg',
+    photo: '/media/destinations/jeju-editorial-v1.webp',
     flag: '🍊',
     city: '제주',
     cityEn: 'Jeju',

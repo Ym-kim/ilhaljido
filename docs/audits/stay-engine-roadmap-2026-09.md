@@ -11,7 +11,7 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 | 5 | Result discovery controls | Complete | Actual-field-only filters, deterministic sorting, mobile accessibility |
 | 6 | Verified Wakation Stay Intelligence | Complete | Original research source and `verifiedAt` required; no provider data repackaging |
 | 7 | Conversion measurement and rollout decision | In progress | Search/result/click funnel sample, latency and fallback-rate review |
-| 8 | Destination expansion | Conditional | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
+| 8 | Destination expansion readiness | In progress, not exposed | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
 | 9 | Multi-provider comparison | Conditional | A second live-search contract, comparable terms and tracking permission |
 | 10 | Pilot graduation | Conditional | Stable QA, disclosure, performance and rollback evidence |
 
@@ -34,3 +34,9 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 - Require an official research source, localized copy and `verifiedAt` for every entry.
 - Do not infer a match from a similar hotel name or populate notes from Agoda rate, rating, review or amenity fields.
 - The note may be absent from a valid search result; absence is safer than an unverified claim.
+
+## Phase 8 readiness boundary
+
+- Seoul, Busan and Jeju may be prepared as candidates because each has a verified city ID, localized guide, Trip Set, active redirect and local destination media.
+- Candidate data must remain disconnected from the public pilot selector and request validator until Phase 7 evidence passes operator review.
+- Live result photo, property-name, rate and redirect quality is the final 20-point gate. A candidate at 80/100 is not ready for exposure.
