@@ -47,12 +47,13 @@ const COPY = {
     introExpanded: '후쿠오카·오사카·도쿄와 서울·부산·제주의 현재 숙소를 확인하고, 일과 체류에 맞는 조건을 차분하게 비교합니다.',
     back: '숙소 전체 보기', destination: '여행지', checkin: '체크인', checkout: '체크아웃',
     adults: '성인', children: '아동', search: '이 날짜로 숙소 보기', searching: '요금 확인 중', results: '머물 곳을 골라보세요',
-    perNight: '1박 기준', review: '후기', propertyClass: '숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
+    perNight: '1박 기준', review: '이용자 후기 평점', propertyClass: 'Agoda 숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
     checkRate: 'Agoda에서 요금 확인', rooms: '객실 확인', fallbackTitle: '제휴사 검색으로 이어서 확인하세요',
     fallbackBody: 'Agoda 결과가 지연되거나 비어 있어 기존 Booking.com 검색으로 안전하게 연결합니다.',
     fallbackCta: 'Booking.com에서 숙소 확인', error: '검색 조건을 다시 확인해주세요.',
     disclosure: '외부 제휴 상품입니다. Wakation은 검색을 돕고, 예약·결제·취소·환불은 연결된 제휴사의 정책을 따릅니다. 요금과 조건은 제휴사 화면에서 최종 확인해주세요.',
     provider: 'Agoda 제공 결과', noEditorial: '제휴사가 실제 숙소 사진을 제공한 결과만 표시합니다.',
+    ratingGuide: 'Agoda 숙소 등급은 제휴사가 제공한 0–5 지표로, 국가별 공식 호텔 등급과 다를 수 있습니다. 이용자 후기 평점은 10점 만점입니다.',
     intelligence: 'Wakation 조사 메모', workNote: '일하기', longStayNote: '머물기', accessNote: '이동', source: '근거 보기', verifiedAt: '확인일',
     cityStay: '숙소 찾기', finalPrice: '세금·수수료와 최종 조건은 제휴사에서 확인',
     emptyRefinedTitle: '선택한 조건에 맞는 결과가 없습니다', emptyRefinedBody: '조건을 하나씩 해제하거나 기본 순서로 돌아가 다시 확인해 보세요.', resetRefined: '필터 초기화',
@@ -64,12 +65,13 @@ const COPY = {
     introExpanded: 'Check current stays in Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju, then compare what matters for work and a longer stay.',
     back: 'View all stays', destination: 'Destination', checkin: 'Check-in', checkout: 'Check-out',
     adults: 'Adults', children: 'Children', search: 'See stays for these dates', searching: 'Checking rates', results: 'Choose where to stay',
-    perNight: 'per night', review: 'Review', propertyClass: 'Property class', wifi: 'Free Wi‑Fi', breakfast: 'Breakfast included',
+    perNight: 'per night', review: 'Guest review score', propertyClass: 'Agoda property rating', wifi: 'Free Wi‑Fi', breakfast: 'Breakfast included',
     checkRate: 'Check rate on Agoda', rooms: 'Check rooms', fallbackTitle: 'Continue with partner search',
     fallbackBody: 'Agoda results were delayed or empty, so the existing Booking.com search remains available.',
     fallbackCta: 'Check stays on Booking.com', error: 'Please check your search details.',
     disclosure: 'This is an external affiliate product. Wakation helps with discovery; booking, payment, cancellation and refunds follow the partner’s terms. Confirm final rates and conditions on the partner site.',
     provider: 'Results provided by Agoda', noEditorial: 'Only stays with an actual property photo supplied by the partner are shown.',
+    ratingGuide: 'The Agoda property rating is a partner-supplied 0–5 metric and may differ from an official local hotel classification. Guest review scores use a 10-point scale.',
     intelligence: 'Wakation research note', workNote: 'Work', longStayNote: 'Stay', accessNote: 'Access', source: 'View source', verifiedAt: 'Checked',
     cityStay: 'Stay search', finalPrice: 'Confirm taxes, fees and final conditions with the partner',
     emptyRefinedTitle: 'No results match these filters', emptyRefinedBody: 'Remove a filter or return to the partner order to see more stays.', resetRefined: 'Reset filters',
@@ -81,12 +83,13 @@ const COPY = {
     introExpanded: '福岡・大阪・東京とソウル・釜山・済州の現在の宿を確認し、仕事と滞在に必要な条件を比較できます。',
     back: '宿をすべて見る', destination: '行き先', checkin: 'チェックイン', checkout: 'チェックアウト',
     adults: '大人', children: '子ども', search: 'この日程で宿を見る', searching: '料金を確認中', results: '滞在先を選ぶ',
-    perNight: '1泊あたり', review: '口コミ', propertyClass: '宿泊施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
+    perNight: '1泊あたり', review: '利用者口コミ評価', propertyClass: 'Agoda施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
     checkRate: 'Agodaで料金を確認', rooms: '客室を確認', fallbackTitle: '提携先検索で続けて確認',
     fallbackBody: 'Agodaの結果が遅延または空だったため、既存のBooking.com検索へ安全に案内します。',
     fallbackCta: 'Booking.comで宿を確認', error: '検索条件を確認してください。',
     disclosure: '外部のアフィリエイト商品です。Wakationは検索をサポートし、予約・決済・キャンセル・返金は提携先の規約に従います。最終料金と条件は提携先でご確認ください。',
     provider: 'Agoda提供の検索結果', noEditorial: '提携先から実際の宿泊施設写真が提供された結果のみ表示します。',
+    ratingGuide: 'Agoda施設ランクは提携先が提供する0〜5の指標で、各国の公式なホテル等級とは異なる場合があります。利用者口コミ評価は10点満点です。',
     intelligence: 'Wakation調査メモ', workNote: '仕事', longStayNote: '滞在', accessNote: 'アクセス', source: '根拠を見る', verifiedAt: '確認日',
     cityStay: '宿を探す', finalPrice: '税・手数料と最終条件は提携先で確認',
     emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、提携先の基本順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
@@ -114,9 +117,8 @@ function formatRate(value: number, currency: string, lang: Lang): string {
   }
 }
 
-function formatPropertyClass(value: number, lang: Lang): string {
-  const grade = Number.isInteger(value) ? String(value) : value.toFixed(1)
-  return lang === 'KO' ? `${grade}성` : lang === 'JP' ? `${grade}つ星` : `${grade}-star`
+function formatProviderPropertyRating(value: number): string {
+  return `${value.toFixed(1)}/5`
 }
 
 function ResultCard({
@@ -196,7 +198,7 @@ function ResultCard({
       <div className="flex flex-1 flex-col p-5">
         <h2 className="line-clamp-2 h-[3.25rem] overflow-hidden break-words text-[1.08rem] font-black leading-[1.45] text-[#172a36]">{result.name}</h2>
         <div className="mt-3 flex min-h-8 flex-wrap content-start gap-2 text-[0.7rem] font-bold text-[#31505e]">
-          {propertyClass !== null ? <span className="inline-flex items-center rounded-full bg-[#edf3f4] px-3 py-1.5">{c.propertyClass} {formatPropertyClass(propertyClass, lang)}</span> : null}
+          {propertyClass !== null ? <span className="inline-flex items-center rounded-full bg-[#edf3f4] px-3 py-1.5">{c.propertyClass} {formatProviderPropertyRating(propertyClass)}</span> : null}
           {result.amenities?.freeWifi ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Wifi className="h-3.5 w-3.5" />{c.wifi}</span> : null}
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
         </div>
@@ -481,7 +483,10 @@ export function StaySearchPilotView({
               <>
                 <div className="mb-6 grid gap-3 border-b border-[#d9dfdc] pb-5 md:grid-cols-[minmax(0,1fr)_minmax(18rem,.75fr)] md:items-end">
                   <div><p className="text-[0.68rem] font-black tracking-[0.16em] text-[#078db6]">WAKATION SEARCH RESULTS · {activeDestinationLabel}</p><h2 className="wak-section-title mt-2 break-keep font-black tracking-[-0.025em] text-[#172a36]">{c.results}</h2></div>
-                  <p className="text-xs leading-5 text-[#647983] md:text-right">{c.noEditorial}</p>
+                  <div className="text-xs leading-5 text-[#647983] md:text-right">
+                    <p>{c.noEditorial}</p>
+                    <p className="mt-1">{c.ratingGuide}</p>
+                  </div>
                 </div>
                 <StayResultRefinementBar
                   lang={lang}

@@ -27,7 +27,9 @@ export type AgodaHotel = {
   crossedOutRate?: number
   discountPercentage?: number
   currency: string
+  /** Agoda Affiliate Lite `starRating` (0-5). Provider-supplied property rating, not a guaranteed local official classification. */
   starRating?: number
+  /** Agoda Affiliate Lite guest review score (0-10). */
   reviewScore?: number
   freeWifi?: boolean
   includeBreakfast?: boolean
