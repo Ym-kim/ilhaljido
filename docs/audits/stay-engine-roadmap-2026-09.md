@@ -11,7 +11,8 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 | 5 | Result discovery controls | Complete | Actual-field-only filters, deterministic sorting, mobile accessibility |
 | 6 | Verified Wakation Stay Intelligence | Complete | Original research source and `verifiedAt` required; no provider data repackaging |
 | 7 | Conversion measurement and rollout decision | In progress | Search/result/click funnel sample, latency and fallback-rate review |
-| 8 | Destination expansion readiness | In progress, not exposed | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
+| 8 | Destination expansion readiness | Complete, not exposed | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
+| 8.1 | Korea Pilot controlled rollout | Preview-ready, default off | Operator enables one provider-neutral flag after visual and redirect QA |
 | 9 | Multi-provider comparison | Conditional | A second live-search contract, comparable terms and tracking permission |
 | 10 | Pilot graduation | Conditional | Stable QA, disclosure, performance and rollback evidence |
 
@@ -38,5 +39,6 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 ## Phase 8 readiness boundary
 
 - Seoul, Busan and Jeju may be prepared as candidates because each has a verified city ID, localized guide, Trip Set, active redirect and local destination media.
-- Candidate data must remain disconnected from the public pilot selector and request validator until Phase 7 evidence passes operator review.
-- Live result photo, property-name, rate and redirect quality is the final 20-point gate. A candidate at 80/100 is not ready for exposure.
+- Live result photo, property-name, rate and redirect quality completed the final 20-point gate on 2026-09-02.
+- Seoul, Busan and Jeju now score 100/100, but remain behind the default-off `NEXT_PUBLIC_STAY_KOREA_PILOT` switch.
+- Enabling the switch expands the existing selector, request validator, Guide and Trip Set entry points together; Booking fallback remains unchanged.

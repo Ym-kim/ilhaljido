@@ -20,8 +20,16 @@ export type StayExpansionCandidate = {
   mediaPath: string
   affiliateDestinationId: StayExpansionCandidateId
   evidenceVerifiedAt: string
+  liveQualityEvidence: {
+    checkedAt: string
+    sampleOffsetDays: number
+    resultCount: number
+    validResultCount: number
+    displayableResultCount: number
+    latencyMs: number
+  }
   readiness: Record<StayExpansionReadinessCriterion, 'verified' | 'pending'>
-  rolloutStatus: 'prepared_not_enabled'
+  rolloutStatus: 'qa_verified_not_enabled'
 }
 
 /**
@@ -38,14 +46,22 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
     mediaPath: '/media/destinations/busan-editorial-v1.webp',
     affiliateDestinationId: 'korea-busan',
     evidenceVerifiedAt: '2026-09-02',
+    liveQualityEvidence: {
+      checkedAt: '2026-09-02T09:37:09.548Z',
+      sampleOffsetDays: 21,
+      resultCount: 8,
+      validResultCount: 8,
+      displayableResultCount: 8,
+      latencyMs: 257,
+    },
     readiness: {
       verified_city_id: 'verified',
       guide_and_trip_set: 'verified',
       active_affiliate_redirect: 'verified',
       verified_local_media: 'verified',
-      live_result_quality: 'pending',
+      live_result_quality: 'verified',
     },
-    rolloutStatus: 'prepared_not_enabled',
+    rolloutStatus: 'qa_verified_not_enabled',
   },
   {
     id: 'korea-jeju',
@@ -56,14 +72,22 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
     mediaPath: '/media/destinations/jeju-editorial-v1.webp',
     affiliateDestinationId: 'korea-jeju',
     evidenceVerifiedAt: '2026-09-02',
+    liveQualityEvidence: {
+      checkedAt: '2026-09-02T09:37:09.548Z',
+      sampleOffsetDays: 21,
+      resultCount: 8,
+      validResultCount: 8,
+      displayableResultCount: 7,
+      latencyMs: 42,
+    },
     readiness: {
       verified_city_id: 'verified',
       guide_and_trip_set: 'verified',
       active_affiliate_redirect: 'verified',
       verified_local_media: 'verified',
-      live_result_quality: 'pending',
+      live_result_quality: 'verified',
     },
-    rolloutStatus: 'prepared_not_enabled',
+    rolloutStatus: 'qa_verified_not_enabled',
   },
   {
     id: 'korea-seoul',
@@ -74,14 +98,22 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
     mediaPath: '/media/destinations/seoul-editorial-v1.webp',
     affiliateDestinationId: 'korea-seoul',
     evidenceVerifiedAt: '2026-09-02',
+    liveQualityEvidence: {
+      checkedAt: '2026-09-02T09:37:09.548Z',
+      sampleOffsetDays: 21,
+      resultCount: 8,
+      validResultCount: 8,
+      displayableResultCount: 8,
+      latencyMs: 35,
+    },
     readiness: {
       verified_city_id: 'verified',
       guide_and_trip_set: 'verified',
       active_affiliate_redirect: 'verified',
       verified_local_media: 'verified',
-      live_result_quality: 'pending',
+      live_result_quality: 'verified',
     },
-    rolloutStatus: 'prepared_not_enabled',
+    rolloutStatus: 'qa_verified_not_enabled',
   },
 ] as const
 

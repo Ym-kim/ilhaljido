@@ -53,6 +53,7 @@
     "audit:stay-measurement": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-measurement.mjs",
     "audit:stay-expansion": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-expansion-readiness.mjs",
     "audit:stay-expansion-measurement": "node scripts/audit-stay-expansion-measurement.mjs",
+    "audit:stay-korea-rollout": "node scripts/audit-stay-korea-rollout.mjs",
     "audit:home-discovery": "node scripts/audit-home-discovery-focus.mjs",
     "audit:agoda-auth": "node --conditions=react-server --experimental-strip-types scripts/audit-agoda-auth.mjs",
     "audit:b2b-conversion": "node scripts/audit-b2b-conversion.mjs",

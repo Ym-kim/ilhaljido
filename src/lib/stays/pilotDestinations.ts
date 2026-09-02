@@ -2,7 +2,7 @@ import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 import type { Lang } from '@/lib/i18n/types'
 
 export type StayPilotDestination = {
-  id: 'japan-fukuoka' | 'japan-osaka' | 'japan-tokyo'
+  id: 'japan-fukuoka' | 'japan-osaka' | 'japan-tokyo' | 'korea-busan' | 'korea-jeju' | 'korea-seoul'
   cityId: number
   label: Record<Lang, string>
 }
@@ -10,7 +10,7 @@ export type StayPilotDestination = {
 export const STAY_PILOT_ENTRY_SOURCES = ['home_hero', 'guide', 'trip_set'] as const
 export type StayPilotEntrySource = (typeof STAY_PILOT_ENTRY_SOURCES)[number]
 
-export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
+const CORE_STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
   {
     id: 'japan-fukuoka',
     cityId: AGODA_CITY_IDS['japan-fukuoka'],
@@ -28,12 +28,41 @@ export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
   },
 ] as const
 
+const KOREA_STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
+  {
+    id: 'korea-busan',
+    cityId: AGODA_CITY_IDS['korea-busan'],
+    label: { KO: '부산', EN: 'Busan', JP: '釜山' },
+  },
+  {
+    id: 'korea-jeju',
+    cityId: AGODA_CITY_IDS['korea-jeju'],
+    label: { KO: '제주', EN: 'Jeju', JP: '済州' },
+  },
+  {
+    id: 'korea-seoul',
+    cityId: AGODA_CITY_IDS['korea-seoul'],
+    label: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
+  },
+] as const
+
+/** Provider-neutral Korea rollout switch. Undefined, 0 and false all remain off. */
+export function isKoreaStayPilotRolloutEnabled(): boolean {
+  const value = process.env.NEXT_PUBLIC_STAY_KOREA_PILOT?.trim().toLowerCase()
+  return value === '1' || value === 'true'
+}
+
+export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
+  ...CORE_STAY_PILOT_DESTINATIONS,
+  ...(isKoreaStayPilotRolloutEnabled() ? KOREA_STAY_PILOT_DESTINATIONS : []),
+]
+
 export function getStayPilotDestination(id: string): StayPilotDestination | undefined {
   return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === id)
 }
 
 export function getStayPilotDestinationByGuideSlug(slug: string): StayPilotDestination | undefined {
-  return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === `japan-${slug}`)
+  return STAY_PILOT_DESTINATIONS.find((destination) => destination.id.endsWith(`-${slug}`))
 }
 
 export function isStayPilotEntrySource(value: string | null): value is StayPilotEntrySource {

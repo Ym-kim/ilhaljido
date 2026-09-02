@@ -44,6 +44,7 @@ const COPY = {
     eyebrow: 'WAKATION STAY',
     title: '일할 도시의 숙소를, 실제 날짜로 찾아보세요',
     intro: '후쿠오카·오사카·도쿄의 현재 숙소를 확인하고, 일과 체류에 맞는 조건을 차분하게 비교합니다.',
+    introExpanded: '후쿠오카·오사카·도쿄와 서울·부산·제주의 현재 숙소를 확인하고, 일과 체류에 맞는 조건을 차분하게 비교합니다.',
     back: '숙소 전체 보기', destination: '여행지', checkin: '체크인', checkout: '체크아웃',
     adults: '성인', children: '아동', search: '이 날짜로 숙소 보기', searching: '요금 확인 중', results: '머물 곳을 골라보세요',
     perNight: '1박 기준', review: '후기', propertyClass: '숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
@@ -60,6 +61,7 @@ const COPY = {
     eyebrow: 'WAKATION STAY',
     title: 'Find a stay for the city where you will work',
     intro: 'Check current stays in Fukuoka, Osaka and Tokyo, then compare the details that matter for work and a longer stay.',
+    introExpanded: 'Check current stays in Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju, then compare what matters for work and a longer stay.',
     back: 'View all stays', destination: 'Destination', checkin: 'Check-in', checkout: 'Check-out',
     adults: 'Adults', children: 'Children', search: 'See stays for these dates', searching: 'Checking rates', results: 'Choose where to stay',
     perNight: 'per night', review: 'Review', propertyClass: 'Property class', wifi: 'Free Wi‑Fi', breakfast: 'Breakfast included',
@@ -76,6 +78,7 @@ const COPY = {
     eyebrow: 'WAKATION STAY',
     title: '働く都市の宿を、実際の日付から探す',
     intro: '福岡・大阪・東京の現在の宿を確認し、仕事と滞在に必要な条件を落ち着いて比較できます。',
+    introExpanded: '福岡・大阪・東京とソウル・釜山・済州の現在の宿を確認し、仕事と滞在に必要な条件を比較できます。',
     back: '宿をすべて見る', destination: '行き先', checkin: 'チェックイン', checkout: 'チェックアウト',
     adults: '大人', children: '子ども', search: 'この日程で宿を見る', searching: '料金を確認中', results: '滞在先を選ぶ',
     perNight: '1泊あたり', review: '口コミ', propertyClass: '宿泊施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
@@ -94,6 +97,9 @@ const DESTINATION_VISUALS: Record<string, string> = {
   'japan-fukuoka': '/media/destinations/fukuoka-editorial-v1.webp',
   'japan-osaka': '/media/destinations/osaka-editorial-v1.webp',
   'japan-tokyo': '/media/destinations/tokyo-editorial-v1.webp',
+  'korea-busan': '/media/destinations/busan-editorial-v1.webp',
+  'korea-jeju': '/media/destinations/jeju-editorial-v1.webp',
+  'korea-seoul': '/media/destinations/seoul-editorial-v1.webp',
 }
 
 function localeCode(lang: Lang): string {
@@ -256,6 +262,7 @@ export function StaySearchPilotView({
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang ?? contextLang
   const c = COPY[lang]
+  const includesKoreaPilot = STAY_PILOT_DESTINATIONS.some((destination) => destination.id.startsWith('korea-'))
   const [destinationId, setDestinationId] = useState(initialDestinationId)
   const [checkin, setCheckin] = useState(initialCheckin)
   const [checkout, setCheckout] = useState(initialCheckout)
@@ -426,7 +433,7 @@ export function StaySearchPilotView({
           </Link>
           <p className="mt-12 text-[0.68rem] font-black tracking-[0.2em] text-sky-300">{c.eyebrow} · {activeDestinationLabel}</p>
           <h1 className="wak-page-title mt-4 max-w-3xl break-keep font-black leading-[1.08] tracking-[-0.035em] text-white">{c.title}</h1>
-          <p className="wak-body-large mt-5 max-w-xl break-keep text-white/76">{c.intro}</p>
+          <p className="wak-body-large mt-5 max-w-xl break-keep text-white/76">{includesKoreaPilot ? c.introExpanded : c.intro}</p>
         </div>
       </section>
 

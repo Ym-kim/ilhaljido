@@ -23,12 +23,17 @@ for (const candidate of STAY_EXPANSION_CANDIDATES) {
   assert.ok(destinations.includes(`id: '${candidate.affiliateDestinationId}'`), `${candidate.id}: affiliate destination missing`)
   assert.ok(destinations.includes('cid=1968994'), 'active Agoda CID missing')
   assert.ok(existsSync(join(root, 'public', candidate.mediaPath.slice(1))), `${candidate.id}: local media missing`)
-  assert.equal(scoreStayExpansionCandidate(candidate), 80, `${candidate.id}: pending live QA must keep score at 80`)
-  assert.equal(isStayExpansionCandidateReady(candidate), false, `${candidate.id}: must remain disabled before live QA`)
-  assert.ok(!publicPilot.includes(`id: '${candidate.id}'`), `${candidate.id}: candidate leaked into public pilot`)
+  assert.equal(scoreStayExpansionCandidate(candidate), 100, `${candidate.id}: verified live QA must complete the score`)
+  assert.equal(isStayExpansionCandidateReady(candidate), true, `${candidate.id}: verified candidate should be release-ready`)
+  assert.equal(candidate.rolloutStatus, 'qa_verified_not_enabled', `${candidate.id}: rollout status must remain disabled`)
+  assert.ok(candidate.liveQualityEvidence.resultCount >= 3, `${candidate.id}: live result evidence is insufficient`)
+  assert.ok(candidate.liveQualityEvidence.displayableResultCount >= 3, `${candidate.id}: image-backed evidence is insufficient`)
 }
+
+assert.ok(publicPilot.includes('NEXT_PUBLIC_STAY_KOREA_PILOT'), 'Korea rollout flag missing')
+assert.ok(publicPilot.includes('isKoreaStayPilotRolloutEnabled() ? KOREA_STAY_PILOT_DESTINATIONS : []'), 'Korea destinations are not flag-gated')
 
 assert.ok(destinations.includes("id: 'korea-jeju'") && destinations.includes("photo: '/media/destinations/jeju-editorial-v1.webp'"))
 assert.ok(!destinations.includes("photo: '/covers/dest-jeju-ai.jpeg'"), 'legacy Jeju AI cover remains')
 
-console.log('[stay-expansion-readiness] PASS — 3 candidates score 80/100 and remain disconnected from the public pilot pending live result QA.')
+console.log('[stay-expansion-readiness] PASS — 3 candidates score 100/100 and remain behind the default-off Korea rollout flag.')

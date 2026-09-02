@@ -3,11 +3,14 @@ import { notFound } from 'next/navigation'
 
 import { StaySearchPilotView } from '@/components/stays/StaySearchPilotView'
 import { getStayPilotInitialState, type StayPilotPageSearchParams } from '@/lib/stays/pilotInitialState'
+import { isKoreaStayPilotRolloutEnabled } from '@/lib/stays/pilotDestinations'
 import { isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
 
 export const metadata: Metadata = {
   title: 'Live Stay Search Pilot',
-  description: 'A limited Wakation pilot for current partner stay results in Fukuoka, Osaka and Tokyo.',
+  description: isKoreaStayPilotRolloutEnabled()
+    ? 'A limited Wakation pilot for current partner stay results in Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju.'
+    : 'A limited Wakation pilot for current partner stay results in Fukuoka, Osaka and Tokyo.',
   robots: { index: false, follow: false },
 }
 
