@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { StaySearchPilotView } from '@/components/stays/StaySearchPilotView'
-import { getStayPilotDateDefaults, isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
+import { getStayPilotInitialState, type StayPilotPageSearchParams } from '@/lib/stays/pilotInitialState'
+import { isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
 
 export const metadata: Metadata = {
   title: '숙소 실시간 검색 Pilot',
@@ -10,8 +11,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default function StaySearchPilotPage() {
+export default async function StaySearchPilotPage({
+  searchParams,
+}: {
+  searchParams: Promise<StayPilotPageSearchParams>
+}) {
   if (!isAgodaStayPilotEnabled()) notFound()
-  const dates = getStayPilotDateDefaults()
-  return <StaySearchPilotView forceLang="KO" initialToday={dates.today} initialCheckin={dates.checkin} initialCheckout={dates.checkout} />
+  const initial = getStayPilotInitialState(await searchParams, 'KO')
+  return <StaySearchPilotView forceLang="KO" {...initial} />
 }

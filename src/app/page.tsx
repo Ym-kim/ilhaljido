@@ -34,6 +34,7 @@ import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
 import { getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
 import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 import { trackStayEvent } from '@/lib/stays/analytics'
+import { buildStayPilotEntryHref } from '@/lib/stays/pilotDestinations'
 import { resolveStaySearchPlan } from '@/lib/stays/providerRegistry'
 
 // 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
@@ -167,6 +168,17 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       return
     }
     setHeroSearchError(null)
+    const pilotEntryHref = buildStayPilotEntryHref({
+      destinationId: heroDest?.anchor,
+      checkin,
+      checkout,
+      locale: lang,
+      source: 'home_hero',
+    })
+    if (pilotEntryHref) {
+      window.open(pilotEntryHref, '_blank', 'noopener,noreferrer')
+      return
+    }
     const plan = resolveStaySearchPlan({
       destination: q,
       destinationId: heroDest?.anchor,

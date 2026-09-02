@@ -11,7 +11,10 @@ const files = {
   engine: read('src/lib/stays/liveSearch.ts'),
   adapter: read('src/lib/stays/providers/agodaLive.ts'),
   api: read('src/app/api/stays/search/route.ts'),
+  entry: read('src/app/api/stays/entry/route.ts'),
   view: read('src/components/stays/StaySearchPilotView.tsx'),
+  initial: read('src/lib/stays/pilotInitialState.ts'),
+  home: read('src/app/page.tsx'),
   booking: read('src/lib/affiliate/bookingSearch.ts'),
   ko: read('src/app/select/hotel/pilot/page.tsx'),
   en: read('src/app/en/select/hotel/pilot/page.tsx'),
@@ -34,6 +37,13 @@ const checks = [
   ['Affiliate CTA is safely marked', files.view.includes('sponsored noopener noreferrer') && files.view.includes("status: 'active_affiliate'")],
   ['Zero discounts and invalid strike-through rates stay hidden', files.view.includes('result.rate.discountPercentage > 0') && files.view.includes('result.rate.crossedOutAmount > result.rate.amount')],
   ['API reports internal latency and result count', files.api.includes('latencyMs') && files.api.includes('resultCount') && files.api.includes('Server-Timing')],
+  ['Home entry is restricted to verified pilot destinations and complete dates', files.home.includes('buildStayPilotEntryHref') && files.destinations.includes('getStayPilotDestination(input.destinationId)') && files.destinations.includes('!input.checkin || !input.checkout')],
+  ['Server entry route applies the private feature flag', files.entry.includes('isAgodaStayPilotEnabled()') && !files.home.includes('AGODA_STAY_PILOT')],
+  ['Disabled pilot entry preserves Booking fallback', files.entry.includes('buildBookingStaySearchHref') && files.entry.includes('localizeOutboundHref')],
+  ['Pilot query state is validated before automatic search', files.initial.includes('validateStayPilotRequest') && files.initial.includes('requestedAutoSearch') && files.view.includes('autoSearchStarted')],
+  ['Home-attributed results remain distinguishable', files.initial.includes("'home_hero_stay_search'") && files.view.includes("'home_hero_stay_results'") && files.view.includes("'home_hero_stay_fallback'")],
+  ['KO EN JA pilot pages accept sanitized initial state', [files.ko, files.en, files.ja].every((source) => source.includes('getStayPilotInitialState') && source.includes('searchParams'))],
+  ['Pilot entry modules expose no Agoda secret', !/AGODA_API_KEY|Authorization/.test(`${files.entry}\n${files.initial}\n${files.home}`)],
 ]
 
 const failures = checks.filter(([, passed]) => !passed).map(([name]) => name)

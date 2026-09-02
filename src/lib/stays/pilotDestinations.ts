@@ -28,3 +28,27 @@ export const STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
 export function getStayPilotDestination(id: string): StayPilotDestination | undefined {
   return STAY_PILOT_DESTINATIONS.find((destination) => destination.id === id)
 }
+
+export function buildStayPilotEntryHref(input: {
+  destinationId?: string
+  checkin?: string
+  checkout?: string
+  locale: Lang
+  source: 'home_hero'
+}): string | null {
+  if (!input.destinationId || !getStayPilotDestination(input.destinationId)) return null
+  if (!input.checkin || !input.checkout || input.checkout <= input.checkin) return null
+
+  const params = new URLSearchParams({
+    destination: input.destinationId,
+    checkin: input.checkin,
+    checkout: input.checkout,
+    adults: '2',
+    children: '0',
+    auto: '1',
+    source: input.source,
+    locale: input.locale,
+  })
+
+  return `/api/stays/entry?${params.toString()}`
+}

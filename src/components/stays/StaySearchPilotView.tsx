@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, BedDouble, Coffee, ExternalLink, Search, ShieldCheck, Users, Wifi } from 'lucide-react'
 
@@ -10,6 +10,7 @@ import type { StaySearchResult } from '@/lib/stays/domain'
 import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
+import type { StayPilotSourceSection } from '@/lib/stays/pilotInitialState'
 
 type SearchResponse =
   | {
@@ -88,11 +89,13 @@ function ResultCard({
   index,
   lang,
   destinationId,
+  sourceSection,
 }: {
   result: StaySearchResult
   index: number
   lang: Lang
   destinationId: string
+  sourceSection: string
 }) {
   const c = COPY[lang]
   const positiveDiscount = typeof result.rate.discountPercentage === 'number' && result.rate.discountPercentage > 0
@@ -105,7 +108,7 @@ function ResultCard({
   const trackOutbound = () => {
     const common = {
       locale: lang,
-      sourceSection: 'stay_search_pilot_results',
+      sourceSection,
       provider: result.provider,
       destinationId,
       hotelId: result.propertyId,
@@ -121,7 +124,7 @@ function ResultCard({
       itemName: result.name,
       provider: result.provider,
       destination: destinationId,
-      sourceSection: 'stay_search_pilot_results',
+      sourceSection,
       ctaLabel: 'check_live_rate',
       ctaPosition: String(index + 1),
       category: 'hotel',
@@ -186,24 +189,41 @@ export function StaySearchPilotView({
   initialCheckin,
   initialCheckout,
   initialToday,
+  initialDestinationId,
+  initialAdults,
+  initialChildren,
+  autoSearch,
+  sourceSection,
 }: {
   forceLang?: Lang
   initialCheckin: string
   initialCheckout: string
   initialToday: string
+  initialDestinationId: string
+  initialAdults: number
+  initialChildren: number
+  autoSearch: boolean
+  sourceSection: StayPilotSourceSection
 }) {
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang ?? contextLang
   const c = COPY[lang]
-  const [destinationId, setDestinationId] = useState('japan-fukuoka')
+  const [destinationId, setDestinationId] = useState(initialDestinationId)
   const [checkin, setCheckin] = useState(initialCheckin)
   const [checkout, setCheckout] = useState(initialCheckout)
-  const [adults, setAdults] = useState(2)
-  const [children, setChildren] = useState(0)
+  const [adults, setAdults] = useState(initialAdults)
+  const [children, setChildren] = useState(initialChildren)
   const [response, setResponse] = useState<SearchResponse | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const autoSearchStarted = useRef(false)
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
+  const resultSourceSection = sourceSection === 'home_hero_stay_search'
+    ? 'home_hero_stay_results'
+    : 'stay_search_pilot_results'
+  const fallbackSourceSection = sourceSection === 'home_hero_stay_search'
+    ? 'home_hero_stay_fallback'
+    : 'stay_search_pilot_fallback'
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
@@ -215,13 +235,12 @@ export function StaySearchPilotView({
     return new Date(date.getTime() + 86_400_000).toISOString().slice(0, 10)
   }, [checkin, initialCheckout])
 
-  async function submit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
+  const runSearch = useCallback(async () => {
     setError('')
     setLoading(true)
     setResponse(null)
     trackStayEvent('stay_search', {
-      locale: lang, sourceSection: 'stay_search_pilot_form', provider: 'agoda', destinationId,
+      locale: lang, sourceSection, provider: 'agoda', destinationId,
       capability: 'live_search', datesSupplied: Boolean(checkin && checkout), outcome: 'view',
     })
 
@@ -236,13 +255,13 @@ export function StaySearchPilotView({
       setResponse(payload)
       if (payload.mode === 'results') {
         trackStayEvent('stay_result_view', {
-          locale: lang, sourceSection: 'stay_search_pilot_results', provider: payload.provider,
+          locale: lang, sourceSection: resultSourceSection, provider: payload.provider,
           destinationId, capability: 'live_search', datesSupplied: true,
           resultCount: payload.results.length, outcome: 'view',
         })
       } else {
         trackStayEvent('stay_result_view', {
-          locale: lang, sourceSection: 'stay_search_pilot_fallback', provider: payload.provider,
+          locale: lang, sourceSection: fallbackSourceSection, provider: payload.provider,
           destinationId, capability: 'search_redirect', datesSupplied: true, resultCount: 0, outcome: 'fallback',
         })
       }
@@ -251,16 +270,27 @@ export function StaySearchPilotView({
     } finally {
       setLoading(false)
     }
+  }, [adults, c.error, checkin, checkout, children, destinationId, fallbackSourceSection, lang, resultSourceSection, sourceSection])
+
+  useEffect(() => {
+    if (!autoSearch || autoSearchStarted.current) return
+    autoSearchStarted.current = true
+    void runSearch()
+  }, [autoSearch, runSearch])
+
+  function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    void runSearch()
   }
 
   const fallbackClick = response?.mode === 'fallback' ? () => {
     trackStayEvent('stay_booking_click', {
-      locale: lang, sourceSection: 'stay_search_pilot_fallback', provider: 'booking', destinationId,
+      locale: lang, sourceSection: fallbackSourceSection, provider: 'booking', destinationId,
       capability: 'search_redirect', datesSupplied: true, outcome: 'fallback',
     })
     trackAffiliateClick({
       id: 'booking-stay-search', itemName: 'Booking.com stay search', provider: 'booking',
-      destination: destinationId, sourceSection: 'stay_search_pilot_fallback', ctaLabel: 'fallback_search',
+      destination: destinationId, sourceSection: fallbackSourceSection, ctaLabel: 'fallback_search',
       category: 'hotel', locale: lang, status: 'active_affiliate',
     })
   } : undefined
@@ -320,7 +350,7 @@ export function StaySearchPilotView({
                   <p className="text-xs text-[#647983]">{c.noEditorial}</p>
                 </div>
                 <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                  {response.results.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} />)}
+                  {response.results.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
                 </div>
               </>
             ) : null}
