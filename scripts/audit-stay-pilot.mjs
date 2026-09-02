@@ -35,7 +35,7 @@ const checks = [
   ['Production is feature-flag dark by default', files.flag.includes("process.env.VERCEL_ENV !== 'production'")],
   ['Dates and guests are bounded', files.validation.includes('nights > 30') && files.validation.includes('(adults as number) > 8') && files.validation.includes('(children as number) > 6')],
   ['Provider-neutral live adapter registry exists', files.engine.includes('LIVE_SEARCH_ADAPTERS') && files.engine.includes('Partial<Record<StayProviderId')],
-  ['Agoda empty result falls back', files.adapter.includes("reason: 'empty_result'") && files.engine.includes("mode: 'fallback'")],
+  ['Agoda empty or non-displayable result falls back', files.adapter.includes("Boolean(hotel.imageUrl)") && files.adapter.includes("reason: 'empty_result'") && files.engine.includes("mode: 'fallback'")],
   ['Booking fallback preserves affiliate ID and guests', files.booking.includes("aid: '7854081'") && files.booking.includes('group_adults') && files.booking.includes('group_children')],
   ['Booking fallback preserves the active site language', files.bookingProvider.includes('localizeOutboundHref(href, request.locale)')],
   ['Landing URL remains provider-returned', files.adapter.includes('hotel.landingURL') && !files.adapter.includes('URLSearchParams')],

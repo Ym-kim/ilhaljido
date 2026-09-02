@@ -114,7 +114,9 @@ export async function searchAgodaStays(request: StaySearchRequest): Promise<Stay
   const latencyMs = Math.round(performance.now() - startedAt)
   if (!outcome.ok) return { ok: false, reason: failureReason(outcome), latencyMs }
 
-  const results = outcome.hotels.map((hotel) => mapAgodaHotelToStayResult(hotel, request)).filter((hotel): hotel is StaySearchResult => hotel !== null)
+  const results = outcome.hotels
+    .map((hotel) => mapAgodaHotelToStayResult(hotel, request))
+    .filter((hotel): hotel is StaySearchResult => hotel !== null && Boolean(hotel.imageUrl))
   return results.length > 0
     ? { ok: true, results, latencyMs }
     : { ok: false, reason: 'empty_result', latencyMs }
