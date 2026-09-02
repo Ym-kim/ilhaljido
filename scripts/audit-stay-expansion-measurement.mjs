@@ -13,7 +13,9 @@ assert.ok(route.includes("{ error: 'not_found' }"), 'Non-Preview response must f
 assert.ok(route.includes('revalidate = 3600'), 'Measurement route needs hourly quota protection')
 assert.ok(measurement.includes('STAY_EXPANSION_CANDIDATES'), 'Candidate registry is not reused')
 assert.ok(measurement.includes('mapAgodaHotelToStayResult'), 'Production response mapper is not reused')
-assert.ok(measurement.includes('REQUIRED_DISPLAYABLE_RESULTS = 3'), 'Minimum image-backed result gate missing')
+assert.ok(measurement.includes('REQUIRED_VALID_RESULTS = 3'), 'Minimum valid-result gate missing')
+assert.ok(measurement.includes('displayableResultCount: validResults.length'), 'Image-optional product cards are not counted as displayable')
+assert.ok(measurement.includes('providerImageResultCount'), 'Provider image coverage is not measured separately')
 assert.ok(measurement.includes("bookingHref.includes('cid=1968994')"), 'Affiliate attribution gate missing')
 assert.ok(adapter.includes('export function mapAgodaHotelToStayResult'), 'Shared Agoda mapper is not exported')
 

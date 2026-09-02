@@ -1,11 +1,12 @@
 import type { Lang } from '@/lib/i18n/types'
 import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 import { trackEvent } from '@/lib/track'
-import type { StayCapability, StayLiveSearchFailureReason, StayProviderId } from '@/lib/stays/domain'
+import type { StayCapability, StayImageStatus, StayLiveSearchFailureReason, StayProviderId } from '@/lib/stays/domain'
 
 export type StayLatencyBucket = 'under_500ms' | '500_999ms' | '1_1999s' | '2_3999s' | '4_7999s' | '8s_plus' | 'unknown'
 export type StayResultCountBand = 'zero' | '1_4' | '5_9' | '10_plus' | 'unknown'
 export type StayMeasurementFailureReason = StayLiveSearchFailureReason | 'request_failed'
+export type StayAnalyticsImageStatus = StayImageStatus | 'mixed' | 'unknown'
 
 export type StayEventName =
   | 'stay_search'
@@ -29,6 +30,9 @@ export type StayAnalyticsInput = {
   failureReason?: StayMeasurementFailureReason
   hotelId?: string | number
   position?: number
+  imageStatus?: StayAnalyticsImageStatus
+  discountPresent?: boolean
+  wakationNotePresent?: boolean
   refinement?: 'sort_provider_order' | 'sort_rate_asc' | 'sort_review_desc' | 'filter_free_wifi' | 'filter_breakfast' | 'filter_review_8_plus' | 'reset'
   outcome?: 'view' | 'redirect' | 'fallback' | 'unavailable'
 }
@@ -82,6 +86,9 @@ export function trackStayEvent(name: StayEventName, input: StayAnalyticsInput): 
     position: typeof input.position === 'number' && Number.isFinite(input.position)
       ? String(Math.max(0, Math.floor(input.position)))
       : 'unknown',
+    image_status: input.imageStatus ?? 'unknown',
+    discount_present: input.discountPresent === undefined ? 'unknown' : input.discountPresent ? 'true' : 'false',
+    wakation_note_present: input.wakationNotePresent === undefined ? 'unknown' : input.wakationNotePresent ? 'true' : 'false',
     capability: input.capability ?? 'none',
     dates_supplied: input.datesSupplied ? 'true' : 'false',
     result_count: typeof input.resultCount === 'number' && Number.isFinite(input.resultCount)

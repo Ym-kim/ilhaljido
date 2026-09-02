@@ -57,6 +57,8 @@ export type StayAmenities = {
   breakfastIncluded?: boolean
 }
 
+export type StayImageStatus = 'provider_image' | 'neutral_placeholder'
+
 /** Wakation-owned research only. Provider data must never populate these fields. */
 export type StayIntelligence = {
   workNote: string
@@ -74,6 +76,7 @@ export type StaySearchResult = {
   name: string
   bookingHref: string
   imageUrl?: string
+  imageStatus: StayImageStatus
   starRating?: number
   reviewScore?: number
   rate: StayRate
@@ -88,6 +91,7 @@ export type StayLiveSearchFailureReason =
   | 'http_error'
   | 'bad_payload'
   | 'empty_result'
+  | 'provider_disabled'
   | 'adapter_unavailable'
 
 export type StaySearchPlan =

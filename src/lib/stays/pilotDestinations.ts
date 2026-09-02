@@ -5,6 +5,7 @@ export type StayPilotDestination = {
   id: 'japan-fukuoka' | 'japan-osaka' | 'japan-tokyo' | 'korea-busan' | 'korea-jeju' | 'korea-seoul'
   cityId: number
   label: Record<Lang, string>
+  rolloutStatus: 'AGODA_READY' | 'BOOKING_FALLBACK' | 'DISABLED'
 }
 
 export const STAY_PILOT_ENTRY_SOURCES = ['home_hero', 'guide', 'trip_set'] as const
@@ -15,16 +16,19 @@ const CORE_STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
     id: 'japan-fukuoka',
     cityId: AGODA_CITY_IDS['japan-fukuoka'],
     label: { KO: '후쿠오카', EN: 'Fukuoka', JP: '福岡' },
+    rolloutStatus: 'AGODA_READY',
   },
   {
     id: 'japan-osaka',
     cityId: AGODA_CITY_IDS['japan-osaka'],
     label: { KO: '오사카', EN: 'Osaka', JP: '大阪' },
+    rolloutStatus: 'AGODA_READY',
   },
   {
     id: 'japan-tokyo',
     cityId: AGODA_CITY_IDS['japan-tokyo'],
     label: { KO: '도쿄', EN: 'Tokyo', JP: '東京' },
+    rolloutStatus: 'AGODA_READY',
   },
 ] as const
 
@@ -33,16 +37,19 @@ const KOREA_STAY_PILOT_DESTINATIONS: readonly StayPilotDestination[] = [
     id: 'korea-busan',
     cityId: AGODA_CITY_IDS['korea-busan'],
     label: { KO: '부산', EN: 'Busan', JP: '釜山' },
+    rolloutStatus: 'AGODA_READY',
   },
   {
     id: 'korea-jeju',
     cityId: AGODA_CITY_IDS['korea-jeju'],
     label: { KO: '제주', EN: 'Jeju', JP: '済州' },
+    rolloutStatus: 'AGODA_READY',
   },
   {
     id: 'korea-seoul',
     cityId: AGODA_CITY_IDS['korea-seoul'],
     label: { KO: '서울', EN: 'Seoul', JP: 'ソウル' },
+    rolloutStatus: 'AGODA_READY',
   },
 ] as const
 

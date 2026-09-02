@@ -16,6 +16,7 @@ export type StayExpansionMeasurement = {
   resultCount: number
   validResultCount: number
   displayableResultCount: number
+  providerImageResultCount: number
   reviewMetricCount: number
   propertyClassCount: number
   freeWifiSignalCount: number
@@ -32,7 +33,7 @@ export type StayExpansionMeasurementReport = {
 }
 
 const SAMPLE_OFFSET_DAYS = 21
-const REQUIRED_DISPLAYABLE_RESULTS = 3
+const REQUIRED_VALID_RESULTS = 3
 
 export async function measureStayExpansionCandidates(): Promise<StayExpansionMeasurementReport> {
   const window = nightWindow(SAMPLE_OFFSET_DAYS)
@@ -62,6 +63,7 @@ export async function measureStayExpansionCandidates(): Promise<StayExpansionMea
         resultCount: 0,
         validResultCount: 0,
         displayableResultCount: 0,
+        providerImageResultCount: 0,
         reviewMetricCount: 0,
         propertyClassCount: 0,
         freeWifiSignalCount: 0,
@@ -85,11 +87,10 @@ export async function measureStayExpansionCandidates(): Promise<StayExpansionMea
     const validResults = outcome.hotels
       .map((hotel) => mapAgodaHotelToStayResult(hotel, request))
       .filter((hotel) => hotel !== null)
-    const displayableResults = validResults.filter((hotel) => Boolean(hotel.imageUrl))
+    const providerImageResults = validResults.filter((hotel) => hotel.imageStatus === 'provider_image')
     const affiliateLinkCount = validResults.filter((hotel) => hotel.bookingHref.includes('cid=1968994')).length
     const currencies = [...new Set(validResults.map((hotel) => hotel.rate.currency))]
-    const passed = validResults.length >= REQUIRED_DISPLAYABLE_RESULTS
-      && displayableResults.length >= REQUIRED_DISPLAYABLE_RESULTS
+    const passed = validResults.length >= REQUIRED_VALID_RESULTS
       && affiliateLinkCount === validResults.length
       && currencies.length === 1
 
@@ -100,7 +101,9 @@ export async function measureStayExpansionCandidates(): Promise<StayExpansionMea
       latencyMs,
       resultCount: outcome.hotels.length,
       validResultCount: validResults.length,
-      displayableResultCount: displayableResults.length,
+      // A valid result remains displayable through the neutral placeholder when no provider image exists.
+      displayableResultCount: validResults.length,
+      providerImageResultCount: providerImageResults.length,
       reviewMetricCount: validResults.filter((hotel) => typeof hotel.reviewScore === 'number').length,
       propertyClassCount: validResults.filter((hotel) => typeof hotel.starRating === 'number').length,
       freeWifiSignalCount: validResults.filter((hotel) => hotel.amenities?.freeWifi === true).length,

@@ -48,12 +48,12 @@ const COPY = {
     introExpanded: '후쿠오카·오사카·도쿄와 서울·부산·제주의 현재 숙소를 확인하고, 일과 체류에 맞는 조건을 차분하게 비교합니다.',
     back: '숙소 전체 보기', destination: '여행지', checkin: '체크인', checkout: '체크아웃',
     adults: '성인', children: '아동', search: '이 날짜로 숙소 보기', searching: '요금 확인 중', results: '머물 곳을 골라보세요',
-    perNight: '1박 기준', review: '이용자 후기 평점', propertyClass: 'Agoda 숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
-    checkRate: 'Agoda에서 요금 확인', rooms: '객실 확인', fallbackTitle: '제휴사 검색으로 이어서 확인하세요',
+    perNight: '1박 기준', review: '숙박객 평점', propertyClass: 'Agoda 숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
+    checkRate: '객실·최종요금 확인', rooms: '객실 확인', fallbackTitle: '제휴사 검색으로 이어서 확인하세요',
     fallbackBody: 'Agoda 결과가 지연되거나 비어 있어 기존 Booking.com 검색으로 안전하게 연결합니다.',
     fallbackCta: 'Booking.com에서 숙소 확인', error: '검색 조건을 다시 확인해주세요.',
     disclosure: '외부 제휴 상품입니다. Wakation은 검색을 돕고, 예약·결제·취소·환불은 연결된 제휴사의 정책을 따릅니다. 요금과 조건은 제휴사 화면에서 최종 확인해주세요.',
-    provider: 'Agoda 제공 결과', noEditorial: '제휴사가 실제 숙소 사진을 제공한 결과만 표시합니다.',
+    provider: 'Agoda 제공 결과', providerFacts: 'Agoda 제공 정보', noEditorial: '실제 숙소 사진이 없는 결과는 중립 이미지로 구분해 표시합니다.', imageUnavailable: '숙소 사진은 Agoda에서 확인',
     ratingGuide: 'Agoda 숙소 등급은 제휴사가 제공한 0–5 지표로, 국가별 공식 호텔 등급과 다를 수 있습니다. 이용자 후기 평점은 10점 만점입니다.',
     intelligence: 'Wakation 조사 메모', workNote: '일하기', longStayNote: '머물기', accessNote: '이동', source: '근거 보기', verifiedAt: '확인일',
     cityStay: '숙소 찾기', finalPrice: '세금·수수료와 최종 조건은 제휴사에서 확인',
@@ -67,11 +67,11 @@ const COPY = {
     back: 'View all stays', destination: 'Destination', checkin: 'Check-in', checkout: 'Check-out',
     adults: 'Adults', children: 'Children', search: 'See stays for these dates', searching: 'Checking rates', results: 'Choose where to stay',
     perNight: 'per night', review: 'Guest review score', propertyClass: 'Agoda property rating', wifi: 'Free Wi‑Fi', breakfast: 'Breakfast included',
-    checkRate: 'Check rate on Agoda', rooms: 'Check rooms', fallbackTitle: 'Continue with partner search',
+    checkRate: 'Check rooms & final rate', rooms: 'Check rooms', fallbackTitle: 'Continue with partner search',
     fallbackBody: 'Agoda results were delayed or empty, so the existing Booking.com search remains available.',
     fallbackCta: 'Check stays on Booking.com', error: 'Please check your search details.',
     disclosure: 'This is an external affiliate product. Wakation helps with discovery; booking, payment, cancellation and refunds follow the partner’s terms. Confirm final rates and conditions on the partner site.',
-    provider: 'Results provided by Agoda', noEditorial: 'Only stays with an actual property photo supplied by the partner are shown.',
+    provider: 'Results provided by Agoda', providerFacts: 'Provided by Agoda', noEditorial: 'Results without a property photo use a clearly neutral placeholder.', imageUnavailable: 'See the property photo on Agoda',
     ratingGuide: 'The Agoda property rating is a partner-supplied 0–5 metric and may differ from an official local hotel classification. Guest review scores use a 10-point scale.',
     intelligence: 'Wakation research note', workNote: 'Work', longStayNote: 'Stay', accessNote: 'Access', source: 'View source', verifiedAt: 'Checked',
     cityStay: 'Stay search', finalPrice: 'Confirm taxes, fees and final conditions with the partner',
@@ -84,12 +84,12 @@ const COPY = {
     introExpanded: '福岡・大阪・東京とソウル・釜山・済州の現在の宿を確認し、仕事と滞在に必要な条件を比較できます。',
     back: '宿をすべて見る', destination: '行き先', checkin: 'チェックイン', checkout: 'チェックアウト',
     adults: '大人', children: '子ども', search: 'この日程で宿を見る', searching: '料金を確認中', results: '滞在先を選ぶ',
-    perNight: '1泊あたり', review: '利用者口コミ評価', propertyClass: 'Agoda施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
-    checkRate: 'Agodaで料金を確認', rooms: '客室を確認', fallbackTitle: '提携先検索で続けて確認',
+    perNight: '1泊あたり', review: '宿泊者口コミ評価', propertyClass: 'Agoda施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
+    checkRate: '客室・最終料金を確認', rooms: '客室を確認', fallbackTitle: '提携先検索で続けて確認',
     fallbackBody: 'Agodaの結果が遅延または空だったため、既存のBooking.com検索へ安全に案内します。',
     fallbackCta: 'Booking.comで宿を確認', error: '検索条件を確認してください。',
     disclosure: '外部のアフィリエイト商品です。Wakationは検索をサポートし、予約・決済・キャンセル・返金は提携先の規約に従います。最終料金と条件は提携先でご確認ください。',
-    provider: 'Agoda提供の検索結果', noEditorial: '提携先から実際の宿泊施設写真が提供された結果のみ表示します。',
+    provider: 'Agoda提供の検索結果', providerFacts: 'Agoda提供情報', noEditorial: '施設写真がない結果は、中立的な画像で区別して表示します。', imageUnavailable: '施設写真はAgodaで確認',
     ratingGuide: 'Agoda施設ランクは提携先が提供する0〜5の指標で、各国の公式なホテル等級とは異なる場合があります。利用者口コミ評価は10点満点です。',
     intelligence: 'Wakation調査メモ', workNote: '仕事', longStayNote: '滞在', accessNote: 'アクセス', source: '根拠を見る', verifiedAt: '確認日',
     cityStay: '宿を探す', finalPrice: '税・手数料と最終条件は提携先で確認',
@@ -122,6 +122,27 @@ function formatProviderPropertyRating(value: number): string {
   return `${value.toFixed(1)}/5`
 }
 
+function formatStartingRate(value: number, currency: string, lang: Lang): string {
+  const rate = formatRate(value, currency, lang)
+  return lang === 'EN' ? `From ${rate}` : lang === 'JP' ? `${rate}〜` : `${rate}~`
+}
+
+function getSafeDiscountPercentage(result: StaySearchResult): number | null {
+  const crossedOut = result.rate.crossedOutAmount
+  const provided = result.rate.discountPercentage
+  if (typeof crossedOut !== 'number' || crossedOut <= result.rate.amount || typeof provided !== 'number' || provided <= 0) return null
+  const calculated = ((crossedOut - result.rate.amount) / crossedOut) * 100
+  return Math.abs(calculated - provided) <= 5 ? Math.round(provided) : null
+}
+
+function summarizeImageStatus(results: StaySearchResult[]): 'provider_image' | 'neutral_placeholder' | 'mixed' | 'unknown' {
+  if (results.length === 0) return 'unknown'
+  const providerImageCount = results.filter((result) => result.imageStatus === 'provider_image').length
+  if (providerImageCount === results.length) return 'provider_image'
+  if (providerImageCount === 0) return 'neutral_placeholder'
+  return 'mixed'
+}
+
 function ResultCard({
   result,
   index,
@@ -136,10 +157,12 @@ function ResultCard({
   sourceSection: string
 }) {
   const c = COPY[lang]
-  const positiveDiscount = typeof result.rate.discountPercentage === 'number' && result.rate.discountPercentage > 0
-    ? result.rate.discountPercentage
-    : null
-  const meaningfulCrossedOutRate = typeof result.rate.crossedOutAmount === 'number'
+  const [imageFailed, setImageFailed] = useState(false)
+  const showProviderImage = Boolean(result.imageUrl) && !imageFailed
+  const renderedImageStatus = showProviderImage ? 'provider_image' as const : 'neutral_placeholder' as const
+  const positiveDiscount = getSafeDiscountPercentage(result)
+  const meaningfulCrossedOutRate = positiveDiscount !== null
+    && typeof result.rate.crossedOutAmount === 'number'
     && result.rate.crossedOutAmount > result.rate.amount
     ? result.rate.crossedOutAmount
     : null
@@ -147,6 +170,11 @@ function ResultCard({
     && Number.isFinite(result.starRating)
     && result.starRating > 0
     ? result.starRating
+    : null
+  const guestScore = typeof result.reviewScore === 'number'
+    && Number.isFinite(result.reviewScore)
+    && result.reviewScore > 0
+    ? result.reviewScore
     : null
   const trackOutbound = () => {
     const common = {
@@ -156,12 +184,16 @@ function ResultCard({
       destinationId,
       hotelId: result.propertyId,
       position: index + 1,
+      imageStatus: renderedImageStatus,
+      discountPresent: positiveDiscount !== null,
+      wakationNotePresent: Boolean(result.intelligence),
       capability: 'live_search' as const,
       datesSupplied: true,
       outcome: 'redirect' as const,
     }
     trackStayEvent('stay_property_click', common)
     trackStayEvent('stay_booking_click', common)
+    trackStayEvent('affiliate_redirect', common)
     recordStayBookingClick({
       destinationId,
       locale: lang,
@@ -184,25 +216,34 @@ function ResultCard({
 
   return (
     <article className="wak-card-product group flex h-full min-w-0 flex-col overflow-hidden border border-[#d9e2e3] bg-white transition duration-300 hover:-translate-y-1 hover:border-[#9fc4cf] hover:shadow-[0_20px_48px_rgba(8,47,73,0.13)]">
-      <div className="relative aspect-[4/3] shrink-0 overflow-hidden bg-[#dce8e9]">
-        {result.imageUrl ? (
+      <div className="relative aspect-[4/3] shrink-0 overflow-hidden bg-[#dce8e9]" data-stay-image-status={renderedImageStatus}>
+        {!showProviderImage ? (
+          <div role="img" aria-label={c.imageUnavailable} className="absolute inset-0 flex flex-col items-center justify-center bg-[radial-gradient(circle_at_28%_20%,rgba(255,255,255,.9),transparent_34%),linear-gradient(145deg,#dce9e8_0%,#b9ced1_48%,#8caab2_100%)] px-6 text-center text-[#153b49]">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white/70 bg-white/55 shadow-sm"><BedDouble className="h-7 w-7" aria-hidden="true" /></span>
+            <span className="mt-4 text-[0.65rem] font-black tracking-[0.16em]">WAKATION STAY</span>
+            <span className="mt-1 text-xs font-semibold text-[#315765]">{c.imageUnavailable}</span>
+          </div>
+        ) : null}
+        {showProviderImage ? (
           // Provider CDNs vary; a native lazy image keeps this provider-neutral without widening Next remote hosts.
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={result.imageUrl}
             alt={result.name}
-            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
-            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
+            loading={index < 2 ? 'eager' : 'lazy'}
             decoding="async"
             referrerPolicy="no-referrer"
+            onError={() => setImageFailed(true)}
           />
         ) : null}
-        <span className="absolute inset-0 bg-gradient-to-t from-[#061f2d]/72 via-transparent to-black/5" />
+        {showProviderImage ? <span className="absolute inset-0 bg-gradient-to-t from-[#061f2d]/58 via-transparent to-black/5" /> : null}
         <div className="absolute inset-x-0 top-0 flex items-start justify-end p-4">
-          {typeof result.reviewScore === 'number' ? <span className="rounded-full bg-white px-3 py-2 text-xs font-black text-[#0a4054] shadow-lg">{c.review} {result.reviewScore.toFixed(1)}/10</span> : null}
+          {guestScore !== null ? <span className="rounded-full bg-white px-3 py-2 text-xs font-black text-[#0a4054] shadow-lg">{c.review} {guestScore.toFixed(1)}/10</span> : null}
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
+        <p className="text-[0.62rem] font-black tracking-[0.12em] text-[#68808a]">{c.providerFacts}</p>
         <h2 className="line-clamp-2 h-[3.25rem] overflow-hidden break-words text-[1.08rem] font-black leading-[1.45] text-[#172a36]">{result.name}</h2>
         <div className="mt-3 flex min-h-8 flex-wrap content-start gap-2 text-[0.7rem] font-bold text-[#31505e]">
           {propertyClass !== null ? <span className="inline-flex items-center rounded-full bg-[#edf3f4] px-3 py-1.5">{c.propertyClass} {formatProviderPropertyRating(propertyClass)}</span> : null}
@@ -230,10 +271,10 @@ function ResultCard({
             <p className="text-sm text-[#71838b] line-through">{formatRate(meaningfulCrossedOutRate, result.rate.currency, lang)}</p>
           ) : null}
           <div className="flex flex-wrap items-end gap-x-2 gap-y-1">
-            <p className="text-[1.65rem] font-black tracking-[-0.03em] text-[#0b3140]">{formatRate(result.rate.amount, result.rate.currency, lang)}</p>
+            <p className="text-[1.65rem] font-black tracking-[-0.03em] text-[#0b3140]">{formatStartingRate(result.rate.amount, result.rate.currency, lang)}</p>
             <span className="pb-1 text-xs text-[#637780]">{c.perNight}</span>
             {positiveDiscount !== null ? (
-              <span className="mb-1 rounded-full bg-[#fff1eb] px-2 py-1 text-xs font-bold text-[#d95632]">-{Math.round(positiveDiscount)}%</span>
+              <span className="mb-1 rounded-full bg-[#fff1eb] px-2 py-1 text-xs font-bold text-[#d95632]">-{positiveDiscount}%</span>
             ) : null}
           </div>
           <p className="mt-1 text-[0.66rem] leading-4 text-[#7a898f]">{c.finalPrice}</p>
@@ -307,7 +348,7 @@ export function StaySearchPilotView({
         ? 'trip_set_stay_fallback'
         : 'stay_search_pilot_fallback'
   const resultItems = useMemo(
-    () => response?.mode === 'results' ? response.results.filter((result) => Boolean(result.imageUrl)) : [],
+    () => response?.mode === 'results' ? response.results : [],
     [response],
   )
   const filterAvailability = useMemo(() => getStayResultFilterAvailability(resultItems), [resultItems])
@@ -353,6 +394,9 @@ export function StaySearchPilotView({
           locale: lang, sourceSection: resultSourceSection, provider: payload.provider,
           destinationId, capability: 'live_search', datesSupplied: true,
           resultCount: payload.results.length, latencyMs: payload.meta.latencyMs, outcome: 'view',
+          imageStatus: summarizeImageStatus(payload.results),
+          discountPresent: payload.results.some((result) => getSafeDiscountPercentage(result) !== null),
+          wakationNotePresent: payload.results.some((result) => Boolean(result.intelligence)),
         })
         resultEventTracked = true
       } else {
@@ -424,10 +468,12 @@ export function StaySearchPilotView({
   }
 
   const fallbackClick = response?.mode === 'fallback' ? () => {
-    trackStayEvent('stay_booking_click', {
+    const common = {
       locale: lang, sourceSection: fallbackSourceSection, provider: 'booking', destinationId,
       capability: 'search_redirect', datesSupplied: true, outcome: 'fallback',
-    })
+    } as const
+    trackStayEvent('stay_booking_click', common)
+    trackStayEvent('affiliate_redirect', common)
     recordStayBookingClick({
       destinationId,
       locale: lang,

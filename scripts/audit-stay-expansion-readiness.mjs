@@ -27,7 +27,8 @@ for (const candidate of STAY_EXPANSION_CANDIDATES) {
   assert.equal(isStayExpansionCandidateReady(candidate), true, `${candidate.id}: verified candidate should be release-ready`)
   assert.equal(candidate.rolloutStatus, 'qa_verified_not_enabled', `${candidate.id}: rollout status must remain disabled`)
   assert.ok(candidate.liveQualityEvidence.resultCount >= 3, `${candidate.id}: live result evidence is insufficient`)
-  assert.ok(candidate.liveQualityEvidence.displayableResultCount >= 3, `${candidate.id}: image-backed evidence is insufficient`)
+  assert.ok(candidate.liveQualityEvidence.displayableResultCount >= 3, `${candidate.id}: product-card evidence is insufficient`)
+  assert.ok(candidate.liveQualityEvidence.providerImageResultCount >= 0, `${candidate.id}: provider image evidence is malformed`)
 }
 
 assert.ok(publicPilot.includes('NEXT_PUBLIC_STAY_KOREA_PILOT'), 'Korea rollout flag missing')

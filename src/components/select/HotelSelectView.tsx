@@ -27,22 +27,22 @@ const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
 
 const PILOT_COPY: Record<Lang, { eyebrow: string; title: string; description: string; cta: string }> = {
   KO: {
-    eyebrow: '실시간 숙소 검색 · BETA',
-    title: '여섯 도시의 현재 객실을 날짜로 비교해보세요',
-    description: '후쿠오카·오사카·도쿄·서울·부산·제주에서 Agoda 실시간 결과를 확인합니다. 결과가 없거나 연결이 지연되면 기존 Booking.com 검색으로 이어집니다.',
-    cta: '실시간 검색 Beta 열기',
+    eyebrow: 'WAKATION 실시간 숙소 찾기 · BETA',
+    title: '날짜와 인원을 넣고, 현재 객실과 요금을 비교해보세요',
+    description: '후쿠오카·오사카·도쿄·서울·부산·제주의 Agoda 제공 가격·후기·숙소 조건을 Wakation 안에서 비교합니다. 검색이 불가능하면 기존 Booking.com으로 안전하게 이어집니다.',
+    cta: '실시간 숙소 찾기',
   },
   EN: {
-    eyebrow: 'LIVE STAY SEARCH · BETA',
-    title: 'Compare live availability in six pilot cities',
-    description: 'Search live Agoda results for Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju. If results are unavailable, the established Booking.com search remains available.',
-    cta: 'Open live-search Beta',
+    eyebrow: 'WAKATION LIVE STAY SEARCH · BETA',
+    title: 'Add dates and guests to compare current rooms and rates',
+    description: 'Compare Agoda-provided rates, guest scores and stay details for Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju inside Wakation. Booking.com remains the safe fallback.',
+    cta: 'Find live stays',
   },
   JP: {
-    eyebrow: 'リアルタイム宿検索・BETA',
-    title: '6都市の空室を日付で比較できます',
-    description: '福岡・大阪・東京・ソウル・釜山・済州のAgodaリアルタイム結果を確認。結果がない場合は従来のBooking.com検索も利用できます。',
-    cta: 'リアルタイム検索Betaを開く',
+    eyebrow: 'WAKATION リアルタイム宿検索・BETA',
+    title: '日程と人数を入力して、現在の客室と料金を比較',
+    description: '福岡・大阪・東京・ソウル・釜山・済州のAgoda提供料金・口コミ評価・宿泊条件をWakation内で比較できます。検索できない場合はBooking.comへ安全に案内します。',
+    cta: 'リアルタイムで宿を探す',
   },
 }
 
