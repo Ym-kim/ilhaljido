@@ -51,6 +51,7 @@ export type AgodaSearchOutcome =
         | 'configuration_error'
         | 'http_error'
         | 'bad_payload'
+        | 'timeout'
         | 'network'
       status?: number
       error?: AgodaErrorSummary
@@ -203,7 +204,7 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
     return { ok: true, hotels: results.map(toHotel).filter((h): h is AgodaHotel => h !== null) }
   } catch {
     // 에러 객체를 그대로 흘리지 않는다 — 요청 헤더가 로그에 섞일 여지를 없앤다
-    return { ok: false, reason: 'network' }
+    return { ok: false, reason: controller.signal.aborted ? 'timeout' : 'network' }
   } finally {
     clearTimeout(timer)
   }

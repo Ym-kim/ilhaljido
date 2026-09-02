@@ -30,6 +30,9 @@ export function buildBookingStayRedirect(request: StaySearchRequest): StaySearch
       destination: request.destination,
       checkin: request.checkin,
       checkout: request.checkout,
+      adults: request.adults,
+      rooms: request.rooms,
+      children: request.children,
     }),
     rel: 'sponsored noopener noreferrer',
   }

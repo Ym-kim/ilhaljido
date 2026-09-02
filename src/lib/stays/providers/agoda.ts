@@ -11,15 +11,14 @@ export const AGODA_STAY_PROVIDER = {
     // Verified city-level affiliate redirects remain active in the existing destination catalog.
     search_redirect: { status: 'active' },
     live_search: {
-      status: 'unavailable',
-      reason: 'ip_allowlist_or_account_access_401',
+      status: 'active',
       verifiedAt: '2026-09-02',
     },
     property_redirect: { status: 'active' },
     live_property: NOT_SUPPORTED,
     availability: {
       status: 'unavailable',
-      reason: 'ip_allowlist_or_account_access_401',
+      reason: 'pilot_live_search_only',
       verifiedAt: '2026-09-02',
     },
     booking: NOT_SUPPORTED,
