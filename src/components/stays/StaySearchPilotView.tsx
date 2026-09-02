@@ -79,7 +79,7 @@ const COPY = {
   },
   JP: {
     eyebrow: 'WAKATION STAY',
-    title: '働く都市の宿を、実際の日付から探す',
+    title: '働く都市の宿を、日付から探す',
     intro: '福岡・大阪・東京の現在の宿を確認し、仕事と滞在に必要な条件を落ち着いて比較できます。',
     introExpanded: '福岡・大阪・東京とソウル・釜山・済州の現在の宿を確認し、仕事と滞在に必要な条件を比較できます。',
     back: '宿をすべて見る', destination: '行き先', checkin: 'チェックイン', checkout: 'チェックアウト',
