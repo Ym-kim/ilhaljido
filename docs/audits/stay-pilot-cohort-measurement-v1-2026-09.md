@@ -16,7 +16,7 @@ The comparison uses the same provider-neutral Stay Engine, request validation, r
 
 ## Reproducible operations report
 
-Run `npm run report:stay-pilot -- --since=24h` from the linked Vercel project. The command requests only Production logs containing `stay_search_execution`, accepts only the six allowlisted destination IDs and outputs aggregate metrics.
+Run `npm run report:stay-pilot -- --since=24h` from the linked Vercel project. The command requests only Production logs containing `stay-pilot`, accepts only the six allowlisted destination IDs, reads the cached aggregate stay safety endpoint and outputs aggregate metrics.
 
 Optional operator-supplied evidence may be added only after it has been checked in the corresponding analytics or QA surface:
 
