@@ -140,6 +140,11 @@ function ResultCard({
     && result.rate.crossedOutAmount > result.rate.amount
     ? result.rate.crossedOutAmount
     : null
+  const propertyClass = typeof result.starRating === 'number'
+    && Number.isFinite(result.starRating)
+    && result.starRating > 0
+    ? result.starRating
+    : null
   const trackOutbound = () => {
     const common = {
       locale: lang,
@@ -191,7 +196,7 @@ function ResultCard({
       <div className="flex flex-1 flex-col p-5">
         <h2 className="line-clamp-2 h-[3.25rem] overflow-hidden break-words text-[1.08rem] font-black leading-[1.45] text-[#172a36]">{result.name}</h2>
         <div className="mt-3 flex min-h-8 flex-wrap content-start gap-2 text-[0.7rem] font-bold text-[#31505e]">
-          {typeof result.starRating === 'number' ? <span className="inline-flex items-center rounded-full bg-[#edf3f4] px-3 py-1.5">{c.propertyClass} {formatPropertyClass(result.starRating, lang)}</span> : null}
+          {propertyClass !== null ? <span className="inline-flex items-center rounded-full bg-[#edf3f4] px-3 py-1.5">{c.propertyClass} {formatPropertyClass(propertyClass, lang)}</span> : null}
           {result.amenities?.freeWifi ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Wifi className="h-3.5 w-3.5" />{c.wifi}</span> : null}
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
         </div>
