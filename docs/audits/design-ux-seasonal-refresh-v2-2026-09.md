@@ -7,9 +7,10 @@ Branch: `feat/design-ux-seasonal-refresh-v2`
 
 - Preserve the current navigation, typography, card, affiliate, Agoda pilot and Booking.com fallback systems.
 - Treat the BOMI and TEMI archives as identity references only. Do not publish the source images as web assets.
-- Treat the operator-designated airport model as a required custom identity reference. It is not assigned a `WAK-MODEL-*` roster ID.
+- Treat the operator-designated airport model as a required custom identity reference. It is not assigned a `WAK-MODEL-*` roster ID, but its first generated Stay Pilot variant was rejected and is not shipped.
 - Generated model imagery is illustrative editorial media, not evidence of a real customer, hotel, program or participant.
 - September direction is late summer moving into early autumn: muted coral, powder blue, teal, architectural gray, warm daylight and a light knit layer.
+- Full-body model output must read as a believable eight-head fashion-model balance. If perspective, pose or garment line makes the legs look short, the output is rejected; identity-preserving regeneration escalates to Higgsfield Soul 2.0 when the primary generator cannot pass this gate.
 
 ## Current-state audit
 
@@ -17,24 +18,19 @@ Branch: `feat/design-ux-seasonal-refresh-v2`
 - The Stay Search Pilot already has a provider-neutral API/domain layer, verified Agoda city IDs, a feature flag, Booking.com fallback, partner-returned landing URLs and privacy-safe analytics.
 - Agoda may omit hotel images. The current result UI correctly avoids inventing images or Wakation scores when the API does not provide them.
 - The pilot displayed `-0%` when an API discount value was zero and could show a crossed-out price without a meaningful saving. This was a trust defect.
-- The original pilot hero was visually safe but did not express the September seasonal model direction or the operator-designated identity.
+- The original pilot hero is visually safe and remains the active baseline until a proportion-correct identity-preserving replacement is approved.
 
 ## Implemented pilot scope
 
-- Added one desktop and one native mobile hero crop generated from the operator-designated identity reference.
-- Kept the model's complete head, hands, itinerary and luggage visible at reviewed desktop and mobile widths.
-- Added route, section, locale, season, wardrobe, realism, focal-point, safe-framing, source and usage-restriction metadata to the existing media manifest.
-- Registered the custom identity as a deterministic Stay Pilot placement while excluding it from the official roster exposure calculation.
 - Moved the desktop search CTA into the primary search row and retained stacked, full-width mobile controls.
 - Suppressed zero/negative discount claims and crossed-out rates that do not exceed the current rate.
+- Restored the original non-model Stay Pilot hero after operator review rejected the generated model's body balance. The rejected files, manifest entries and route placement were removed from the deliverable.
 
-## Production asset prompt record
+## Rejected asset record
 
-Desktop direction: photoreal editorial departure scene using the operator-designated adult model identity; generalized transport concourse; muted coral sleeveless collared midi dress; powder-blue fine-knit layer; teal carry-on; itinerary and phone; model on the right with generous left copy space; complete head, natural hands and full luggage; warm September daylight; no airport logo, text or identifiable venue.
+The discarded desktop/mobile pair used a generalized transport concourse, muted coral travel dress, powder-blue fine-knit layer, teal carry-on, itinerary and phone. Although the files passed basic anatomy and crop checks, the standing figure read shorter than the required fashion-model proportion. Operator review overrules the earlier automated disposition.
 
-Mobile direction: native 4:5 recomposition of the same identity, wardrobe and action; complete head, hands and luggage; protected copy contrast; no simulated customer or booking proof.
-
-Generation provider: OpenAI built-in ImageGen. Higgsfield Soul 2.0 was not required because the identity, anatomy, framing and seasonal art-direction checks were met.
+Disposition: `REJECTED_PROPORTION`; not present in `public/`, the media manifest, rotation registry or active route. A later retry must use a full-body proportion gate and Higgsfield Soul 2.0 if the primary generator cannot preserve identity and a believable eight-head balance together.
 
 ## Monetization impact and risk
 

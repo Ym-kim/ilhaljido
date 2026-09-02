@@ -21,6 +21,8 @@ export const MODEL_ROTATION_POLICY = {
     'Do not repeat the same pose family, camera family, silhouette or primary action on adjacent major surfaces.',
     'Across every six new model surfaces, use at least four pose families, four silhouette families, four color stories and three camera families.',
     'Balance dresses, skirts, shorts, layered sets and trousers; no single silhouette family may exceed 40 percent of active placements.',
+    'Treat a believable eight-head fashion-model balance as the default for full-body generation; reject any frame where perspective, pose or garment line makes the legs read short.',
+    'Escalate identity-preserving full-body generation to Higgsfield Soul 2.0 when the primary generator cannot pass proportion, anatomy and identity checks.',
     'Laptop, map and paper are task props only, never the default shorthand for workation.',
     'Do not repeat neutral linen styling on consecutive surfaces; give every destination a deliberate color story.',
     'Vary environment tone, light quality and material palette with the model direction; never treat wardrobe color alone as sufficient visual diversity.',
@@ -34,8 +36,6 @@ export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
   { id: 'hosted-hero', routes: ['/hosted', '/en/hosted', '/ja/hosted'], section: 'hosted-hero', modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], assetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'], status: 'active' },
   // 운영자 커스텀 Soul 모델('테미') — 로스터 정체성이 아니라 modelIds는 비운다(회전 대상 제외, 자산 추적만)
   { id: 'infrastructure-hero', routes: ['/infrastructure'], section: 'infrastructure-hero', modelIds: [], assetIds: ['infrastructure-model-temi-coastal-desk-v1'], status: 'active' },
-  // 운영자 지정 필수 커스텀 모델 — 로스터 노출 계산에서는 제외하되 배치·자산 추적은 유지한다.
-  { id: 'stay-pilot-hero', routes: ['/select/hotel/pilot', '/en/select/hotel/pilot', '/ja/select/hotel/pilot'], section: 'stay-search-pilot-hero', modelIds: [], assetIds: ['stay-pilot-custom-airport-model-desktop-v1', 'stay-pilot-custom-airport-model-mobile-v1'], status: 'active' },
   { id: 'select-hero', routes: ['/select', '/en/select', '/ja/select'], section: 'select-hero-editorial', modelIds: ['WAK-MODEL-C'], assetIds: ['select-model-c-packing-flatlay-v4'], status: 'active' },
   { id: 'learn-hero', routes: ['/learn'], section: 'learn-hero', modelIds: ['WAK-MODEL-B'], assetIds: ['growth-model-b-urban-learning-desktop-v2', 'growth-model-b-urban-learning-mobile-v2'], primaryHref: '/select/learn', status: 'active' },
   { id: 'programs-hero', routes: ['/programs', '/en/programs', '/ja/programs'], section: 'programs-hero', modelIds: ['WAK-MODEL-B'], assetIds: ['programs-model-b-coastal-arrival-desktop-v3', 'programs-model-b-coastal-arrival-mobile-v2'], primaryHref: '/hosted', status: 'active' },

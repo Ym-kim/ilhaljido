@@ -5,9 +5,6 @@ import Link from 'next/link'
 import { ArrowLeft, BedDouble, Coffee, ExternalLink, Search, ShieldCheck, Users, Wifi } from 'lucide-react'
 
 import { useLang } from '@/context/LanguageContext'
-import { getMediaAsset } from '@/lib/media/assets'
-import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
-import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
 import { trackStayEvent } from '@/lib/stays/analytics'
 import type { StaySearchResult } from '@/lib/stays/domain'
 import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
@@ -73,10 +70,6 @@ const COPY = {
     provider: 'Agoda提供の検索結果', noEditorial: 'Wakation独自調査がない宿には、独自スコアや評価文を追加しません。',
   },
 } satisfies Record<Lang, Record<string, string>>
-
-const STAY_PILOT_PLACEMENT = getEditorialModelPlacement('stay-pilot-hero')
-const STAY_PILOT_DESKTOP = getMediaAsset('stay-pilot-custom-airport-model-desktop-v1')!
-const STAY_PILOT_MOBILE = getMediaAsset('stay-pilot-custom-airport-model-mobile-v1')!
 
 function localeCode(lang: Lang): string {
   return lang === 'KO' ? 'ko-KR' : lang === 'JP' ? 'ja-JP' : 'en-US'
@@ -216,17 +209,6 @@ export function StaySearchPilotView({
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
   }, [contextLang, forceLang, setLang])
 
-  useEffect(() => {
-    trackEditorialAssetView({
-      assetId: STAY_PILOT_DESKTOP.id,
-      mobileAssetId: STAY_PILOT_MOBILE.id,
-      modelIds: STAY_PILOT_PLACEMENT.modelIds,
-      route: `${prefix}/select/hotel/pilot`,
-      section: STAY_PILOT_PLACEMENT.section,
-      locale: lang.toLowerCase(),
-    })
-  }, [lang, prefix])
-
   const minCheckout = useMemo(() => {
     if (!checkin) return initialCheckout
     const date = new Date(`${checkin}T00:00:00.000Z`)
@@ -285,30 +267,14 @@ export function StaySearchPilotView({
 
   return (
     <main className="min-h-screen bg-[#f5f2eb] text-[#0b2b38]">
-      <section className="relative isolate min-h-[34rem] overflow-hidden border-b border-[#d8e0df] bg-[#041924] text-white sm:min-h-[32rem]">
-        <picture className="absolute inset-0 block md:left-auto md:w-[64%]">
-          <source media="(min-width: 768px)" srcSet={STAY_PILOT_DESKTOP.src} />
-          {/* Art-directed provider-neutral hero; picture loads only the crop needed by the viewport. */}
-          <img
-            src={STAY_PILOT_MOBILE.src}
-            alt={STAY_PILOT_MOBILE.alt[lang]}
-            width={STAY_PILOT_MOBILE.width}
-            height={STAY_PILOT_MOBILE.height}
-            fetchPriority="high"
-            loading="eager"
-            className="h-full w-full object-cover object-center"
-          />
-        </picture>
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,25,36,0.97)_0%,rgba(4,29,41,0.88)_35%,rgba(4,29,41,0.35)_64%,rgba(4,29,41,0.12)_100%)] max-md:bg-[linear-gradient(180deg,rgba(4,24,34,0.88)_0%,rgba(4,24,34,0.54)_48%,rgba(4,24,34,0.92)_100%)]" />
-        <div className="relative z-10 mx-auto flex min-h-[34rem] max-w-6xl flex-col justify-between px-5 py-9 sm:min-h-[32rem] sm:px-8 sm:py-12 lg:py-14">
-          <Link href={`${prefix}/select/hotel`} className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/30 bg-[#061f2d]/25 px-4 text-sm font-semibold backdrop-blur-sm hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+      <section className="border-b border-[#d8e0df] bg-[radial-gradient(circle_at_top_right,rgba(42,178,209,0.2),transparent_38%),linear-gradient(135deg,#061f2d,#0a3b4c)] px-5 py-12 text-white sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-6xl">
+          <Link href={`${prefix}/select/hotel`} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-4 text-sm font-semibold hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
             <ArrowLeft className="h-4 w-4" />{c.back}
           </Link>
-          <div className="max-w-[38rem] pb-2 md:pb-0">
-            <p className="text-xs font-bold tracking-[0.18em] text-[#72d7ef]">{c.eyebrow}</p>
-            <h1 className="mt-3 text-3xl font-black leading-tight text-balance sm:text-5xl">{c.title}</h1>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/80 sm:text-base">{c.intro}</p>
-          </div>
+          <p className="mt-9 text-xs font-bold tracking-[0.18em] text-[#63d6f2]">{c.eyebrow}</p>
+          <h1 className="mt-3 max-w-3xl text-3xl font-black leading-tight sm:text-5xl">{c.title}</h1>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:text-base">{c.intro}</p>
         </div>
       </section>
 
