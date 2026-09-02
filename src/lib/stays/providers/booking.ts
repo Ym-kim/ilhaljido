@@ -1,4 +1,5 @@
 import { buildBookingStaySearchHref } from '@/lib/affiliate/bookingSearch'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
 import type { StayProviderDefinition, StaySearchRedirect, StaySearchRequest } from '@/lib/stays/domain'
 
 const NOT_SUPPORTED = { status: 'not_supported' as const }
@@ -23,17 +24,19 @@ export const BOOKING_STAY_PROVIDER = {
 } satisfies StayProviderDefinition
 
 export function buildBookingStayRedirect(request: StaySearchRequest): StaySearchRedirect {
+  const href = buildBookingStaySearchHref({
+    destination: request.destination,
+    checkin: request.checkin,
+    checkout: request.checkout,
+    adults: request.adults,
+    rooms: request.rooms,
+    children: request.children,
+  })
+
   return {
     provider: BOOKING_STAY_PROVIDER.id,
     providerLabel: BOOKING_STAY_PROVIDER.label,
-    href: buildBookingStaySearchHref({
-      destination: request.destination,
-      checkin: request.checkin,
-      checkout: request.checkout,
-      adults: request.adults,
-      rooms: request.rooms,
-      children: request.children,
-    }),
+    href: localizeOutboundHref(href, request.locale),
     rel: 'sponsored noopener noreferrer',
   }
 }
