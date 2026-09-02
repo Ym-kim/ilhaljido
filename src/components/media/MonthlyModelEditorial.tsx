@@ -10,16 +10,16 @@ import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
 type L = Record<Lang, string>
 
 const COPY: Record<string, L> = {
-  eyebrow: { KO: 'MONTHLY VISUAL EDIT', EN: 'MONTHLY VISUAL EDIT', JP: 'MONTHLY VISUAL EDIT' },
+  eyebrow: { KO: 'SEASONAL VISUAL EDIT', EN: 'SEASONAL VISUAL EDIT', JP: 'SEASONAL VISUAL EDIT' },
   title: {
     KO: '도착하고, 집중하고,\n다시 걷는 시간',
     EN: 'Arrive, focus,\nthen move again',
     JP: '着いて、集中して、\nまた歩き出す時間',
   },
   description: {
-    KO: '도시의 첫 장면부터 해안의 리셋, 북카페와 퇴근 뒤 산책까지. 이번 달 Wakation이 고른 일과 여행 사이의 네 장면입니다.',
-    EN: 'From a first city arrival to a coastal reset, a book café and an evening walk: four scenes selected for life between work and travel.',
-    JP: '街に着く瞬間、海辺でのリセット、ブックカフェ、仕事終わりの散歩。仕事と旅の間にある今月の4つのシーンです。',
+    KO: '도시의 첫 장면부터 해안의 리셋, 북카페와 퇴근 뒤 산책까지. 늦여름에서 초가을로 넘어가는 일과 여행 사이의 네 장면입니다.',
+    EN: 'From a first city arrival to a coastal reset, a book café and an evening walk: four late-summer to early-autumn scenes between work and travel.',
+    JP: '街への到着、海辺のリセット、ブックカフェ、仕事帰りの散歩。晩夏から初秋へ移る4つのシーンです。',
   },
   disclosure: {
     KO: 'Wakation이 제작한 이미지와 무음 영상입니다. 실제 고객, 참가자, 장소 또는 프로그램 현장을 나타내지 않습니다.',
@@ -27,9 +27,9 @@ const COPY: Record<string, L> = {
     JP: 'Wakationが制作した画像と無音映像です。実在の顧客、参加者、施設、プログラム会場を示すものではありません。',
   },
   videoLabel: {
-    KO: '2026년 8월 월간 브랜드 필름, 15초 무음 영상',
-    EN: 'August 2026 monthly brand film, 15-second silent video',
-    JP: '2026年8月のマンスリーブランドフィルム、15秒の無音映像',
+    KO: '2026 늦여름·초가을 브랜드 필름, 15초 무음 영상',
+    EN: '2026 late-summer / early-autumn brand film, 15-second silent video',
+    JP: '2026年 晩夏・初秋のブランドフィルム、15秒の無音映像',
   },
   play: { KO: '영상 재생', EN: 'Play film', JP: '映像を再生' },
   pause: { KO: '영상 일시정지', EN: 'Pause film', JP: '映像を一時停止' },
@@ -119,7 +119,7 @@ export function MonthlyModelEditorial() {
             assetId: 'monthly-model-edit-2026-08-v2',
             modelIds: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'],
             route: '/about',
-            section: 'monthly-model-editorial-2026-08',
+            section: 'seasonal-model-editorial-late-summer-early-autumn',
             locale: lang,
           })
         }
@@ -155,7 +155,7 @@ export function MonthlyModelEditorial() {
   }
 
   return (
-    <section ref={sectionRef} className="dark-surface bg-[#091820] px-4 py-20 text-white sm:px-6 md:py-28" data-monthly-model-edit="2026-08">
+    <section ref={sectionRef} className="dark-surface bg-[#091820] px-4 py-20 text-white sm:px-6 md:py-28" data-seasonal-model-edit="late-summer-early-autumn">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[minmax(17rem,23rem)_1fr] lg:items-start lg:gap-16">
           <div className="relative mx-auto w-full max-w-[23rem] overflow-hidden rounded-[1.75rem] border border-white/12 bg-[#102630] shadow-[0_28px_80px_rgba(0,0,0,0.35)]">

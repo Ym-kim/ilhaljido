@@ -15,6 +15,7 @@ import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEvent } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Wakation Select 허브 — 2026-07-13 i18n 적용 (KO 하드코딩 잔존 해소, 인라인 3언어)
@@ -28,8 +29,8 @@ const COPY: Record<string, L> = {
   title2b: { KO: ' 끝내세요', EN: '', JP: '完結' },
   sub: {
     KO: '숙소부터 현지 체험, eSIM, 항공·교통까지. 워케이션에 필요한 외부 제휴 서비스를 여행지별로 큐레이션합니다.',
-    EN: 'Stays, local experiences, eSIMs and online courses — partner services curated by destination for your workation.',
-    JP: '宿の予約から現地体験、eSIM、オンライン講座まで。ワーケーションに合う提携サービスを目的地別にキュレーション。',
+    EN: 'Stays, transport, connectivity, experiences, work setup and learning — partner services curated for your workation.',
+    JP: '宿・移動・通信・体験・仕事環境・学びまで。ワーケーションに合う提携サービスを目的地別にキュレーション。',
   },
   note: {
     KO: '목적지와 체류 방식에 맞춰 비교하기 좋은 상품만 모았습니다.',
@@ -108,7 +109,7 @@ const CATEGORIES: {
   cta: string
 }[] = [
   {
-    id: 'hotel',
+    id: 'stay',
     href: '/select/hotel',
     label: { KO: '숙소 찾기', EN: 'Find stays', JP: '宿泊先を探す' },
     title: {
@@ -122,7 +123,35 @@ const CATEGORIES: {
     cta: 'text-emerald-600',
   },
   {
-    id: 'activity',
+    id: 'move',
+    href: '/select#transport',
+    label: { KO: '이동 준비', EN: 'Move', JP: '移動' },
+    title: {
+      KO: '항공·교통·공항 이동',
+      EN: 'Flights, transit and airport transfers',
+      JP: '航空・交通・空港移動',
+    },
+    badge: { KO: '제휴', EN: 'Partner', JP: '提携' },
+    badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    cardClass: 'border-emerald-100 hover:border-emerald-200 hover:shadow-md',
+    cta: 'text-emerald-600',
+  },
+  {
+    id: 'connect',
+    href: '/select/esim',
+    label: { KO: '연결 준비', EN: 'Connect', JP: '通信' },
+    title: {
+      KO: 'eSIM·현지 인터넷',
+      EN: 'eSIM and local connectivity',
+      JP: 'eSIM・現地インターネット',
+    },
+    badge: { KO: '큐레이션', EN: 'Curated', JP: '厳選' },
+    badgeClass: 'bg-[#f1f5f9] text-[#64748b] border-[#e2e8f0]',
+    cardClass: 'border-[#e5e1da] hover:border-[#d0ccc4] hover:shadow-sm',
+    cta: 'text-[#9a9a9a]',
+  },
+  {
+    id: 'experience',
     href: '/select/activity',
     label: { KO: '현지 체험', EN: 'Experiences', JP: '現地体験' },
     title: {
@@ -136,13 +165,13 @@ const CATEGORIES: {
     cta: 'text-emerald-600',
   },
   {
-    id: 'esim',
-    href: '/select/esim',
-    label: { KO: 'eSIM', EN: 'eSIM', JP: 'eSIM' },
+    id: 'work',
+    href: '/infrastructure',
+    label: { KO: '업무 환경', EN: 'Work', JP: '仕事環境' },
     title: {
-      KO: '목적지별 eSIM 즉시 구매',
-      EN: 'Instant eSIMs by destination',
-      JP: '目的地別eSIMを即購入',
+      KO: '코워킹·인터넷 체크',
+      EN: 'Coworking and internet checks',
+      JP: 'コワーキング・通信環境',
     },
     badge: { KO: '큐레이션', EN: 'Curated', JP: '厳選' },
     badgeClass: 'bg-[#f1f5f9] text-[#64748b] border-[#e2e8f0]',
@@ -166,9 +195,11 @@ const CATEGORIES: {
 ]
 
 const PREP_TIMING: Record<string, L> = {
-  hotel: { KO: '여행 2~4주 전', EN: '2–4 weeks before', JP: '出発2〜4週間前' },
-  activity: { KO: '여행 1주 전', EN: 'About a week before', JP: '出発1週間前' },
-  esim: { KO: '출발 1~3일 전', EN: '1–3 days before', JP: '出発1〜3日前' },
+  stay: { KO: '여행 2~4주 전', EN: '2–4 weeks before', JP: '出発2〜4週間前' },
+  move: { KO: '여행 2~3주 전', EN: '2–3 weeks before', JP: '出発2〜3週間前' },
+  connect: { KO: '출발 1~3일 전', EN: '1–3 days before', JP: '出発1〜3日前' },
+  experience: { KO: '여행 1주 전', EN: 'About a week before', JP: '出発1週間前' },
+  work: { KO: '예약 전 확인', EN: 'Check before booking', JP: '予約前に確認' },
   learn: { KO: '여행 전후', EN: 'Before and after', JP: '旅の前後' },
 }
 
@@ -256,17 +287,17 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
           <p className="text-[#64748b] text-[0.7rem] font-bold tracking-[0.18em] uppercase mb-4">
             {COPY.cat_label[lang]}
           </p>
-          <ol data-visual-module="preparation-timeline" data-motion="reveal" data-motion-speed="editorial" aria-label={COPY.cat_label[lang]} className="grid overflow-hidden border border-[#d9e1df] bg-[#d9e1df] lg:grid-cols-4">
+          <ol data-visual-module="preparation-timeline" data-motion="reveal" data-motion-speed="editorial" aria-label={COPY.cat_label[lang]} className="grid overflow-hidden border border-[#d9e1df] bg-[#d9e1df] sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             {CATEGORIES.map((cat, index) => (
               <li key={cat.id} className="relative bg-white">
                 <Link
-                  href={`${prefix}${cat.href}`}
-                  onClick={() => trackEvent('preparation_step_click', { route: '/select', locale: lang, sectionId: 'preparation-timeline', visualType: 'timeline-rail', contentId: cat.id, position: String(index + 1), targetRoute: `${prefix}${cat.href}` })}
-                  className="group flex min-h-40 gap-4 p-5 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-sky-500 lg:min-h-52 lg:flex-col lg:p-6"
+                  href={localizeHref(cat.href, lang)}
+                  onClick={() => trackEvent('preparation_step_click', { route: '/select', locale: lang, sectionId: 'preparation-timeline', visualType: 'timeline-rail', contentId: cat.id, position: String(index + 1), targetRoute: localizeHref(cat.href, lang) })}
+                  className="group flex min-h-40 gap-4 p-5 focus-visible:outline-2 focus-visible:outline-offset-[-3px] focus-visible:outline-sky-500 xl:min-h-56 xl:flex-col xl:p-5"
                 >
-                  <div className="flex shrink-0 flex-col items-center lg:flex-row lg:items-center lg:gap-3">
+                  <div className="flex shrink-0 flex-col items-center xl:flex-row xl:items-center xl:gap-3">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#153846] text-xs font-black text-white">{index + 1}</span>
-                    <span aria-hidden="true" className="mt-2 h-full w-px bg-[#bfd0d4] lg:mt-0 lg:h-px lg:w-10" />
+                    <span aria-hidden="true" className="mt-2 h-full w-px bg-[#bfd0d4] xl:mt-0 xl:h-px xl:w-7" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[0.66rem] font-black tracking-[0.12em] text-[#568091]">{PREP_TIMING[cat.id][lang]}</p>

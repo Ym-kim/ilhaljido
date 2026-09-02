@@ -18,11 +18,33 @@ import { GLOBAL_PREP_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2, FEATURED_STAYS_V3 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { localizeDestination } from '@/lib/affiliate/localizeDest'
+import { localizeHref } from '@/lib/i18n/localePath'
 
 // 숙소 관련 파트너 카드만 추출 (2026-08-31 아고다 승인으로 3파트너)
 const HOTEL_PARTNERS = GLOBAL_PREP_ITEMS.filter((i) =>
   ['hotel-booking', 'hotel-tripcom', 'hotel-agoda'].includes(i.id)
 )
+
+const PILOT_COPY: Record<Lang, { eyebrow: string; title: string; description: string; cta: string }> = {
+  KO: {
+    eyebrow: '실시간 숙소 검색 · BETA',
+    title: '여섯 도시의 현재 객실을 날짜로 비교해보세요',
+    description: '후쿠오카·오사카·도쿄·서울·부산·제주에서 Agoda 실시간 결과를 확인합니다. 결과가 없거나 연결이 지연되면 기존 Booking.com 검색으로 이어집니다.',
+    cta: '실시간 검색 Beta 열기',
+  },
+  EN: {
+    eyebrow: 'LIVE STAY SEARCH · BETA',
+    title: 'Compare live availability in six pilot cities',
+    description: 'Search live Agoda results for Fukuoka, Osaka, Tokyo, Seoul, Busan and Jeju. If results are unavailable, the established Booking.com search remains available.',
+    cta: 'Open live-search Beta',
+  },
+  JP: {
+    eyebrow: 'リアルタイム宿検索・BETA',
+    title: '6都市の空室を日付で比較できます',
+    description: '福岡・大阪・東京・ソウル・釜山・済州のAgodaリアルタイム結果を確認。結果がない場合は従来のBooking.com検索も利用できます。',
+    cta: 'リアルタイム検索Betaを開く',
+  },
+}
 
 // 국가별 그룹핑 — 각 지역: 추천 개별 숙소(featuredIds) 먼저, 도시 검색 카드는 폴백
 const REGIONS = [
@@ -86,6 +108,17 @@ export function HotelSelectView({ forceLang }: { forceLang?: Lang }) {
           {/* 도시 검색 → Booking 검색결과 직행 (어필리에이트 추적) */}
           <div className="mt-6 max-w-2xl">
             <DestinationSearch mode="hotel" />
+          </div>
+
+          <div data-stay-pilot-entry="controlled" className="mt-4 grid max-w-2xl gap-4 rounded-2xl border border-[#b9d8e3] bg-[#edf8fb] p-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <div className="min-w-0">
+              <p className="text-[0.64rem] font-black tracking-[0.14em] text-[#176f8d]">{PILOT_COPY[lang].eyebrow}</p>
+              <h2 className="mt-2 text-base font-black leading-snug text-[#17242b]">{PILOT_COPY[lang].title}</h2>
+              <p className="mt-1.5 text-xs font-medium leading-5 text-[#60747c]">{PILOT_COPY[lang].description}</p>
+            </div>
+            <Link href={localizeHref('/select/hotel/pilot', lang)} className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#126f91] px-5 text-xs font-black text-white transition-colors hover:bg-[#075d7b]">
+              {PILOT_COPY[lang].cta} <ArrowLeft className="h-3.5 w-3.5 rotate-180" strokeWidth={ICON_STROKE} aria-hidden />
+            </Link>
           </div>
 
           {/* 목적지 퀵점프 */}

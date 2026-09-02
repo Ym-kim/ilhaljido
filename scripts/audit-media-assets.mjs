@@ -169,7 +169,7 @@ const v2Placements = [
   { route: 'growth', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('growth-model-f-pottery-learning-desktop-v3', 'growth-model-f-pottery-learning-mobile-v3'), source: 'src/app/growth/page.tsx' },
   { route: 'business', section: 'hero', models: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-I'], assets: assetIds('business-models-c-h-i-rooftop-session-desktop-v3', 'business-models-c-h-i-rooftop-session-mobile-v3'), source: 'src/app/business/page.tsx' },
   { route: 'campaign-japan-short-stay', section: 'hero', models: ['WAK-MODEL-F'], assets: assetIds('campaign-model-f-japan-choice-desktop-v2', 'campaign-model-f-japan-choice-mobile-v2'), source: 'src/data/campaign-landings.ts' },
-  { route: 'about', section: 'monthly-model-editorial-2026-08', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
+  { route: 'about', section: 'seasonal-model-editorial-late-summer-early-autumn', models: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assets: assetIds('monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'), source: 'src/components/media/MonthlyModelEditorial.tsx' },
   { route: 'guide-tokyo', section: 'guide-lookbook-record-dig', models: ['WAK-MODEL-B'], assets: assetIds('tokyo-model-b-record-shop-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-danang', section: 'guide-lookbook-tropical-market', models: ['WAK-MODEL-C'], assets: assetIds('danang-model-c-tropical-market-v1'), source: 'src/lib/guides.ts' },
   { route: 'guide-bali', section: 'guide-lookbook-tropical-cycle', models: ['WAK-MODEL-A'], assets: assetIds('bali-model-a-tropical-cycle-v1'), source: 'src/lib/guides.ts' },
@@ -210,6 +210,8 @@ const nonModelMajorSurfaces = [
   'src/components/destinations/CompareView.tsx',
   'src/components/home/SupportPromoBanner.tsx',
   'src/components/home/PromoTicker.tsx',
+  'src/components/home/HomeFeaturedPromotions.tsx',
+  'src/components/campaign/CampaignPlacement.tsx',
   'src/components/home/GeoJapanBanner.tsx',
   'src/components/home/YangyangProof.tsx',
 ]

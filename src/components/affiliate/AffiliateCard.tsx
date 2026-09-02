@@ -33,6 +33,12 @@ const BADGE_TEXT: Record<Lang, Record<BadgeKey, string>> = {
   JP: { affiliate: '提携', api: '提携API', link_prep: 'リンク準備中', ref_prep: '準備中', review: '承認確認中', external: '外部リンク' },
 }
 
+const RATING_TEXT: Record<Lang, { hotel: string; partner: string; reviews: string }> = {
+  KO: { hotel: '숙박객 평점', partner: '제휴사 후기', reviews: '개 후기' },
+  EN: { hotel: 'Guest score', partner: 'Partner reviews', reviews: 'reviews' },
+  JP: { hotel: '宿泊者評価', partner: '提携先レビュー', reviews: '件' },
+}
+
 // 실측 기준일 마이크로카피 — '2026-07-26' → '7.26 기준' (PRICE_POLICY 2026-07-27)
 function formatAsOf(asOf: string, lang: Lang): string {
   const [, m, d] = asOf.split('-')
@@ -137,15 +143,15 @@ export function AffiliateCard({ item, className = '', visual = false }: Affiliat
             </div>
           )}
 
-          {/* 실제 평점 — 좌상단 픽토그램 옆 (리서치 확인 값만, 2026-08-04부터 기준일 동반 강제) */}
+          {/* 평점과 숙소 등급을 혼동하지 않도록 척도와 지표명을 함께 표시한다. */}
           {item.rating && (
             <div className="absolute left-3 top-3">
-              <span className="inline-flex items-center gap-1 rounded-full bg-white/95 px-2.5 py-1 text-[0.7rem] font-bold text-[#111827] shadow-sm">
-                <span className="text-amber-500">★</span>
-                {item.rating}
-                {item.reviews && <span className="font-medium text-[#94a3b8]">({item.reviews})</span>}
+              <span className="inline-flex max-w-[calc(100%_-_1.5rem)] flex-wrap items-center gap-x-1 rounded-xl bg-white/95 px-2.5 py-1.5 text-[0.66rem] font-bold leading-4 text-[#111827] shadow-sm">
+                <span>{item.category === 'hotel' ? RATING_TEXT[lang].hotel : RATING_TEXT[lang].partner}</span>
+                <span className="text-[#075d7b]">{item.rating}/{item.category === 'hotel' ? '10' : '5'}</span>
+                {item.reviews && <span className="font-medium text-[#64748b]">· {item.reviews}{lang === 'KO' ? RATING_TEXT[lang].reviews : ` ${RATING_TEXT[lang].reviews}`}</span>}
                 {item.ratingAsOf && (
-                  <span className="font-medium text-[#b6c2d1]">· {formatAsOf(item.ratingAsOf, lang)}</span>
+                  <span className="font-medium text-[#84939d]">· {formatAsOf(item.ratingAsOf, lang)}</span>
                 )}
               </span>
             </div>

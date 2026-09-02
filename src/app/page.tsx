@@ -12,20 +12,16 @@ import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
 import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
-import { trackAffiliateClick, trackEvent } from '@/lib/track'
+import { trackAffiliateClick } from '@/lib/track'
 import { localizeHref } from '@/lib/i18n/localePath'
-import { MoodExplorer } from '@/components/home/MoodExplorer'
-import { DurationExplorer } from '@/components/home/DurationExplorer'
 import { TripMatchHomeCta } from '@/components/trip-match/TripMatchHomeCta'
 import { DomesticOnboarding } from '@/components/home/DomesticOnboarding'
-import { MomentRail } from '@/components/home/MomentRail'
 import { CollectionsSection } from '@/components/home/CollectionsSection'
 import { HouseBanner } from '@/components/home/HouseBanner'
 import { NotifySignup } from '@/components/home/NotifySignup'
 import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
-import { PromoTicker } from '@/components/home/PromoTicker'
+import { HomeFeaturedPromotions } from '@/components/home/HomeFeaturedPromotions'
 import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
-import { MoreExplore } from '@/components/home/MoreExplore'
 import { YangyangProof } from '@/components/home/YangyangProof'
 import { ReviewRail } from '@/components/home/ReviewRail'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
@@ -59,36 +55,6 @@ const PARTNER_ICON_MAP = {
   education: PARTNER_ICONS.education,
   corporate: PARTNER_ICONS.corporate,
 }
-
-const SERVICE_RELATION: Array<{
-  id: string
-  label: string
-  href: string
-  descKey: string
-  role: Record<Lang, string>
-}> = [
-  {
-    id: 'hosted',
-    label: 'Wakation Hosted',
-    href: '/hosted',
-    descKey: 'h3_about_hosted_d',
-    role: { KO: '직접 기획·운영', EN: 'Planned and run by Wakation', JP: 'Wakationが企画・運営' },
-  },
-  {
-    id: 'select',
-    label: 'Wakation Select',
-    href: '/select',
-    descKey: 'h3_about_select_d',
-    role: { KO: '외부 파트너 연결', EN: 'External partner services', JP: '外部パートナーへの接続' },
-  },
-  {
-    id: 'partner',
-    label: 'Wakation Partner',
-    href: '/partnership',
-    descKey: 'h3_about_partner_d',
-    role: { KO: '지역·기업 공동 기획', EN: 'Co-created with regions and teams', JP: '地域・企業との共同企画' },
-  },
-]
 
 const DEST_FILTERS = [
   { id: 'all',         labelKey: 'filter_all',         country: null },
@@ -145,7 +111,7 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       assetId: HOME_HERO_ASSET.id,
       modelIds: [...HOME_HERO_ASSET.modelIds],
       route: lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : '/',
-      section: 'home-seasonal-hero-2026-08',
+      section: 'home-seasonal-hero-late-summer-early-autumn',
       locale: lang,
     })
   }, [lang])
@@ -389,17 +355,11 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* 한 번의 명확한 진입점 — 기존 Mood·Duration을 뒤집지 않고 매칭 경험으로 연결 */}
       <TripMatchHomeCta forceLang={forceLang} />
 
-      {/* ── 프로모 티커 — 검색·매칭 진입 뒤 실상품으로 연결해 첫 화면의 광고성 소음을 줄인다 ── */}
-      <PromoTicker />
+      {/* 움직이는 광고 레일 대신 네 가지 선택만 정적으로 제안한다. */}
+      <HomeFeaturedPromotions lang={lang} />
 
       {/* 입문 동선 — KO·JA는 국내 3곳, EN은 한국·일본 4곳을 해외 탐색보다 먼저 제안 */}
       <DomesticOnboarding lang={lang} />
-
-      {/* ── 무드 탐색 — 감정·상황으로 먼저 (2026-07-28 라이프스타일 개편, 탐색 1축) ── */}
-      <MoodExplorer forceLang={forceLang} />
-
-      {/* ── 기간 탐색 — 쓸 수 있는 날짜로 고르기 (탐색 2축) ── */}
-      <DurationExplorer forceLang={forceLang} />
 
       {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
       <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
@@ -467,9 +427,6 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
 
       {/* ── 테마 기획전 — 목적지별 숙소·체험·eSIM·항공 큐레이션 묶음 ── */}
       <CollectionsSection forceLang={forceLang} />
-
-      {/* ── 와케이션 모먼트 — 세로 숏츠형 에디터 큐레이션 ── */}
-      <MomentRail />
 
       {/* ── 하우스 배너 — 자사 제휴·기획전 프로모(랜덤 광고 대체) ── */}
       <HouseBanner />
@@ -613,66 +570,21 @@ export default function HomePage({ forceLang }: { forceLang?: Lang } = {}) {
       {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
       <SupportPromoBanner />
 
-      {/* ── 홈 다이어트 v2 (2026-07-28): GrowthEngines·Learning·Tools·DestinationFinder·
-          비자AI·Sponsor·인프라 7개 무거운 섹션 → MoreExplore 컴팩트 링크 그리드 1개로 압축.
-          페이지·URL은 전부 보존(전용 페이지에서 계속 서비스) — 홈 노출만 축소.
-          2026-08-07: 이관 후에도 어디서도 import되지 않던 홈 섹션 컴포넌트 파일은 삭제(git 이력에 보존) */}
-      <MoreExplore />
-
-      {/* ── 비자AI·Media·Sponsor·인프라 섹션은 MoreExplore로 이관 (2026-07-28 v2) — 전용 페이지 유지 ── */}
-
       {/* ── Wakation 소개 (GEO 대응) ── */}
-      <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-20 md:py-28 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div className="min-w-0">
-              <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">ABOUT WAKATION</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#111827] mb-6 leading-tight">
-                {tr('h3_about_title')}
-              </h2>
-              <p className="text-[#374151] text-base leading-relaxed mb-6">
-                {tr('h3_about_p1')}
-              </p>
-              <p className="text-[#64748b] text-sm leading-relaxed mb-8">
-                {tr('h3_about_p2')}
-              </p>
-              <Link href={localizeHref('/programs', lang)} className="inline-flex items-center gap-2 text-brand-mid font-bold text-sm hover:gap-3 transition-all">
-                {tr('h3_about_cta')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
-              </Link>
-            </div>
-            <div data-visual-module="service-ecosystem-map" data-motion="reveal" data-motion-variant="left" data-motion-speed="editorial" className="min-w-0 border border-[#c9dde4] bg-white p-6 shadow-[0_16px_42px_rgba(29,78,96,0.08)] sm:p-8">
-              <div className="flex items-center justify-between gap-4 border-b border-[#dbe7ea] pb-5">
-                <div>
-                  <p className="text-[0.66rem] font-black tracking-[0.15em] text-[#5f8390]">SERVICE MAP</p>
-                  <p className="mt-1 text-xl font-black text-[#17242b]">Wakation</p>
-                </div>
-                <span className="max-w-36 text-right text-xs leading-relaxed text-[#6b7d84]">{tr('h3_about_title')}</span>
-              </div>
-              <div className="relative mt-5">
-                <span aria-hidden="true" className="absolute bottom-5 left-[0.7rem] top-5 w-px bg-[#b9d0d7]" />
-                <ul className="space-y-2">
-                  {SERVICE_RELATION.map((item, index) => (
-                    <li key={item.id} className="relative pl-9">
-                      <span aria-hidden="true" className="absolute left-0 top-5 flex h-6 w-6 items-center justify-center rounded-full border border-[#83aebc] bg-white text-[0.6rem] font-black text-[#356a7d]">{index + 1}</span>
-                      <Link
-                        href={localizeHref(item.href, lang)}
-                        onClick={() => trackEvent('ecosystem_node_click', { route: '/', locale: lang, sectionId: 'service-ecosystem-map', visualType: 'ecosystem-map', contentId: item.id, position: String(index + 1), targetRoute: localizeHref(item.href, lang) })}
-                        className="group block border-b border-[#e6edef] px-1 py-4 last:border-b-0"
-                      >
-                        <div className="flex flex-wrap items-center justify-between gap-2">
-                          <h3 className="text-sm font-black text-[#17242b]">{item.label}</h3>
-                          <span className="text-[0.64rem] font-bold text-[#5d8290]">{item.role[lang]}</span>
-                        </div>
-                        <p className="mt-1.5 text-sm leading-relaxed text-[#64757b]">{tr(item.descKey)}</p>
-                        <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-brand-mid opacity-70 transition group-hover:gap-2 group-hover:opacity-100">
-                          {tr('learn_more')} <ArrowRight className="h-3 w-3" />
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+      <section className="border-t border-[#dbeafe] bg-[#f0f9ff] px-6 py-14 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <div className="min-w-0">
+            <p className="wak-overline text-brand-mid">ABOUT WAKATION</p>
+            <h2 className="wak-section-title mt-3 text-[#111827]">{tr('h3_about_title')}</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-[#475569]">{tr('h3_about_p1')}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href={localizeHref('/programs', lang)} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#153a49] px-5 text-sm font-bold text-white transition-colors hover:bg-[#0e4d67]">
+              {tr('h3_about_cta')} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+            </Link>
+            <Link href={localizeHref('/about', lang)} className="inline-flex min-h-11 items-center rounded-full border border-[#b7cbd2] bg-white px-5 text-sm font-bold text-[#31515d] transition-colors hover:border-[#789faa]">
+              {lang === 'KO' ? 'Wakation 소개' : lang === 'JP' ? 'Wakationについて' : 'About Wakation'}
+            </Link>
           </div>
         </div>
       </section>

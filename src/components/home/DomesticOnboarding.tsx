@@ -7,7 +7,7 @@ import { ArrowRight } from 'lucide-react'
 import type { Lang } from '@/lib/i18n/types'
 import { ICON_STROKE } from '@/lib/icons'
 import { trackEvent } from '@/lib/track'
-import { localizeHref, isRouteVisibleIn } from '@/lib/i18n/localePath'
+import { localizeHref } from '@/lib/i18n/localePath'
 import { getDomesticDiscoveries, type DomesticDiscoveryEntry } from '@/lib/domesticDiscovery'
 
 type L = Record<Lang, string>
@@ -22,7 +22,6 @@ const COPY = {
     JP: '海、都市、韓屋の路地、ゆっくり走る列車。街の情報から日付を入れた宿探しまで、ひとつの流れで確認できます。',
   },
   primary: { KO: '국내 여행 살펴보기', EN: 'Explore travel in Korea', JP: '韓国の旅を見る' },
-  secondary: { KO: '30초 여행 찾기', EN: 'Find my trip in 30 seconds', JP: '30秒で旅を探す' },
   open: { KO: '지역 정보 보기', EN: 'Explore this place', JP: '地域情報を見る' },
   quick: { KO: '빠르게 고르기', EN: 'Choose by pace', JP: '滞在スタイルで選ぶ' },
 } satisfies Record<string, L>
@@ -65,7 +64,7 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
             <h2 className="wak-section-title mt-3 max-w-3xl text-[#132d39] [word-break:keep-all]">{COPY.title[lang]}</h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-[#5e7077] sm:text-base">{COPY.lead[lang]}</p>
           </div>
-          <div className="grid grid-cols-2 gap-2 md:flex md:shrink-0">
+          <div className="flex md:shrink-0">
             <Link
               href={localizeHref('/programs/domestic', lang)}
               onClick={() => trackEvent('domestic_destination_click', { locale: lang, source: 'home', placement: 'section_cta', destinationSlug: 'all' })}
@@ -73,15 +72,6 @@ export function DomesticOnboarding({ lang }: { lang: Lang }) {
             >
               {COPY.primary[lang]} <ArrowRight aria-hidden="true" className="h-4 w-4 shrink-0" strokeWidth={ICON_STROKE} />
             </Link>
-            {isRouteVisibleIn('/trip-match', lang) && (
-              <Link
-                href={localizeHref('/trip-match', lang)}
-                onClick={() => trackEvent('domestic_destination_click', { locale: lang, source: 'home', placement: 'trip_match_cta', destinationSlug: 'trip-match' })}
-                className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b9cdcf] bg-white/65 px-4 text-center text-xs font-black text-[#1d4d5e] transition hover:border-[#6f9da7] hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0d536b] sm:px-5 sm:text-sm"
-              >
-                {COPY.secondary[lang]}
-              </Link>
-            )}
           </div>
         </div>
 

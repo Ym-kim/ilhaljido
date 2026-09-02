@@ -5,7 +5,7 @@ const root = process.cwd()
 const read = (file) => readFileSync(join(root, file), 'utf8')
 const files = {
   track: read('src/lib/track.ts'),
-  promo: read('src/components/home/PromoTicker.tsx'),
+  campaignPlacement: read('src/components/campaign/CampaignPlacement.tsx'),
   product: read('src/components/affiliate/AffiliateCard.tsx'),
   tripSet: read('src/components/affiliate/TripSetPreparationCard.tsx'),
   search: read('src/components/affiliate/DestinationSearch.tsx'),
@@ -51,7 +51,7 @@ const checks = [
   ['debug mode is opt-in', files.track.includes("search.get('analytics_debug') !== '1'")],
   ['debug capture is isolated from analytics transport failures', files.track.indexOf('writeDebugEvent(name, payload)') < files.track.indexOf('track(name, payload)')],
   ['debug payload exposes a hidden Preview-only DOM probe', files.track.includes("output.id = 'wakation-analytics-debug'") && files.track.includes('output.hidden = true')],
-  ['promo ticker uses affiliate schema', files.promo.includes("sourceSection: 'promo_ticker'") && files.promo.includes('trackAffiliateClick')],
+  ['static campaign placement uses affiliate schema', files.campaignPlacement.includes('sourceSection: sectionId') && files.campaignPlacement.includes('trackAffiliateClick')],
   ['product card attribution', files.product.includes("sourceSection: 'affiliate_card_visual'") && files.product.includes("sourceSection: 'affiliate_card'")],
   ['Trip Set money-path attribution', files.tripSet.includes("sourceSection: 'trip_set_preparation'")],
   ['destination search attribution', files.search.includes("sourceSection: 'destination_search'")],

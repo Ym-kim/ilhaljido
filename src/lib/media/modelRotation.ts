@@ -31,7 +31,7 @@ export const MODEL_ROTATION_POLICY = {
 } as const
 
 export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
-  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-seasonal-hero-2026-08', modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'], assetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'], primaryHref: '/trip-match', status: 'active' },
+  { id: 'home-hero', routes: ['/', '/en', '/ja'], section: 'home-seasonal-hero-late-summer-early-autumn', modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'], assetIds: ['home-hero-model-a-coastal-departure-desktop-v3', 'home-hero-model-a-coastal-departure-mobile-v3', 'home-seasonal-film-2026-08-desktop-v1', 'home-seasonal-film-2026-08-mobile-v1'], primaryHref: '/trip-match', status: 'active' },
   { id: 'trip-match-intro', routes: ['/trip-match', '/ja/trip-match'], section: 'trip-match-intro', modelIds: ['WAK-MODEL-D'], assetIds: ['trip-match-model-d-ribbon-choice-v4'], status: 'active' },
   { id: 'hosted-hero', routes: ['/hosted', '/en/hosted', '/ja/hosted'], section: 'hosted-hero', modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], assetIds: ['hosted-models-h-i-coastal-planning-v3', 'hosted-models-h-i-coastal-planning-mobile-v3'], status: 'active' },
   // 운영자 커스텀 Soul 모델('테미') — 로스터 정체성이 아니라 modelIds는 비운다(회전 대상 제외, 자산 추적만)
@@ -59,8 +59,40 @@ export const EDITORIAL_MODEL_PLACEMENTS: EditorialModelPlacement[] = [
   { id: 'yeosu-guide-lookbook', routes: ['/guide/yeosu', '/en/guide/yeosu', '/ja/guide/yeosu'], section: 'guide-lookbook-harbour-breeze', modelIds: ['WAK-MODEL-A'], assetIds: ['yeosu-model-a-harbor-breeze-v1'], status: 'active' },
   { id: 'hongdae-kpop-experience-editorial', routes: ['/experiences/hongdae-kpop-walk-dance', '/en/experiences/hongdae-kpop-walk-dance', '/ja/experiences/hongdae-kpop-walk-dance', '/select/activity'], section: 'hongdae-kpop-experience-editorial', modelIds: ['WAK-MODEL-I'], assetIds: ['experience-seoul-model-i-kpop-studio-v2'], primaryHref: '/experiences/hongdae-kpop-walk-dance', status: 'active' },
   { id: 'teamlab-tokyo-experience-editorial', routes: ['/experiences/teamlab-planets-tokyo-evening', '/en/experiences/teamlab-planets-tokyo-evening', '/ja/experiences/teamlab-planets-tokyo-evening', '/select/activity'], section: 'teamlab-tokyo-experience-editorial', modelIds: ['WAK-MODEL-D'], assetIds: ['experience-tokyo-model-d-immersive-gallery-v2'], primaryHref: '/experiences/teamlab-planets-tokyo-evening', status: 'active' },
-  { id: 'about-monthly-edit-2026-08', routes: ['/about'], section: 'monthly-model-editorial-2026-08', modelIds: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assetIds: ['monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'], status: 'active' },
+  { id: 'about-seasonal-edit', routes: ['/about'], section: 'seasonal-model-editorial-late-summer-early-autumn', modelIds: ['WAK-MODEL-E', 'WAK-MODEL-G', 'WAK-MODEL-H', 'WAK-MODEL-J'], assetIds: ['monthly-2026-08-model-e-city-arrival-v2', 'monthly-2026-08-model-g-coastal-book-cafe-v2', 'monthly-2026-08-model-h-coastal-reset-v1', 'monthly-2026-08-model-j-blue-hour-v2', 'monthly-model-edit-2026-08-v2'], status: 'active' },
 ]
+
+export type MonthlyModelSlot = {
+  slot: 'home.hero' | 'home.editorial.primary' | 'home.editorial.secondary' | 'hosted.hero' | 'business.hero' | 'growth.hero' | 'campaign.global'
+  placementId: string
+  modelIds: BrandModelId[]
+  season: 'late-summer-early-autumn'
+  month: '2026-09'
+  mood: string
+  active: boolean
+  priority: number
+  expiration: '2026-10-01'
+}
+
+/**
+ * Human-approved monthly slot plan. This registry never swaps Production assets
+ * automatically; it records what is active and what still needs a future asset.
+ */
+export const MONTHLY_MODEL_SLOTS: MonthlyModelSlot[] = [
+  { slot: 'home.hero', placementId: 'home-hero', modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'coastal departure with cooler transitional light', active: true, priority: 1, expiration: '2026-10-01' },
+  { slot: 'home.editorial.primary', placementId: 'fukuoka-trip-set-editorial', modelIds: ['WAK-MODEL-G'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'quiet café-to-onsen short stay', active: true, priority: 2, expiration: '2026-10-01' },
+  { slot: 'home.editorial.secondary', placementId: 'pending-september-secondary', modelIds: ['WAK-MODEL-D'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'urban culture after work', active: false, priority: 3, expiration: '2026-10-01' },
+  { slot: 'hosted.hero', placementId: 'hosted-hero', modelIds: ['WAK-MODEL-H', 'WAK-MODEL-I'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'small-team coastal planning', active: true, priority: 4, expiration: '2026-10-01' },
+  { slot: 'business.hero', placementId: 'business-hero', modelIds: ['WAK-MODEL-C', 'WAK-MODEL-H', 'WAK-MODEL-I'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'colorful team workshop', active: true, priority: 5, expiration: '2026-10-01' },
+  { slot: 'growth.hero', placementId: 'growth-hero', modelIds: ['WAK-MODEL-F'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'hands-on creative learning', active: true, priority: 6, expiration: '2026-10-01' },
+  { slot: 'campaign.global', placementId: 'japan-short-stay-hero', modelIds: ['WAK-MODEL-F'], season: 'late-summer-early-autumn', month: '2026-09', mood: 'blue-hour itinerary choice', active: true, priority: 7, expiration: '2026-10-01' },
+]
+
+export function getActiveMonthlyModelSlots(date = new Date().toISOString().slice(0, 10)): MonthlyModelSlot[] {
+  return MONTHLY_MODEL_SLOTS
+    .filter((slot) => slot.active && slot.expiration > date)
+    .sort((left, right) => left.priority - right.priority)
+}
 
 export function getEditorialModelPlacement(id: string): EditorialModelPlacement {
   const placement = EDITORIAL_MODEL_PLACEMENTS.find((item) => item.id === id)

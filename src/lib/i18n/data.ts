@@ -464,7 +464,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('힐링·요가', 'Healing · Yoga', 'ヒーリング・ヨガ'),
     name: loc('번아웃 탈출 힐링 워케이션', 'Burnout Recovery Workation', 'バーンアウト回復ワーケーション'),
     region: loc('충남 태안', 'Taean, Chungnam', '忠南・泰安'),
-    date: loc('2026년 하반기 예정', '2H 2026 (TBD)', '2026年下半期予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
   },
   {
     id: 'network-chuncheon',
@@ -473,16 +473,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('1인기업 네트워킹', 'Networking', 'ネットワーキング'),
     name: loc('1인 기업가 네트워킹 캠프', 'Solopreneur Networking Camp', '一人起業家ネットワーキング'),
     region: loc('강원 춘천', 'Chuncheon, Gangwon', '江原・春川'),
-    date: loc('2026년 하반기 예정', '2H 2026 (TBD)', '2026年下半期予定'),
-  },
-  {
-    id: 'ai-sokcho',
-    img: '/media/verified/unsplash/1613516392416-1a621fb69004.webp',
-    illustrative: true,
-    theme: loc('AI 크리에이터', 'AI Creator', 'AIクリエイター'),
-    name: loc('AI 활용 실무 집중 캠프', 'AI Skills Intensive Camp', 'AI実務集中キャンプ'),
-    region: loc('강원 속초', 'Sokcho, Gangwon', '江原・束草'),
-    date: loc('8월 예정', 'Aug (TBD)', '8月予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
   },
   {
     id: 'local-jeonju',
@@ -490,7 +481,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('미식·로컬', 'Local Food', 'ローカルグルメ'),
     name: loc('전주 한옥마을 미식 워케이션', 'Jeonju Hanok Village Food Workation', '全州ハノク村グルメ旅'),
     region: loc('전라북도 전주', 'Jeonju, Jeollabuk', '全北・全州'),
-    date: loc('8월 예정', 'Aug (TBD)', '8月予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
   },
   {
     id: 'golf-jeju',
@@ -499,7 +490,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('골프 네트워킹', 'Golf Networking', 'ゴルフネットワーク'),
     name: loc('제주 골프 비즈니스 워케이션', 'Jeju Golf Business Workation', '済州ゴルフ・ビジネス'),
     region: loc('제주도', 'Jeju Island', '済州島'),
-    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
   },
   {
     id: 'golf-okinawa',
@@ -508,7 +499,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('골프 네트워킹 · 해외', 'Golf Networking · Overseas', 'ゴルフネットワーク・海外'),
     name: loc('일본 오키나와 골프 워케이션', 'Okinawa Golf Workation', '沖縄ゴルフワーケーション'),
     region: loc('일본 오키나와', 'Okinawa, Japan', '日本・沖縄'),
-    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
     isGlobal: true,
   },
   {
@@ -518,7 +509,7 @@ const DOMESTIC_THEMED_UPCOMING: DomesticThemedProgram[] = [
     theme: loc('스포츠 관람', 'Sports Watching', 'スポーツ観戦'),
     name: loc('부산 야구·축구 스포츠 워케이션', 'Busan Sports Watching Workation', '釜山スポーツ観戦'),
     region: loc('부산광역시', 'Busan', '釜山'),
-    date: loc('9월 예정', 'Sep (TBD)', '9月予定'),
+    date: loc('다음 일정 준비 중', 'Next dates in preparation', '次回日程を準備中'),
   },
 ]
 

@@ -50,8 +50,9 @@ for (const model of expectedModels) {
   if (!rotation.includes(`'${model}'`)) errors.push(`Rotation registry is missing ${model}`)
 }
 for (const required of [
-  `about-monthly-edit-${month}`,
+  'about-seasonal-edit',
   `monthly-model-edit-${month}-v2`,
+  'data-seasonal-model-edit="late-summer-early-autumn"',
   'prefers-reduced-motion: reduce',
   'preload="none"',
   'illustrative: true',

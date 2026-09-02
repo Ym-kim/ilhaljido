@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { CheckCircle2, Clock, ArrowRight } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import { ICON_STROKE } from '@/lib/icons'
-import { NotifySignup } from '@/components/home/NotifySignup'
+import { localizeHref } from '@/lib/i18n/localePath'
 import type { Lang } from '@/lib/i18n/types'
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -25,6 +25,7 @@ const COPY: Record<string, L> = {
   stat_note: { KO: '양양 참가자 설문 · 전원 응답', EN: 'Yangyang participant survey · all responded', JP: '襄陽参加者アンケート・全員回答' },
   view_page: { KO: '양양 워케이션 결과 보기', EN: 'View the Yangyang workation report', JP: '襄陽ワーケーションの結果を見る' },
   notify_label: { KO: '다음 일정이 정해지면 가장 먼저 알려드릴게요', EN: 'Be the first to know when new dates are set', JP: '次の日程が決まり次第、いち早くお知らせします' },
+  notify_cta: { KO: '다음 일정 알림 받기', EN: 'Get the next-date alert', JP: '次の日程の通知を受け取る' },
 }
 
 const STATS: { value: string; label: L }[] = [
@@ -83,9 +84,17 @@ export function YangyangProof() {
             {COPY.view_page[lang]} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
           </Link>
         </div>
-        <div>
-          <p className="text-white/45 text-xs font-semibold mb-2.5">{COPY.notify_label[lang]}</p>
-          <NotifySignup source="양양 다음 회차·후기 알림" event="program_alert_submitted" />
+        <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 sm:p-8">
+          <p className="text-white/75 text-sm font-semibold leading-6">{COPY.notify_label[lang]}</p>
+          <p className="mt-2 text-xs leading-5 text-white/45">
+            {lang === 'KO' ? '알림 등록은 Hosted 페이지 한 곳에서 관리합니다.' : lang === 'JP' ? '通知登録はHostedページでまとめて管理します。' : 'Manage your alert in one place on the Hosted page.'}
+          </p>
+          <Link
+            href={localizeHref('/hosted#hosted-updates', lang)}
+            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-sky-500 px-5 text-sm font-black text-white transition-colors hover:bg-sky-400"
+          >
+            {COPY.notify_cta[lang]} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+          </Link>
         </div>
       </div>
     </section>
