@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { executeStaySearch } from '@/lib/stays/liveSearch'
+import { logStaySearchExecution } from '@/lib/stays/operationalTelemetry'
 import { isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
 import { validateStayPilotRequest } from '@/lib/stays/pilotValidation'
 
@@ -30,6 +31,11 @@ export async function POST(request: Request) {
   }
 
   const execution = await executeStaySearch(validated.value, 'agoda')
+  logStaySearchExecution({
+    destinationId: validated.value.destinationId,
+    locale: validated.value.locale,
+    execution,
+  })
   return NextResponse.json(
     {
       ...execution,

@@ -9,8 +9,8 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 | 3 | Home → dated Stay Pilot entry | Complete | Production destination/date handoff |
 | 4 | Guide and Trip Set → dated Stay Pilot entry | Complete | Production source attribution and affiliate QA |
 | 5 | Result discovery controls | Complete | Actual-field-only filters, deterministic sorting, mobile accessibility |
-| 6 | Verified Wakation Stay Intelligence | In progress | Original research source and `verifiedAt` required; no provider data repackaging |
-| 7 | Conversion measurement and rollout decision | Planned | Search/result/click funnel sample, latency and fallback-rate review |
+| 6 | Verified Wakation Stay Intelligence | Complete | Original research source and `verifiedAt` required; no provider data repackaging |
+| 7 | Conversion measurement and rollout decision | In progress | Search/result/click funnel sample, latency and fallback-rate review |
 | 8 | Destination expansion | Conditional | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
 | 9 | Multi-provider comparison | Conditional | A second live-search contract, comparable terms and tracking permission |
 | 10 | Pilot graduation | Conditional | Stable QA, disclosure, performance and rollback evidence |

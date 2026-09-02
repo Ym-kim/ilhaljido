@@ -7,7 +7,7 @@ import { ArrowLeft, BedDouble, Coffee, ExternalLink, MapPin, Search, ShieldCheck
 
 import { useLang } from '@/context/LanguageContext'
 import { trackStayEvent } from '@/lib/stays/analytics'
-import type { StaySearchResult } from '@/lib/stays/domain'
+import type { StayLiveSearchFailureReason, StaySearchResult } from '@/lib/stays/domain'
 import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
@@ -33,7 +33,7 @@ type SearchResponse =
       mode: 'fallback'
       provider: 'booking'
       fallbackFrom: 'agoda'
-      reason: string
+      reason: StayLiveSearchFailureReason
       destinationId: string
       redirect: { href: string; rel: 'sponsored noopener noreferrer'; providerLabel: string }
       meta: { latencyMs: number; resultCount: number }
@@ -306,6 +306,8 @@ export function StaySearchPilotView({
   }, [checkin, initialCheckout])
 
   const runSearch = useCallback(async () => {
+    const requestStartedAt = performance.now()
+    let resultEventTracked = false
     setError('')
     setLoading(true)
     setResponse(null)
@@ -329,15 +331,25 @@ export function StaySearchPilotView({
         trackStayEvent('stay_result_view', {
           locale: lang, sourceSection: resultSourceSection, provider: payload.provider,
           destinationId, capability: 'live_search', datesSupplied: true,
-          resultCount: payload.results.length, outcome: 'view',
+          resultCount: payload.results.length, latencyMs: payload.meta.latencyMs, outcome: 'view',
         })
+        resultEventTracked = true
       } else {
         trackStayEvent('stay_result_view', {
           locale: lang, sourceSection: fallbackSourceSection, provider: payload.provider,
-          destinationId, capability: 'search_redirect', datesSupplied: true, resultCount: 0, outcome: 'fallback',
+          destinationId, capability: 'search_redirect', datesSupplied: true, resultCount: 0,
+          latencyMs: payload.meta.latencyMs, failureReason: payload.reason, outcome: 'fallback',
         })
+        resultEventTracked = true
       }
     } catch {
+      if (!resultEventTracked) {
+        trackStayEvent('stay_result_view', {
+          locale: lang, sourceSection: resultSourceSection, provider: 'agoda', destinationId,
+          capability: 'live_search', datesSupplied: true, resultCount: 0,
+          latencyMs: Math.round(performance.now() - requestStartedAt), failureReason: 'request_failed', outcome: 'unavailable',
+        })
+      }
       setError(c.error)
     } finally {
       setLoading(false)

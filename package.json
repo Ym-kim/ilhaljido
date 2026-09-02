@@ -50,6 +50,7 @@
     "audit:stay-pilot": "node scripts/audit-stay-pilot.mjs",
     "audit:stay-results": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-result-refinement.mjs",
     "audit:stay-intelligence": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-intelligence.mjs",
+    "audit:stay-measurement": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-measurement.mjs",
     "audit:home-discovery": "node scripts/audit-home-discovery-focus.mjs",
     "audit:agoda-auth": "node --conditions=react-server --experimental-strip-types scripts/audit-agoda-auth.mjs",
     "audit:b2b-conversion": "node scripts/audit-b2b-conversion.mjs",
