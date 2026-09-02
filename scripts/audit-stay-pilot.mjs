@@ -32,6 +32,7 @@ const checks = [
   ['KO EN JA routes are noindex', [files.ko, files.en, files.ja].every((source) => source.includes('index: false') && source.includes('follow: false'))],
   ['Exact pilot events are emitted', ['stay_search', 'stay_result_view', 'stay_property_click', 'stay_booking_click'].every((event) => files.view.includes(`'${event}'`))],
   ['Affiliate CTA is safely marked', files.view.includes('sponsored noopener noreferrer') && files.view.includes("status: 'active_affiliate'")],
+  ['Zero discounts and invalid strike-through rates stay hidden', files.view.includes('result.rate.discountPercentage > 0') && files.view.includes('result.rate.crossedOutAmount > result.rate.amount')],
   ['API reports internal latency and result count', files.api.includes('latencyMs') && files.api.includes('resultCount') && files.api.includes('Server-Timing')],
 ]
 

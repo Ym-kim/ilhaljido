@@ -88,6 +88,9 @@ const v2Assets = [
   // 운영자 커스텀 Soul 모델('테미') 컷 — 로스터(WAK-MODEL-*) 정체성이 아니므로 modelIds는 비운다.
   // 로스터 다양성·회전 계산에 들어가지 않고, 자산 등재만 받는다.
   { id: 'infrastructure-model-temi-coastal-desk-v1', file: 'infrastructure-model-temi-coastal-desk-v1.webp', width: 1920, height: 1080, modelIds: [] },
+  // 운영자 지정 필수 커스텀 모델 — 로스터 노출 계산 제외, 자산/배치/프레이밍 감사 포함.
+  { id: 'stay-pilot-custom-airport-model-desktop-v1', file: 'stay-pilot-custom-airport-model-desktop-v1.webp', width: 1600, height: 900, modelIds: [] },
+  { id: 'stay-pilot-custom-airport-model-mobile-v1', file: 'stay-pilot-custom-airport-model-mobile-v1.webp', width: 960, height: 1200, modelIds: [] },
   { id: 'growth-model-b-urban-learning-desktop-v2', file: 'growth-model-b-urban-learning-desktop-v2.webp', width: 1536, height: 1024, modelIds: ['WAK-MODEL-B'] },
   { id: 'growth-model-b-urban-learning-mobile-v2', file: 'growth-model-b-urban-learning-mobile-v2.webp', width: 960, height: 1280, modelIds: ['WAK-MODEL-B'] },
   { id: 'programs-model-b-coastal-arrival-desktop-v3', file: 'programs-model-b-coastal-arrival-desktop-v3.webp', width: 1915, height: 821, modelIds: ['WAK-MODEL-B'] },
@@ -184,6 +187,7 @@ const v2Placements = [
   { route: 'guide-busan', section: 'guide-lookbook-harbor-steps', models: ['WAK-MODEL-E'], assets: assetIds('busan-model-e-harbor-steps-skirt-v2'), source: 'src/lib/guides.ts' },
   { route: 'guide-jeju', section: 'guide-lookbook-photo-pause', models: ['WAK-MODEL-G'], assets: assetIds('jeju-model-g-summer-camera-skirt-v2'), source: 'src/lib/guides.ts' },
   { route: 'infrastructure', section: 'hero', models: [], assets: assetIds('infrastructure-model-temi-coastal-desk-v1'), source: 'src/app/infrastructure/page.tsx' },
+  { route: 'stay-pilot', section: 'hero', models: [], assets: assetIds('stay-pilot-custom-airport-model-desktop-v1', 'stay-pilot-custom-airport-model-mobile-v1'), source: 'src/components/stays/StaySearchPilotView.tsx' },
 ]
 
 const nonModelMajorSurfaces = [
