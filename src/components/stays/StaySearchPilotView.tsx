@@ -118,14 +118,12 @@ function ResultCard({
   index,
   lang,
   destinationId,
-  destinationLabel,
   sourceSection,
 }: {
   result: StaySearchResult
   index: number
   lang: Lang
   destinationId: string
-  destinationLabel: string
   sourceSection: string
 }) {
   const c = COPY[lang]
@@ -180,8 +178,7 @@ function ResultCard({
           />
         ) : null}
         <span className="absolute inset-0 bg-gradient-to-t from-[#061f2d]/72 via-transparent to-black/5" />
-        <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-4">
-          <span className="rounded-full border border-white/35 bg-[#082b3a]/78 px-3 py-1.5 text-[0.66rem] font-black tracking-[0.08em] text-white backdrop-blur-md">{destinationLabel} · {c.cityStay}</span>
+        <div className="absolute inset-x-0 top-0 flex items-start justify-end p-4">
           {typeof result.reviewScore === 'number' ? <span className="rounded-full bg-white px-3 py-2 text-xs font-black text-[#0a4054] shadow-lg">{c.review} {result.reviewScore.toFixed(1)}/10</span> : null}
         </div>
       </div>
@@ -468,14 +465,14 @@ export function StaySearchPilotView({
                   filters={resultFilters}
                   availability={filterAvailability}
                   visibleCount={refinedResults.length}
-                  totalCount={response.results.length}
+                  totalCount={resultItems.length}
                   onSortChange={changeResultSort}
                   onFilterToggle={toggleResultFilter}
                   onReset={resetResultRefinement}
                 />
                 {refinedResults.length > 0 ? (
                   <div className="wak-card-grid grid auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
-                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} destinationLabel={activeDestinationLabel} sourceSection={resultSourceSection} />)}
+                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
                   </div>
                 ) : (
                   <div className="rounded-[1.75rem] border border-dashed border-[#b9cacc] bg-white px-6 py-12 text-center">
