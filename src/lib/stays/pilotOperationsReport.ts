@@ -42,6 +42,16 @@ export type StayPilotOperationalRecord = {
   resultCount: number
 }
 
+export type StayPilotBookingClickRecord = {
+  id: string
+  timestamp: number
+  destinationId: keyof typeof PILOT_DESTINATION_COHORTS
+  cohort: StayPilotCohort
+  locale: StayPilotLocale
+  mode: StayPilotOperationalMode
+  provider: 'agoda' | 'booking'
+}
+
 export type StayPilotCohortMetrics = {
   searches: number
   successfulResultViews: number
@@ -101,6 +111,15 @@ type StayPilotLogPayload = {
   failure_reason?: unknown
   latency_ms?: unknown
   result_count?: unknown
+}
+
+type StayPilotBookingClickPayload = {
+  event?: unknown
+  pilot?: unknown
+  destination_id?: unknown
+  locale?: unknown
+  mode?: unknown
+  provider?: unknown
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -234,6 +253,65 @@ export function parseStayPilotOperationalJsonLines(jsonLines: string): StayPilot
   return [...byId.values()].sort((a, b) => a.timestamp - b.timestamp)
 }
 
+/**
+ * Parses the separate same-origin booking-click event. Property IDs, URLs,
+ * dates, guest counts and any unexpected fields are never retained.
+ */
+export function parseStayPilotBookingClickLine(line: string): StayPilotBookingClickRecord | null {
+  let envelope: VercelLogEnvelope
+  try {
+    const parsed: unknown = JSON.parse(line)
+    if (!isObject(parsed)) return null
+    envelope = parsed
+  } catch {
+    return null
+  }
+
+  if (envelope.environment !== 'production' || typeof envelope.message !== 'string') return null
+  const marker = '[stay-pilot-booking] '
+  if (!envelope.message.startsWith(marker)) return null
+
+  let payload: StayPilotBookingClickPayload
+  try {
+    const parsed: unknown = JSON.parse(envelope.message.slice(marker.length))
+    if (!isObject(parsed)) return null
+    payload = parsed
+  } catch {
+    return null
+  }
+
+  if (payload.event !== 'stay_booking_click' || payload.pilot !== 'agoda_stay_v1') return null
+  if (typeof payload.destination_id !== 'string' || !(payload.destination_id in PILOT_DESTINATION_COHORTS)) return null
+  if (typeof payload.locale !== 'string' || !PILOT_LOCALES.includes(payload.locale as StayPilotLocale)) return null
+  if (payload.mode !== 'results' && payload.mode !== 'fallback') return null
+  if (payload.provider !== 'agoda' && payload.provider !== 'booking') return null
+  if ((payload.mode === 'results' && payload.provider !== 'agoda') || (payload.mode === 'fallback' && payload.provider !== 'booking')) return null
+
+  const timestamp = boundedInteger(envelope.timestamp, Number.MAX_SAFE_INTEGER)
+  if (timestamp === null) return null
+  const destinationId = payload.destination_id as keyof typeof PILOT_DESTINATION_COHORTS
+  return {
+    id: typeof envelope.id === 'string' && /^[a-z0-9-]{1,128}$/i.test(envelope.id)
+      ? envelope.id
+      : `${timestamp}-${destinationId}-${payload.mode}-${payload.provider}`,
+    timestamp,
+    destinationId,
+    cohort: PILOT_DESTINATION_COHORTS[destinationId],
+    locale: payload.locale as StayPilotLocale,
+    mode: payload.mode,
+    provider: payload.provider,
+  }
+}
+
+export function parseStayPilotBookingClickJsonLines(jsonLines: string): StayPilotBookingClickRecord[] {
+  const byId = new Map<string, StayPilotBookingClickRecord>()
+  for (const line of jsonLines.split(/\r?\n/)) {
+    const record = parseStayPilotBookingClickLine(line.trim())
+    if (record) byId.set(record.id, record)
+  }
+  return [...byId.values()].sort((a, b) => a.timestamp - b.timestamp)
+}
+
 export function buildStayPilotOperationalReport(
   records: StayPilotOperationalRecord[],
   evidence: StayPilotReportEvidence,
@@ -269,7 +347,11 @@ export function buildStayPilotOperationalReport(
     affiliateSafetyFailures: affiliateSafetyFailures ?? 0,
     brokenImages: brokenImages ?? 0,
   })
-  const status = missingEvidence.length > 0 && decision.status === 'eligible_for_operator_review'
+  const missingBookingClickOnlyHold = bookingClicks === null
+    && decision.status === 'hold'
+    && decision.blockers.every((blocker) => blocker === 'no_booking_click_evidence')
+  const status = missingEvidence.length > 0
+    && (decision.status === 'eligible_for_operator_review' || missingBookingClickOnlyHold)
     ? 'collecting'
     : decision.status
 

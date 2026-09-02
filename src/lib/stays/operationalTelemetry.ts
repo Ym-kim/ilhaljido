@@ -9,6 +9,13 @@ type StaySearchOperationalInput = {
   execution: StaySearchExecution
 }
 
+type StayBookingOperationalInput = {
+  destinationId: string
+  locale: Lang
+  provider: 'agoda' | 'booking'
+  mode: 'results' | 'fallback'
+}
+
 /**
  * A deliberately narrow server log for pilot reliability measurement.
  * It cannot accept dates, guest counts, property URLs, credentials or free-form destinations.
@@ -29,4 +36,21 @@ export function logStaySearchExecution({ destinationId, locale, execution }: Sta
   }
 
   console.info(`[stay-pilot] ${JSON.stringify(record)}`)
+}
+
+/**
+ * Aggregate booking-click evidence for the pilot graduation report. The input
+ * deliberately cannot accept a property ID, URL, date, guest count or user ID.
+ */
+export function logStayBookingClick({ destinationId, locale, provider, mode }: StayBookingOperationalInput): void {
+  const record = {
+    event: 'stay_booking_click',
+    pilot: 'agoda_stay_v1',
+    destination_id: destinationId,
+    locale: locale === 'JP' ? 'ja' : locale.toLowerCase(),
+    provider,
+    mode,
+  }
+
+  console.info(`[stay-pilot-booking] ${JSON.stringify(record)}`)
 }

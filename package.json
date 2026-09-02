@@ -52,6 +52,7 @@
     "audit:stay-intelligence": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-intelligence.mjs",
     "audit:stay-measurement": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-measurement.mjs",
     "audit:stay-operations-report": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-pilot-operations-report.mjs",
+    "audit:stay-booking-telemetry": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-booking-telemetry.mjs",
     "audit:stay-provider-comparison": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-provider-comparison-readiness.mjs",
     "report:stay-pilot": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/report-stay-pilot-operations.mjs",
     "audit:stay-expansion": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-expansion-readiness.mjs",

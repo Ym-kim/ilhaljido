@@ -1,6 +1,7 @@
 export const STAY_PILOT_ROLLOUT_GUARDRAILS = {
   minimumObservationDays: 7,
   minimumSearches: 200,
+  minimumBookingClicks: 1,
   minimumSuccessfulResultRate: 0.9,
   maximumFallbackRate: 0.1,
   maximumP75LatencyMs: 2_500,
@@ -23,6 +24,7 @@ export type StayPilotMeasurementSnapshot = {
 export type StayPilotRolloutBlocker =
   | 'insufficient_observation_window'
   | 'insufficient_search_sample'
+  | 'no_booking_click_evidence'
   | 'successful_result_rate_below_guardrail'
   | 'fallback_rate_above_guardrail'
   | 'latency_above_guardrail'
@@ -60,6 +62,7 @@ export function evaluateStayPilotRollout(snapshot: StayPilotMeasurementSnapshot)
 
   if (snapshot.observationDays < STAY_PILOT_ROLLOUT_GUARDRAILS.minimumObservationDays) blockers.push('insufficient_observation_window')
   if (snapshot.searches < STAY_PILOT_ROLLOUT_GUARDRAILS.minimumSearches) blockers.push('insufficient_search_sample')
+  if (snapshot.bookingClicks < STAY_PILOT_ROLLOUT_GUARDRAILS.minimumBookingClicks) blockers.push('no_booking_click_evidence')
   if (metrics.successfulResultRate < STAY_PILOT_ROLLOUT_GUARDRAILS.minimumSuccessfulResultRate) blockers.push('successful_result_rate_below_guardrail')
   if (metrics.fallbackRate > STAY_PILOT_ROLLOUT_GUARDRAILS.maximumFallbackRate) blockers.push('fallback_rate_above_guardrail')
   if (snapshot.p75LatencyMs > STAY_PILOT_ROLLOUT_GUARDRAILS.maximumP75LatencyMs) blockers.push('latency_above_guardrail')

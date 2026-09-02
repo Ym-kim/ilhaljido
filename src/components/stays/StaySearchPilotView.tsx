@@ -7,6 +7,7 @@ import { ArrowLeft, BedDouble, Coffee, ExternalLink, MapPin, Search, ShieldCheck
 
 import { useLang } from '@/context/LanguageContext'
 import { trackStayEvent } from '@/lib/stays/analytics'
+import { recordStayBookingClick } from '@/lib/stays/bookingTelemetry'
 import type { StayLiveSearchFailureReason, StaySearchResult } from '@/lib/stays/domain'
 import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { trackAffiliateClick } from '@/lib/track'
@@ -161,6 +162,12 @@ function ResultCard({
     }
     trackStayEvent('stay_property_click', common)
     trackStayEvent('stay_booking_click', common)
+    recordStayBookingClick({
+      destinationId,
+      locale: lang,
+      provider: 'agoda',
+      mode: 'results',
+    })
     trackAffiliateClick({
       id: result.propertyId,
       itemName: result.name,
@@ -420,6 +427,12 @@ export function StaySearchPilotView({
     trackStayEvent('stay_booking_click', {
       locale: lang, sourceSection: fallbackSourceSection, provider: 'booking', destinationId,
       capability: 'search_redirect', datesSupplied: true, outcome: 'fallback',
+    })
+    recordStayBookingClick({
+      destinationId,
+      locale: lang,
+      provider: 'booking',
+      mode: 'fallback',
     })
     trackAffiliateClick({
       id: 'booking-stay-search', itemName: 'Booking.com stay search', provider: 'booking',

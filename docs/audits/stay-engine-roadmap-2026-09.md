@@ -14,7 +14,7 @@ The order below preserves Booking.com fallback, keeps provider data separate fro
 | 8 | Destination expansion readiness | Complete, not exposed | Verified Agoda city IDs, acceptable result quality and Phase 7 evidence |
 | 8.1 | Korea Pilot controlled rollout | Complete — Production enabled 2026-09-02 | KO/EN/JA mobile QA, live results, redirect safety and rollback flag |
 | 9 | Multi-provider comparison | Blocked — readiness layer complete, only Agoda is live-search verified | A second live-search contract, server adapter, comparable terms and tracking permission |
-| 10 | Pilot graduation | Conditional | Stable QA, disclosure, performance and rollback evidence |
+| 10 | Pilot graduation | In progress — privacy-safe booking-click evidence implemented; sample still collecting | 7 complete days, 200 searches, at least one observed booking click, stable QA, disclosure, performance and rollback evidence |
 
 ## Phase 5 boundary
 

@@ -4,7 +4,11 @@ import { pathToFileURL } from 'node:url'
 
 const root = process.cwd()
 const moduleUrl = pathToFileURL(join(root, 'src/lib/stays/pilotOperationsReport.ts')).href
-const { buildStayPilotOperationalReport, parseStayPilotOperationalJsonLines } = await import(moduleUrl)
+const {
+  buildStayPilotOperationalReport,
+  parseStayPilotBookingClickJsonLines,
+  parseStayPilotOperationalJsonLines,
+} = await import(moduleUrl)
 
 function argValue(name) {
   const prefix = `--${name}=`
@@ -43,7 +47,7 @@ const command = spawnSync('npx', [
   '--no-branch',
   '--since', since,
   '--limit', String(limit),
-  '--query', 'stay_search_execution',
+  '--query', 'stay-pilot',
   '--json',
 ], {
   cwd: root,
@@ -65,11 +69,18 @@ if (command.status !== 0) {
 }
 
 const records = parseStayPilotOperationalJsonLines(command.stdout)
+const bookingClickRecords = parseStayPilotBookingClickJsonLines(command.stdout)
+const countedBookingClicks = {
+  japan: bookingClickRecords.filter((record) => record.cohort === 'japan').length,
+  korea: bookingClickRecords.filter((record) => record.cohort === 'korea').length,
+}
+const japanBookingClickOverride = optionalInteger('japan-booking-clicks')
+const koreaBookingClickOverride = optionalInteger('korea-booking-clicks')
 const report = buildStayPilotOperationalReport(records, {
   observationDays,
   bookingClicks: {
-    japan: optionalInteger('japan-booking-clicks'),
-    korea: optionalInteger('korea-booking-clicks'),
+    japan: japanBookingClickOverride ?? countedBookingClicks.japan,
+    korea: koreaBookingClickOverride ?? countedBookingClicks.korea,
   },
   affiliateSafetyFailures: optionalInteger('affiliate-safety-failures'),
   brokenImages: optionalInteger('broken-images'),
