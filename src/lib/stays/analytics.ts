@@ -6,6 +6,7 @@ import type { StayCapability, StayProviderId } from '@/lib/stays/domain'
 export type StayEventName =
   | 'stay_search'
   | 'stay_result_view'
+  | 'stay_result_refine'
   | 'stay_property_click'
   | 'stay_search_result_view'
   | 'stay_property_view'
@@ -22,6 +23,7 @@ export type StayAnalyticsInput = {
   resultCount?: number
   hotelId?: string | number
   position?: number
+  refinement?: 'sort_provider_order' | 'sort_rate_asc' | 'sort_review_desc' | 'filter_free_wifi' | 'filter_breakfast' | 'filter_review_8_plus' | 'reset'
   outcome?: 'view' | 'redirect' | 'fallback' | 'unavailable'
 }
 
@@ -60,6 +62,7 @@ export function trackStayEvent(name: StayEventName, input: StayAnalyticsInput): 
     result_count: typeof input.resultCount === 'number' && Number.isFinite(input.resultCount)
       ? String(Math.max(0, Math.floor(input.resultCount)))
       : 'unknown',
+    refinement: input.refinement ?? 'none',
     outcome: input.outcome ?? 'view',
   })
 }

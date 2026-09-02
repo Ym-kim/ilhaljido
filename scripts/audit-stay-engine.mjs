@@ -23,6 +23,7 @@ const files = {
 const requiredEvents = [
   'stay_search',
   'stay_result_view',
+  'stay_result_refine',
   'stay_property_click',
   'stay_search_result_view',
   'stay_property_view',

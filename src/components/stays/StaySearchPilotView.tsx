@@ -11,6 +11,14 @@ import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
 import type { StayPilotSourceSection } from '@/lib/stays/pilotInitialState'
+import { StayResultRefinementBar } from '@/components/stays/StayResultRefinementBar'
+import {
+  EMPTY_STAY_RESULT_FILTERS,
+  getStayResultFilterAvailability,
+  refineStayResults,
+  type StayResultFilterKey,
+  type StayResultSort,
+} from '@/lib/stays/resultRefinement'
 
 type SearchResponse =
   | {
@@ -43,6 +51,7 @@ const COPY = {
     fallbackCta: 'Booking.com에서 숙소 확인', error: '검색 조건을 다시 확인해주세요.',
     disclosure: '외부 제휴 상품입니다. Wakation은 검색을 돕고, 예약·결제·취소·환불은 연결된 제휴사의 정책을 따릅니다. 요금과 조건은 제휴사 화면에서 최종 확인해주세요.',
     provider: 'Agoda 제공 결과', noEditorial: 'Wakation 자체 조사 메모가 없는 숙소에는 별도 점수나 추천 문구를 붙이지 않습니다.',
+    emptyRefinedTitle: '선택한 조건에 맞는 결과가 없습니다', emptyRefinedBody: '조건을 하나씩 해제하거나 기본 순서로 돌아가 다시 확인해 보세요.', resetRefined: '필터 초기화',
   },
   EN: {
     eyebrow: 'STAY SEARCH PILOT',
@@ -56,6 +65,7 @@ const COPY = {
     fallbackCta: 'Check stays on Booking.com', error: 'Please check your search details.',
     disclosure: 'This is an external affiliate product. Wakation helps with discovery; booking, payment, cancellation and refunds follow the partner’s terms. Confirm final rates and conditions on the partner site.',
     provider: 'Results provided by Agoda', noEditorial: 'Wakation does not add scores or notes where it has no original research.',
+    emptyRefinedTitle: 'No results match these filters', emptyRefinedBody: 'Remove a filter or return to the partner order to see more stays.', resetRefined: 'Reset filters',
   },
   JP: {
     eyebrow: 'STAY SEARCH PILOT',
@@ -69,6 +79,7 @@ const COPY = {
     fallbackCta: 'Booking.comで宿を確認', error: '検索条件を確認してください。',
     disclosure: '外部のアフィリエイト商品です。Wakationは検索をサポートし、予約・決済・キャンセル・返金は提携先の規約に従います。最終料金と条件は提携先でご確認ください。',
     provider: 'Agoda提供の検索結果', noEditorial: 'Wakation独自調査がない宿には、独自スコアや評価文を追加しません。',
+    emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、提携先の基本順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
   },
 } satisfies Record<Lang, Record<string, string>>
 
@@ -216,6 +227,8 @@ export function StaySearchPilotView({
   const [response, setResponse] = useState<SearchResponse | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [resultSort, setResultSort] = useState<StayResultSort>('provider_order')
+  const [resultFilters, setResultFilters] = useState({ ...EMPTY_STAY_RESULT_FILTERS })
   const autoSearchStarted = useRef(false)
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
   const resultSourceSection = sourceSection === 'home_hero_stay_search'
@@ -232,6 +245,15 @@ export function StaySearchPilotView({
       : sourceSection === 'trip_set_stay_search'
         ? 'trip_set_stay_fallback'
         : 'stay_search_pilot_fallback'
+  const resultItems = useMemo(
+    () => response?.mode === 'results' ? response.results : [],
+    [response],
+  )
+  const filterAvailability = useMemo(() => getStayResultFilterAvailability(resultItems), [resultItems])
+  const refinedResults = useMemo(
+    () => refineStayResults(resultItems, resultSort, resultFilters),
+    [resultFilters, resultItems, resultSort],
+  )
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
@@ -247,6 +269,8 @@ export function StaySearchPilotView({
     setError('')
     setLoading(true)
     setResponse(null)
+    setResultSort('provider_order')
+    setResultFilters({ ...EMPTY_STAY_RESULT_FILTERS })
     trackStayEvent('stay_search', {
       locale: lang, sourceSection, provider: 'agoda', destinationId,
       capability: 'live_search', datesSupplied: Boolean(checkin && checkout), outcome: 'view',
@@ -289,6 +313,41 @@ export function StaySearchPilotView({
   function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     void runSearch()
+  }
+
+  const trackRefinement = (refinement: NonNullable<Parameters<typeof trackStayEvent>[1]['refinement']>) => {
+    trackStayEvent('stay_result_refine', {
+      locale: lang,
+      sourceSection: resultSourceSection,
+      provider: 'agoda',
+      destinationId,
+      capability: 'live_search',
+      datesSupplied: true,
+      resultCount: response?.mode === 'results' ? response.results.length : 0,
+      refinement,
+      outcome: 'view',
+    })
+  }
+
+  const changeResultSort = (nextSort: StayResultSort) => {
+    setResultSort(nextSort)
+    trackRefinement(`sort_${nextSort}`)
+  }
+
+  const toggleResultFilter = (filter: StayResultFilterKey) => {
+    setResultFilters((current) => ({ ...current, [filter]: !current[filter] }))
+    const refinement = filter === 'freeWifi'
+      ? 'filter_free_wifi'
+      : filter === 'breakfastIncluded'
+        ? 'filter_breakfast'
+        : 'filter_review_8_plus'
+    trackRefinement(refinement)
+  }
+
+  const resetResultRefinement = () => {
+    setResultSort('provider_order')
+    setResultFilters({ ...EMPTY_STAY_RESULT_FILTERS })
+    trackRefinement('reset')
   }
 
   const fallbackClick = response?.mode === 'fallback' ? () => {
@@ -357,9 +416,28 @@ export function StaySearchPilotView({
                   <div><p className="text-xs font-bold tracking-[0.14em] text-[#078db6]">WAKATION SEARCH RESULTS</p><h2 className="mt-1 text-2xl font-black">{c.results} · {response.results.length}</h2></div>
                   <p className="text-xs text-[#647983]">{c.noEditorial}</p>
                 </div>
-                <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                  {response.results.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
-                </div>
+                <StayResultRefinementBar
+                  lang={lang}
+                  sort={resultSort}
+                  filters={resultFilters}
+                  availability={filterAvailability}
+                  visibleCount={refinedResults.length}
+                  totalCount={response.results.length}
+                  onSortChange={changeResultSort}
+                  onFilterToggle={toggleResultFilter}
+                  onReset={resetResultRefinement}
+                />
+                {refinedResults.length > 0 ? (
+                  <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
+                  </div>
+                ) : (
+                  <div className="rounded-[1.75rem] border border-dashed border-[#b9cacc] bg-white px-6 py-12 text-center">
+                    <h3 className="text-xl font-black text-[#0c2835]">{c.emptyRefinedTitle}</h3>
+                    <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-[#637780]">{c.emptyRefinedBody}</p>
+                    <button type="button" onClick={resetResultRefinement} className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border border-[#078db6] px-5 text-sm font-bold text-[#067b9f] hover:bg-[#eef8fa] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">{c.resetRefined}</button>
+                  </div>
+                )}
               </>
             ) : null}
             {response?.mode === 'fallback' ? (

@@ -13,6 +13,8 @@ const files = {
   api: read('src/app/api/stays/search/route.ts'),
   entry: read('src/app/api/stays/entry/route.ts'),
   view: read('src/components/stays/StaySearchPilotView.tsx'),
+  refinementBar: read('src/components/stays/StayResultRefinementBar.tsx'),
+  refinement: read('src/lib/stays/resultRefinement.ts'),
   contextual: read('src/components/stays/ContextualStaySearch.tsx'),
   guide: read('src/components/guide/GuideView.tsx'),
   collection: read('src/components/affiliate/CollectionView.tsx'),
@@ -53,6 +55,10 @@ const checks = [
   ['Contextual entry keeps dates and bounded guest controls', files.contextual.includes('type="date"') && files.contextual.includes('min={1} max={8}') && files.contextual.includes('min={0} max={6}') && files.destinations.includes('adults: String(input.adults ?? 2)')],
   ['Contextual sources are allowlisted and attributed through results', files.destinations.includes("['home_hero', 'guide', 'trip_set']") && files.entry.includes('isStayPilotEntrySource(source)') && files.initial.includes("'guide_stay_search'") && files.initial.includes("'trip_set_stay_search'") && files.view.includes("'guide_stay_results'") && files.view.includes("'trip_set_stay_results'")],
   ['Contextual module exposes no provider credential', !/AGODA_API_KEY|Authorization/.test(files.contextual)],
+  ['Result refinement uses only actual provider fields', files.refinement.includes('result.rate.amount') && files.refinement.includes('result.reviewScore') && files.refinement.includes('result.amenities?.freeWifi') && files.refinement.includes('result.amenities?.breakfastIncluded')],
+  ['Result refinement preserves provider order by default', files.refinement.includes("sort === 'provider_order'") && files.refinementBar.includes('Partner order')],
+  ['Refinement controls are accessible and localized', files.refinementBar.includes('aria-pressed') && files.refinementBar.includes('min-h-11') && files.refinementBar.includes('KO:') && files.refinementBar.includes('EN:') && files.refinementBar.includes('JP:')],
+  ['Refinement never rewrites provider landing links', !/bookingHref\s*=|landingURL|cid=/.test(`${files.refinement}\n${files.refinementBar}`)],
 ]
 
 const failures = checks.filter(([, passed]) => !passed).map(([name]) => name)
