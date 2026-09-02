@@ -44,7 +44,7 @@ function safeMetric(value: number | undefined, min: number, max: number): number
   return typeof value === 'number' && Number.isFinite(value) && value >= min && value <= max ? value : undefined
 }
 
-function toStayResult(hotel: AgodaHotel, request: StaySearchRequest): StaySearchResult | null {
+export function mapAgodaHotelToStayResult(hotel: AgodaHotel, request: StaySearchRequest): StaySearchResult | null {
   const bookingHref = safeHttpsUrl(hotel.landingURL, true)
   if (!bookingHref || !Number.isFinite(hotel.dailyRate) || hotel.dailyRate < 0) return null
 
@@ -114,7 +114,7 @@ export async function searchAgodaStays(request: StaySearchRequest): Promise<Stay
   const latencyMs = Math.round(performance.now() - startedAt)
   if (!outcome.ok) return { ok: false, reason: failureReason(outcome), latencyMs }
 
-  const results = outcome.hotels.map((hotel) => toStayResult(hotel, request)).filter((hotel): hotel is StaySearchResult => hotel !== null)
+  const results = outcome.hotels.map((hotel) => mapAgodaHotelToStayResult(hotel, request)).filter((hotel): hotel is StaySearchResult => hotel !== null)
   return results.length > 0
     ? { ok: true, results, latencyMs }
     : { ok: false, reason: 'empty_result', latencyMs }
