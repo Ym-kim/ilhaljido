@@ -131,5 +131,11 @@ Implemented on `feat/design-refresh-finish-sprint-v1` without changing `main` or
 
 ## Evidence still to collect
 
-- Vercel Preview deployment and runtime Agoda Pilot search evidence
-- Preview console-error and redirect-link verification
+- `VERIFIED DONE` — Vercel Preview `dpl_3K8FHYg8cbemb4MBpZahFbnf8kcw` reached `READY` at `https://ilhaljido-5k74mdifv-clark-kims-projects.vercel.app`.
+- `VERIFIED DONE` — Fukuoka Agoda Pilot searches returned six real cards in KO, EN and JA. Each result CTA used HTTPS plus `sponsored noopener noreferrer`; no landing URL was rewritten by Wakation.
+- `VERIFIED DONE` — Preview Home, Select and Hotel had no horizontal overflow, broken images, stale copy or client console errors at the inspected mobile and desktop sizes.
+- `VERIFIED DONE` — Warm desktop route navigations were about 0.95–1.06 seconds in the browser harness. The first Preview Home request was about 6.7 seconds and is treated as deployment cold-start evidence, not an LCP measurement.
+- `VERIFIED DONE` — Home rendered the optimized poster with no video node at 700 ms; after six more seconds the one hero video was playing at ready state 4. This preserves the conditional-motion decision.
+- `VERIFIED DONE` — `npm audit --omit=dev` reported zero Production dependency vulnerabilities. Vercel's install summary high-severity item is therefore confined to the non-Production dependency graph and was not auto-fixed in this sprint.
+
+No change has been merged to `main`, promoted to Production or tagged. Production approval remains a separate gate.
