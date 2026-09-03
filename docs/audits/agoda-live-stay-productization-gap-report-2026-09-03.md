@@ -45,7 +45,7 @@ Mapped from the documented Affiliate Lite response when present:
 
 The adapter validates HTTPS, Agoda host, CID, hotel ID, currency, dates, adults, children and room count without rebuilding or mutating the returned URL.
 
-The reviewed Affiliate Lite document does not list a review-count field. No review count will be invented or displayed.
+The official Affiliate Lite response schema lists `reviewCount` as the number of reviews. The live mapper now accepts only a non-negative integer and omits the field when Agoda does not return a valid value; no count is inferred.
 
 ## E. Proposed Stay card
 

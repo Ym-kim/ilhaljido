@@ -6,6 +6,7 @@ import type {
   StaySearchRedirect,
   StaySearchRequest,
   StaySearchResult,
+  StaySearchQualitySummary,
 } from '@/lib/stays/domain'
 import { resolveStaySearchPlan } from '@/lib/stays/providerRegistry'
 import { buildBookingStayRedirect } from '@/lib/stays/providers/booking'
@@ -18,7 +19,7 @@ const LIVE_SEARCH_ADAPTERS: Partial<Record<StayProviderId, StayLiveSearchAdapter
 }
 
 export type StaySearchExecution =
-  | { mode: 'results'; provider: StayProviderId; results: StaySearchResult[]; latencyMs: number }
+  | { mode: 'results'; provider: StayProviderId; results: StaySearchResult[]; quality: StaySearchQualitySummary; latencyMs: number }
   | {
       mode: 'fallback'
       provider: 'booking'
@@ -58,7 +59,7 @@ export async function executeStaySearch(
 
   const outcome = await adapter(request)
   if (outcome.ok) {
-    return { mode: 'results', provider: plan.requestedProvider, results: outcome.results, latencyMs: outcome.latencyMs }
+    return { mode: 'results', provider: plan.requestedProvider, results: outcome.results, quality: outcome.quality, latencyMs: outcome.latencyMs }
   }
   return {
     mode: 'fallback',

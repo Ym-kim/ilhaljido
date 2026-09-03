@@ -31,6 +31,8 @@ export type AgodaHotel = {
   starRating?: number
   /** Agoda Affiliate Lite guest review score (0-10). */
   reviewScore?: number
+  /** Agoda Affiliate Lite review volume. */
+  reviewCount?: number
   freeWifi?: boolean
   includeBreakfast?: boolean
   imageURL?: string
@@ -90,6 +92,7 @@ function toHotel(raw: unknown): AgodaHotel | null {
     currency,
     starRating: typeof r.starRating === 'number' ? r.starRating : undefined,
     reviewScore: typeof r.reviewScore === 'number' ? r.reviewScore : undefined,
+    reviewCount: typeof r.reviewCount === 'number' ? r.reviewCount : undefined,
     freeWifi: typeof r.freeWifi === 'boolean' ? r.freeWifi : undefined,
     includeBreakfast: typeof r.includeBreakfast === 'boolean' ? r.includeBreakfast : undefined,
     imageURL: typeof r.imageURL === 'string' ? r.imageURL : undefined,
@@ -168,7 +171,9 @@ export async function searchAgodaCity(input: SearchInput): Promise<AgodaSearchOu
         minimumReviewScore: 0,
         minimumStarRating: 0,
         occupancy: { numberOfAdult: input.adults ?? 2, numberOfChildren: input.children ?? 0 },
-        sortBy: 'PriceAsc',
+        // Ask Agoda for its broad recommended pool; Wakation applies its own
+        // transparent, provider-neutral quality curation after validation.
+        sortBy: 'Recommended',
       },
       checkInDate: input.checkInDate,
       checkOutDate: input.checkOutDate,

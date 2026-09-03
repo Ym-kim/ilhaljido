@@ -40,7 +40,11 @@ export async function POST(request: Request) {
     {
       ...execution,
       destinationId: validated.value.destinationId,
-      meta: { latencyMs: execution.latencyMs, resultCount: execution.mode === 'results' ? execution.results.length : 0 },
+      meta: {
+        latencyMs: execution.latencyMs,
+        resultCount: execution.mode === 'results' ? execution.results.length : 0,
+        ...(execution.mode === 'results' ? execution.quality : {}),
+      },
     },
     { headers: responseHeaders(execution.latencyMs) },
   )

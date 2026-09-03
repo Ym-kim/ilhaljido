@@ -27,13 +27,14 @@ const results = [
 ]
 
 const originalOrder = results.map((result) => result.propertyId)
-assert.deepEqual(refineStayResults(results, 'provider_order', EMPTY_STAY_RESULT_FILTERS).map((result) => result.propertyId), originalOrder)
+assert.deepEqual(refineStayResults(results, 'recommended', EMPTY_STAY_RESULT_FILTERS).map((result) => result.propertyId), originalOrder)
 assert.deepEqual(refineStayResults(results, 'rate_asc', EMPTY_STAY_RESULT_FILTERS).map((result) => result.propertyId), ['two', 'one', 'three'])
 assert.deepEqual(refineStayResults(results, 'review_desc', EMPTY_STAY_RESULT_FILTERS).map((result) => result.propertyId), ['one', 'two', 'three'])
-assert.deepEqual(refineStayResults(results, 'provider_order', { ...EMPTY_STAY_RESULT_FILTERS, freeWifi: true }).map((result) => result.propertyId), ['one', 'three'])
-assert.deepEqual(refineStayResults(results, 'provider_order', { ...EMPTY_STAY_RESULT_FILTERS, breakfastIncluded: true }).map((result) => result.propertyId), ['two', 'three'])
-assert.deepEqual(refineStayResults(results, 'provider_order', { ...EMPTY_STAY_RESULT_FILTERS, reviewEightPlus: true }).map((result) => result.propertyId), ['one'])
+assert.deepEqual(refineStayResults(results, 'property_rating_desc', EMPTY_STAY_RESULT_FILTERS).map((result) => result.propertyId), ['one', 'two', 'three'])
+assert.deepEqual(refineStayResults(results, 'recommended', { ...EMPTY_STAY_RESULT_FILTERS, freeWifi: true }).map((result) => result.propertyId), ['one', 'three'])
+assert.deepEqual(refineStayResults(results, 'recommended', { ...EMPTY_STAY_RESULT_FILTERS, breakfastIncluded: true }).map((result) => result.propertyId), ['two', 'three'])
+assert.deepEqual(refineStayResults(results, 'recommended', { ...EMPTY_STAY_RESULT_FILTERS, reviewEightPlus: true }).map((result) => result.propertyId), ['one'])
 assert.deepEqual(results.map((result) => result.propertyId), originalOrder)
 assert.deepEqual(getStayResultFilterAvailability(results), { freeWifi: true, breakfastIncluded: true, reviewEightPlus: true })
 
-console.log('[stay-result-refinement] PASS — provider order, stable sorting, actual-field filters and immutability checks.')
+console.log('[stay-result-refinement] PASS — recommended order, stable rating/rate/property sorting, actual-field filters and immutability checks.')

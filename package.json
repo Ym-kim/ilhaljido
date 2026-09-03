@@ -60,6 +60,7 @@
     "audit:stay-expansion-measurement": "node scripts/audit-stay-expansion-measurement.mjs",
     "audit:stay-korea-rollout": "node scripts/audit-stay-korea-rollout.mjs",
     "audit:stay-productization": "node scripts/audit-stay-productization.mjs",
+    "audit:stay-quality-curation": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --experimental-strip-types scripts/audit-stay-quality-curation.mjs",
     "audit:home-discovery": "node scripts/audit-home-discovery-focus.mjs",
     "audit:design-refresh-finish": "node scripts/audit-design-refresh-finish.mjs",
     "audit:agoda-auth": "node --conditions=react-server --experimental-strip-types scripts/audit-agoda-auth.mjs",

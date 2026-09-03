@@ -79,9 +79,21 @@ export type StaySearchResult = {
   imageStatus: StayImageStatus
   starRating?: number
   reviewScore?: number
+  reviewCount?: number
   rate: StayRate
   amenities?: StayAmenities
   intelligence?: StayIntelligence
+}
+
+export type StaySearchQualitySummary = {
+  candidateCount: number
+  displayCount: number
+  averageReviewScore?: number
+  minimumReviewScore?: number
+  averageReviewCount?: number
+  providerImageCount: number
+  placeholderCount: number
+  sortMode: 'recommended'
 }
 
 export type StayLiveSearchFailureReason =

@@ -28,7 +28,18 @@ type SearchResponse =
       provider: 'agoda'
       destinationId: string
       results: StaySearchResult[]
-      meta: { latencyMs: number; resultCount: number }
+      meta: {
+        latencyMs: number
+        resultCount: number
+        candidateCount: number
+        displayCount: number
+        averageReviewScore?: number
+        minimumReviewScore?: number
+        averageReviewCount?: number
+        providerImageCount: number
+        placeholderCount: number
+        sortMode: 'recommended'
+      }
     }
   | {
       mode: 'fallback'
@@ -57,7 +68,8 @@ const COPY = {
     ratingGuide: 'Agoda 숙소 등급은 제휴사가 제공한 0–5 지표로, 국가별 공식 호텔 등급과 다를 수 있습니다. 이용자 후기 평점은 10점 만점입니다.',
     intelligence: 'Wakation 조사 메모', workNote: '일하기', longStayNote: '머물기', accessNote: '이동', source: '근거 보기', verifiedAt: '확인일',
     cityStay: '숙소 찾기', finalPrice: '세금·수수료와 최종 조건은 제휴사에서 확인',
-    emptyRefinedTitle: '선택한 조건에 맞는 결과가 없습니다', emptyRefinedBody: '조건을 하나씩 해제하거나 기본 순서로 돌아가 다시 확인해 보세요.', resetRefined: '필터 초기화',
+    selectionTitle: 'Wakation이 먼저 고른 숙소',
+    emptyRefinedTitle: '선택한 조건에 맞는 결과가 없습니다', emptyRefinedBody: '조건을 하나씩 해제하거나 추천순으로 돌아가 다시 확인해 보세요.', resetRefined: '필터 초기화',
   },
   EN: {
     eyebrow: 'WAKATION STAY',
@@ -75,7 +87,8 @@ const COPY = {
     ratingGuide: 'The Agoda property rating is a partner-supplied 0–5 metric and may differ from an official local hotel classification. Guest review scores use a 10-point scale.',
     intelligence: 'Wakation research note', workNote: 'Work', longStayNote: 'Stay', accessNote: 'Access', source: 'View source', verifiedAt: 'Checked',
     cityStay: 'Stay search', finalPrice: 'Confirm taxes, fees and final conditions with the partner',
-    emptyRefinedTitle: 'No results match these filters', emptyRefinedBody: 'Remove a filter or return to the partner order to see more stays.', resetRefined: 'Reset filters',
+    selectionTitle: 'Stays selected first by Wakation',
+    emptyRefinedTitle: 'No results match these filters', emptyRefinedBody: 'Remove a filter or return to Recommended to see more stays.', resetRefined: 'Reset filters',
   },
   JP: {
     eyebrow: 'WAKATION STAY',
@@ -93,7 +106,8 @@ const COPY = {
     ratingGuide: 'Agoda施設ランクは提携先が提供する0〜5の指標で、各国の公式なホテル等級とは異なる場合があります。利用者口コミ評価は10点満点です。',
     intelligence: 'Wakation調査メモ', workNote: '仕事', longStayNote: '滞在', accessNote: 'アクセス', source: '根拠を見る', verifiedAt: '確認日',
     cityStay: '宿を探す', finalPrice: '税・手数料と最終条件は提携先で確認',
-    emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、提携先の基本順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
+    selectionTitle: 'Wakationが先に選んだ宿',
+    emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、おすすめ順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
   },
 } satisfies Record<Lang, Record<string, string>>
 
@@ -120,6 +134,19 @@ function formatRate(value: number, currency: string, lang: Lang): string {
 
 function formatProviderPropertyRating(value: number): string {
   return `${value.toFixed(1)}/5`
+}
+
+function formatReviewCount(value: number, lang: Lang): string {
+  const count = new Intl.NumberFormat(localeCode(lang), { notation: value >= 10_000 ? 'compact' : 'standard', maximumFractionDigits: 1 }).format(value)
+  if (lang === 'EN') return `${count} reviews`
+  if (lang === 'JP') return `口コミ ${count}件`
+  return `후기 ${count}개`
+}
+
+function formatSelectionSummary(meta: Extract<SearchResponse, { mode: 'results' }>['meta'], lang: Lang): string {
+  if (lang === 'EN') return `${meta.displayCount} selected from ${meta.candidateCount} live candidates · ratings 8.0+ only`
+  if (lang === 'JP') return `リアルタイム候補${meta.candidateCount}件から${meta.displayCount}件を選定 · 口コミ評価8.0以上のみ`
+  return `실시간 후보 ${meta.candidateCount}개 중 ${meta.displayCount}개 선별 · 숙박객 평점 8.0 이상만 표시`
 }
 
 function formatStartingRate(value: number, currency: string, lang: Lang): string {
@@ -239,7 +266,12 @@ function ResultCard({
         ) : null}
         {showProviderImage ? <span className="absolute inset-0 bg-gradient-to-t from-[#061f2d]/58 via-transparent to-black/5" /> : null}
         <div className="absolute inset-x-0 top-0 flex items-start justify-end p-4">
-          {guestScore !== null ? <span className="rounded-full bg-white px-3 py-2 text-xs font-black text-[#0a4054] shadow-lg">{c.review} {guestScore.toFixed(1)}/10</span> : null}
+          {guestScore !== null ? (
+            <span className="rounded-full bg-white px-3 py-2 text-right text-xs font-black leading-4 text-[#0a4054] shadow-lg">
+              <span className="block">{c.review} {guestScore.toFixed(1)}/10</span>
+              {typeof result.reviewCount === 'number' ? <span className="block font-semibold text-[#60757d]">{formatReviewCount(result.reviewCount, lang)}</span> : null}
+            </span>
+          ) : null}
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5">
@@ -326,7 +358,7 @@ export function StaySearchPilotView({
   const [response, setResponse] = useState<SearchResponse | null>(null)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [resultSort, setResultSort] = useState<StayResultSort>('provider_order')
+  const [resultSort, setResultSort] = useState<StayResultSort>('recommended')
   const [resultFilters, setResultFilters] = useState({ ...EMPTY_STAY_RESULT_FILTERS })
   const autoSearchStarted = useRef(false)
   const activeDestination = STAY_PILOT_DESTINATIONS.find((destination) => destination.id === destinationId) ?? STAY_PILOT_DESTINATIONS[0]
@@ -373,7 +405,7 @@ export function StaySearchPilotView({
     setError('')
     setLoading(true)
     setResponse(null)
-    setResultSort('provider_order')
+    setResultSort('recommended')
     setResultFilters({ ...EMPTY_STAY_RESULT_FILTERS })
     trackStayEvent('stay_search', {
       locale: lang, sourceSection, provider: 'agoda', destinationId,
@@ -394,6 +426,9 @@ export function StaySearchPilotView({
           locale: lang, sourceSection: resultSourceSection, provider: payload.provider,
           destinationId, capability: 'live_search', datesSupplied: true,
           resultCount: payload.results.length, latencyMs: payload.meta.latencyMs, outcome: 'view',
+          candidateCount: payload.meta.candidateCount, displayCount: payload.meta.displayCount,
+          averageReviewScore: payload.meta.averageReviewScore, placeholderCount: payload.meta.placeholderCount,
+          sortMode: payload.meta.sortMode,
           imageStatus: summarizeImageStatus(payload.results),
           discountPresent: payload.results.some((result) => getSafeDiscountPercentage(result) !== null),
           wakationNotePresent: payload.results.some((result) => Boolean(result.intelligence)),
@@ -462,7 +497,7 @@ export function StaySearchPilotView({
   }
 
   const resetResultRefinement = () => {
-    setResultSort('provider_order')
+    setResultSort('recommended')
     setResultFilters({ ...EMPTY_STAY_RESULT_FILTERS })
     trackRefinement('reset')
   }
@@ -541,7 +576,7 @@ export function StaySearchPilotView({
             {response?.mode === 'results' ? (
               <>
                 <div className="mb-6 grid gap-3 border-b border-[#d9dfdc] pb-5 md:grid-cols-[minmax(0,1fr)_minmax(18rem,.75fr)] md:items-end">
-                  <div><p className="text-[0.68rem] font-black tracking-[0.16em] text-[#078db6]">WAKATION SEARCH RESULTS · {activeDestinationLabel}</p><h2 className="wak-section-title mt-2 break-keep font-black tracking-[-0.025em] text-[#172a36]">{c.results}</h2></div>
+                  <div><p className="text-[0.68rem] font-black tracking-[0.16em] text-[#078db6]">WAKATION SEARCH RESULTS · {activeDestinationLabel}</p><h2 className="wak-section-title mt-2 break-keep font-black tracking-[-0.025em] text-[#172a36]">{c.results}</h2><p className="mt-2 text-sm font-bold text-[#49616b]"><span className="text-[#087fa2]">{c.selectionTitle}</span> · {formatSelectionSummary(response.meta, lang)}</p></div>
                   <div className="text-xs leading-5 text-[#647983] md:text-right">
                     <p>{c.noEditorial}</p>
                     <p className="mt-1">{c.ratingGuide}</p>
@@ -559,7 +594,7 @@ export function StaySearchPilotView({
                   onReset={resetResultRefinement}
                 />
                 {refinedResults.length > 0 ? (
-                  <div className="wak-card-grid grid auto-rows-fr sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="wak-card-grid grid auto-rows-fr md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
                   </div>
                 ) : (

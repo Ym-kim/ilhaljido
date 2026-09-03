@@ -6,9 +6,11 @@ import type { StayLiveSearchFailureReason, StaySearchRequest, StaySearchResult }
 import { getVerifiedStayIntelligence } from '@/lib/stays/intelligence'
 import { getStayPilotDestination } from '@/lib/stays/pilotDestinations'
 import { AGODA_STAY_PROVIDER } from '@/lib/stays/providers/agoda'
+import { curateStayResults, STAY_CANDIDATE_POOL_SIZE } from '@/lib/stays/qualitySelection'
+import type { StaySearchQualitySummary } from '@/lib/stays/domain'
 
 export type StayAdapterOutcome =
-  | { ok: true; results: StaySearchResult[]; latencyMs: number }
+  | { ok: true; results: StaySearchResult[]; quality: StaySearchQualitySummary; latencyMs: number }
   | { ok: false; reason: StayLiveSearchFailureReason; latencyMs: number }
 
 function safeHttpsUrl(value: string | undefined, agodaOnly = false): string | undefined {
@@ -107,6 +109,11 @@ export function mapAgodaHotelToStayResult(hotel: AgodaHotel, request: StaySearch
     imageStatus: imageUrl ? 'provider_image' : 'neutral_placeholder',
     starRating: safeMetric(hotel.starRating, 0, 5),
     reviewScore: safeMetric(hotel.reviewScore, 0, 10),
+    reviewCount: typeof hotel.reviewCount === 'number'
+      && Number.isSafeInteger(hotel.reviewCount)
+      && hotel.reviewCount >= 0
+      ? hotel.reviewCount
+      : undefined,
     rate: {
       amount: hotel.dailyRate,
       currency,
@@ -141,17 +148,18 @@ export async function searchAgodaStays(request: StaySearchRequest): Promise<Stay
     checkOutDate: request.checkout,
     language: request.locale === 'KO' ? 'ko-kr' : request.locale === 'JP' ? 'ja-jp' : 'en-us',
     currency: request.locale === 'KO' ? 'KRW' : request.locale === 'JP' ? 'JPY' : 'USD',
-    maxResult: 8,
+    maxResult: STAY_CANDIDATE_POOL_SIZE,
     adults: request.adults,
     children: request.children,
   })
   const latencyMs = Math.round(performance.now() - startedAt)
   if (!outcome.ok) return { ok: false, reason: failureReason(outcome), latencyMs }
 
-  const results = outcome.hotels
+  const candidates = outcome.hotels
     .map((hotel) => mapAgodaHotelToStayResult(hotel, request))
     .filter((hotel): hotel is StaySearchResult => hotel !== null)
-  return results.length > 0
-    ? { ok: true, results, latencyMs }
+  const curated = curateStayResults(candidates)
+  return curated.results.length > 0
+    ? { ok: true, results: curated.results, quality: curated.quality, latencyMs }
     : { ok: false, reason: 'empty_result', latencyMs }
 }
