@@ -25,7 +25,7 @@ import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
 import { YangyangProof } from '@/components/home/YangyangProof'
 import { ReviewRail } from '@/components/home/ReviewRail'
 import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
-import { HomeSeasonalHeroMedia } from '@/components/home/HomeSeasonalHeroMedia'
+import { HomeSeasonalHeroMedia, type HomeHeroVariant } from '@/components/home/HomeSeasonalHeroMedia'
 import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
 import { getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
 import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
@@ -92,12 +92,24 @@ const HOME_HERO_ALT: Record<Lang, string> = {
   JP: '海辺のワークスペースでノートパソコンを閉じ、次の移動を準備する旅人',
 }
 
+const HOME_HERO_PROTOTYPE_A_ALT: Record<Lang, string> = {
+  KO: '바닷가에서 도심 카페로 이동하는 여행자',
+  EN: 'A traveler moving from a coastal pause to an urban cafe',
+  JP: '海辺の休息から都市のカフェへ移動する旅行者',
+}
+
+const HOME_HERO_PROTOTYPE_B_ALT: Record<Lang, string> = {
+  KO: '해안 작업 공간에서 업무를 마치고 바닷가와 도심으로 이동하는 여행자',
+  EN: 'A traveler moving from a coastal workspace to the shore and city',
+  JP: '海辺のワークスペースから海岸と都市へ移動する旅人',
+}
+
 const HOME_HERO_ASSET = {
   id: 'home-seasonal-film-2026-08-desktop-v1',
   modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'] as const,
 } as const
 
-export default function HomePage({ forceLang, chinaCampaignActive = false }: { forceLang?: Lang; chinaCampaignActive?: boolean } = {}) {
+export default function HomePage({ forceLang, chinaCampaignActive = false, homeHeroVariant = 'production' }: { forceLang?: Lang; chinaCampaignActive?: boolean; homeHeroVariant?: HomeHeroVariant } = {}) {
   const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
   const lang = forceLang ?? ctxLang
   const tr = (key: string) => forceLang ? (t[forceLang][key] ?? t.KO[key] ?? key) : ctxTr(key)
@@ -108,14 +120,19 @@ export default function HomePage({ forceLang, chinaCampaignActive = false }: { f
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
   useEffect(() => {
+    const isPrototype = homeHeroVariant === 'video-a' || homeHeroVariant === 'video-b'
     trackEditorialAssetView({
-      assetId: HOME_HERO_ASSET.id,
-      modelIds: [...HOME_HERO_ASSET.modelIds],
+      assetId: homeHeroVariant === 'video-a'
+        ? 'home-hero-prototype-a-desktop-v1'
+        : homeHeroVariant === 'video-b'
+          ? 'home-hero-prototype-b-desktop-v1'
+          : HOME_HERO_ASSET.id,
+      modelIds: isPrototype ? [] : [...HOME_HERO_ASSET.modelIds],
       route: lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : '/',
       section: 'home-seasonal-hero-late-summer-early-autumn',
       locale: lang,
     })
-  }, [lang])
+  }, [homeHeroVariant, lang])
   const bookingNote = ({ KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' } as const)[lang]
   const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
   // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
@@ -217,7 +234,11 @@ export default function HomePage({ forceLang, chinaCampaignActive = false }: { f
       >
         <div className="absolute inset-0">
           {/* Next 16 art direction: mobile/desktop 별도 소스로 얼굴 crop과 LCP 전송량을 제어한다. */}
-          <HomeSeasonalHeroMedia alt={HOME_HERO_ALT[lang]} lang={lang} />
+          <HomeSeasonalHeroMedia
+            alt={(homeHeroVariant === 'video-a' ? HOME_HERO_PROTOTYPE_A_ALT : homeHeroVariant === 'video-b' ? HOME_HERO_PROTOTYPE_B_ALT : HOME_HERO_ALT)[lang]}
+            lang={lang}
+            variant={homeHeroVariant}
+          />
           <div className="absolute inset-0 bg-[#04121f]/22" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/98 via-[#04121f]/62 to-[#04121f]/20 md:bg-gradient-to-r md:from-[#04121f]/96 md:via-[#04121f]/68 md:to-[#04121f]/18" />
         </div>

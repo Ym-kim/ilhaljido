@@ -8,8 +8,6 @@ import {
   Building2,
   CalendarDays,
   Check,
-  CircleDashed,
-  ExternalLink,
   Map,
   Route,
   ShieldCheck,
@@ -17,17 +15,17 @@ import {
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { localizeHref } from '@/lib/i18n/localePath'
-import { CHINA_CAMPAIGN_ID, CHINA_RESEARCH_VARIANTS } from '@/lib/campaigns/chinaMarketResearch'
+import { CHINA_APPLICATION_URL, CHINA_CAMPAIGN_ID, CHINA_RESEARCH_VARIANTS } from '@/lib/campaigns/chinaMarketResearch'
 import { trackEvent } from '@/lib/track'
 
 const COPY = {
   back: { KO: '시장조사 프로그램', EN: 'Market research programs', JP: '市場調査プログラム' },
-  eyebrow: { KO: 'CHINA MARKET RESEARCH · 2026 AUTUMN', EN: 'CHINA MARKET RESEARCH · 2026 AUTUMN', JP: 'CHINA MARKET RESEARCH · 2026 AUTUMN' },
-  title: { KO: '시장부터 볼까,\n전시회부터 볼까', EN: 'Start with the market,\nor the trade fair?', JP: '市場から見るか、\n見本市から見るか' },
+  eyebrow: { KO: 'OCTOBER · CHINA BUSINESS', EN: 'OCTOBER · CHINA BUSINESS', JP: 'OCTOBER · CHINA BUSINESS' },
+  title: { KO: '중국 시장을 직접 보고,\n사업의 다음 기회를 찾다', EN: 'See the market first,\nthen find the next opportunity', JP: '中国市場を自分の目で見て、\n次のビジネス機会を探す' },
   intro: {
-    KO: '중국 시장조사는 도시보다 목적을 먼저 골라야 합니다. 이우의 도매시장형 일정과 광저우의 전시회형 일정을 공개 정보 기준으로 비교했습니다.',
-    EN: 'Choose the research objective before the city. Compare Yiwu’s wholesale-market route with Guangzhou’s trade-fair route using published information.',
-    JP: '中国市場調査は都市より目的を先に選ぶのがポイント。義烏の卸売市場型と広州の見本市型を公開情報に基づいて比較します。',
+    KO: '이우 126차와 광저우 127차. 10월 두 시장조사단을 공개 일정과 조사 목적을 기준으로 비교했습니다.',
+    EN: 'Compare October’s Yiwu Group 126 and Guangzhou Group 127 by published dates and research objective.',
+    JP: '10月の義烏第126回と広州第127回を、公開日程と調査目的から比較します。',
   },
   navCompare: { KO: '두 도시 비교', EN: 'Compare', JP: '2都市を比較' },
   navFlow: { KO: '준비 흐름', EN: 'Planning flow', JP: '準備の流れ' },
@@ -36,10 +34,10 @@ const COPY = {
   compareTitle: { KO: '내 목적에 맞는 현장은 다릅니다', EN: 'The right field depends on your objective', JP: '目的によって、見るべき現場は変わります' },
   fit: { KO: '이런 팀에 맞아요', EN: 'Good fit for', JP: 'こんなチームに' },
   facts: { KO: '공개 정보', EN: 'Published information', JP: '公開情報' },
-  live: { KO: '외부 신청 페이지 확인됨', EN: 'External application page verified', JP: '外部申込ページを確認済み' },
-  monitoring: { KO: '모집 회차 확인 중', EN: 'Group departure not confirmed', JP: '募集回を確認中' },
-  choose: { KO: '이우 일정 자세히 보기', EN: 'Review the Yiwu application', JP: '義烏の申込内容を見る' },
-  closed: { KO: '외부 페이지에서 현재 모집 여부 확인', EN: 'Check current availability externally', JP: '外部ページで現在の募集状況を確認' },
+  live: { KO: '외부 일정·신청 페이지 확인', EN: 'External schedule and application page checked', JP: '外部の日程・申込ページを確認' },
+  archived: { KO: '공개 일정 종료', EN: 'Published dates ended', JP: '公開日程終了' },
+  chooseYiwu: { KO: '이우 일정·신청 확인', EN: 'Check Yiwu dates and application', JP: '義烏の日程・申込を確認' },
+  chooseGuangzhou: { KO: '광저우 일정·신청 확인', EN: 'Check Guangzhou dates and application', JP: '広州の日程・申込を確認' },
   reference: { KO: '공식 참고 정보', EN: 'Official reference', JP: '公式参考情報' },
   noCta: { KO: '확정된 신청 링크가 없어 버튼을 열지 않았습니다.', EN: 'No application button is shown until a matching program is confirmed.', JP: '該当する募集が確認できるまで申込ボタンは表示しません。' },
   flowEyebrow: { KO: 'WAKATION PLANNING NOTE', EN: 'WAKATION PLANNING NOTE', JP: 'WAKATION PLANNING NOTE' },
@@ -55,7 +53,7 @@ const COPY = {
   trustWakation: { KO: 'Wakation은 공개 정보를 비교·편집해 소개합니다. 직접 운영하거나 예약·환불을 처리하지 않습니다.', EN: 'Wakation compares and edits published information. We do not operate the trip or handle booking and refunds.', JP: 'Wakationは公開情報を比較・編集して紹介します。旅行の運営、予約、返金は行いません。' },
   trustOperator: { KO: '일정·가격·포함사항·취소 조건은 외부 운영사 페이지에서 최종 확인합니다. 모집은 조기 종료되거나 변경될 수 있습니다.', EN: 'Confirm dates, pricing, inclusions and cancellation terms on the external operator page. Availability may change or close early.', JP: '日程・料金・含まれるもの・キャンセル条件は外部運営者ページで最終確認してください。募集は変更・早期終了する場合があります。' },
   sourcesTitle: { KO: '확인한 공개 출처', EN: 'Published sources checked', JP: '確認した公開情報' },
-  sourceOperator: { KO: '이우 외부 운영·신청 페이지', EN: 'Yiwu operator and application page', JP: '義烏 外部運営・申込ページ' },
+  sourceOperator: { KO: '10월 외부 운영·신청 페이지', EN: 'October operator and application page', JP: '10月 外部運営・申込ページ' },
   sourceYiwu: { KO: '이우시 공식 시장 안내', EN: 'Official Yiwu market directory', JP: '義烏市 公式市場案内' },
   sourceGuangzhou: { KO: '캔톤페어 공식 사이트', EN: 'Official Canton Fair website', JP: '広州交易会 公式サイト' },
   verified: { KO: '마지막 확인 2026. 9. 3', EN: 'Last checked Sep 3, 2026', JP: '最終確認 2026年9月3日' },
@@ -64,10 +62,10 @@ const COPY = {
 
 const localeCode = (lang: Lang) => lang === 'JP' ? 'ja' : lang.toLowerCase()
 
-export function ChinaMarketResearchView({ forceLang, yiwuApplicationOpen }: { forceLang?: Lang; yiwuApplicationOpen: boolean }) {
+export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOpen }: { forceLang?: Lang; externalApplicationWindowOpen: boolean }) {
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang ?? contextLang
-  const [selected, setSelected] = useState<'yiwu' | 'guangzhou'>('yiwu')
+  const [selected, setSelected] = useState<'yiwu' | 'guangzhou' | null>(null)
   const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
 
   useEffect(() => {
@@ -113,13 +111,13 @@ export function ChinaMarketResearchView({ forceLang, yiwuApplicationOpen }: { fo
               <h1 className="mt-5 whitespace-pre-line text-[clamp(2.7rem,7vw,5.7rem)] font-black leading-[0.98] tracking-[-0.055em]">{COPY.title[lang] as string}</h1>
               <p className="mt-7 max-w-2xl text-base font-medium leading-8 text-white/68 sm:text-lg">{COPY.intro[lang] as string}</p>
             </div>
-            <div className="grid min-w-0 grid-cols-[0.85fr_auto_1.15fr] items-center gap-2 rounded-[1.75rem] border border-white/12 bg-white/7 p-4 backdrop-blur-sm sm:grid-cols-[1fr_auto_1fr] sm:gap-3 sm:p-8">
+            <div className="grid min-w-0 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-[1.75rem] border border-white/12 bg-white/7 p-4 backdrop-blur-sm sm:gap-3 sm:p-8">
               <button type="button" onClick={() => trackVariant('yiwu', 'hero_route')} className={`min-h-24 min-w-0 rounded-2xl p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:p-4 ${selected === 'yiwu' ? 'bg-[#d7aa50] text-[#071e2a]' : 'bg-white/7 text-white'}`}>
-                <span className="block text-[0.55rem] font-black tracking-[0.12em] opacity-65 sm:text-[0.62rem] sm:tracking-[0.16em]">01 · WHOLESALE</span><strong className="mt-2 block text-xl font-black sm:text-2xl">YIWU</strong>
+                <span className="block text-[0.55rem] font-black tracking-[0.12em] opacity-65 sm:text-[0.62rem] sm:tracking-[0.16em]">126 · 10.08—12</span><strong className="mt-2 block text-xl font-black sm:text-2xl">YIWU</strong>
               </button>
               <Route className="h-6 w-6 text-white/45" aria-hidden="true" />
               <button type="button" onClick={() => trackVariant('guangzhou', 'hero_route')} className={`min-h-24 min-w-0 rounded-2xl p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:p-4 ${selected === 'guangzhou' ? 'bg-[#b94032] text-white' : 'bg-white/7 text-white'}`}>
-                <span className="block text-[0.55rem] font-black tracking-[0.1em] opacity-65 sm:text-[0.62rem] sm:tracking-[0.16em]">02 · TRADE FAIR</span><strong className="mt-2 block text-sm font-black tracking-[-0.03em] sm:text-2xl sm:tracking-normal">GUANGZHOU</strong>
+                <span className="block text-[0.55rem] font-black tracking-[0.1em] opacity-65 sm:text-[0.62rem] sm:tracking-[0.16em]">127 · 10.16—20</span><strong className="mt-2 block text-sm font-black tracking-[-0.03em] sm:text-2xl sm:tracking-normal">GUANGZHOU</strong>
               </button>
             </div>
           </div>
@@ -137,17 +135,16 @@ export function ChinaMarketResearchView({ forceLang, yiwuApplicationOpen }: { fo
           <h2 className="mt-3 max-w-3xl text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.compareTitle[lang] as string}</h2>
           <div className="mt-9 grid gap-5 lg:grid-cols-2">
             {CHINA_RESEARCH_VARIANTS.map((variant, index) => {
-              const isYiwu = variant.id === 'yiwu'
               const isSelected = selected === variant.id
-              const canApply = isYiwu && yiwuApplicationOpen && variant.externalUrl
+              const canApply = externalApplicationWindowOpen && variant.externalUrl
               return (
                 <article key={variant.id} className={`overflow-hidden rounded-[2rem] border bg-white shadow-[0_18px_55px_rgba(16,42,54,0.08)] transition ${isSelected ? 'border-[#1b718b] ring-2 ring-[#1b718b]/10' : 'border-[#d9dfdc]'}`}>
                   <button type="button" onClick={() => trackVariant(variant.id, 'comparison_card')} className="w-full p-7 text-left focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1b718b] sm:p-9">
                     <div className="flex items-start justify-between gap-5">
                       <div><span className="text-[0.64rem] font-black tracking-[0.16em] text-[#7a8b8f]">0{index + 1} · {variant.eyebrow[lang]}</span><h3 className="mt-2 text-4xl font-black tracking-[-0.04em]">{variant.city[lang]}</h3></div>
-                      <span className={`inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full px-3 text-[0.67rem] font-black ${isYiwu ? 'bg-[#edf7eb] text-[#357043]' : 'bg-[#f1f1ee] text-[#657074]'}`}>
-                        {isYiwu ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <CircleDashed className="h-3.5 w-3.5" aria-hidden="true" />}
-                        {isYiwu ? COPY.live[lang] as string : COPY.monitoring[lang] as string}
+                      <span className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full bg-[#edf7eb] px-3 text-[0.67rem] font-black text-[#357043]">
+                        <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                        {(externalApplicationWindowOpen ? COPY.live[lang] : COPY.archived[lang]) as string}
                       </span>
                     </div>
                     <h4 className="mt-7 text-xl font-black leading-snug sm:text-2xl">{variant.title[lang]}</h4>
@@ -166,11 +163,7 @@ export function ChinaMarketResearchView({ forceLang, yiwuApplicationOpen }: { fo
                   <div className="p-7 sm:p-9">
                     {canApply ? (
                       <a href={variant.externalUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('external_application_click', { campaign_id: CHINA_CAMPAIGN_ID, variant: variant.id, placement: 'comparison_card', source_page: `${prefix}/programs/china-market-research`, locale: localeCode(lang) })} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#173d4c] px-5 text-sm font-black text-white hover:bg-[#245b70] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">
-                        {COPY.choose[lang] as string} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                      </a>
-                    ) : isYiwu && variant.externalUrl ? (
-                      <a href={variant.externalUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('external_application_click', { campaign_id: CHINA_CAMPAIGN_ID, variant: variant.id, placement: 'availability_check', source_page: `${prefix}/programs/china-market-research`, locale: localeCode(lang) })} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-[#9babae] px-5 text-sm font-black text-[#29434c] hover:bg-[#eef2ef] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">
-                        {COPY.closed[lang] as string} <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                        {(variant.id === 'yiwu' ? COPY.chooseYiwu[lang] : COPY.chooseGuangzhou[lang]) as string} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                       </a>
                     ) : (
                       <p className="rounded-2xl bg-[#f0f1ee] p-4 text-xs font-bold leading-6 text-[#667378]">{COPY.noCta[lang] as string}</p>
@@ -210,7 +203,7 @@ export function ChinaMarketResearchView({ forceLang, yiwuApplicationOpen }: { fo
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-black tracking-[0.14em] text-white/45">SOURCES</p><h3 className="mt-2 text-xl font-black">{COPY.sourcesTitle[lang] as string}</h3></div><span className="text-xs text-white/45">{COPY.verified[lang] as string}</span></div>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
               {[
-                [COPY.sourceOperator[lang], 'https://www.jungdari.com/campaign/marketresearch'],
+                [COPY.sourceOperator[lang], CHINA_APPLICATION_URL],
                 [COPY.sourceYiwu[lang], 'https://www.yw.gov.cn/art/2008/12/29/art_1229142437_50763529.html'],
                 [COPY.sourceGuangzhou[lang], 'https://www.cantonfair.org.cn/en-US?m=0'],
               ].map(([label, href]) => <a key={href as string} href={href as string} target="_blank" rel="noopener noreferrer" className="flex min-h-16 items-center justify-between gap-4 rounded-2xl border border-white/12 px-5 text-sm font-bold text-white/70 hover:bg-white/7 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{label as string}<ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" /></a>)}

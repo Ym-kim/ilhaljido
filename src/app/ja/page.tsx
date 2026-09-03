@@ -31,10 +31,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default function JapaneseHomePage() {
+type PageProps = { searchParams: Promise<{ hero?: string | string[] }> }
+
+export default async function JapaneseHomePage({ searchParams }: PageProps) {
+  const hero = (await searchParams).hero
+  const homeHeroVariant = hero === 'video-a' ? 'video-a' : hero === 'video-b' ? 'video-b' : hero === 'control-static' ? 'control-static' : 'production'
   return (
     <LanguageProvider forceLang="JP">
-      <HomePage forceLang="JP" chinaCampaignActive={isChinaHomeCampaignActive()} />
+      <HomePage forceLang="JP" chinaCampaignActive={isChinaHomeCampaignActive()} homeHeroVariant={homeHeroVariant} />
     </LanguageProvider>
   )
 }
