@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { pathToFileURL } from 'node:url'
 import { join } from 'node:path'
+import { readFileSync } from 'node:fs'
 
 const moduleUrl = pathToFileURL(join(process.cwd(), 'src/lib/stays/qualitySelection.ts')).href
 const {
@@ -55,5 +56,26 @@ const sparse = curateStayResults([
   makeResult(3, { reviewScore: 7.8 }),
 ])
 assert.equal(sparse.results.length, 2, 'low-quality stays must not be used to force the target count')
+
+const read = (path) => readFileSync(join(process.cwd(), path), 'utf8')
+const sources = {
+  api: read('src/lib/affiliate/agodaApi.ts'),
+  adapter: read('src/lib/stays/providers/agodaLive.ts'),
+  analytics: read('src/lib/stays/analytics.ts'),
+  route: read('src/app/api/stays/search/route.ts'),
+  view: read('src/components/stays/StaySearchPilotView.tsx'),
+}
+
+assert.ok(sources.api.includes("sortBy: 'Recommended'"))
+assert.ok(sources.api.includes('reviewCount: typeof r.reviewCount'))
+assert.ok(sources.adapter.includes('maxResult: STAY_CANDIDATE_POOL_SIZE'))
+assert.ok(sources.adapter.includes('curateStayResults(candidates)'))
+assert.ok(sources.route.includes('execution.quality'))
+for (const field of ['candidate_count', 'display_count', 'avg_review_score', 'placeholder_count', 'sort_mode']) {
+  assert.ok(sources.analytics.includes(field), `missing bounded analytics field: ${field}`)
+}
+assert.ok(sources.view.includes('md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'))
+assert.ok(sources.view.includes("useState<StayResultSort>('recommended')"))
+assert.ok(!sources.view.includes('qualityScore'))
 
 console.log('[stay-quality-curation] PASS — 30 candidate pool, quality floor, real-field ranking, price-range balance, 12-card cap and no exposed score.')

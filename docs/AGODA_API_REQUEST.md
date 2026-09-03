@@ -70,7 +70,7 @@
 | 필수 헤더 | `Accept-Encoding: gzip,deflate` (문서상 필수) |
 | 검색 종류 | **City Search** / **Hotel List Search** 2종 |
 | 요청 파라미터 | checkInDate, checkOutDate, currency, language, dailyRate(min/max), occupancy(성인·아동), maxResult, sortBy, minimumStarRating, minimumReviewScore, discountOnly |
-| 응답 필드 | `dailyRate`, `crossedOutRate`, `discountPercentage`, `currency`, `hotelId`, `hotelName`, `imageURL`, `reviewScore`, `starRating`, `freeWifi`, `includeBreakfast`, `landingURL`(cid 포함된 예약 링크) |
+| 응답 필드 | `dailyRate`, `crossedOutRate`, `discountPercentage`, `currency`, `hotelId`, `hotelName`, `imageURL`, `reviewScore`, `reviewCount`, `starRating`, `freeWifi`, `includeBreakfast`, `landingURL`(cid 포함된 예약 링크) |
 
 **문서에 없어서 담당자에게 물어봐야 하는 것 (위 메시지에 포함시켜 뒀다)**
 - rate limit (호출 빈도 제한)
