@@ -1,0 +1,703 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowRight, MapPin, CheckCircle2, Search, Bell, ShieldCheck, BedDouble, CalendarDays } from 'lucide-react'
+import { useLang } from '@/context/LanguageContext'
+import { getDomesticCurrent, getDomesticThemedUpcoming, t } from '@/lib/i18n'
+import type { Lang } from '@/lib/i18n/types'
+import { ICON_STROKE, PARTNER_ICONS } from '@/lib/icons'
+import { AffiliateCard } from '@/components/affiliate/AffiliateCard'
+import { HOME_FEATURED_ITEMS } from '@/lib/affiliate/links'
+import { FEATURED_STAYS, FEATURED_STAYS_V2 } from '@/lib/affiliate/featured'
+import { localizeAffiliateItem } from '@/lib/affiliate/localize'
+import { trackAffiliateClick } from '@/lib/track'
+import { localizeHref } from '@/lib/i18n/localePath'
+import { TripMatchHomeCta } from '@/components/trip-match/TripMatchHomeCta'
+import { DomesticOnboarding } from '@/components/home/DomesticOnboarding'
+import { CollectionsSection } from '@/components/home/CollectionsSection'
+import { HouseBanner } from '@/components/home/HouseBanner'
+import { NotifySignup } from '@/components/home/NotifySignup'
+import { SupportPromoBanner } from '@/components/home/SupportPromoBanner'
+import { HomeFeaturedPromotions } from '@/components/home/HomeFeaturedPromotions'
+import { GeoJapanBanner } from '@/components/home/GeoJapanBanner'
+import { YangyangProof } from '@/components/home/YangyangProof'
+import { ReviewRail } from '@/components/home/ReviewRail'
+import { UpcomingCohorts } from '@/components/programs/UpcomingCohorts'
+import { HomeSeasonalHeroMedia, type HomeHeroVariant } from '@/components/home/HomeSeasonalHeroMedia'
+import { trackEditorialAssetView } from '@/lib/media/editorialTracking'
+import { getStayDateRangeError } from '@/lib/affiliate/bookingSearch'
+import { localizeOutboundHref } from '@/lib/affiliate/linkLocale'
+import { trackStayEvent } from '@/lib/stays/analytics'
+import { buildStayPilotEntryHref } from '@/lib/stays/pilotDestinations'
+import { resolveStaySearchPlan } from '@/lib/stays/providerRegistry'
+import { ChinaCampaignHomePlacement } from '@/components/campaign/ChinaCampaignHomePlacement'
+
+// 홈 선배치 — 에디터 추천 실상품 (개별 호텔 상세 직결, 필터 지역 커버)
+const ALL_STAYS = [...FEATURED_STAYS, ...FEATURED_STAYS_V2]
+const HOME_EDITOR_PICKS = ALL_STAYS.filter((i) =>
+  [
+    'stay-millennials-shibuya',
+    'stay-tribal-bali',
+    'stay-playce-jeju',
+    'stay-chicland-danang',
+    'stay-kantary-chiangmai',
+    'stay-adina-sydney',
+    'stay-nomadshub-cebu',
+    'stay-lyf-sukhumvit-bangkok',
+    'stay-citizenm-taipei',
+  ].includes(i.id)
+)
+
+const PARTNER_ICON_MAP = {
+  government: PARTNER_ICONS.government,
+  space: PARTNER_ICONS.space,
+  education: PARTNER_ICONS.education,
+  corporate: PARTNER_ICONS.corporate,
+}
+
+const DEST_FILTERS = [
+  { id: 'all',         labelKey: 'filter_all',         country: null },
+  { id: 'japan',       labelKey: 'filter_japan',       country: '일본' },
+  { id: 'korea',       labelKey: 'filter_korea',       country: '국내' },
+  { id: 'bali',        labelKey: 'filter_bali',        country: '인도네시아' },
+  { id: 'vietnam',     labelKey: 'filter_vietnam',     country: '베트남' },
+  { id: 'thailand',    labelKey: 'filter_thailand',    country: '태국' },
+  { id: 'philippines', labelKey: 'filter_philippines', country: '필리핀' },
+  { id: 'australia',   labelKey: 'filter_australia',   country: '호주' },
+] as const
+type DestFilter = typeof DEST_FILTERS[number]['id']
+
+// 히어로 목적지 퀵칩 — /select/hotel의 해당 도시 카드로 바로 연결
+const HERO_DESTS = [
+  { labelKey: 'dest_tokyo',   anchor: 'japan-tokyo' },
+  { labelKey: 'dest_osaka',   anchor: 'japan-osaka' },
+  { labelKey: 'dest_fukuoka', anchor: 'japan-fukuoka' },
+  { labelKey: 'dest_seoul',   anchor: 'korea-seoul' },
+  { labelKey: 'dest_busan',   anchor: 'korea-busan' },
+  { labelKey: 'dest_jeju',    anchor: 'korea-jeju' },
+  { labelKey: 'dest_bali',    anchor: 'indonesia-bali' },
+  { labelKey: 'dest_danang',  anchor: 'vietnam-danang' },
+  { labelKey: 'dest_chiangmai', anchor: 'thailand-chiangmai' },
+] as const
+
+// CATEGORY_PHOTOS·THEME_ITEMS 제거(2026-07-28 라이프스타일 홈 개편):
+// 플랫폼 카테고리 섹션은 GrowthEngines·About과 중복이라 홈에서 내림(페이지들은 네비로 접근 유지),
+// 테마 섹션은 MoodExplorer가 흡수(healing·networking·onsen·domestic 직결. golf·sports·local은 /programs 허브에서 접근)
+
+const HOME_HERO_ALT: Record<Lang, string> = {
+  KO: '해안 작업 공간에서 노트북을 닫고 다음 이동을 준비하는 여행자',
+  EN: 'A traveler closing a laptop and preparing to leave an unnamed coastal workspace',
+  JP: '海辺のワークスペースでノートパソコンを閉じ、次の移動を準備する旅人',
+}
+
+const HOME_HERO_STORY_ALT: Record<Lang, string> = {
+  KO: '도심에서 여행 자료를 챙겨 바다에 도착하고 해안 작업 공간에서 하루를 이어가는 여행자',
+  EN: 'A traveler leaving the city, reviewing a travel note and arriving at a coastal workspace',
+  JP: '街を出発し、旅の資料を確認して海辺のワークスペースへ向かう旅行者',
+}
+
+const HOME_HERO_ASSET = {
+  id: 'home-seasonal-film-2026-08-desktop-v1',
+  modelIds: ['WAK-MODEL-A', 'WAK-MODEL-F'] as const,
+} as const
+
+export default function HomePage({ forceLang, chinaCampaignActive = false, homeHeroVariant = 'production' }: { forceLang?: Lang; chinaCampaignActive?: boolean; homeHeroVariant?: HomeHeroVariant } = {}) {
+  const { lang: ctxLang, setLang, tr: ctxTr } = useLang()
+  const lang = forceLang ?? ctxLang
+  const tr = (key: string) => forceLang ? (t[forceLang][key] ?? t.KO[key] ?? key) : ctxTr(key)
+  const hostedHref = localizeHref('/hosted', lang)
+
+  useEffect(() => {
+    if (forceLang && forceLang !== ctxLang) setLang(forceLang)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [forceLang])
+  useEffect(() => {
+    const isPrototype = homeHeroVariant === 'video-story'
+    trackEditorialAssetView({
+      assetId: isPrototype ? 'home-hero-story-desktop-v2' : HOME_HERO_ASSET.id,
+      modelIds: isPrototype ? [] : [...HOME_HERO_ASSET.modelIds],
+      route: lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : '/',
+      section: 'home-seasonal-hero-late-summer-early-autumn',
+      locale: lang,
+    })
+  }, [homeHeroVariant, lang])
+  const bookingNote = ({ KO: '예약 전 확인', EN: 'Before booking', JP: '予約前の確認' } as const)[lang]
+  const [activeFilter, setActiveFilter] = useState<DestFilter>('all')
+  // 히어로 목적지 선택 — CTA와 연동 (재클릭 시 해제)
+  const [heroDest, setHeroDest] = useState<(typeof HERO_DESTS)[number] | null>(null)
+  const [heroQuery, setHeroQuery] = useState('')
+  const [heroCheckin, setHeroCheckin] = useState('')
+  const [heroCheckout, setHeroCheckout] = useState('')
+  const [heroSearchError, setHeroSearchError] = useState<string | null>(null)
+
+  // 통합 검색 — 입력 도시로 Booking 검색결과 직행(aid 추적). 하나투어식 상단 검색.
+  const submitHeroSearch = ({ destination, checkin, checkout }: { destination: string; checkin: string; checkout: string }) => {
+    const q = destination.trim()
+    if (!q) return
+    const dateError = getStayDateRangeError(checkin, checkout)
+    if (dateError) {
+      setHeroSearchError(tr(dateError === 'incomplete' ? 'h3_date_incomplete' : 'h3_date_invalid'))
+      return
+    }
+    setHeroSearchError(null)
+    const pilotEntryHref = buildStayPilotEntryHref({
+      destinationId: heroDest?.anchor,
+      checkin,
+      checkout,
+      locale: lang,
+      source: 'home_hero',
+    })
+    if (pilotEntryHref) {
+      window.open(pilotEntryHref, '_blank', 'noopener,noreferrer')
+      return
+    }
+    const plan = resolveStaySearchPlan({
+      destination: q,
+      destinationId: heroDest?.anchor,
+      checkin,
+      checkout,
+      locale: lang,
+    })
+    if (plan.mode === 'unavailable') return
+    const outcome = plan.fallbackFrom ? 'fallback' : 'redirect'
+    trackStayEvent('stay_search', {
+      locale: lang,
+      sourceSection: 'home_hero_stay_search',
+      provider: plan.redirect.provider,
+      destinationId: heroDest?.anchor,
+      capability: 'search_redirect',
+      datesSupplied: Boolean(checkin && checkout),
+      outcome,
+    })
+    trackStayEvent('affiliate_redirect', {
+      locale: lang,
+      sourceSection: 'home_hero_stay_search',
+      provider: plan.redirect.provider,
+      destinationId: heroDest?.anchor,
+      capability: 'search_redirect',
+      datesSupplied: Boolean(checkin && checkout),
+      outcome,
+    })
+    trackAffiliateClick({
+      provider: plan.redirect.providerLabel,
+      status: 'active_affiliate',
+      id: 'hero-search',
+      itemName: 'stay_search',
+      sourceSection: 'home_hero_stay_search',
+      ctaLabel: tr('h3_search_go'),
+      ctaPosition: 'hero',
+      destination: heroDest?.anchor ?? 'custom_search',
+      category: 'hotel',
+      locale: lang,
+    })
+    window.open(localizeOutboundHref(plan.redirect.href, lang), '_blank', 'noopener,noreferrer')
+  }
+  const recruitingPrograms = getDomesticCurrent(lang)
+  const upcomingPrograms = getDomesticThemedUpcoming(lang).slice(0, 3)
+
+  // 추천 실상품을 먼저, 도시 검색 카드를 뒤에 — 둘러보다 아래에서 검색으로 이어지는 흐름
+  const merged = [...HOME_EDITOR_PICKS, ...HOME_FEATURED_ITEMS]
+  const activeCountry = DEST_FILTERS.find((f) => f.id === activeFilter)?.country ?? null
+  // 수익 추적 활성(active_affiliate/api_ready) 카드를 상단에 — 노출당 기대 커미션 극대화 (안정 정렬)
+  const ACTIVE = new Set(['active_affiliate', 'api_ready'])
+  const featuredItems = (activeCountry === null
+    ? merged
+    : merged.filter((i) => i.country === activeCountry)
+  )
+    .map((i, idx) => ({ i, idx }))
+    .sort((a, b) => (ACTIVE.has(b.i.status) ? 1 : 0) - (ACTIVE.has(a.i.status) ? 1 : 0) || a.idx - b.idx)
+    // 홈은 탐색의 시작점: 전 카탈로그를 늘어놓지 않고 에디터 픽 6개만 보여준다.
+    // 전체 상품은 /select에서 필터·비교하도록 연결해 모바일 스크롤과 선택 피로를 줄인다.
+    .slice(0, 6)
+    .map(({ i }) => localizeAffiliateItem(i, lang))
+
+  return (
+    <div className="home-performance-surface min-h-screen bg-[#0f0f0f] pb-16 md:pb-0">
+
+      {/* ── 히어로 — 목적지·날짜 검색을 유일한 주 행동으로 둔다 ── */}
+      <section
+        className="relative flex min-h-[92svh] items-center overflow-hidden dark-surface pt-24 pb-10 md:min-h-[94svh] md:pt-28 md:pb-14"
+        data-season="late-summer-early-autumn-2026"
+        data-home-primary-action="stay-search"
+      >
+        <div className="absolute inset-0">
+          {/* Next 16 art direction: mobile/desktop 별도 소스로 얼굴 crop과 LCP 전송량을 제어한다. */}
+          <HomeSeasonalHeroMedia
+            alt={(homeHeroVariant === 'video-story' ? HOME_HERO_STORY_ALT : HOME_HERO_ALT)[lang]}
+            lang={lang}
+            variant={homeHeroVariant}
+          />
+          <div className="absolute inset-0 bg-[#04121f]/22" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/98 via-[#04121f]/62 to-[#04121f]/20 md:bg-gradient-to-r md:from-[#04121f]/96 md:via-[#04121f]/68 md:to-[#04121f]/18" />
+        </div>
+        <div className="relative w-full max-w-6xl mx-auto px-5 sm:px-6">
+          <div className="flex max-w-xl min-w-0 flex-col gap-7">
+            <div className="min-w-0 lg:pb-2">
+              {/* 실제 운영·제휴 신뢰 신호 */}
+              <div className="home-hero-rise flex flex-wrap items-center gap-2 mb-5" style={{ animationDelay: '0.05s' }}>
+                <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-bold px-3 py-1.5 rounded-full bg-white/12 text-white border border-white/20 backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-300 inline-block" />
+                  {tr('h3_badge_pilot')}
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1.5 text-[0.75rem] font-semibold px-3 py-1.5 rounded-full bg-white/8 text-white/90 border border-white/15 backdrop-blur-md">
+                  <ShieldCheck className="w-3.5 h-3.5 text-sky-300" strokeWidth={ICON_STROKE} />
+                  {tr('h3_badge_partner')}
+                </span>
+              </div>
+
+              <h1
+                className="home-hero-rise text-[2.45rem] sm:text-6xl md:text-7xl font-black text-white leading-[1.04] mb-4 sm:mb-5 tracking-tight"
+                style={{ animationDelay: '0.15s' }}
+              >
+                {tr('h3_title_pre')}
+                <br />
+                <span className="text-gradient-ocean">{tr('h3_title_accent')}</span>
+                {tr('h3_title_post')}
+              </h1>
+              <span
+                className="home-hero-rise block text-white/90 text-[0.9375rem] sm:text-lg font-medium max-w-xl leading-relaxed"
+                style={{ animationDelay: '0.25s' }}
+              >
+                {tr('h3_sub')}
+              </span>
+
+              {/* 수치 스트립 제거(2026-07-28) — 첫 화면은 감정·행동 전달에 집중, 실적은 YangyangProof 섹션이 담당 */}
+            </div>
+
+            {/* 목적지 퀵서치 카드 */}
+            <div
+              className="home-hero-rise w-full min-w-0 rounded-[1.5rem] bg-[#061927]/92 border border-white/18 backdrop-blur-md p-4 sm:p-5 shadow-[0_24px_70px_rgba(1,12,22,0.38)]"
+              style={{ animationDelay: '0.32s' }}
+            >
+              <span className="text-white/85 text-[0.8125rem] font-semibold mb-3 flex items-center gap-1.5">
+                <Search className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                {tr('h3_search_label')}
+              </span>
+            {/* 통합 검색창 — 도시 입력 → Booking 검색결과 직행(제휴 추적) */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                const form = new FormData(e.currentTarget)
+                submitHeroSearch({
+                  destination: String(form.get('destination') ?? heroQuery),
+                  checkin: String(form.get('checkin') ?? heroCheckin),
+                  checkout: String(form.get('checkout') ?? heroCheckout),
+                })
+              }}
+              className="mb-3 grid grid-cols-2 gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto]"
+            >
+              {/* min-w-0: input의 flex 기본 min-width:auto가 긴 placeholder 폭만큼 버텨
+                  모바일에서 버튼이 카드 밖으로 밀려 짤리던 버그 수정 (375px 실측) */}
+              <div className="col-span-2 flex min-w-0 items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-3.5 transition-colors focus-within:border-sky-300/60 sm:col-span-3">
+                <Search className="w-4 h-4 text-white/60 shrink-0" strokeWidth={ICON_STROKE} />
+                <input
+                  type="text"
+                  name="destination"
+                  value={heroQuery}
+                  onChange={(e) => { setHeroQuery(e.target.value); setHeroDest(null); setHeroSearchError(null) }}
+                  placeholder={tr('h3_search_ph')}
+                  aria-label={tr('h3_search_ph')}
+                  className="flex-1 min-w-0 bg-transparent py-3 text-[0.9375rem] text-white placeholder:text-white/50 focus:outline-none"
+                />
+              </div>
+              <label className="min-w-0 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 transition-colors focus-within:border-sky-300/60">
+                <span className="flex items-center gap-1 text-[0.62rem] font-bold text-white/60">
+                  <CalendarDays className="h-3 w-3" aria-hidden="true" /> {tr('h3_checkin')}
+                </span>
+                <input
+                  type="date"
+                  name="checkin"
+                  value={heroCheckin}
+                  onChange={(e) => { setHeroCheckin(e.target.value); setHeroSearchError(null) }}
+                  aria-label={tr('h3_checkin')}
+                  className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-white [color-scheme:dark] focus:outline-none"
+                />
+              </label>
+              <label className="min-w-0 rounded-2xl border border-white/20 bg-white/10 px-3 py-2 transition-colors focus-within:border-sky-300/60">
+                <span className="flex items-center gap-1 text-[0.62rem] font-bold text-white/60">
+                  <CalendarDays className="h-3 w-3" aria-hidden="true" /> {tr('h3_checkout')}
+                </span>
+                <input
+                  type="date"
+                  name="checkout"
+                  value={heroCheckout}
+                  min={heroCheckin || undefined}
+                  onChange={(e) => { setHeroCheckout(e.target.value); setHeroSearchError(null) }}
+                  aria-label={tr('h3_checkout')}
+                  className="mt-0.5 w-full min-w-0 bg-transparent text-xs font-semibold text-white [color-scheme:dark] focus:outline-none"
+                />
+              </label>
+              <button
+                type="submit"
+                className="col-span-2 inline-flex min-h-12 shrink-0 items-center justify-center gap-1.5 rounded-2xl bg-brand-mid px-4 text-sm font-bold text-white shadow-[0_6px_24px_rgba(2,132,199,0.4)] transition-all hover:bg-brand-light focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 sm:col-span-1 sm:min-w-12 sm:px-5"
+              >
+                <Search className="h-4 w-4" strokeWidth={ICON_STROKE} />
+                <span>{tr('h3_search_go')}</span>
+              </button>
+            </form>
+            {heroSearchError && <span role="alert" className="mb-3 block text-xs font-semibold text-amber-200">{heroSearchError}</span>}
+            <span className="block text-white/50 text-[0.7rem] font-medium mb-3">{tr('h3_search_or')}</span>
+            <div className="flex flex-nowrap lg:flex-wrap gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+              {HERO_DESTS.map((d) => (
+                <button
+                  key={d.labelKey}
+                  type="button"
+                  onClick={() => {
+                    const next = heroDest?.anchor === d.anchor ? null : d
+                    setHeroDest(next)
+                    if (next) setHeroQuery(tr(next.labelKey))
+                    setHeroSearchError(null)
+                  }}
+                  className={`chip-dest shrink-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 ${heroDest?.anchor === d.anchor ? 'chip-dest-active' : ''}`}
+                >
+                  {tr(d.labelKey)}
+                </button>
+              ))}
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 국가 지정 노출: 일본 접속자 전용 컨텍스트 배너 (그 외 국가엔 미노출) ── */}
+      <GeoJapanBanner />
+
+      {/* 한 번의 명확한 진입점 — 기존 Mood·Duration을 뒤집지 않고 매칭 경험으로 연결 */}
+      <TripMatchHomeCta forceLang={forceLang} />
+
+      {/* 서버에서 기간을 판정해 만료된 캠페인이 SSR/crawler HTML에 남지 않게 한다. */}
+      {chinaCampaignActive && <ChinaCampaignHomePlacement lang={lang} />}
+
+      {/* 움직이는 광고 레일 대신 네 가지 선택만 정적으로 제안한다. */}
+      <HomeFeaturedPromotions lang={lang} />
+
+      {/* 입문 동선 — KO·JA는 국내 3곳, EN은 한국·일본 4곳을 해외 탐색보다 먼저 제안 */}
+      <DomesticOnboarding lang={lang} />
+
+      {/* ── 워케이션 목적지 숙소 — 메인 상품 섹션 ── */}
+      <section className="bg-white border-b border-[#dbeafe] pt-14 pb-10 md:pt-20 md:pb-14">
+        {/* 헤더 */}
+        <div className="max-w-6xl mx-auto px-6 mb-7">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-6">
+            <div>
+              <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-mid inline-block" />
+                Wakation Select · {tr('h3_sel_live')}
+              </p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#111827] leading-snug tracking-tight">
+                {tr('h3_sel_title_pre')}<br className="sm:hidden" />
+                <span className="text-brand-mid">{tr('h3_sel_title_accent')}</span>
+              </h2>
+              <p className="text-[#64748b] text-sm mt-2.5">{tr('h3_sel_sub')}</p>
+            </div>
+            <Link
+              href={localizeHref('/select', lang)}
+              className="shrink-0 inline-flex items-center gap-1.5 text-brand-mid text-sm font-bold hover:gap-2.5 transition-all"
+            >
+              {tr('view_all')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+            </Link>
+          </div>
+
+          {/* 목적지 필터 pills */}
+          <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden">
+            {DEST_FILTERS.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveFilter(f.id)}
+                className={`shrink-0 inline-flex items-center text-sm font-semibold px-4.5 py-2 rounded-full border transition-all duration-150 ${
+                  activeFilter === f.id
+                    ? 'bg-[#111827] border-[#111827] text-white shadow-sm'
+                    : 'bg-white border-[#dbeafe] text-[#475569] hover:border-[#93c5fd] hover:text-[#111827]'
+                }`}
+              >
+                {tr(f.labelKey)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* 카드 — 모바일: 2열 그리드 / lg+: 3열 그리드 */}
+        <div data-ui-grid="product" className="wak-card-grid grid grid-cols-1 px-4 min-[520px]:grid-cols-2 sm:px-6 lg:grid-cols-3 max-w-6xl sm:mx-auto">
+          {featuredItems.map((item) => (
+            <AffiliateCard key={item.id} item={item} visual />
+          ))}
+          {featuredItems.length === 0 && (
+            <div className="col-span-1 flex h-40 items-center justify-center rounded-2xl border border-[#dbeafe] bg-[#f0f9ff] min-[520px]:col-span-2 lg:col-span-3">
+              <p className="text-[#94a3b8] text-sm">{tr('h3_sel_empty')}</p>
+            </div>
+          )}
+        </div>
+
+        {/* 디스클로저 */}
+        <details className="group mx-auto mt-6 max-w-6xl border-t border-[#e8e4dd] px-6 pt-4">
+          <summary className="w-fit cursor-pointer list-none text-[0.7rem] font-bold text-[#77716a] underline-offset-4 hover:underline [&::-webkit-details-marker]:hidden">
+            {bookingNote}
+            <span aria-hidden="true" className="ml-1 inline-block transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <span className="wak-caption mt-3 block max-w-2xl text-[#716b65]">{tr('h3_disclosure')}</span>
+        </details>
+      </section>
+
+      {/* ── 테마 기획전 — 목적지별 숙소·체험·eSIM·항공 큐레이션 묶음 ── */}
+      <CollectionsSection forceLang={forceLang} />
+
+      {/* ── 하우스 배너 — 자사 제휴·기획전 프로모(랜덤 광고 대체) ── */}
+      <HouseBanner />
+
+      {/* ── 지금 모집 중 / 다음 라인업 ── */}
+      <section className="bg-gradient-to-b from-[#04121f] to-[#0a1e33] border-b border-white/8 py-16 md:py-20 px-6 dark-surface">
+        <div className="max-w-6xl mx-auto">
+          {recruitingPrograms.length > 0 ? (
+            <div className="space-y-5">
+              <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-1 flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-sky-400 inline-block" />
+                {tr('home_recruiting_eyebrow')}
+              </p>
+              {recruitingPrograms.map((p) => (
+                <div key={p.id} className="group bg-[#1a1a1a] border border-white/10 rounded-3xl overflow-hidden hover:border-brand-mid/30 transition-all">
+                  <div className="flex flex-col md:flex-row">
+                    <div className="relative md:w-72 h-52 md:h-auto shrink-0 overflow-hidden">
+                      <Image src={p.img} alt={p.name} fill sizes="(max-width: 768px) 100vw, 288px" className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                      <span className="absolute top-4 left-4 bg-brand-mid text-white text-xs font-black px-3 py-1 rounded-full">{tr('recruiting')}</span>
+                    </div>
+                    <div className="p-7 flex flex-col justify-between flex-1">
+                      <div>
+                        <p className="text-white/40 text-xs flex items-center gap-1 mb-2">
+                          <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                          {p.region} · {p.duration}{p.date ? ` · ${p.date}` : ''}
+                        </p>
+                        <h2 className="text-xl font-black text-white mb-2">{p.name}</h2>
+                        <p className="text-white/50 text-sm leading-relaxed mb-4">{p.desc}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {p.includes.map((t) => (
+                            <span key={t} className="flex items-center gap-1 bg-white/5 text-white/60 text-xs px-3 py-1 rounded-full border border-white/10">
+                              <CheckCircle2 className="w-3 h-3 text-brand-mid" strokeWidth={ICON_STROKE} />
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-between mt-5">
+                        <div>
+                          <span className="text-2xl font-black text-white">₩{p.price}</span>
+                          <span className="text-white/40 text-sm ml-1">{tr('domestic_vat')}</span>
+                          {p.originalPrice && (
+                            <span className="ml-2 text-white/30 text-sm line-through">₩{p.originalPrice}</span>
+                          )}
+                        </div>
+                        {p.href.startsWith('http') ? (
+                          <a href={p.href} target="_blank" rel="noopener noreferrer" className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                          </a>
+                        ) : (
+                          <Link href={localizeHref(p.href, lang)} className="bg-brand-mid text-white font-black px-6 py-3 rounded-full hover:bg-brand-light transition-all flex items-center gap-2 text-sm">
+                            {tr('learn_more')} <ArrowRight className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-8">
+                <div>
+                  <p className="text-sky-400 text-[0.6875rem] font-bold tracking-[0.08em] uppercase mb-2.5 flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400 inline-block" />
+                    Wakation Hosted · {tr('h3_lineup_eyebrow')}
+                  </p>
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug tracking-tight">
+                    {tr('h3_lineup_title_pre')}
+                    <span className="text-sky-400">{tr('h3_lineup_title_accent')}</span>
+                  </h2>
+                  <p className="text-white/75 text-sm mt-2.5 max-w-xl leading-relaxed">
+                    {tr('h3_lineup_sub')}
+                  </p>
+                </div>
+                <Link
+                  href={hostedHref}
+                  className="shrink-0 inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm px-6 py-3.5 rounded-2xl transition-all shadow-[0_6px_24px_rgba(14,165,233,0.4)]"
+                >
+                  <Bell className="w-4 h-4" strokeWidth={ICON_STROKE} />
+                  {tr('h3_lineup_cta')}
+                </Link>
+              </div>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {upcomingPrograms.map((p) => (
+                  <Link
+                    key={p.id}
+                    href={hostedHref}
+                    data-ui-card="editorial"
+                    className="wak-card-editorial group relative block h-64 overflow-hidden border border-white/10 transition-all duration-300 hover:-translate-y-1 hover:border-sky-400/40 hover:shadow-[0_16px_40px_rgba(2,132,199,0.25)] sm:h-72"
+                  >
+                    <Image
+                      src={p.img}
+                      alt={p.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 384px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#04121f]/95 via-[#04121f]/30 to-transparent" />
+                    <span className="absolute top-4 left-4 text-[0.7rem] font-bold px-2.5 py-1 rounded-full bg-black/55 text-white border border-white/20 backdrop-blur-sm">
+                      {p.theme}
+                    </span>
+                    <span className="absolute top-4 right-4 text-[0.7rem] font-bold px-2.5 py-1 rounded-full bg-sky-500/90 text-white shadow-md">
+                      {p.date}
+                    </span>
+                    <div className="absolute bottom-0 left-0 right-0 p-5">
+                      <p className="text-white/70 text-xs flex items-center gap-1 mb-1.5">
+                        <MapPin className="w-3 h-3" strokeWidth={ICON_STROKE} />
+                        {p.region}
+                      </p>
+                      <h3 className="text-white font-black text-lg leading-snug mb-2.5">{p.name}</h3>
+                      <span className="inline-flex items-center gap-1.5 text-sky-300 text-[0.8125rem] font-bold group-hover:gap-2.5 transition-all">
+                        <Bell className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+                        {tr('h3_lineup_card_cta')}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* 카카오톡 우선 + 보조 이메일 관심 등록 — 신청 전 단계 트래픽을 저이탈 리드로 전환 */}
+              <div className="mt-8 max-w-xl">
+                <NotifySignup source="홈 Hosted 다음 회차 알림" event="hosted_alert_submitted" lang={lang} />
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* ── 확정 모집 회차 (Supabase 라이브) — 활성 프로그램을 메인에 바로 노출 ── */}
+      {/* 데이터 없으면 자동 숨김. 운영자가 HELD에서 회차를 풀면 즉시 메인 노출됨 */}
+      <UpcomingCohorts />
+
+      {/* ── 양양 워케이션 운영 기록 — 실운영 신뢰 + 리드 수집 ── */}
+      <YangyangProof />
+
+      {/* 참가자 실후기 레일 (2026-08-31, 더휴일 벤치마크) — lib/reviews.ts 0건이면 미렌더 */}
+      <ReviewRail />
+
+      {/* ── 지원사업 프로모 배너 — 정부 지원 훅 ── */}
+      <SupportPromoBanner />
+
+      {/* ── Wakation 소개 (GEO 대응) ── */}
+      <section className="border-t border-[#dbeafe] bg-[#f0f9ff] px-6 py-14 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <div className="min-w-0">
+            <p className="wak-overline text-brand-mid">ABOUT WAKATION</p>
+            <h2 className="wak-section-title mt-3 text-[#111827]">{tr('h3_about_title')}</h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-[#475569]">{tr('h3_about_p1')}</p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Link href={localizeHref('/programs', lang)} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-[#153a49] px-5 text-sm font-bold text-white transition-colors hover:bg-[#0e4d67]">
+              {tr('h3_about_cta')} <ArrowRight className="h-4 w-4" strokeWidth={ICON_STROKE} />
+            </Link>
+            <Link href={localizeHref('/about', lang)} className="inline-flex min-h-11 items-center rounded-full border border-[#b7cbd2] bg-white px-5 text-sm font-bold text-[#31515d] transition-colors hover:border-[#789faa]">
+              {lang === 'KO' ? 'Wakation 소개' : lang === 'JP' ? 'Wakationについて' : 'About Wakation'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ (GEO/AI 검색 대응) ── */}
+      <section className="bg-white border-t border-[#dbeafe] py-16 md:py-20 px-6">
+        <div className="max-w-3xl mx-auto">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                '@context': 'https://schema.org',
+                '@type': 'FAQPage',
+                mainEntity: [
+                  {
+                    '@type': 'Question',
+                    name: '워케이션이란 무엇인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: "Work(일)와 Vacation(휴가)의 합성어로, 일상적인 업무 공간을 벗어나 국내외 다양한 장소에서 일과 휴식·성장을 함께 누리는 새로운 업무 방식입니다. 프리랜서, 리모트워커, 1인 창업자에게 특히 적합합니다." },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Wakation은 어떤 서비스인가요?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Wakation은 일하는 사람을 위한 체류·업무·성장 플랫폼입니다. 국내 워케이션(Hosted), 해외 체류·어학연수·시장조사(Select), 지자체·공간·기업과의 B2B 파트너십(Partner) 세 축으로 운영됩니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: 'Hosted 프로그램과 Select 상품의 차이는?',
+                    acceptedAnswer: { '@type': 'Answer', text: 'Hosted는 Wakation이 직접 기획하고 운영하는 공식 프로그램입니다. Select는 공개 정보를 확인한 외부 제휴사의 숙소·현지 체험·eSIM 상품을 큐레이션해 연결하는 서비스입니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '비자·체류 AI 서비스는 법적 효력이 있나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '아닙니다. 비자·체류 AI 서비스는 국가별 비자 종류, 체류 기간, 서류 등을 안내하는 참고용 서비스입니다. 최종 확인은 반드시 해당 국가 대사관이나 전문 이민 변호사를 통해 받으시길 권장합니다.' },
+                  },
+                  {
+                    '@type': 'Question',
+                    name: '파트너십·제휴 문의는 어떻게 하나요?',
+                    acceptedAnswer: { '@type': 'Answer', text: '지자체·공간 운영사·교육기관·기업 등 다양한 형태의 파트너십을 환영합니다. wakation.sf@gmail.com 또는 파트너십 페이지를 통해 문의해 주세요.' },
+                  },
+                ],
+              }),
+            }}
+          />
+          <p className="text-brand-mid text-[0.6875rem] font-semibold tracking-[0.08em] uppercase mb-4">{tr('h3_faq_eyebrow')}</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111827] mb-10">{tr('h3_faq_title')}</h2>
+          <div className="divide-y divide-[#dbeafe]">
+            {([1, 2, 3, 4, 5] as const).map((n) => (
+              <details key={n} className="group py-5 cursor-pointer">
+                <summary className="flex items-center justify-between list-none gap-4">
+                  <span className="text-[#111827] font-bold text-[0.9375rem] leading-snug">{tr(`h3_faq_q${n}`)}</span>
+                  <span className="text-[#94a3b8] group-open:rotate-45 transition-transform duration-200 text-2xl leading-none shrink-0">+</span>
+                </summary>
+                <p className="text-[#475569] text-sm leading-relaxed mt-3 pr-8">{tr(`h3_faq_a${n}`)}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 파트너십 신뢰 배너 ── */}
+      <section className="bg-[#f0f9ff] border-t border-[#dbeafe] py-7 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex w-full min-w-0 items-center gap-3 sm:w-auto">
+            <div className="flex shrink-0 -space-x-1">
+              {(['government', 'space', 'education', 'corporate'] as const).map((k) => {
+                const Icon = PARTNER_ICON_MAP[k]
+                return (
+                  <div key={k} className="w-8 h-8 rounded-full bg-[#ede9e2] border border-[#dbeafe] flex items-center justify-center">
+                    <Icon className="w-3.5 h-3.5 text-[#8a8a8a]" strokeWidth={ICON_STROKE} />
+                  </div>
+                )
+              })}
+            </div>
+            <p className="min-w-0 text-[#7a7a7a] text-sm font-medium">{tr('home_partner_banner_text')}</p>
+          </div>
+          <Link href="/partnership" className="shrink-0 text-brand-mid text-sm font-bold flex items-center gap-1.5 hover:gap-2.5 transition-all">
+            {tr('home_partner_banner_cta')} <ArrowRight className="w-3.5 h-3.5" strokeWidth={ICON_STROKE} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── 모바일 스티키 예약 바 ── */}
+      <div className="sticky-cta-bar flex md:hidden">
+        <Link
+          href={localizeHref('/select/hotel', lang)}
+          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-brand-mid text-white font-bold text-sm px-4 py-3 rounded-xl"
+        >
+          <BedDouble className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          {tr('h3_bar_stay')}
+        </Link>
+        <Link
+          href="/apply"
+          className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#0a1e33] text-white font-bold text-sm px-4 py-3 rounded-xl"
+        >
+          <Bell className="w-4 h-4" strokeWidth={ICON_STROKE} />
+          {tr('h3_bar_apply')}
+        </Link>
+      </div>
+    </div>
+  )
+}

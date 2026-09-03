@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
-import HomePage from '@/app/page'
+import HomePage from '@/components/home/HomePage'
 import { LanguageProvider } from '@/context/LanguageContext'
 import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
+import { isChinaHomeCampaignActive } from '@/lib/campaigns/chinaMarketResearch'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: 'Work and travel, your way',
@@ -28,10 +31,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export default function EnglishHomePage() {
+type PageProps = { searchParams: Promise<{ hero?: string | string[] }> }
+
+export default async function EnglishHomePage({ searchParams }: PageProps) {
+  const hero = (await searchParams).hero
+  const homeHeroVariant = hero === 'control-static' ? 'control-static' : 'video-story'
   return (
     <LanguageProvider forceLang="EN">
-      <HomePage forceLang="EN" />
+      <HomePage forceLang="EN" chinaCampaignActive={isChinaHomeCampaignActive()} homeHeroVariant={homeHeroVariant} />
     </LanguageProvider>
   )
 }

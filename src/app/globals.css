@@ -382,6 +382,12 @@ nav ul { list-style: none; }
   object-position: 60% 16%;
 }
 
+@media (max-width: 767px) {
+  .home-editorial-hero-story-poster {
+    object-position: 100% 18%;
+  }
+}
+
 @media (min-width: 768px) {
   .home-editorial-hero {
     object-position: 50% 14%;

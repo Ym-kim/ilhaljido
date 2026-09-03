@@ -14,6 +14,8 @@ import { HostedLeadSection } from '@/components/programs/HostedLeadSection'
 import { MARKET_PREP_ITEMS } from '@/lib/affiliate/links'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import type { Lang } from '@/lib/i18n/types'
+import { trackEvent } from '@/lib/track'
+import { CHINA_CAMPAIGN_ID } from '@/lib/campaigns/chinaMarketResearch'
 
 const FEAT_ICONS = { field: Globe, network: Users, connect: TrendingUp, fair: Building2 } as const
 
@@ -106,6 +108,22 @@ export function MarketProgramsView({ forceLang }: { forceLang?: Lang }) {
             })}
           </div>
         </div>
+      </section>
+
+      {/* 중국 시장조사는 한 도시를 판매하는 대신, 목적에 따라 두 현장을 비교하는 단일 편집 페이지로 연결한다. */}
+      <section className="bg-[#111] px-6 pb-8">
+        <Link
+          href={`${prefix}/programs/china-market-research`}
+          onClick={() => trackEvent('campaign_click', { campaign_id: CHINA_CAMPAIGN_ID, variant: 'comparison', placement: 'market_program_hub', source_page: `${prefix}/programs/market`, locale: lang === 'JP' ? 'ja' : lang.toLowerCase() })}
+          className="group mx-auto grid max-w-6xl overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#102a36] text-white transition hover:border-amber-300/35 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300 md:grid-cols-[1fr_auto]"
+        >
+          <div className="p-6 sm:p-8">
+            <p className="text-[0.66rem] font-black tracking-[0.16em] text-amber-300">CHINA MARKET RESEARCH</p>
+            <h2 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">{tloc(lang, loc('이우 도매시장과 광저우 전시회, 목적부터 비교해 보세요', 'Yiwu wholesale market or Guangzhou trade fair? Compare the objective first.', '義烏の卸売市場と広州の見本市、目的から比較'))}</h2>
+            <p className="mt-3 max-w-3xl text-sm leading-7 text-white/60">{tloc(lang, loc('공개 일정과 모집 상태, 준비 포인트를 한 화면에 정리했습니다.', 'Published dates, availability and preparation points in one view.', '公開日程・募集状況・準備ポイントを1ページに整理しました。'))}</p>
+          </div>
+          <span className="flex min-h-16 items-center justify-center gap-2 border-t border-white/10 px-7 text-sm font-black text-sky-300 md:border-l md:border-t-0">{tloc(lang, loc('두 도시 비교', 'Compare routes', '2都市を比較'))}<ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" /></span>
+        </Link>
       </section>
 
       {/* Wakation Hosted — 예정 시장조사단 */}

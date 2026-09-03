@@ -77,7 +77,7 @@ const KO: Record<string, string> = {
   hero_cta2: '비자·체류 AI',
 
   // ── 홈 v3 — 히어로 ──
-  h3_badge_pilot: '양양 워케이션 운영 · 다음 일정 준비 중',
+  h3_badge_pilot: '일하는 사람을 위한 체류 · 업무 · 여행',
   h3_badge_partner: 'Booking.com · Trip.com 공식 제휴',
   h3_title_pre: '일도 여행도,',
   h3_title_accent: '내 방식',
@@ -847,7 +847,7 @@ const EN: Record<string, string> = {
   hero_cta2: 'Visa AI',
 
   // ── Home v3 — Hero ──
-  h3_badge_pilot: 'Yangyang workation delivered · next dates in prep',
+  h3_badge_pilot: 'Stay · work · travel, your way',
   h3_badge_partner: 'Official Booking.com · Trip.com partner',
   h3_title_pre: 'Work and travel,',
   h3_title_accent: 'your way',
@@ -1616,7 +1616,7 @@ const JP: Record<string, string> = {
   hero_cta2: 'ビザAI',
 
   // ── ホームv3 — ヒーロー ──
-  h3_badge_pilot: '襄陽ワーケーション実施 · 次の日程を準備中',
+  h3_badge_pilot: '働く人のための滞在・仕事・旅',
   h3_badge_partner: 'Booking.com · Trip.com 公式提携',
   h3_title_pre: '仕事も旅も、',
   h3_title_accent: '自分らしく',
