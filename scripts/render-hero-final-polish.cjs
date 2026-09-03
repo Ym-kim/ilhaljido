@@ -72,7 +72,12 @@ async function main() {
       console.log(variant + ': ' + id + ' ' + shot.outputFrames + ' frames')
     }
     const input = ['-framerate', String(edl.fps), '-start_number', '0', '-i', path.join(directory, '%04d.jpg'),
-      '-frames:v', String(total), '-an']
+      '-frames:v', String(total), '-an',
+      // JPEG frames are full-range. Normalize to browser-safe SDR video levels
+      // and explicit BT.709 metadata instead of inheriting JPEG bt470bg tags.
+      '-vf', 'scale=out_range=tv:out_color_matrix=bt709,colorspace=all=bt709:iall=bt709:range=tv:format=yuv420p:fast=1',
+      '-color_range', 'tv', '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709',
+      '-disposition:v', 'default']
     const prefix = path.join(output, 'home-hero-' + variant + '-v3')
     run([...input, '-c:v', 'libx264', '-preset', 'slow', '-crf', '23', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', prefix + '.mp4'])
     run([...input, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '32', '-row-mt', '1', '-cpu-used', '2',

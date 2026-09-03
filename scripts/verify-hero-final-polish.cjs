@@ -17,9 +17,10 @@ async function main() {
     const formats = {}
     for (const extension of ['webm', 'mp4']) {
       const file = prefix + '.' + extension
-      const probe = JSON.parse(execFileSync(path.join(bin, 'ffprobe.exe'), ['-v', 'error', '-count_frames', '-show_entries', 'stream=codec_type,codec_name,nb_read_frames,width,height:format=duration', '-of', 'json', file], { encoding: 'utf8' }))
+      const probe = JSON.parse(execFileSync(path.join(bin, 'ffprobe.exe'), ['-v', 'error', '-count_frames', '-show_entries', 'stream=codec_type,codec_name,nb_read_frames,width,height,color_space,color_range,color_transfer,color_primaries:format=duration', '-of', 'json', file], { encoding: 'utf8' }))
       const video = probe.streams.find((stream) => stream.codec_type === 'video')
       if (Number(video.nb_read_frames) !== expected || probe.streams.some((stream) => stream.codec_type === 'audio')) throw new Error(variant + ': frame count or audio mismatch')
+      if (video.color_range !== 'tv' || video.color_space !== 'bt709' || video.color_transfer !== 'bt709' || video.color_primaries !== 'bt709') throw new Error(variant + ': SDR BT.709 browser delivery is required')
       formats[extension] = { bytes: fs.statSync(file).size, codec: video.codec_name, frames: Number(video.nb_read_frames), duration: Number(probe.format.duration), audio: false }
     }
     execFileSync(path.join(bin, 'ffmpeg.exe'), ['-hide_banner', '-loglevel', 'error', '-y', '-i', prefix + '.webm', '-an', '-vf', 'scale=160:90', '-start_number', '0', path.join(directory, '%04d.png')])
