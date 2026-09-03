@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
-export type HomeHeroVariant = 'production' | 'control-static' | 'video-a' | 'video-b'
+export type HomeHeroVariant = 'production' | 'control-static' | 'video-story'
 type IdleWindow = Window & {
   requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
   cancelIdleCallback?: (handle: number) => void
@@ -35,24 +35,14 @@ const POSTER_AVIF = {
   mobile: '/media/brand-models/home-hero-model-a-coastal-departure-mobile-v3.avif',
 } as const
 
-const PROTOTYPE_A_POSTER = {
-  desktop: '/media/campaigns/home-hero-prototype-a-poster-desktop-v1.webp',
-  mobile: '/media/campaigns/home-hero-prototype-a-poster-mobile-v1.webp',
+const STORY_POSTER = {
+  desktop: '/media/campaigns/home-hero-story-poster-desktop-v2.webp',
+  mobile: '/media/campaigns/home-hero-story-poster-mobile-v2.webp',
 } as const
 
-const PROTOTYPE_A_POSTER_AVIF = {
-  desktop: '/media/campaigns/home-hero-prototype-a-poster-desktop-v1.avif',
-  mobile: '/media/campaigns/home-hero-prototype-a-poster-mobile-v1.avif',
-} as const
-
-const PROTOTYPE_B_POSTER = {
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.webp',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.webp',
-} as const
-
-const PROTOTYPE_B_POSTER_AVIF = {
-  desktop: '/media/brand-models/home-hero-model-a-coastal-work-desktop-v2.avif',
-  mobile: '/media/brand-models/home-hero-model-a-coastal-work-mobile-v2.avif',
+const STORY_POSTER_AVIF = {
+  desktop: '/media/campaigns/home-hero-story-poster-desktop-v2.avif',
+  mobile: '/media/campaigns/home-hero-story-poster-mobile-v2.avif',
 } as const
 
 export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { alt: string; lang: Lang; variant?: HomeHeroVariant }) {
@@ -62,11 +52,9 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
   const [canAnimate, setCanAnimate] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const isPrototypeA = variant === 'video-a'
-  const isPrototypeB = variant === 'video-b'
-  const isPrototype = isPrototypeA || isPrototypeB
-  const poster = isPrototypeA ? PROTOTYPE_A_POSTER : isPrototypeB ? PROTOTYPE_B_POSTER : POSTER
-  const posterAvif = isPrototypeA ? PROTOTYPE_A_POSTER_AVIF : isPrototypeB ? PROTOTYPE_B_POSTER_AVIF : POSTER_AVIF
+  const isStory = variant === 'video-story'
+  const poster = isStory ? STORY_POSTER : POSTER
+  const posterAvif = isStory ? STORY_POSTER_AVIF : POSTER_AVIF
 
   useEffect(() => {
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -148,8 +136,8 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
   }
 
   return (
-    <div className="absolute inset-0" data-home-seasonal-media={isPrototypeA ? 'prototype-a-2026-09' : isPrototypeB ? 'prototype-b-2026-09' : '2026-08'} data-home-hero-variant={variant}>
-      <picture className="absolute inset-0 block">
+    <div className="absolute inset-0 bg-[#04121f]" data-home-seasonal-media={isStory ? 'story-prototype-2026-09' : '2026-08'} data-home-hero-variant={variant}>
+      <picture className={`absolute inset-0 block ${isStory ? 'home-editorial-hero-story-frame md:left-auto md:right-0 md:w-[68%]' : ''}`}>
         <source media="(min-width: 768px)" srcSet={posterAvif.desktop} type="image/avif" />
         <source media="(max-width: 767px)" srcSet={posterAvif.mobile} type="image/avif" />
         <source media="(min-width: 768px)" srcSet={poster.desktop} />
@@ -161,7 +149,7 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
           fetchPriority="high"
           loading="eager"
           decoding="async"
-          className="home-editorial-hero absolute inset-0 h-full w-full object-cover"
+          className={`home-editorial-hero absolute inset-0 h-full w-full object-cover ${isStory ? 'home-editorial-hero-story-poster' : ''}`}
         />
       </picture>
 
@@ -175,7 +163,7 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
           playsInline
           preload="none"
           poster={poster.desktop}
-          className={`home-editorial-hero-film absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          className={`home-editorial-hero-film absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${isStory ? 'home-editorial-hero-story-frame md:left-auto md:right-0 md:w-[68%]' : ''} ${videoReady ? 'opacity-100' : 'opacity-0'}`}
           onCanPlay={() => {
             if (!userPausedRef.current) {
               videoRef.current?.play().catch(() => {
@@ -192,10 +180,10 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
           onPause={() => setIsPlaying(false)}
           onPlay={() => setIsPlaying(true)}
         >
-          {isPrototype ? (
+          {isStory ? (
             <>
-              <source src={`/media/campaigns/home-hero-prototype-${isPrototypeB ? 'b' : 'a'}-desktop-v1.webm`} type="video/webm" />
-              <source src={`/media/campaigns/home-hero-prototype-${isPrototypeB ? 'b' : 'a'}-desktop-v1.mp4`} type="video/mp4" />
+              <source src="/media/campaigns/home-hero-story-desktop-v2.webm" type="video/webm" />
+              <source src="/media/campaigns/home-hero-story-desktop-v2.mp4" type="video/mp4" />
             </>
           ) : (
             <source src="/media/seasonal/home-seasonal-film-2026-08-desktop-v1.mp4" type="video/mp4" />
@@ -203,9 +191,16 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
         </video>
       )}
 
+      {isStory && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 left-[26%] right-[30%] hidden bg-gradient-to-r from-[#04121f] via-[#04121f]/72 to-transparent md:block"
+        />
+      )}
+
       <div className="absolute right-4 top-24 z-30 flex items-center gap-2 sm:right-6 sm:top-28">
-        <span className="hidden rounded-full border border-white/18 bg-[#071722]/52 px-3 py-2 text-[0.65rem] font-bold tracking-[0.08em] text-white/88 backdrop-blur-md sm:inline-flex">
-          {isPrototypeA ? 'VIDEO PROTOTYPE A' : isPrototypeB ? 'VIDEO PROTOTYPE B · WORK FIRST' : COPY.season[lang]}
+        <span className="hidden rounded-full border border-white/18 bg-[#071722]/52 px-3 py-2 text-[0.65rem] font-bold tracking-[0.08em] text-white/88 backdrop-blur-md lg:inline-flex">
+          {COPY.season[lang]}
         </span>
         {canAnimate && (
           <button

@@ -92,16 +92,10 @@ const HOME_HERO_ALT: Record<Lang, string> = {
   JP: '海辺のワークスペースでノートパソコンを閉じ、次の移動を準備する旅人',
 }
 
-const HOME_HERO_PROTOTYPE_A_ALT: Record<Lang, string> = {
-  KO: '바닷가에서 도심 카페로 이동하는 여행자',
-  EN: 'A traveler moving from a coastal pause to an urban cafe',
-  JP: '海辺の休息から都市のカフェへ移動する旅行者',
-}
-
-const HOME_HERO_PROTOTYPE_B_ALT: Record<Lang, string> = {
-  KO: '해안 작업 공간에서 업무를 마치고 바닷가와 도심으로 이동하는 여행자',
-  EN: 'A traveler moving from a coastal workspace to the shore and city',
-  JP: '海辺のワークスペースから海岸と都市へ移動する旅人',
+const HOME_HERO_STORY_ALT: Record<Lang, string> = {
+  KO: '도심에서 여행 자료를 챙겨 바다에 도착하고 해안 작업 공간에서 하루를 이어가는 여행자',
+  EN: 'A traveler leaving the city, reviewing a travel note and arriving at a coastal workspace',
+  JP: '街を出発し、旅の資料を確認して海辺のワークスペースへ向かう旅行者',
 }
 
 const HOME_HERO_ASSET = {
@@ -120,13 +114,9 @@ export default function HomePage({ forceLang, chinaCampaignActive = false, homeH
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forceLang])
   useEffect(() => {
-    const isPrototype = homeHeroVariant === 'video-a' || homeHeroVariant === 'video-b'
+    const isPrototype = homeHeroVariant === 'video-story'
     trackEditorialAssetView({
-      assetId: homeHeroVariant === 'video-a'
-        ? 'home-hero-prototype-a-desktop-v1'
-        : homeHeroVariant === 'video-b'
-          ? 'home-hero-prototype-b-desktop-v1'
-          : HOME_HERO_ASSET.id,
+      assetId: isPrototype ? 'home-hero-story-desktop-v2' : HOME_HERO_ASSET.id,
       modelIds: isPrototype ? [] : [...HOME_HERO_ASSET.modelIds],
       route: lang === 'JP' ? '/ja' : lang === 'EN' ? '/en' : '/',
       section: 'home-seasonal-hero-late-summer-early-autumn',
@@ -235,7 +225,7 @@ export default function HomePage({ forceLang, chinaCampaignActive = false, homeH
         <div className="absolute inset-0">
           {/* Next 16 art direction: mobile/desktop 별도 소스로 얼굴 crop과 LCP 전송량을 제어한다. */}
           <HomeSeasonalHeroMedia
-            alt={(homeHeroVariant === 'video-a' ? HOME_HERO_PROTOTYPE_A_ALT : homeHeroVariant === 'video-b' ? HOME_HERO_PROTOTYPE_B_ALT : HOME_HERO_ALT)[lang]}
+            alt={(homeHeroVariant === 'video-story' ? HOME_HERO_STORY_ALT : HOME_HERO_ALT)[lang]}
             lang={lang}
             variant={homeHeroVariant}
           />

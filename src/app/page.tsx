@@ -7,6 +7,6 @@ type PageProps = { searchParams: Promise<{ hero?: string | string[] }> }
 
 export default async function KoreanHomePage({ searchParams }: PageProps) {
   const hero = (await searchParams).hero
-  const homeHeroVariant = hero === 'video-a' ? 'video-a' : hero === 'video-b' ? 'video-b' : hero === 'control-static' ? 'control-static' : 'production'
+  const homeHeroVariant = hero === 'control-static' ? 'control-static' : 'video-story'
   return <HomePage chinaCampaignActive={isChinaHomeCampaignActive()} homeHeroVariant={homeHeroVariant} />
 }
