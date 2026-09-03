@@ -39,6 +39,7 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '/programs/global',          priority: 0.9, freq: 'weekly' },
   { path: '/programs/global/manado',   priority: 0.7, freq: 'monthly' },
   { path: '/programs/market',          priority: 0.8, freq: 'weekly' },
+  { path: '/programs/china-market-research', priority: 0.8, freq: 'weekly' },
   { path: '/programs/golf',            priority: 0.7, freq: 'monthly' },
   { path: '/programs/healing',         priority: 0.7, freq: 'monthly' },
   { path: '/programs/onsen',           priority: 0.7, freq: 'monthly' },
@@ -155,7 +156,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
     // EN·JA 로케일 select·programs (forceLang 2차, hreflang 상호 연결)
     ...['en', 'ja'].flatMap((loc) =>
-      ['/select', '/select/hotel', '/select/activity', '/select/esim', '/select/learn', '/programs', '/hosted', '/programs/global', '/programs/domestic', '/programs/market'].map((p) => ({
+      ['/select', '/select/hotel', '/select/activity', '/select/esim', '/select/learn', '/programs', '/hosted', '/programs/global', '/programs/domestic', '/programs/market', '/programs/china-market-research'].map((p) => ({
         url: `${BASE}/${loc}${p}`,
         lastModified: now,
         changeFrequency: 'weekly' as const,

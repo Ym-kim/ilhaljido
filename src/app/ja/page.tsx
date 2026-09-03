@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
-import HomePage from '@/app/page'
+import HomePage from '@/components/home/HomePage'
 import { LanguageProvider } from '@/context/LanguageContext'
 import { OG_DEFAULT_IMAGES } from '@/lib/og/defaults'
+import { isChinaHomeCampaignActive } from '@/lib/campaigns/chinaMarketResearch'
+
+export const revalidate = 3600
 
 export const metadata: Metadata = {
   title: '仕事も旅も、自分らしく。',
@@ -31,7 +34,7 @@ export const metadata: Metadata = {
 export default function JapaneseHomePage() {
   return (
     <LanguageProvider forceLang="JP">
-      <HomePage forceLang="JP" />
+      <HomePage forceLang="JP" chinaCampaignActive={isChinaHomeCampaignActive()} />
     </LanguageProvider>
   )
 }

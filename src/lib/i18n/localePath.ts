@@ -19,6 +19,7 @@ const SHARED_EXACT = new Set<string>([
   '/programs/healing',
   '/programs/local',
   '/programs/market',
+  '/programs/china-market-research',
   '/programs/networking',
   '/programs/onsen',
   '/programs/sports',

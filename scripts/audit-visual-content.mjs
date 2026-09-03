@@ -3,7 +3,8 @@ import path from 'node:path'
 
 const root = process.cwd()
 const requiredModules = new Map([
-  ['src/app/page.tsx', ['service-ecosystem-map']],
+  ['src/components/campaign/ChinaCampaignHomePlacement.tsx', ['china-market-research-placement']],
+  ['src/components/campaign/ChinaMarketResearchView.tsx', ['china-route-comparison']],
   ['src/components/programs/ProgramsHubView.tsx', ['program-portfolio', 'program-status-roadmap']],
   ['src/components/select/SelectHubView.tsx', ['preparation-timeline']],
   ['src/components/affiliate/CollectionsHub.tsx', ['featured-trip-set', 'trip-set-comparison', 'editorial-theme-index']],
