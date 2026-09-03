@@ -1,6 +1,6 @@
 import type { StaySearchResult } from '@/lib/stays/domain'
 
-export type StayResultSort = 'provider_order' | 'rate_asc' | 'review_desc'
+export type StayResultSort = 'recommended' | 'rate_asc' | 'review_desc' | 'property_rating_desc'
 export type StayResultFilterKey = 'freeWifi' | 'breakfastIncluded' | 'reviewEightPlus'
 
 export type StayResultFilters = Record<StayResultFilterKey, boolean>
@@ -33,7 +33,7 @@ export function refineStayResults(
     return true
   })
 
-  if (sort === 'provider_order') return filtered
+  if (sort === 'recommended') return filtered
 
   return filtered
     .map((result, providerIndex) => ({ result, providerIndex }))
@@ -42,9 +42,11 @@ export function refineStayResults(
         return left.result.rate.amount - right.result.rate.amount || left.providerIndex - right.providerIndex
       }
 
-      const leftReview = left.result.reviewScore ?? -1
-      const rightReview = right.result.reviewScore ?? -1
-      return rightReview - leftReview || left.providerIndex - right.providerIndex
+      if (sort === 'property_rating_desc') {
+        return (right.result.starRating ?? -1) - (left.result.starRating ?? -1) || left.providerIndex - right.providerIndex
+      }
+
+      return (right.result.reviewScore ?? -1) - (left.result.reviewScore ?? -1) || left.providerIndex - right.providerIndex
     })
     .map(({ result }) => result)
 }

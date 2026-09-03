@@ -33,7 +33,7 @@ export function withEffectiveStatus(p: Program): Program {
 
 // 검증 풀 사진 매핑 (program.id 기준) — 새 프로그램 등록 시 여기에 추가
 const PROGRAM_PHOTOS: Record<string, string> = {
-  // AI 활용 실무 집중 캠프 — 강원 속초 (동해 해변)
+  // 과거 프로그램용 검증 사진 매핑
   'b701ae8f-0f87-4626-9b6c-1fb407c9af02': '/media/verified/unsplash/1473116763249-2faaef81ccda.webp',
   // 온라인 마케팅 & 상세페이지 집중반 — 경기 가평 (들판)
   'e1f2f76e-bc8c-4a96-8d85-42c57559bff9': '/media/verified/unsplash/1500382017468-9049fed747ef.webp',

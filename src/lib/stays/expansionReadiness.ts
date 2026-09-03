@@ -26,6 +26,7 @@ export type StayExpansionCandidate = {
     resultCount: number
     validResultCount: number
     displayableResultCount: number
+    providerImageResultCount: number
     latencyMs: number
   }
   readiness: Record<StayExpansionReadinessCriterion, 'verified' | 'pending'>
@@ -52,6 +53,7 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
       resultCount: 8,
       validResultCount: 8,
       displayableResultCount: 8,
+      providerImageResultCount: 8,
       latencyMs: 257,
     },
     readiness: {
@@ -77,7 +79,8 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
       sampleOffsetDays: 21,
       resultCount: 8,
       validResultCount: 8,
-      displayableResultCount: 7,
+      displayableResultCount: 8,
+      providerImageResultCount: 7,
       latencyMs: 42,
     },
     readiness: {
@@ -104,6 +107,7 @@ export const STAY_EXPANSION_CANDIDATES: readonly StayExpansionCandidate[] = [
       resultCount: 8,
       validResultCount: 8,
       displayableResultCount: 8,
+      providerImageResultCount: 8,
       latencyMs: 35,
     },
     readiness: {

@@ -1,11 +1,12 @@
 import type { Lang } from '@/lib/i18n/types'
 import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 import { trackEvent } from '@/lib/track'
-import type { StayCapability, StayLiveSearchFailureReason, StayProviderId } from '@/lib/stays/domain'
+import type { StayCapability, StayImageStatus, StayLiveSearchFailureReason, StayProviderId } from '@/lib/stays/domain'
 
 export type StayLatencyBucket = 'under_500ms' | '500_999ms' | '1_1999s' | '2_3999s' | '4_7999s' | '8s_plus' | 'unknown'
 export type StayResultCountBand = 'zero' | '1_4' | '5_9' | '10_plus' | 'unknown'
 export type StayMeasurementFailureReason = StayLiveSearchFailureReason | 'request_failed'
+export type StayAnalyticsImageStatus = StayImageStatus | 'mixed' | 'unknown'
 
 export type StayEventName =
   | 'stay_search'
@@ -25,11 +26,19 @@ export type StayAnalyticsInput = {
   capability?: StayCapability
   datesSupplied?: boolean
   resultCount?: number
+  candidateCount?: number
+  displayCount?: number
+  averageReviewScore?: number
+  placeholderCount?: number
+  sortMode?: 'recommended' | 'rate_asc' | 'review_desc' | 'property_rating_desc'
   latencyMs?: number
   failureReason?: StayMeasurementFailureReason
   hotelId?: string | number
   position?: number
-  refinement?: 'sort_provider_order' | 'sort_rate_asc' | 'sort_review_desc' | 'filter_free_wifi' | 'filter_breakfast' | 'filter_review_8_plus' | 'reset'
+  imageStatus?: StayAnalyticsImageStatus
+  discountPresent?: boolean
+  wakationNotePresent?: boolean
+  refinement?: 'sort_recommended' | 'sort_rate_asc' | 'sort_review_desc' | 'sort_property_rating_desc' | 'filter_free_wifi' | 'filter_breakfast' | 'filter_review_8_plus' | 'reset'
   outcome?: 'view' | 'redirect' | 'fallback' | 'unavailable'
 }
 
@@ -82,12 +91,20 @@ export function trackStayEvent(name: StayEventName, input: StayAnalyticsInput): 
     position: typeof input.position === 'number' && Number.isFinite(input.position)
       ? String(Math.max(0, Math.floor(input.position)))
       : 'unknown',
+    image_status: input.imageStatus ?? 'unknown',
+    discount_present: input.discountPresent === undefined ? 'unknown' : input.discountPresent ? 'true' : 'false',
+    wakation_note_present: input.wakationNotePresent === undefined ? 'unknown' : input.wakationNotePresent ? 'true' : 'false',
     capability: input.capability ?? 'none',
     dates_supplied: input.datesSupplied ? 'true' : 'false',
     result_count: typeof input.resultCount === 'number' && Number.isFinite(input.resultCount)
       ? String(Math.max(0, Math.floor(input.resultCount)))
       : 'unknown',
     result_count_band: getStayResultCountBand(input.resultCount),
+    candidate_count: typeof input.candidateCount === 'number' && Number.isFinite(input.candidateCount) ? String(Math.max(0, Math.floor(input.candidateCount))) : 'unknown',
+    display_count: typeof input.displayCount === 'number' && Number.isFinite(input.displayCount) ? String(Math.max(0, Math.floor(input.displayCount))) : 'unknown',
+    avg_review_score: typeof input.averageReviewScore === 'number' && Number.isFinite(input.averageReviewScore) ? input.averageReviewScore.toFixed(1) : 'unknown',
+    placeholder_count: typeof input.placeholderCount === 'number' && Number.isFinite(input.placeholderCount) ? String(Math.max(0, Math.floor(input.placeholderCount))) : 'unknown',
+    sort_mode: input.sortMode ?? 'unknown',
     latency_bucket: getStayLatencyBucket(input.latencyMs),
     failure_reason: input.failureReason ?? 'none',
     refinement: input.refinement ?? 'none',

@@ -33,6 +33,12 @@ export function logStaySearchExecution({ destinationId, locale, execution }: Sta
     failure_reason: execution.mode === 'fallback' ? execution.reason : 'none',
     latency_ms: Math.max(0, Math.round(execution.latencyMs)),
     result_count: resultCount,
+    candidate_count: execution.mode === 'results' ? execution.quality.candidateCount : 0,
+    display_count: execution.mode === 'results' ? execution.quality.displayCount : 0,
+    avg_review_score: execution.mode === 'results' ? execution.quality.averageReviewScore ?? 'unavailable' : 'unavailable',
+    avg_review_count: execution.mode === 'results' ? execution.quality.averageReviewCount ?? 'unavailable' : 'unavailable',
+    placeholder_count: execution.mode === 'results' ? execution.quality.placeholderCount : 0,
+    sort_mode: execution.mode === 'results' ? execution.quality.sortMode : 'none',
   }
 
   console.info(`[stay-pilot] ${JSON.stringify(record)}`)

@@ -12,25 +12,26 @@ import type {
 
 const COPY = {
   KO: {
-    sort: '정렬', providerOrder: '제휴사 기본 순서', rateAsc: '1박 요금 낮은 순', reviewDesc: '후기 평점 높은 순',
+    sort: '정렬', recommended: '추천순', rateAsc: '1박 요금 낮은 순', reviewDesc: '후기 평점 높은 순', propertyRatingDesc: 'Agoda 숙소 등급 높은 순',
     filter: '조건', freeWifi: '무료 Wi‑Fi', breakfastIncluded: '조식 포함', reviewEightPlus: '후기 8점 이상',
-    visible: (visible: number, total: number) => `${total}개 중 ${visible}개 표시`, reset: '초기화',
+    visible: (visible: number, total: number) => `${total}개 중 ${visible}개 표시`, reset: '추천순·전체 조건',
   },
   EN: {
-    sort: 'Sort', providerOrder: 'Partner order', rateAsc: 'Lowest nightly rate', reviewDesc: 'Highest review score',
+    sort: 'Sort', recommended: 'Recommended', rateAsc: 'Lowest nightly rate', reviewDesc: 'Highest review score', propertyRatingDesc: 'Highest Agoda property rating',
     filter: 'Filters', freeWifi: 'Free Wi‑Fi', breakfastIncluded: 'Breakfast included', reviewEightPlus: 'Review score 8+',
-    visible: (visible: number, total: number) => `${visible} of ${total} shown`, reset: 'Reset',
+    visible: (visible: number, total: number) => `${visible} of ${total} shown`, reset: 'Recommended · all',
   },
   JP: {
-    sort: '並び順', providerOrder: '提携先の基本順', rateAsc: '1泊料金が低い順', reviewDesc: '口コミ評価が高い順',
+    sort: '並び順', recommended: 'おすすめ順', rateAsc: '1泊料金が低い順', reviewDesc: '口コミ評価が高い順', propertyRatingDesc: 'Agoda施設ランクが高い順',
     filter: '条件', freeWifi: '無料Wi‑Fi', breakfastIncluded: '朝食付き', reviewEightPlus: '口コミ8点以上',
-    visible: (visible: number, total: number) => `${total}件中${visible}件を表示`, reset: 'リセット',
+    visible: (visible: number, total: number) => `${total}件中${visible}件を表示`, reset: 'おすすめ順・すべて',
   },
 } satisfies Record<Lang, {
   sort: string
-  providerOrder: string
+  recommended: string
   rateAsc: string
   reviewDesc: string
+  propertyRatingDesc: string
   filter: string
   freeWifi: string
   breakfastIncluded: string
@@ -61,7 +62,7 @@ export function StayResultRefinementBar({
   onReset: () => void
 }) {
   const copy = COPY[lang]
-  const hasRefinement = sort !== 'provider_order' || Object.values(filters).some(Boolean)
+  const hasRefinement = sort !== 'recommended' || Object.values(filters).some(Boolean)
   const filterOptions: Array<{ key: StayResultFilterKey; label: string }> = [
     { key: 'freeWifi', label: copy.freeWifi },
     { key: 'breakfastIncluded', label: copy.breakfastIncluded },
@@ -101,9 +102,10 @@ export function StayResultRefinementBar({
             onChange={(event) => onSortChange(event.target.value as StayResultSort)}
             className="min-h-11 w-full rounded-xl border border-[#cdd9dc] bg-white px-4 text-sm font-bold text-[#183744] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]"
           >
-            <option value="provider_order">{copy.providerOrder}</option>
+            <option value="recommended">{copy.recommended}</option>
             <option value="rate_asc">{copy.rateAsc}</option>
             <option value="review_desc">{copy.reviewDesc}</option>
+            <option value="property_rating_desc">{copy.propertyRatingDesc}</option>
           </select>
         </label>
       </div>

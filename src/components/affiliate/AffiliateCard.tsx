@@ -39,14 +39,14 @@ const RATING_TEXT: Record<Lang, { hotel: string; partner: string; reviews: strin
   JP: { hotel: '宿泊者評価', partner: '提携先レビュー', reviews: '件' },
 }
 
-// 실측 기준일 마이크로카피 — '2026-07-26' → '7.26 기준' (PRICE_POLICY 2026-07-27)
+// 평점·가격 확인일은 점수로 오인되지 않도록 연도를 포함해 명시한다.
 function formatAsOf(asOf: string, lang: Lang): string {
-  const [, m, d] = asOf.split('-')
+  const [year, m, d] = asOf.split('-')
   const mm = Number(m)
   const dd = Number(d)
-  if (lang === 'EN') return `as of ${mm}/${dd}`
-  if (lang === 'JP') return `${mm}.${dd}基準`
-  return `${mm}.${dd} 기준`
+  if (lang === 'EN') return `checked ${year}-${m}-${d}`
+  if (lang === 'JP') return `確認日 ${year}.${mm}.${dd}`
+  return `확인일 ${year}.${mm}.${dd}`
 }
 
 const PENDING_STATUSES = new Set([

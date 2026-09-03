@@ -118,7 +118,7 @@ async function measureDestination(
 
   return {
     destinationId: destination.id,
-    status: affiliateSafetyFailures === 0 && brokenImages === 0 && imageUrls.length > 0 ? 'passed' : 'failed',
+    status: affiliateSafetyFailures === 0 && brokenImages === 0 && results.length > 0 ? 'passed' : 'failed',
     resultCount: outcome.hotels.length,
     validResultCount: results.length,
     affiliateSafetyFailures,
