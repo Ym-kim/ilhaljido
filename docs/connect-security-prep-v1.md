@@ -15,6 +15,8 @@ This branch is Preview-only pending review. Hero release PR: https://github.com/
 
 Existing `trackEvent` is reused. Visible cards and guide emit `connect_security_view`; internal card navigation emits `connect_security_guide_click`. Fixed placement/locale/audience/source-page allowlist excludes queries, free text, device IDs and form values.
 
+Follow-up audit adds only explicit pre-departure eSIM/backup-data preparation in all three languages and `business_security_interest` on the Business checklist link. This event means editorial interest, not a submitted inquiry or security-product conversion. It is restricted to the Business placement/audience and the same bounded properties. Existing partner guards, form, CTA destinations and layouts are unchanged.
+
 `connectSecurityPartner` and `businessSecurityPartner` are frozen inactive configs. All unconfirmed fields are null. Generic `security_partner_view`/`security_partner_click` helpers are guarded by enabled + complete fields + HTTPS + disclosure + matching audience. No current partner UI or partner events.
 
 `securityPartnerHref` preserves the exact approved URL by default. A later provider-specific adapter may use the bounded context only after documented tracking requirements are confirmed; adapters cannot change origin or introduce URL credentials. No provider SubID names are assumed.
@@ -30,6 +32,8 @@ No verified monitored domain address was found in inspected code/docs. Confirm i
 
 ## QA / rollback
 
-Run TypeScript, lint, build, `node --experimental-strip-types scripts/audit-connect-security.mjs`, and existing Hero/China/Stay/affiliate audits. Browser matrix: KO/EN/JA at 320/375/390/430/1024/1440; `/business` keeps its established language-context model rather than inventing new locale routes.
+Run TypeScript, lint, build, `node --experimental-strip-types scripts/audit-connect-security.mjs`, and existing Hero/China/Stay/affiliate audits. Browser matrix: KO/EN/JA at 320/375/390/430/768/1024/1440; `/business` keeps its established language-context model rather than inventing new locale routes. Test the real tracking helper with a mocked event recorder, including disabled-partner silence, invalid context rejection and no extra properties.
+
+Audit tooling note: the legacy Stay Engine/Pilot scripts still read the old `src/app/page.tsx` wrapper for Home assertions. The actual implementation is in `src/components/home/HomePage.tsx`. Both scripts pass when that read-only input is corrected in memory; neither the existing audit scripts nor Stay/Hero implementation is changed by this branch. Track this pre-existing test-path maintenance separately from product regression.
 
 Rollback is the base main commit above, or reverting this isolated prep commit after approval. It has no migrations, environment changes, billing changes or external security partner dependencies.

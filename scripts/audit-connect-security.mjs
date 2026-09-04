@@ -1,5 +1,8 @@
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
+import { runInNewContext } from 'node:vm'
+import ts from 'typescript'
+import * as partnerHelpers from '../src/lib/connect/securityPartners.ts'
 import { connectSecurityPartner, businessSecurityPartner, isSecurityPartnerReady, securityEventProperties, securityPartnerHref } from '../src/lib/connect/securityPartners.ts'
 import { SECURITY_GUIDE_COPY, SECURITY_GUIDE_LANGUAGES } from '../src/lib/connect/securityGuide.ts'
 import { localizeHref } from '../src/lib/i18n/localePath.ts'
@@ -36,5 +39,34 @@ assert.equal(/nordvpn|nordlayer|추천 VPN 보기|100% safe/i.test(content), fal
 const tracking = readFileSync('src/lib/connect/securityTracking.ts', 'utf8')
 assert.ok(tracking.includes('isSecurityPartnerReady(config)'))
 assert.ok(tracking.includes("from '@/lib/track'"))
+// Execute the real tracking helper with a local recorder; never send QA events.
+const events = []
+const module = { exports: {} }
+runInNewContext(ts.transpileModule(tracking, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, {
+  exports: module.exports,
+  require: (name) => {
+    if (name === '@/lib/track') return { trackEvent: (event, payload) => events.push({ event, payload }) }
+    if (name === './securityPartners') return partnerHelpers
+    throw Error(`Unexpected import: ${name}`)
+  },
+})
+const helpers = module.exports
+for (const partner of [connectSecurityPartner, businessSecurityPartner]) {
+  for (const event of ['security_partner_view', 'security_partner_click']) {
+    helpers.trackSecurityPartner(event, partner, { ...context, audience_type: partner.audience })
+  }
+}
+helpers.trackBusinessSecurityInterest(context)
+helpers.trackBusinessSecurityInterest({ ...context, placement: 'business_readiness' })
+helpers.trackBusinessSecurityInterest({ placement: 'business_readiness', audience_type: 'business', locale: 'invalid' })
+assert.equal(events.length, 0)
+for (const locale of ['ko', 'en', 'ja']) {
+  helpers.trackBusinessSecurityInterest({ placement: 'business_readiness', audience_type: 'business', locale, email: 'not-collected@example.com' })
+  assert.deepEqual(events.at(-1), { event: 'business_security_interest', payload: securityEventProperties({ placement: 'business_readiness', audience_type: 'business', locale }) })
+}
+assert.equal(events.length, 3)
+const card = readFileSync('src/components/connect/ConnectSecurityCard.tsx', 'utf8')
+assert.ok(card.includes('if (business) trackBusinessSecurityInterest(context)'))
+for (const [lang, phrase] of [['KO', '출국 전에 eSIM'], ['EN', 'Before departure'], ['JP', '出発前にeSIM']]) assert.ok(SECURITY_GUIDE_COPY[lang].dataBody.includes(phrase))
 for (const route of ['src/app/select/esim/work-safely/page.tsx', 'src/app/en/select/esim/work-safely/page.tsx', 'src/app/ja/select/esim/work-safely/page.tsx']) assert.ok(readFileSync(route, 'utf8').includes('workSafelyMetadata'))
-console.log('PASS: disabled configs, fail-closed partner links, optional same-origin SubID adapter, bounded events, KO/EN/JA content and routes')
+console.log('PASS: disabled configs/events, fail-closed partner links, bounded Business interest events, departure preparation and KO/EN/JA routes')

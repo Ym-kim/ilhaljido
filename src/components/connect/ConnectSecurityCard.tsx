@@ -8,7 +8,7 @@ import type { Lang } from '@/lib/i18n/types'
 import { localizeHref } from '@/lib/i18n/localePath'
 import { SECURITY_GUIDE_COPY, SECURITY_GUIDE_PATH } from '@/lib/connect/securityGuide'
 import type { SecurityPlacement } from '@/lib/connect/securityPartners'
-import { trackConnectSecurity } from '@/lib/connect/securityTracking'
+import { trackBusinessSecurityInterest, trackConnectSecurity } from '@/lib/connect/securityTracking'
 
 export function ConnectSecurityCard({ lang, placement }: { lang: Lang; placement: Exclude<SecurityPlacement, 'security_guide'> }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -37,7 +37,10 @@ export function ConnectSecurityCard({ lang, placement }: { lang: Lang; placement
   return (
     <div ref={ref} data-connect-security={placement} className="mt-6"
       onClickCapture={(event) => {
-        if ((event.target as HTMLElement).closest('a')) trackConnectSecurity('connect_security_guide_click', context)
+        if ((event.target as HTMLElement).closest('a')) {
+          trackConnectSecurity('connect_security_guide_click', context)
+          if (business) trackBusinessSecurityInterest(context)
+        }
       }}>
       {business ? (
         <aside className="rounded-2xl border border-[#e2e8f0] bg-[#f8fafc] p-5 sm:p-6">
