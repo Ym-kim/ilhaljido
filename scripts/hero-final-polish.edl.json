@@ -1,0 +1,36 @@
+{
+  "fps": 24,
+  "width": 1280,
+  "height": 720,
+  "loopDissolveFrames": 8,
+  "sources": {
+    "city": "hf_20260826_171842_f8abd0cf-3285-4b5c-b3bb-599cbbb56dd4.mp4",
+    "sunset": "hf_20260826_174207_ae5fe32a-9621-46cc-bacd-b0e013be8740.mp4",
+    "arrival": "hf_20260820_021555_34a741b4-084a-4e88-8932-7129f0109ab2.mp4"
+  },
+  "excludedSource": {
+    "file": "hf_20260826_174826_b7f6c9ed-d5c2-4bee-a0c8-495afe588eba.mp4",
+    "reason": "Fisheye architecture and fashion close-ups do not support the Work / Travel story."
+  },
+  "shots": {
+    "start": { "source": "city", "startFrame": 8, "endFrame": 62, "outputFrames": 54, "role": "City departure", "closeup": false },
+    "prepare": { "source": "city", "startFrame": 68, "endFrame": 101, "outputFrames": 36, "role": "Reviewing a notebook", "closeup": false },
+    "arrive": { "source": "arrival", "startFrame": 32, "endFrame": 67, "outputFrames": 36, "role": "Coastline arrival", "closeup": false },
+    "experience": { "source": "city", "startFrame": 105, "endFrame": 132, "outputFrames": 30, "role": "Coastal path", "closeup": false },
+    "reflect": { "source": "city", "startFrame": 136, "endFrame": 163, "outputFrames": 30, "role": "Contextual reflection at the terrace table", "closeup": true, "mirror": true },
+    "work": { "source": "city", "startFrame": 167, "endFrame": 192, "outputFrames": 60, "role": "Coastal table, notebook and planning materials", "closeup": false, "mirror": true },
+    "resolve": { "source": "sunset", "startFrame": 53, "endFrame": 95, "outputFrames": 42, "role": "Wide golden-hour shoreline", "closeup": false }
+  },
+  "variants": {
+    "clean": ["start", "prepare", "arrive", "experience", "work", "resolve"],
+    "closeup": ["start", "prepare", "arrive", "experience", "reflect", "work", "resolve"]
+  },
+  "notes": [
+    "Source ranges are zero-indexed and end-exclusive, measured on native 24 fps decoded frames.",
+    "Never use approximate -ss cuts: source files contain embedded close-ups next to usable shots.",
+    "Slow shots use adjacent-frame interpolation only; no generated scene or invented work action.",
+    "The last eight frames blend into the exact opening frame for a quiet loop seam.",
+    "The source shows notebook/planning work, not a clearly identifiable laptop workflow.",
+    "The two terrace shots are mirrored together so the planning materials remain in the right panel's visible area."
+  ]
+}

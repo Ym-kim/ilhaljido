@@ -405,6 +405,14 @@ nav ul { list-style: none; }
   }
 }
 
+/* Match the story poster and first film frame; keep the existing 68% panel. */
+@media (min-width: 768px) {
+  .home-editorial-hero-story-poster,
+  video.home-editorial-hero-story-frame {
+    object-position: 66% 18%;
+  }
+}
+
 /* 프로모 티커 — 어필리에이트 상품 무한 롤링 (호버 시 일시정지는 컴포넌트에서) */
 @keyframes ticker-scroll {
   from { transform: translateX(0); }

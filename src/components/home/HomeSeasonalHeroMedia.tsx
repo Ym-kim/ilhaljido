@@ -1,7 +1,7 @@
 'use client'
 
 import { Pause, Play } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import type { Lang } from '@/lib/i18n/types'
 
 type L = Record<Lang, string>
@@ -36,14 +36,34 @@ const POSTER_AVIF = {
 } as const
 
 const STORY_POSTER = {
-  desktop: '/media/campaigns/home-hero-story-poster-desktop-v2.webp',
-  mobile: '/media/campaigns/home-hero-story-poster-mobile-v2.webp',
+  desktop: '/media/campaigns/home-hero-polish-poster-desktop-v3.webp',
+  mobile: '/media/campaigns/home-hero-polish-poster-mobile-v3.webp',
 } as const
 
 const STORY_POSTER_AVIF = {
-  desktop: '/media/campaigns/home-hero-story-poster-desktop-v2.avif',
-  mobile: '/media/campaigns/home-hero-story-poster-mobile-v2.avif',
+  desktop: '/media/campaigns/home-hero-polish-poster-desktop-v3.avif',
+  mobile: '/media/campaigns/home-hero-polish-poster-mobile-v3.avif',
 } as const
+
+const STORY_FILMS = {
+  clean: {
+    webm: '/media/campaigns/home-hero-clean-v3.webm',
+    mp4: '/media/campaigns/home-hero-clean-v3.mp4',
+  },
+  closeup: {
+    webm: '/media/campaigns/home-hero-closeup-v3.webm',
+    mp4: '/media/campaigns/home-hero-closeup-v3.mp4',
+  },
+} as const
+
+function subscribeToPreviewLocation(onChange: () => void) {
+  window.addEventListener('popstate', onChange)
+  return () => window.removeEventListener('popstate', onChange)
+}
+
+function getPreviewEdit(): keyof typeof STORY_FILMS {
+  return new URLSearchParams(window.location.search).get('hero') === 'hero-closeup' ? 'closeup' : 'clean'
+}
 
 export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { alt: string; lang: Lang; variant?: HomeHeroVariant }) {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -52,7 +72,11 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
   const [canAnimate, setCanAnimate] = useState(false)
   const [videoReady, setVideoReady] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
+  // The server and first paint share one poster. Only the deferred film differs.
+  // Keep Preview selection local to media; routes and tracking remain unchanged.
+  const storyEdit = useSyncExternalStore<keyof typeof STORY_FILMS>(subscribeToPreviewLocation, getPreviewEdit, () => 'clean')
   const isStory = variant === 'video-story'
+  const film = STORY_FILMS[storyEdit]
   const poster = isStory ? STORY_POSTER : POSTER
   const posterAvif = isStory ? STORY_POSTER_AVIF : POSTER_AVIF
 
@@ -136,7 +160,7 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
   }
 
   return (
-    <div className="absolute inset-0 bg-[#04121f]" data-home-seasonal-media={isStory ? 'story-prototype-2026-09' : '2026-08'} data-home-hero-variant={variant}>
+    <div className="absolute inset-0 bg-[#04121f]" data-home-seasonal-media={isStory ? 'story-prototype-2026-09' : '2026-08'} data-home-hero-variant={variant} data-home-hero-edit={isStory ? storyEdit : 'control'}>
       <picture className={`absolute inset-0 block ${isStory ? 'home-editorial-hero-story-frame md:left-auto md:right-0 md:w-[68%]' : ''}`}>
         <source media="(min-width: 768px)" srcSet={posterAvif.desktop} type="image/avif" />
         <source media="(max-width: 767px)" srcSet={posterAvif.mobile} type="image/avif" />
@@ -173,6 +197,15 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
             }
           }}
           onPlaying={() => setVideoReady(true)}
+          onTimeUpdate={({ currentTarget: video }) => {
+            // Readable QA evidence for decorative media, without timers,
+            // analytics events or React renders on each playback tick.
+            const surface = video.parentElement
+            if (surface) {
+              surface.dataset.homeFilmTime = video.currentTime.toFixed(2)
+              surface.dataset.homeFilmDuration = video.duration.toFixed(2)
+            }
+          }}
           onError={() => {
             setVideoReady(false)
             setShouldLoadVideo(false)
@@ -182,8 +215,8 @@ export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { a
         >
           {isStory ? (
             <>
-              <source src="/media/campaigns/home-hero-story-desktop-v2.webm" type="video/webm" />
-              <source src="/media/campaigns/home-hero-story-desktop-v2.mp4" type="video/mp4" />
+              <source src={film.webm} type="video/webm" />
+              <source src={film.mp4} type="video/mp4" />
             </>
           ) : (
             <source src="/media/seasonal/home-seasonal-film-2026-08-desktop-v1.mp4" type="video/mp4" />
