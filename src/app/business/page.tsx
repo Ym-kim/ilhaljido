@@ -18,6 +18,7 @@ import { getMediaAsset } from '@/lib/media/assets'
 import { trackEditorialAssetCta, trackEditorialAssetView } from '@/lib/media/editorialTracking'
 import { getEditorialModelPlacement } from '@/lib/media/modelRotation'
 import { trackEvent } from '@/lib/track'
+import { ConnectSecurityCard } from '@/components/connect/ConnectSecurityCard'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 기업·팀 워케이션 B2B 랜딩 — 더휴일(thehyuil.co.kr) 벤치마크 2026-07-15
@@ -561,6 +562,10 @@ export default function BusinessPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="px-6 pb-10">
+        <div className="max-w-6xl mx-auto"><ConnectSecurityCard lang={lang} placement="business_readiness" /></div>
       </section>
 
       {/* ── 문의 폼 ── */}

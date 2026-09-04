@@ -24,6 +24,12 @@ export type Story = {
 }
 
 export const STORIES: Story[] = [
+  {
+    slug: 'work-safely', href: '/select/esim/work-safely', published: '2026-09-04',
+    category: { KO: '연결 · 보안 준비', EN: 'Connect & Work Safely', JP: '通信・仕事の安心準備' },
+    title: { KO: '해외에서 일할 때, 인터넷·보안 체크리스트', EN: 'Working abroad: your connectivity & security checklist', JP: '海外で働く前に。通信・セキュリティのチェックリスト' },
+    sub: { KO: '공용 Wi-Fi부터 업무 계정까지, 출발 전에 확인할 일곱 가지.', EN: 'Seven checks for your Wi-Fi, work accounts and devices before departure.', JP: '公衆Wi-Fiから仕事用アカウントまで、出発前の7つの確認。' },
+  },
   // ⚠️ 시즌 아티클 — 9/27 추석 종료 후 배열 후퇴 또는 제거
   {
     slug: 'chuseok-4days',

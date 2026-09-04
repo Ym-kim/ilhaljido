@@ -17,6 +17,7 @@ import { ESIM_ALT_ITEMS } from '@/lib/affiliate/links'
 import { FEATURED_ESIM } from '@/lib/affiliate/featured'
 import { localizeAffiliateItem } from '@/lib/affiliate/localize'
 import { usePriceWatch } from '@/hooks/usePriceWatch'
+import { ConnectSecurityCard } from '@/components/connect/ConnectSecurityCard'
 
 const HOW_TO = [
   { step: '1', textKey: 'sele_s1' },
@@ -89,6 +90,7 @@ export function EsimSelectView({ forceLang }: { forceLang?: Lang }) {
               </div>
             ))}
           </div>
+          <ConnectSecurityCard lang={lang} placement="esim_connect" />
         </div>
       </section>
 

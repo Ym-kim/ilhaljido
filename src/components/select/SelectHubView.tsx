@@ -16,6 +16,7 @@ import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
 import { trackEvent } from '@/lib/track'
 import { localizeHref } from '@/lib/i18n/localePath'
+import { ConnectSecurityCard } from '@/components/connect/ConnectSecurityCard'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Wakation Select 허브 — 2026-07-13 i18n 적용 (KO 하드코딩 잔존 해소, 인라인 3언어)
@@ -139,11 +140,11 @@ const CATEGORIES: {
   {
     id: 'connect',
     href: '/select/esim',
-    label: { KO: '연결 준비', EN: 'Connect', JP: '通信' },
+    label: { KO: '연결 · 보안 준비', EN: 'Connect & Work Safely', JP: '通信・仕事の安心準備' },
     title: {
-      KO: 'eSIM·현지 인터넷',
-      EN: 'eSIM and local connectivity',
-      JP: 'eSIM・現地インターネット',
+      KO: 'eSIM · Wi-Fi · 업무 보안 체크',
+      EN: 'eSIM, Wi-Fi & work readiness',
+      JP: 'eSIM・Wi-Fi・仕事の準備',
     },
     badge: { KO: '큐레이션', EN: 'Curated', JP: '厳選' },
     badgeClass: 'bg-[#f1f5f9] text-[#64748b] border-[#e2e8f0]',
@@ -396,6 +397,7 @@ export function SelectHubView({ forceLang }: { forceLang?: Lang }) {
               <ArrowRight className="w-4 h-4 text-[#c0bdb8] group-hover:text-brand-mid transition-colors" strokeWidth={ICON_STROKE} />
             </Link>
           </div>
+          <ConnectSecurityCard lang={lang} placement="select_connect" />
         </div>
       </section>
 
