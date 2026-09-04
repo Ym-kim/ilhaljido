@@ -9,6 +9,7 @@ const SHARED_EXACT = new Set<string>([
   '/select',
   '/select/activity',
   '/select/esim',
+  '/select/esim/work-safely',
   '/select/hotel',
   '/select/hotel/pilot',
   '/select/learn',

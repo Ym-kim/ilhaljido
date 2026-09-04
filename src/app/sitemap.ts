@@ -5,6 +5,7 @@ import { CITY_INSIGHTS } from '@/lib/cities'
 import { getSupportCatalog } from '@/lib/support/catalog'
 import { EXPERIENCE_EDITORIALS } from '@/lib/experiences/editorials'
 import { TRAVELER_NOTES } from '@/lib/moments'
+import { SECURITY_GUIDE_LANGUAGES, SECURITY_GUIDE_REVIEWED } from '@/lib/connect/securityGuide'
 
 const BASE = 'https://www.wakation.kr'
 
@@ -203,6 +204,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.65,
       })),
     ]),
+    ...['ko', 'en', 'ja'].map(locale => ({
+      url: SECURITY_GUIDE_LANGUAGES[locale as 'ko' | 'en' | 'ja'],
+      lastModified: new Date(SECURITY_GUIDE_REVIEWED),
+      changeFrequency: 'monthly' as const, priority: 0.6,
+      alternates: { languages: SECURITY_GUIDE_LANGUAGES },
+    })),
     // 편집형 체험 상세 — 상품 카탈로그가 아닌 독자적 정보 콘텐츠
     ...['', '/en', '/ja'].flatMap((localePrefix) => EXPERIENCE_EDITORIALS.map((experience) => ({
       url: `${BASE}${localePrefix}/experiences/${experience.slug}`,
