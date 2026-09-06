@@ -13,6 +13,12 @@ export type EditorialModelPlacement = {
 export const MODEL_ROTATION_POLICY = {
   strategy: 'deterministic-route-placement',
   maximumIdentityShare: 0.5,
+  genderPlacementWindow: {
+    size: 6,
+    femaleOnly: 4,
+    maleOnly: 1,
+    mixedGender: 1,
+  },
   proofSensitiveAreasExcluded: true,
   rules: [
     'Keep one stable art-directed identity per route and section; never randomize a face on render.',
@@ -20,6 +26,10 @@ export const MODEL_ROTATION_POLICY = {
     'Represent the full active roster before adding a third placement for any identity when the context allows.',
     'Do not repeat the same pose family, camera family, silhouette or primary action on adjacent major surfaces.',
     'Across every six new model surfaces, use at least four pose families, four silhouette families, four color stories and three camera families.',
+    'Across every six new human-led major surfaces, target four female-only, one male-only and one mixed-gender placement.',
+    'Male-visible placements should be half male-only and half mixed-gender; apply this to future production rather than replacing approved assets only to chase the ratio.',
+    'Style adult male cast to the same polished Wakation editorial standard as the female roster, with season-, destination- and activity-appropriate tailoring and natural proportions.',
+    'Mixed-gender scenes need a believable shared travel or work action; never use a decorative couple pose when the page story does not call for romance.',
     'Balance dresses, skirts, shorts, layered sets and trousers; no single silhouette family may exceed 40 percent of active placements.',
     'Treat a believable eight-head fashion-model balance as the default for full-body generation; reject any frame where perspective, pose or garment line makes the legs read short.',
     'Escalate identity-preserving full-body generation to Higgsfield Soul 2.0 when the primary generator cannot pass proportion, anatomy and identity checks.',

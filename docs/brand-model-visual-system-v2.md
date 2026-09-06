@@ -10,6 +10,8 @@
 - identity anchor와 source reference는 내부 생성 입력이다. `public/`, UI, OG, SNS에 직접 게시하지 않는다.
 - 모델 이미지는 실제 고객·참가자·직원·후기 작성자·숙소·상품·프로그램 현장 증거로 사용하지 않는다.
 - 한 모델은 active identity exposure의 50%를 넘지 않는다. 같은 viewport와 인접 주요 카드에서 같은 모델을 반복하지 않는다.
+- 신규 인물 중심 주요 화면은 연속 6개 기준 `여성 단독 4 · 남성 단독 1 · 남녀 혼합 1`로 계획한다. 남성 등장 슬롯 두 개 중 하나는 남녀 혼합 장면으로 구성한다.
+- 남성 recurring identity는 승인된 reference 확보 후 로스터에 추가한다. 기존 A–J 여성 identity를 성별 변형하지 않으며, 필요 시 Higgsfield Soul 2.0으로 실사감·비율·identity 보존을 재검증한다.
 - 주요 화면의 50% 이상은 실제 장소·공간·교통·음식·사물 중심 이미지로 유지한다.
 - 계절, 기후, 행동, 장소가 먼저이고 모델은 그 장면을 설명하는 보조 요소다.
 - 생성 자산은 KO/EN/JA alt, model ID, route/section, focal point, 계절·복장·행동·실사 메타데이터와 제한 문구를 기록한다.

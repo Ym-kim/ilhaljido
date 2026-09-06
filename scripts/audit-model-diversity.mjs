@@ -27,9 +27,21 @@ const requiredAppealPolicyMarkers = [
   "wardrobeDirection: 'context_led_wardrobe'",
   "environmentDirection: 'environment_palette_rotation'",
 ]
+const requiredGenderBalanceMarkers = [
+  'genderPlacementWindow',
+  'femaleOnly: 4',
+  'maleOnly: 1',
+  'mixedGender: 1',
+  'Male-visible placements should be half male-only and half mixed-gender',
+  'Higgsfield Soul 2.0',
+]
 
 for (const marker of requiredAppealPolicyMarkers) {
   if (!modelPolicy.includes(marker)) errors.push(`Missing model appeal policy marker: ${marker}`)
+}
+
+for (const marker of requiredGenderBalanceMarkers) {
+  if (!rotation.includes(marker)) errors.push(`Missing model gender-balance policy marker: ${marker}`)
 }
 
 for (const item of directions) {
