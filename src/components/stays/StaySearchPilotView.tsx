@@ -76,11 +76,11 @@ const COPY = {
     back: '숙소 전체 보기', destination: '여행지', checkin: '체크인', checkout: '체크아웃',
     adults: '성인', children: '아동', search: '이 날짜로 숙소 보기', searching: '요금 확인 중', results: '머물 곳을 골라보세요',
     perNight: '1박 기준', review: '숙박객 평점', propertyClass: 'Agoda 숙소 등급', wifi: '무료 Wi‑Fi', breakfast: '조식 포함',
-    checkRate: '객실·최종요금 확인', rooms: '객실 확인', fallbackTitle: '제휴사 검색으로 이어서 확인하세요',
+    checkRate: 'Agoda에서 객실·최종요금 확인', rooms: '객실 확인', fallbackTitle: '제휴사 검색으로 이어서 확인하세요',
     fallbackBody: 'Agoda 결과가 지연되거나 비어 있어 기존 Booking.com 검색으로 안전하게 연결합니다.',
     fallbackCta: 'Booking.com에서 숙소 확인', error: '검색 조건을 다시 확인해주세요.',
     disclosure: '외부 제휴 상품입니다. Wakation은 검색을 돕고, 예약·결제·취소·환불은 연결된 제휴사의 정책을 따릅니다. 요금과 조건은 제휴사 화면에서 최종 확인해주세요.',
-    provider: 'Agoda 제공 결과', providerFacts: 'Agoda 제공 정보', noEditorial: '실제 숙소 사진이 없는 결과는 중립 이미지로 구분해 표시합니다.', imageUnavailable: '숙소 사진은 Agoda에서 확인',
+    provider: 'Agoda 실시간 검색 결과', providerFacts: 'AGODA API · 실시간 제공 정보', noEditorial: '실제 숙소 사진이 없는 결과는 중립 이미지로 구분해 표시합니다.', imageUnavailable: '숙소 사진은 Agoda에서 확인',
     ratingGuide: 'Agoda 숙소 등급은 제휴사가 제공한 0–5 지표로, 국가별 공식 호텔 등급과 다를 수 있습니다. 이용자 후기 평점은 10점 만점입니다.',
     intelligence: 'Wakation 조사 메모', workNote: '일하기', longStayNote: '머물기', accessNote: '이동', source: '근거 보기', verifiedAt: '확인일',
     cityStay: '숙소 찾기', finalPrice: '세금·수수료와 최종 조건은 제휴사에서 확인',
@@ -95,11 +95,11 @@ const COPY = {
     back: 'View all stays', destination: 'Destination', checkin: 'Check-in', checkout: 'Check-out',
     adults: 'Adults', children: 'Children', search: 'See stays for these dates', searching: 'Checking rates', results: 'Choose where to stay',
     perNight: 'per night', review: 'Guest review score', propertyClass: 'Agoda property rating', wifi: 'Free Wi‑Fi', breakfast: 'Breakfast included',
-    checkRate: 'Check rooms & final rate', rooms: 'Check rooms', fallbackTitle: 'Continue with partner search',
+    checkRate: 'Check rooms & final rate on Agoda', rooms: 'Check rooms', fallbackTitle: 'Continue with partner search',
     fallbackBody: 'Agoda results were delayed or empty, so the existing Booking.com search remains available.',
     fallbackCta: 'Check stays on Booking.com', error: 'Please check your search details.',
     disclosure: 'This is an external affiliate product. Wakation helps with discovery; booking, payment, cancellation and refunds follow the partner’s terms. Confirm final rates and conditions on the partner site.',
-    provider: 'Results provided by Agoda', providerFacts: 'Provided by Agoda', noEditorial: 'Results without a property photo use a clearly neutral placeholder.', imageUnavailable: 'See the property photo on Agoda',
+    provider: 'Live search results from Agoda', providerFacts: 'AGODA API · LIVE DATA', noEditorial: 'Results without a property photo use a clearly neutral placeholder.', imageUnavailable: 'See the property photo on Agoda',
     ratingGuide: 'The Agoda property rating is a partner-supplied 0–5 metric and may differ from an official local hotel classification. Guest review scores use a 10-point scale.',
     intelligence: 'Wakation research note', workNote: 'Work', longStayNote: 'Stay', accessNote: 'Access', source: 'View source', verifiedAt: 'Checked',
     cityStay: 'Stay search', finalPrice: 'Confirm taxes, fees and final conditions with the partner',
@@ -114,11 +114,11 @@ const COPY = {
     back: '宿をすべて見る', destination: '行き先', checkin: 'チェックイン', checkout: 'チェックアウト',
     adults: '大人', children: '子ども', search: 'この日程で宿を見る', searching: '料金を確認中', results: '滞在先を選ぶ',
     perNight: '1泊あたり', review: '宿泊者口コミ評価', propertyClass: 'Agoda施設ランク', wifi: '無料Wi‑Fi', breakfast: '朝食付き',
-    checkRate: '客室・最終料金を確認', rooms: '客室を確認', fallbackTitle: '提携先検索で続けて確認',
+    checkRate: 'Agodaで客室・最終料金を確認', rooms: '客室を確認', fallbackTitle: '提携先検索で続けて確認',
     fallbackBody: 'Agodaの結果が遅延または空だったため、既存のBooking.com検索へ安全に案内します。',
     fallbackCta: 'Booking.comで宿を確認', error: '検索条件を確認してください。',
     disclosure: '外部のアフィリエイト商品です。Wakationは検索をサポートし、予約・決済・キャンセル・返金は提携先の規約に従います。最終料金と条件は提携先でご確認ください。',
-    provider: 'Agoda提供の検索結果', providerFacts: 'Agoda提供情報', noEditorial: '施設写真がない結果は、中立的な画像で区別して表示します。', imageUnavailable: '施設写真はAgodaで確認',
+    provider: 'Agoda提供のリアルタイム検索結果', providerFacts: 'AGODA API · リアルタイム情報', noEditorial: '施設写真がない結果は、中立的な画像で区別して表示します。', imageUnavailable: '施設写真はAgodaで確認',
     ratingGuide: 'Agoda施設ランクは提携先が提供する0〜5の指標で、各国の公式なホテル等級とは異なる場合があります。利用者口コミ評価は10点満点です。',
     intelligence: 'Wakation調査メモ', workNote: '仕事', longStayNote: '滞在', accessNote: 'アクセス', source: '根拠を見る', verifiedAt: '確認日',
     cityStay: '宿を探す', finalPrice: '税・手数料と最終条件は提携先で確認',
@@ -133,11 +133,11 @@ const COPY = {
     back: '查看全部住宿', destination: '目的地', checkin: '入住日期', checkout: '退房日期',
     adults: '成人', children: '儿童', search: '查看这些日期的住宿', searching: '正在查询实时房价', results: '选择你的住宿',
     perNight: '每晚', review: '住客评分', propertyClass: 'Agoda 住宿等级', wifi: '免费 Wi-Fi', breakfast: '含早餐',
-    checkRate: '查看客房与最终价格', rooms: '查看客房', fallbackTitle: '继续前往合作伙伴搜索',
+    checkRate: '前往 Agoda 查看客房与最终价格', rooms: '查看客房', fallbackTitle: '继续前往合作伙伴搜索',
     fallbackBody: 'Agoda 结果暂时延迟或为空，已保留 Booking.com 搜索作为安全后备。',
     fallbackCta: '在 Booking.com 查看住宿', error: '请检查搜索条件后重试。',
     disclosure: '这是外部联盟合作产品。Wakation 帮助你搜索和比较；预订、付款、取消与退款均以合作伙伴条款为准。请在合作伙伴页面确认最终价格与条件。',
-    provider: 'Agoda 提供的结果', providerFacts: 'Agoda 提供的信息', noEditorial: '没有住宿照片的结果会使用中性占位图。', imageUnavailable: '前往 Agoda 查看住宿图片',
+    provider: 'Agoda 实时搜索结果', providerFacts: 'AGODA API · 实时信息', noEditorial: '没有住宿照片的结果会使用中性占位图。', imageUnavailable: '前往 Agoda 查看住宿图片',
     ratingGuide: 'Agoda 住宿等级是合作伙伴提供的 0–5 指标，可能与当地官方星级不同。住客评分采用 10 分制。',
     intelligence: 'Wakation 调研备注', workNote: '办公', longStayNote: '长住', accessNote: '交通', source: '查看来源', verifiedAt: '核验日期',
     cityStay: '住宿搜索', finalPrice: '税费与最终条件请以合作伙伴页面为准',
@@ -364,6 +364,7 @@ function ResultCard({
             href={result.bookingHref}
             target="_blank"
             rel="sponsored noopener noreferrer"
+            aria-label={`${c.checkRate}: ${result.name}`}
             onClick={trackOutbound}
             className="mt-4 inline-flex min-h-12 w-full items-center justify-between gap-2 rounded-full bg-[#0b4b69] px-5 text-sm font-black text-white transition hover:bg-[#073c55] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06a4d5]"
           >

@@ -10,7 +10,7 @@ const files = {
   agoda: read('src/lib/stays/providers/agoda.ts'),
   analytics: read('src/lib/stays/analytics.ts'),
   search: read('src/components/affiliate/DestinationSearch.tsx'),
-  home: read('src/app/page.tsx'),
+  home: read('src/components/home/HomePage.tsx'),
   agodaApi: read('src/lib/affiliate/agodaApi.ts'),
   agodaAuth: read('src/lib/affiliate/agodaAuth.ts'),
   agodaAuthCore: read('src/lib/affiliate/agodaAuthCore.ts'),

@@ -19,7 +19,7 @@ const checks = [
   ['Legacy provider images normalize only on Agoda-owned hosts', files.adapter.includes("trimmed.startsWith('//')") && files.adapter.includes("url.hostname.endsWith('.agoda.net')") && files.adapter.includes("url.hostname.endsWith('.agoda.com')") && files.adapter.includes("url.protocol = 'https:'")],
   ['Broken or absent provider images fall back to a neutral placeholder', files.view.includes('onError={() => setImageFailed(true)}') && files.view.includes('WAKATION STAY') && files.view.includes('숙소 사진은 Agoda에서 확인')],
   ['No destination or generated photo impersonates a hotel', !files.view.includes('destinationImages[index % destinationImages.length]') && !files.view.includes('TEMI') && !files.view.includes('BOMI')],
-  ['Provider and Wakation facts are visually separated', files.view.includes('providerFacts') && files.view.includes('Wakation 조사 메모') && files.view.includes('result.intelligence ?')],
+  ['Provider and Wakation facts are visually separated', files.view.includes('providerFacts') && files.view.includes('Wakation 조사 메모') && files.view.includes("result.intelligence && lang !== 'ZH'")],
   ['Guest score and provider property rating are separately labelled', files.view.includes("review: '숙박객 평점'") && files.view.includes("propertyClass: 'Agoda 숙소 등급'") && files.view.includes('국가별 공식 호텔 등급과 다를 수 있습니다')],
   ['Discount requires internally consistent live values', files.view.includes('getSafeDiscountPercentage') && files.view.includes('Math.abs(calculated - provided) <= 5')],
   ['Agoda CTA preserves sponsored external-link semantics', files.view.includes('rel="sponsored noopener noreferrer"') && files.view.includes('객실·최종요금 확인')],
