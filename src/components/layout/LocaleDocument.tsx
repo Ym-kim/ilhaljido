@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation'
 
 function documentLang(pathname: string) {
+  if (pathname === '/zh' || pathname.startsWith('/zh/')) return 'zh-CN'
   if (pathname === '/ja' || pathname.startsWith('/ja/')) return 'ja'
   if (pathname === '/en' || pathname.startsWith('/en/')) return 'en'
   return 'ko'

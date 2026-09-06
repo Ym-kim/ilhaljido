@@ -1,6 +1,7 @@
 import 'server-only'
 
 import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 import type { StaySearchExecution } from '@/lib/stays/liveSearch'
 
 type StaySearchOperationalInput = {
@@ -11,7 +12,7 @@ type StaySearchOperationalInput = {
 
 type StayBookingOperationalInput = {
   destinationId: string
-  locale: Lang
+  locale: DisplayLocale
   provider: 'agoda' | 'booking'
   mode: 'results' | 'fallback'
 }
@@ -53,7 +54,7 @@ export function logStayBookingClick({ destinationId, locale, provider, mode }: S
     event: 'stay_booking_click',
     pilot: 'agoda_stay_v1',
     destination_id: destinationId,
-    locale: locale === 'JP' ? 'ja' : locale.toLowerCase(),
+    locale: locale === 'JP' ? 'ja' : locale === 'ZH' ? 'zh-cn' : locale.toLowerCase(),
     provider,
     mode,
   }

@@ -1,8 +1,8 @@
-import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 
 export type StayBookingTelemetryInput = {
   destinationId: string
-  locale: Lang
+  locale: DisplayLocale
   provider: 'agoda' | 'booking'
   mode: 'results' | 'fallback'
 }

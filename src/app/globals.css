@@ -166,6 +166,23 @@ html[lang='ja'] h3,
   line-break: strict;
 }
 
+html[lang='zh-CN'] body,
+html[lang='zh-CN'] button,
+html[lang='zh-CN'] input,
+html[lang='zh-CN'] select {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', var(--font-sans);
+  letter-spacing: 0;
+  word-break: normal;
+}
+
+html[lang='zh-CN'] h1,
+html[lang='zh-CN'] h2,
+html[lang='zh-CN'] h3 {
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', var(--font-display);
+  letter-spacing: -0.02em;
+  line-break: strict;
+}
+
 /* 본문 텍스트 유형에 display 폰트가 새지 않도록 버튼·입력은 본문 폰트 유지 */
 button, input, select, textarea {
   font-family: var(--font-sans);

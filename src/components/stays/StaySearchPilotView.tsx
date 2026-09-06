@@ -12,6 +12,7 @@ import type { StayLiveSearchFailureReason, StaySearchResult } from '@/lib/stays/
 import { STAY_PILOT_DESTINATIONS } from '@/lib/stays/pilotDestinations'
 import { trackAffiliateClick } from '@/lib/track'
 import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 import type { StayPilotSourceSection } from '@/lib/stays/pilotInitialState'
 import { StayResultRefinementBar } from '@/components/stays/StayResultRefinementBar'
 import {
@@ -50,6 +51,21 @@ type SearchResponse =
       redirect: { href: string; rel: 'sponsored noopener noreferrer'; providerLabel: string }
       meta: { latencyMs: number; resultCount: number }
     }
+
+function localizeBookingFallbackHref(href: string, locale: DisplayLocale) {
+  if (locale !== 'ZH') return href
+
+  try {
+    const url = new URL(href)
+    const isBookingHost = url.hostname === 'booking.com' || url.hostname.endsWith('.booking.com')
+    if (!isBookingHost) return href
+
+    url.searchParams.set('lang', 'zh-cn')
+    return url.toString()
+  } catch {
+    return href
+  }
+}
 
 const COPY = {
   KO: {
@@ -109,7 +125,26 @@ const COPY = {
     selectionTitle: 'Wakationが先に選んだ宿',
     emptyRefinedTitle: '選択した条件に一致する宿がありません', emptyRefinedBody: '条件を外すか、おすすめ順に戻して再度ご確認ください。', resetRefined: '条件をリセット',
   },
-} satisfies Record<Lang, Record<string, string>>
+  ZH: {
+    eyebrow: 'WAKATION STAY',
+    title: '用真实日期，查找适合工作与停留的住宿',
+    intro: '查看福冈、大阪与东京的实时住宿，并比较工作和较长停留所需的条件。',
+    introExpanded: '查看福冈、大阪、东京、首尔、釜山与济州的实时住宿，并比较工作和较长停留所需的条件。',
+    back: '查看全部住宿', destination: '目的地', checkin: '入住日期', checkout: '退房日期',
+    adults: '成人', children: '儿童', search: '查看这些日期的住宿', searching: '正在查询实时房价', results: '选择你的住宿',
+    perNight: '每晚', review: '住客评分', propertyClass: 'Agoda 住宿等级', wifi: '免费 Wi-Fi', breakfast: '含早餐',
+    checkRate: '查看客房与最终价格', rooms: '查看客房', fallbackTitle: '继续前往合作伙伴搜索',
+    fallbackBody: 'Agoda 结果暂时延迟或为空，已保留 Booking.com 搜索作为安全后备。',
+    fallbackCta: '在 Booking.com 查看住宿', error: '请检查搜索条件后重试。',
+    disclosure: '这是外部联盟合作产品。Wakation 帮助你搜索和比较；预订、付款、取消与退款均以合作伙伴条款为准。请在合作伙伴页面确认最终价格与条件。',
+    provider: 'Agoda 提供的结果', providerFacts: 'Agoda 提供的信息', noEditorial: '没有住宿照片的结果会使用中性占位图。', imageUnavailable: '前往 Agoda 查看住宿图片',
+    ratingGuide: 'Agoda 住宿等级是合作伙伴提供的 0–5 指标，可能与当地官方星级不同。住客评分采用 10 分制。',
+    intelligence: 'Wakation 调研备注', workNote: '办公', longStayNote: '长住', accessNote: '交通', source: '查看来源', verifiedAt: '核验日期',
+    cityStay: '住宿搜索', finalPrice: '税费与最终条件请以合作伙伴页面为准',
+    selectionTitle: 'Wakation 优先筛选',
+    emptyRefinedTitle: '没有符合当前条件的结果', emptyRefinedBody: '取消一项条件，或返回推荐顺序查看更多住宿。', resetRefined: '重置筛选',
+  },
+} satisfies Record<DisplayLocale, Record<string, string>>
 
 const DESTINATION_VISUALS: Record<string, string> = {
   'japan-fukuoka': '/media/destinations/fukuoka-editorial-v1.webp',
@@ -120,11 +155,24 @@ const DESTINATION_VISUALS: Record<string, string> = {
   'korea-seoul': '/media/destinations/seoul-editorial-v1.webp',
 }
 
-function localeCode(lang: Lang): string {
-  return lang === 'KO' ? 'ko-KR' : lang === 'JP' ? 'ja-JP' : 'en-US'
+const ZH_DESTINATION_LABELS: Record<string, string> = {
+  'japan-fukuoka': '福冈',
+  'japan-osaka': '大阪',
+  'japan-tokyo': '东京',
+  'korea-seoul': '首尔',
+  'korea-busan': '釜山',
+  'korea-jeju': '济州',
 }
 
-function formatRate(value: number, currency: string, lang: Lang): string {
+function destinationLabel(destination: (typeof STAY_PILOT_DESTINATIONS)[number], lang: DisplayLocale): string {
+  return lang === 'ZH' ? ZH_DESTINATION_LABELS[destination.id] ?? destination.label.EN : destination.label[lang]
+}
+
+function localeCode(lang: DisplayLocale): string {
+  return lang === 'KO' ? 'ko-KR' : lang === 'JP' ? 'ja-JP' : lang === 'ZH' ? 'zh-CN' : 'en-US'
+}
+
+function formatRate(value: number, currency: string, lang: DisplayLocale): string {
   try {
     return new Intl.NumberFormat(localeCode(lang), { style: 'currency', currency, maximumFractionDigits: 0 }).format(value)
   } catch {
@@ -136,22 +184,24 @@ function formatProviderPropertyRating(value: number): string {
   return `${value.toFixed(1)}/5`
 }
 
-function formatReviewCount(value: number, lang: Lang): string {
+function formatReviewCount(value: number, lang: DisplayLocale): string {
   const count = new Intl.NumberFormat(localeCode(lang), { notation: value >= 10_000 ? 'compact' : 'standard', maximumFractionDigits: 1 }).format(value)
   if (lang === 'EN') return `${count} reviews`
   if (lang === 'JP') return `口コミ ${count}件`
+  if (lang === 'ZH') return `${count} 条评价`
   return `후기 ${count}개`
 }
 
-function formatSelectionSummary(meta: Extract<SearchResponse, { mode: 'results' }>['meta'], lang: Lang): string {
+function formatSelectionSummary(meta: Extract<SearchResponse, { mode: 'results' }>['meta'], lang: DisplayLocale): string {
   if (lang === 'EN') return `${meta.displayCount} selected from ${meta.candidateCount} live candidates · ratings 8.0+ only`
   if (lang === 'JP') return `リアルタイム候補${meta.candidateCount}件から${meta.displayCount}件を選定 · 口コミ評価8.0以上のみ`
+  if (lang === 'ZH') return `从 ${meta.candidateCount} 个实时候选中筛选 ${meta.displayCount} 个 · 仅显示住客评分 8.0+`
   return `실시간 후보 ${meta.candidateCount}개 중 ${meta.displayCount}개 선별 · 숙박객 평점 8.0 이상만 표시`
 }
 
-function formatStartingRate(value: number, currency: string, lang: Lang): string {
+function formatStartingRate(value: number, currency: string, lang: DisplayLocale): string {
   const rate = formatRate(value, currency, lang)
-  return lang === 'EN' ? `From ${rate}` : lang === 'JP' ? `${rate}〜` : `${rate}~`
+  return lang === 'EN' ? `From ${rate}` : lang === 'JP' ? `${rate}〜` : lang === 'ZH' ? `${rate} 起` : `${rate}~`
 }
 
 function getSafeDiscountPercentage(result: StaySearchResult): number | null {
@@ -179,7 +229,7 @@ function ResultCard({
 }: {
   result: StaySearchResult
   index: number
-  lang: Lang
+  lang: DisplayLocale
   destinationId: string
   sourceSection: string
 }) {
@@ -213,7 +263,7 @@ function ResultCard({
       position: index + 1,
       imageStatus: renderedImageStatus,
       discountPresent: positiveDiscount !== null,
-      wakationNotePresent: Boolean(result.intelligence),
+      wakationNotePresent: lang !== 'ZH' && Boolean(result.intelligence),
       capability: 'live_search' as const,
       datesSupplied: true,
       outcome: 'redirect' as const,
@@ -282,7 +332,7 @@ function ResultCard({
           {result.amenities?.freeWifi ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Wifi className="h-3.5 w-3.5" />{c.wifi}</span> : null}
           {result.amenities?.breakfastIncluded ? <span className="inline-flex items-center gap-1 rounded-full bg-[#f1f6f7] px-3 py-1.5"><Coffee className="h-3.5 w-3.5" />{c.breakfast}</span> : null}
         </div>
-        {result.intelligence ? (
+        {result.intelligence && lang !== 'ZH' ? (
           <aside className="mt-5 rounded-2xl border border-[#bfe3ea] bg-[#f0fbfd] p-4 text-sm text-[#173f4d]">
             <p className="flex items-center gap-2 font-black text-[#086f8f]"><ShieldCheck className="h-4 w-4" />{c.intelligence}</p>
             <dl className="mt-3 space-y-2 leading-6">
@@ -327,6 +377,7 @@ function ResultCard({
 
 export function StaySearchPilotView({
   forceLang,
+  forceDisplayLocale,
   initialCheckin,
   initialCheckout,
   initialToday,
@@ -337,6 +388,7 @@ export function StaySearchPilotView({
   sourceSection,
 }: {
   forceLang?: Lang
+  forceDisplayLocale?: DisplayLocale
   initialCheckin: string
   initialCheckout: string
   initialToday: string
@@ -348,7 +400,8 @@ export function StaySearchPilotView({
 }) {
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang ?? contextLang
-  const c = COPY[lang]
+  const displayLocale = forceDisplayLocale ?? lang
+  const c = COPY[displayLocale]
   const includesKoreaPilot = STAY_PILOT_DESTINATIONS.some((destination) => destination.id.startsWith('korea-'))
   const [destinationId, setDestinationId] = useState(initialDestinationId)
   const [checkin, setCheckin] = useState(initialCheckin)
@@ -362,9 +415,9 @@ export function StaySearchPilotView({
   const [resultFilters, setResultFilters] = useState({ ...EMPTY_STAY_RESULT_FILTERS })
   const autoSearchStarted = useRef(false)
   const activeDestination = STAY_PILOT_DESTINATIONS.find((destination) => destination.id === destinationId) ?? STAY_PILOT_DESTINATIONS[0]
-  const activeDestinationLabel = activeDestination.label[lang]
+  const activeDestinationLabel = destinationLabel(activeDestination, displayLocale)
   const activeDestinationImage = DESTINATION_VISUALS[activeDestination.id]
-  const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
+  const prefix = displayLocale === 'EN' ? '/en' : displayLocale === 'JP' ? '/ja' : displayLocale === 'ZH' ? '/zh' : ''
   const resultSourceSection = sourceSection === 'home_hero_stay_search'
     ? 'home_hero_stay_results'
     : sourceSection === 'guide_stay_search'
@@ -408,7 +461,7 @@ export function StaySearchPilotView({
     setResultSort('recommended')
     setResultFilters({ ...EMPTY_STAY_RESULT_FILTERS })
     trackStayEvent('stay_search', {
-      locale: lang, sourceSection, provider: 'agoda', destinationId,
+      locale: displayLocale, sourceSection, provider: 'agoda', destinationId,
       capability: 'live_search', datesSupplied: Boolean(checkin && checkout), outcome: 'view',
     })
 
@@ -423,7 +476,7 @@ export function StaySearchPilotView({
       setResponse(payload)
       if (payload.mode === 'results') {
         trackStayEvent('stay_result_view', {
-          locale: lang, sourceSection: resultSourceSection, provider: payload.provider,
+          locale: displayLocale, sourceSection: resultSourceSection, provider: payload.provider,
           destinationId, capability: 'live_search', datesSupplied: true,
           resultCount: payload.results.length, latencyMs: payload.meta.latencyMs, outcome: 'view',
           candidateCount: payload.meta.candidateCount, displayCount: payload.meta.displayCount,
@@ -431,12 +484,12 @@ export function StaySearchPilotView({
           sortMode: payload.meta.sortMode,
           imageStatus: summarizeImageStatus(payload.results),
           discountPresent: payload.results.some((result) => getSafeDiscountPercentage(result) !== null),
-          wakationNotePresent: payload.results.some((result) => Boolean(result.intelligence)),
+          wakationNotePresent: displayLocale !== 'ZH' && payload.results.some((result) => Boolean(result.intelligence)),
         })
         resultEventTracked = true
       } else {
         trackStayEvent('stay_result_view', {
-          locale: lang, sourceSection: fallbackSourceSection, provider: payload.provider,
+          locale: displayLocale, sourceSection: fallbackSourceSection, provider: payload.provider,
           destinationId, capability: 'search_redirect', datesSupplied: true, resultCount: 0,
           latencyMs: payload.meta.latencyMs, failureReason: payload.reason, outcome: 'fallback',
         })
@@ -445,7 +498,7 @@ export function StaySearchPilotView({
     } catch {
       if (!resultEventTracked) {
         trackStayEvent('stay_result_view', {
-          locale: lang, sourceSection: resultSourceSection, provider: 'agoda', destinationId,
+          locale: displayLocale, sourceSection: resultSourceSection, provider: 'agoda', destinationId,
           capability: 'live_search', datesSupplied: true, resultCount: 0,
           latencyMs: Math.round(performance.now() - requestStartedAt), failureReason: 'request_failed', outcome: 'unavailable',
         })
@@ -454,7 +507,7 @@ export function StaySearchPilotView({
     } finally {
       setLoading(false)
     }
-  }, [adults, c.error, checkin, checkout, children, destinationId, fallbackSourceSection, lang, resultSourceSection, sourceSection])
+  }, [adults, c.error, checkin, checkout, children, destinationId, displayLocale, fallbackSourceSection, lang, resultSourceSection, sourceSection])
 
   useEffect(() => {
     if (!autoSearch || autoSearchStarted.current) return
@@ -469,7 +522,7 @@ export function StaySearchPilotView({
 
   const trackRefinement = (refinement: NonNullable<Parameters<typeof trackStayEvent>[1]['refinement']>) => {
     trackStayEvent('stay_result_refine', {
-      locale: lang,
+      locale: displayLocale,
       sourceSection: resultSourceSection,
       provider: 'agoda',
       destinationId,
@@ -504,21 +557,21 @@ export function StaySearchPilotView({
 
   const fallbackClick = response?.mode === 'fallback' ? () => {
     const common = {
-      locale: lang, sourceSection: fallbackSourceSection, provider: 'booking', destinationId,
+      locale: displayLocale, sourceSection: fallbackSourceSection, provider: 'booking', destinationId,
       capability: 'search_redirect', datesSupplied: true, outcome: 'fallback',
     } as const
     trackStayEvent('stay_booking_click', common)
     trackStayEvent('affiliate_redirect', common)
     recordStayBookingClick({
       destinationId,
-      locale: lang,
+      locale: displayLocale,
       provider: 'booking',
       mode: 'fallback',
     })
     trackAffiliateClick({
       id: 'booking-stay-search', itemName: 'Booking.com stay search', provider: 'booking',
       destination: destinationId, sourceSection: fallbackSourceSection, ctaLabel: 'fallback_search',
-      category: 'hotel', locale: lang, status: 'active_affiliate',
+      category: 'hotel', locale: displayLocale, status: 'active_affiliate',
     })
   } : undefined
 
@@ -545,7 +598,7 @@ export function StaySearchPilotView({
               <label className="block min-[360px]:col-span-2 lg:col-span-1">
                 <span className="mb-2 block text-xs font-bold text-[#49616b]">{c.destination}</span>
                 <span className="relative block"><MapPin className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6c7f86]" /><select value={destinationId} onChange={(event) => setDestinationId(event.target.value)} className="min-h-12 w-full rounded-xl border border-[#c8d5d8] bg-white pl-10 pr-4 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#079ecb]">
-                  {STAY_PILOT_DESTINATIONS.map((destination) => <option key={destination.id} value={destination.id}>{destination.label[lang]}</option>)}
+                  {STAY_PILOT_DESTINATIONS.map((destination) => <option key={destination.id} value={destination.id}>{destinationLabel(destination, displayLocale)}</option>)}
                 </select></span>
               </label>
               <label className="block">
@@ -576,14 +629,14 @@ export function StaySearchPilotView({
             {response?.mode === 'results' ? (
               <>
                 <div className="mb-6 grid gap-3 border-b border-[#d9dfdc] pb-5 md:grid-cols-[minmax(0,1fr)_minmax(18rem,.75fr)] md:items-end">
-                  <div><p className="text-[0.68rem] font-black tracking-[0.16em] text-[#078db6]">WAKATION SEARCH RESULTS · {activeDestinationLabel}</p><h2 className="wak-section-title mt-2 break-keep font-black tracking-[-0.025em] text-[#172a36]">{c.results}</h2><p className="mt-2 text-sm font-bold text-[#49616b]"><span className="text-[#087fa2]">{c.selectionTitle}</span> · {formatSelectionSummary(response.meta, lang)}</p></div>
+                  <div><p className="text-[0.68rem] font-black tracking-[0.16em] text-[#078db6]">WAKATION SEARCH RESULTS · {activeDestinationLabel}</p><h2 className="wak-section-title mt-2 break-keep font-black tracking-[-0.025em] text-[#172a36]">{c.results}</h2><p className="mt-2 text-sm font-bold text-[#49616b]"><span className="text-[#087fa2]">{c.selectionTitle}</span> · {formatSelectionSummary(response.meta, displayLocale)}</p></div>
                   <div className="text-xs leading-5 text-[#647983] md:text-right">
                     <p>{c.noEditorial}</p>
                     <p className="mt-1">{c.ratingGuide}</p>
                   </div>
                 </div>
                 <StayResultRefinementBar
-                  lang={lang}
+                  lang={displayLocale}
                   sort={resultSort}
                   filters={resultFilters}
                   availability={filterAvailability}
@@ -595,7 +648,7 @@ export function StaySearchPilotView({
                 />
                 {refinedResults.length > 0 ? (
                   <div className="wak-card-grid grid auto-rows-fr md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={lang} destinationId={destinationId} sourceSection={resultSourceSection} />)}
+                    {refinedResults.map((result, index) => <ResultCard key={`${result.provider}-${result.propertyId}`} result={result} index={index} lang={displayLocale} destinationId={destinationId} sourceSection={resultSourceSection} />)}
                   </div>
                 ) : (
                   <div className="rounded-[1.75rem] border border-dashed border-[#b9cacc] bg-white px-6 py-12 text-center">
@@ -611,7 +664,7 @@ export function StaySearchPilotView({
                 <BedDouble className="h-8 w-8 text-[#078db6]" />
                 <h2 className="mt-4 text-2xl font-black">{c.fallbackTitle}</h2>
                 <p className="mt-3 max-w-2xl text-sm leading-7 text-[#5b7079]">{c.fallbackBody}</p>
-                <a href={response.redirect.href} target="_blank" rel={response.redirect.rel} onClick={fallbackClick} className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#063b50] px-6 text-sm font-bold text-white hover:bg-[#07536e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06a4d5]">{c.fallbackCta}<ExternalLink className="h-4 w-4" /></a>
+                <a href={localizeBookingFallbackHref(response.redirect.href, displayLocale)} target="_blank" rel={response.redirect.rel} onClick={fallbackClick} className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[#063b50] px-6 text-sm font-bold text-white hover:bg-[#07536e] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#06a4d5]">{c.fallbackCta}<ExternalLink className="h-4 w-4" /></a>
               </div>
             ) : null}
           </div>

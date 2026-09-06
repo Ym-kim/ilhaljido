@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     '宿の予約から現地体験、eSIM、オンライン講座まで。ワーケーションに合う提携サービスを目的地別にキュレーション。',
   alternates: {
     canonical: 'https://www.wakation.kr/ja/select',
-    languages: cityLanguageAlternates('/select'),
+    languages: { ...cityLanguageAlternates('/select'), 'zh-CN': 'https://www.wakation.kr/zh/select' },
   },
   openGraph: {
     images: OG_DEFAULT_IMAGES,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://www.wakation.kr/ja/select',
     siteName: 'Wakation',
     locale: 'ja_JP',
-    alternateLocale: ['ko_KR', 'en_US'],
+    alternateLocale: ['ko_KR', 'en_US', 'zh_CN'],
   },
   robots: { index: true, follow: true },
 }

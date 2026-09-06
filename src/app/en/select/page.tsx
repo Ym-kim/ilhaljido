@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'Stays, local experiences, eSIMs and online courses — partner services curated by destination for your workation.',
   alternates: {
     canonical: 'https://www.wakation.kr/en/select',
-    languages: cityLanguageAlternates('/select'),
+    languages: { ...cityLanguageAlternates('/select'), 'zh-CN': 'https://www.wakation.kr/zh/select' },
   },
   openGraph: {
     images: OG_DEFAULT_IMAGES,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://www.wakation.kr/en/select',
     siteName: 'Wakation',
     locale: 'en_US',
-    alternateLocale: ['ko_KR', 'ja_JP'],
+    alternateLocale: ['ko_KR', 'ja_JP', 'zh_CN'],
   },
   robots: { index: true, follow: true },
 }

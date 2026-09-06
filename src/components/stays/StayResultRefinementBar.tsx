@@ -2,7 +2,7 @@
 
 import { RotateCcw, SlidersHorizontal } from 'lucide-react'
 
-import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 import type {
   StayResultFilterAvailability,
   StayResultFilterKey,
@@ -26,7 +26,12 @@ const COPY = {
     filter: '条件', freeWifi: '無料Wi‑Fi', breakfastIncluded: '朝食付き', reviewEightPlus: '口コミ8点以上',
     visible: (visible: number, total: number) => `${total}件中${visible}件を表示`, reset: 'おすすめ順・すべて',
   },
-} satisfies Record<Lang, {
+  ZH: {
+    sort: '排序', recommended: '推荐顺序', rateAsc: '每晚价格从低到高', reviewDesc: '住客评分从高到低', propertyRatingDesc: 'Agoda 住宿等级从高到低',
+    filter: '筛选', freeWifi: '免费 Wi-Fi', breakfastIncluded: '含早餐', reviewEightPlus: '住客评分 8+',
+    visible: (visible: number, total: number) => `显示 ${visible} / ${total} 个`, reset: '推荐顺序 · 全部条件',
+  },
+} satisfies Record<DisplayLocale, {
   sort: string
   recommended: string
   rateAsc: string
@@ -51,7 +56,7 @@ export function StayResultRefinementBar({
   onFilterToggle,
   onReset,
 }: {
-  lang: Lang
+  lang: DisplayLocale
   sort: StayResultSort
   filters: StayResultFilters
   availability: StayResultFilterAvailability

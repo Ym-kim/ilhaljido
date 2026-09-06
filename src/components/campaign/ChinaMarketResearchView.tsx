@@ -14,11 +14,12 @@ import {
 } from 'lucide-react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 import { localizeHref } from '@/lib/i18n/localePath'
 import { CHINA_APPLICATION_URL, CHINA_CAMPAIGN_ID, CHINA_RESEARCH_VARIANTS } from '@/lib/campaigns/chinaMarketResearch'
 import { trackEvent } from '@/lib/track'
 
-const COPY = {
+const BASE_COPY = {
   back: { KO: '시장조사 프로그램', EN: 'Market research programs', JP: '市場調査プログラム' },
   eyebrow: { KO: 'OCTOBER · CHINA BUSINESS', EN: 'OCTOBER · CHINA BUSINESS', JP: 'OCTOBER · CHINA BUSINESS' },
   title: { KO: '중국 시장을 직접 보고,\n사업의 다음 기회를 찾다', EN: 'See the market first,\nthen find the next opportunity', JP: '中国市場を自分の目で見て、\n次のビジネス機会を探す' },
@@ -60,13 +61,40 @@ const COPY = {
   backCta: { KO: '다른 프로그램 보기', EN: 'Explore other programs', JP: '他のプログラムを見る' },
 } satisfies Record<string, Record<Lang, string> | Record<Lang, string[]>>
 
-const localeCode = (lang: Lang) => lang === 'JP' ? 'ja' : lang.toLowerCase()
+const ZH_COPY = {
+  back: '返回旅行准备',
+  eyebrow: 'OCTOBER · CHINA BUSINESS',
+  title: '亲自走进中国市场，\n找到下一个商业机会',
+  intro: '义乌第126期与广州第127期。按公开日期和调研目标，比较2026年10月的两条市场考察路线。',
+  navCompare: '比较两地', navFlow: '准备流程', navTrust: '来源与核验',
+  compareEyebrow: 'DISCOVERY → COMPARISON', compareTitle: '目标不同，适合的现场也不同',
+  fit: '适合这样的团队', facts: '公开信息',
+  live: '已核对外部日程与申请页', archived: '公开日程已结束',
+  chooseYiwu: '查看义乌日程与申请', chooseGuangzhou: '查看广州日程与申请',
+  reference: '查看官方参考信息', noCta: '尚未确认与该项目对应的申请链接，因此暂不显示申请按钮。',
+  flowEyebrow: 'WAKATION PLANNING NOTE', flowTitle: '在预订之前，先定义你的调研问题',
+  flow: ['将要比较的产品或行业缩小到1–3个', '选择市场型或展会型路线', '确认口译、支付、物流与样品携带规则', '确认最终行程后，再单独安排航班与住宿'],
+  dayTitle: '如果旅途中还要工作', dayBody: '将现场走访日与整理日分开，每晚预留60–90分钟整理照片、联系人与报价，会更现实。',
+  trustTitle: '清楚区分谁提供什么',
+  trustWakation: 'Wakation 负责比较、整理并介绍公开信息，不直接运营行程，也不处理预订与退款。',
+  trustOperator: '日程、价格、包含项目与取消条款请在外部运营方页面最终确认。招募可能变更或提前结束。',
+  sourcesTitle: '已核验的公开来源', sourceOperator: '10月外部运营与申请页', sourceYiwu: '义乌市官方市场介绍', sourceGuangzhou: '广交会官方网站',
+  verified: '最后核验：2026年9月3日', backCta: '查看住宿与旅行准备',
+} satisfies Record<keyof typeof BASE_COPY, string | string[]>
 
-export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOpen }: { forceLang?: Lang; externalApplicationWindowOpen: boolean }) {
+const COPY = Object.fromEntries(
+  Object.entries(BASE_COPY).map(([key, value]) => [key, { ...value, ZH: ZH_COPY[key as keyof typeof ZH_COPY] }]),
+) as { [K in keyof typeof BASE_COPY]: typeof BASE_COPY[K] & { ZH: (typeof ZH_COPY)[K] } }
+
+const localeCode = (lang: DisplayLocale) => lang === 'JP' ? 'ja' : lang === 'ZH' ? 'zh-cn' : lang.toLowerCase()
+
+export function ChinaMarketResearchView({ forceLang, forceDisplayLocale, externalApplicationWindowOpen }: { forceLang?: Lang; forceDisplayLocale?: DisplayLocale; externalApplicationWindowOpen: boolean }) {
   const { lang: contextLang, setLang } = useLang()
   const lang = forceLang ?? contextLang
+  const displayLocale = forceDisplayLocale ?? lang
   const [selected, setSelected] = useState<'yiwu' | 'guangzhou' | null>(null)
-  const prefix = lang === 'EN' ? '/en' : lang === 'JP' ? '/ja' : ''
+  const prefix = displayLocale === 'EN' ? '/en' : displayLocale === 'JP' ? '/ja' : displayLocale === 'ZH' ? '/zh' : ''
+  const backHref = displayLocale === 'ZH' ? '/zh/select' : localizeHref('/programs/market', lang)
 
   useEffect(() => {
     if (forceLang && forceLang !== contextLang) setLang(forceLang)
@@ -78,9 +106,9 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
       variant: 'comparison',
       placement: 'campaign_landing',
       source_page: `${prefix}/programs/china-market-research`,
-      locale: localeCode(lang),
+      locale: localeCode(displayLocale),
     })
-  }, [lang, prefix])
+  }, [displayLocale, prefix])
 
   const trackVariant = (variant: 'yiwu' | 'guangzhou', placement: string) => {
     setSelected(variant)
@@ -89,12 +117,12 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
       variant,
       placement,
       source_page: `${prefix}/programs/china-market-research`,
-      locale: localeCode(lang),
+      locale: localeCode(displayLocale),
     })
   }
 
   return (
-    <main className={`min-h-screen bg-[#f5f2ea] text-[#102a36] ${lang === 'JP' ? '[word-break:normal]' : ''}`}>
+    <main className={`min-h-screen bg-[#f5f2ea] text-[#102a36] ${displayLocale === 'JP' ? '[word-break:normal]' : ''}`}>
       <section className="relative overflow-hidden bg-[#071e2a] px-5 pb-14 pt-16 text-white sm:px-6 sm:pb-20 sm:pt-20">
         <div className="absolute inset-0 opacity-70" aria-hidden="true">
           <div className="absolute -right-20 top-8 h-72 w-72 rounded-full border-[58px] border-[#b94032]/35" />
@@ -102,14 +130,14 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
           <div className="absolute inset-y-0 left-[58%] w-px bg-white/10" />
         </div>
         <div className="relative mx-auto max-w-6xl">
-          <Link href={localizeHref('/programs/market', lang)} className="inline-flex min-h-11 items-center gap-2 text-xs font-black text-white/65 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
-            <ArrowRight className="h-4 w-4 rotate-180" aria-hidden="true" /> {COPY.back[lang] as string}
+          <Link href={backHref} className="inline-flex min-h-11 items-center gap-2 text-xs font-black text-white/65 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white">
+            <ArrowRight className="h-4 w-4 rotate-180" aria-hidden="true" /> {COPY.back[displayLocale] as string}
           </Link>
           <div className="mt-10 grid min-w-0 gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
             <div className="min-w-0">
-              <p className="text-[0.68rem] font-black tracking-[0.18em] text-[#73d6f5]">{COPY.eyebrow[lang] as string}</p>
-              <h1 className="mt-5 whitespace-pre-line text-[clamp(2.7rem,7vw,5.7rem)] font-black leading-[0.98] tracking-[-0.055em]">{COPY.title[lang] as string}</h1>
-              <p className="mt-7 max-w-2xl text-base font-medium leading-8 text-white/68 sm:text-lg">{COPY.intro[lang] as string}</p>
+              <p className="text-[0.68rem] font-black tracking-[0.18em] text-[#73d6f5]">{COPY.eyebrow[displayLocale] as string}</p>
+              <h1 className="mt-5 whitespace-pre-line text-[clamp(2.7rem,7vw,5.7rem)] font-black leading-[0.98] tracking-[-0.055em]">{COPY.title[displayLocale] as string}</h1>
+              <p className="mt-7 max-w-2xl text-base font-medium leading-8 text-white/68 sm:text-lg">{COPY.intro[displayLocale] as string}</p>
             </div>
             <div className="grid min-w-0 grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-[1.75rem] border border-white/12 bg-white/7 p-4 backdrop-blur-sm sm:gap-3 sm:p-8">
               <button type="button" onClick={() => trackVariant('yiwu', 'hero_route')} className={`min-h-24 min-w-0 rounded-2xl p-2 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:p-4 ${selected === 'yiwu' ? 'bg-[#d7aa50] text-[#071e2a]' : 'bg-white/7 text-white'}`}>
@@ -122,7 +150,7 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
             </div>
           </div>
           <nav aria-label="On this page" className="mt-10 flex gap-2 overflow-x-auto pb-1">
-            {[['#compare', COPY.navCompare[lang]], ['#flow', COPY.navFlow[lang]], ['#trust', COPY.navTrust[lang]]].map(([href, label]) => (
+            {[['#compare', COPY.navCompare[displayLocale]], ['#flow', COPY.navFlow[displayLocale]], ['#trust', COPY.navTrust[displayLocale]]].map(([href, label]) => (
               <a key={href as string} href={href as string} className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-white/15 bg-white/7 px-4 text-xs font-black text-white/78 hover:bg-white/12 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{label as string}</a>
             ))}
           </nav>
@@ -131,8 +159,8 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
 
       <section id="compare" data-visual-module="china-route-comparison" className="scroll-mt-24 px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <p className="text-[0.68rem] font-black tracking-[0.16em] text-[#a33b31]">{COPY.compareEyebrow[lang] as string}</p>
-          <h2 className="mt-3 max-w-3xl text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.compareTitle[lang] as string}</h2>
+          <p className="text-[0.68rem] font-black tracking-[0.16em] text-[#a33b31]">{COPY.compareEyebrow[displayLocale] as string}</p>
+          <h2 className="mt-3 max-w-3xl text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.compareTitle[displayLocale] as string}</h2>
           <div className="mt-9 grid gap-5 lg:grid-cols-2">
             {CHINA_RESEARCH_VARIANTS.map((variant, index) => {
               const isSelected = selected === variant.id
@@ -141,34 +169,34 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
                 <article key={variant.id} className={`overflow-hidden rounded-[2rem] border bg-white shadow-[0_18px_55px_rgba(16,42,54,0.08)] transition ${isSelected ? 'border-[#1b718b] ring-2 ring-[#1b718b]/10' : 'border-[#d9dfdc]'}`}>
                   <button type="button" onClick={() => trackVariant(variant.id, 'comparison_card')} className="w-full p-7 text-left focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-[#1b718b] sm:p-9">
                     <div className="flex items-start justify-between gap-5">
-                      <div><span className="text-[0.64rem] font-black tracking-[0.16em] text-[#7a8b8f]">0{index + 1} · {variant.eyebrow[lang]}</span><h3 className="mt-2 text-4xl font-black tracking-[-0.04em]">{variant.city[lang]}</h3></div>
+                      <div><span className="text-[0.64rem] font-black tracking-[0.16em] text-[#7a8b8f]">0{index + 1} · {variant.eyebrow[displayLocale]}</span><h3 className="mt-2 text-4xl font-black tracking-[-0.04em]">{variant.city[displayLocale]}</h3></div>
                       <span className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full bg-[#edf7eb] px-3 text-[0.67rem] font-black text-[#357043]">
                         <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                        {(externalApplicationWindowOpen ? COPY.live[lang] : COPY.archived[lang]) as string}
+                        {(externalApplicationWindowOpen ? COPY.live[displayLocale] : COPY.archived[displayLocale]) as string}
                       </span>
                     </div>
-                    <h4 className="mt-7 text-xl font-black leading-snug sm:text-2xl">{variant.title[lang]}</h4>
-                    <p className="mt-3 text-sm leading-7 text-[#52666d]">{variant.summary[lang]}</p>
+                    <h4 className="mt-7 text-xl font-black leading-snug sm:text-2xl">{variant.title[displayLocale]}</h4>
+                    <p className="mt-3 text-sm leading-7 text-[#52666d]">{variant.summary[displayLocale]}</p>
                   </button>
                   <div className="border-t border-[#e4e8e6] px-7 py-6 sm:px-9">
-                    <p className="text-xs font-black text-[#233d48]">{COPY.fit[lang] as string}</p>
-                    <p className="mt-2 text-sm leading-6 text-[#52666d]">{variant.objective[lang]}</p>
+                    <p className="text-xs font-black text-[#233d48]">{COPY.fit[displayLocale] as string}</p>
+                    <p className="mt-2 text-sm leading-6 text-[#52666d]">{variant.objective[displayLocale]}</p>
                     <ul className="mt-5 space-y-3">
-                      {variant.fit.map((item) => <li key={item[lang]} className="flex gap-3 text-sm text-[#334d57]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1b718b]" aria-hidden="true" /> {item[lang]}</li>)}
+                      {variant.fit.map((item) => <li key={item[displayLocale]} className="flex gap-3 text-sm text-[#334d57]"><Check className="mt-0.5 h-4 w-4 shrink-0 text-[#1b718b]" aria-hidden="true" /> {item[displayLocale]}</li>)}
                     </ul>
                   </div>
                   <div className="grid grid-cols-2 border-t border-[#e4e8e6] bg-[#f8f8f5]">
-                    {variant.facts.map((fact) => <div key={fact.label[lang]} className="min-h-24 border-b border-r border-[#e4e8e6] p-5 last:border-b-0"><span className="block text-[0.65rem] font-bold text-[#7a8b8f]">{fact.label[lang]}</span><strong className="mt-1 block text-sm leading-6 text-[#17323d]">{fact.value[lang]}</strong></div>)}
+                    {variant.facts.map((fact) => <div key={fact.label[displayLocale]} className="min-h-24 border-b border-r border-[#e4e8e6] p-5 last:border-b-0"><span className="block text-[0.65rem] font-bold text-[#7a8b8f]">{fact.label[displayLocale]}</span><strong className="mt-1 block text-sm leading-6 text-[#17323d]">{fact.value[displayLocale]}</strong></div>)}
                   </div>
                   <div className="p-7 sm:p-9">
                     {canApply ? (
-                      <a href={variant.externalUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('external_application_click', { campaign_id: CHINA_CAMPAIGN_ID, variant: variant.id, placement: 'comparison_card', source_page: `${prefix}/programs/china-market-research`, locale: localeCode(lang) })} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#173d4c] px-5 text-sm font-black text-white hover:bg-[#245b70] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">
-                        {(variant.id === 'yiwu' ? COPY.chooseYiwu[lang] : COPY.chooseGuangzhou[lang]) as string} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                      <a href={variant.externalUrl} target="_blank" rel="noopener noreferrer" onClick={() => trackEvent('external_application_click', { campaign_id: CHINA_CAMPAIGN_ID, variant: variant.id, placement: 'comparison_card', source_page: `${prefix}/programs/china-market-research`, locale: localeCode(displayLocale) })} className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[#173d4c] px-5 text-sm font-black text-white hover:bg-[#245b70] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">
+                        {(variant.id === 'yiwu' ? COPY.chooseYiwu[displayLocale] : COPY.chooseGuangzhou[displayLocale]) as string} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                       </a>
                     ) : (
-                      <p className="rounded-2xl bg-[#f0f1ee] p-4 text-xs font-bold leading-6 text-[#667378]">{COPY.noCta[lang] as string}</p>
+                      <p className="rounded-2xl bg-[#f0f1ee] p-4 text-xs font-bold leading-6 text-[#667378]">{COPY.noCta[displayLocale] as string}</p>
                     )}
-                    <a href={variant.officialReferenceUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs font-black text-[#587078] hover:text-[#173d4c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">{COPY.reference[lang] as string} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a>
+                    <a href={variant.officialReferenceUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs font-black text-[#587078] hover:text-[#173d4c] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#173d4c]">{COPY.reference[displayLocale] as string} <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" /></a>
                   </div>
                 </article>
               )
@@ -180,12 +208,12 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
       <section id="flow" className="scroll-mt-24 bg-[#dfecef] px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <div>
-            <p className="text-[0.68rem] font-black tracking-[0.16em] text-[#1b718b]">{COPY.flowEyebrow[lang] as string}</p>
-            <h2 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.flowTitle[lang] as string}</h2>
-            <div className="mt-7 rounded-[1.5rem] bg-[#173d4c] p-6 text-white"><CalendarDays className="h-6 w-6 text-[#74d5f3]" aria-hidden="true" /><h3 className="mt-4 text-lg font-black">{COPY.dayTitle[lang] as string}</h3><p className="mt-2 text-sm leading-7 text-white/70">{COPY.dayBody[lang] as string}</p></div>
+            <p className="text-[0.68rem] font-black tracking-[0.16em] text-[#1b718b]">{COPY.flowEyebrow[displayLocale] as string}</p>
+            <h2 className="mt-3 text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.flowTitle[displayLocale] as string}</h2>
+            <div className="mt-7 rounded-[1.5rem] bg-[#173d4c] p-6 text-white"><CalendarDays className="h-6 w-6 text-[#74d5f3]" aria-hidden="true" /><h3 className="mt-4 text-lg font-black">{COPY.dayTitle[displayLocale] as string}</h3><p className="mt-2 text-sm leading-7 text-white/70">{COPY.dayBody[displayLocale] as string}</p></div>
           </div>
           <ol className="grid gap-3 sm:grid-cols-2">
-            {(COPY.flow[lang] as string[]).map((item, index) => <li key={item} className="flex min-h-40 flex-col justify-between rounded-[1.5rem] border border-[#abc5ca] bg-white/70 p-6"><span className="text-sm font-black text-[#1b718b]">0{index + 1}</span><strong className="mt-8 text-lg leading-7">{item}</strong></li>)}
+            {(COPY.flow[displayLocale] as string[]).map((item, index) => <li key={item} className="flex min-h-40 flex-col justify-between rounded-[1.5rem] border border-[#abc5ca] bg-white/70 p-6"><span className="text-sm font-black text-[#1b718b]">0{index + 1}</span><strong className="mt-8 text-lg leading-7">{item}</strong></li>)}
           </ol>
         </div>
       </section>
@@ -193,23 +221,23 @@ export function ChinaMarketResearchView({ forceLang, externalApplicationWindowOp
       <section id="trust" className="scroll-mt-24 bg-[#071e2a] px-5 py-14 text-white sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="grid min-w-0 gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="min-w-0"><ShieldCheck className="h-8 w-8 text-[#74d5f3]" aria-hidden="true" /><h2 className="mt-5 max-w-lg break-words text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.trustTitle[lang] as string}</h2></div>
+            <div className="min-w-0"><ShieldCheck className="h-8 w-8 text-[#74d5f3]" aria-hidden="true" /><h2 className="mt-5 max-w-lg break-words text-[clamp(2rem,5vw,3.5rem)] font-black leading-[1.08] tracking-[-0.045em]">{COPY.trustTitle[displayLocale] as string}</h2></div>
             <div className="grid min-w-0 gap-3 sm:grid-cols-2">
-              <article className="min-w-0 rounded-[1.5rem] border border-white/12 bg-white/7 p-6"><Map className="h-6 w-6 text-[#74d5f3]" aria-hidden="true" /><h3 className="mt-5 font-black">Wakation</h3><p className="mt-2 break-words text-sm leading-7 text-white/65">{COPY.trustWakation[lang] as string}</p></article>
-              <article className="min-w-0 rounded-[1.5rem] border border-white/12 bg-white/7 p-6"><Building2 className="h-6 w-6 text-[#d7aa50]" aria-hidden="true" /><h3 className="mt-5 font-black">External operator</h3><p className="mt-2 break-words text-sm leading-7 text-white/65">{COPY.trustOperator[lang] as string}</p></article>
+              <article className="min-w-0 rounded-[1.5rem] border border-white/12 bg-white/7 p-6"><Map className="h-6 w-6 text-[#74d5f3]" aria-hidden="true" /><h3 className="mt-5 font-black">Wakation</h3><p className="mt-2 break-words text-sm leading-7 text-white/65">{COPY.trustWakation[displayLocale] as string}</p></article>
+              <article className="min-w-0 rounded-[1.5rem] border border-white/12 bg-white/7 p-6"><Building2 className="h-6 w-6 text-[#d7aa50]" aria-hidden="true" /><h3 className="mt-5 font-black">{displayLocale === 'ZH' ? '外部运营方' : 'External operator'}</h3><p className="mt-2 break-words text-sm leading-7 text-white/65">{COPY.trustOperator[displayLocale] as string}</p></article>
             </div>
           </div>
           <div className="mt-12 border-t border-white/12 pt-8">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-black tracking-[0.14em] text-white/45">SOURCES</p><h3 className="mt-2 text-xl font-black">{COPY.sourcesTitle[lang] as string}</h3></div><span className="text-xs text-white/45">{COPY.verified[lang] as string}</span></div>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p className="text-xs font-black tracking-[0.14em] text-white/45">SOURCES</p><h3 className="mt-2 text-xl font-black">{COPY.sourcesTitle[displayLocale] as string}</h3></div><span className="text-xs text-white/45">{COPY.verified[displayLocale] as string}</span></div>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
               {[
-                [COPY.sourceOperator[lang], CHINA_APPLICATION_URL],
-                [COPY.sourceYiwu[lang], 'https://www.yw.gov.cn/art/2008/12/29/art_1229142437_50763529.html'],
-                [COPY.sourceGuangzhou[lang], 'https://www.cantonfair.org.cn/en-US?m=0'],
+                [COPY.sourceOperator[displayLocale], CHINA_APPLICATION_URL],
+                [COPY.sourceYiwu[displayLocale], 'https://www.yw.gov.cn/art/2008/12/29/art_1229142437_50763529.html'],
+                [COPY.sourceGuangzhou[displayLocale], 'https://www.cantonfair.org.cn/en-US?m=0'],
               ].map(([label, href]) => <a key={href as string} href={href as string} target="_blank" rel="noopener noreferrer" className="flex min-h-16 items-center justify-between gap-4 rounded-2xl border border-white/12 px-5 text-sm font-bold text-white/70 hover:bg-white/7 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{label as string}<ArrowUpRight className="h-4 w-4 shrink-0" aria-hidden="true" /></a>)}
             </div>
           </div>
-          <Link href={`${prefix}/programs`} className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-black hover:bg-white/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.backCta[lang] as string}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
+          <Link href={displayLocale === 'ZH' ? '/zh/select' : `${prefix}/programs`} className="mt-10 inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-black hover:bg-white/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{COPY.backCta[displayLocale] as string}<ArrowRight className="h-4 w-4" aria-hidden="true" /></Link>
         </div>
       </section>
     </main>
