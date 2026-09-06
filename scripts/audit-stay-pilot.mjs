@@ -20,7 +20,7 @@ const files = {
   guide: read('src/components/guide/GuideView.tsx'),
   collection: read('src/components/affiliate/CollectionView.tsx'),
   initial: read('src/lib/stays/pilotInitialState.ts'),
-  home: read('src/app/page.tsx'),
+  home: read('src/components/home/HomePage.tsx'),
   booking: read('src/lib/affiliate/bookingSearch.ts'),
   bookingProvider: read('src/lib/stays/providers/booking.ts'),
   ko: read('src/app/select/hotel/pilot/page.tsx'),

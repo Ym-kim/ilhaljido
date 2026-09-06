@@ -1,6 +1,7 @@
 'use client'
 
 import Script from 'next/script'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useLang } from '@/context/LanguageContext'
 import type { Lang } from '@/lib/i18n/types'
@@ -19,20 +20,24 @@ import type { Lang } from '@/lib/i18n/types'
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID
 const CONSENT_KEY = 'wakation_consent' // 'granted' | 'denied'
 
-type L = Record<Lang, string>
+type AnalyticsLocale = Lang | 'ZH'
+type L = Record<AnalyticsLocale, string>
 const COPY: Record<string, L> = {
   msg: {
     KO: '서비스 개선을 위해 분석 쿠키를 사용합니다.',
     EN: 'We use analytics cookies to improve Wakation.',
     JP: 'サービス改善のため分析Cookieを使用します。',
+    ZH: '我们使用分析 Cookie 来改进 Wakation。',
   },
-  accept: { KO: '동의', EN: 'Accept', JP: '同意する' },
-  decline: { KO: '거부', EN: 'Decline', JP: '拒否' },
-  privacy: { KO: '개인정보처리방침', EN: 'Privacy Policy', JP: 'プライバシーポリシー' },
+  accept: { KO: '동의', EN: 'Accept', JP: '同意する', ZH: '同意' },
+  decline: { KO: '거부', EN: 'Decline', JP: '拒否', ZH: '拒绝' },
+  privacy: { KO: '개인정보처리방침', EN: 'Privacy Policy', JP: 'プライバシーポリシー', ZH: '隐私政策' },
 }
 
 export function Analytics() {
   const { lang } = useLang()
+  const pathname = usePathname()
+  const displayLang: AnalyticsLocale = pathname === '/zh' || pathname.startsWith('/zh/') ? 'ZH' : lang
   const [consent, setConsent] = useState<string | null>(null)
   const [ready, setReady] = useState(false)
 
@@ -65,13 +70,13 @@ export function Analytics() {
         <div className="fixed inset-x-0 bottom-0 z-[60] px-3 pb-3 sm:px-4 sm:pb-4 pointer-events-none">
           <div
             role="region"
-            aria-label={COPY.msg[lang]}
+            aria-label={COPY.msg[displayLang]}
             className="max-w-2xl mx-auto pointer-events-auto bg-[#0b1d2b]/95 text-white border border-white/12 rounded-2xl shadow-[0_18px_60px_rgba(2,12,22,0.45)] px-4 py-3 flex min-w-0 flex-col items-stretch gap-3 backdrop-blur-xl sm:flex-row sm:items-center"
           >
             <p className="min-w-0 text-[0.75rem] sm:text-sm text-white/82 flex-1 leading-relaxed">
-              {COPY.msg[lang]}{' '}
+              {COPY.msg[displayLang]}{' '}
               <a href="/privacy" className="underline underline-offset-2 text-sky-300 hover:text-sky-200 whitespace-nowrap">
-                {COPY.privacy[lang]}
+                {COPY.privacy[displayLang]}
               </a>
             </p>
             <div className="flex shrink-0 justify-end gap-1.5">
@@ -79,13 +84,13 @@ export function Analytics() {
                 onClick={() => decide('denied')}
                 className="min-h-10 text-xs font-bold px-3 rounded-full border border-white/20 text-white/80 hover:bg-white/8 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
-                {COPY.decline[lang]}
+                {COPY.decline[displayLang]}
               </button>
               <button
                 onClick={() => decide('granted')}
                 className="min-h-10 text-xs font-bold px-3.5 sm:px-4 rounded-full bg-brand-mid text-white hover:bg-brand-light transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300"
               >
-                {COPY.accept[lang]}
+                {COPY.accept[displayLang]}
               </button>
             </div>
           </div>
