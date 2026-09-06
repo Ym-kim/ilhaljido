@@ -74,11 +74,13 @@ function resolveLocale(value?: string) {
   if (value) {
     const normalized = value.toLowerCase()
     if (normalized === 'jp') return 'ja'
+    if (normalized === 'zh' || normalized === 'zh-cn') return 'zh-cn'
     if (normalized === 'ko' || normalized === 'en' || normalized === 'ja') return normalized
   }
   const pathname = currentPath()
   if (pathname === '/en' || pathname.startsWith('/en/')) return 'en'
   if (pathname === '/ja' || pathname.startsWith('/ja/')) return 'ja'
+  if (pathname === '/zh' || pathname.startsWith('/zh/')) return 'zh-cn'
   return 'ko'
 }
 

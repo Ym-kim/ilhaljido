@@ -14,6 +14,10 @@ const ROUTES: { path: string; priority: number; freq: MetadataRoute.Sitemap[numb
   { path: '',                          priority: 1.0, freq: 'weekly' },
   { path: '/en',                       priority: 0.9, freq: 'weekly' },
   { path: '/ja',                       priority: 0.9, freq: 'weekly' },
+  { path: '/zh',                       priority: 0.9, freq: 'weekly' },
+  { path: '/zh/select',                priority: 0.8, freq: 'weekly' },
+  { path: '/zh/select/hotel',          priority: 0.8, freq: 'weekly' },
+  { path: '/zh/programs/china-market-research', priority: 0.8, freq: 'weekly' },
   { path: '/ja/campaign/korea-weekend', priority: 0.8, freq: 'weekly' },
   // 커머스·수익 허브 (높은 우선순위)
   { path: '/select',                   priority: 0.9, freq: 'weekly' },

@@ -1,4 +1,4 @@
-import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 import { AGODA_CITY_IDS } from '@/lib/affiliate/agodaCities'
 import { trackEvent } from '@/lib/track'
 import type { StayCapability, StayImageStatus, StayLiveSearchFailureReason, StayProviderId } from '@/lib/stays/domain'
@@ -19,7 +19,7 @@ export type StayEventName =
   | 'affiliate_redirect'
 
 export type StayAnalyticsInput = {
-  locale: Lang
+  locale: DisplayLocale
   sourceSection: string
   provider?: StayProviderId
   destinationId?: string
@@ -82,7 +82,7 @@ export function getStayResultCountBand(value?: number): StayResultCountBand {
  */
 export function trackStayEvent(name: StayEventName, input: StayAnalyticsInput): void {
   trackEvent(name, {
-    locale: input.locale === 'JP' ? 'ja' : input.locale.toLowerCase(),
+    locale: input.locale === 'JP' ? 'ja' : input.locale === 'ZH' ? 'zh-cn' : input.locale.toLowerCase(),
     source_section: safeToken(input.sourceSection, 'unknown'),
     provider: input.provider ?? 'none',
     destination_id: safeDestinationId(input.destinationId),

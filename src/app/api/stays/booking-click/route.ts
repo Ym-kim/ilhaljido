@@ -1,12 +1,12 @@
 import { getStayPilotDestination } from '@/lib/stays/pilotDestinations'
 import { isAgodaStayPilotEnabled } from '@/lib/stays/pilotFlag'
 import { logStayBookingClick } from '@/lib/stays/operationalTelemetry'
-import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 
 export const dynamic = 'force-dynamic'
 
 const ALLOWED_KEYS = ['destinationId', 'locale', 'mode', 'provider'] as const
-const ALLOWED_LOCALES: readonly Lang[] = ['KO', 'EN', 'JP']
+const ALLOWED_LOCALES: readonly DisplayLocale[] = ['KO', 'EN', 'JP', 'ZH']
 
 function isObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -63,8 +63,8 @@ export async function POST(request: Request) {
   }
 
   const destinationId = typeof payload.destinationId === 'string' ? payload.destinationId : ''
-  const locale = typeof payload.locale === 'string' && ALLOWED_LOCALES.includes(payload.locale as Lang)
-    ? payload.locale as Lang
+  const locale = typeof payload.locale === 'string' && ALLOWED_LOCALES.includes(payload.locale as DisplayLocale)
+    ? payload.locale as DisplayLocale
     : null
   const provider = payload.provider === 'agoda' || payload.provider === 'booking' ? payload.provider : null
   const mode = payload.mode === 'results' || payload.mode === 'fallback' ? payload.mode : null

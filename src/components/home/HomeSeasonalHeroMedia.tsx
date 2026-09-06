@@ -2,9 +2,9 @@
 
 import { Pause, Play } from 'lucide-react'
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
-import type { Lang } from '@/lib/i18n/types'
+import type { DisplayLocale } from '@/lib/i18n/displayLocale'
 
-type L = Record<Lang, string>
+type L = Record<DisplayLocale, string>
 export type HomeHeroVariant = 'production' | 'control-static' | 'video-story'
 type IdleWindow = Window & {
   requestIdleCallback?: (callback: () => void, options?: { timeout: number }) => number
@@ -16,9 +16,10 @@ const COPY: Record<'season' | 'play' | 'pause', L> = {
     KO: '늦여름 · 초가을 에디트',
     EN: 'Late summer · early autumn',
     JP: '晩夏・初秋のエディット',
+    ZH: '夏末 · 初秋影像',
   },
-  play: { KO: '배경 영상 재생', EN: 'Play background film', JP: '背景映像を再生' },
-  pause: { KO: '배경 영상 일시정지', EN: 'Pause background film', JP: '背景映像を一時停止' },
+  play: { KO: '배경 영상 재생', EN: 'Play background film', JP: '背景映像を再生', ZH: '播放背景影片' },
+  pause: { KO: '배경 영상 일시정지', EN: 'Pause background film', JP: '背景映像を一時停止', ZH: '暂停背景影片' },
 }
 
 // The poster remains the LCP surface. The optional motion layer only loads
@@ -65,7 +66,7 @@ function getPreviewEdit(): keyof typeof STORY_FILMS {
   return new URLSearchParams(window.location.search).get('hero') === 'hero-closeup' ? 'closeup' : 'clean'
 }
 
-export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { alt: string; lang: Lang; variant?: HomeHeroVariant }) {
+export function HomeSeasonalHeroMedia({ alt, lang, variant = 'production' }: { alt: string; lang: DisplayLocale; variant?: HomeHeroVariant }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const userPausedRef = useRef(false)
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false)

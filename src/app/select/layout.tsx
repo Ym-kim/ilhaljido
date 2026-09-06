@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ['워케이션 준비', '해외 숙소', 'eSIM', '현지 체험', '온라인 강의', 'Wakation Select'],
   alternates: {
     canonical: 'https://www.wakation.kr/select',
-    languages: cityLanguageAlternates('/select'),
+    languages: { ...cityLanguageAlternates('/select'), 'zh-CN': 'https://www.wakation.kr/zh/select' },
   },
   robots: { index: true, follow: true },
   openGraph: {

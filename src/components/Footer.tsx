@@ -1,14 +1,18 @@
 'use client'
 
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Logo } from '@/components/brand/Logo'
 import { useLang } from '@/context/LanguageContext'
 import { BUSINESS } from '@/lib/legal'
 import { KAKAO_CHANNEL_URL } from '@/lib/publicConfig'
 import { localizeHref, isRouteVisibleIn } from '@/lib/i18n/localePath'
+import { ChineseFooter } from '@/components/zh/ChineseSiteChrome'
 
 export default function Footer() {
+  const pathname = usePathname()
   const { tr, lang } = useLang()
+  if (pathname === '/zh' || pathname.startsWith('/zh/')) return <ChineseFooter />
   const companyName = lang === 'KO' ? BUSINESS.companyKo : BUSINESS.companyEn
   const address = lang === 'KO' ? BUSINESS.addressKo : BUSINESS.addressEn
   const bizLabel = lang === 'KO' ? '사업자등록번호' : lang === 'JP' ? '事業者登録番号' : 'Business reg. no.'

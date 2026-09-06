@@ -42,6 +42,7 @@ function readCookie(name: string): string | null {
 export function LanguageProvider({ children, forceLang }: { children: ReactNode; forceLang?: Lang }) {
   const pathname = usePathname()
   const routeLang = urlLang(pathname)
+  const routeIsChinese = pathname === '/zh' || pathname.startsWith('/zh/')
   // 정적 로케일 URL(/en·/ja)은 저장된 사용자 선호보다 우선하고, **서버 렌더에서도 적용**된다
   const [lang, setLangState] = useState<Lang>(forceLang ?? routeLang ?? 'KO')
 
@@ -76,7 +77,9 @@ export function LanguageProvider({ children, forceLang }: { children: ReactNode;
   useEffect(() => {
     // 로케일 URL이 항상 이긴다 — 부모 provider가 중첩 라우트의 문서 언어를 덮지 않도록.
     // (KO 라우트에서 언어 스위처를 쓴 경우는 pathname이 그대로라 lang이 반영된다)
-    const htmlLang = routeLang === 'JP'
+    const htmlLang = routeIsChinese
+      ? 'zh-CN'
+      : routeLang === 'JP'
       ? 'ja'
       : routeLang === 'EN'
         ? 'en'
@@ -86,7 +89,7 @@ export function LanguageProvider({ children, forceLang }: { children: ReactNode;
             ? 'en'
             : 'ja'
     document.documentElement.lang = htmlLang
-  }, [lang, routeLang])
+  }, [lang, routeIsChinese, routeLang])
 
   const setLang = (l: Lang) => {
     setLangState(l)

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     'Tokyo, Osaka, Fukuoka, Da Nang, Bali, Lisbon and Jeju — search workation stays by destination on Booking.com and Trip.com.',
   alternates: {
     canonical: 'https://www.wakation.kr/en/select/hotel',
-    languages: cityLanguageAlternates('/select/hotel'),
+    languages: { ...cityLanguageAlternates('/select/hotel'), 'zh-CN': 'https://www.wakation.kr/zh/select/hotel' },
   },
   openGraph: {
     images: OG_DEFAULT_IMAGES,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://www.wakation.kr/en/select/hotel',
     siteName: 'Wakation',
     locale: 'en_US',
-    alternateLocale: ['ko_KR', 'ja_JP'],
+    alternateLocale: ['ko_KR', 'ja_JP', 'zh_CN'],
   },
   robots: { index: true, follow: true },
 }

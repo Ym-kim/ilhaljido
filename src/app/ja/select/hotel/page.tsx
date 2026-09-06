@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     '東京·大阪·福岡·ダナン·バリ·リスボン·済州。ワーケーション目的地別の宿をBooking.comとTrip.comですぐ検索。',
   alternates: {
     canonical: 'https://www.wakation.kr/ja/select/hotel',
-    languages: cityLanguageAlternates('/select/hotel'),
+    languages: { ...cityLanguageAlternates('/select/hotel'), 'zh-CN': 'https://www.wakation.kr/zh/select/hotel' },
   },
   openGraph: {
     images: OG_DEFAULT_IMAGES,
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://www.wakation.kr/ja/select/hotel',
     siteName: 'Wakation',
     locale: 'ja_JP',
-    alternateLocale: ['ko_KR', 'en_US'],
+    alternateLocale: ['ko_KR', 'en_US', 'zh_CN'],
   },
   robots: { index: true, follow: true },
 }

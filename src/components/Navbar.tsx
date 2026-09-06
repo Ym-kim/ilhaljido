@@ -31,8 +31,15 @@ const DESKTOP_MENUS = [
 ]
 
 function stripLocale(pathname: string) {
-  const stripped = pathname.replace(/^\/(en|ja)(?=\/|$)/, '')
+  const stripped = pathname.replace(/^\/(en|ja|zh)(?=\/|$)/, '')
   return stripped || '/'
+}
+
+const ZH_CORE_PATHS = new Set(['/', '/select', '/select/hotel', '/select/hotel/pilot', '/programs/china-market-research'])
+
+function chineseHref(pathname: string) {
+  const path = stripLocale(pathname)
+  return ZH_CORE_PATHS.has(path) ? (path === '/' ? '/zh' : `/zh${path}`) : '/zh'
 }
 
 function isPathActive(pathname: string, href: string) {
@@ -532,12 +539,15 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
                 {lang}<ChevronDown className="h-3 w-3 opacity-60" strokeWidth={ICON_STROKE} />
               </button>
               {languageOpen && (
-                <div id="desktop-language-menu" className="absolute right-0 top-[calc(100%+0.5rem)] w-24 rounded-xl border border-[#e2e8e9] bg-white p-1.5 shadow-xl">
+                <div id="desktop-language-menu" className="absolute right-0 top-[calc(100%+0.5rem)] w-28 rounded-xl border border-[#e2e8e9] bg-white p-1.5 shadow-xl">
                   {(['KO', 'EN', 'JP'] as Lang[]).map((locale) => (
                     <button key={locale} type="button" onClick={() => { setLang(locale); setLanguageOpen(false) }} className={cn('flex min-h-10 w-full items-center rounded-lg px-3 text-left text-xs font-black', lang === locale ? 'bg-[#eaf6fb] text-[#08719b]' : 'text-[#536770] hover:bg-[#f2f6f6]')}>
                       {locale}
                     </button>
                   ))}
+                  <Link href={chineseHref(pathname)} onClick={() => setLanguageOpen(false)} className="flex min-h-10 w-full items-center rounded-lg px-3 text-left text-xs font-black text-[#536770] hover:bg-[#f2f6f6]">
+                    ZH
+                  </Link>
                 </div>
               )}
             </div>
@@ -612,10 +622,11 @@ export default function Navbar({ transparent = false }: { transparent?: boolean 
 
               <div className="mt-4">
                 <span className="mb-2 block text-[0.65rem] font-black uppercase tracking-[0.16em] text-[#819198]">{NAVIGATION_COPY.languageLabel[lang]}</span>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-4 gap-2">
                   {(['KO', 'EN', 'JP'] as Lang[]).map((locale) => (
                     <button key={locale} type="button" onClick={() => setLang(locale)} className={cn('min-h-11 rounded-xl text-xs font-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500', lang === locale ? 'bg-[#e5f4fa] text-[#08719b]' : 'bg-[#f2f5f5] text-[#687b83]')}>{locale}</button>
                   ))}
+                  <Link href={chineseHref(pathname)} onClick={() => closeMobileMenu('language')} className="flex min-h-11 items-center justify-center rounded-xl bg-[#f2f5f5] text-xs font-black text-[#687b83] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500">ZH</Link>
                 </div>
               </div>
 

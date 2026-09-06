@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['워케이션 숙소', '해외 장기체류', 'Booking.com', '도쿄 숙소', '발리 숙소', '다낭 숙소'],
   alternates: {
     canonical: 'https://www.wakation.kr/select/hotel',
-    languages: cityLanguageAlternates('/select/hotel'),
+    languages: { ...cityLanguageAlternates('/select/hotel'), 'zh-CN': 'https://www.wakation.kr/zh/select/hotel' },
   },
   robots: { index: true, follow: true },
 }

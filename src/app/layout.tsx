@@ -63,6 +63,7 @@ export const metadata: Metadata = {
       ko: 'https://www.wakation.kr',
       en: 'https://www.wakation.kr/en',
       ja: 'https://www.wakation.kr/ja',
+      'zh-CN': 'https://www.wakation.kr/zh',
       'x-default': 'https://www.wakation.kr',
     },
   },
@@ -105,7 +106,7 @@ const organizationJsonLd = {
     '@type': 'ContactPoint',
     email: 'wakation.sf@gmail.com',
     contactType: 'customer support',
-    availableLanguage: ['Korean', 'English', 'Japanese'],
+    availableLanguage: ['Korean', 'English', 'Japanese', 'Simplified Chinese'],
   },
   // 공식 채널 — 커뮤니티·메신저 (검색엔진에 동일 주체 신호)
   sameAs: ['https://cafe.naver.com/shcafa32', 'https://pf.kakao.com/_xiPxbXG'],
@@ -118,7 +119,7 @@ const websiteJsonLd = {
   name: 'Wakation',
   alternateName: '와케이션',
   url: 'https://www.wakation.kr',
-  inLanguage: ['ko', 'en', 'ja'],
+  inLanguage: ['ko', 'en', 'ja', 'zh-CN'],
   publisher: { '@type': 'Organization', name: 'Wakation', legalName: '주식회사 스테이포워드' },
 }
 
