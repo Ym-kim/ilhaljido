@@ -363,6 +363,12 @@ const EN: Record<string, Overlay> = {
     desc: 'Overnight to Osaka with two buffet meals included. Satellite Wi-Fi and a sauna on Korea’s first luxury cruise ferry.',
     cta: 'See tickets', badge: '2 buffet meals',
   },
+  'cruise-busan-departures': {
+    productTitle: 'Cruises from Busan · Compare current sailings',
+    destination: 'Busan → Japan · China · Jeju',
+    desc: 'Compare current Busan-departure sailings and cabin fares in one place, including Costa Serena.',
+    cta: 'See Busan sailings', badge: 'From Korea',
+  },
   'cruise-rci-singapore': {
     productTitle: 'Royal Caribbean Navigator · Singapore 4D',
     destination: 'Singapore → Penang',
@@ -1008,6 +1014,12 @@ const JP: Record<string, Overlay> = {
     destination: '釜山 ↔ 大阪 · 17時間',
     desc: 'ビュッフェ2食付きで一晩で大阪へ。衛星Wi-Fiとサウナを備えた韓国初のラグジュアリークルーズフェリー。',
     cta: '乗船券を見る', badge: 'ビュッフェ2食付き',
+  },
+  'cruise-busan-departures': {
+    productTitle: '釜山発クルーズ · 最新日程を比較',
+    destination: '釜山 → 日本·中国·済州',
+    desc: 'コスタ・セレーナを含む釜山発の最新航海と客室料金を、ひとつのページで比較できます。',
+    cta: '釜山発の日程を見る', badge: '韓国発',
   },
   'cruise-rci-singapore': {
     productTitle: 'ロイヤルカリビアン ナビゲーター · シンガポール4日',

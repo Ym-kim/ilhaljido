@@ -612,6 +612,30 @@ export const FEATURED_ESIM: AffiliateItem[] = [
 
 export const FEATURED_CRUISES: AffiliateItem[] = [
   {
+    // 2026-09-06 Jetsetter 코스타 세레나 기획전 교차검증.
+    // Jetsetter에는 공개 affiliate/referral 체계가 확인되지 않아 비제휴 직링크는 미노출.
+    // 동일 9/12 부산→고베 항차가 확인된 기존 승인 파트너 Trip.com의 부산 출발 허브를
+    // 사용해 특정 출항일 종료 뒤에도 최신 항차로 이어지는 evergreen 제휴 진입점으로 구성.
+    id: 'cruise-busan-departures',
+    name: 'Trip.com',
+    category: 'transport',
+    productType: 'transport',
+    status: 'active_affiliate',
+    emoji: '🚢',
+    productTitle: '부산 출발 크루즈 · 최신 일정 비교',
+    destination: '부산 → 일본·중국·제주',
+    country: '한국 출발',
+    desc: '코스타 세레나를 포함해 부산에서 출발하는 최신 크루즈 항차와 객실 요금을 한 페이지에서 비교합니다.',
+    cta: '부산 출발 일정 보기',
+    href: 'https://kr.trip.com/cruises/from-busan-253/?Allianceid=9024807',
+    badge: '한국 출발',
+    trackingId: 'Allianceid=9024807',
+    coverPhoto: '/media/verified/unsplash/1548574505-5e239809ee19.webp',
+    illustrative: true,
+    coverGradient: 'from-cyan-900 via-sky-950 to-[#0d0d0d]',
+    sourceNote: 'Trip.com 부산 출발 크루즈 허브에서 Costa Serena 부산→고베 2박3일(2026-09-12) 노출 확인 2026-09-06. Jetsetter 30313의 동일 항차와 교차검증. Jetsetter 공개 제휴 추적 미확인, 9/2 5박6일은 출항 완료, KKday 589493은 매진으로 미연결.',
+  },
+  {
     // 2026-07-18 신설 — 크루즈 카테고리 첫 Klook 제휴 (기존 팬스타 직링크는 제휴 불가였음)
     id: 'cruise-panstar-miracle',
     name: 'Klook',
@@ -724,7 +748,7 @@ export const FEATURED_CRUISES: AffiliateItem[] = [
     sourceNote: 'Trip.com 선박 페이지 실측 2026-07-28 — 리우(4/8발 19일 ₩1,553,197)·부에노스아이레스(4/5발 22~23일) 2027-04 출항 4개 일정, 최저가 확인',
   },
   // 팬스타(페리)·msccruises.co.kr 게시판·마이크루즈북 비제휴 카드는 2026-07-13 운영자 지시로 제거
-  // — 크루즈 카드는 전부 Trip.com 실상품 + Allianceid 추적으로 통일
+  // — 크루즈 카드는 Klook 또는 Trip.com의 검증된 제휴 링크만 노출
 ]
 
 export const FEATURED_COURSES: AffiliateItem[] = [

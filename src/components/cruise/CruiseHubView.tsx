@@ -136,8 +136,8 @@ export function CruiseHubView({ forceLang }: { forceLang?: Lang } = {}) {
             {tr('cruise_featured')}
           </p>
           <p className="text-[#64748b] text-sm mb-6">{tr('cruise_featured_d')}</p>
-          {/* 5장 기준: lg 3열(3+2)·xl 5열 한 줄 — 4열 고아 카드 방지 (2026-07-19) */}
-          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-5">
+          {/* 6장 기준: desktop 3×2, mobile 1~2열 — 마지막 고아 카드 없이 균형 유지 */}
+          <div className="grid grid-cols-1 gap-3 min-[520px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
             {FEATURED_CRUISES.map((item) => (
               <AffiliateCard
                 key={item.id}

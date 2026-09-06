@@ -22,6 +22,7 @@ const activeCourseIds = [
 const checks = [
   ['Booking tracking', /aid=7854081/.test(files.featured + files.items)],
   ['Trip.com tracking', /Allianceid=9024807/.test(files.featured + files.items)],
+  ['Busan cruise affiliate hub', /cruise-busan-departures[\s\S]*from-busan-253\/[?]Allianceid=9024807/.test(files.featured)],
   ['KKday tracking', /cid=25833/.test(files.featured + files.items)],
   ['Klook tracking', /aid=126848/.test(files.featured + files.items)],
   ['Airalo tracking', /7451946\/1268485\/15608/.test(files.featured + files.items)],

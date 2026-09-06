@@ -82,6 +82,12 @@ const CHECKS: Check[] = [
 
   // 크루즈 제휴 링크 (Trip.com, 전량 Allianceid) — 봇 차단 202/403은 생존으로 간주
   {
+    id: 'cruise:busan-departures',
+    url: 'https://kr.trip.com/cruises/from-busan-253/?Allianceid=9024807',
+    finalMustInclude: 'trip.com',
+    okStatuses: [200, 202, 403],
+  },
+  {
     id: 'cruise:msc-world-europa',
     url: 'https://kr.trip.com/cruises/ship-msc-cruises-msc-world-europa-944?curr=KRW&Allianceid=9024807',
     finalMustInclude: 'trip.com',
